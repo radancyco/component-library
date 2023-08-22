@@ -1,0 +1,165 @@
+/*!
+
+  Radancy Component Library: TabCordion
+
+  Contributor(s):
+  Michael "Spell" Spellacy, Email: michael.spellacy@radancy.com, Twitter: @spellacy, GitHub: michaelspellacy
+  Andrew Hill, Email: andrew.hill@radancy.com
+
+  Dependencies: Sass
+  Instructions: To run locally, install Sass (https://sass-lang.com/install), CL to directory this file in and run:
+  sass --watch init.scss:init.css --style compressed
+
+*/
+
+// Variables
+
+$base-color: #6F00EF;
+$base-color-active: white;
+$base-color-neutral: lightgrey;
+
+// TabAccordion
+
+.tab-accordion {
+color: $base-color-active;
+
+  &[data-tab-animation] {
+
+    overflow: hidden;
+
+  }
+
+  &[role="tablist"] {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  }
+
+  // Note: min-heiht to set consistent height in vertical tab panels. Adjust as needed.
+  // Ideally, we would handle this via JavaScript, but can't due to display: none on each panel.
+
+  &[aria-orientation="vertical"] {
+  display: grid;
+  grid-template-columns: 20% auto;
+  min-height: 400px;
+  }
+
+  // Button
+
+  &__button {
+  border: 0;
+  display: block;
+  margin: 0;
+  padding: 1.5em;
+  width: 100%;
+
+    [role="tablist"] & {
+    background-color: $base-color-neutral;
+    order: -1;
+    width: auto;
+    }
+
+    &:focus, &:hover {
+    background-color: darken($base-color-neutral, 10%);
+    }
+
+    &.active {
+    background-color: $base-color;
+    color: $base-color-active;
+    }
+
+  }
+
+  // Accordion & Layout Panel
+
+  &__panel  {
+  background-color: $base-color;
+  display: none;
+  padding: 1em;
+  position: relative;
+
+    [role="tablist"] & {
+    flex-basis: 100%;
+    }
+
+    [aria-orientation="vertical"] & {
+    grid-area: 1 / 2 / 6; // Note: Set to higher number if you do not want height of buttons to scale.
+    }
+
+    [data-tab-animation] & {
+
+      @media (prefers-reduced-motion: no-preference) {
+
+        display: block;
+        position: absolute;
+        visibility: hidden;
+
+      }
+
+    }
+
+    a {
+    color: inherit;
+    }
+
+  }
+
+  // Expanded Rules
+
+  &__panel {
+
+    &.expanded {
+    display: block;
+    width: 100%;
+
+      [data-tab-animation] & {
+
+        position: static;
+        visibility: visible;
+
+      }
+
+    }
+
+  }
+
+  // Content Area
+
+  &__content {
+  position: relative;
+
+    [data-tab-animation] & {
+
+      bottom: -100px;
+      opacity: 0;
+      visibility: hidden;
+
+    }
+
+    .expanded & {
+
+      [data-tab-animation] & {
+
+        bottom: 0;
+        opacity: 1;
+        transition: all 400ms ease-in-out;
+        visibility: visible;
+
+      }
+
+    }
+
+  }
+
+  // Focus State
+  // Accessibility: NEVER remove focus outlines! Either redesign them or design an alternative focus state. Learn: https://webaim.org/articles/contrast/
+
+  &__button, &__panel {
+
+    &:focus {
+    outline-offset: -6px;
+    }
+
+  }
+
+}

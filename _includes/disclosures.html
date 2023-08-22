@@ -1,0 +1,41 @@
+<section id="a11y-info" class="a11y-info">
+
+	<h2>Accessibility: Avoid Toggling Text</h2>
+
+	<p>Toggling text in a control to indicate a state change should be avoided. For example, click on the following button:</p>
+
+	<button aria-expanded="false" class="btn" id="toggleExample" onclick="toggleText()">Open</button>
+
+	<script>
+
+	function toggleText() {
+
+  	var x = document.getElementById("toggleExample");
+
+		if (x.textContent === "Open") {
+
+			x.textContent = "Close";
+			x.setAttribute("aria-expanded", "true");
+
+		} else {
+
+			x.textContent = "Open";
+			x.setAttribute("aria-expanded", "false");
+
+		}
+
+	}
+
+	</script>
+
+	<p>This is problematic for the following reasons:</p>
+
+  <ul>
+    <li>Changing text removes the initial context of the control, which can be confusing, especially if <code>aria-expanded</code> or <code>aria-pressed</code> are used to aid assistive technology users.</li>
+	<li>Changing text may not announce the state change to assistive technology users.</li>
+	<li>Instead of changing text, use visual affordance to convey that toggling behavior exists. This is a well-known and quickly understood convention. For example, up and down arrows, check mark, plus and minus, etc.</li>
+	<li>Using a single instruction means their is less text to translate.</li>
+    <li>Users are well-adept at using such interfaces. Afterall, if they knew how to open it, a text instruction to close it is really unnecessary.</li>
+  </ul>
+
+</section>

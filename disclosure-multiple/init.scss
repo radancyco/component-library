@@ -1,0 +1,96 @@
+/*!
+
+  Radancy Component Library: Multiple Disclosure v1.1
+
+  Contributor(s):
+  Andrew Hill, Email: andrew.hill@radancy.com
+
+  Dependencies: Sass
+  Instructions: To run locally, install Sass (https://sass-lang.com/install), CL to directory this file in and run:
+  sass --watch init.scss:init.css --style compressed
+
+*/
+
+$base-color: #6F00EF;
+
+.disclosure-multiple {
+
+  &__navigation {
+  text-align: right;
+
+    &__button {
+    background-color: $base-color;
+    border: 0;
+    color: white;
+    font-size: inherit;
+    margin-bottom: 1em;
+    padding: 1em;
+
+      &:focus {
+      background-color: #69788C;
+      }
+
+    }
+
+  }
+
+  &__list {
+
+    &__item {
+    margin-bottom: 5px;
+
+      &--open {
+      background-color: #eee;
+      }
+
+      .disclosure-multiple__content {
+      display: none;
+      padding: 0 10px 10px;
+      }
+
+      .disclosure-multiple__button {
+      background-color: $base-color;
+      border: 0;
+      color: white;
+      font-size: inherit;
+      margin-bottom: 1em;
+      padding: 1em;
+      text-align: left;
+      width: 100%;
+
+        &:focus {
+        background-color: #69788C;
+        }
+
+        .disclosure-multiple--icon {
+
+          &::after {
+          display: inline-block;
+          content: "+";
+          }
+
+        }
+
+        &[aria-expanded="true"] {
+
+          .disclosure-multiple--icon {
+
+            &::after {
+            content: "-";
+            }
+
+          }
+
+          + .disclosure-multiple__content {
+          display: block;
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+}

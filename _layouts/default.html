@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang }}" class="no-js">
+<head>
+    <meta charset="{{ site.charset }}">
+    <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">{% if page.noindex != false %}
+    <meta content="noindex, nofollow" name="robots">{% endif %}
+    <meta content="{{ site.theme-color }}" name="theme-color">{% if page.slick %}
+    <link href="{{ site.git-url }}/lib/a11y-slick-1.0.1/slick.min.css" rel="stylesheet">{% endif %}{% if page.disclosure %}
+    <!-- link href="{{ site.git-url }}/component-library/disclosure/init.css" rel="stylesheet"-->{% endif %}{% if page.in-page %}
+    <link href="{{ site.git-url }}/component-library/in-page/init.css" rel="stylesheet">{% endif %}{% if page.read-more %}
+    <link href="{{ site.git-url }}/component-library/read-more/init.css" rel="stylesheet">{% endif %}{% if page.tabcordion %}
+    <link href="{{ site.git-url }}/component-library/tabcordion/init.css" rel="stylesheet">{% endif %}
+    <link href="{{ site.git-url }}/css/init.css" rel="stylesheet">{% if page.localcss %}
+    <link href="{{ page.localcss }}" rel="stylesheet">{% endif %}
+    <link href="{{ site.git-url }}/favicon.ico" rel="icon">
+    <link href="{{ site.git-url }}/manifest.json" rel="manifest">
+    <title>{{ page.title }} - {{ site.company-name }}</title>
+</head>
+
+<body id="rad-{{ page.path | replace:'.html',''|  replace:'.md','' | replace:'_','' | replace: '/', '-'}}"{% if page.section %} class="{{ page.section }}"{% endif %}>
+
+  <div id="page">
+
+    <header id="banner">
+
+      <a href="/"><img src="{{ site.git-url }}/img/logo.svg" alt="{{ site.company-name }}"> <span>{{ site.name }}</span></a>
+
+      {% if site.navigation %}
+
+        {% if page.navigation != false %}
+
+          {% include navigation.html %}
+
+        {% endif %}
+
+      {% endif %}
+
+    </header>
+
+    <main{% if page.constrain != false %} id="content"{% endif %}>
+
+      {% if page.title %}
+
+      {% if page.heading != false %}
+
+      <h1 class="primary-heading">{{ page.title }}</h1>
+
+      {% endif %}
+
+      {% endif %}
+
+      {% if page.experimental %}
+
+      <p class="experimental">Experimental</p>
+
+      {% endif %}
+
+      {% if page.warning %}
+
+      <p class="alert"><strong>Warning:</strong> Circumventing limitations present within a pattern is strongly discouraged. If you run into any issues or require a new feature, please <a href="http://jira.tmp.com/browse/{{ page.jira }}">add a comment</a> to already opened ticket. The Pattern Library Team (PLT) will not be responsible for any issues that are created due to workarounds during implementation.</p>
+
+      {% endif %}
+
+      {% if page.toc %}
+
+      <details class="nav">
+
+        <summary class="btn">Table of Contents</summary>
+
+        {% include toc.html html=content h_max=4 ordered=true %}
+
+      </details>
+
+      {% endif %}
+
+      {{ content }}
+
+    </main>
+
+    <footer{% if page.constrain != false %} id="contentinfo"{% endif %}>
+
+      <p><small>&copy; {{ "now" | date: "%Y" }} {{ site.company-name }}. An equal opportunity employer. <a href="/contribute/">Contributions</a> to this project are welcome.</small></p>
+
+    </footer>
+
+  </div>
+  {% if page.jquery != false %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>{% endif %}{% if page.slick %}
+  <script src="{{ site.git-url }}/lib/a11y-slick-1.0.1/slick.min.js"></script>{% endif %}{% if page.disclosure %}
+  <script src="{{ site.git-url }}/component-library/disclosure/init.js"></script>{% endif %}{% if page.in-page %}
+  <script src="{{ site.git-url }}/component-library/in-page/init.js"></script>{% endif %}{% if page.read-more %}
+  <script src="{{ site.git-url }}/component-library/read-more/init.js"></script>{% endif %}{% if page.tabcordion %}
+  <script src="{{ site.git-url }}/component-library/tabcordion/init.js"></script>{% endif %}
+  <script src="{{ site.git-url }}/js/init.js"></script>{% if page.localjs %}
+  <script src="{{ page.localjs }}"></script>{% endif %}
+
+</body>
+</html>

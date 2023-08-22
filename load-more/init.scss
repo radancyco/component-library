@@ -1,0 +1,88 @@
+/*!
+
+  Radancy Component Library: Load More
+
+  Contributor(s):
+  Michael "Spell" Spellacy, Email: michael.spellacy@radancy.com, Twitter: @spellacy, GitHub: michaelspellacy
+
+  Dependencies: Sass
+  Instructions: To run locally, install Sass (https://sass-lang.com/install), CL to directory this file in and run:
+  sass --watch init.scss:init.css --style compressed
+
+*/
+
+$base-color: #6F00EF;
+
+.load-more {
+margin: 0 auto;
+max-width: 1280px;
+
+  // Assistive Tech Message - Do not remove!
+
+  &__msg {
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  }
+
+  &__container {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+    @media(min-width: 48.625em) {
+
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+    }
+
+  }
+
+  &__item {
+  margin-bottom: 1em;
+
+    @media(min-width: 48.625em) {
+
+      width: 33.3%;
+
+    }
+
+    a {
+    display: block;
+    margin: .5em;
+    padding: .5em;
+    }
+
+    img {
+    display: block;
+    width: 100%;
+    }
+
+  }
+
+  &__btn {
+  background-color: $base-color;
+  border: 0;
+  color: #fff;
+  display: block;
+  line-height: normal;
+  margin: 0 auto;
+  max-width: 200px;
+  padding: 15px 25px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+
+    &[disabled] {
+    opacity: .5;
+    }
+
+  }
+
+}

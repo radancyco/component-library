@@ -1,0 +1,80 @@
+/*!
+
+  Radancy Component Library: Read More v1.0
+
+  Contributor(s):
+  Michael "Spell" Spellacy, Email: michael.spellacy@radancy.com, Twitter: @spellacy, GitHub: michaelspellacy
+
+  Dependencies: Sass
+  Instructions: To run locally, install Sass (https://sass-lang.com/install), CL to directory this file in and run:
+  sass --watch init.scss:init.css --style compressed
+
+*/
+
+$base-color: #6F00EF;
+
+.read-more {
+ padding-bottom: 1em;
+
+  &__content {
+  border: 1px #ccc solid;
+  margin-bottom: 1em;
+  max-height: 280px;
+  overflow: hidden;
+  padding: 1em;
+  position: relative;
+
+    &[aria-hidden] * {
+    pointer-events: none;
+    }
+
+    &[tabindex] {
+    max-height: none;
+
+      &::after {
+      display: none;
+      }
+
+    }
+
+    // Fade effect
+
+    &::after {
+    background-image: linear-gradient( rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 1) 100%);
+    content: "";
+    height: 100px;
+    inset-block-end: 0;
+    inset-inline-start: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    }
+
+  }
+
+    &__btn {
+    background-color: $base-color;
+    border: 0;
+    color: #fff;
+    padding: 1em;
+
+      &--icon {
+
+        &::after {
+        display: inline-block;
+        content: "+";
+        }
+
+        [aria-expanded="true"] & {
+
+          &::after {
+          content: "-";
+          }
+
+        }
+
+      }
+
+  }
+
+}
