@@ -1,10 +1,4 @@
-{% if page.nav == null %}
 
-<details class="nav"{% if page.nav %}open{%endif%}>
-
-  <summary class="btn">Library Navigation</summary>
-
-{%endif%}
 
   <ul>
     <li><a href="/">Radancy.dev</a></li>
@@ -13,7 +7,7 @@
 
       <h2 id="pattern-animation">Animation</h2>
 
-      <p>Animation patterns that can be used on your next project.</p>
+      <p>Animation components that can be used on your next project.</p>
 
       <ul>
         <li><a href="{{ site.baseurl }}/animation-toggle/">Animation Toggle</a></li>
@@ -34,7 +28,7 @@
 
           <ul>
             <li><a href="{{ site.baseurl }}/hero-banner/">Hero Banner</a></li>
-            <li><a href="https://michaelspellacy.com/video-hero-banner/">Hero Banner (Video)</a></li>
+            <li><a href="{{ site.baseurl }}/animation-toggle/#hero-banner">Hero Banner (Video)</a></li>
           </ul>
 
         </li>
@@ -62,39 +56,14 @@
         </li>
         <li>
 
-            <h3 id="pattern-forms">Forms</h3>
-
-            <ul>
-              <li><a href="{{ site.baseurl }}/floating-labels/">Floating Labels</a></li>
-            </ul>
-
-        </li>
-        <li>
-
           <h3 id="pattern-layouts">Layouts</h3>
     
           <ul>
+            <li><a href="/tb-ajd-template/" id="nav-advanced-job-details">Advanced Job Details (AJD) 2.0</a></li>
+            <li><a href="{{ site.baseurl }}/floating-labels/">Floating Labels</a></li>
             <li><a href="{{ site.baseurl }}/related-content/" id="nav-related-content">Related Content (Cards)</a></li>
           </ul>
     
-        </li>
-        <li>
-
-            <h3 id="pattern-maps">Maps</h3>
-
-            <ul>
-              <li><a href="https://tmpww.sharepoint.com/sites/delivery/SitePages/Map%20Search%20Google%20API%20Edition.aspx">Google Maps</a></li>
-            </ul>
-
-        </li>
-        <li>
-
-            <h3 id="pattern-multimedia">Multimedia</h3>
-
-            <ul>
-              <li><a href="{{ site.baseurl }}/html5-video/">HTML5 Video with Captions & Transcript</a></li>
-            </ul>
-
         </li>
         <li>
 
@@ -106,34 +75,6 @@
             </ul>
 
         </li>
-      </ul>
-
-    </li>
-    <li>
-
-      <h2 id="pattern-tools">Tools</h2>
-
-      <p>Tools to make your development life easier.</p>
-
-      <ul>
-        <li><a href="/tb-ajd-template/">Advanced Job Details (AJD) 2.0</a></li>
-        <li><a href="/career-path-generator/">Career Path Generator</a></li>
-        <li><a href="{{ site.baseurl }}/tools/scraper/">Content Scraper</a></li>
-        <li><a href="/tmp-custom-imports">Custom Imports</a></li>
-        <li><a href="https://chrome.google.com/webstore/detail/extended-admin-helper/dddjonobdmmmcdhhbeamndmjleojfllo">Extended Admin Helper</a></li>
-        <li><a href="/tmp-magic-bullet/">Magic Bullet</a></li>
-      </ul>
-
-    </li>
-    <li>
-
-      <h2 id="external-resources">External Resources</h2>
-
-      <p>Stand out patterns from across the web.</p>
-
-      <ul>
-      	<li><a href="https://codepen.io/Spell/pen/grQqWG">Accessible & Peformance Friendly YouTube Video (Kneel Before Vod)</a></li>
-        <li><a href="https://michaelspellacy.com/video-hero-banner/">Video Hero Banners</a></li>
       </ul>
 
     </li>
@@ -152,9 +93,3 @@
 
   	</li>
   </ul>
-
-{% if page.nav == null %}
-
-</details>
-
-{%endif%}
