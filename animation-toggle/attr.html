@@ -219,6 +219,7 @@
     <li>By design, pausing one animation will pause all animations across the site that utilize the script.</li>
     <li>By design, animations that utilize the script, will be paused on return visits to the site.</li>
     <li>This script utilizes <code>prefers-reduced-motion</code>. When a user disables animation via their operating system settings, the animation will not autoplay.</li>
+    <li>If you are using <code>.animation-enabled</code> to control your CSS animation state, then there is no need to use <code>prefers-reduced-motion</code> as this media query is already built into the script.</li>
     <li>Video may behave differently under certain conditions. For example, if a phone is in low power mode, the video will be paused to conserve battery life.</li>
     <li>The <code>disableremoteplayback</code> attribute may be flagged as an error in certain validation tools. This can be ignored.</li>
     <li>Video should always be delivered as an optimized <code>webm</code> or <code>mp4</code>. The file size should be as minimal as possible without sacrificing quality, to reduce overall page weight. Multiple <code>source</code> elements are not supported at this time.</li>
