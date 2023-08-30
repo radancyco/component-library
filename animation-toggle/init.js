@@ -9,10 +9,26 @@
 
 */
 
-(function() {
+function loadAnimationToggle(url, callback) {
+  
+  var componentLanguagePack = document.createElement("script");
+  componentLanguagePack.setAttribute("src", url);
+  componentLanguagePack.setAttribute("id", "component-library-language-pack");
+  componentLanguagePack.onreadystatechange = callback;
+  componentLanguagePack.onload = callback;
+ 
+  var getComponentLanguagePack = document.getElementById("component-library-language-pack");
 
-  "use strict";
+  if(getComponentLanguagePack === null) {
 
+    document.getElementsByTagName("head")[0].appendChild(componentLanguagePack);
+
+  }
+
+}
+
+loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-pack.js", function(){
+  
   // Display which component in use via console:
 
   console.log('%c Animation Toggle v1.2 in use. ', 'background: #6e00ee; color: #fff');
@@ -30,7 +46,6 @@
   var atPauseButtonClass = "." + atPauseButtonClassName;
   var atVideoClass = ".animation-toggle__video";
   var atVideoControlsName = "animation-toggle__controls"
-  var currentPageLanguage = animationHTML.getAttribute("lang");
   var dataAudioDescriptionButton = "data-audio-description-button";
   var dataMedia = "data-media";
   var dataPoster = "data-poster";
@@ -38,35 +53,12 @@
   var dataPauseButton = "data-pause-button";
   var getAnimationWrappers = document.querySelectorAll(atClass);
   var getBackgroundVideos = document.querySelectorAll(atVideoClass);
-  var getLanguagePack = document.getElementById("component-language-pack");
 
-  // Translations
+  // Language
 
-  if (getLanguagePack !== null && currentPageLanguage !== "en") {
-
-    // Install language pack.
-
-    var atAudioDescriptionLabel = window.atAudioDescriptionLabel;
-    var atPauseButtonLabel = window.atPauseButtonLabel;
-    var atVideoLabel = window.atVideoLabel;
-
-  } else {
-
-    // English (Default)
-
-    var atAudioDescriptionLabel = "Audio Description";
-    var atPauseButtonLabel = "Pause Animation";
-    var atVideoLabel = "Background Animation";
-
-  }
-
-  // Language Pack Reminder
-
-  if (currentPageLanguage !== "en" && getLanguagePack === null) {
-
-    console.log('%c Animation Toggle requires a language pack. Please install.', 'background: #ff0000; color: #fff');
-
-  }
+  var atAudioDescriptionLabel = window.atAudioDescriptionLabel;
+  var atPauseButtonLabel = window.atPauseButtonLabel;
+  var atVideoLabel = window.atVideoLabel;
 
   // Used to retrieve cookie and pause video(s) if present.
 
@@ -473,4 +465,4 @@
   
   videoViewPort();
 
-})();
+});
