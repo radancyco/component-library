@@ -30,6 +30,7 @@
   var atPauseButtonClass = "." + atPauseButtonClassName;
   var atVideoClass = ".animation-toggle__video";
   var atVideoControlsName = "animation-toggle__controls"
+  var currentPageLanguage = animationHTML.getAttribute("lang");
   var dataAudioDescriptionButton = "data-audio-description-button";
   var dataMedia = "data-media";
   var dataPoster = "data-poster";
@@ -37,28 +38,33 @@
   var dataPauseButton = "data-pause-button";
   var getAnimationWrappers = document.querySelectorAll(atClass);
   var getBackgroundVideos = document.querySelectorAll(atVideoClass);
+  var getLanguagePack = document.getElementById("component-language-pack");
 
   // Translations
 
-  var currentPageLanguage = animationHTML.getAttribute("lang");
+  if (getLanguagePack !== null && currentPageLanguage !== "en") {
 
-  if(currentPageLanguage === "es") {
+    // Install language pack.
 
-    var atAudioDescriptionLabel = "Audiodescripción";
-    var atPauseButtonLabel = "Pausar animación";
-    var atVideoLabel = "Animación de fondo";
+    var atAudioDescriptionLabel = window.atAudioDescriptionLabel;
+    var atPauseButtonLabel = window.atPauseButtonLabel;
+    var atVideoLabel = window.atVideoLabel;
 
-  } else if (currentPageLanguage === "fr") {
-
-    var atAudioDescriptionLabel = "Audiodescription";
-    var atPauseButtonLabel = "Suspendre l'animation";
-    var atVideoLabel = "Animation d'arrière-plan";
-      
   } else {
+
+    // English (Default)
 
     var atAudioDescriptionLabel = "Audio Description";
     var atPauseButtonLabel = "Pause Animation";
     var atVideoLabel = "Background Animation";
+
+  }
+
+  // Language Pack Reminder
+
+  if (currentPageLanguage !== "en" && getLanguagePack === null) {
+
+    console.log('%c Animation Toggle requires a language pack. Please install.', 'background: #ff0000; color: #fff');
 
   }
 
