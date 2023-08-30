@@ -16,280 +16,280 @@ if(currentPageLanguage === "ar") {
     // Animation Toggle
 
      var atAudioDescriptionLabel = "وصف الصوت";
-     var atPauseButtonLabel = "خلفيات متحركة";
-     var atVideoLabel = "وقفة الرسوم المتحركة";
+     var atVideoLabel = "خلفيات متحركة";
+     var atPauseButtonLabel = "وقفة الرسوم المتحركة";
 
 } else if (currentPageLanguage === "bg") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "Аудио описание";
-    var atPauseButtonLabel = "Фонова анимация";
-    var atVideoLabel = "Пауза анимация";
+    var atVideoLabel = "Фонова анимация";
+    var atPauseButtonLabel = "Пауза анимация";
       
 } else if (currentPageLanguage === "zh-Hans") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "音频描述";
-    var atPauseButtonLabel = "背景动画";
-    var atVideoLabel = "暂停动画";
+    var atVideoLabel = "背景动画";
+    var atPauseButtonLabel = "暂停动画";
       
 } else if (currentPageLanguage === "zh-Hant") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "音頻說明";
-    var atPauseButtonLabel = "背景動畫";
-    var atVideoLabel = "暫停動畫";
+    var atVideoLabel = "背景動畫";
+    var atPauseButtonLabel = "暫停動畫";
       
 } else if (currentPageLanguage === "hr") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "Audio opis";
-    var atPauseButtonLabel = "Pozadinska animacija";
-    var atVideoLabel = "Pauza animacija";
+    var atVideoLabel = "Pozadinska animacija";
+    var atPauseButtonLabel = "Pauza animacija";
 
 } else if (currentPageLanguage === "cs") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "Popis zvuku";
-    var atPauseButtonLabel = "Animace pozadí";
-    var atVideoLabel = "Animace pauzy";
+    var atVideoLabel = "Animace pozadí";
+    var atPauseButtonLabel = "Animace pauzy";
   
 } else if (currentPageLanguage === "da") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "Lydbeskrivelse";
-    var atPauseButtonLabel = "Baggrundsanimation";
-    var atVideoLabel = "Pause animation";
+    var atVideoLabel = "Baggrundsanimation";
+    var atPauseButtonLabel = "Pause animation";
       
 } else if (currentPageLanguage === "nl") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "Audiobeschrijving";
-    var atPauseButtonLabel = "Achtergrondanimatie";
-    var atVideoLabel = "Pauzeer animatie";
+    var atVideoLabel = "Achtergrondanimatie";
+    var atPauseButtonLabel = "Pauzeer animatie";
       
 } else if (currentPageLanguage === "en-GB") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "Audio Description";
-    var atPauseButtonLabel = "Background Animation";
-    var atVideoLabel = "Pause Animation";
+    var atVideoLabel = "Background Animation";
+    var atPauseButtonLabel = "Pause Animation";
       
 } else if (currentPageLanguage === "et") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "Helikirjeldus";
-    var atPauseButtonLabel = "Taustaanimatsioon";
-    var atVideoLabel = "Pausi animatsioon";
+    var atVideoLabel = "Taustaanimatsioon";
+    var atPauseButtonLabel = "Pausi animatsioon";
       
 } else if (currentPageLanguage === "fi") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "Äänikuvaus";
-    var atPauseButtonLabel = "Taustaanimaatio";
-    var atVideoLabel = "Tauko -animaatio";
+    var atVideoLabel = "Taustaanimaatio";
+    var atPauseButtonLabel = "Tauko -animaatio";
 
 } else if (currentPageLanguage === "fr") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "Description audio";
-    var atPauseButtonLabel = "Animation de fond";
-    var atVideoLabel = "Animation de pause";
+    var atVideoLabel = "Animation de fond";
+    var atPauseButtonLabel = "Animation de pause";
 
 } else if (currentPageLanguage === "de") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "Audiobeschreibung";
-    var atPauseButtonLabel = "Hintergrundanimation";
-    var atVideoLabel = "Pause Animation";
+    var atVideoLabel = "Hintergrundanimation";
+    var atPauseButtonLabel = "Pause Animation";
   
 } else if (currentPageLanguage === "he") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "תיאור שמע";
-    var atPauseButtonLabel = "אנימציה רקע";
-    var atVideoLabel = "להשהות אנימציה";
+    var atVideoLabel = "אנימציה רקע";
+    var atPauseButtonLabel = "להשהות אנימציה";
 
 } else if (currentPageLanguage === "hu") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "Audio leírás";
-    var atPauseButtonLabel = "Háttér animáció";
-    var atVideoLabel = "Szünet animáció";
+    var atVideoLabel = "Háttér animáció";
+    var atPauseButtonLabel = "Szünet animáció";
 
 } else if (currentPageLanguage === "is") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "Hljóðlýsing";
-    var atPauseButtonLabel = "Bakgrunns fjör";
-    var atVideoLabel = "Hlé á fjörum";
+    var atVideoLabel = "Bakgrunns fjör";
+    var atPauseButtonLabel = "Hlé á fjörum";
 
 } else if (currentPageLanguage === "it") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = " Descrizione audio";
-    var atPauseButtonLabel = "Animazione di sfondo";
-    var atVideoLabel = "Pausa animazione";
+    var atVideoLabel = "Animazione di sfondo";
+    var atPauseButtonLabel = "Pausa animazione";
   
 } else if (currentPageLanguage === "ja") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "オーディオの説明";
-    var atPauseButtonLabel = "背景アニメーション";
-    var atVideoLabel = "アニメーションを一時停止します";
+    var atVideoLabel = "背景アニメーション";
+    var atPauseButtonLabel = "アニメーションを一時停止します";
 
 } else if (currentPageLanguage === "ko") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "오디오 설명";
-    var atPauseButtonLabel = "배경 애니메이션";
-    var atVideoLabel = "애니메이션을 일시 중지합니다";
+    var atVideoLabel = "배경 애니메이션";
+    var atPauseButtonLabel = "애니메이션을 일시 중지합니다";
 
 } else if (currentPageLanguage === "lv") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "Audio apraksts";
-    var atPauseButtonLabel = "Fona animācija";
-    var atVideoLabel = "Pauzes animācija";
+    var atVideoLabel = "Fona animācija";
+    var atPauseButtonLabel = "Pauzes animācija";
 
 } else if (currentPageLanguage === "lt") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "Garso aprašymas";
-    var atPauseButtonLabel = "Fono animacija";
-    var atVideoLabel = "Pauzės animacija";
+    var atVideoLabel = "Fono animacija";
+    var atPauseButtonLabel = "Pauzės animacija";
  
 } else if (currentPageLanguage === "ms") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "Penerangan audio";
-    var atPauseButtonLabel = "Animasi latar belakang";
-    var atVideoLabel = "Jeda animasi";
+    var atVideoLabel = "Animasi latar belakang";
+    var atPauseButtonLabel = "Jeda animasi";
 
 } else if (currentPageLanguage === "no") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "Lydbeskrivelse";
-    var atPauseButtonLabel = "Bakgrunnsanimasjon";
-    var atVideoLabel = "Pause animasjon";
+    var atVideoLabel = "Bakgrunnsanimasjon";
+    var atPauseButtonLabel = "Pause animasjon";
 
 } else if (currentPageLanguage === "pl") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "Opis dźwięku";
-    var atPauseButtonLabel = "Animacja w tle";
-    var atVideoLabel = "Animacja pauzy";
+    var atVideoLabel = "Animacja w tle";
+    var atPauseButtonLabel = "Animacja pauzy";
 
 } else if (currentPageLanguage === "pt") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "Descrição do áudio";
-    var atPauseButtonLabel = "Animação de fundo";
-    var atVideoLabel = "Pausa animação";
+    var atVideoLabel = "Animação de fundo";
+    var atPauseButtonLabel = "Pausa animação";
 
 } else if (currentPageLanguage === "ro") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "Descriere audio";
-    var atPauseButtonLabel = "Animație de fundal";
-    var atVideoLabel = "Pauză animație";
+    var atVideoLabel = "Animație de fundal";
+    var atPauseButtonLabel = "Pauză animație";
 
 } else if (currentPageLanguage === "ru") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "Аудио описание";
-    var atPauseButtonLabel = "Фоновая анимация";
-    var atVideoLabel = "Пауза анимация";
+    var atVideoLabel = "Фоновая анимация";
+    var atPauseButtonLabel = "Пауза анимация";
 
 } else if (currentPageLanguage === "sr") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "Аудио опис";
-    var atPauseButtonLabel = "Анимација позадине";
-    var atVideoLabel = "Паузирајте анимацију";
+    var atVideoLabel = "Анимација позадине";
+    var atPauseButtonLabel = "Паузирајте анимацију";
 
 } else if (currentPageLanguage === "sk") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "Popis zvuku";
-    var atPauseButtonLabel = "Animácia pozadia";
-    var atVideoLabel = "Pozastavenie animácie";
+    var atVideoLabel = "Animácia pozadia";
+    var atPauseButtonLabel = "Pozastavenie animácie";
 
 } else if (currentPageLanguage === "sl") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "Zvočni opis";
-    var atPauseButtonLabel = "Animacija v ozadju";
-    var atVideoLabel = "Premor animacije";
+    var atVideoLabel = "Animacija v ozadju";
+    var atPauseButtonLabel = "Premor animacije";
  
 } else if (currentPageLanguage === "es") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "Descripción de audio";
-    var atPauseButtonLabel = "Animación de fondo";
-    var atVideoLabel = "Animación de pausa";
+    var atVideoLabel = "Animación de fondo";
+    var atPauseButtonLabel = "Animación de pausa";
 
 } else if (currentPageLanguage === "sv") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "Ljudbeskrivning";
-    var atPauseButtonLabel = "Bakgrundsanimering";
-    var atVideoLabel = "Pausanimation";
+    var atVideoLabel = "Bakgrundsanimering";
+    var atPauseButtonLabel = "Pausanimation";
 
 } else if (currentPageLanguage === "th") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "คำอธิบายเสียง";
-    var atPauseButtonLabel = "ภาพเคลื่อนไหวพื้นหลัง";
-    var atVideoLabel = "หยุดเคลื่อนไหวชั่วคราว";
+    var atVideoLabel = "ภาพเคลื่อนไหวพื้นหลัง";
+    var atPauseButtonLabel = "หยุดเคลื่อนไหวชั่วคราว";
  
 } else if (currentPageLanguage === "uk") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "Опис аудіо";
-    var atPauseButtonLabel = "Фонова анімація";
-    var atVideoLabel = "Призупина анімація";
+    var atVideoLabel = "Фонова анімація";
+    var atPauseButtonLabel = "Призупина анімація";
 
 } else if (currentPageLanguage === "vi") {
 
     // Animation Toggle
 
     var atAudioDescriptionLabel = "Mô tả âm thanh";
-    var atPauseButtonLabel = "Hoạt hình nền";
-    var atVideoLabel = "Tạm dừng hoạt hình";
+    var atVideoLabel = "Hoạt hình nền";
+    var atPauseButtonLabel = "Tạm dừng hoạt hình";
   
 } else { 
 
@@ -298,8 +298,8 @@ if(currentPageLanguage === "ar") {
     // Animation Toggle
 
     var atAudioDescriptionLabel = "Audio Description";
-    var atPauseButtonLabel = "Background Animation";
-    var atVideoLabel = "Pause Animation";
+    var atVideoLabel = "Background Animation";
+    var atPauseButtonLabel = "Pause Animation";
 
 }
 
