@@ -1,0 +1,81 @@
+<div class="in-page" data-in-page-dynamic>
+
+    <h2 id="examples">Examples</h2>
+
+    <nav aria-label="Example" class="in-page__nav">
+
+        <label class="in-page__label">Choose an example:</label>
+
+        <select class="in-page__select">
+
+        </select>
+
+        <div class="sr-only" aria-live="polite"></div>
+
+    </nav>
+  
+    {% for component in page.components %}
+  
+    <div class="in-page__content" data-in-page-name="{{ component.name }}" data-in-page-id="{{ component.id }}">
+  
+      <div class="preview">
+  
+        {% include_relative html/{{ component.id }}.html %}
+
+        {% if component.note %}
+
+        <p><strong>Note:</strong> {{ component.note }}</p>
+
+        {% endif %}
+  
+      </div>
+  
+      <p><a class="external" href="{{ component.id }}" target="_blank">Open in new window</a></p>
+  
+      <h2>Code</h2>
+  
+      <div class="tab-accordion" data-tab-disable-url data-tab-breakpoint="(min-width: 0)">
+  
+        <button class="tab-accordion__button">HTML</button>
+      
+        <div class="tab-accordion__panel">
+      
+          <div class="tab-accordion__content" contenteditable spellcheck="false">
+      
+            {% highlight html %}{% include_relative html/{{ component.id }}.html %}{% endhighlight %}
+            
+          </div>
+      
+        </div>
+      
+        <button class="tab-accordion__button">CSS</button>
+      
+        <div class="tab-accordion__panel">
+      
+          <div class="tab-accordion__content" contenteditable spellcheck="false">
+      
+            {% highlight css %}{% include_relative init.scss %}{% endhighlight %}
+            
+          </div>
+      
+        </div>
+      
+        <button class="tab-accordion__button">JavaScript</button>
+      
+        <div class="tab-accordion__panel">
+      
+          <div class="tab-accordion__content" contenteditable spellcheck="false">
+      
+            {% highlight javascript %}{% include_relative init.js %}{% endhighlight %}
+            
+          </div>
+      
+        </div>
+      
+      </div>
+  
+    </div>
+  
+    {% endfor %}
+  
+  </div>

@@ -10,12 +10,17 @@
 */
 
 function loadAnimationToggle(url, callback) {
+
+  // Initiate Animation Toggle this way so we can include the langauge pack.
   
   var componentLanguagePack = document.createElement("script");
+
   componentLanguagePack.setAttribute("src", url);
   componentLanguagePack.setAttribute("id", "component-library-language-pack");
   componentLanguagePack.onreadystatechange = callback;
   componentLanguagePack.onload = callback;
+
+  // Only load one langauge pack per page.
  
   var getComponentLanguagePack = document.getElementById("component-library-language-pack");
 
@@ -35,7 +40,6 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
   // Animation variables
 
-  var animationHTML = document.documentElement;
   var animationBody = document.body;
   var atAudioDescriptionClassName = "animation-toggle__audio";
   var atClass = ".animation-toggle";
@@ -105,7 +109,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
     btnControls.setAttribute("class", atVideoControlsName);
 
-    // Prepend control wrapper.
+    // Prepend control wrapper to atClass
     
     wrapper.prepend(btnControls);
 
@@ -162,7 +166,6 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
     btnPlayPause.addEventListener("click", function() {
 
       var getAtPauseButtonClass = document.querySelectorAll(atPauseButtonClass);
-
       var animationPauseToggles = getAtPauseButtonClass;
 
       if (this.getAttribute("aria-pressed") === "false") {
@@ -227,9 +230,10 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
     if (wrapper.querySelector("track") !== null) {
 
-      // Create audio description button 
+      // Create audio description button. Please note this is experimental feature.
 
       var btnAudioDescription = document.createElement("button");
+
       btnAudioDescription.setAttribute("aria-label", atAudioDescriptionLabel);
       btnAudioDescription.setAttribute("aria-pressed", "false");
       btnAudioDescription.setAttribute("class", atAudioDescriptionClassName);
@@ -266,6 +270,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
           if (thisVideo.textTracks) {
 
             var track = thisVideo.textTracks[0];
+
             track.mode = "hidden";
             track.oncuechange = function() {
   
@@ -298,6 +303,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
           if (thisVideo.textTracks) {
 
             var track = thisVideo.textTracks[0];
+
             track.mode = "hidden";
             track.oncuechange = function() {
   
