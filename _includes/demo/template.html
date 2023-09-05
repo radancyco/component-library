@@ -1,5 +1,7 @@
 <div class="in-page" data-in-page-dynamic>
 
+  {% if page.in-page %}
+
     <h2 id="examples">Examples</h2>
 
     <nav aria-label="Example" class="in-page__nav">
@@ -13,19 +15,25 @@
         <div class="sr-only" aria-live="polite"></div>
 
     </nav>
+
+  {% else %}
+
+  <h2 id="basic-setup">Basic Setup</h2>
+
+  {% endif %}
   
     {% for component in page.components %}
-  
+
     <div class="in-page__content" data-in-page-name="{{ component.name }}" data-in-page-id="{{ component.id }}">
   
       <div class="preview">
   
         {% include_relative html/{{ component.id }}.html %}
-
+  
         {% if component.note %}
-
+  
         <p><strong>Note:</strong> {{ component.note }}</p>
-
+  
         {% endif %}
   
       </div>

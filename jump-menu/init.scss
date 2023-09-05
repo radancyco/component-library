@@ -1,11 +1,12 @@
 /*!
 
-  Radancy Component Library: Jump Menu (External)
+  Radancy Component Library: Select Menu (External)
 
   Contributor(s):
-  Michael "Spell" Spellacy, Email: michael.spellacy@radancy.com, Twitter: @spellacy, GitHub: michaelspellacy
+  Michael "Spell" Spellacy
 
   Dependencies: Sass
+
   Instructions: To run locally, install Sass (https://sass-lang.com/install), CL to directory this file in and run:
   sass --watch init.scss:init.css --style compressed
 
@@ -17,7 +18,6 @@ $base-color: #6F00EF;
 background-color: #eee;
 border-radius: 5px;
 font-size: 1.2rem;
-margin: 2em 0;
 padding: 1em;
 
   &__label {

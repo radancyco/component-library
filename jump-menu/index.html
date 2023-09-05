@@ -1,41 +1,22 @@
 ---
+components:
+  - name: "Basic Setup"
+    id: "basic-setup"
 folder: jump-menu
-jira: TCDQ-73886
 localcss: "init.css"
 localjs: "init.js"
+tabcordion: true
 title: "Jump Menu (External) v1.0"
 ---
 
-<p>This component will allow you to place an accessible "Jump Menu" on your page. Please read <a href="#a11y-info">Accessibility & UX</a> before using.</p>
+<!-- TODO: Rename this component "Select Menu" maybe combine with the in-page navigation. -->
 
-{% include_relative para.html %}
+<p>This component will allow you to place a select menu navigation on your page that will take you to another page when a submit button is clicked.</p>
 
-<h2 id="basic-setup">Basic Setup</h2>
+{% include demo/template.html %}
 
-<!-- Begin Jump Menu -->
+{% include guidance/select-menu.html %}
 
-<div class="jump-menu">
+{% include_relative attr.html %}
 
-  <nav aria-label="Jump Menu" class="jump-menu__nav">
-
-    <label class="jump-menu__label">My favorite component to use is </label>
-
-    <select class="jump-menu__select">
-        <option value="../disclosure-grid/">Disclosure Grid</option>
-        <option value="../google-map/">Google Map</option>
-        <option value="../read-more/">Read More</option>
-    </select>
-
-    <button class="jump-menu__btn">Learn More</button>
-
-    <!-- Note: The for attribute and ID are generated via JavaScript to accomodate multiple Jump Menus per page -->
-
-  </nav>
-
-</div>
-
-<!-- End Jump Menu -->
-
-{% include jump-menu.html %}
-
-{% include notes.html %}
+{% include repo-info.html %}
