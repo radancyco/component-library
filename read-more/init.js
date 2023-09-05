@@ -1,13 +1,17 @@
 /*!
 
-  Radancy Component Library: Read More v1.0
+  Radancy Component Library: Read More
 
   Contributor(s):
-  Michael "Spell" Spellacy, Email: michael.spellacy@radancy.com, Twitter: @spellacy, GitHub: michaelspellacy
+  Michael "Spell" Spellacy
 
   Dependencies: jQuery
 
 */
+
+// Display which Grid version in use via console:
+
+console.log('%c Read More v1.0 in use. ', 'background: #6e00ee; color: #fff');
 
 $(".read-more").append("<button class='read-more__btn' aria-expanded='false'>Read More <span class='read-more__btn--icon' aria-hidden='true'></span></button>");
 
