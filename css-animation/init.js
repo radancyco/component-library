@@ -3,14 +3,19 @@
 	Radancy Component Library: CSS Animation
 
 	Contributor(s):
-	Drew Toth (drew.toth[at]radancy.gov)
-	Michael "Spell" Spellacy, Email: michael.spellacy@radancy.com, Twitter: @spellacy, GitHub: michaelspellacy
+	Drew Toth
+	Michael "Spell" Spellacy
 
 	Dependencies: jQuery
 
 */
 
+
 (function () {
+
+	// Grab the hash (fragment) from the URL.
+
+	var URLFragment = location.hash.slice(1);
 
 	// Create animation code button and container
 
@@ -32,22 +37,42 @@
 
 	var $ele = $(".container .button");
 
-	var selectedAnimation = $ele.eq(Math.floor(Math.random()*($ele.length - 1))).attr("id");
+	if(URLFragment) {
+
+		var selectedAnimation = URLFragment;
+
+	} else {
+	
+		var selectedAnimation = $ele.eq(Math.floor(Math.random()*($ele.length - 1))).attr("data-id");
+
+	}
 
 	$("#object").addClass(selectedAnimation); // Load Animation
 
-	$(".animation-code pre code").load($("#" + selectedAnimation).attr("href")); // Load Associated Animated Code
+	var selectedItem = $("a[data-id=" + selectedAnimation + "]");
 
-	$("#" + selectedAnimation).addClass("active"); // Highlight Associated Animated Code Button
+	$(".animation-code pre code").load(selectedItem.attr("href")); // Load Associated Animated Code
+
+	selectedItem.addClass("active"); // Highlight Associated Animated Code Button
 
 	// Grab Sass from button link and insert into code window (.animation-code)
 
+	// Hack to get back button to work. TODO: Revisit.
+	
+	$(window).on("popstate", function (e) {
+
+        location.reload();
+
+    });
+
 	$(".button").on( "click", function() {
 
-  		$("#object").removeClass().addClass($(this).attr("id"));
+  		$("#object").removeClass().addClass($(this).attr("data-id"));
   		$(".animation-code pre code").load($(this).attr("href"));
   		$(".container").find(".button").removeClass("active");
   		$(this).addClass("active");
+
+		history.pushState(null, null, "#" + $(this).attr("data-id"));
 
 		return false;
 
