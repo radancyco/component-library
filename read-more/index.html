@@ -3,14 +3,32 @@ components:
   - name: "Basic Setup"
     id: "basic-setup"
     note: "Use your keyboard to tab through and use the component to see how focus is properly managed."
+classes:
+  - name: .read-more
+    html: 
+      - div
+      - section
+    note: Mandatory
+    desc: Used on the parent element that wraps your content.
+  - name: .read-more__content	
+    html: div
+    note: Mandatory
+    desc: Used on the element that wraps your partially hidden content. Must be a child of <code>.read-more</code>.
+  - name: .read-more__btn
+    html: button
+    note:
+      - Mandatory
+      - Dynamic
+    desc: Used on the disclosure button. This elements is dynamiucally inserted. Language support coming soon.
+notes: 
+  - This component should not be used in scenarios where you need to load more content.
 folder: read-more
 localcss: "init.css"
 localjs: "init.js"
 tabcordion: true
 title: "Read More v1.0"
+desc: This component will allow you to implement a solution to expand <strong>partially hidden</strong> content areas.
 ---
-
-<p>This component will allow you to implement a solution to expand <strong>partially hidden</strong> content areas.</p>
 
 {% include message/anti-pattern.html %}
 
@@ -18,8 +36,4 @@ title: "Read More v1.0"
 
 {% include guidance/disclosures.html %}
 
-{% include_relative attr.html %}
-
-{% include repo-info.html %}
-
-
+{% include demo/doc.html %}
