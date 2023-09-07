@@ -6,8 +6,8 @@
 
     <ol>
         <li>All <code>select</code> menus <strong> must include a submit button</strong>. Unexpectedly taking a user to another page, <strong>without warning</strong>, will cause a <strong>change of context</strong>. This can be confusing to users and it is a <a href=https://www.w3.org/WAI/WCAG21/Understanding/on-input.html>WCAG failure</a>.</li>
-        <li>If you wish to navigate away from a page without a submit button, then use a <strong>hyperlink</strong> or a <a href="{{ site.baseurl }}/disclosure/">disclosure</a> that reveals a list of hyperlinks to other pages, when opened.</li>
-        <li>Complex forms that change content based on multiple selections, must also contain a submit button. Here also, changing content without warning can lead to confusion.</li>
+        <li>If you wish to navigate away from a page without a submit button, then use a <strong>hyperlink</strong> or a <a href="{{ site.baseurl }}/disclosure/">disclosure</a> that reveals a list of hyperlinks to other pages.</li>
+        <li>A select menu must always contain a <code>label</code> element.</li>
         <li>The only exception to the above rules are <code>select</code> menus that change content <strong>within</strong> the page. Here, a submit button is not required. Please see <a href="{{ site.baseurl }}/in-page/">Jump Menu (In-page)</a> for more details.</li>
     </ol>
 

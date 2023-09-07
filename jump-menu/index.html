@@ -1,22 +1,78 @@
 ---
 components:
-  - name: "Basic Setup"
-    id: "basic-setup"
+  - name: Basic Setup
+    id: basic-setup
+elements:
+  - html:
+    - nav
+    - section
+    note:
+      - Mandatory
+      - Hardcoded
+    desc: Include this element to wrap your <code>label</code>, <code>select</code>, and <code>button</code> elements.
+  - html: label
+    note:
+      - Mandatory
+      - Hardcoded
+    desc: Include this element to give your <code>select</code> element a unique name. The <code>for</code> attribute is provided by the script.
+  - html: select
+    note:
+      - Mandatory
+      - Hardcoded
+    desc: Include this element for your menu. The <code>id</code> attribute is provided by the script.
+  - html: option
+    note:
+      - Mandatory
+      - Hardcoded
+    desc: Include these elements as children of your <code>select</code> element. Each should contain a <code>value</code> attribute whose values are paths to other pages. Relative and abolsute paths may be used.
+attributes:
+  - name: aria-label
+    html: nav
+    note:
+      - String
+      - Optional
+      - Hardcoded
+    desc: Use to give a custom label to <code>nav</code> element. If multiple menus are used on the page, be sure to update each <code>aria-label</code> with a <strong>unique accessible name</strong>.
+classes:
+  - name: .jump-menu
+    html: 
+      - div
+      - section
+    note:
+      - Mandatory
+      - Hardcoded
+    desc: Used on the parent element that wraps your menu.
+  - name: .jump-menu__nav	
+    html: nav
+    note:
+      - Mandatory
+      - Hardcoded
+    desc: Used on the nav element that wraps your label, select, and button elements.
+  - name: .jump-menu__select
+    html: select
+    note:
+      - Mandatory
+      - Hardcoded
+    desc: Used on the menu navigation.
+  - name: .jump-menu__button
+    html: button
+    note:
+      - Mandatory
+      - Hardcoded
+    desc: Used on the menu submit button.
+notes: 
+  - The <code>for</code> attribute for the <code>label</code> and <code>id</code> attribute for the <code>select</code> are intentionally omitted. Their inclusion is handled by the script so that multiple navigations on the page do not accidentally use the same identifier.
+  - Multiple select menus per-page are allowed.
 folder: jump-menu
-localcss: "init.css"
-localjs: "init.js"
+localcss: init.css
+localjs: init.js
 tabcordion: true
-title: "Jump Menu (External) v1.0"
+title: Jump Menu (External) v1.0
+desc: This component will allow you to use a select element as a navigation. When a selection is made and the button is pushed, it will take you to another page.
 ---
-
-<!-- TODO: Rename this component "Select Menu" maybe combine with the in-page navigation. -->
-
-<p>This component will allow you to place a select menu navigation on your page that will take you to another page when a submit button is clicked.</p>
 
 {% include demo/template.html %}
 
 {% include guidance/select-menu.html %}
 
-{% include_relative attr.html %}
-
-{% include repo-info.html %}
+{% include demo/doc.html %}
