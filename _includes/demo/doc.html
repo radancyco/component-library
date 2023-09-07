@@ -1,4 +1,4 @@
-<h2 id="properties">Properties</h2>
+<h2 id="properties">Properties (Test)</h2>
 
 <p>Use the following properties to configure this component.</p>
 
@@ -17,9 +17,9 @@
     </thead>
     <tbody>
 
+    {% assign sortElements = page.elements | sort: 'html' %}
 
-
-    {% for element in page.elements %}
+    {% for element in sortElements %}
 
     <tr>
         <td>{% for html in element.html %}<code>{{ html }}</code>{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
@@ -52,9 +52,9 @@
     </thead>
     <tbody>
 
- 
+    {% assign sortAttributes = page.attributes | sort: 'name' %}
 
-    {% for attribute in page.attributes %}
+    {% for attribute in sortAttributes %}
 
     <tr>
         <td><code>{{ attribute.name }}</code></td>
@@ -88,9 +88,9 @@
     </thead>
     <tbody>
 
+    {% assign sortClasses = page.classes | sort: 'name' %}
 
-
-    {% for class in page.classes %}
+    {% for class in sortClasses %}
 
     <tr>
         <td>{{ class.name }}</td>
