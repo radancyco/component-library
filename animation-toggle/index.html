@@ -1,31 +1,167 @@
 ---
 components:
+
   - name: "Basic Setup"
     id: "basic-setup"
+
   - name: "Audio Description (Experimental)"
     id: "audio-description"
     note: "This is an experimental feature that will allow the video to include an audio description. A valid, self-produced VTT file is required."
+
   - name: "Breakpoint"
     id: "breakpoint"
     note: "Resize your browser to see the video change. Look at the source code, too."
+
   - name: "CSS Animation"
     id: "css-animation"
+
   - name: "Hero Banner"
     id: "hero-banner"
+
   - name: "Kitchen Sink"
     id: "kitchen-sink"
+
   - name: "Poster (Fallback Image)"
     id: "poster"
     note: "Pause the video and then refresh the page. The first frame is from 25 seconds in. Please note that when pressing play, video will resume from this point."
+
+attributes:
+
+  - name: aria-label
+    html: video
+    note:
+
+      - String
+      - Optional
+
+    desc: Used to pass custom label to <code>video</code> element. This will override the default label, which is "Background Animation".
+
+  - name: aria-live
+    html: .animation-toggle__track
+    note: Conditional
+    desc: Required on <code>.animation-toggle__track</code> when present and must contain a value of "polite".
+
+  - name: data-audio-description-button
+    html: .animation-toggle
+    note:
+
+      - String
+      - Optional
+
+    desc: Used to pass custom label to <code>.animation-toggle__audio</code>. This will override the default label, which is "Audio Description".
+
+  - name: data-media
+    html: video
+    note:
+
+      - String
+      - Optional
+
+    desc: Used to indicate at which point <code>data-srcset</code> will load. Accepts any valid media query, but typically <code>min-width</code> will be used.
+
+  - name: data-pause-button
+    html: .animation-toggle
+    note:
+
+      - String
+      - Optional
+
+    desc: Used to pass custom label to <code>.animation-toggle__pause</code>. This will override the default label, which is "Pause Animation".
+
+  - name: data-poster
+    html: video
+    note:
+
+      - Number
+      - Optional
+
+    desc: Used to indicate at which point video will load when paused. Accepts any valid time increment. Video will start from this point when play is enabled.
+
+  - name: data-srcset
+    html: video
+    note:
+
+      - String
+      - Optional
+
+    desc: Used to reference video asset that will load when <code>data-media</code> is present. Typically, this will reference a larger video, while the <code>src</code> attribute will reference a smaller video.
+
+classes:
+
+  - name: .animation-enabled
+    html: body
+    note: Component
+    desc: Applied on page load. CSS and video animations will only run when this class is present. Removing it pauses animation. Please note that if you are leveraging this class in your CSS, then there is no need to use <code>prefers-reduced-motion</code>.
+
+  - name: .animation-toggle	
+    html: 
+
+      - div
+      - section
+
+    note: Mandatory
+    desc: Required on the parent element that wraps your animation and content.
+
+  - name: .animation-toggle__audio
+    html: button
+    note: Component
+    desc: Used on all audio description buttons.
+
+  - name: .animation-toggle__backdrop
+    html: .animation-toggle
+    note: Optional
+    desc: Append to <code>.animation-toggle</code> class. This will allow video to animate in on page load and for background shading to be applied when video is paused. Often used on hero banner and meant to improve contrast of foreground text.
+  
+  - name: .animation-toggle__controls
+    html: div
+    note: Component
+    desc: Used to contain pause and audio description buttons.
+
+  - name: .animation-toggle__pause
+    html: button
+    note: Component
+    desc: Used on all pause buttons. This may never be hidden and is an integral part of the component.
+
+  - name: .animation-toggle__track
+    html: div
+    note: Optional
+    desc: Used on single <code>div</code> element that is a child of <code>.animation-toggle</code>. The <code>aria-live</code> attribute is required on this element when used.
+    
+  - name: .animation-toggle__video
+    html: video
+    note: Mandatory
+    desc: Required on <code>video</code> element that is a child of <code>.animation-toggle</code>. Multiple videos may be used if desired.
+
+cookies: 
+
+  - name: AnimationPaused
+    value: true/false
+    type: Persistent
+    secure: Yes
+    samesite: None
+    domain: N/A
+    path: /
+
+notes: 
+
+  - item: Pausing one animation will pause all animations across the site that utilize this script.
+  - item: Animations that utilize the script, will be paused on return visits to the site.
+  - item: This script utilizes <code>prefers-reduced-motion</code>. When a user disables animation via their operating system settings, the animation will not autoplay.
+  - item: Some phones that are in low power mode may pause video automatically. This is done to conserve battery life. Detection for this will be included at a later date.
+  - item: The <code>disableremoteplayback</code> attribute may be flagged as an error in certain validation tools because it is not standard. This can be ignored.
+  - item: Multiple <code>source</code> elements are not supported when <code>data-media</code> is in use. Support for this will be included at a later date.
+  - item: Video should always be delivered as an optimized <code>mp4</code> or <code>webm</code>. The file size should be as minimal as possible without sacrificing quality, to reduce overall page weight.
+  - item: Video should be no longer than <strong>15-30</strong> seconds in length. The shorter the video is, the less of an impact it will have on performance.
+
 folder: animation-toggle
 in-page: true
 localcss: "init.css"
 localjs: "init.js"
+section: component-library-animation-toggle
 tabcordion: true
 title: "Animation Toggle v1.2"
+desc: This component will allow you to implement video and CSS background animations that include a pause button.
 ---
-
-<p>This component will allow you to implement video and CSS background animations that include a pause button.</p>
 
 {% include base.html %}
 
@@ -35,6 +171,4 @@ title: "Animation Toggle v1.2"
 
 {% include guidance/responsible-animation.html %}
 
-{% include_relative attr.html %}
-
-{% include repo-info.html %}
+{% include demo/doc.html %} 

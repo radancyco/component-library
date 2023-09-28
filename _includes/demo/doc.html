@@ -45,7 +45,7 @@
     <thead>
     <tr>
         <th>Attribute</th>
-        <th>Apply</th>
+        <th>Applies To</th>
         <th>Note</th>
         <th>Description</th>
     </tr>
@@ -108,13 +108,61 @@
 
 {% endif %}
 
+{% if page.cookies %} 
+
+<div class="table-container">
+
+    <table id="cookies">
+    <caption>Cookies</caption>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Value</th>
+        <th>Type</th>
+        <th>Secure</th>
+        <th>SameSite</th>
+        <th>Domain</th>
+        <th>Path</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% assign sortCookies = page.cookies %}
+
+    {% for cookie in sortCookies %}
+
+    <tr>
+        <td>{{ cookie.name }}</td>
+        <td>{{ cookie.value }}</td>
+        <td>{{ cookie.type }}</td>
+        <td>{{ cookie.secure }}</td>
+        <td>{{ cookie.samesite }}</td>
+        <td>{{ cookie.domain }}</td>
+        <td>{{ cookie.path }}</td>
+    </tr>
+
+    {% endfor %}
+
+    </tbody>
+    </table>
+  
+</div>
+
+{% endif %}
+
 {% if page.notes %} 
 
 <h2 id="notes">Additional Notes</h2>
 
 <ul>
     
-    {% for item in page.notes %}<li>{{ item }}</li> {% endfor %}
+    {% assign sortNotes = page.notes %}
+
+    {% for note in sortNotes %}
+    
+    <li>{{ note.item }}</li> 
+    
+    {% endfor %}
 
 </ul>
 
