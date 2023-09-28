@@ -20,7 +20,7 @@ $base-color-neutral: lightgrey;
 
 // TabAccordion
 
-.tab-accordion {
+.tablist {
 color: $base-color-active;
 
   &[data-tab-animation] {
@@ -44,9 +44,16 @@ color: $base-color-active;
   min-height: 400px;
   }
 
+  &__list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  }
+
   // Button
 
-  &__button {
+  &__tab {
   border: 0;
   display: block;
   margin: 0;
@@ -63,7 +70,7 @@ color: $base-color-active;
     background-color: darken($base-color-neutral, 10%);
     }
 
-    &.active {
+    &[aria-selected="true"] {
     background-color: $base-color;
     color: $base-color-active;
     }
@@ -154,7 +161,7 @@ color: $base-color-active;
   // Focus State
   // Accessibility: NEVER remove focus outlines! Either redesign them or design an alternative focus state. Learn: https://webaim.org/articles/contrast/
 
-  &__button, &__panel {
+  &__list, &__panel {
 
     &:focus {
     outline-offset: -6px;

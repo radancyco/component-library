@@ -17,7 +17,7 @@
     </thead>
     <tbody>
 
-    {% assign sortElements = page.elements | sort: 'html' %}
+    {% assign sortElements = page.elements %}
 
     {% for element in sortElements %}
 
@@ -52,7 +52,7 @@
     </thead>
     <tbody>
 
-    {% assign sortAttributes = page.attributes | sort: 'name' %}
+    {% assign sortAttributes = page.attributes %}
 
     {% for attribute in sortAttributes %}
 
@@ -88,7 +88,7 @@
     </thead>
     <tbody>
 
-    {% assign sortClasses = page.classes | sort: 'name' %}
+    {% assign sortClasses = page.classes %}
 
     {% for class in sortClasses %}
 
