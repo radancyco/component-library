@@ -3,119 +3,36 @@
   Radancy Component Library: CSS Animation
 
   Contributor(s):
-  Drew Toth (drew.toth[at]radancy.gov)
-  Michael "Spell" Spellacy, Email: michael.spellacy@radancy.com, Twitter: @spellacy, GitHub: michaelspellacy
+  Drew Toth
+  Michael "Spell" Spellacy
 
   Dependencies: Sass
+
   Instructions: To run locally, install Sass (https://sass-lang.com/install), CL to directory this file in and run:
   sass --watch init.scss:init.css --style compressed
 
 */
 
+@function px($target) {
+
+    @return calc($target/16) + rem;
+
+}
+
 $base-color: #6F00EF;
+$breakpoint: px(860);
 
-.animation-container { 
-margin: 1.5em 0;
+.css-animation { 
 
-    .js & {
+    &__header {
+    margin: px(24) 0;
 
-        @media (min-width: 53.75em) {
+        .js & {
 
-            display: flex;
-            overflow: hidden;
+            @media (min-width: $breakpoint) {
 
-        }
-
-    }
-
-}
-
-.animation-canvas {
-background: #fff url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADVJREFUeNpi/P//PwMtwfv37/8zMdABjFoyasmoJaOWjFoyasmoJaOWDG5LWEDtIlpbAhBgAOuECskQ4GEAAAAAAElFTkSuQmCC");
-border: 1px #ccc solid;
-box-shadow: inset 0 0 15px #ccc;
-
-    .active & {
-    inset-block-start: 0;
-    inset-inline-start: 0;
-    position: fixed;
-    width: 100%;
-    z-index: 1;
-    transition: all 800ms ease-in-out; 
-
-        @media (min-width: 53.75em) {
-
-            position: static;
-
-        }
-
-    }
-
-    img {
-    margin: 0 auto;
-    max-width: 50%;
-
-        @media (min-width: 53.75em) {
-
-            max-width: 100%;
-
-        }
-
-    }
-
-}
-
-.btn-code {
-margin: 1em 0 0;
-
-    &[aria-expanded="true"] + .animation-code {
-    display: block;
-    }
-
-    @media (min-width: 53.75em) {
-
-        display: none;
-
-    }
-
-}
-
-.animation-code {
-background-color: #333; 
-color: #fff;
-display: none;
-margin-top: 1em;
-
-    @media (min-width: 53.75em) {
-
-        display: block !important;
-        margin-top: 0;
-
-    }
-
-    pre, p {
-    margin: 0;
-    }
-
-    code {
-    padding: 0;
-
-        @media (min-width: 53.75em) {
-
-            max-height: 255px;
-            overflow: hidden;
-
-        }
-
-    }
-
-    &:focus, &:hover {
-
-        code {
-
-            @media (min-width: 53.75em) {
-
-                overflow-y: scroll;
+                display: flex;
+                overflow: hidden;
 
             }
 
@@ -123,143 +40,234 @@ margin-top: 1em;
 
     }
 
-}
+    &__canvas {
+    align-items: center;
+    background-color: #fff;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADVJREFUeNpi/P//PwMtwfv37/8zMdABjFoyasmoJaOWjFoyasmoJaOWDG5LWEDtIlpbAhBgAOuECskQ4GEAAAAAAElFTkSuQmCC");
+    border: px(1) #ccc solid;
+    box-shadow: inset 0 0 px(15) #ccc;
+    display: flex;
+        
+        .active & {
+        inset-block-start: 0;
+        inset-inline-start: 0;
+        position: fixed;
+        transition: all 800ms ease-in-out; 
+        width: 100%;
+        z-index: 1;
+        
+            @media (min-width: $breakpoint) {
+        
+                position: static;
+        
+            }
+        
+        }
+        
+    }
 
-.animation-canvas, .animation-code {
-overflow: hidden;
-padding: 1.5em;
-position: relative;
+    &__object {
+    margin: 0 auto;
+    width: px(200);
 
-    .js & {
-
-        @media (min-width: 53.75em) {
-
-            width: 50%;
-
+        img {
+        border-radius: px(5);
+        margin: 0 auto;
+        max-width: 50%;
+            
+            @media (min-width: $breakpoint) {
+            
+                max-width: 100%;
+            
+            }
+            
         }
 
     }
 
-}
-
-#object {
-margin: 0 auto;
-width: 200px;
-}
-
-.code {
-
-    .js & {
-    display: none;
+    &__button {
+    margin: px(16) 0 0;
+        
+        &[aria-expanded="true"] + .css-animation__code {
+        display: block;
+        }
+        
+        @media (min-width: $breakpoint) {
+        
+            display: none;
+        
+        }
+        
     }
 
-}
+    &__code {
+    background-color: #333;
+    color: #fff;
+    display: none;
+    margin-top: px(16);
+        
+        @media (min-width: $breakpoint) {
+        
+            display: block !important;
+            margin-top: 0;
+        
+        }
+        
+        pre, p {
+        margin: 0;
+        }
+        
+        code {
+        padding: 0;
+        
+            @media (min-width: $breakpoint) {
+        
+                max-height: px(260);
+                overflow: hidden;
+        
+            }
+        
+        }
+        
+        &:focus, &:hover {
+        
+            code {
+            scroll-snap-type: x mandatory;
+            scrollbar-color: $base-color #fff;
+            scrollbar-gutter: always; 
+            -webkit-overflow-scrolling: touch;
 
-.container {
-margin-bottom: 1em;
+                @media (min-width: $breakpoint) {
+        
+                    overflow-y: scroll;
+    
+                }
+            
+                &::-webkit-scrollbar {
+                width: px(8);
+                }
+            
+                &::-webkit-scrollbar-track {
+                background-color: #fff;
+                }
+            
+                &::-webkit-scrollbar-thumb {
+                background-color: #777;
+                }
+        
+            }
+        
+        }
+        
+    }
 
-    .js & {
+    &__canvas, &__code {
+    overflow: hidden;
+    padding: px(24);
+    position: relative;
+        
+        .js & {
+        
+            @media (min-width: $breakpoint) {
+        
+                width: 50%;
+        
+            }
+        
+        }
+        
+    }
 
-        @media (min-width: 53.75em) {
-
-            border: 1px #ccc solid;
-            height: 300px;
+    &__container {
+    border: px(1) #CCC solid;
+    margin-bottom: px(16);
+    padding: px(16);
+    }
+        
+    &__list {
+        
+        .js & {
+        
+            @media (min-width: $breakpoint) {
+            
+            height: px(400);
             overflow-x: hidden;
             overflow-y: scroll;
-            padding: 1em;
-
+            padding: px(16);
+            scroll-snap-type: x mandatory;
+            scrollbar-color: $base-color #fff;
+            scrollbar-gutter: always; 
+            -webkit-overflow-scrolling: touch;
+        
+                &::-webkit-scrollbar {
+                width: px(8);
+                }
+        
+                &::-webkit-scrollbar-track {
+                background-color: #fff;
+                }
+        
+                &::-webkit-scrollbar-thumb {
+                background-color: $base-color;
+                }
+        
+            }
+        
         }
-
-    }
-
-    ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    }
-
-    li {
-    display: inline;
-    }
-
-}
-
-.button {
-background-color: $base-color;
-border-radius: 3px;
-border-bottom: 4px $base-color solid;
-color: #fff;
-display: inline-block;
-line-height: normal;
-margin: 0 6px 6px 0;
-min-width: 100%;
-padding: 8px 10px;
-text-align: center;
-text-decoration: none;
-transition: background-color 0.2s ease;
-
-    @media (min-width: 35em) {
-
-        min-width: 47.5%;
-
-    }
-
-    @media (min-width: 53.75em) {
-
-        min-width: 18.7%;
-
-    }
-
-    &:focus, &:hover, &.active {
-
-        background-color: rgba($base-color, 0.5);
-        color: #000;
-        transition: background-color 0.2s ease;
-
-    }
-
-}
-
-@keyframes rollOut {
-
-    0% {
-    left: -120px;
-    }
-
-    50% {
-    transform: rotate(-75deg);
-    }
-
-    100% {
-    left: 0;
-    transform: rotate(0);
-    }
-
-}
-
-.callout.accessibility.active {
-overflow: hidden;
-
-    h2:first-of-type {
-
-        &::before {
-        animation-duration: 0.5s;
-        animation-name: rollOut;
-        animation-timing-function: ease-in;
-        margin-bottom: 0;
-        position: relative;
+        
+        ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: px(8);
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        
+            li {
+            width: 48.5%;
+        
+               @media (min-width: $breakpoint) {
+        
+                    width: px(240);
+        
+              }
+        
+            }
+        
         }
-
+        
+    }
+        
+    &__label {
+    background-color: $base-color;
+    border-radius: px(3);
+    border-bottom: px(4) $base-color solid;
+    color: #fff;
+    display: block;
+    padding: px(8) px(10);
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+        
+        &:focus, &:hover, &.active {
+        
+            background-color: rgba($base-color, 0.5);
+            color: #000;
+            transition: background-color 0.2s ease;
+        
+        }
+        
     }
 
 }
+
 
 // Shared Animations
 
 .pullUp, .pullDown, .stretchLeft, .stretchRight, .reveal {
 background-color: #fff;
-border: 1px #036 solid;
-border-radius: 5px;
+border: px(2) $base-color solid;
+border-radius: 0.3125rem;
 }
 
 @import "pattern/bigEntrance";

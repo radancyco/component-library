@@ -19,9 +19,9 @@
 
 	// Create animation code button and container
 
-	$(".animation-container").append("<button class='btn btn-code' aria-expanded='false'>View Code</button><div class='animation-code' role='region' tabindex='0'><pre><code class='slideLeft'/></pre></div>");
+	$(".css-animation__header").append("<button class='btn css-animation__button' aria-expanded='false'>View Code</button><div class='css-animation__code' role='region' tabindex='0'><pre><code class='slideLeft'/></pre></div>");
 
-	$(".btn-code").on( "click", function() {
+	$(".css-animation__button").on("click", function() {
 
 		$(this).attr("aria-expanded", function (i, attr) {
 
@@ -31,11 +31,9 @@
 
 	});
 
-	// Setup code for first animation
+	// Setup code for first (random) animation
 
-	// Note: Randomize animation on page load.
-
-	var $ele = $(".container .button");
+	var $ele = $(".css-animation__label");
 
 	if(URLFragment) {
 
@@ -43,15 +41,15 @@
 
 	} else {
 	
-		var selectedAnimation = $ele.eq(Math.floor(Math.random()*($ele.length - 1))).attr("data-id");
+		var selectedAnimation = $ele.eq(Math.floor(Math.random()*($ele.length - 1))).attr("data-animation-id");
 
 	}
 
-	$("#object").addClass(selectedAnimation); // Load Animation
+	$(".css-animation__object").addClass(selectedAnimation); // Load Animation
 
-	var selectedItem = $("a[data-id=" + selectedAnimation + "]");
+	var selectedItem = $("a[data-animation-id=" + selectedAnimation + "]");
 
-	$(".animation-code pre code").load(selectedItem.attr("href")); // Load Associated Animated Code
+	$(".css-animation__code pre code").load(selectedItem.attr("href")); // Load Associated Animated Code
 
 	selectedItem.addClass("active"); // Highlight Associated Animated Code Button
 
@@ -65,14 +63,16 @@
 
     });
 
-	$(".button").on( "click", function() {
+	$(".css-animation__label").on( "click", function() {
 
-  		$("#object").removeClass().addClass($(this).attr("data-id"));
-  		$(".animation-code pre code").load($(this).attr("href"));
-  		$(".container").find(".button").removeClass("active");
+		var activeAnimation = $(".css-animation__label.active").attr("data-animation-id"); // Get active element
+
+  		$(".css-animation__object").removeClass(activeAnimation).addClass($(this).attr("data-animation-id"));
+  		$(".css-animation__code pre code").load($(this).attr("href"));
+  		$(".css-animation__list").find(".css-animation__label").removeClass("active");
   		$(this).addClass("active");
 
-		history.pushState(null, null, "#" + $(this).attr("data-id"));
+		history.pushState(null, null, "#" + $(this).attr("data-animation-id"));
 
 		return false;
 
@@ -80,7 +80,7 @@
 
 	// There may be some conditions where we want to manipulate our canvas for better viewing.
 
-	var canvas = $(".animation-canvas").offset().top;
+	var canvas = $(".css-animation__canvas").offset().top;
 	var $window = $(window);
 
 	function checkTopPosition() {
