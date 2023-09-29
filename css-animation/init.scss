@@ -25,6 +25,7 @@ $breakpoint: px(860);
 .css-animation { 
 
     &__header {
+    border-radius: px(3);
     margin: px(24) 0;
 
         .js & {
@@ -180,6 +181,7 @@ $breakpoint: px(860);
 
     &__container {
     border: px(1) #CCC solid;
+    border-radius: px(3);
     margin-bottom: px(16);
     padding: px(16);
     }
