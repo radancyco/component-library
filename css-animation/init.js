@@ -13,7 +13,7 @@
 
 (function () {
 
-	// Grab the hash (fragment) from the URL.
+	// Grab the hash from the URL.
 
 	var URLFragment = location.hash.slice(1);
 
@@ -45,23 +45,15 @@
 
 	}
 
-	$(".css-animation__object").addClass(selectedAnimation); // Load Animation
+	$(".css-animation__object").addClass(selectedAnimation); // Load Selected Animation
 
 	var selectedItem = $("a[data-animation-id=" + selectedAnimation + "]");
 
-	$(".css-animation__code pre code").load(selectedItem.attr("href")); // Load Associated Animated Code
+	$(".css-animation__code pre code").load(selectedItem.attr("href")); // Load Annimation Code
 
 	selectedItem.addClass("active"); // Highlight Associated Animated Code Button
 
-	// Grab Sass from button link and insert into code window (.animation-code)
-
-	// Hack to get back button to work. TODO: Revisit.
-	
-	$(window).on("popstate", function (e) {
-
-        location.reload();
-
-    });
+	// Grab Sass from button link and insert into code window (.css-animation__code)
 
 	$(".css-animation__label").on( "click", function() {
 
@@ -72,7 +64,23 @@
   		$(".css-animation__list").find(".css-animation__label").removeClass("active");
   		$(this).addClass("active");
 
+		// Update URL
+
 		history.pushState(null, null, "#" + $(this).attr("data-animation-id"));
+
+		// Copy URL
+
+		let url = document.location.href;
+
+		navigator.clipboard.writeText(url).then(function() {
+	
+			console.log("Copied!");
+
+	  	}, function() {
+	
+		  console.log("Copy error");
+
+	  	});
 
 		return false;
 
@@ -96,6 +104,14 @@
 		}
 
   	}
+
+	// Hack to get back button to work. TODO: Revisit.
+	
+	$(window).on("popstate", function (e) {
+
+		location.reload();
+	
+	});
 
   	$window.on("scroll resize", checkTopPosition);
   	$window.trigger("scroll");
