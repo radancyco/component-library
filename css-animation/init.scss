@@ -229,11 +229,11 @@ $breakpoint: px(860);
         list-style: none;
         padding: 0;
         
-               @media (min-width: $breakpoint) {
+            @media (min-width: $breakpoint) {
                 
                 grid-template-columns: repeat(auto-fill, minmax(32.6%, 1fr));
         
-              }
+            }
   
         
         }
