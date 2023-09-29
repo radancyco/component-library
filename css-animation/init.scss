@@ -224,23 +224,17 @@ $breakpoint: px(860);
         }
         
         ul {
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
         gap: px(8);
         list-style: none;
-        margin: 0;
         padding: 0;
         
-            li {
-            width: 100%;
-        
                @media (min-width: $breakpoint) {
-        
-                    width: px(352);
+                
+                grid-template-columns: repeat(auto-fill, minmax(32.6%, 1fr));
         
               }
-        
-            }
+  
         
         }
         
