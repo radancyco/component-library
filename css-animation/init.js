@@ -19,7 +19,7 @@
 
 	// Create animation code button and container
 
-	$(".css-animation__header").append("<button class='btn css-animation__button' aria-expanded='false'>View Code</button><div class='css-animation__code' role='region' tabindex='0'><pre><code class='slideLeft'/></pre></div>");
+	$(".css-animation__header").append("<button class='btn css-animation__button' aria-expanded='false'>View CSS</button><div aria-label='CSS' class='css-animation__code' role='region' tabindex='0'><pre><code class='slideLeft'/></pre></div>");
 
 	$(".css-animation__button").on("click", function() {
 
