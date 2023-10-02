@@ -13,15 +13,27 @@
 
 (function () {
 
+	var $cssAnimationHeader = $(".css-animation__header");
+	var $cssAnimationLabel =  $(".css-animation__label");
+	var $cssAnimationObject = $(".css-animation__object");
+	var $cssAnimationCanvas = $(".css-animation__canvas");
+	var $cssAnimationList = $(".css-animation__list");
+	var $cssAnimationMsg = $(".css-animation__msg");
+	var activeClass = "active";
+
 	// Grab the hash from the URL.
 
 	var URLFragment = location.hash.slice(1);
 
 	// Create animation code button and container
 
-	$(".css-animation__header").append("<button class='btn css-animation__button' aria-expanded='false'>View CSS</button><div aria-label='CSS' class='css-animation__code' role='region' tabindex='0'><pre><code class='slideLeft'/></pre></div>");
+	$cssAnimationHeader.append("<button class='btn css-animation__button' aria-expanded='false'>View CSS</button><div aria-label='CSS' class='css-animation__code' role='region' tabindex='0'><pre><code class='slideLeft'/></pre></div>");
 
-	$(".css-animation__button").on("click", function() {
+	var $cssAnimationButton = $(".css-animation__button");
+	var $cssAnimationCode = $(".css-animation__code");
+	var $cssAnimationCodeTarget = $cssAnimationCode.find("code");
+	
+	$cssAnimationButton.on("click", function() {
 
 		$(this).attr("aria-expanded", function (i, attr) {
 
@@ -33,36 +45,42 @@
 
 	// Setup code for first (random) animation
 
-	var $ele = $(".css-animation__label");
-
 	if(URLFragment) {
 
 		var selectedAnimation = URLFragment;
 
 	} else {
 	
-		var selectedAnimation = $ele.eq(Math.floor(Math.random()*($ele.length - 1))).attr("data-animation-id");
+		var selectedAnimation = $cssAnimationLabel.eq(Math.floor(Math.random()*($cssAnimationLabel.length - 1))).attr("data-animation-id");
 
 	}
 
-	$(".css-animation__object").addClass(selectedAnimation); // Load Selected Animation
+	$cssAnimationObject.addClass(selectedAnimation); // Load Selected Animation
 
-	var selectedItem = $("a[data-animation-id=" + selectedAnimation + "]");
+	var selectedItem = $(".css-animation__label[data-animation-id=" + selectedAnimation + "]");
 
-	$(".css-animation__code pre code").load(selectedItem.attr("href")); // Load Annimation Code
+	$cssAnimationCodeTarget.load(selectedItem.attr("href")); // Load Annimation Code
 
-	selectedItem.addClass("active"); // Highlight Associated Animated Code Button
+	selectedItem.addClass(activeClass); // Highlight Associated Animated Code Button
+
+	// Always remove animation class when animation complete. 
+
+	$cssAnimationObject.on("animationend", function(){	
+	  
+		document.querySelector('.css-animation__object').className = "css-animation__object";
+
+		$cssAnimationMsg.text("");
+
+	});
 
 	// Grab Sass from button link and insert into code window (.css-animation__code)
 
-	$(".css-animation__label").on( "click", function() {
+	$cssAnimationLabel.on( "click", function() {
 
-		var activeAnimation = $(".css-animation__label.active").attr("data-animation-id"); // Get active element
-
-  		$(".css-animation__object").removeClass(activeAnimation).addClass($(this).attr("data-animation-id"));
-  		$(".css-animation__code pre code").load($(this).attr("href"));
-  		$(".css-animation__list").find(".css-animation__label").removeClass("active");
-  		$(this).addClass("active");
+		$cssAnimationObject.addClass($(this).attr("data-animation-id"));
+		$cssAnimationCodeTarget.load($(this).attr("href"));
+  		$cssAnimationList.find(".css-animation__label").removeClass(activeClass);
+  		$(this).addClass(activeClass);
 
 		// Update URL
 
@@ -74,11 +92,11 @@
 
 		navigator.clipboard.writeText(url).then(function() {
 	
-			console.log("Copied!");
+			$cssAnimationMsg.text("Link Copied");
 
 	  	}, function() {
 	
-		  console.log("Copy error");
+			$cssAnimationMsg.text("Copy Error");
 
 	  	});
 
@@ -88,18 +106,18 @@
 
 	// There may be some conditions where we want to manipulate our canvas for better viewing.
 
-	var canvas = $(".css-animation__canvas").offset().top;
+	var canvas = $cssAnimationCanvas.offset().top;
 	var $window = $(window);
 
 	function checkTopPosition() {
 
 		if ($window.scrollTop() >= canvas ) {
 
-			$("body").addClass("active");
+			$("body").addClass(activeClass);
 
 		} else {
 
-			$("body").removeClass("active");
+			$("body").removeClass(activeClass);
 
 		}
 
