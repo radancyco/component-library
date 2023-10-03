@@ -11,8 +11,8 @@
 
 function loadAnimationToggle(url, callback) {
 
-  // Initiate Animation Toggle this way so we can include the langauge pack.
-  
+  // Initiate langauge pack.
+
   var componentLanguagePack = document.createElement("script");
 
   componentLanguagePack.setAttribute("src", url);
@@ -21,7 +21,7 @@ function loadAnimationToggle(url, callback) {
   componentLanguagePack.onload = callback;
 
   // Only load one langauge pack per page.
- 
+
   var getComponentLanguagePack = document.getElementById("component-library-language-pack");
 
   if(getComponentLanguagePack === null) {
@@ -33,7 +33,7 @@ function loadAnimationToggle(url, callback) {
 }
 
 loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-pack.js", function(){
-  
+
   // Display which component in use via console:
 
   console.log('%c Animation Toggle v1.2 in use. ', 'background: #6e00ee; color: #fff');
@@ -70,7 +70,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
     var match = document.cookie.match(RegExp('(?:^|;\\s*)' + name + '=([^;]*)')); 
     return match ? match[1] : null;
-    
+
   }
 
   // Assign cookie to variable on page load.
@@ -110,7 +110,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
     btnControls.setAttribute("class", atVideoControlsName);
 
     // Prepend control wrapper to atClass
-    
+  
     wrapper.prepend(btnControls);
 
     // Create pause button.
@@ -132,7 +132,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
     // Add class to pause button.
 
     btnPlayPause.classList.add(atPauseButtonClassName);
-    
+
     // Check to see if cookie is false or null.
 
     if(animationPaused === "false" || animationPaused === null) {
@@ -152,7 +152,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
       btnPlayPause.setAttribute("aria-pressed", "true");
 
       // Add animation enabled class to body.
-        
+
       animationBody.classList.remove(atEnabledClassName);
 
     }
@@ -160,7 +160,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
     // Append pause button
 
     btnControls.append(btnPlayPause);
-    
+
     // Pause Toggle Event
 
     btnPlayPause.addEventListener("click", function() {
@@ -178,7 +178,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
         setCookie("true");
 
-        // Get all pause buttons on page and set them to true. 
+        // Get all pause buttons on page and set them to true.
 
         animationPauseToggles.forEach(function(button){
 
@@ -189,7 +189,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
       } else {
 
         // Add animation enabled class to body.
-        
+
         animationBody.classList.add(atEnabledClassName);
 
         // Set cookie to false.
@@ -201,7 +201,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
         animationPauseToggles.forEach(function(button){
 
           button.setAttribute("aria-pressed", "false");
-        
+
         });
 
       }
@@ -212,7 +212,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
         // Note: https://stackoverflow.com/questions/36803176/how-to-prevent-the-play-request-was-interrupted-by-a-call-to-pause-error/37172024#37172024
 
-        var isPlaying = video.currentTime > 0 && !video.paused && !video.ended && video.readyState > video.HAVE_CURRENT_DATA; 
+        var isPlaying = video.currentTime > 0 && !video.paused && !video.ended && video.readyState > video.HAVE_CURRENT_DATA;
 
         if(!isPlaying) {
 
@@ -223,7 +223,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
           video.pause();
 
         }
-              
+     
       });
 
     });
@@ -275,21 +275,21 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
             track.oncuechange = function() {
   
               var currentCue = this.activeCues[0];
-  
+
               console.log(currentCue)
-  
+
               if (currentCue) {
-  
+
                 thisDescription.innerText = "";
                 thisDescription.appendChild(currentCue.getCueAsHTML());
-        
+
                 var Message = thisDescription.textContent;
                 var msg = new SpeechSynthesisUtterance(Message);
 
                 window.speechSynthesis.speak(msg);
-  
+
               }
-  
+
             }
 
           }
@@ -306,17 +306,17 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
             track.mode = "hidden";
             track.oncuechange = function() {
-  
+
               var currentCue = this.activeCues[0];
-  
+
               console.log(currentCue)
-  
+
               if (currentCue) {
   
                 thisDescription.innerText = "";
-  
+
               }
-  
+
             }
 
           }
@@ -324,11 +324,11 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
           window.speechSynthesis.cancel();
 
         }
-      
+
       });
 
     }
-  
+
   });
 
   // Video Loader
@@ -340,8 +340,8 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
     if (animationBody.classList.contains(atEnabledClassName)) {
 
       obj.play();
- 
-     } else { 
+
+     } else {
 
       obj.load();
 
@@ -350,11 +350,11 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
           obj.currentTime = poster;
 
         } else {
- 
+
           obj.load();
 
         }
- 
+
      }
 
      // TODO: Possibly include support for multiple source elements. See Line 19 in lazy.js
@@ -435,7 +435,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
           video.setAttribute("src", largeSource);
 
-        } else { 
+        } else {
 
           // Small Viewport Video (Default)
 
@@ -446,8 +446,8 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
         // Load video
 
         loadVideo(video, posterLoad);
-       
-      }  else { 
+
+      }  else {
 
         // Load video
 
@@ -464,11 +464,11 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
   videoBreakPoints.forEach(function(breakpoints){
 
     breakpoints.addEventListener("change", videoViewPort);
-  
+
   });
-  
+
   // Initiate on page load.
-  
+
   videoViewPort();
 
 });
