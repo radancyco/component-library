@@ -13,13 +13,17 @@
 
 (function () {
 
+	var $cssAnimationCanvas = $(".css-animation__canvas");
+	var $cssAnimationContainer = $(".css-animation__container");
 	var $cssAnimationHeader = $(".css-animation__header");
 	var $cssAnimationLabel =  $(".css-animation__label");
-	var $cssAnimationObject = $(".css-animation__object");
-	var $cssAnimationCanvas = $(".css-animation__canvas");
 	var $cssAnimationList = $(".css-animation__list");
 	var $cssAnimationMsg = $(".css-animation__msg");
+	var $cssAnimationObject = $(".css-animation__object");
 	var activeClass = "active";
+	var dataAnimationId = "data-animation-id";
+	var txtLinkCopied = "Link Copied!";
+	var txtLinkError = "Copy Error";
 
 	// Grab the hash from the URL.
 
@@ -51,7 +55,7 @@
 
 	} else {
 	
-		var selectedAnimation = $cssAnimationLabel.eq(Math.floor(Math.random()*($cssAnimationLabel.length - 1))).attr("data-animation-id");
+		var selectedAnimation = $cssAnimationLabel.eq(Math.floor(Math.random()*($cssAnimationLabel.length - 1))).attr(dataAnimationId);
 
 	}
 
@@ -73,38 +77,43 @@
 
 	});
 
-	// Grab Sass from button link and insert into code window (.css-animation__code)
+	// Get Sass from link and insert into code block (.css-animation__code)
 
 	$cssAnimationLabel.on( "click", function() {
 
-		$cssAnimationObject.addClass($(this).attr("data-animation-id"));
-		$cssAnimationCodeTarget.load($(this).attr("href"));
-  		$cssAnimationList.find(".css-animation__label").removeClass(activeClass);
-  		$(this).addClass(activeClass);
+		$cssAnimationObject.addClass($(this).attr(dataAnimationId));
 
-		// Update URL
+		if(!$(this).hasClass(activeClass)) {
 
-		history.pushState(null, null, "#" + $(this).attr("data-animation-id"));
+			$cssAnimationCodeTarget.load($(this).attr("href"));
+  			$cssAnimationList.find(".css-animation__label").removeClass(activeClass);
+  			$(this).addClass(activeClass);
 
-		// Copy URL
+			// Update URL
 
-		let url = document.location.href;
+			history.pushState(null, null, "#" + $(this).attr(dataAnimationId));
 
-		navigator.clipboard.writeText(url).then(function() {
+			// Copy URL
+
+			let url = document.location.href;
+
+			navigator.clipboard.writeText(url).then(function() {
 	
-			$cssAnimationMsg.text("Link Copied");
+				$cssAnimationMsg.text(txtLinkCopied);
 
-	  	}, function() {
+	  		}, function() {
 	
-			$cssAnimationMsg.text("Copy Error");
+				$cssAnimationMsg.text(txtLinkError);
 
-	  	});
+	  		});
+
+		}
 
 		return false;
 
 	});
 
-	// There may be some conditions where we want to manipulate our canvas for better viewing.
+	// There may be some conditions where we want to manipulate our canvas for better viewing, especially on mobile.
 
 	var canvas = $cssAnimationCanvas.offset().top;
 	var $window = $(window);

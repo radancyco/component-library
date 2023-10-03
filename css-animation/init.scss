@@ -48,14 +48,8 @@ $breakpoint: px(860);
     border: px(1) #ccc solid;
     box-shadow: inset 0 0 px(15) #ccc;
     display: flex;
-    min-height: px(210);
+    min-height: px(310);
 
-        @media (min-width: $breakpoint) {
-        
-            min-height: px(310);
-
-        }
-        
         .active & {
         inset-block-start: 0;
         inset-inline-start: 0;
@@ -98,11 +92,11 @@ $breakpoint: px(860);
     &__msg {
     background-color: #fff;
     border: px(1) #ccc solid;
-    inset-block-end: 1rem;
-    inset-inline-start: 1rem;
-    padding: px(8);
+    inset-block-end: px(10);
+    inset-inline-start: px(10);
+    padding: px(6) px(8);
     position: absolute;
-    font-size: px(14);
+    font-size: px(12);
 
         &:empty {
         display: none;
@@ -208,18 +202,6 @@ $breakpoint: px(860);
     border-radius: px(3);
     margin-bottom: px(16);
     padding: px(16);
-
-        .active & {
-        margin-top: px(270);
-
-            @media (min-width: $breakpoint) {
-
-                margin-top: 0;
-
-            }
-
-        }
-
     }
         
     &__list {
