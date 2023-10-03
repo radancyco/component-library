@@ -45,7 +45,7 @@
       <h2>Code</h2> 
   
       <div class="tab-accordion" data-tab-disable-url data-tab-breakpoint="(min-width: 0)">
-  
+
         <button class="tab-accordion__button">HTML</button>
       
         <div class="tab-accordion__panel">
@@ -57,6 +57,8 @@
           </div>
       
         </div>
+
+        {% if page.localcss %}
       
         <button class="tab-accordion__button">CSS</button>
       
@@ -69,6 +71,10 @@
           </div>
       
         </div>
+
+        {% endif %}
+
+        {% if page.localjs %}
       
         <button class="tab-accordion__button">JavaScript</button>
       
@@ -81,6 +87,8 @@
           </div>
       
         </div>
+
+        {% endif %}
       
       </div>
   

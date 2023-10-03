@@ -3,40 +3,38 @@
   Radancy Component Library: Hero Banner
 
   Contributor(s):
-  Andrew Hill, Email: andrew.hill@radancy.com
+  Andrew Hill
+  Michael Spellacy
 
   Dependencies: Sass
+
   Instructions: To run locally, install Sass (https://sass-lang.com/install), CL to directory this file in and run:
   sass --watch init.scss:init.css --style compressed
 
 */
 
-@import "breakpoint"; // Note: Use your own breakpoint partial.
+/* Specify Breakpoint */
 
-/* Specify Breakpoint for Mobile/Desktop */
-/* Should we build this for 3 so we can have a high res??? */
-
-$end-banner: 768px;
+$end-banner: 48.625rem; // 768px
 
 /* specify max-width to create margins for the text wrapper */
 
-$banner-constrain-wrapper: 1400px;
+$banner-constrain-wrapper: 87.5rem; // 1400px
 
 /* specify max-width for the text block itself */
 
-$banner-text-maxwidth: 400px;
+$banner-text-maxwidth: 25rem; // 400px
 
 /* Set to zero if you want it flush with edges */
 
-$banner-x-offset: 40px;
+$banner-x-offset: 2.5rem; // 40px
 
-$banner-y-offset: 40px;
+$banner-y-offset: 2.5rem; // 40px
 
 /* Supporting Code */
 
 .hero-banner {
 position: relative;
-margin: 0 -1em; // Remove if not needed.
 
   img {
   display: block;
@@ -46,7 +44,7 @@ margin: 0 -1em; // Remove if not needed.
   &__text-wrapper {
   position: relative;
 
-    @include breakpoint($end-banner) {
+  @media (min-width: $end-banner) {
 
       inset-inline: 0;
       margin: auto;
@@ -60,7 +58,7 @@ margin: 0 -1em; // Remove if not needed.
   margin: 0 auto;
   max-width: $banner-text-maxwidth;
 
-    @include breakpoint($end-banner) {
+    @media (min-width: $end-banner) {
 
       margin: auto;
 
@@ -68,19 +66,19 @@ margin: 0 -1em; // Remove if not needed.
 
   }
 
-  @include breakpoint($end-banner) {
+  @media (min-width: $end-banner) {
 
     /* Top Alignment Options */
 
-    &.text-inset-start {
+    &.text-left-top {
 
       .hero-banner__text-wrapper {
       inset-block-start: $banner-y-offset;
       }
 
       .hero-banner__text-inner-wrapper {
-      position: absolute;
       inset-inline-start: $banner-x-offset;
+      position: absolute;
       }
 
     }
@@ -88,12 +86,12 @@ margin: 0 -1em; // Remove if not needed.
     &.text-right-top {
 
       .hero-banner__text-wrapper {
-      top: $banner-y-offset;
+      inset-block-start: $banner-y-offset;
       }
 
       .hero-banner__text-inner-wrapper {
+      inset-inline-start: $banner-x-offset;
       position: absolute;
-      right: $banner-x-offset;
       }
 
     }
@@ -101,12 +99,12 @@ margin: 0 -1em; // Remove if not needed.
     &.text-center-top {
 
       .hero-banner__text-wrapper {
-      top: $banner-y-offset;
+      inset-block-start: $banner-y-offset;
       }
 
       .hero-banner__text-inner-wrapper {
+      inset-inline-start: 50%;
       position: absolute;
-      left: 50%;
       transform: translateX(-50%);
       }
 
@@ -117,13 +115,13 @@ margin: 0 -1em; // Remove if not needed.
     &.text-left-bottom {
 
       .hero-banner__text-wrapper {
-      bottom: $banner-y-offset;
+      inset-block-end: $banner-y-offset;
       }
 
       .hero-banner__text-inner-wrapper {
-      bottom: 0;
-      left: $banner-x-offset;
       position: absolute;
+      inset-inline-start: $banner-x-offset;
+      inset-block-end: 0;
       }
 
     }
@@ -131,13 +129,13 @@ margin: 0 -1em; // Remove if not needed.
     &.text-right-bottom {
 
       .hero-banner__text-wrapper {
-      bottom: $banner-y-offset;
+      inset-block-end: $banner-y-offset;
       }
 
       .hero-banner__text-inner-wrapper {
-      bottom: 0;
+      inset-block-end: 0;
+      inset-inline-end: $banner-x-offset;
       position: absolute;
-      right: $banner-x-offset;
       }
 
     }
@@ -145,14 +143,14 @@ margin: 0 -1em; // Remove if not needed.
     &.text-center-bottom {
 
       .hero-banner__text-wrapper {
-      bottom: $banner-y-offset;
+      inset-block-end: $banner-y-offset;
       }
 
       .hero-banner__text-inner-wrapper {
-      bottom: 0;
-      left: 50%;
-      position: absolute;
       transform: translateX(-50%);
+      position: absolute;
+      inset-inline-start: 50%;
+      inset-block-end: 0;
       }
 
     }
@@ -162,14 +160,14 @@ margin: 0 -1em; // Remove if not needed.
     &.text-left-center {
 
       .hero-banner__text-wrapper {
-      bottom: 0;
-      top: 0;
+      inset-block-start: 0;
+      inset-block-end: 0;
       }
 
       .hero-banner__text-inner-wrapper {
-      left: $banner-x-offset;
+      inset-block-start: 50%;
+      inset-inline-start: $banner-x-offset;
       position: absolute;
-      top: 50%;
       transform: translateY(-50%);
       }
 
@@ -178,14 +176,14 @@ margin: 0 -1em; // Remove if not needed.
     &.text-right-center {
 
       .hero-banner__text-wrapper {
-      bottom: 0;
-      top: 0;
+      inset-block-start: 0;
+      inset-block-end: 0;
       }
 
       .hero-banner__text-inner-wrapper {
+      inset-block-start: 50%;
+      inset-inline-end: $banner-x-offset;
       position: absolute;
-      right: $banner-x-offset;
-      top: 50%;
       transform: translateY(-50%);
       }
 
@@ -194,14 +192,14 @@ margin: 0 -1em; // Remove if not needed.
     &.text-center-center {
 
       .hero-banner__text-wrapper {
-      bottom: 0;
-      top: 0;
+      inset-block-start: 0;
+      inset-block-end: 0;
       }
 
       .hero-banner__text-inner-wrapper {
+      inset-block-start: 50%;
+      inset-inline-start: 50%;
       position: absolute;
-      left: 50%;
-      top: 50%;
       transform: translate(-50%, -50%);
       }
 
@@ -215,56 +213,6 @@ margin: 0 -1em; // Remove if not needed.
     max-width: $banner-constrain-wrapper;
     }
 
-  }
-
-}
-
-
-// For Demo Form - Do not copy
-
-form {
-border-radius: 5px;
-border: 1px #6F00EF solid;
-font-size: .9em;
-margin-bottom: 1em;
-padding: .5em;
-inset-inline-end: 60px;
-inset-block-start: 0;
-z-index: 1;
-
-  @include breakpoint($end-banner) {
-
-    background-color: #fff;
-    margin: .5em;
-    position: fixed;
-    width: 560px;
-
-  }
-
-  fieldset {
-  border: 0;
-  }
-
-  legend, label {
-  font-weight: bold;
-  }
-
-  label {
-  margin: 0 .5em 0 0;
-  }
-
-  input, label, select {
-  font-family: inherit;
-  vertical-align: middle;
-  }
-
-  select {
-  font-size: 1.1em;
-  padding: .2em;
-  }
-
-  p {
-  margin-top: 0;
   }
 
 }

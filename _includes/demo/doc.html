@@ -72,6 +72,38 @@
 
 {% endif %}
 
+{% if page.sass %} 
+
+<div class="table-container">
+
+    <table id="scss">
+    <caption>SCSS</caption>
+    <thead>
+    <tr>
+        <th>Variable</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% assign sortSass = page.sass %}
+
+    {% for scss in sortSass %}
+
+    <tr>
+        <td>{{ scss.name }}</td>
+        <td>{{ scss.desc }}</td>
+    </tr>
+
+    {% endfor %}
+
+    </tbody>
+    </table>
+  
+</div>
+
+{% endif %}
+
 {% if page.classes %} 
 
 <div class="table-container">
