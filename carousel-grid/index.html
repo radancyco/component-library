@@ -3,22 +3,33 @@ components:
   - name: "Basic Setup"
     id: "basic-setup"
 classes:
-  - name: .read-more
+  - name: .carousel-grid
     html: 
+  
       - div
       - section
+  
     note: Mandatory
     desc: Used on the parent element that wraps your content.
-  - name: .read-more__content	
+  - name: .carousel-grid__container	
     html: div
     note: Mandatory
-    desc: Used on the element that wraps your partially hidden content. Must be a child of <code>.read-more</code>.
-  - name: .read-more__btn
-    html: button
-    note:
-      - Mandatory
-      - Dynamic
-    desc: Used on the disclosure button. This element is dynamiucally inserted. Language support coming soon.
+    desc: Used on the element that wraps your content. Must be a child of <code>.carousel-grid</code>.
+  - name: .carousel-grid__card
+    html: div
+    note: Mandatory
+    desc: Used for each individual content container. Must be a child of <code>.carousel-grid__container</code>.
+  - name: .carousel-grid__heading
+    html: 
+  
+      - h2
+      - h3
+      - h4
+      - h5
+      - h6 
+  
+    note: Mandatory
+    desc: Used for each individual content heading. Ideally, you'll want each heading to contain your hyperlink, so that purpose of each content block can be better understood by assistive tehcnologies.
 folder: carousel-grid
 localcss: "init.css"
 localjs: "init.js"
