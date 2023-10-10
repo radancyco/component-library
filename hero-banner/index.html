@@ -52,7 +52,7 @@ sass:
     desc: This is your breakpoint for when you want to go from mobile to desktop.
     
   - name: $banner-constrain-wrapper 
-    desc: "If you need to contain the headline that overlays your hero image with a max-width to match other margins on the page. Used with <strong>.constrain</strong> class. (example: 1400px)"
+    desc: If you need to contain the headline that overlays your hero image with a max-width to match other margins on the page. Used with <strong>.constrain</strong> class.
     
   - name: $banner-x-offset
     desc: Will allow you to choose the horizontal distance you want for your text to be from left or right. This would not apply to horizontally centered classes below.
@@ -154,12 +154,10 @@ classes:
  
 notes: 
 
-  - item: Please note that while class names are specific to left-to-right (LTR) langauges, this is done for the benefit of LTR reading developers and authors. The CSS leverages <a href="https://adrianroselli.com/2019/11/css-logical-properties.html">CSS Logical Properties</a> to render properly in LTR and RTL languages.
-  - item: When including banners to use with content page settings, the default code used in the site theme already includes the structure that you need to leverage those page-level items.
-  - item: When including banners within sections or modules, create two partials. 
-  - item: Partial 1 should contain images nested in a <code>picture</code> element.
-  - item: Partial 2 should contain your HTML content. Please see <a href="#a11y">accessibility guidance</a> on the proper implementastion of headings in hero banner.
+  - item: When including banners to use with content page settings, the default code used in the site theme also includes the structure above to leverage page-level items.
+  - item: When including banners within sections or modules, create two partials. <strong>Partial 1</strong> should contain images nested in a <code>picture</code> element. <strong>Partial 2</strong> should contain your HTML content. Please see <a href="#a11y">accessibility guidance</a> on the proper implementastion of headings in hero banner.
   - item: For this demo, optional constraint is set to a maximum of 1400px horizontally.
+  - item: Please note that while class names are specific to left-to-right langauges, this is done for the benefit of left-to-right reading developers and authors. The CSS leverages <a href="https://adrianroselli.com/2019/11/css-logical-properties.html">CSS Logical Properties</a> to render properly in both left-to-right and right-to-left languages.
 
 folder: hero-banner
 in-page: true

@@ -256,6 +256,8 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
       // Audio Description Toggle Event
 
+      // TODO: Look into this further at https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisUtterance/SpeechSynthesisUtterance
+
       btnAudioDescription.addEventListener("click", function() {
 
         var thisVideo = wrapper.querySelector(atVideoClass);
