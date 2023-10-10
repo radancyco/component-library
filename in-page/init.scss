@@ -6,6 +6,7 @@
   Michael "Spell" Spellacy, Email: michael.spellacy@radancy.com, Twitter: @spellacy, GitHub: michaelspellacy
 
   Dependencies: Sass
+
   Instructions: To run locally, install Sass (https://sass-lang.com/install), CL to directory this file in and run:
   sass --watch init.scss:init.css --style compressed
 
@@ -33,20 +34,16 @@ padding: 1em;
 
   }
 
-  &__select, &__btn {
+  &__select {
   font-size: inherit;
   margin-inline-end: .3em;
   padding: .5em;
   }
 
-  &__btn {
-  background-color: $base-color;
-  border: 0;
-  color: white;
-  font-size: inherit;
-
-    &:focus {
-    background-color: #69788C;
+  &__content {
+  
+    &:target {
+    scroll-margin-top: calc(190em / 16);
     }
 
   }
