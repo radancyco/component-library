@@ -3,9 +3,10 @@
   Radancy Component Library: Carousel Scroll
 
   Contributor(s):
-  Michael "Spell" Spellacy, Email: michael.spellacy@radancy.com, Twitter: @spellacy, GitHub: michaelspellacy
+  Michael "Spell" Spellacy
 
   Dependencies: Sass
+
   Instructions: To run locally, install Sass (https://sass-lang.com/install), CL to directory this file in and run:
   sass --watch init.scss:init.css --style compressed
 
@@ -15,12 +16,12 @@ $base-color: #6F00EF;
 
 .carousel-scroll {
 position: relative;
-border-inline-end: 6px $base-color solid;
+border-inline-end: calc(6em / 16) $base-color solid;
 
   &__container {
   display: flex;
   overflow-x: scroll;
-  outline-offset: 8px;
+  outline-offset: calc(8em / 16);
   padding: 2em 0 2em 1em;
   scroll-snap-type: x mandatory;
   scrollbar-color: $base-color #fff;
@@ -31,7 +32,7 @@ border-inline-end: 6px $base-color solid;
       // However, if you require full support, then have a look at http://grsmto.github.io/simplebar/
 
       &::-webkit-scrollbar {
-      height: 6px;
+      height: calc(6em / 16);
       }
 
       /* Track */
@@ -47,25 +48,25 @@ border-inline-end: 6px $base-color solid;
 
   &__card {
   background-color: #fff;
-  border: 1px #eee solid;
-  border-radius: 10px;
+  border: calc(1rem / 16) #eee solid;
+  border-radius: calc(10em / 16);
   display: flex;
   flex-direction: column;
-  max-width: 350px;
-  min-height: 350px;
-  min-width: 300px;
+  max-width: calc(350em / 16);
+  min-height: calc(350em / 16);
+  min-width: calc(300em / 16);
   padding: 1em;
   position: relative;
   scroll-snap-align: start; 
   transition: .6s;
 
     &:first-child {
-    margin-inline-end: 110px;
+    margin-inline-end: calc(110em / 16);
     }
 
     &:not(:first-child) {
     box-shadow: -2rem 0 3rem -2rem #000;
-    margin-inline-start: -100px;
+    margin-inline-start: calc(-100em / 16);
 
       html[dir="rtl"] & {
       box-shadow: 2rem 0 3rem -2rem #000;
@@ -74,7 +75,7 @@ border-inline-end: 6px $base-color solid;
     }
 
     &:hover, &:focus, &:focus-within {
-    margin-inline-end: 110px;
+    margin-inline-end: calc(110em / 16);
     }
 
   }
@@ -84,7 +85,7 @@ border-inline-end: 6px $base-color solid;
     a {
     display: block;
 
-      // Make entire clickable
+      // Make entire card clickable
 
       &::before {
       content: "";

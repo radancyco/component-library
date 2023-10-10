@@ -1,90 +1,34 @@
 ---
+components:
+  - name: "Basic Setup"
+    id: "basic-setup"
+classes:
+  - name: .read-more
+    html: 
+      - div
+      - section
+    note: Mandatory
+    desc: Used on the parent element that wraps your content.
+  - name: .read-more__content	
+    html: div
+    note: Mandatory
+    desc: Used on the element that wraps your partially hidden content. Must be a child of <code>.read-more</code>.
+  - name: .read-more__btn
+    html: button
+    note:
+      - Mandatory
+      - Dynamic
+    desc: Used on the disclosure button. This element is dynamiucally inserted. Language support coming soon.
 folder: carousel-grid
 localcss: "init.css"
 localjs: "init.js"
+tabcordion: true
 title: "Carousel Grid"
+desc: This component will allow you to implement a grid that turns into a carousel-like, horizontal scroll in smaller viewports.
 ---
 
-{% include experimental.html %}
+{% include message/experimental.html %}
 
-<p>This compoenet will allow you to implement a grid that turns into a carousel-like, horizontal scroll in smaller viewports.</p>
+{% include demo/template.html %}
 
-<h2>Example</h2>
-
-<!-- Begin Carousel Grid -->
-
-<div class="carousel-grid">
-
-  <div class="carousel-grid__container">
-
-    <div class="carousel-grid__card">
-
-      <h2 class="carousel-grid__heading"><a href="#section-1">Section 1</a></h2>
-
-      <p>Lorem ipsum dolor sit amet, consectetur ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit.</p>
-
-    </div>
-
-    <div class="carousel-grid__card">
-
-      <h2 class="carousel-grid__heading"><a href="#section-2">Section 2</a></h2>
-
-      <p>Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus.</p>
-
-    </div>
-
-    <div class="carousel-grid__card">
-
-      <h2 class="carousel-grid__heading"><a href="#section-3">Section 3</a></h2>
-
-      <p>Ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet.</p>
-
-    </div>
-
-    <div class="carousel-grid__card">
-
-      <h2 class="carousel-grid__heading"><a href="#section-4">Section 4</a></h2>
-
-      <p>Dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat.</p>
-
-    </div>
-
-    <div class="carousel-grid__card">
-
-      <h2 class="carousel-grid__heading"><a href="#section-5">Section 5</a></h2>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies,</p>
-
-    </div>
-
-    <div class="carousel-grid__card">
-
-      <h2 class="carousel-grid__heading"><a href="#section-6">Section 6</a></h2>
-
-      <p>Tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit.</p>
-
-    </div>
-
-    <div class="carousel-grid__card">
-
-      <h2 class="carousel-grid__heading"><a href="#section-7">Section 7</a></h2>
-
-      <p>Ante erat imperdiet velit, nec laoreet enim lacus a velit.</p>
-
-    </div>
-
-    <div class="carousel-grid__card">
-
-      <h2 class="carousel-grid__heading"><a href="#section-8">Section 8</a></h2>
-
-      <p>Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit.</p>
-
-    </div>
-
-  </div>
-
-</div>
-
-<!-- End Carousel Scroll -->
-
-{% include notes.html %}
+{% include demo/doc.html %} 

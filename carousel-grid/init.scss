@@ -3,9 +3,10 @@
   Radancy Component Library: Carousel Grid
 
   Contributor(s):
-  Michael "Spell" Spellacy, Email: michael.spellacy@radancy.com, Twitter: @spellacy, GitHub: michaelspellacy
+  Michael "Spell" Spellacy
 
   Dependencies: Sass
+
   Instructions: To run locally, install Sass (https://sass-lang.com/install), CL to directory this file in and run:
   sass --watch init.scss:init.css --style compressed
 
@@ -15,7 +16,7 @@ $base-color: #6F00EF;
 
 .carousel-grid {
 position: relative;
-border-inline-end: 6px $base-color solid;
+border-inline-end: calc(6em / 16) $base-color solid;
 
   @media(min-width: 62.5em) {
 
@@ -43,7 +44,7 @@ border-inline-end: 6px $base-color solid;
     // However, if you require full support, then have a look at http://grsmto.github.io/simplebar/
 
     &::-webkit-scrollbar {
-    height: 6px;
+    height: calc(6em / 16);
     }
 
     /* Track */
@@ -59,13 +60,13 @@ border-inline-end: 6px $base-color solid;
 
   &__card {
   background-color: #fff;
-  border-radius: 10px;
-  border: 1px #666 solid;
+  border-radius: calc(10rem / 16);
+  border: calc(1rem / 16) #666 solid;
   margin: 0 1em 1% 0;
-  min-height: 350px;
+  min-height: calc(350rem / 16);
   padding: 1em;
   position: relative;
-  min-width: 300px;
+  min-width: calc(300rem / 16);
   scroll-snap-align: start;
   transition: all 300ms ease-in;
 
@@ -73,7 +74,7 @@ border-inline-end: 6px $base-color solid;
 
       margin-right: 0;
       min-width: auto;
-      width: calc(96%/4);
+      width: calc(96% / 4);
 
     }
 

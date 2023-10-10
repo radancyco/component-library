@@ -1,106 +1,45 @@
 ---
+components:
+  - name: "Basic Setup"
+    id: "basic-setup"
+classes:
+  - name: .carousel-scroll
+    html: 
+
+      - div
+      - section
+
+    note: Mandatory
+    desc: Used on the parent element that wraps your content.
+  - name: .carousel-scroll__container	
+    html: div
+    note: Mandatory
+    desc: Used on the element that wraps your content. Must be a child of <code>.carousel-scroll</code>.
+  - name: .carousel-scroll__card
+    html: div
+    note: Mandatory
+    desc: Used for each individual content container. Must be a child of <code>.carousel-scroll__container</code>.
+  - name: .carousel-scroll__heading
+    html: 
+
+      - h2
+      - h3
+      - h4
+      - h5
+      - h6 
+
+    note: Mandatory
+    desc: Used for each individual content heading. Ideally, you'll want each heading to contain your hyperlink, so that each content block can be better understood by assistive tehcnologies.
 folder: carousel-scroll
 localcss: "init.css"
 localjs: "init.js"
+tabcordion: true
 title: "Carousel Scroll v1.0"
+desc: This compoenet will allow you to implement a scrollable carousel on your page.
 ---
 
-{% include experimental.html %}
+{% include message/experimental.html %}
 
-<p>This compoenet will allow you to implement a scrollable carousel on your page.</p>
+{% include demo/template.html %}
 
-<h2>Example</h2>
-
-<!-- Begin Carousel Scroll -->
-
-<div class="carousel-scroll">
-
-  <div class="carousel-scroll__container">
-
-    <div class="carousel-scroll__card">
-
-      <h2 class="carousel-scroll__heading"><a href="#section-1">Section 1</a></h2>
-
-      <p>Lorem ipsum dolor sit amet, consectetur ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit.</p>
-
-    </div>
-
-    <div class="carousel-scroll__card">
-
-      <h2 class="carousel-scroll__heading"><a href="#section-2">Section 2</a></h2>
-
-      <p>Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus.</p>
-
-    </div>
-
-    <div class="carousel-scroll__card">
-
-      <h2 class="carousel-scroll__heading"><a href="#section-3">Section 3</a></h2>
-
-      <p>Ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet.</p>
-
-    </div>
-
-    <div class="carousel-scroll__card">
-
-      <h2 class="carousel-scroll__heading"><a href="#section-4">Section 4</a></h2>
-
-      <p>Dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat.</p>
-
-    </div>
-
-    <div class="carousel-scroll__card">
-
-      <h2 class="carousel-scroll__heading"><a href="#section-5">Section 5</a></h2>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies,</p>
-
-    </div>
-
-    <div class="carousel-scroll__card">
-
-      <h2 class="carousel-scroll__heading"><a href="#section-6">Section 6</a></h2>
-
-      <p>Tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit.</p>
-
-    </div>
-
-    <div class="carousel-scroll__card">
-
-      <h2 class="carousel-scroll__heading"><a href="#section-7">Section 7</a></h2>
-
-      <p>Ante erat imperdiet velit, nec laoreet enim lacus a velit.</p>
-
-    </div>
-
-    <div class="carousel-scroll__card">
-
-      <h2 class="carousel-scroll__heading"><a href="#section-8">Section 8</a></h2>
-
-      <p>Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit.</p>
-
-    </div>
-
-    <div class="carousel-scroll__card">
-
-      <h2 class="carousel-scroll__heading"><a href="#section-9">Section 9</a></h2>
-
-      <p>Nam euismod, tortor nec ante erat imperdiet velit, nec laoreet enim lacus a velit.</p>
-
-    </div>
-
-    <div class="carousel-scroll__card">
-
-      <h2 class="carousel-scroll__heading"><a href="#section-10">Section 10</a></h2>
-
-      <p>Euismod, tortor nec erat imperdiet velit, nec laoreet enim a velit.</p>
-
-    </div>
-
-  </div>
-
-</div>
-
-<!-- End Carousel Scroll -->
-
-{% include notes.html %}
+{% include demo/doc.html %} 
