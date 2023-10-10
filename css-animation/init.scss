@@ -13,20 +13,26 @@
 
 */
 
-@function px($target) {
+@function rem($target) {
 
     @return calc($target/16) + rem;
 
 }
 
+@function em($target) {
+
+    @return calc($target/16) + em;
+
+}
+
 $base-color: #6F00EF;
-$breakpoint: px(860);
+$breakpoint: em(860);
 
 .css-animation { 
 
     &__header {
-    border-radius: px(3);
-    margin: px(24) 0;
+    border-radius: rem(3);
+    margin: em(24) 0;
 
         .js & {
 
@@ -45,10 +51,10 @@ $breakpoint: px(860);
     align-items: center;
     background-color: #fff;
     background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADVJREFUeNpi/P//PwMtwfv37/8zMdABjFoyasmoJaOWjFoyasmoJaOWDG5LWEDtIlpbAhBgAOuECskQ4GEAAAAAAElFTkSuQmCC");
-    border: px(1) #ccc solid;
-    box-shadow: inset 0 0 px(15) #ccc;
+    border: rem(1) #ccc solid;
+    box-shadow: inset 0 0 rem(15) #ccc;
     display: flex;
-    min-height: px(310);
+    min-height: rem(310);
 
         .active & {
         inset-block-start: 0;
@@ -71,12 +77,12 @@ $breakpoint: px(860);
     &__object {
     background-color: #fff;
     border-radius: 0.3125rem;
-    border: px(2) #3B7AFC solid;
+    border: rem(2) #3B7AFC solid;
     margin: 0 auto;
-    width: px(200);
+    width: rem(200);
 
         img {
-        border-radius: px(5);
+        border-radius: rem(5);
         margin: 0 auto;
             
             @media (min-width: $breakpoint) {
@@ -91,12 +97,12 @@ $breakpoint: px(860);
 
     &__msg {
     background-color: #fff;
-    border: px(1) #ccc solid;
-    inset-block-end: px(10);
-    inset-inline-start: px(10);
-    padding: px(6) px(8);
+    border: rem(1) #ccc solid;
+    inset-block-end: rem(10);
+    inset-inline-start: rem(10);
+    padding: em(6) em(8);
     position: absolute;
-    font-size: px(12);
+    font-size: rem(12);
 
         &:empty {
         display: none;
@@ -105,7 +111,7 @@ $breakpoint: px(860);
     }
 
     &__button {
-    margin: px(16) 0 0;
+    margin: em(16) 0 0;
         
         &[aria-expanded="true"] + .css-animation__code {
         display: block;
@@ -123,7 +129,7 @@ $breakpoint: px(860);
     background-color: #333;
     color: #fff;
     display: none;
-    margin-top: px(16);
+    margin-top: em(16);
         
         @media (min-width: $breakpoint) {
         
@@ -141,7 +147,7 @@ $breakpoint: px(860);
         
             @media (min-width: $breakpoint) {
         
-                max-height: px(260);
+                max-height: rem(260);
                 overflow: hidden;
         
             }
@@ -163,7 +169,7 @@ $breakpoint: px(860);
                 }
             
                 &::-webkit-scrollbar {
-                width: px(8);
+                width: rem(8);
                 }
             
                 &::-webkit-scrollbar-track {
@@ -182,7 +188,7 @@ $breakpoint: px(860);
 
     &__canvas, &__code {
     overflow: hidden;
-    padding: px(24);
+    padding: em(24);
     position: relative;
         
         .js & {
@@ -198,10 +204,10 @@ $breakpoint: px(860);
     }
 
     &__container {
-    border: px(1) #CCC solid;
-    border-radius: px(3);
-    margin-bottom: px(16);
-    padding: px(16);
+    border: rem(1) #CCC solid;
+    border-radius: rem(3);
+    margin-bottom: em(16);
+    padding: em(16);
     }
         
     &__list {
@@ -210,17 +216,17 @@ $breakpoint: px(860);
         
             @media (min-width: $breakpoint) {
             
-            height: px(400);
+            height: rem(400);
             overflow-x: hidden;
             overflow-y: scroll;
-            padding: 0 px(16);
+            padding: 0 em(16);
             scroll-snap-type: x mandatory;
             scrollbar-color: $base-color #fff;
             scrollbar-gutter: always; 
             -webkit-overflow-scrolling: touch;
         
                 &::-webkit-scrollbar {
-                width: px(8);
+                width: rem(8);
                 }
         
                 &::-webkit-scrollbar-track {
@@ -237,7 +243,7 @@ $breakpoint: px(860);
         
         ul {
         display: grid;
-        gap: px(8);
+        gap: rem(8);
         list-style: none;
         padding: 0;
         
@@ -257,12 +263,12 @@ $breakpoint: px(860);
     background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAsCAYAAAAXb/p7AAAACXBIWXMAAAsTAAALEwEAmpwYAAAFu2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgOS4wLWMwMDAgNzkuMTcxYzI3ZiwgMjAyMi8wOC8xNi0xODowMjo0MyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iIHhtbG5zOnBob3Rvc2hvcD0iaHR0cDovL25zLmFkb2JlLmNvbS9waG90b3Nob3AvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0RXZ0PSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VFdmVudCMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDI0LjAgKFdpbmRvd3MpIiB4bXA6Q3JlYXRlRGF0ZT0iMjAyMy0wOS0yOVQwOTozMTozMC0wNDowMCIgeG1wOk1vZGlmeURhdGU9IjIwMjMtMDktMjlUMDk6MzQ6MzAtMDQ6MDAiIHhtcDpNZXRhZGF0YURhdGU9IjIwMjMtMDktMjlUMDk6MzQ6MzAtMDQ6MDAiIGRjOmZvcm1hdD0iaW1hZ2UvcG5nIiBwaG90b3Nob3A6Q29sb3JNb2RlPSIzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjdlZGZkZDg0LTliMTAtMjQ0Ni1hZDQ1LTIxMGFjOWM4ZjEyMyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo4NWI5YTVhMi00YzAxLTg3NDYtYWZiMy1iZTlkODIyYzQxMjQiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo4NWI5YTVhMi00YzAxLTg3NDYtYWZiMy1iZTlkODIyYzQxMjQiPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjcmVhdGVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjg1YjlhNWEyLTRjMDEtODc0Ni1hZmIzLWJlOWQ4MjJjNDEyNCIgc3RFdnQ6d2hlbj0iMjAyMy0wOS0yOVQwOTozMTozMC0wNDowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDI0LjAgKFdpbmRvd3MpIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDo3ZWRmZGQ4NC05YjEwLTI0NDYtYWQ0NS0yMTBhYzljOGYxMjMiIHN0RXZ0OndoZW49IjIwMjMtMDktMjlUMDk6MzQ6MzAtMDQ6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyNC4wIChXaW5kb3dzKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8L3JkZjpTZXE+IDwveG1wTU06SGlzdG9yeT4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4B3aywAAAB/ElEQVRYw+2ZzStEURiHSSxYWMhGUbJBLDQzCwsWNpIFySRriWHhI6XUoGyUbCRRU5iwVUKSj/LRKJMFkSSMmXyU/AHE9Tt1pt7OYtxz75w7Q/fWU9O59z2/p+nOufe8k6JpWooBasAquOPcmOQWPIBj4AFp0Swjciua+iMM8o0IzmjWHSGQJSPnEiZYB05Qxs+ZoQKUgBEhY1hGcIwU7hi8d/XQT3KCMoULpLBHoWAxyYnIFC6Rwk6FgoUk50Wm0E8KPQoFi0jO878SXEwGwQxQD7pAB2gHbaABBBIt2AjedC6ilgsOSq7ylgo6hfBXvqT4+XN3GcyB+0QJTpOBK5CZbD+SCzLQlIzLzCMZcNqCBgRDZMBlC9qCtqAtaAv+XcGEbZr0Cs6T6/oUCpaK2069gl5y3YlCwVGSE5ARLBdebA9AHagGtSZh3bIqMCVkDMgIMsYtbB5dglRZQcakBXJBkB1tv8kKMhzAx+9Fth09+oVtcE1y3sEuOOTnWePyFKyBFpplVNAIbpKzqbfOFoyHYJgUOhQKNpOcLRlBuiGvVCjYSnI2ZAT3SaFXoeAsyfHJCPaKqzdfg3JBnklyOBNChltGMJ3/kUKPL/ABPuPAtzD3nsw3H/1QwN69LHhCnMfo/cQUjDYvh/gzkMlGeNfBDGyOJ3AGuo3cuz8YC6Nobhw5vQAAAABJRU5ErkJggg==");
     background-position: 96% center;
     background-repeat: no-repeat;
-    background-size: px(20);
-    border-bottom: px(4) $base-color solid;
-    border-radius: px(3);
+    background-size: rem(20);
+    border-bottom: rem(4) $base-color solid;
+    border-radius: rem(3);
     color: #fff;
     display: block;
-    padding: px(8) px(35) px(8) px(10);
+    padding: em(8) em(35) em(8) em(10);
     text-align: center;
     text-decoration: none;
     transition: background-color 0.2s ease;
