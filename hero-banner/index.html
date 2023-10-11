@@ -1,50 +1,50 @@
 ---
 components:
 
-  - name: "Text Center Bottom"
-    id: "text-center-bottom"
-
-  - name: "Text Center Center"
-    id: "text-center-center"
-
-  - name: "Text Center Top"
-    id: "text-center-top"
-
-  - name: "Text Left Bottom (Constrain)"
-    id: "text-left-bottom-constrain"
-
-  - name: "Text Left Bottom"
-    id: "text-left-bottom"
-
-  - name: "Text Left Center (Constrain)"
-    id: "text-left-center-constrain"
-
-  - name: "Text Left Center"
-    id: "text-left-center"
+  - name: "Text Left Top"
+    id: "text-left-top"
 
   - name: "Text Left Top (Constrain)"
     id: "text-left-top-constrain"
 
-  - name: "Text Left Top"
-    id: "text-left-top"
+  - name: "Text Left Center"
+    id: "text-left-center"
 
-  - name: "Text Right Bottom (Constrain)"
-    id: "text-right-bottom-constrain"
+  - name: "Text Left Center (Constrain)"
+    id: "text-left-center-constrain"
 
-  - name: "Text Right Bottom"
-    id: "text-right-bottom"
+  - name: "Text Left Bottom"
+    id: "text-left-bottom"
 
-  - name: "Text Right Center (Constrain)"
-    id: "text-right-center-constrain"
+  - name: "Text Left Bottom (Constrain)"
+    id: "text-left-bottom-constrain"
 
-  - name: "Text Right Center"
-    id: "text-right-center"
+  - name: "Text Center Top"
+    id: "text-center-top"
+
+  - name: "Text Center Center"
+    id: "text-center-center"
+
+  - name: "Text Center Bottom"
+    id: "text-center-bottom"
+
+  - name: "Text Right Top"
+    id: "text-right-top"
 
   - name: "Text Right Top (Constrain)"
     id: "text-right-top-constrain"
 
-  - name: "Text Right Top"
-    id: "text-right-top"
+  - name: "Text Right Center"
+    id: "text-right-center"
+
+  - name: "Text Right Center (Constrain)"
+    id: "text-right-center-constrain"
+
+  - name: "Text Right Bottom"
+    id: "text-right-bottom"
+
+  - name: "Text Right Bottom (Constrain)"
+    id: "text-right-bottom-constrain"
 
 sass:
 
@@ -78,7 +78,7 @@ classes:
       - section
 
     note: Optional
-    desc: This will align text with bottom center of the hero.
+    desc: This will align text with bottom center of the hero banner.
 
   - name: .text-center-center
     html: 
@@ -87,7 +87,7 @@ classes:
       - section
 
     note: Optional
-    desc: This will align text with center (horizontal and vertical) of the hero.
+    desc: This will align text with center (horizontal and vertical) of the hero banner.
 
   - name: .text-center-top
     html: 
@@ -96,7 +96,7 @@ classes:
       - section
 
     note: Optional
-    desc: This will align text with top center of the hero.
+    desc: This will align text with top center of the hero banner.
 
   - name: .text-left-bottom
     html: 
@@ -105,7 +105,7 @@ classes:
       - section
 
     note: Optional
-    desc: This will align text with bottom left of the hero.
+    desc: This will align text with bottom left of the hero banner.
 
   - name: .text-left-center
     html: 
@@ -114,7 +114,7 @@ classes:
       - section
 
     note: Optional
-    desc: This will align text with center left of the hero.
+    desc: This will align text with center left of the hero banner.
 
   - name: .text-left-top
     html: 
@@ -123,7 +123,7 @@ classes:
       - section
 
     note: Optional
-    desc: This will align text with top (vertical) left (horizontal) of the hero.
+    desc: This will align text with top (vertical) left (horizontal) of the hero banner.
 
   - name: .text-right-center
     html: 
@@ -132,7 +132,7 @@ classes:
       - section
 
     note: Optional
-    desc: This will align text with center right of the hero.
+    desc: This will align text with center right of the hero banner.
 
   - name: .text-right-bottom
     html: 
@@ -141,7 +141,7 @@ classes:
       - section
 
     note: Optional
-    desc: This will align text with bottom right of the hero.
+    desc: This will align text with bottom right of the hero banner.
 
   - name: .text-right-top 
     html: 
@@ -150,7 +150,7 @@ classes:
       - section
 
     note: Optional
-    desc: This will align text with top right of the hero.
+    desc: This will align text with top right of the hero banner.
  
 notes: 
 
@@ -160,7 +160,7 @@ notes:
   - item: Please note that while class names are specific to left-to-right langauges, this is done for the benefit of left-to-right reading developers and authors. The CSS leverages <a href="https://adrianroselli.com/2019/11/css-logical-properties.html">CSS Logical Properties</a> to render properly in both left-to-right and right-to-left languages.
 
 folder: hero-banner
-in-page: true
+in-page-custom: true
 localcss: "init.css"
 section: component-library-hero-banner
 tabcordion: true
@@ -172,6 +172,6 @@ desc: This component will allow you to implement a common hero banner which incl
 
 {% include demo/template.html %}
 
-{% include hero-headings.html %}
+{% include guidance/hero-headings.html %}
 
 {% include demo/doc.html %} 

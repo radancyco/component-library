@@ -1,16 +1,20 @@
 <p>{{ page.desc }}</p>
 
-<div class="in-page" data-in-page-dynamic>
+  {% if page.in-page-custom %}
 
-  {% if page.in-page %}
+    <div class="in-page-custom" data-in-page-dynamic>
+
+  {% endif %}
+
+  {% if page.in-page-custom %}
 
     <h2 id="examples">Examples</h2>
 
-    <nav aria-label="Example" class="in-page__nav">
+    <nav aria-label="Example" class="in-page-custom__nav">
 
-        <label class="in-page__label">Choose an example:</label>
+        <label class="in-page-custom__label">Choose an example:</label>
 
-        <select class="in-page__select">
+        <select class="in-page-custom__select">
 
         </select>
 
@@ -20,25 +24,25 @@
 
   {% else %}
 
-  <h2 id="basic-setup">Basic Setup</h2>
+    <h2 id="basic-setup">Basic Setup</h2>
 
   {% endif %}
   
-    {% for component in page.components %}
+  {% for component in page.components %}
 
-    <div class="in-page__content" data-in-page-name="{{ component.name }}" data-in-page-id="{{ component.id }}">
+    {% if page.in-page-custom %}
+
+    <div class="in-page-custom__content" data-in-page-name="{{ component.name }}" data-in-page-id="{{ component.id }}">
+
+    {% endif %}
   
-      <div class="preview">
+      {% include_relative html/{{ component.id }}.html %}
   
-        {% include_relative html/{{ component.id }}.html %}
-  
-        {% if component.note %}
+      {% if component.note %}
   
         <p><strong>Note:</strong> {{ component.note }}</p>
   
-        {% endif %}
-  
-      </div>
+      {% endif %}
   
       <p><a class="external" href="{{ component.id }}" target="_blank">Open in new window</a></p>
   
@@ -60,40 +64,48 @@
 
         {% if page.localcss %}
       
-        <button class="tab-accordion__button">CSS</button>
+          <button class="tab-accordion__button">CSS</button>
       
-        <div class="tab-accordion__panel">
+          <div class="tab-accordion__panel">
       
-          <div class="tab-accordion__content" contenteditable spellcheck="false">
+            <div class="tab-accordion__content" contenteditable spellcheck="false">
       
-            {% highlight css %}{% include_relative init.scss %}{% endhighlight %}
+              {% highlight css %}{% include_relative init.scss %}{% endhighlight %}
             
-          </div>
+            </div>
       
-        </div>
+          </div>
 
         {% endif %}
 
         {% if page.localjs %}
       
-        <button class="tab-accordion__button">JavaScript</button>
+          <button class="tab-accordion__button">JavaScript</button>
       
-        <div class="tab-accordion__panel">
+          <div class="tab-accordion__panel">
       
-          <div class="tab-accordion__content" contenteditable spellcheck="false">
+            <div class="tab-accordion__content" contenteditable spellcheck="false">
       
-            {% highlight javascript %}{% include_relative init.js %}{% endhighlight %}
+              {% highlight javascript %}{% include_relative init.js %}{% endhighlight %}
             
-          </div>
+            </div>
       
-        </div>
+          </div>
 
         {% endif %}
       
       </div>
+
+    {% if page.in-page-custom %}
   
     </div>
+
+    {% endif %}
   
-    {% endfor %}
+  {% endfor %}
+
+  {% if page.in-page-custom %}
   
   </div>
+
+  {% endif %}

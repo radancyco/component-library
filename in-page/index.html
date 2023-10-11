@@ -1,190 +1,100 @@
 ---
+components:
+  - name: "Basic Setup"
+    id: "basic-setup"
+
+  - name: "Custom Aria-Live"
+    id: "custom-aria-live"
+
+  - name: "Dynamic Setup"
+    id: "dynamic-setup"
+
+attributes:
+
+  - name: aria-label
+    html: nav
+    note: Mandatory
+    desc: Used to pass a custom label to <code>nav</code> element. All menus must have a unique name describing them. Multiple menus on the page, should have a unique name.
+
+  - name: data-in-page-aria-live
+    html: .in-page
+    note: 
+
+      - Boolean
+      - Optional
+
+    desc: Used to suppress dynamic <code>aria-live</code> announcements. Here, you will be expected to wrap all of your <code>.in-page__content</code> blocks with a single <code>&lt;div aria-live="polite"&gt;&lt;/div&gt;</code>. This technique should be used sparingly and only when each content area contains a minimal amount of content.
+
+  - name: data-in-page-dynamic	
+    html: .in-page
+    note: 
+
+      - Boolean
+      - Optional
+
+    desc: Used in situations where you do not wish to hardcode the <code>option</code> element. The name of each <code>option</code> will be pulled from <code>data-in-page-name</code>.
+
+  - name: data-in-page-id	
+    html: .in-page__content
+    note: 
+
+      - String
+      - Optional
+
+    desc: Used with <code>data-in-page-dynamic</code>. This will provide a custom <code>id</code> value to each <code>.in-page__content</code> container and a custom value to each <code>option</code> element. Custom values will override dynamically generated content-1, content-2, etc. Each custom value must be unique.
+
+  - name: data-in-page-name	
+    html: .in-page__content
+    note: 
+
+      - String
+      - Mandatory
+
+    desc: Used with <code>data-in-page-dynamic</code>. This will provide a custom value for any dynamically created <code>option</code> elements.
+
+classes:
+
+  - name: .in-page
+    html: 
+  
+      - div
+      - section
+  
+    note: Mandatory
+    desc: Required on the parent element that wraps the menu and content.
+
+  - name: .in-page__nav	
+    html: nav
+    note: Mandatory
+    desc: Required on the <code>nav</code> element that wraps the <code>label</code> and <code>select</code> elements.
+
+  - name: .in-page__select
+    html: select
+    note: Mandatory
+    desc: Required on the <code>select</code> element.
+
+  - name: .in-page__content
+    html: div
+    note: Mandatory
+    desc: Required on each element that wraps individual content.
+
+notes: 
+
+  - item: Menus should not be nested, nor are they supported.
+  - item: Removing the hash from the URL is not supported or recommended. We want dynamically displayed displayed content to be uniquely identified so that we can to link to and share it. The dynamic version of the menu will produce generic hashes (e.g., content-1, content-2, etc.).
+  - item: <code>&lt;div class="sr-only" aria-live="polite"&gt;&lt;/div&gt;</code> must <strong>always</strong> be included and be accessibly hidden.
+
 folder: in-page
-jira: TCDQ-73886
+in-page-custom: true
 localcss: "init.css"
 localjs: "init.js"
+tabcordion: true
 title: "Jump Menu (In-page) v1.0"
+desc: This component will allow you to place an accessible "Jump Menu" on your page that can reveal in-page content.
 ---
 
-<p>This component will allow you to place an accessible "Jump Menu" on your page that can reveal in-page content. Please read <a href="#a11y-info">Accessibility & UX</a> before using.</p>
-
-{% include_relative para.html %}
-
-<h2 id="static-setup">Static Setup</h2>
-
-<!-- Begin Jump Menu (In-page) -->
-
-<div class="in-page">
-
-  <nav aria-label="Job Positions" class="in-page__nav">
-
-    <label class="in-page__label">Select your job position</label>
-
-    <select class="in-page__select">
-        <option value="#uid">User Interface Developer</option>
-        <option value="#a11y-director">Director, Accessibility</option>
-        <option value="#chief-cook">Chief Cook & Bottle Washer</option>
-    </select>
-
-    <!-- Note: The for attribute and ID are generated via JavaScript to accomodate multiple Jump Menus per page -->
-
-  </nav>
-
-  <div class="in-page__content" id="uid">
-
-    <h2>User Interface Developer</h2>
-
-    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, <a href="#">tempor sit amet</a>, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-
-  </div>
-
-  <div class="in-page__content" hidden id="a11y-director">
-
-    <h2>Director, Accessibility</h2>
-
-    <p>Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-
-  </div>
-
-  <div class="in-page__content" hidden id="chief-cook">
-
-    <h2>Chief Cook & Bottle Washer</h2>
-
-    <p>Pellentesque habitant <a href="#">morbi tristique senectus</a> et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</p>
-
-    <ul>
-      <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-      <li>Aliquam tincidunt mauris eu risus.</li>
-      <li>Vestibulum auctor dapibus neque.</li>
-    </ul>
-
-  </div>
-
-  <div class="sr-only" aria-live="polite"></div>
-
-</div>
-
-<!-- End Jump Menu -->
-
-<h2 id="dynamic-setup">Dynamic Setup</h2>
-
-<!-- Begin Jump Menu (In-page) -->
-
-<div class="in-page" data-in-page-dynamic>
-
-  <nav aria-label="Job Locations" class="in-page__nav">
-
-    <label class="in-page__label">Select your job location</label>
-
-    <select class="in-page__select">
-
-    </select>
-
-    <!-- Note: The for attribute and ID are generated via JavaScript to accomodate multiple Jump Menus per page -->
-
-  </nav>
-
-  <div class="in-page__content" data-in-page-name="California">
-
-    <h2>California</h2>
-
-    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, <a href="#">tempor sit amet</a>, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-
-    <p><strong>abitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
-
-  </div>
-
-  <div class="in-page__content" data-in-page-name="New York">
-
-    <h2>New York</h2>
-
-    <p>Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-
-  </div>
-
-  <div class="in-page__content" data-in-page-name="Pennsylvania">
-
-    <h2>Pennsylvania</h2>
-
-    <p>Pellentesque habitant <a href="#">morbi tristique senectus</a> et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</p>
-
-    <ul>
-      <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-      <li>Aliquam tincidunt mauris eu risus.</li>
-      <li>Vestibulum auctor dapibus neque.</li>
-    </ul>
-
-    <p>Senectus et netus et malesuada fames ac turpis egestas ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Senectus et netus et fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Senectus et netus et malesuada egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis.</p>
-
-  </div>
-
-  <div class="sr-only" aria-live="polite"></div>
-
-</div>
-
-<!-- End Jump Menu -->
-
-<h2 id="custom-aria-live">Custom Aria-Live</h2>
-
-<!-- Begin Jump Menu (In-page) -->
-
-<div class="in-page" data-in-page-aria-live>
-
-  <nav aria-label="Favorite Movies" class="in-page__nav">
-
-    <label class="in-page__label">Select your favorite movie franchise</label>
-
-    <select class="in-page__select">
-        <option value="#harry-potter">Harry Potter</option>
-        <option value="#marvel">Marvel</option>
-        <option value="#star-trek">Star Trek</option>
-        <option value="#star-wars">Star Wars</option>
-    </select>
-
-    <!-- Note: The for attribute and ID are generated via JavaScript to accomodate multiple Jump Menus per page -->
-
-  </nav>
-
-  <div aria-live="polite">
-
-    <div class="in-page__content" id="harry-potter">
-
-      <h2>Harry Potter</h2>
-
-      <p>Expecto Patronum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-
-    </div>
-
-    <div class="in-page__content" hidden id="marvel">
-
-      <h2>Marvel</h2>
-
-      <p>Pellentesque habitant <a href="#">morbi tristique senectus</a> tempor sit amet, ante. Donec eu libero sit amet quam egestas 3000.</p>
-
-    </div>
-
-    <div class="in-page__content" hidden id="star-trek">
-
-      <h2>Star Trek</h2>
-
-      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, <a href="#">U.S.S. Enterprise</a>, ante. Donec eu libero sit amet.</p>
-
-    </div>
-
-    <div class="in-page__content" hidden id="star-wars">
-
-      <h2>Star Wars</h2>
-
-      <p>Senectus et netus et the force fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, <a href="#">Sidious</a>, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-
-    </div>
-
-  </div>
-
-</div>
-
-<!-- End Jump Menu -->
+{% include demo/template.html %}
 
 {% include guidance/select-menu.html %}
 
-{% include notes.html %}
+{% include demo/doc.html %} 

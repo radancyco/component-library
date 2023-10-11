@@ -19,12 +19,10 @@
   var inPageLabelClass = ".in-page__label";
   var inPageSelectClass = ".in-page__select";
   var inPageOptionClass = ".in-page__select option";
-  var inPageBtnClass = ".in-page__btn";
   var inPageContentClass = ".in-page__content";
   var inPage = document.querySelectorAll(inPageClass);
   var inPageLabel = document.querySelectorAll(inPageLabelClass);
   var inPageSelect = document.querySelectorAll(inPageSelectClass);
-  var inPageBtn = document.querySelectorAll(inPageBtnClass);
   var inPageState = "active";
   var inPageHash =  window.location.hash;
   var inPageFragment = inPageHash.substr(1);
