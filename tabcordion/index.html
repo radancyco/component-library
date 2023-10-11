@@ -1,572 +1,120 @@
 ---
+components:
+
+  - name: "Basic Setup"
+    id: "basic-setup"
+
+  - name: "Active Tab"
+    id: "active-tab"
+
+  - name: "Advanced Media Query"
+    id: "advanced-media-query"
+    note: In this example, tabs will only be available when viewport width is between 50em (800px) and 75em (1200px).
+
+  - name: "Animation"
+    id: "animation"
+  
+  - name: "Disable URL"
+    id: "disable-url"
+    note: In this example, not how the URL never changes when each item is clicked on.
+
+  - name: "Function Callback"
+    id: "function-callback"
+    note: In this example, a function is run everytime the an item is clicked on.
+
+  - name: "Tabs Only"
+    id: "tabs-only"
+    note: In this example, the component will only ever be a tabbed interface, regardless of the viewport.
+
+  - name: "Vertical Tabs"
+    id: "vertical-tabs"
+
+attributes:
+
+  - name: data-tab-active
+    html: .tab-accordion 
+    note: 
+
+      - Number
+      - Optional
+
+    desc: Use a number from "1" up to specify which tab or disclosure should be open on page load. When this attribute is not specified, the first panel will be open by default. A tab or disclosure must always have at least one panel open. Having all disclosures collapsed in smaller viewports is <strong>not currently supported</strong>.
+  
+  - name: data-tab-animation
+    html: .tab-accordion 
+    note: 
+
+      - Boolean
+      - Optional
+
+    desc: Enables animation of the open content on page load and when tab or disclosure button is selected. You may customize the default CSS animation or keep what is currently in place.
+  
+  - name: data-tab-breakpoint
+    html: .tab-accordion 
+    note: 
+
+      - String
+      - Mandatory
+
+    desc: Accepts any valid media query for more granular control over when interface needs to change from disclosure to tab and vice versa. Setting the breakpoint in code is important and allows us to pass in the needed roles and ARIA attributes for each interface type.
+  
+  - name: data-tab-callback
+    html: .tab-accordion 
+    note: 
+
+      - String
+      - Optional
+
+    desc: Accepts a function name that will initiate on page load and when button is clicked or navigated to via arrow keys. The value of this data attribute should be the same as the function you wish to call.
+  
+  - name: data-tab-disable-url
+    html: .tab-accordion 
+    note: 
+
+      - Boolean
+      - Optional
+
+    desc:  By default, the URL will always change to reflect selected page fragment. This is recommended behavior because it allows us to easily share content. If this behavior is not desired, you may use this attribute to disable this functionality.
+  
+  - name: data-tab-vertical
+    html: .tab-accordion 
+    note: 
+
+      - Boolean
+      - Optional
+
+    desc: Changes the tab interface from horizontal, the default, to vertical. If buttons are moved to this position, keyboard arrow functionality will be reversed. Placement of tabs on the right side of the the content is <strong>not currently supported</strong>.
+
+classes:
+
+  - name: .tab-accordion
+    html: div 
+    note: Mandatory
+    desc: Used on the parent element that wraps your content.
+
+  - name: .tab-accordion__button	
+    html: button
+    note: Mandatory
+    desc: Used on the <code>button</code> element for each control. Must be a child of <code>.tab-accordion</code>.
+
+  - name: .tab-accordion__panel
+    html: div
+    note: Mandatory
+    desc: Used on the parent element that wraps your content. Must be a child of <code>.tab-accordion</code>.
+
+  - name: .tab-accordion__content
+    html: div
+    note: Mandatory
+    desc: Used on the element that directly wraps your content. Must be a child of <code>.tab-accordion__panel</code>.
+
 folder: tabcordion
-jira: TCDQ-57187
-jquery: false
+in-page-custom: true
 localcss: "init.css"
 localjs: "init.js"
 title: "TabCordion v1.8"
+desc: This component will allow you to implement a combined Tab and Accordion (Disclosure) user interface.
 ---
 
-<p>This component will allow you to implement a combined Tab and Accordion (Disclosure) user interface.</p>
+{% include demo/template.html %}
 
-{% include_relative para.html %}
-
-<h2 id="basic-setup">Basic Setup</h2>
-
-<p>Parameter(s): <code>data-tab-breakpoint="(min-width:780px)"</code></p>
-
-<!-- Begin TabCordion -->
-
-<div class="tab-accordion" data-tab-breakpoint="(min-width: 780px)">
-
-  <button class="tab-accordion__button">Section 1</button>
-
-  <!-- Note: Please remember that buttons may never conain block-level elements, like div's. Always use a span. -->
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 1</h2>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-    </div>
-
-  </div>
-
-  <button class="tab-accordion__button">Section 2</button>
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 2</h2>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-    </div>
-
-  </div>
-
-  <button class="tab-accordion__button">Section 3</button>
-
-  <div class="tab-accordion__panel" data-grid-button="Section 3">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 3</h2>
-
-      <p>Phasellus ac tristique orci. Nulla maximus <a href="#">justo nec dignissim consequat</a>. Sed vehicula diam sit amet mi efficitur vehicula in in nisl. Aliquam erat volutpat. Suspendisse lorem turpis, accumsan consequat consectetur gravida, <a href="#">pellentesque ac ante</a>. Aliquam in commodo ligula, sit amet mollis neque. Vestibulum at facilisis massa.</p>
-
-    </div>
-
-  </div>
-
-  <button class="tab-accordion__button">Section 4</button>
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 4</h2>
-
-      <p>Phasellus ac tristique orci. Nulla maximus <a href="#">justo nec dignissim consequat</a>. Sed vehicula diam sit amet mi efficitur vehicula in in nisl. Aliquam erat volutpat. Suspendisse lorem turpis, accumsan consequat consectetur gravida, <a href="#">pellentesque ac ante</a>. Aliquam in commodo ligula, sit amet mollis neque. Vestibulum at facilisis massa.</p>
-
-    </div>
-
-  </div>
-
-</div>
-
-<!-- End TabCordion -->
-
-<h2 id="active-tab">Active Tab</h2>
-
-<p>Parameter(s): <code>data-tab-active="3"</code> <code>data-tab-breakpoint="(min-width:800px)"</code></p>
-
-<!-- Begin TabCordion -->
-
-<div class="tab-accordion" data-tab-active="3" data-tab-breakpoint="(min-width:800px)">
-
-  <button class="tab-accordion__button">Section 1</button>
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 1</h2>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-    </div>
-
-  </div>
-
-  <button class="tab-accordion__button">Section 2</button>
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 2</h2>
-
-      <p>Nullam at diam nec arcu suscipit auctor non a erat. Sed et magna semper, eleifend magna non, facilisis nisl. Proin et est et lorem dictum finibus ut nec turpis. Aenean nisi tortor, euismod a mauris a, mattis scelerisque tortor. Sed dolor risus, varius a nibh id, condimentum lacinia est. In lacinia cursus odio a aliquam. Curabitur tortor magna, laoreet ut rhoncus at, sodales consequat tellus.</p>
-
-    </div>
-
-  </div>
-
-  <button class="tab-accordion__button">Section 3</button>
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 3</h2>
-
-      <p>Phasellus ac tristique orci. Nulla maximus <a href="#">justo nec dignissim consequat</a>. Sed vehicula diam sit amet mi efficitur vehicula in in nisl. Aliquam erat volutpat. Suspendisse lorem turpis, accumsan consequat consectetur gravida, <a href="#">pellentesque ac ante</a>. Aliquam in commodo ligula, sit amet mollis neque. Vestibulum at facilisis massa.</p>
-
-    </div>
-
-  </div>
-
-  <button class="tab-accordion__button">Section 4</button>
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 4</h2>
-
-      <p>Phasellus ac tristique orci. Nulla maximus <a href="#">justo nec dignissim consequat</a>. Sed vehicula diam sit amet mi efficitur vehicula in in nisl. Aliquam erat volutpat. Suspendisse lorem turpis, accumsan consequat consectetur gravida, <a href="#">pellentesque ac ante</a>. Aliquam in commodo ligula, sit amet mollis neque. Vestibulum at facilisis massa.</p>
-
-    </div>
-
-  </div>
-
-</div>
-
-<!-- End TabCordion -->
-
-<h2 id="advanced-media-query">Advanced Media Query</h2>
-
-<p>Parameter(s): <code>data-tab-breakpoint="(min-width: 800px) and (max-width: 1200px)"</code></p>
-
-<p><em>Tabs will only be available when viewport width is between 800px and 1200px.</em></p>
-
-<!-- Begin TabCordion -->
-
-<div class="tab-accordion" data-tab-breakpoint="(min-width: 800px) and (max-width: 1200px)">
-
-  <button class="tab-accordion__button">Section 1</button>
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 1</h2>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-    </div>
-
-  </div>
-
-  <button class="tab-accordion__button">Section 2</button>
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 2</h2>
-
-      <p>Nullam at diam nec arcu suscipit auctor non a erat. Sed et magna semper, eleifend magna non, facilisis nisl. Proin et est et lorem dictum finibus ut nec turpis. Aenean nisi tortor, euismod a mauris a, mattis scelerisque tortor. Sed dolor risus, varius a nibh id, condimentum lacinia est. In lacinia cursus odio a aliquam. Curabitur tortor magna, laoreet ut rhoncus at, sodales consequat tellus.</p>
-
-    </div>
-
-  </div>
-
-  <button class="tab-accordion__button">Section 3</button>
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 3</h2>
-
-      <p>Ac tristique orci. Nulla maximus <a href="#">justo nec dignissim consequat</a>. Sed vehicula diam sit amet mi efficitur vehicula in in nisl. Aliquam erat volutpat. Suspendisse lorem turpis, accumsan consequat consectetur gravida, <a href="#">pellentesque ac ante</a>. Aliquam in commodo ligula, sit amet mollis neque. Vestibulum at facilisis massa.</p>
-
-    </div>
-
-  </div>
-
-  <button class="tab-accordion__button">Section 4</button>
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 4</h2>
-
-      <p>Phasellus ac tristique orci. Nulla maximus <a href="#">justo nec dignissim consequat</a>. Sed vehicula diam sit amet mi efficitur vehicula in in nisl. Aliquam erat volutpat. Suspendisse lorem turpis, accumsan consequat consectetur gravida, <a href="#">pellentesque ac ante</a>. Aliquam in commodo ligula, sit amet mollis neque. Vestibulum at facilisis massa.</p>
-
-    </div>
-
-  </div>
-
-</div>
-
-<!-- End TabCordion -->
-
-<h2 id="animation">Animation</h2>
-
-<p>Parameter(s): <code>data-tab-animation</code> <code>data-tab-breakpoint="(min-width: 780px)"</code></p>
-
-<!-- Begin TabCordion -->
-
-<div class="tab-accordion" data-tab-animation data-tab-breakpoint="(min-width: 780px)">
-
-  <button class="tab-accordion__button">Section 1</button>
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 1</h2>
-
-      <p>Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-    </div>
-
-  </div>
-
-  <button class="tab-accordion__button">Section 2</button>
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 2</h2>
-
-      <p>Nullam at diam nec arcu suscipit et est et lorem dictum finibus ut nec turpis. Aenean nisi tortor, euismod a mauris a, mattis scelerisque tortor. Sed dolor risus, varius a nibh id, condimentum lacinia est. In lacinia cursus odio a aliquam. Curabitur tortor magna, laoreet ut rhoncus at, sodales consequat tellus.</p>
-
-    </div>
-
-  </div>
-
-  <button class="tab-accordion__button">Section 3</button>
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 3</h2>
-
-      <p>Ac tristique orci. Nulla maximus <a href="#">justo nec dignissim consequat</a>. Sed vehicula diam sit amet mi erat volutpat. Suspendisse lorem turpis, accumsan consequat consectetur gravida, <a href="#">pellentesque ac ante</a>. Aliquam in commodo ligula, sit amet mollis neque. Vestibulum at facilisis massa.</p>
-
-    </div>
-
-  </div>
-
-</div>
-
-<!-- End TabCordion -->
-
-<h2 id="callback">Callback</h2>
-
-<p>Parameter(s): <code>data-tab-breakpoint="(min-width:780px)"</code> <code>data-tab-callback="helloWorld"</code></p>
-
-<!-- Begin TabCordion -->
-
-<div class="tab-accordion" data-tab-breakpoint="(min-width: 780px)" data-tab-callback="helloWorld">
-
-  <button class="tab-accordion__button">Section 1</button>
-
-  <!-- Note: Please remember that buttons may never conain block-level elements, like div's. Always use a span. -->
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 1</h2>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-    </div>
-
-  </div>
-
-  <button class="tab-accordion__button">Section 2</button>
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 2</h2>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-    </div>
-
-  </div>
-
-  <button class="tab-accordion__button">Section 3</button>
-
-  <div class="tab-accordion__panel" data-grid-button="Section 3">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 3</h2>
-
-      <p>Phasellus ac tristique orci. Nulla maximus <a href="#">justo nec dignissim consequat</a>. Sed vehicula diam sit amet mi efficitur vehicula in in nisl. Aliquam erat volutpat. Suspendisse lorem turpis, accumsan consequat consectetur gravida, <a href="#">pellentesque ac ante</a>. Aliquam in commodo ligula, sit amet mollis neque. Vestibulum at facilisis massa.</p>
-
-    </div>
-
-  </div>
-
-</div>
-
-<!-- End TabCordion -->
-
-<h2 id="disable-url">Disable URL</h2>
-
-<p>Parameter(s): <code>data-tab-breakpoint="(min-width:800px)"</code> <code>data-tab-disable-url</code></p>
-
-<!-- Begin TabCordion -->
-
-<div class="tab-accordion" data-tab-breakpoint="(min-width:800px)" data-tab-disable-url>
-
-  <button class="tab-accordion__button">Section 1</button>
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 1</h2>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-    </div>
-
-  </div>
-
-  <button class="tab-accordion__button">Section 2</button>
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 2</h2>
-
-      <p>Nullam at diam nec arcu suscipit auctor non a erat. Sed et magna semper, eleifend magna non, facilisis nisl. Proin et est et lorem dictum finibus ut nec turpis. Aenean nisi tortor, euismod a mauris a, mattis scelerisque tortor. Sed dolor risus, varius a nibh id, condimentum lacinia est. In lacinia cursus odio a aliquam. Curabitur tortor magna, laoreet ut rhoncus at, sodales consequat tellus.</p>
-
-    </div>
-
-  </div>
-
-  <button class="tab-accordion__button">Section 3</button>
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 3</h2>
-
-      <p>Phasellus ac tristique orci. Nulla maximus <a href="#">justo nec dignissim consequat</a>. Sed vehicula diam sit amet mi efficitur vehicula in in nisl. Aliquam erat volutpat. Suspendisse lorem turpis, accumsan consequat consectetur gravida, <a href="#">pellentesque ac ante</a>. Aliquam in commodo ligula, sit amet mollis neque. Vestibulum at facilisis massa.</p>
-
-    </div>
-
-  </div>
-
-  <button class="tab-accordion__button">Section 4</button>
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 4</h2>
-
-      <p>Phasellus ac tristique orci. Nulla maximus <a href="#">justo nec dignissim consequat</a>. Sed vehicula diam sit amet mi efficitur vehicula in in nisl. Aliquam erat volutpat. Suspendisse lorem turpis, accumsan consequat consectetur gravida, <a href="#">pellentesque ac ante</a>. Aliquam in commodo ligula, sit amet mollis neque. Vestibulum at facilisis massa.</p>
-
-    </div>
-
-  </div>
-
-  <button class="tab-accordion__button">Section 5</button>
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 5</h2>
-
-      <p>Phasellus ac tristique orci. Nulla maximus <a href="#">justo nec dignissim consequat</a>. Sed vehicula diam sit amet mi efficitur vehicula in in nisl. Aliquam erat volutpat. Suspendisse lorem turpis, accumsan consequat consectetur gravida, <a href="#">pellentesque ac ante</a>. Aliquam in commodo ligula, sit amet mollis neque. Vestibulum at facilisis massa.</p>
-
-    </div>
-
-  </div>
-
-  <button class="tab-accordion__button">Section 6</button>
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 6</h2>
-
-      <p>Phasellus ac tristique orci. Nulla maximus <a href="#">justo nec dignissim consequat</a>. Sed vehicula diam sit amet mi efficitur vehicula in in nisl. Aliquam erat volutpat. Suspendisse lorem turpis, accumsan consequat consectetur gravida, <a href="#">pellentesque ac ante</a>. Aliquam in commodo ligula, sit amet mollis neque. Vestibulum at facilisis massa.</p>
-
-    </div>
-
-  </div>
-
-</div>
-
-<!-- End TabCordion -->
-
-<h2 id="tabs-only">Tabs Only</h2>
-
-<p>Parameter(s): <code>data-tab-breakpoint="(min-width: 0)"</code></p>
-
-<!-- Begin TabCordion -->
-
-<div class="tab-accordion" data-tab-breakpoint="(min-width: 0)">
-
-  <button class="tab-accordion__button">Section 1</button>
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 1</h2>
-
-      <p>Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-    </div>
-
-  </div>
-
-  <button class="tab-accordion__button">Section 2</button>
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 2</h2>
-
-      <p>Nullam at diam nec arcu suscipit et est et lorem dictum finibus ut nec turpis. Aenean nisi tortor, euismod a mauris a, mattis scelerisque tortor. Sed dolor risus, varius a nibh id, condimentum lacinia est. In lacinia cursus odio a aliquam. Curabitur tortor magna, laoreet ut rhoncus at, sodales consequat tellus.</p>
-
-    </div>
-
-  </div>
-
-  <button class="tab-accordion__button">Section 3</button>
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 3</h2>
-
-      <p>Ac tristique orci. Nulla maximus <a href="#">justo nec dignissim consequat</a>. Sed vehicula diam sit amet mi erat volutpat. Suspendisse lorem turpis, accumsan consequat consectetur gravida, <a href="#">pellentesque ac ante</a>. Aliquam in commodo ligula, sit amet mollis neque. Vestibulum at facilisis massa.</p>
-
-    </div>
-
-  </div>
-
-</div>
-
-<!-- End TabCordion -->
-
-<h2 id="vertical-layout">Vertical Layout</h2>
-
-<p>Parameter(s): <code>data-tab-breakpoint="(min-width:1200px)"</code> <code>data-tab-vertical</code></p>
-
-<!-- Begin TabCordion -->
-
-<div class="tab-accordion" data-tab-breakpoint="(min-width:1200px)" data-tab-vertical>
-
-  <button class="tab-accordion__button">Section 1</button>
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 1</h2>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-    </div>
-
-  </div>
-
-  <button class="tab-accordion__button">Section 2</button>
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 2</h2>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-    </div>
-
-  </div>
-
-  <button class="tab-accordion__button">Section 3</button>
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 3</h2>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-      <p>A velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-    </div>
-
-  </div>
-
-  <button class="tab-accordion__button">Section 4</button>
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 4</h2>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-    </div>
-
-  </div>
-
-  <button class="tab-accordion__button">Section 5</button>
-
-  <div class="tab-accordion__panel">
-
-    <div class="tab-accordion__content">
-
-      <h2>Section 5</h2>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-      <p>Ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit.</p>
-
-    </div>
-
-  </div>
-
-</div>
-
-<!-- End TabCordion -->
-
-{% include notes.html %}
+{% include demo/doc.html %} 

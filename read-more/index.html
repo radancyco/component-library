@@ -1,27 +1,35 @@
 ---
 components:
+
   - name: "Basic Setup"
     id: "basic-setup"
     note: "Use your keyboard to tab through and use the component to see how focus is properly managed."
+
 classes:
+
   - name: .read-more
     html: 
+
       - div
       - section
+      
     note: Mandatory
     desc: Used on the parent element that wraps your content.
+
   - name: .read-more__content	
     html: div
     note: Mandatory
     desc: Used on the element that wraps your partially hidden content. Must be a child of <code>.read-more</code>.
+
   - name: .read-more__btn
     html: button
-    note:
-      - Mandatory
-      - Dynamic
+    note: Component
     desc: Used on the disclosure button. This element is dynamiucally inserted. Language support coming soon.
+
 notes: 
+
   - item: This component should not be used in scenarios where you need to load more content.
+
 folder: read-more
 localcss: "init.css"
 localjs: "init.js"

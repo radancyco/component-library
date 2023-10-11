@@ -20,7 +20,7 @@ $base-color: #6F00EF;
   &__content {
   border: 1px #ccc solid;
   margin-bottom: 1em;
-  max-height: 280px;
+  max-height: calc(280rem /16);
   overflow: hidden;
   padding: 1em;
   position: relative;
@@ -43,7 +43,7 @@ $base-color: #6F00EF;
     &::after {
     background-image: linear-gradient( rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 1) 100%);
     content: "";
-    height: 100px;
+    height: calc(100rem / 16);
     inset-block-end: 0;
     inset-inline-start: 0;
     position: absolute;
@@ -53,28 +53,28 @@ $base-color: #6F00EF;
 
   }
 
-    &__btn {
-    background-color: $base-color;
-    border: 0;
-    color: #fff;
-    padding: 1em;
+  &__btn {
+  background-color: $base-color;
+  border: 0;
+  color: #fff;
+  padding: 1em;
 
-      &--icon {
+    &--icon {
+
+      &::after {
+      display: inline-block;
+      content: "+";
+      }
+
+      [aria-expanded="true"] & {
 
         &::after {
-        display: inline-block;
-        content: "+";
-        }
-
-        [aria-expanded="true"] & {
-
-          &::after {
-          content: "-";
-          }
-
+        content: "-";
         }
 
       }
+
+    }
 
   }
 
