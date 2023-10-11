@@ -3,9 +3,10 @@
   Radancy Component Library: Load More
 
   Contributor(s):
-  Michael "Spell" Spellacy, Email: michael.spellacy@radancy.com, Twitter: @spellacy, GitHub: michaelspellacy
+  Michael "Spell" Spellacy
 
   Dependencies: Sass
+
   Instructions: To run locally, install Sass (https://sass-lang.com/install), CL to directory this file in and run:
   sass --watch init.scss:init.css --style compressed
 
@@ -14,8 +15,6 @@
 $base-color: #6F00EF;
 
 .load-more {
-margin: 0 auto;
-max-width: 1280px;
 
   // Assistive Tech Message - Do not remove!
 
@@ -73,10 +72,9 @@ max-width: 1280px;
   display: block;
   line-height: normal;
   margin: 0 auto;
-  max-width: 200px;
-  padding: 15px 25px;
+  max-width: calc(200rem / 16);
+  padding: 1.5em;
   text-align: center;
-  text-decoration: none;
   text-transform: uppercase;
 
     &[disabled] {
