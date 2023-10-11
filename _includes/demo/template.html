@@ -44,8 +44,15 @@
   
       {% endif %}
   
-      <p><a class="external" href="{{ component.id }}" target="_blank">Open in new window</a></p>
-  
+      <nav aria-label="Code Functions" class="component-functions">
+        
+        <ul>
+          <li><a href="{{ component.id }}" target="_blank">Open in new window</a></li>
+          <li><button data-code="{{ page.url | absolute_url }}#{{ component.id }}">Copy link to example</button></li>
+        </ul>
+
+      </nav>
+
       <h2>Code</h2> 
   
       <div class="tab-accordion" data-tab-disable-url data-tab-breakpoint="(min-width: 0)">
