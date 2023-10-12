@@ -58,7 +58,7 @@
 
     <tr>
         <td><code>{{ attribute.name }}</code></td>
-        <td><code>{{ attribute.html }}</code></td>
+        <td><code>{% for html in attribute.html %}<code>{{ html }}</code>{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</code></td>
         <td>{% for note in attribute.note %}{{ note }}{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
         <td>{{ attribute.desc }}</td>
     </tr>
@@ -209,4 +209,4 @@
 
 <h2 id="issues">Report Issues</h2>
 
-<p>Find a bug? Report it on <a href="http://jira.tmp.com/browse/{{ page.jira }}">JIRA</a>. You're so awesome!</p>
+<p>Find a bug? Report it on <a href="https://jira.tmp.com/secure/Dashboard.jspa#create_link">JIRA</a>. You're so awesome!</p>

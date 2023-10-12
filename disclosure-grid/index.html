@@ -1,490 +1,136 @@
 ---
+components:
+
+  - name: "Basic Setup"
+    id: "basic-setup"
+
+  - name: "Active Tab"
+    id: "active-tab"
+
+  - name: "Advanced Breakpoints"
+    id: "advanced-breakpoints"
+
+  - name: "Disable URL"
+    id: "disable-url"
+  
+  - name: "Function Callback"
+    id: "function-callback"
+  
+  - name: "Grid Exclusion"
+    id: "grid-exclusion"
+    note: The third and fourth button (<strong>.disclosure-grid__button</strong>) and content (<strong>.disclosure-grid__content</strong>) elements include <strong>data-grid-exclude</strong>. Only grids one, two, five, and six will be visible.</p>
+
+  - name: "Remove Close Button"
+    id: "remove-close-button"
+
+attributes:
+
+  - name: data-grid-active
+    html: .disclosure-grid
+    note:
+
+      - Number
+      - Optional
+    
+    desc: Using a number from "1" up, you can specify which content area should be open on page load. When this attribute is not specified, no panels will be open.
+
+  - name: data-grid-callback
+    html: .disclosure-grid
+    note:
+
+      - String
+      - Optional
+    
+    desc: You can use a callback to initiate a function within the disclosed content area on page load and reinitiate the same function on button click. The function will fire when any button in the grid disclosure is engaged with. The value of this data attribute should, of course, be the same as the function you wish to call.
+  
+  - name: data-grid-disable-close
+    html: .disclosure-grid
+    note:
+
+      - Boolean
+      - Optional
+    
+    desc: Removes all close buttons from content area.
+  
+  - name: data-grid-large
+    html: .disclosure-grid
+    note:
+
+      - String
+      - Optional
+    
+    desc: Your "large" viewport breakpoint. At this breakpoint, your layout will be thrown into "grid mode".
+
+  - name: data-grid-max
+    html: .disclosure-grid
+    note:
+
+      - Number
+      - Mandatory
+    
+    desc: Specifies the number of grid items to display per row in "large" viewport. This attribute is mandatory when <code>data-grid-large</code> is in use.
+
+  - name: data-grid-medium
+    html: .disclosure-grid
+    note:
+
+      - String
+      - Optional
+    
+    desc: Your "medium" viewport breakpoint. At this breakpoint, your layout will be thrown into "grid mode".
+
+  - name: data-grid-min
+    html: .disclosure-grid
+    note:
+
+      - Number
+      - Mandatory
+    
+    desc: Specifies the number of grid items to display per row in "medium" viewport. This attribute is mandatory when <code>data-grid-medium</code> is in use.
+
+  - name: data-grid-exclude
+    html: 
+    
+      - .disclosure-grid__btn
+      - .disclosure-grid__content
+
+    note:
+
+      - Boolean
+      - Optional
+    
+    desc: To be placed on both the button and content you wish to not be included in the grid. This is particulary useful in situations where you may wish to dynamically hide content. Please note that if you are dynamically adding or removing a grid item, that the <code>gridViewPort()</code> function will need to be reinitiated.
+  
+classes:
+
+  - name: .disclosure-grid	
+    html: 
+
+      - div
+      - section
+    
+    note: Mandatory
+    desc: Required on the parent element that wraps your content.
+  
+  - name: .disclosure-grid--btn
+    html: button
+    note: Mandatory
+    desc: Required on your disclosure button.
+  
+  - name: .disclosure-grid--content
+    html: div
+    note: Mandatory
+    desc: Required on your disclosure content.
+
 folder: disclosure-grid
-jira: TCDQ-62785
-jquery: false
+in-page-custom: true
 localcss: "init.css"
 localjs: "init.js"
-title: "Grid Disclosure v1.0"
+tabcordion: true
+title: "Disclosure Grid v1.0"
+desc: This component will allow you to implement and control the presentation of multiple disclosures.
 ---
 
-<p>This component will allow you to implement and control the presentation of a button grid with multiple disclosures. Do not use this if you are looking for a simple, tabbed interface. Instead, use the <a href="../tabcordion/">TabCordion</a> pattern.</p>
+{% include demo/template.html %}
 
-{% include_relative para.html %}
-
-<h2 id="basic-layout">Basic Layout</h2>
-
-<p class="param">Parameter(s): <code>data-grid-large="(min-width:780px)"</code> <code>data-grid-max="3"</code></p>
-
-<!-- Begin Grid Disclosure -->
-
-<div class="disclosure-grid" data-grid-large="(min-width: 780px)" data-grid-max="3">
-
-  <button class="disclosure-grid__button">Section 1</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 1</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, <a href="https://radancy.dev">Radancy.dev</a> ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 2</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 2</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 3</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 3</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 4</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 4</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 5</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 5</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-</div>
-
-<!-- End Grid Disclosure -->
-
-<h2 id="active-content">Active Content</h2>
-
-<p class="param">Parameter(s): <code>data-grid-active="2"</code> <code>data-grid-large="(min-width:780px)"</code> <code>data-grid-max="3"</code></p>
-
-<!-- Begin Grid Disclosure -->
-
-<div class="disclosure-grid" data-grid-active="2" data-grid-large="(min-width: 780px)" data-grid-max="3">
-
-  <button class="disclosure-grid__button">Section 1</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 1</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 2</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 2</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 3</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 3</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 4</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 4</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 5</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 5</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-</div>
-
-<!-- End Grid Disclosure -->
-
-<h2 id="callback">Callback</h2>
-
-<p class="param">Parameter(s): <code>data-grid-active="1"</code> <code>data-grid-callback="helloWorld"</code> <code>data-grid-large="(min-width:780px)"</code> <code>data-grid-max="4"</code></p>
-
-<!-- Begin Grid Disclosure -->
-
-<div class="disclosure-grid" data-grid-active="1" data-grid-callback="helloWorld" data-grid-large="(min-width: 780px)" data-grid-max="4">
-
-  <button class="disclosure-grid__button">Section 1</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 1</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 2</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 2</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 3</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 3</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 4</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 4</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 5</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 5</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 6</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 6</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-</div>
-
-<!-- End Grid Disclosure -->
-
-<h2 id="disable-url">Disable URL</h2>
-
-<p class="param">Parameter(s): <code>data-grid-disable-url</code> <code>data-grid-large="(min-width:780px)"</code> <code>data-grid-max="4"</code></p>
-
-<!-- Begin Grid Disclosure -->
-
-<div class="disclosure-grid" data-grid-disable-url data-grid-large="(min-width: 780px)" data-grid-max="4">
-
-  <button class="disclosure-grid__button">Section 1</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 1</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 2</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 2</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 3</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 3</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 4</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 4</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-</div>
-
-<!-- End Grid Disclosure -->
-
-<h2 id="grid-exclusion">Grid Exclusion</h2>
-
-<p class="param">Parameter(s): The third and fourth button (<code>.disclosure-grid__button</code>) and content (<code>.disclosure-grid__content</code>) elements include <code>data-grid-exclude</code>. Only grids one, two, five, and six will be visible.</p>
-
-<!-- Begin Grid Disclosure -->
-
-<div class="disclosure-grid" data-grid-large="(min-width: 780px)" data-grid-max="3">
-
-  <button class="disclosure-grid__button">Section 1</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 1</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, <a href="https://radancy.dev">Radancy.dev</a> ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 2</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 2</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button" data-grid-exclude>Section 3</button>
-
-  <div class="disclosure-grid__content" data-grid-exclude>
-
-    <h2>Section 3</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button" data-grid-exclude>Section 4</button>
-
-  <div class="disclosure-grid__content" data-grid-exclude>
-
-    <h2>Section 4</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 5</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 5</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 6</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 6</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-</div>
-
-<!-- End Grid Disclosure -->
-
-<h2 id="breakpoints">Large and Medium Breakpoints</h2>
-
-<p class="param">Parameter(s): <code>data-grid-large="(min-width: 1201px)"</code> <code>data-grid-max="5"</code> <code>data-grid-medium="(min-width: 800px) and (max-width: 1200px)"</code> <code>data-grid-min="3"</code></p>
-
-<!-- Begin Grid Disclosure -->
-
-<div class="disclosure-grid" data-grid-large="(min-width: 1201px)" data-grid-medium="(min-width: 800px) and (max-width: 1200px)" data-grid-max="5" data-grid-min="3">
-
-  <button class="disclosure-grid__button">Section 1</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 1</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 2</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 2</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 3</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 3</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 4</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 4</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 5</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 5</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 6</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 6</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 7</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 7</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 8</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 8</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra <a href="https://www.google.com">ultricies</a>, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-</div>
-
-<!-- End Grid Disclosure -->
-
-<h2 id="sticky-offset">Sticky Offset</h2>
-
-<p class="param">Parameter(s): <code>data-grid-large="(min-width:780px)"</code> <code>data-grid-max="3"</code> <code>data-grid-sticky="banner"</code></p>
-
-<p><strong>Note:</strong> The header on this page is not sticky, but the grid will still be offset from the top of the page by the total height of the header.</p>
-
-<!-- Begin Grid Disclosure -->
-
-<div class="disclosure-grid" data-grid-large="(min-width: 780px)" data-grid-max="3" data-grid-sticky="banner">
-
-  <button class="disclosure-grid__button">Section 1</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 1</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, <a href="https://radancy.dev">Radancy.dev</a> ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 2</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 2</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 3</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 3</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 4</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 4</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-  <button class="disclosure-grid__button">Section 5</button>
-
-  <div class="disclosure-grid__content">
-
-    <h2>Section 5</h2>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
-
-  </div>
-
-</div>
-
-<!-- End Grid Disclosure -->
-
-{% include notes.html %}
+{% include demo/doc.html %} 
