@@ -6,6 +6,14 @@ components:
 
 parameters: 
 
+  - name: caption 
+    note:
+
+      - String
+      - Optional
+
+    desc:  "When set to <code>n</code>, the captions associated with each feed item will have a class of <code>visually-hidden</code> and <code>wai</code> appended to them. It will then be up to the front-end developer to accessibly hide this text from visual users, as they are still required to aid assistive technology users. Do <strong>not</strong> use <code>display: none</code> to hide these captions."
+
   - name: count 
     note:
 
@@ -29,14 +37,6 @@ parameters:
       - Optional
 
     desc:  Determines which resolution of the image to be used. Accepted values include <code>low</code>, <code>high</code>, and <code>thumb</code>. The default is <code>thumb</code>, which will render thumbnail images.
-
-  - name: caption 
-    note:
-
-      - String
-      - Optional
-
-    desc:  "When set to <code>n</code>, the captions associated with each feed item will have a class of <code>visually-hidden</code> and <code>wai</code> appended to them. It will then be up to the front-end developer to accessibly hide this text from visual users, as they are still required to aid assistive technology users. Do <strong>not</strong> use <code>display: none</code> to hide these captions."
 
   - name: user 
     note:
