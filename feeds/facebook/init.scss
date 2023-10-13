@@ -1,0 +1,90 @@
+/*!
+
+  Radancy Component Library: Facebook Feed
+
+  Contributor(s):
+  Bobby KC
+  Michael "Spell" Spellacy
+
+  Dependencies: Sass
+
+  Instructions: To run locally, install Sass (https://sass-lang.com/install), CL to directory this file in and run:
+  sass --watch init.scss:init.css --style compressed
+
+*/
+
+#tmp-facebook-feed {
+
+    * {
+    box-sizing: border-box;
+    }
+
+    &:empty {
+
+        &:before {
+        content: "Sorry, no content available.";
+        color: #c00;
+        }
+    
+    }
+        
+    ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+        @media(min-width: 55em) {
+
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+
+        }
+
+    }
+
+    li {
+
+        @media(min-width: 55em) {
+
+            margin-bottom: .8em;
+            padding: .8em;
+            width: 33.33%;
+
+        }
+
+    }
+    
+    .tmp-facebook-content {
+    margin-top: 0;
+    min-height: calc(150rem / 16);
+    padding: 0;
+    }
+    
+    .tmp-facebook-url { 
+    display: block;
+        
+        img {
+        display: block;
+        width: 100%;
+        }
+    
+        p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        }
+
+    }
+    
+    .visually-hidden {
+    clip: rect(0 0 0 0); 
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap; 
+    width: 1px;
+    }
+
+}

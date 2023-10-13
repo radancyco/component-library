@@ -182,6 +182,40 @@
 
 {% endif %}
 
+{% if page.parameters %} 
+
+<div class="table-container">
+
+    <table id="classes">
+    <caption>Parameters</caption>
+    <thead>
+    <tr>
+        <th>Parameter</th>
+        <th>Note</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% assign sortParameters = page.parameters %}
+
+    {% for parameter in sortParameters %}
+
+    <tr>
+        <td>{{ parameter.name }}</td>
+        <td>{% for note in parameter.note %}{{ note }}{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
+        <td>{{ parameter.desc }}</td>
+    </tr>
+
+    {% endfor %}
+
+    </tbody>
+    </table>
+  
+</div>
+
+{% endif %}
+
 {% if page.notes %} 
 
 <h2 id="notes">Additional Notes</h2>

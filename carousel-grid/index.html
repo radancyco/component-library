@@ -1,8 +1,11 @@
 ---
 components:
+
   - name: "Basic Setup"
     id: "basic-setup"
+
 classes:
+
   - name: .carousel-grid
     html: 
   
@@ -11,14 +14,17 @@ classes:
   
     note: Mandatory
     desc: Used on the parent element that wraps your content.
+
   - name: .carousel-grid__container	
     html: div
     note: Mandatory
     desc: Used on the element that wraps your content. Must be a child of <code>.carousel-grid</code>.
+
   - name: .carousel-grid__card
     html: div
     note: Mandatory
     desc: Used for each individual content container. Must be a child of <code>.carousel-grid__container</code>.
+
   - name: .carousel-grid__heading
     html: 
   
@@ -30,6 +36,7 @@ classes:
   
     note: Mandatory
     desc: Used for each individual content heading. Ideally, you'll want each heading to contain your hyperlink, so that purpose of each content block can be better understood by assistive technologies.
+
 folder: carousel-grid
 localcss: "init.css"
 localjs: "init.js"
