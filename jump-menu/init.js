@@ -1,6 +1,6 @@
 /*!
 
-  Radancy Component Library: Select Menu (External)
+  Radancy Component Library: Jump Menu (External)
 
   Contributor(s):
   Michael "Spell" Spellacy
@@ -11,7 +11,7 @@
 
 (function() {
 
-  // Display which Grid version in use via console:
+  // Display which component in use via console:
 
   console.log('%c Jump Menu (External) v1.0 in use. ', 'background: #6e00ee; color: #fff');
 
