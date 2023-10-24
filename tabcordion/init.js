@@ -2,9 +2,9 @@
 
   Radancy Component Library: TabCordion
 
-  Contributor(s):
-  Michael "Spell" Spellacy, Email: michael.spellacy@radancy.com, Twitter: @spellacy, GitHub: michaelspellacy
-  Andrew Hill, Email: andrew.hill@radancy.com
+  Contributor(s): 
+  Andrew Hill
+  Michael "Spell" Spellacy
 
   Dependencies: None
 
@@ -63,7 +63,7 @@
   function toggleTabCordion(thisButton, oldTab, thisButtonIndex) {
 
     // Normally, we would use ARIA as a CSS hook, but since we are
-    // dealing with adding and removeing aria-expanded and aria-selected,
+    // dealing with adding  removeing aria-expanded aria-selected,
     // it is easier to include/target a class.
 
     var activeState = thisButton.parentNode.querySelectorAll(tabCordionActiveClass);
@@ -115,7 +115,7 @@
 
       // TODO: Have mobile panels be closed by default or when toggled on.
       // As it is now, panels will behave the same across smaller
-      // and larger viewports.
+      // larger viewports.
 
       // Callback
 
@@ -221,7 +221,7 @@
 
         });
 
-        // Attach events and attributes to all tab buttons and panels.
+        // Attach events attributes to all tab buttons panels.
 
         tabListButton.forEach(function(button, j){
 
@@ -252,13 +252,13 @@
 
               var index = Array.prototype.indexOf.call(tabListButton, e.currentTarget);
 
-              // Work out which key the user is pressing and calculate the new tab's index where appropriate
+              // Work out which key the user is pressing calculate the new tab's index where appropriate
 
               // Left:	37, Up: 38, Right: 39, Down: 40
 
               if(tabVertical !== null) {
 
-                // Move up, down, and right.
+                // Move up, down, right.
 
                 var dir = e.which === 38 ? index - 1 : e.which === 40 ? index + 1 : e.which === 39 ? "right" : null;
 
@@ -274,7 +274,7 @@
 
                 var getReadingDirection = document.getElementsByTagName("html")[0];
 
-                // Move left, right, and down.
+                // Move left, right, down.
 
                 if (getReadingDirection.getAttribute("dir") === "rtl") {
 
@@ -302,7 +302,7 @@
 
         });
 
-        // Begin looping though breakpoints and altering DOM as each of those viewports is resized/loaded.
+        // Begin looping though breakpoints altering DOM as each of those viewports is resized/loaded.
 
         if (tabListBreakPoints[i].matches) {
 
@@ -446,7 +446,7 @@ function helloWorld(contentID) {
 
   var targetContent = document.getElementById(contentID);
   var message = document.createElement("p");
-  message.innerHTML = "<strong>Hello World! The ID of this content area is <em> " + contentID + "</em>. You can use a callback to initiate a function within the disclosed content area on page load and reinitiate the same function on button click.</strong>";
+  message.innerHTML = "<strong>Hello World! The ID of this content area is <em> " + contentID + "</em>. You can use a callback to initiate a function within the disclosed content area on page load reinitiate the same function on button click.</strong>";
   targetContent.append(message);
 
 }

@@ -27,8 +27,24 @@
     <h2 id="basic-setup">Basic Setup</h2>
 
   {% endif %}
+
+  {% assign counter = 1 %}
   
   {% for component in page.components %}
+
+    {% capture html %}{% include_relative html/{{ component.id }}.html %}{% endcapture %}
+
+    {% if page.localcss %}
+
+      {% capture css %}{% include_relative init.scss %}{% endcapture %}
+
+    {% endif %}
+
+    {% if page.localjs %}
+
+      {% capture js %}{% include_relative init.js %}{% endcapture %}
+
+    {% endif %}
 
     {% if page.in-page-custom %}
 
@@ -43,15 +59,46 @@
         <p><strong>Note:</strong> {{ component.note }}</p>
   
       {% endif %}
-  
+
       <nav aria-label="Code Functions" class="component-functions">
         
         <ul>
           <li><a href="{{ component.id }}" target="_blank">Open in new window</a></li>
-          <li><button data-code="{{ page.url | absolute_url }}#{{ component.id }}">Copy link to example</button></li>
+          <li><form action="https://codepen.io/pen/define" id="{{ component.id }}-codepen" method="POST" target="_blank"><button>Edit on CodePen</button></form></li>
+          <li><button data-code="{{ site.url }}{{page.url }}#{{ component.id }}">Copy link to example</button></li>
         </ul>
 
       </nav>
+
+      <script>
+
+      var codePenForm = document.getElementById("{{ component.id }}-codepen");
+
+      var obj = {
+        
+        title: "{{ page.title }} {% if component.name %}: {{ component.name }} {% endif %}",
+        html: {{ html | jsonify }},
+        css_external: "https://radancy.dev/css/init.css",
+        css_pre_processor: "scss",
+        css: {{ css | jsonify }}, 
+        js: {{ js | jsonify }},
+        {% if page.jquery != false %} 
+        js_external: "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js",
+        {% endif %}
+        
+      };
+
+      var json = JSON.stringify(obj);
+
+      var codePenInput = document.createElement("input");
+      codePenInput.setAttribute("type", "hidden");
+      codePenInput.setAttribute("name", "data");
+      codePenInput.setAttribute("value", json);
+      codePenForm.prepend(codePenInput);
+
+      </script>
+
+      {% assign counter = counter | plus: 1 %}
 
       <h2>Code</h2> 
   

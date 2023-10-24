@@ -11,7 +11,7 @@
 
 function loadAnimationToggle(url, callback) {
 
-  // Initiate langauge pack.
+  // Initiate Langauge Pack.
 
   var componentLanguagePack = document.createElement("script");
 

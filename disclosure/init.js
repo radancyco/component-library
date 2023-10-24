@@ -3,8 +3,8 @@
   Radancy Component Library: Disclosure
 
   Contributor(s):
-  Michael "Spell" Spellacy, Email: michael.spellacy@radancy.com, Twitter: @spellacy, GitHub: michaelspellacy
-  Andrew Hill, Email: andrew.hill@radancy.com
+  Michael "Spell" Spellacy
+  Andrew Hill
 
   Dependencies: None
 
@@ -68,11 +68,10 @@
 
     if(button.hasAttribute("data-disclosure-icon")){
 
-      button.insertAdjacentHTML('beforeend', ' <span class="disclosure--icon" aria-hidden="true"></span>');
+      button.insertAdjacentHTML("beforeend", " <span class='disclosure--icon' aria-hidden='true'></span>");
 
-      // Note: We add icon in spon with aria-hidden so that is not read back by AT. For example, we don't want to hear "Learn More Plus Sign", etc.
-      // You can roll your own custom icons if you like, say an inline SVG, but be sure to always hide it, like so:
-      // <button class="disclosure--btn">Learn More <span aria-hidden="true"><svg ... > ... </svg></button>
+      // Note: We add icon in span with aria-hidden so that is not read back by AT. For example, we don't want to hear "Learn More Plus Sign", etc.
+      // You can roll your own custom icons if you like, say an inline SVG, but be sure to always hide it.
 
     }
 

@@ -2,12 +2,13 @@
 
   Radancy Component Library: TabCordion
 
-  Contributor(s):
-  Michael "Spell" Spellacy, Email: michael.spellacy@radancy.com, Twitter: @spellacy, GitHub: michaelspellacy
-  Andrew Hill, Email: andrew.hill@radancy.com
+  Contributor(s): 
+  Andrew Hill
+  Michael "Spell" Spellacy
 
   Dependencies: Sass
-  Instructions: To run locally, install Sass (https://sass-lang.com/install), CL to directory this file in and run:
+
+  Instructions: 
   sass --watch init.scss:init.css --style compressed
 
 */
@@ -35,8 +36,8 @@ color: $base-color-active;
   flex-wrap: wrap;
   }
 
-  // Note: min-heiht to set consistent height in vertical tab panels. Adjust as needed.
-  // Ideally, we would handle this via JavaScript, but can't due to display: none on each panel.
+  // Note: min-height to set consistent height in vertical tab panels. Adjust as needed.
+  // Ideally, we would handle this via JavaScript, but cannot due to display: none on each panel.
 
   &[aria-orientation="vertical"] {
   display: grid;
