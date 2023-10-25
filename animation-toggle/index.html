@@ -1,8 +1,8 @@
 ---
 components:
 
-  - name: "Basic Setup"
-    id: "basic-setup"
+  - name: "Default Setup"
+    id: "default-setup"
 
   - name: "Audio Description (Experimental)"
     id: "audio-description"
@@ -25,21 +25,23 @@ components:
     id: "poster"
     note: "Pause the video and then refresh the page. The first frame is from 25 seconds in. Please note that when pressing play, video will resume from this point."
 
-attributes:
+aria:
 
   - name: aria-label
     html: video
     note:
-
+  
       - String
       - Optional
-
+  
     desc: Used to pass custom label to <code>video</code> element. This will override the default label, which is "Background Animation".
-
+  
   - name: aria-live
     html: .animation-toggle__track
     note: Conditional
     desc: Required on <code>.animation-toggle__track</code> when present and must contain a value of "polite".
+
+attributes:
 
   - name: data-audio-description-button
     html: .animation-toggle
@@ -84,14 +86,14 @@ attributes:
       - String
       - Optional
 
-    desc: Used to reference video asset that will load when <code>data-media</code> is present. Typically, this will reference a larger video, while the <code>src</code> attribute will reference a smaller video.
+    desc: Used to reference video asset that will load when <code>data-media</code> is present. This will reference a larger video, while the <code>src</code> attribute will reference a smaller video.
 
 classes:
 
   - name: .animation-enabled
     html: body
     note: Component
-    desc: Applied on page load. CSS and video animations will only run when this class is present. Removing it pauses animation. Please note that if you are leveraging this class in your CSS, then there is no need to use <code>prefers-reduced-motion</code>.
+    desc: Applied on page load. CSS and video animations will only run when this class is present. Removing it pauses animation. If you are leveraging this class in your CSS, then there is no need to use <code>prefers-reduced-motion</code>.
 
   - name: .animation-toggle	
     html: 
@@ -110,7 +112,7 @@ classes:
   - name: .animation-toggle__backdrop
     html: .animation-toggle
     note: Optional
-    desc: Append to <code>.animation-toggle</code> class. This will allow video to animate in on page load and for background shading to be applied when video is paused. Often used on hero banner and meant to improve contrast of foreground text.
+    desc: Append to <code>.animation-toggle</code> class. This will allow video to animate in on page load and for background shading to display when video is paused. Often used on hero banner and meant to improve contrast of foreground text.
   
   - name: .animation-toggle__controls
     html: div
@@ -144,13 +146,13 @@ cookies:
 
 notes: 
 
-  - item: Pausing one animation will pause all animations across the site that utilize this script.
-  - item: Animations that utilize the script, will be paused on return visits to the site.
-  - item: This script utilizes <code>prefers-reduced-motion</code>. When a user disables animation via their operating system settings, the animation will not autoplay.
-  - item: Some phones that are in low power mode may pause video automatically. This is done to conserve battery life. Detection for this will be included at a later date.
-  - item: The <code>disableremoteplayback</code> attribute may be flagged as an error in certain validation tools because it is not standard. This can be ignored.
-  - item: Multiple <code>source</code> elements are not supported when <code>data-media</code> is in use. Support for this will be included at a later date.
-  - item: Video should always be delivered as an optimized <code>mp4</code> or <code>webm</code>. The file size should be as minimal as possible without sacrificing quality, to reduce overall page weight.
+  - item: Pausing one animation will pause all animations across the site that use this script.
+  - item: Animations that use the script pause on return visits to the site. 
+  - item: The script utilizes <code>prefers-reduced-motion</code>. When a user disables operating system animation, video or CSS will not autoplay.
+  - item: Phones that are in low power mode may pause video. This conserves battery life. Detection for this will be added soon.
+  - item: The <code>disableremoteplayback</code> attribute is invalid in W3C validation. While not a standard attribute, the error can be ignored.
+  - item: Multiple <code>source</code> elements are not supported when <code>data-media</code> is used. Support for this will be added soon.
+  - item: Video should always be delivered as an optimized <code>mp4</code> or <code>webm</code>. The file size should be as small as possible without sacrificing quality, to reduce page weight.
   - item: Video should be no longer than <strong>15-30</strong> seconds in length. The shorter the video is, the less of an impact it will have on performance.
 
 folder: animation-toggle
@@ -160,10 +162,8 @@ localjs: "init.js"
 section: component-library-animation-toggle
 tabcordion: true
 title: "Animation Toggle v1.2"
-desc: This component will allow you to implement video and CSS background animations that include a pause button.
+desc: This component will allow you to implement video and CSS animations that include a pause button.
 ---
-
-{% include base.html %}
 
 {% include message/animation.html %}
 

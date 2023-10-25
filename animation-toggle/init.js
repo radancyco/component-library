@@ -11,7 +11,7 @@
 
 function loadAnimationToggle(url, callback) {
 
-  // Initiate Langauge Pack.
+  // Install Langauge Pack.
 
   var componentLanguagePack = document.createElement("script");
 
@@ -85,7 +85,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
   }
 
-  // If animation disabled in OS settings and cookie not present, force pause.
+  // If animation disabled in OS settings and cookie not present then force pause.
 
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
 
@@ -250,7 +250,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
       }
 
-      // Append Audio Description button
+      // Append Audio Description Button
 
       btnControls.append(btnAudioDescription);
 
@@ -359,7 +359,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
      }
 
-     // TODO: Possibly include support for multiple source elements. See Line 19 in lazy.js
+     // TODO: Include support for multiple source elements. See Line 19 in lazy.js
 
   }
 
@@ -410,7 +410,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
     getBackgroundVideos.forEach(function(video, i){
 
-      // If aria-label does not exist on video, add default. 
+      // If aria-label does not exist on video element, add default. 
 
       if(!video.hasAttribute("aria-label")) {
 

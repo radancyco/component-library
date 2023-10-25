@@ -1,3 +1,5 @@
+{% include icon.html %}
+
 <p>{{ page.desc }}</p>
 
   {% if page.in-page-custom %}
@@ -24,7 +26,7 @@
 
   {% else %}
 
-    <h2 id="basic-setup">Basic Setup</h2>
+    <h2 id="basic-setup">Default Setup</h2>
 
   {% endif %}
 
@@ -63,10 +65,10 @@
       <nav aria-label="Code Functions" class="component-functions">
         
         <ul>
-          <li><a href="{{ component.id }}" target="_blank">Open in new window</a></li>
-          <li><form action="https://codepen.io/pen/define" id="{{ component.id }}-codepen" method="POST" target="_blank"><button>Edit on CodePen</button></form></li>
-          <li><button data-code="{{ page.url | absolute_url }}#{{ component.id }}">Copy link to example</button></li>
-          <li><a href="{{ site.repo }}/blob/main/{{ page.folder }}/" target="_blank">Visit Repository</a></li>
+          <li><a href="{{ component.id }}" target="_blank">Open in new window {{ iconNewWindow }}</a></li>
+          <li><form action="https://codepen.io/pen/define" id="{{ component.id }}-codepen" method="POST" target="_blank"><button>Edit on CodePen {{ iconCodePen }}</button></form></li>
+          <li><button data-code="{{ page.url | absolute_url }}#{{ component.id }}">Copy link to example {{ iconCopyURL }}</button></li>
+          <li><a href="{{ site.repo }}/blob/main/{{ page.folder }}/" target="_blank">Visit Repository  {{ iconGit }}</a></li>
         </ul>
 
       </nav>
