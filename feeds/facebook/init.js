@@ -10,6 +10,10 @@
 
 */
 
-var facebookFeed = document.createElement("script");
-facebookFeed.setAttribute("src", "https://services.tmpwebeng.com/tmp-share/widget/js/facebook.js?user=radancyco");
-document.body.appendChild(facebookFeed);
+(function() {
+
+  var facebookFeed = document.createElement("script");
+  facebookFeed.setAttribute("src", "https://services.tmpwebeng.com/tmp-share/widget/js/facebook.js?user=radancyco");
+  document.body.appendChild(facebookFeed);
+
+})();

@@ -48,13 +48,15 @@ parameters:
 
 notes: 
 
-  - item: jQuery is a dependency for this feed to run successfully, so be sure to include it on your page. Career Sites have jQuery built in, so this step is not necessary on that platform. The script is deferred so that it may be placed anywhere on the page, but if the defer attribute is removed, then be sure to place the script after the jQuery library has been initialized.
+  - item: jQuery is a dependency for this feed to run successfully. Career Sites have jQuery built in, so this step is not necessary on that platform.
+  - item: An inline script may also be used to initialize the feed.
 
+folder: feeds/instagram
 localcss: "init.css"
 localjs: "init.js"
 tabcordion: true
 title: "Instagram Feed v1.0"
-desc: This application may be used to generate a component that can be used to display a client's Instagram feed. The feed is generated via JavaScript and can be placed on any web page.
+desc: This component can be used to display a client's Instagram feed.
 ---
 
 {% include demo/template.html %}
