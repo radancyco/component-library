@@ -10,4 +10,4 @@
   Instructions:
   sass --watch init.scss:init.css --style compressed
 
-*/.breadcrumb{overflow-x:auto}.breadcrumb__list{display:flex;list-style:none;margin:1em 0;padding:0;white-space:nowrap}.breadcrumb__list li:not(:last-child):after{content:">";font-size:1.1rem}.breadcrumb__list a{display:inline-block;line-height:normal;outline-offset:-5px;padding:1em}.breadcrumb__list a[aria-current]{font-weight:bold;text-decoration:none}/*# sourceMappingURL=init.css.map */
+*/.breadcrumb{overflow-x:auto;padding:1em 0;scroll-snap-type:x mandatory;scrollbar-color:#6f00ef #fff;scrollbar-gutter:always;-webkit-overflow-scrolling:touch}.breadcrumb__list{display:flex;list-style:none;margin:0;padding:0;white-space:nowrap}.breadcrumb__list li:not(:last-child):after{content:">";font-size:1.1rem}.breadcrumb__list a{display:inline-block;line-height:normal;outline-offset:-5px;padding:1em}.breadcrumb__list a[aria-current]{font-weight:bold;text-decoration:none}.breadcrumb::-webkit-scrollbar{height:.375em}.breadcrumb::-webkit-scrollbar-track{background-color:#fff}.breadcrumb::-webkit-scrollbar-thumb{background-color:#6f00ef}/*# sourceMappingURL=init.css.map */
