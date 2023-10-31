@@ -10,4 +10,4 @@
   Instructions:
   sass --watch init.scss:init.css --style compressed
 
-*/.breadcrumb__list{display:flex;list-style:none;margin:0;overflow-x:auto;padding:0;white-space:nowrap}.breadcrumb__list li{position:relative}.breadcrumb__list li:not(:last-child):after{content:">";font-size:1.1rem}.breadcrumb__list a{display:inline-block;line-height:normal;padding:1em}.breadcrumb__list a[aria-current]{font-weight:bold;text-decoration:none}/*# sourceMappingURL=init.css.map */
+*/.breadcrumb__list{display:flex;list-style:none;margin:1em 0;overflow-x:auto;padding:0;white-space:nowrap}.breadcrumb__list li{position:relative}.breadcrumb__list li:not(:last-child):after{content:">";font-size:1.1rem}.breadcrumb__list a{display:inline-block;line-height:normal;outline-offset:-5px;padding:1em}.breadcrumb__list a[aria-current]{font-weight:bold;text-decoration:none}/*# sourceMappingURL=init.css.map */
