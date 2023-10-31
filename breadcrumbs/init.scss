@@ -1,6 +1,6 @@
 /*!
 
-  Radancy Component Library: Carousel Scroll
+  Radancy Component Library: Breadcrumbs
 
   Contributor(s):
   Michael "Spell" Spellacy
@@ -14,84 +14,38 @@
 
 $base-color: #6F00EF;
 
-.carousel-scroll {
-position: relative;
-border-inline-end: calc(6em / 16) $base-color solid;
+.breadcrumb {
 
-  &__container {
+  &__list {
   display: flex;
-  overflow-x: scroll;
-  outline-offset: calc(8em / 16);
-  padding: 2em 0 2em 1em;
-  scroll-snap-type: x mandatory;
-  scrollbar-color: $base-color #fff;
-  scrollbar-gutter: always; 
-  -webkit-overflow-scrolling: touch;
+  list-style: none;
+  margin: 0;
+  overflow-x: auto;
+  padding: 0;
+  white-space: nowrap;
 
-      // Scrollbar styling may be limited cross-browser. This is NOT a bad thing as majority of browsers are WebKit based.
-      // However, if you require full support, then have a look at http://grsmto.github.io/simplebar/
+    li {
+    position: relative;
 
-      &::-webkit-scrollbar {
-      height: calc(6em / 16);
-      }
+      &:not(:last-child) {
 
-      /* Track */
-      &::-webkit-scrollbar-track {
-      background-color: #fff;
-      }
+        &:after {
+        content: "\003E";
+        font-size: 1.1rem;
+        }
 
-      &::-webkit-scrollbar-thumb {
-      background-color: $base-color;
-      }
-
-  }
-
-  &__card {
-  background-color: #fff;
-  border: calc(1rem / 16) #eee solid;
-  border-radius: calc(10em / 16);
-  display: flex;
-  flex-direction: column;
-  max-width: calc(350em / 16);
-  min-height: calc(350em / 16);
-  min-width: calc(300em / 16);
-  padding: 1em;
-  position: relative;
-  scroll-snap-align: start; 
-  transition: .6s;
-
-    &:first-child {
-    margin-inline-end: calc(110em / 16);
-    }
-
-    &:not(:first-child) {
-    box-shadow: -2rem 0 3rem -2rem #000;
-    margin-inline-start: calc(-100em / 16);
-
-      html[dir="rtl"] & {
-      box-shadow: 2rem 0 3rem -2rem #000;
       }
 
     }
-
-    &:hover, &:focus, &:focus-within {
-    margin-inline-end: calc(110em / 16);
-    }
-
-  }
-
-  &__heading {
 
     a {
-    display: block;
+    display: inline-block;
+    line-height: normal;
+    padding: 1em;
 
-      // Make entire card clickable
-
-      &::before {
-      content: "";
-      display: block;
-      inset: 0;
-      position: absolute;
+      &[aria-current] {
+      font-weight: bold;
+      text-decoration: none;
       }
 
     }

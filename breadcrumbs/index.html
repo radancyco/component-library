@@ -4,38 +4,28 @@ components:
   - name: "Default Setup"
     id: "default-setup"
 
+aria:
+
+  - name: aria-current
+    html: a
+    note: Mandatory
+    desc: Allows assistive technology users to know where they are within the site. The attribute must always be on the link of the page selected and must include a value of <code>page</code>.
+
 classes:
 
-  - name: .carousel-scroll
-    html: 
-
-      - div
-      - section
-
+  - name: .breadcrumb
+    html: nav
     note: Mandatory
-    desc: Used on the parent element that wraps your content.
+    desc: Used on the parent element that wraps your content. In this case, a <code>nav</code> element, which must always be present.
 
-  - name: .carousel-scroll__container	
-    html: div
+  - name: .breadcrumb__list	
+    html: ol
     note: Mandatory
-    desc: Used on the element that wraps your content. Must be a child of <code>.carousel-scroll</code>.
+    desc: Used on the element that wraps your list. Must be a child of <code>.breadcrumb</code>.
 
-  - name: .carousel-scroll__card
-    html: div
-    note: Mandatory
-    desc: Used for each individual content container. Must be a child of <code>.carousel-scroll__container</code>.
+notes: 
 
-  - name: .carousel-scroll__heading
-    html: 
-
-      - h2
-      - h3
-      - h4
-      - h5
-      - h6 
-
-    note: Mandatory
-    desc: Used for each individual content heading. Ideally, you'll want each heading to contain your hyperlink, so that each content block can be better understood by assistive technologies.
+  - item: A dynamic version of this navigation will be created at a later date to handle applying <code>aria-current</code>.
 
 folder: breadcrumbs
 localcss: "init.css"
