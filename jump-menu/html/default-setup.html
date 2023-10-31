@@ -6,9 +6,9 @@
       <label class="jump-menu__label">My favorite component is:</label>
 
       <select class="jump-menu__select">
-        <option value="https://radancy.dev/component-library/animation-toggle/">Animation Toggle</option>
-        <option value="https://radancy.dev/component-library/disclosure/">Disclosure</option>
-        <option value="https://radancy.dev/component-library/hero-banner/">Hero Banner</option>
+        <option value="{{ page.url | absolute_url | replace: "jump-menu/", ""}}animation-toggle/">Animation Toggle</option>
+        <option value="{{ page.url | absolute_url | replace: "jump-menu/", ""}}disclosure/">Disclosure</option>
+        <option value="{{ page.url | absolute_url | replace: "jump-menu/", ""}}hero-banner/">Hero Banner</option>
       </select>
 
       <button class="jump-menu__btn">Learn More</button>
