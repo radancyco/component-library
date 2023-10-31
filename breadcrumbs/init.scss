@@ -15,17 +15,16 @@
 $base-color: #6F00EF;
 
 .breadcrumb {
+overflow-x: auto;
 
   &__list {
   display: flex;
   list-style: none;
   margin: 1em 0;
-  overflow-x: auto;
   padding: 0;
   white-space: nowrap;
 
     li {
-    position: relative;
 
       &:not(:last-child) {
 
