@@ -1,8 +1,8 @@
-<nav aria-label="Breadcrumb" class="breadcrumb">
+<nav aria-label="Breadcrumbs" class="breadcrumbs">
 
   <ol class="breadcrumbs__list" role="list">
-    <li><a href="{{ page.url | absolute_url | replace: 'breadcrumbs/', ''}}">Home</a></li>
-    <li><a href="{{ page.url | absolute_url | replace: 'breadcrumbs/', ''}}">Component Library</a></li>
+    <li><a href="{{ site.url }}">Home</a></li>
+    <li><a href="{{ page.url | absolute_url | replace: 'breadcrumbs/', '' }}">Component Library</a></li>
     <li><a href="#content" aria-current="page">Breadcrumbs</a></li>
   </ol>
 
