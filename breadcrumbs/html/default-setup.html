@@ -1,9 +1,9 @@
-<nav aria-label="Breadcrumb" class="breadcrumb" >
+<nav aria-label="Breadcrumb" class="breadcrumb">
 
   <ol class="breadcrumbs__list" role="list">
-    <li><a href="/">Home</a></li>
-    <li><a href="/pg2">Second Page</a></li>
-    <li><a href="/pg2/this-pg" aria-current="page">This page</a></li>
+    <li><a href="{{ page.url | absolute_url | replace: 'breadcrumbs/', ''}}">Home</a></li>
+    <li><a href="{{ page.url | absolute_url | replace: 'breadcrumbs/', ''}}">Component Library</a></li>
+    <li><a href="#content" aria-current="page">Breadcrumbs</a></li>
   </ol>
 
 </nav>
