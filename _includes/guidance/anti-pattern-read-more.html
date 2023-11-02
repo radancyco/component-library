@@ -1,0 +1,29 @@
+<section aria-labelledby="hdr-anti-pattern-read-more" class="warning-info" id="anti-pattern-read-more">
+
+    <h2 id="hdr-anti-pattern-read-more">Why Is This an Anti-Pattern?</h2>
+
+    <p>Disclosures should generally open content below them, not above. When we stray from this, we break the expectation of downward vertical scrolling and interaction and risk breaking accessibility for certain user groups.</p>
+
+    <h3>Keyboard Users</h3>
+    
+    <p>When a disclosure is expanded, a keyboard users expectation is that the next tab will bring them to the open content below the button they accessed. When we open the content above the button, the next tab forward will not bring them to this content, nor will the user realize that the content is above the button and that they will have to tab backwards. To manage this issue, we need to move focus to the open content, but in doing so, we now create a new issue which poses a proplem for other user groups.</p>
+    
+    <h3>Screen Magnification Users</h3>
+    
+    <p>Screen magnifiers are an assistive technology that people with low vision use to zoom in on the page. By setting focus to accommodate keyboard users, we have broken the experience for screen magnification users. Moving focus in this manner may be confusing and cause screen magnification users to become lost on the page. This is why moving focus should be done sparingly on the web.</p>
+
+    <figure>
+    
+        <video aria-label="Screen Magnifier Example" controls preload="metadata">
+            <source src="anti-pattern-read-more.mp4" type="video/mp4">
+        </video>
+
+        <figcaption>An example of focus being removed from a disclosure button within a magnified expereince.</figcaption>
+
+    </figure>
+    
+    <h3>Neurodiverse Users</h3>
+    
+    <p>Shifting focus to open content may also be an issue for neurodiverse users, who may find it equally distracting and confusing.</p>
+    
+</section>

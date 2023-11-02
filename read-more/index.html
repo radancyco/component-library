@@ -35,13 +35,15 @@ localcss: "init.css"
 localjs: "init.js"
 tabcordion: true
 title: "Read More v1.0"
-desc: This component will allow you to implement a solution to expand <strong>partially hidden</strong> content areas. Please note that this component may be a problem for screen magnification users.
+desc: This component will allow you to implement a solution to expand <strong>partially hidden</strong> content areas.
 ---
 
 {% include message/anti-pattern.html %}
 
 {% include demo/template.html %}
 
-{% include guidance/disclosures.html %} 
+{% include guidance/anti-pattern-read-more.html %}
+
+{% include guidance/a11y-avoid-toggling-text.html %} 
 
 {% include demo/doc.html %} 

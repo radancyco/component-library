@@ -1,6 +1,6 @@
 /*!
 
-  Radancy Component Library: Carousel Grid
+  Radancy Component Library: Horizontal Scroll
 
   Contributor(s):
   Michael "Spell" Spellacy
@@ -14,9 +14,8 @@
 
 $base-color: #6F00EF;
 
-.carousel-grid {
+.horizontal-scroll {
 position: relative;
-border-inline-end: calc(6em / 16) $base-color solid;
 
   @media(min-width: 62.5em) {
 

@@ -6,7 +6,7 @@ components:
 
 classes:
 
-  - name: .carousel-grid
+  - name: .horizontal-scroll
     html: 
   
       - div
@@ -15,15 +15,15 @@ classes:
     note: Mandatory
     desc: Used on the parent element that wraps your content.
 
-  - name: .carousel-grid__container	
+  - name: .horizontal-scroll__container	
     html: div
     note: Mandatory
-    desc: Used on the element that wraps your content. Must be a child of <code>.carousel-grid</code>.
+    desc: Used on the element that wraps your content. Must be a child of <code>.horizontal-scroll</code>.
 
-  - name: .carousel-grid__card
+  - name: .horizontal-scroll__card
     html: div
     note: Mandatory
-    desc: Used for each individual content container. Must be a child of <code>.carousel-grid__container</code>.
+    desc: Used for each individual content container. Must be a child of <code>.horizontal-scroll__container</code>.
 
   - name: .carousel-grid__heading
     html: 
@@ -37,15 +37,12 @@ classes:
     note: Mandatory
     desc: Used for each individual content heading. Ideally, you'll want each heading to contain your hyperlink, so that purpose of each content block can be better understood by assistive technologies.
 
-folder: carousel-grid
+folder: horizontal-scroll
 localcss: "init.css"
-localjs: "init.js"
 tabcordion: true
-title: "Carousel Grid v1.0"
-desc: This component will allow you to implement a grid that turns into a carousel-like, horizontal scroll in smaller viewports.
+title: "Horizontal Scroll v1.0"
+desc: This component will allow you to implement a grid that turns into a horizontal scroll in smaller viewports, which can be used as an alternative to carousels.
 ---
-
-{% include message/experimental.html %}
 
 {% include demo/template.html %}
 
