@@ -1,16 +1,16 @@
 <section aria-labelledby="hdr-anti-pattern-read-more" class="warning-info" id="anti-pattern-read-more">
 
-    <h2 id="hdr-anti-pattern-read-more">Why Is This an Anti-Pattern?</h2>
+    <h2 id="hdr-anti-pattern-read-more">Why is this an Anti-Pattern?</h2>
 
-    <p>Disclosures should generally open content <em>below</em> them, not above. When we stray from this, we break the expectation users have of downward vertical scrolling and interaction and also risk breaking accessibility for certain user groups.</p>
+    <p>Disclosure buttons should generally open content <em>below</em> them, not above. When we stray from this best practice, we break the expectation users have of <em>downward vertical scrolling and interaction</em> and risk breaking accessibility for certain user groups.</p>
 
     <h3>Keyboard Users</h3>
     
-    <p>When a disclosure is expanded, a keyboard users expectation, particularly a blind user, is that the next tab stop will bring them to the open content <em>below</em> the button they just engaged with. When we open the content <em>above</em> the button, the next forward tab stop will not bring them to this content, nor may the user be aware that content is above the button and that they will have to now tab backwards to access it. To manage this issue, we need to move focus to the open content, but in doing so, we now create a new issue which poses a problem for other user groups.</p>
+    <p>When a disclosure is expanded, a keyboard users' expectation, particularly a blind or low-vision user, is that the next tab stop will bring them to the open content <em>below</em> the button they have just engaged with. When we open the content <em>above</em> the button, the next forward tab stop will not bring them to this content, nor may the user be aware that the content is above the button and that they should tab <em>backwards</em> to access it. To manage this issue, we need to programmatically move focus to the open content, but in doing so, we now create a new issue which poses a problem for other user groups.</p>
     
     <h3>Screen Magnification Users</h3>
     
-    <p>Screen magnifiers are an assistive technology that people with low vision use to zoom in on the page. By moving focus, the experience for screen magnifier users may be confusing because they are now no longer zoomed in on the section that they were, causing them to become lost on the page. This is why moving focus should be done <em>sparingly</em> on the web.</p>
+    <p>Screen magnifiers are an assistive technology that people with low vision use to zoom in on the page. By moving focus, the experience for screen magnifier users may become confusing because they are now no longer zoomed in on the section that they were just at, causing them to become lost on the page. In addition to moving focus, the natural shifting of the page when the disclosure is closed, will also cause a user to lose their place.</p>
 
     <figure>
     
@@ -18,12 +18,16 @@
             <source src="anti-pattern-read-more.mp4" type="video/mp4">
         </video>
 
-        <figcaption>An example of focus being removed from a disclosure button within a magnified expereince.</figcaption>
+        <figcaption>An example of focus being removed from a disclosure button within a magnified user experience.</figcaption>
 
     </figure>
     
-    <h3>Neurodiverse Users</h3>
+    <h3>Neuro-diverse Users</h3>
     
-    <p>Shifting focus to open content may also be an issue for neurodiverse users, who may find it equally distracting and confusing.</p>
+    <p>Unexpectedly shifting focus to open content may also be an issue for neuro-diverse users, who may find it equally distracting and confusing.</p>
+
+    <h3>Solution</h3>
+
+    <p>While moving focus on the web is sometimes necessary, it should be done sparingly. Instead, embrace common paradigms for revealing content so that everybody using the interface, regardless of the tools they use to access it, can have a positive and pleasant experience.</p>
     
 </section>
