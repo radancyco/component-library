@@ -146,14 +146,12 @@ cookies:
 
 notes: 
 
-  - item: Pausing one animation will pause all animations across the site that use this script.
-  - item: Animations that are paused will continue to be so when returning to the site.
-  - item: The script utilizes <code>prefers-reduced-motion</code>. When a user disables operating system animation, video or CSS will not autoplay.
-  - item: Phones that are in low power mode may pause video that autoplays. This conserves battery life. Detection for this will be added soon.
-  - item: The <code>disableremoteplayback</code> attribute is invalid in W3C validation. While not a standard attribute, the error can be ignored.
-  - item: Multiple <code>source</code> elements are not supported when <code>data-media</code> is used. Support for this will be added soon.
-  - item: Video should always be delivered as an optimized <code>mp4</code> or <code>webm</code>. The file size should be as small as possible without sacrificing quality, to reduce page weight.
-  - item: Video should be no longer than <strong>15-30</strong> seconds in length. The shorter the video is, the less of an impact it will have on performance.
+  - item: "Pausing one animation will result in a pause for all site-wide animations utilizing this script. Any animations that are paused will maintain their paused state when you return to the site."
+  - item: "The script utilizes <code>prefers-reduced-motion</code>. If a user disables system animations, video and CSS autoplay will be disabled as well. Additionally, phones in low power mode may automatically pause autoplaying videos to conserve battery life."
+  - item: "While the <code>disableremoteplayback</code> attribute may not be recognized as valid HTML, it can be safely disregarded."
+  - item: "Please be aware that using multiple <code>source</code> elements is not currently supported when <code>data-media</code> is in use. We're planning to correct this in the near future."
+  - item: "For optimal performance, ensure that videos are delivered in an optimized <code>webm</code> or <code>mp4</code> format. It's crucial to keep file sizes as small as possible without compromising quality to reduce the overall page weight."
+  - item: "Finally, aim to keep videos between <strong>15-30</strong> seconds in length. The shorter the video, the lesser the impact it will have on overall performance."
 
 folder: animation-toggle
 in-page-custom: true
@@ -162,7 +160,7 @@ localjs: "init.js"
 section: component-library-animation-toggle
 tabcordion: true
 title: "Animation Toggle v1.2"
-desc: This component will allow you to control video and CSS animations better for disabled users and cross-device performance.
+desc: This component enhances video and CSS animation control, ensuring improved accessibility for disabled users and optimized performance across devices.
 ---
 
 {% include message/animation.html %}
