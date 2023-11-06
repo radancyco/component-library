@@ -2,21 +2,20 @@
 
     <h2 id="hdr-anti-pattern-read-more">Why is this an Anti-Pattern?</h2>
 
-    <p>Disclosure buttons are generally more user-friendly when they reveal content <em>below</em> them rather than <em>above</em>. When we stray from this best practice, we disrupt the natural user expectation of <em>downward vertical scrolling and interaction</em>, and potentially compromise accessibility for specific user groups.</p>
+    <p>Disclosure buttons are generally more user-friendly when they reveal content <em>below</em> them rather than <em>above</em>. When we stray from this best practice, we disrupt the natural user expectation of <em>downward vertical scrolling and interaction</em>, and compromise accessibility for specific user groups.</p>
 
     <h3>Keyboard Users</h3>
     
-    <p>When a disclosure is expanded, keyboard users, especially those who are blind or have low vision, anticipate that the next tab will lead them to the open content <em>below</em> the button they've just engaged with. When content opens <em>above</em> the button, the next forward tab will not bring them to this content, and the user might not be aware that the content is located above the button. If they do notice it, then they will need to tab backwards to access it. To address this issue, we might consider programmatically shifting focus to the open content, but this approach introduces a new problem impacting other user groups.</p>
+    <p>When a disclosure is expanded, keyboard users, especially those who are blind or have low vision, expect that the next tab will lead them to the open content <em>below</em> the button they've just engaged with. When content opens <em>above</em> the button, the next forward tab will not bring them to this content, and the user might not be aware that the content is located above the button. If they do notice it, then they will need to tab backwards to access it. To address this issue, we might consider programmatically shifting focus to the open content, but this approach introduces a new problem impacting other user groups.</p>
     
     <h3>Screen Magnification Users</h3>
 
-    <p>Screen magnifiers are assistive tools used by individuals with low vision to zoom in on web pages. Shifting focus can be disorienting for screen magnifier users because they are no longer zoomed in on the section they were just viewing, potentially causing them to lose their way on the page. Additionally, the natural shifting of the page when the disclosure closes can also disrupt the user's orientation.
-    </p>
+    <p>Screen magnifiers are assistive tools used by individuals with low vision to zoom in on web pages. Shifting focus can be disorienting for screen magnifier users because they are no longer zoomed in on the section they were just viewing, potentially causing them to lose their place on the page. Additionally, the natural shifting of the page when the disclosure closes can also disrupt the user's orientation.</p>
 
     <figure>
     
-        <video aria-label="Screen Magnifier Example" controls preload="metadata">
-            <source src="anti-pattern-read-more.mp4" type="video/mp4">
+        <video aria-label="Screen Magnifier Example 1" controls preload="metadata">
+            <source src="anti-pattern-read-more-1.mp4" type="video/mp4">
         </video>
 
         <figcaption>An example of focus being shifted away from a disclosure button in a magnified user interface.</figcaption>
@@ -30,5 +29,15 @@
     <h3>Solution</h3>
     
     <p>While there are situations where moving focus may be necessary, it should be employed <em>sparingly</em>. It's more beneficial to adhere to common paradigms for revealing content so that all users interacting with the interface, regardless of the tools they use, can enjoy a positive and seamless experience.</p>
+
+    <figure>
+    
+        <video aria-label="Screen Magnifier Example 2" controls preload="metadata">
+            <source src="anti-pattern-read-more-2.mp4" type="video/mp4">
+        </video>
+
+        <figcaption>An example of of a normal disclosure. Note how the experience remains stationary when button is engaged with.</figcaption>
+
+    </figure>
 
 </section>
