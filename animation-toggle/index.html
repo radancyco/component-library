@@ -15,6 +15,9 @@ components:
   - name: "CSS Animation"
     id: "css-animation"
 
+  - name: "Disable Loop"
+    id: "disable-loop"
+
   - name: "Hero Banner (Video)"
     id: "hero-banner"
 
@@ -51,6 +54,15 @@ attributes:
       - Optional
 
     desc: Used to pass custom label to <code>.animation-toggle__audio</code>. This will override the default label, which is "Audio Description".
+  
+  - name: data-disable-loop
+    html: video
+    note:
+
+      - Boolean
+      - Optional
+
+    desc: Used to prevent video from looping. When video has ended, <code>data-video-ended</code> will be appended to the video, which may act as a useful hook.
 
   - name: data-media
     html: video
@@ -87,6 +99,11 @@ attributes:
       - Optional
 
     desc: Used to reference video asset that will load when <code>data-media</code> is present. This will reference a larger video, while the <code>src</code> attribute will reference a smaller video.
+
+  - name: data-video-ended
+    html: video
+    note: Component
+    desc: Added by component to <code>video</code> element when video has ended. It will only be appended when <code>data-disable-loop</code> is used.
 
 classes:
 
@@ -159,7 +176,7 @@ localcss: "init.css"
 localjs: "init.js"
 section: component-library-animation-toggle
 tabcordion: true
-title: "Animation Toggle v1.2"
+title: "Animation Toggle v1.3"
 desc: This component enhances video and CSS animation control, ensuring improved accessibility for disabled users and optimized performance across devices.
 ---
 

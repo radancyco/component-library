@@ -127,7 +127,7 @@
     {% for scss in sortSass %}
 
     <tr>
-        <td>{{ scss.name }}</td>
+        <td><code>{{ scss.name }}</code></td>
         <td>{{ scss.desc }}</td>
     </tr>
 
@@ -161,7 +161,7 @@
     {% for class in sortClasses %}
 
     <tr>
-        <td>{{ class.name }}</td>
+        <td><code>{{ class.name }}</code></td>
         <td>{% for html in class.html %}<code>{{ html }}</code>{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
         <td>{% for note in class.note %}{{ note }}{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
         <td>{{ class.desc }}</td>

@@ -36,7 +36,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
   // Display which component in use via console:
 
-  console.log('%c Animation Toggle v1.2 in use. ', 'background: #6e00ee; color: #fff');
+  console.log('%c Animation Toggle v1.3 in use. ', 'background: #6e00ee; color: #fff');
 
   // Animation variables
 
@@ -51,10 +51,12 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
   var atVideoClass = ".animation-toggle__video";
   var atVideoControlsName = "animation-toggle__controls"
   var dataAudioDescriptionButton = "data-audio-description-button";
+  var dataDisableLoop = "data-disable-loop";
   var dataMedia = "data-media";
+  var dataPauseButton = "data-pause-button";
   var dataPoster = "data-poster";
   var dataSrcSet = "data-srcset";
-  var dataPauseButton = "data-pause-button";
+  var dataVideoEnded = "data-video-ended";
   var getAnimationWrappers = document.querySelectorAll(atClass);
   var getBackgroundVideos = document.querySelectorAll(atVideoClass);
 
@@ -216,7 +218,13 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
         if(!isPlaying) {
 
-          video.play();
+          // Only play video if it has not ended. Videos only end when data-disable-loop is present 
+
+          if(!video.hasAttribute(dataVideoEnded)) {
+
+            video.play();
+  
+          }
 
         } else {
 
@@ -377,10 +385,17 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
     video.setAttribute("crossorigin" , "");
     video.setAttribute("disableRemotePlayback", "");
-    video.setAttribute("loop" , "");
     video.setAttribute("playsinline" , "");
     video.id = "animation-toggle-video-" + (e + 1);    
     video.muted = true;
+
+    // Prevent looping if desired. When video is over, data-video-ended will be added.
+
+    if(!video.hasAttribute(dataDisableLoop)) {
+
+      video.setAttribute("loop" , "");
+
+    }
 
     // Grab source src and apply to video element as "data-src" then delete source elm. Used by videoViewPort();
 
@@ -456,6 +471,14 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
         loadVideo(video, posterLoad);
 
       }
+
+      // Listen for video ende. Upon ending, add "data-video-ended". We do not want to restart videos that have ended.
+
+      video.addEventListener("ended", function() { 
+        
+        video.setAttribute(dataVideoEnded, "");;
+    
+      }, false);
 
     });
 
