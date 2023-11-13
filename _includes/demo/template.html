@@ -90,7 +90,11 @@
         css_external: "https://radancy.dev/css/init.css",
         css_pre_processor: "scss",
         css: {{ css | jsonify }}, 
+        {% if component.customjs %}
         js: {{ js | append: customjs | jsonify }},
+        {% else %}
+        js: {{ js | jsonify }},
+        {% endif %}
         {% if component.codepenjs %}
         js_external: '{% for item in component.codepenjs %}{% if item contains "://" %}{{ item }}{% else %}{{site.url}}/animation-library/{{ item }}{% endif %}{% if forloop.last %}{% else %};{% endif %}{% endfor %}',
         {% endif %}
