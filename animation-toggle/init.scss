@@ -176,7 +176,16 @@ position: relative;
 }
 
 // Example: CSS Animation (Optional)
-// Note: This example targets the .example class, but you can use any class name you like.
+// Note: This example targets the .css-example class, but you can use any class name you like.
+
+.css-example {
+margin: 0 auto;
+
+  .animation-enabled & {
+  animation: 1s infinite both rubberBand;
+  }
+
+}
 
 @keyframes rubberBand {
 
@@ -210,35 +219,10 @@ position: relative;
 
 }
 
-.example {
-margin: 0 auto;
-
-  .animation-enabled & {
-  animation: 1s infinite both rubberBand;
-  }
-
-}
-
 // Example: SVG Animation (Optional)
-// Note: This example targets the .svg class, but you can use any class name you like.
+// Note: This example targets the .svg-example class, but you can use any class name you like.
 
-@keyframes pulse {
-  
-  0% {
-  transform: scale(1, 0.5)
-  }
-  
-  50% {
-  transform: scale(1, 1)
-  }
-  
-  100% {
-  transform: scale(1, 0.5)
-  }
-
-}
-
-.svg {
+.svg-example {
 display: block;
 margin: 0 auto;
 width: calc(400rem/16);
@@ -246,11 +230,12 @@ width: calc(400rem/16);
   &__path {
   fill: #6F00EF;
   transform-origin: center;
+  transform: scale(1, 0.5); 
   animation: pulse 1s infinite forwards;
-  transform: scale(1, 0.5);  
+  animation-play-state: paused; 
 
-    body:not(.animation-enabled) & {
-    animation-play-state: paused;
+    .animation-enabled & {
+    animation-play-state: running;
     }
   
   }
@@ -291,4 +276,27 @@ width: calc(400rem/16);
   animation-delay: 1.35s;
   }
 
+}
+
+@keyframes pulse {
+  
+  0% {
+  transform: scale(1, 0.5)
+  }
+  
+  50% {
+  transform: scale(1, 1)
+  }
+  
+  100% {
+  transform: scale(1, 0.5)
+  }
+
+}
+
+// Example: Callback Example (After Effects, Optional)
+
+.callback-example {
+max-width: calc(800rem/16);
+margin: 0 auto;
 }

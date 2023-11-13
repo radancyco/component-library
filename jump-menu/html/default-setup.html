@@ -6,9 +6,9 @@
       <label class="jump-menu__label">My favorite component is:</label>
 
       <select class="jump-menu__select">
-        <option value="{{ page.url | absolute_url | replace: 'jump-menu/', ''}}animation-toggle/">Animation Toggle</option>
-        <option value="{{ page.url | absolute_url | replace: 'jump-menu/', ''}}disclosure/">Disclosure</option>
-        <option value="{{ page.url | absolute_url | replace: 'jump-menu/', ''}}hero-banner/">Hero Banner</option>
+        <option value="{{ site.url }}{{ site.baseurl }}/animation-toggle/">Animation Toggle</option>
+        <option value="{{ site.url }}{{ site.baseurl }}/disclosure/">Disclosure</option>
+        <option value="{{ site.url }}{{ site.baseurl }}/hero-banner/">Hero Banner</option>
       </select>
 
       <button class="jump-menu__btn">Learn More</button>

@@ -48,6 +48,12 @@
 
     {% endif %}
 
+    {% if component.customjs %}
+
+      {% capture customjs %}{% include_relative {{ component.customjs }} %}{% endcapture %}
+
+    {% endif %}
+
     {% if page.in-page-custom %}
 
     <div class="in-page-custom__content" data-in-page-name="{{ component.name }}" data-in-page-id="{{ component.id }}">
@@ -84,11 +90,10 @@
         css_external: "https://radancy.dev/css/init.css",
         css_pre_processor: "scss",
         css: {{ css | jsonify }}, 
-        js: {{ js | jsonify }},
-        {% if page.jquery != false %} 
-        js_external: "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js",
+        js: {{ js | append: customjs | jsonify }},
+        {% if component.codepenjs %}
+        js_external: '{% for item in component.codepenjs %}{% if item contains "://" %}{{ item }}{% else %}{{site.url}}/animation-library/{{ item }}{% endif %}{% if forloop.last %}{% else %};{% endif %}{% endfor %}',
         {% endif %}
-        
       };
 
       var json = JSON.stringify(obj);
@@ -144,6 +149,22 @@
             <div class="tab-accordion__content" contenteditable spellcheck="false">
       
               {% highlight javascript %}{% include_relative init.js %}{% endhighlight %}
+            
+            </div>
+      
+          </div>
+
+        {% endif %}
+
+        {% if component.customjs %}
+      
+          <button class="tab-accordion__button">Custom JavaScript</button>
+      
+          <div class="tab-accordion__panel">
+      
+            <div class="tab-accordion__content" contenteditable spellcheck="false">
+      
+              {% highlight javascript %}{% include_relative {{ component.customjs }} %}{% endhighlight %}
             
             </div>
       

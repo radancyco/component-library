@@ -234,6 +234,14 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
      
       });
 
+      if(this.closest(atClass).hasAttribute("data-callback")) {
+
+        var callBackFunction = this.closest(atClass).getAttribute("data-callback");
+
+        customCallback(callBackFunction);
+
+      }
+
     });
 
     if (wrapper.querySelector("track") !== null) {
@@ -492,8 +500,21 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
   });
 
+  // Custom Callback
+
+  function customCallback(customCallBackName) {
+
+    if (customCallBackName !== null) {
+  
+      window[customCallBackName]();
+  
+    }
+  
+  }
+
   // Initiate on page load.
 
   videoViewPort();
 
 });
+

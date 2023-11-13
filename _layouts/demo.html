@@ -5,7 +5,10 @@
     <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
     <meta content="noindex, nofollow" name="robots">
     <link href="{{ site.git-url }}/css/init.css" rel="stylesheet">
-    <link href="../init.css" rel="stylesheet">
+    {% if page.librarycss %}
+    <link href="{{ page.librarycs}}" rel="stylesheet">{% endif %}
+    <link href="../init.css" rel="stylesheet">{% if page.customcss %}
+    <link href="{{ page.customcss}}" rel="stylesheet">{% endif %}
     <link href="{{ site.git-url }}/favicon.ico" rel="icon">
     <title>{{ page.title }} - {{ site.company-name }}</title>
 </head>
@@ -18,8 +21,11 @@
 
   </main>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="../init.js"></script>
+  {% if page.jquery == true %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>{% endif %}{% if page.libraryjs %}
+  <script src="{{ page.libraryjs}}"></script>{% endif %}
+  <script src="../init.js"></script>{% if page.customjs %}
+  <script src="{{ page.customjs}}"></script>{% endif %}
 
 </body>
 </html>

@@ -4,29 +4,7 @@
 
 	<p>Toggling text in a control to indicate a state change should be avoided. For example, click on the following button:</p>
 
-	<button aria-expanded="false" class="btn" id="toggleExample" onclick="toggleText()">Open</button>
-
-	<script>
-
-	function toggleText() {
-
-  		var x = document.getElementById("toggleExample");
-
-		if (x.textContent === "Open") {
-
-			x.textContent = "Close";
-			x.setAttribute("aria-expanded", "true");
-
-		} else {
-
-			x.textContent = "Open";
-			x.setAttribute("aria-expanded", "false");
-
-		}
-
-	}
-
-	</script>
+	<button aria-pressed="false" class="btn" onclick="toggleText(this)">Save Item</button>
 
 	<h3>Why is this an issue?</h3>
 
@@ -42,4 +20,28 @@
 		<li>Using a single instruction means there is less text to translate.</li>
 	</ul>
 
+	<!-- button aria-pressed="false" class="btn" onclick="toggleText()">{{ iconCheck }}{{ iconCopyURL }} Copy Link</button -->
+
 </section>
+
+<script>
+
+function toggleText(id) {
+
+  	var x = id;
+
+	if (x.textContent === "Save Item") {
+
+		x.textContent = "Item Saved";
+		x.setAttribute("aria-pressed", "true");
+
+	} else {
+
+		x.textContent = "Save Item";
+		x.setAttribute("aria-pressed", "false");
+
+	}
+
+}
+
+</script>

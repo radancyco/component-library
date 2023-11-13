@@ -12,6 +12,11 @@ components:
     id: "breakpoint"
     note: "Resize your browser to see the video change. Look at the source code, too. Upon changing, video will start over."
 
+  - name: "Callback Example (After Effects)"
+    id: "callback"
+    codepenjs: "https://radancy.dev/component-library/animation-toggle/callback-lottie.js"
+    customjs: "callback-custom.js"
+
   - name: "CSS Animation"
     id: "css-animation"
 
@@ -31,7 +36,6 @@ components:
 
   - name: "SVG Animation"
     id: "svg-animation"
-    note: "Pausing SVG animation is only supported for non-third-party elements. This will not work for After Effects animation."
 
 aria:
 
@@ -59,6 +63,15 @@ attributes:
       - Optional
 
     desc: Used to pass custom label to <code>.animation-toggle__audio</code>. This will override the default label, which is "Audio Description".
+
+  - name: data-callback
+    html: .animation-toggle
+    note:
+
+      - String
+      - Optional
+
+    desc: Used to define a custom callback to initiate when pause button is accessed. Particularly useful for handling third-party animation, such as After Effects.
   
   - name: data-disable-loop
     html: video
@@ -168,17 +181,19 @@ cookies:
 
 notes: 
 
-  - item: "Pausing one animation will result in a pause for all site-wide animations utilizing this script. Any animations that are paused will maintain their paused state when you return to the site."
-  - item: "The script utilizes <code>prefers-reduced-motion</code>. If a user disables system animations, video and CSS autoplay will be disabled as well. Additionally, phones in low power mode may automatically pause autoplaying videos to conserve battery life."
-  - item: "While the <code>disableremoteplayback</code> attribute may not be recognized as valid HTML, the error can be safely disregarded."
-  - item: "Please be aware that using multiple <code>source</code> elements is not currently supported when <code>data-media</code> is in use. We're planning to correct this in the near future."
-  - item: "For optimal performance, ensure that videos are delivered in an optimized <code>webm</code> or <code>mp4</code> format. It's crucial to keep file sizes as small as possible without compromising quality to reduce overall page performance."
-  - item: "Finally, aim to keep videos between <strong>15-30</strong> seconds in length. The shorter the video, the lesser the impact it will have on overall page performance."
+  - "Pausing one animation will result in a pause for all site-wide animations utilizing this script. Any animations that are paused will maintain their paused state when you return to the site."
+  - "The script utilizes <code>prefers-reduced-motion</code>. If a user disables system animations, video and CSS autoplay will be disabled as well. Additionally, phones in low power mode may automatically pause autoplaying videos to conserve battery life."
+  - "While the <code>disableremoteplayback</code> attribute may not be recognized as valid HTML, the error can be safely disregarded."
+  - "Please be aware that using multiple <code>source</code> elements is not currently supported when <code>data-media</code> is in use. We're planning to correct this in the near future."
+  - "For optimal performance, ensure that videos are delivered in an optimized <code>webm</code> or <code>mp4</code> format. It's crucial to keep file sizes as small as possible without compromising quality to reduce overall page performance."
+  - "Finally, aim to keep videos between <strong>15-30</strong> seconds in length. The shorter the video, the lesser the impact it will have on overall page performance."
 
 folder: animation-toggle
 in-page-custom: true
 localcss: "init.css"
 localjs: "init.js"
+libraryjs: "callback-lottie.js"
+customjs: "callback-custom.js"
 section: component-library-animation-toggle
 tabcordion: true
 title: "Animation Toggle v1.3"
