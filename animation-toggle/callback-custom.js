@@ -1,6 +1,6 @@
 /*!
 
-  Radancy Component Library: Animation Toggle (Custom Function)
+  Radancy Component Library: Animation Toggle (Callback Example)
 
   Contributor(s):
   Michael "Spell" Spellacy
@@ -9,52 +9,50 @@
 
 */
 
-// Reminder: Be sure to load your third-party framework before initiating this script. For this example, we are using Lottie.
+// Reminder: Load your third-party framework before initiating this script. In this example, we are using Lottie.
+// https://radancy.dev/component-library/animation-toggle/callback-lottie.json
 
 var animation = lottie.loadAnimation({
 
-    container: document.querySelector(".callback-example"),
-    loop: true,
-    autoplay: false,
-    path: "https://radancy.dev/component-library/animation-toggle/callback-animation.json",
-      
+  container: document.querySelector(".callback-example"),
+  loop: true,
+  autoplay: false,
+  path: "https://radancy.dev/component-library/animation-toggle/callback-animation.json",
+    
 });
   
-window.addEventListener("load", function() {
-
+function toggleAfterEffects(thisButton) {
+  
   var animationEnabled = document.body.classList.contains("animation-enabled");
-    
+
   if (animationEnabled) {
-  
+
     animation.play();
+
+    // console.log("Total frames:", animation.totalFrames);
   
-    // Use this to get your total frame count. You can use the most desirable frame in goToAndStop. For example: animation.goToAndStop(42, true);
-      
-    // var totalFrames = animation.totalFrames;
-    // console.log("Total frames:", totalFrames);
-    
   } else { 
-    
-    animation.goToAndStop(110, true);
-  
-  }
-  
-});
 
-// Function defined in data-callback. For example: data-callback="pauseAfterEffects"
+    // Optional: This if statement is only required if you need animation to show specifc frame on page load. If not needed, animation.pause() will suffice.
 
-// Note: If you have a page with mixed looping animations (Video, SVG, etc.) you should add this callback to each Animation Toggle.
-  
-function pauseAfterEffects() {
-  
-  if (animation.isPaused) {
-  
-    animation.play();
-      
-  } else {
-   
-    animation.pause();
-  
+    if(thisButton.classList.contains("animation-pause")) {
+
+      animation.pause();
+
+    } else {
+
+      animation.goToAndStop(110, true); 
+
+    }
+
   }
+
+  // Optional: Only use if you do not need animation to show specifc frame on page load.
+
+  thisButton.addEventListener("click", function() {
+
+    thisButton.classList.add("animation-pause");
+
+  });
   
 }

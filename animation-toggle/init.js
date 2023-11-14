@@ -43,6 +43,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
   var animationBody = document.body;
   var atAudioDescriptionClassName = "animation-toggle__audio";
   var atClass = ".animation-toggle";
+  var atCallback = document.querySelectorAll(atClass + "[data-callback]");
   var atCookieName = "AnimationPaused";
   var atDescriptionTrackClass = ".animation-toggle__track";
   var atEnabledClassName = "animation-enabled"
@@ -236,9 +237,10 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
       if(this.closest(atClass).hasAttribute("data-callback")) {
 
+        var thisButton = this;
         var callBackFunction = this.closest(atClass).getAttribute("data-callback");
 
-        customCallback(callBackFunction);
+        customCallback(thisButton, callBackFunction);
 
       }
 
@@ -500,17 +502,29 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
   });
 
-  // Custom Callback
 
-  function customCallback(customCallBackName) {
+  // Callback Function
+
+  function customCallback(thisButton, customCallBackName) {
 
     if (customCallBackName !== null) {
-  
-      window[customCallBackName]();
-  
+      
+      window[customCallBackName](thisButton);
+      
     }
-  
+      
   }
+
+  // Initiate Callback on page load.
+
+  atCallback.forEach(function(callback){
+
+    var thisButton = callback.querySelector(atPauseButtonClass);
+    var callBackFunction = callback.dataset.callback;
+    
+    customCallback(thisButton, callBackFunction);
+    
+  });
 
   // Initiate on page load.
 
