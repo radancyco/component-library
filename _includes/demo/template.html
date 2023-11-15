@@ -98,6 +98,7 @@
         {% if component.codepenjs %}
         js_external: '{% for item in component.codepenjs %}{% if item contains "://" %}{{ item }}{% else %}{{site.url}}/animation-library/{{ item }}{% endif %}{% if forloop.last %}{% else %};{% endif %}{% endfor %}',
         {% endif %}
+
       };
 
       var json = JSON.stringify(obj);

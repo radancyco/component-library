@@ -4,7 +4,7 @@
 
 	<p>Toggling text in a control to indicate a state change should be avoided. For example, click on the following button:</p>
 
-	<button aria-pressed="false" class="btn" onclick="toggleText(this)">Save Item</button>
+	<button aria-pressed="false" class="btn" onclick="toggleText(this)">Save Job</button>
 
 	<h3>Why is this an issue?</h3>
 
@@ -20,25 +20,35 @@
 		<li>Using a single instruction means there is less text to translate.</li>
 	</ul>
 
-	<!-- button aria-pressed="false" class="btn" onclick="toggleText()">{{ iconCheck }}{{ iconCopyURL }} Copy Link</button -->
+	<p>Here is an example of visual affordance:</p>
+
+	<button aria-pressed="false" class="btn" onclick="toggleText(this)">{{ iconCheck }}{{ iconFavorite }} Save Job <span aria-hidden="true" class="visually-hidden">(All)</span></button>
 
 </section>
 
 <script>
 
-function toggleText(id) {
+function toggleText(obj) {
 
-  	var x = id;
+	if (obj.getAttribute("aria-pressed") === "false") {
 
-	if (x.textContent === "Save Item") {
+		if(obj.textContent === "Save Job") {
 
-		x.textContent = "Item Saved";
-		x.setAttribute("aria-pressed", "true");
+			obj.textContent = "Job Saved";
+
+		}
+
+		obj.setAttribute("aria-pressed", "true");
 
 	} else {
 
-		x.textContent = "Save Item";
-		x.setAttribute("aria-pressed", "false");
+		if(obj.textContent === "Job Saved") {
+
+			obj.textContent = "Save Job";
+
+		}
+
+		obj.setAttribute("aria-pressed", "false");
 
 	}
 
