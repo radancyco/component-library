@@ -1,6 +1,6 @@
 /*!
 
-  Radancy Component Library: Animation Toggle (Callback Example)
+  Radancy Component Library: Animation Toggle (After Effects Callback)
 
   Contributor(s):
   Michael "Spell" Spellacy
@@ -9,39 +9,50 @@
 
 */
 
-// Reminder: Load your third-party framework before initiating this script. In this example, we are using Lottie.
-// https://radancy.dev/component-library/animation-toggle/callback-lottie.json
+// Check if Lottie library is present
 
-var animation = lottie.loadAnimation({
+if (typeof lottie !== "undefined") {
 
-  container: document.querySelector(".callback-example"),
-  loop: true,
-  autoplay: false,
-  path: "https://radancy.dev/component-library/animation-toggle/callback-animation.json",
+  var animation = lottie.loadAnimation({
+
+    container: document.querySelector(".callback-example"),
+    loop: true,
+    autoplay: false,
+    path: "https://radancy.dev/component-library/animation-toggle/callback-animation.json",
     
-});
+  });
+
+} else {
+
+    console.log("%c Lottie library is not loaded. Please include the library before using it. ", "background: #FF0000; color: #fff");
+
+}
   
 function toggleAfterEffects(thisButton) {
+
+  if (typeof lottie !== "undefined") {
   
-  var animationEnabled = document.body.classList.contains("animation-enabled");
+    var animationEnabled = document.body.classList.contains("animation-enabled");
 
-  if (animationEnabled) {
+    if (animationEnabled) {
 
-    animation.play();
+      animation.play();
 
-    // console.log("Total frames:", animation.totalFrames);
+      // console.log("Total frames:", animation.totalFrames);
   
-  } else { 
+    } else { 
 
-    // Optional: This if statement is only required if you need animation to show specifc frame on page load. If not needed, animation.pause() will suffice.
+      // Optional: This if statement is only required if you need animation to show specifc frame on page load. If not needed, animation.pause() will suffice.
 
-    if(thisButton.classList.contains("animation-pause")) {
+      if(thisButton.classList.contains("animation-pause")) {
 
-      animation.pause();
+        animation.pause();
 
-    } else {
+      } else {
 
-      animation.goToAndStop(110, true); 
+        animation.goToAndStop(110, true); 
+
+      }
 
     }
 

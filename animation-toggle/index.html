@@ -10,7 +10,7 @@ components:
 
   - name: "Breakpoint"
     id: "breakpoint"
-    note: "Resize your browser to see the video change. Look at the source code, too. Upon changing, video will start over."
+    note: "Resize your browser to see the video change. This can be useful on mobile where you may wish to load in a smaller videos to improve performance or page layout."
 
   - name: "Callback Example (After Effects)"
     id: "callback"
@@ -71,7 +71,7 @@ attributes:
       - String
       - Optional
 
-    desc: Used to define a custom callback to initiate when pause button is accessed. Particularly useful for handling third-party animation, such as After Effects.
+    desc: Used to define a custom callback function to initiate when animation first loads and pause button is accessed. Particularly useful for handling third-party animation, such as After Effects and Slick. The callback accepts a single parameter called <code>thisButton</code> that you can use to target the button itself, if needed.
   
   - name: data-disable-loop
     html: video
@@ -197,7 +197,7 @@ customjs: "callback-custom.js"
 section: component-library-animation-toggle
 tabcordion: true
 title: "Animation Toggle v1.3"
-desc: This component enhances video and CSS animation control, ensuring improved accessibility for disabled users and optimized performance across devices.
+desc: This component enhances animation control, ensuring improved accessibility for disabled users and optimized performance across devices.
 ---
 
 {% include message/animation.html %}

@@ -36,7 +36,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
   // Display which component in use via console:
 
-  console.log('%c Animation Toggle v1.3 in use. ', 'background: #6e00ee; color: #fff');
+  console.log("%c Animation Toggle v1.3 in use. ", "background: #6e00ee; color: #fff");
 
   // Animation variables
 
