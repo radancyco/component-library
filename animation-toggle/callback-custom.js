@@ -1,13 +1,4 @@
-/*!
-
-  Radancy Component Library: Animation Toggle (After Effects Callback)
-
-  Contributor(s):
-  Michael "Spell" Spellacy
-
-  Dependencies: Animation Toggle, Lottie
-
-*/
+// Example: Callback (After Effects)
 
 // Check if Lottie library is present
 
@@ -24,7 +15,7 @@ if (typeof lottie !== "undefined") {
 
 } else {
 
-    console.log("%c Lottie library is not loaded. Please include the library before using it. ", "background: #FF0000; color: #fff");
+  console.log("%c Lottie library is not loaded. Please include the library before using it. ", "background: #FF0000; color: #fff");
 
 }
   
@@ -43,16 +34,21 @@ function toggleAfterEffects(thisButton) {
     } else { 
 
       // Optional: This if statement is only required if you need animation to show specifc frame on page load. If not needed, animation.pause() will suffice.
+      // TODO: The timeout is needed to give the script a moment for class to be added before the if statement does it's thing. Without it, the animation fires goToAndStop
 
-      if(thisButton.classList.contains("animation-pause")) {
+      setTimeout(function(){
 
-        animation.pause();
+        if(thisButton.classList.contains("animation-pause")) {
 
-      } else {
+          animation.pause();
 
-        animation.goToAndStop(110, true); 
+        } else {
 
-      }
+          animation.goToAndStop(110, true); 
+
+        }
+
+      }, 10);
 
     }
 

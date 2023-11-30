@@ -15,14 +15,16 @@ components:
   - name: "Callback Example (After Effects)"
     id: "callback"
     codepenjs: "https://radancy.dev/component-library/animation-toggle/callback-lottie.js"
+    customcss: "callback-custom"
     customjs: "callback-custom.js"
 
   - name: "CSS Animation"
     id: "css-animation"
+    customcss: "css-animation"
 
   - name: "Disable Loop"
     id: "disable-loop"
-    note: "The video will only play once. Toggling the animation will work, but will not restart the video after video is finsihed. This is by design."
+    note: "The video will only play once. Toggling the animation will work but will not restart the video after video is finished. This is by design."
 
   - name: "Hero Banner (Video)"
     id: "hero-banner"
@@ -36,6 +38,7 @@ components:
 
   - name: "SVG Animation"
     id: "svg-animation"
+    customcss: "svg-animation"
 
 aria:
 
@@ -71,7 +74,7 @@ attributes:
       - String
       - Optional
 
-    desc: Used to define a custom callback function to initiate when animation first loads and pause button is accessed. Particularly useful for handling third-party animation, such as After Effects and Slick. The callback accepts a single parameter called <code>thisButton</code> that you can use to target the button itself, if needed.
+    desc: Used to define a custom callback function to initiate when animation first loads and pause button is accessed. Particularly useful for handling third-party scripts. The callback accepts a single parameter called <code>thisButton</code> that you can use to target the button itself, if needed.
   
   - name: data-disable-loop
     html: video
@@ -128,7 +131,7 @@ classes:
   - name: .animation-enabled
     html: body
     note: Component
-    desc: Applied on page load. CSS and video animations will only run when this class is present. Removing it pauses animation. If you are leveraging this class in your CSS, then there is no need to use <code>prefers-reduced-motion</code>.
+    desc: Applied on page load. Page animations will only run when this class is present. Removing it pauses animation. If you are leveraging this class in your CSS or scripting, then there is no need to use <code>prefers-reduced-motion</code>.
 
   - name: .animation-toggle	
     html: 
@@ -181,12 +184,21 @@ cookies:
 
 notes: 
 
-  - "Pausing one animation will result in a pause for all site-wide animations utilizing this script. Any animations that are paused will maintain their paused state when you return to the site."
-  - "The script utilizes <code>prefers-reduced-motion</code>. If a user disables system animations, video and CSS autoplay will be disabled as well. Additionally, phones in low power mode may automatically pause autoplaying videos to conserve battery life."
-  - "While the <code>disableremoteplayback</code> attribute may not be recognized as valid HTML, the error can be safely disregarded."
-  - "Please be aware that using multiple <code>source</code> elements is not currently supported when <code>data-media</code> is in use. We're planning to correct this in the near future."
-  - "For optimal performance, ensure that videos are delivered in an optimized <code>webm</code> or <code>mp4</code> format. It's crucial to keep file sizes as small as possible without compromising quality to reduce overall page performance."
-  - "Finally, aim to keep videos between <strong>15-30</strong> seconds in length. The shorter the video, the lesser the impact it will have on overall page performance."
+  - "<b>Behavior:</b> Pausing one animation will result in a pause for all site-wide animations utilizing this script. Any animations that are paused will maintain their paused state when user returns to the site."
+  - "<b>Behavior:</b> The script utilizes <code>prefers-reduced-motion</code>. If a user disables system animations, all animations will honor this setting." 
+  - "<b>Behavior:</b> When no cookie is set and reduce animation is enabled, the animation stops."
+  - "<b>Behavior:</b> When no cookie is set and reduce animation is not enabled, the animation plays."
+  - "<b>Behavior:</b> When cookie is set to false (not paused) and reduce animation is enabled, OS setting take precedent and cookie is set to true (paused)."
+  - "<b>Issue:</b> When cookie is set to true (paused) and reduce animation is disabled, cookie is not set to false (not paused). Page needs to be refreshed. This may not be an issue, but to work, we may need another condition to hook into here."
+  - "<b>Behavior:</b> When reduce animation is not enabled, cookie settings take precedent."
+  - "<b>Roadmap:</b> When reduce animation is enabled, it would be great if local page settings could override OS setting."
+  - "<b>Behavior:</b> Phones in low power mode may automatically pause auto-playing videos to conserve battery life."
+  - "<b>Testing:</b> While the <code>disableremoteplayback</code> attribute may not be recognized as valid HTML, the error can be safely disregarded."
+  - "<b>Roadmap:</b> Now that responsive videos are <a href='https://scottjehl.com/posts/using-responsive-video/'>well supported again</a>, <code>data-srcset</code> and related functionality can be removed."
+  - "<b>Roadmap:</b> Please be aware that using multiple <code>source</code> elements is not currently supported when <code>data-media</code> is in use. This may be a non-issue when <code>data-srcset</code> is removed."
+  - "<b>Roadmap:</b> Revisit <code>data-disable-loop</code> after <code>data-srcset</code> is removed. Rather than only have video play once, we should pass in the number of times we wish for video to play."
+  - "<b>Best Practice:</b> For optimal performance, ensure that videos are delivered in an optimized <code>webm</code> or <code>mp4</code> format. It's crucial to keep file sizes as small as possible without compromising quality to reduce overall page performance."
+  - "<b>Best Practice:</b> Aim to keep videos between <strong>15-30</strong> seconds in length. The shorter the video, the lesser the impact it will have on overall page performance."
 
 folder: animation-toggle
 in-page-custom: true
@@ -206,4 +218,4 @@ desc: This component enhances animation control, ensuring improved accessibility
 
 {% include guidance/a11y-responsible-animation.html %}
 
-{% include demo/doc.html %} 
+{% include demo/doc.html %}

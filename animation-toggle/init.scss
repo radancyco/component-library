@@ -8,7 +8,7 @@
   Dependencies: Sass
 
   Instructions: 
-  sass --watch init.scss:init.css --style compressed
+  sass --watch .:. --style compressed
 
 */
 
@@ -18,7 +18,7 @@
 
 		opacity: 0;
 
-	}
+	} 
 
 	100% {
 
@@ -175,128 +175,3 @@ position: relative;
 
 }
 
-// Example: CSS Animation (Optional)
-// Note: This example targets the .css-example class, but you can use any class name you like.
-
-.css-example {
-margin: 0 auto;
-
-  .animation-enabled & {
-  animation: 1s infinite both rubberBand;
-  }
-
-}
-
-@keyframes rubberBand {
-
-  0% {
-  transform: scale3d(1, 1, 1);
-  }
-
-  30% {
-  transform: scale3d(1.25, 0.75, 1);
-  }
-
-  40% {
-  transform: scale3d(0.75, 1.25, 1);
-  }
-
-  50% {
-  transform: scale3d(1.15, 0.85, 1);
-  }
-
-  65% {
-  transform: scale3d(.95, 1.05, 1);
-  }
-
-  75% {
-  transform: scale3d(1.05, 0.95, 1);
-  }
-
-  100% {
-  transform: scale3d(1, 1, 1);
-  }
-
-}
-
-// Example: SVG Animation (Optional)
-// Note: This example targets the .svg-example class, but you can use any class name you like.
-
-.svg-example {
-display: block;
-margin: 0 auto;
-width: calc(400rem/16);
-
-  &__path {
-  fill: #6F00EF;
-  transform-origin: center;
-  transform: scale(1, 0.5); 
-  animation: pulse 1s infinite forwards;
-  animation-play-state: paused; 
-
-    .animation-enabled & {
-    animation-play-state: running;
-    }
-  
-  }
-
-  &__line-1 {
-  animation-delay: 0.15s;
-  }
-    
-  &__line-2 {
-  animation-delay: 0.3s;
-  }
-    
-  &__line-3 {
-  animation-delay: 0.45s;
-  }
-    
-  &__line-4 {
-  animation-delay: 0.6s;
-  }
-    
-  &__line-5 {
-  animation-delay: 0.75s;
-  }
-    
-  &__line-6 {
-  animation-delay: 0.9s;
-  }
-    
-  &__line-7 {
-  animation-delay: 1.05s;
-  }
-    
-  &__line-8 {
-  animation-delay: 1.2s;
-  }
-    
-  &__line-9 {
-  animation-delay: 1.35s;
-  }
-
-}
-
-@keyframes pulse {
-  
-  0% {
-  transform: scale(1, 0.5)
-  }
-  
-  50% {
-  transform: scale(1, 1)
-  }
-  
-  100% {
-  transform: scale(1, 0.5)
-  }
-
-}
-
-// Example: Callback Example (After Effects, Optional)
-
-.callback-example {
-max-width: calc(800rem/16);
-margin: 0 auto;
-}

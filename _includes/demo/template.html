@@ -48,6 +48,12 @@
 
     {% endif %}
 
+    {% if component.customcss %}
+
+      {% capture customcss %}{% include_relative {{ component.customcss }}.scss %}{% endcapture %}
+
+    {% endif %}
+
     {% if component.customjs %}
 
       {% capture customjs %}{% include_relative {{ component.customjs }} %}{% endcapture %}
@@ -89,7 +95,11 @@
         html: {{ html | jsonify }},
         css_external: "https://radancy.dev/css/init.css",
         css_pre_processor: "scss",
+        {% if component.customcss %}
+        css: {{ css | append: customcss | jsonify }},
+        {% else %}
         css: {{ css | jsonify }}, 
+        {% endif %}
         {% if component.customjs %}
         js: {{ js | append: customjs | jsonify }},
         {% else %}
@@ -145,9 +155,25 @@
 
         {% endif %}
 
+        {% if component.customcss %}
+      
+          <button class="tab-accordion__button">CSS</button>
+    
+          <div class="tab-accordion__panel">
+    
+            <div class="tab-accordion__content" contenteditable spellcheck="false">
+    
+              {% highlight javascript %}{% include_relative {{ component.customcss }}.scss %}{% endhighlight %}
+          
+            </div>
+    
+          </div>
+
+        {% endif %}
+
         {% if page.localjs %}
       
-          <button class="tab-accordion__button">JavaScript</button>
+          <button class="tab-accordion__button">JS</button>
       
           <div class="tab-accordion__panel">
       
@@ -163,7 +189,7 @@
 
         {% if component.customjs %}
       
-          <button class="tab-accordion__button">Custom (Script)</button>
+          <button class="tab-accordion__button">JS</button>
       
           <div class="tab-accordion__panel">
       
