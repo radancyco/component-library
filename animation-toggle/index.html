@@ -197,6 +197,7 @@ notes:
   - "<b>Roadmap:</b> Now that responsive videos are <a href='https://scottjehl.com/posts/using-responsive-video/'>well supported again</a>, <code>data-srcset</code> and related functionality can be removed."
   - "<b>Roadmap:</b> Please be aware that using multiple <code>source</code> elements is not currently supported when <code>data-media</code> is in use. This may be a non-issue when <code>data-srcset</code> is removed."
   - "<b>Roadmap:</b> Revisit <code>data-disable-loop</code> after <code>data-srcset</code> is removed. Rather than only have video play once, we should pass in the number of times we wish for video to play."
+  - "<b>Roadmap:</b> Revisit <code>data-callback</code> and see if it makes sense to apply callback function to all animations if <code>data-callback</code> present on page at all. Right now there is an animation disconnect between those that have the attribute and those that do not. Currently, we manually add the callback to all other page animations."
   - "<b>Best Practice:</b> For optimal performance, ensure that videos are delivered in an optimized <code>webm</code> or <code>mp4</code> format. It's crucial to keep file sizes as small as possible without compromising quality to reduce overall page performance."
   - "<b>Best Practice:</b> Aim to keep videos between <strong>15-30</strong> seconds in length. The shorter the video, the lesser the impact it will have on overall page performance."
 
