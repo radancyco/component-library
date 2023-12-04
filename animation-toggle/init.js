@@ -502,7 +502,6 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
   });
 
-
   // Callback Function
 
   function customCallback(thisButton, customCallBackName) {
