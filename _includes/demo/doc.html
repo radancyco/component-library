@@ -94,7 +94,7 @@
 
     <tr>
         <td><code>{{ attribute.name }}</code></td>
-        <td><code>{% for html in attribute.html %}<code>{{ html }}</code>{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</code></td>
+        <td>{% for html in attribute.html %}<code>{{ html }}</code>{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
         <td>{% for note in attribute.note %}{{ note }}{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
         <td>{{ attribute.desc }}</td>
     </tr>
