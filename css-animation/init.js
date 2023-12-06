@@ -31,7 +31,7 @@
 
 	// Create animation code button and container
 
-	$cssAnimationHeader.append("<button class='btn css-animation__button' aria-expanded='false'>View CSS</button><div aria-label='CSS' class='css-animation__code'><pre><code class='language-css slideLeft'></code></pre></div>");
+	$cssAnimationHeader.append("<button class='btn css-animation__button' aria-expanded='false'>View CSS</button><div aria-label='CSS' class='css-animation__code' role='region'><pre><code class='language-css slideLeft'></code></pre></div>");
 
 	var $cssAnimationButton = $(".css-animation__button");
 	var $cssAnimationCode = $(".css-animation__code");
