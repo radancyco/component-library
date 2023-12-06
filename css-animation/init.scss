@@ -9,7 +9,7 @@
   Dependencies: Sass
 
   Instructions:
-  sass --watch init.scss:init.css --style compressed
+  sass --watch .:. --style compressed
 
 */
 
@@ -126,7 +126,7 @@ $breakpoint: em(860);
     }
 
     &__code {
-    background-color: #333;
+    background-color: #3f3f3f;
     color: #fff;
     display: none;
     margin-top: em(16);
@@ -144,6 +144,7 @@ $breakpoint: em(860);
         
         code {
         padding: 0;
+        color: #fff;
         
             @media (min-width: $breakpoint) {
         
