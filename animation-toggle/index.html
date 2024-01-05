@@ -10,7 +10,7 @@ components:
 
   - name: "Breakpoint"
     id: "breakpoint"
-    note: "Resize your browser to see the video change. This can be useful on mobile where you may wish to load in a smaller videos to improve performance or page layout."
+    note: "Resize your browser window and refresh page. This can be useful on mobile where you may wish to load in a smaller video to improve page performance or layout."
 
   - name: "Callback Example (After Effects)"
     id: "callback"
@@ -22,9 +22,9 @@ components:
     id: "css-animation"
     customcss: "css-animation"
 
-  - name: "Disable Loop"
-    id: "disable-loop"
-    note: "The video will only play once. Toggling the animation will work but will not restart the video after video is finished. This is by design."
+  - name: "Custom Loop"
+    id: "custom-loop"
+    note: "The video will loop only two times. Once completed, it cannot be restarted and video controls will be removed."
 
   - name: "Hero Banner (Video)"
     id: "hero-banner"
@@ -76,23 +76,14 @@ attributes:
 
     desc: Used to define a custom callback function to initiate when animation first loads and pause button is accessed. Particularly useful for handling third-party scripts. The callback accepts a single parameter called <code>thisButton</code> that you can use to target the button itself, if needed.
   
-  - name: data-disable-loop
+  - name: data-loop
     html: video
     note:
 
       - Boolean
       - Optional
 
-    desc: Used to prevent video from looping. When video has ended, <code>data-video-ended</code> will be appended to the video, which may act as a useful hook.
-
-  - name: data-media
-    html: video
-    note:
-
-      - String
-      - Optional
-
-    desc: Used to indicate at which point <code>data-srcset</code> will load. Accepts any valid media query, but typically <code>min-width</code> will be used.
+    desc: Used to set the amount of times the video will loop. Please note that when a loop iteration is complete that it cannot be started over.
 
   - name: data-pause-button
     html: .animation-toggle
@@ -111,20 +102,6 @@ attributes:
       - Optional
 
     desc: Used to indicate at which point video will load when paused. Accepts any valid time increment. Video will start from this point when play is enabled.
-
-  - name: data-srcset
-    html: video
-    note:
-
-      - String
-      - Optional
-
-    desc: Used to reference video asset that will load when <code>data-media</code> is present. This will reference a larger video, while the <code>src</code> attribute will reference a smaller video.
-
-  - name: data-video-ended
-    html: video
-    note: Component
-    desc: Added by component to <code>video</code> element when video has ended. It will only be appended when <code>data-disable-loop</code> is used.
 
 classes:
 
@@ -194,9 +171,6 @@ notes:
   - "<b>Roadmap:</b> When reduce animation is enabled, it would be great if local page settings could override OS setting."
   - "<b>Behavior:</b> Phones in low power mode may automatically pause auto-playing videos to conserve battery life."
   - "<b>Testing:</b> While the <code>disableremoteplayback</code> attribute may not be recognized as valid HTML, the error can be safely disregarded."
-  - "<b>Roadmap:</b> Now that responsive videos are <a href='https://scottjehl.com/posts/using-responsive-video/'>well supported again</a>, <code>data-srcset</code> and related functionality can be removed."
-  - "<b>Roadmap:</b> Please be aware that using multiple <code>source</code> elements is not currently supported when <code>data-media</code> is in use. This may be a non-issue when <code>data-srcset</code> is removed."
-  - "<b>Roadmap:</b> Revisit <code>data-disable-loop</code> after <code>data-srcset</code> is removed. Rather than only have video play once, we should pass in the number of times we wish for video to play."
   - "<b>Roadmap:</b> Revisit <code>data-callback</code> and see if it makes sense to apply callback function to all animations if <code>data-callback</code> present on page at all. Right now there is an animation disconnect between those that have the attribute and those that do not. Currently, we manually add the callback to all other page animations."
   - "<b>Best Practice:</b> For optimal performance, ensure that videos are delivered in an optimized <code>webm</code> or <code>mp4</code> format. It's crucial to keep file sizes as small as possible without compromising quality to reduce overall page performance."
   - "<b>Best Practice:</b> Aim to keep videos between <strong>15-30</strong> seconds in length. The shorter the video, the lesser the impact it will have on overall page performance."
@@ -209,7 +183,7 @@ libraryjs: "callback-lottie.js"
 customjs: "callback-custom.js"
 section: component-library-animation-toggle
 tabcordion: true
-title: "Animation Toggle v1.3"
+title: "Animation Toggle v1.5"
 desc: This component enhances animation control, ensuring improved accessibility for disabled users and optimized performance across devices.
 ---
 

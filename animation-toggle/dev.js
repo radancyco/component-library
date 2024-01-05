@@ -52,9 +52,10 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
   var atVideoClass = ".animation-toggle__video";
   var atVideoControlsName = "animation-toggle__controls"
   var dataAudioDescriptionButton = "data-audio-description-button";
-  var dataLoop = "data-loop";
+  var dataDisableLoop = "data-disable-loop";
   var dataPauseButton = "data-pause-button";
   var dataPoster = "data-poster";
+  var dataVideoEnded = "data-video-ended";
   var getAnimationWrappers = document.querySelectorAll(atClass);
   var getBackgroundVideos = document.querySelectorAll(atVideoClass);
 
@@ -216,7 +217,13 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
         if(!isPlaying) {
 
-          video.play();
+          // Only play video if it has not ended. Videos only end when data-disable-loop is present 
+
+          if(!video.hasAttribute(dataVideoEnded)) {
+
+            video.play();
+  
+          }
 
         } else {
 
@@ -342,76 +349,86 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
   });
 
+  // Video Loader
+
+  function loadVideo(obj, poster) {
+
+    // If animation class on body exists...
+
+    if (animationBody.classList.contains(atEnabledClassName)) {
+
+      obj.play();
+
+     } else {
+
+      obj.load();
+
+        if(poster) {
+
+          obj.currentTime = poster;
+
+        } else {
+
+          obj.load();
+
+        }
+
+     }
+
+  }
+
   // Loop through each video...
 
   getBackgroundVideos.forEach(function(video, e){
 
     // Add inital attributes.
 
+    video.setAttribute("crossorigin" , "");
     video.setAttribute("disableRemotePlayback", "");
     video.setAttribute("playsinline" , "");
+    video.setAttribute("preload" , "");
     video.id = "animation-toggle-video-" + (e + 1);    
     video.muted = true;
 
-    // If animation class on body exists...
+    // Prevent looping if desired. When video is over, data-video-ended will be added.
 
-    if (animationBody.classList.contains(atEnabledClassName)) {
+    if(!video.hasAttribute(dataDisableLoop)) {
 
-      video.play();
+      video.setAttribute("loop" , "");
 
-    } else {
+    }
 
-      video.load();
-    
-      // If video has poster...
-    
-      if(video.hasAttribute(dataPoster)) {
+  });
 
-        video.currentTime = video.getAttribute(dataPoster);
-    
-      } 
+  // On page load, loop through all the videos on the page.
 
-      if(video.hasAttribute(dataLoop)) {
+  getBackgroundVideos.forEach(function(video, i){
 
-        var iterations = 1;
+    // If aria-label does not exist on video element, add default. 
 
-        video.addEventListener("ended", function () {    
-
-          // Number of times to loop video.
-
-          if (iterations < video.getAttribute(dataLoop)) {       
-
-            video.currentTime = 0;
-            video.play();
-            iterations ++;
-
-          } 
-          
-          if(iterations == video.getAttribute(dataLoop)) {
-          
-            // Remove controls
-
-            video.previousElementSibling.remove();
-
-          }
-
-        }, false);
-
-      } else {
-
-        video.setAttribute("loop" , "");
-
-      } 
-  
-      // If aria-label does not exist on video element, add default. 
-
-      if(!video.hasAttribute("aria-label")) {
+    if(!video.hasAttribute("aria-label")) {
 
         video.setAttribute("aria-label", atVideoLabel);
 
-      }
+    }
+
+    // If video has poster. 
+
+    if(video.hasAttribute(dataPoster)) {
+
+        var posterLoad = video.getAttribute(dataPoster);
+        
+        loadVideo(video, posterLoad);
 
     }
+
+    // Listen for video ende. Upon ending, add "data-video-ended". We do not want to restart videos that have ended.
+
+    video.addEventListener("ended", function() { 
+        
+        video.setAttribute(dataVideoEnded, "");;
+    
+    }, false);
 
   });
 
@@ -439,3 +456,4 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
   });
 
 });
+
