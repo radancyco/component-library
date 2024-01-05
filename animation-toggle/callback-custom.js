@@ -4,12 +4,15 @@
 
 if (typeof lottie !== "undefined") {
 
+  var callBackTarget = document.querySelector(".callback-example");
+  var callBackAnimation = callBackTarget.getAttribute("data-animation");
+
   var animation = lottie.loadAnimation({
 
-    container: document.querySelector(".callback-example"),
+    container: callBackTarget,
     loop: true,
     autoplay: false,
-    path: "https://radancy.dev/component-library/animation-toggle/callback-animation.json",
+    path: callBackAnimation,
     
   });
 
