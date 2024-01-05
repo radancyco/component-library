@@ -352,7 +352,6 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
     video.setAttribute("playsinline" , "");
     video.id = "animation-toggle-video-" + (e + 1);    
     video.muted = true;
-    video.load();
 
     // If animation class on body exists...
 
