@@ -11,7 +11,7 @@
 
 function loadAnimationToggle(url, callback) {
 
-  // Install Langauge Pack.
+  // Install Language Pack.
 
   var componentLanguagePack = document.createElement("script");
 
@@ -20,7 +20,7 @@ function loadAnimationToggle(url, callback) {
   componentLanguagePack.onreadystatechange = callback;
   componentLanguagePack.onload = callback;
 
-  // Only load one langauge pack per page.
+  // Only load one language pack per page.
 
   var getComponentLanguagePack = document.getElementById("component-library-language-pack");
 
@@ -85,7 +85,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
   }
 
-  // If animation disabled in OS settings and cookie not present then force pause.
+  // If animation disabled in OS settings and cookie is not present then force pause.
 
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
 
@@ -346,7 +346,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
   getBackgroundVideos.forEach(function(video, e){
 
-    // Add inital attributes.
+    // Add initial attributes.
 
     video.setAttribute("disableRemotePlayback", "");
     video.setAttribute("playsinline" , "");
