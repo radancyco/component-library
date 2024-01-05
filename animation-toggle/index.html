@@ -24,7 +24,7 @@ components:
 
   - name: "Custom Loop"
     id: "custom-loop"
-    note: "The video will loop only two times. Once completed, it cannot be restarted and video controls will be removed."
+    note: "The video will only loop one time. Once complete, it cannot be restarted."
 
   - name: "Hero Banner (Video)"
     id: "hero-banner"
@@ -80,10 +80,10 @@ attributes:
     html: video
     note:
 
-      - Boolean
+      - Number
       - Optional
 
-    desc: Used to set the amount of times the video will loop. Please note that when a loop iteration is complete that it cannot be started over.
+    desc: Used to set the amount of times a video will loop. Please note that when a loop iteration is completed, video cotrols are removed from the interface.
 
   - name: data-pause-button
     html: .animation-toggle

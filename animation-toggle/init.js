@@ -223,7 +223,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
           video.pause();
 
         }
-     
+
       });
 
       if(this.closest(atClass).hasAttribute("data-callback")) {
@@ -361,55 +361,58 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
     } else {
 
-      video.load();
-    
       // If video has poster...
     
       if(video.hasAttribute(dataPoster)) {
 
+        video.load();
         video.currentTime = video.getAttribute(dataPoster);
     
       } 
 
-      if(video.hasAttribute(dataLoop)) {
+    }
 
-        var iterations = 1;
+    if(video.hasAttribute(dataLoop)) {
 
-        video.addEventListener("ended", function () {    
+      var iterations = 1;
 
-          // Number of times to loop video.
+      video.addEventListener("ended", function () {
 
-          if (iterations < video.getAttribute(dataLoop)) {       
+        // Number of times to loop video.
 
-            video.currentTime = 0;
-            video.play();
-            iterations ++;
+        if (iterations < video.getAttribute(dataLoop)) {       
 
-          } 
-          
-          if(iterations == video.getAttribute(dataLoop)) {
-          
+          video.currentTime = 0;
+          video.play();
+          iterations ++;
+
+        } 
+
+        setTimeout(function(){
+
+          if(video.ended) {
+
             // Remove controls
 
             video.previousElementSibling.remove();
 
           }
 
-        }, false);
+        }, 500);
 
-      } else {
+      }, false);
 
-        video.setAttribute("loop" , "");
+    } else {
 
-      } 
-  
-      // If aria-label does not exist on video element, add default. 
+      video.setAttribute("loop" , "");
 
-      if(!video.hasAttribute("aria-label")) {
+    } 
 
-        video.setAttribute("aria-label", atVideoLabel);
+    // If aria-label does not exist on video element, add default. 
 
-      }
+    if(!video.hasAttribute("aria-label")) {
+
+      video.setAttribute("aria-label", atVideoLabel);
 
     }
 
@@ -420,11 +423,11 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
   function customCallback(thisButton, customCallBackName) {
 
     if (customCallBackName !== null) {
-      
+
       window[customCallBackName](thisButton);
-      
+
     }
-      
+
   }
 
   // Initiate Callback on page load.
@@ -433,9 +436,10 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
     var thisButton = callback.querySelector(atPauseButtonClass);
     var callBackFunction = callback.dataset.callback;
-    
+
     customCallback(thisButton, callBackFunction);
-    
+
   });
 
 });
+
