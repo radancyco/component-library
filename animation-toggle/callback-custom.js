@@ -5,7 +5,7 @@
 if (typeof lottie !== "undefined") {
 
   var callBackTarget = document.querySelector(".callback-example");
-  var callBackAnimation = callBackTarget.getAttribute("data-animation");
+  var callBackAnimation = callBackTarget.getAttribute("data-animation-path");
 
   var animation = lottie.loadAnimation({
 
@@ -47,7 +47,9 @@ function toggleAfterEffects(thisButton) {
 
         } else {
 
-          animation.goToAndStop(110, true); 
+          var defaultFrame = Number(callBackTarget.getAttribute("data-animation-pause"));
+
+          animation.goToAndStop(defaultFrame, true); 
 
         }
 
