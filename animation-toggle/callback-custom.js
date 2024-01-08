@@ -36,10 +36,10 @@ function toggleAfterEffects(thisButton) {
   
     } else { 
 
-      // Optional: This if statement is only required if you need animation to show specific frame on page load. If not needed, animation.pause() will suffice.
-      // TODO: The timeout is needed to give the script a moment for class to be added before the if statement does it's thing. Without it, the animation fires goToAndStop
-
       setTimeout(function(){
+
+        // Optional: This if statement is only required if animation is needed to show specific frame on page load. If not needed, animation.pause() will suffice.
+        // TODO: The timeout is needed to give the script a moment for class to be added before the if statement fires. Without it, the animation fires goToAndStop
 
         if(thisButton.classList.contains("animation-pause")) {
 

@@ -34,7 +34,7 @@ function loadAnimationToggle(url, callback) {
 
 loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-pack.js", function(){
 
-  // Display which component in use via console:
+  // Display which component in use, via console:
 
   console.log("%c Animation Toggle v1.5 in use. ", "background: #6e00ee; color: #fff");
 
@@ -109,7 +109,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
     btnControls.setAttribute("class", atVideoControlsName);
 
-    // Prepend control wrapper to atClass
+    // Prepend control wrapper to atClass.
   
     wrapper.prepend(btnControls);
 
@@ -157,11 +157,11 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
     }
 
-    // Append pause button
+    // Append pause button.
 
     btnControls.append(btnPlayPause);
 
-    // Pause Toggle Event
+    // Pause Toggle Event.
 
     btnPlayPause.addEventListener("click", function() {
 
@@ -239,7 +239,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
     if (wrapper.querySelector("track") !== null) {
 
-      // Create audio description button. Please note this is experimental feature.
+      // Create audio description button. Please note this is an experimental feature.
 
       var btnAudioDescription = document.createElement("button");
 
@@ -259,7 +259,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
       }
 
-      // Append Audio Description Button
+      // Append Audio Description Button.
 
       btnControls.append(btnAudioDescription);
 
@@ -360,6 +360,8 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
       video.play();
 
     } else {
+
+      video.load();
 
       // If video has poster...
     
