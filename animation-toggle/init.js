@@ -349,8 +349,8 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
     // Add initial attributes.
 
     video.setAttribute("disableRemotePlayback", "");
+    video.id = "animation-toggle-video-" + (e + 1);   
     video.setAttribute("playsinline" , "");
-    video.id = "animation-toggle-video-" + (e + 1);    
     video.muted = true;
 
     // If animation class on body exists...

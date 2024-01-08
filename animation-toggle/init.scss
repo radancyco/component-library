@@ -84,17 +84,6 @@ position: relative;
   &__video {
   display: block;
   clip-path: inset(1px 1px); 
-
-    // Native Controls
-
-    .js & {
-  
-      &::-webkit-media-controls {
-      display: none;
-      }
-
-    }
-
   }
 
   // Backdrop (Optional)

@@ -5,16 +5,21 @@
 if (typeof lottie !== "undefined") {
 
   var callBackTarget = document.querySelector(".callback-example");
-  var callBackAnimation = callBackTarget.getAttribute("data-animation-path");
 
-  var animation = lottie.loadAnimation({
+  if (callBackTarget) {
 
-    container: callBackTarget,
-    loop: true,
-    autoplay: false,
-    path: callBackAnimation,
+    var callBackAnimation = callBackTarget.getAttribute("data-animation-path");
+
+    var animation = lottie.loadAnimation({
+
+      container: callBackTarget,
+      loop: true,
+      autoplay: false,
+      path: callBackAnimation,
     
-  });
+    });
+
+  }
 
 } else {
 
