@@ -1,0 +1,11 @@
+// Example: Multiple Videos
+
+.animation-grid {
+display: flex;
+flex-wrap: wrap;
+
+    video {
+    width: 50%;
+    }
+
+}
