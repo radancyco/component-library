@@ -127,7 +127,7 @@
   
       <div class="tab-accordion" data-tab-disable-url data-tab-breakpoint="(min-width: 0)">
 
-        <button class="tab-accordion__button">HTML</button>
+        <button class="tab-accordion__button">{{ iconHTML }} HTML</button>
       
         <div class="tab-accordion__panel">
       
@@ -141,7 +141,7 @@
 
         {% if page.localcss %}
       
-          <button class="tab-accordion__button">CSS</button>
+          <button class="tab-accordion__button">{{ iconGlobal }} CSS</button>
       
           <div class="tab-accordion__panel">
       
@@ -157,7 +157,7 @@
 
         {% if component.customcss %}
       
-          <button class="tab-accordion__button">CSS</button>
+          <button class="tab-accordion__button">{{ iconCustom }} CSS</button>
     
           <div class="tab-accordion__panel">
     
@@ -173,7 +173,7 @@
 
         {% if page.localjs %}
       
-          <button class="tab-accordion__button">JS</button>
+          <button class="tab-accordion__button">{{ iconGlobal }} JS</button>
       
           <div class="tab-accordion__panel">
       
@@ -189,7 +189,7 @@
 
         {% if component.customjs %}
       
-          <button class="tab-accordion__button">JS</button>
+          <button class="tab-accordion__button">{{ iconCustom }} JS</button>
       
           <div class="tab-accordion__panel">
       
