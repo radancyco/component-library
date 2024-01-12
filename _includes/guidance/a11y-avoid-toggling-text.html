@@ -1,6 +1,9 @@
-<section aria-labelledby="hdr-a11y-avoid-toggling-text" class="a11y-info" id="a11y-avoid-toggling-text">
+{% assign class = "a11y-info" %}
+{% assign id = "a11y-avoid-toggling-text" %}
+{% assign landmark = "hdr-a11y-avoid-toggling-text" %}
+{% assign title = "Accessibility: Avoid Toggling Text" %}
 
-	<h2 id="hdr-a11y-avoid-toggling-text">Accessibility: Avoid Toggling Text</h2>
+{% include guidance/header.html %}
 
 	<p>Toggling text in a control to indicate a state change should be avoided. For example, click on the following button:</p>
 
@@ -8,7 +11,7 @@
 
 	<h3>Why is this an issue?</h3>
 
-  	<ul>
+	<ul>
 		<li>Changing text may not announce the state change to assistive technology users.</li>
     	<li>Changing text removes the initial context of the control, which can be confusing when returing to it later. In addition to this, further confusion is added when <code>aria-expanded</code> or <code>aria-pressed</code> is used to aid assistive technology users. Imagine hearing, "Job Saved, pressed" when "Save Job, pressed" or "Save Job, not pressed" would be more clear and consistent.</li>
 	</ul>
@@ -24,34 +27,34 @@
 
 	<button aria-pressed="false" class="btn" onclick="toggleText(this)">{{ iconCheck }}{{ iconFavorite }} Save Job <span aria-hidden="true" class="visually-hidden">(All)</span></button>
 
-</section>
+	<script>
 
-<script>
+	function toggleText(obj) {
 
-function toggleText(obj) {
+		if (obj.getAttribute("aria-pressed") === "false") {
 
-	if (obj.getAttribute("aria-pressed") === "false") {
+			if(obj.textContent === "Save Job") {
 
-		if(obj.textContent === "Save Job") {
+				obj.textContent = "Job Saved";
 
-			obj.textContent = "Job Saved";
+			}
+
+			obj.setAttribute("aria-pressed", "true");
+
+		} else {
+
+			if(obj.textContent === "Job Saved") {
+
+				obj.textContent = "Save Job";
+
+			}
+
+			obj.setAttribute("aria-pressed", "false");
 
 		}
-
-		obj.setAttribute("aria-pressed", "true");
-
-	} else {
-
-		if(obj.textContent === "Job Saved") {
-
-			obj.textContent = "Save Job";
-
-		}
-
-		obj.setAttribute("aria-pressed", "false");
 
 	}
 
-}
+	</script>
 
-</script>
+{% include guidance/footer.html %}

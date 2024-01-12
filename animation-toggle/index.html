@@ -1,4 +1,9 @@
 ---
+
+messages: 
+
+  - animation
+
 components:
 
   - name: "Default Setup"
@@ -43,6 +48,11 @@ components:
   - name: "SVG Animation"
     id: "svg-animation"
     customcss: "svg-animation"
+
+guidance:
+
+  - a11y-responsible-animation
+  - reminder-video-performance
 
 aria:
 
@@ -189,12 +199,4 @@ title: "Animation Toggle v1.5"
 desc: This component enhances animation control, ensuring improved accessibility for disabled users and optimized performance across devices.
 ---
 
-{% include message/animation.html %}
-
 {% include demo/template.html %}
-
-{% include guidance/a11y-responsible-animation.html %}
-
-{% include guidance/reminder-video-performance.html %}
-
-{% include demo/doc.html %}

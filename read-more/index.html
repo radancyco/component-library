@@ -1,10 +1,19 @@
 ---
+messages: 
+
+  - anti-pattern
+
 components:
 
   - name: "Default Setup"
     id: "default-setup"
     codepenjs: "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
     note: Use your keyboard to open the disclosure to see how focus is properly managed. However, by improving the experience for keyboard users, we have <a href="#anti-pattern-read-more">created a new issue</a> for other user groups.
+
+guidance: 
+
+  - anti-pattern-read-more
+  - a11y-avoid-toggling-text
 
 classes:
 
@@ -36,12 +45,4 @@ title: "Read More v1.0"
 desc: This component will allow you to expand partially hidden content on your page. 
 ---
 
-{% include message/anti-pattern.html %}
-
 {% include demo/template.html %}
-
-{% include guidance/anti-pattern-read-more.html %}
-
-{% include guidance/a11y-avoid-toggling-text.html %} 
-
-{% include demo/doc.html %} 

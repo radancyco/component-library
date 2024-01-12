@@ -1,6 +1,9 @@
-<section aria-labelledby="hdr-anti-pattern-read-more" class="warning-info" id="anti-pattern-read-more">
+{% assign class = "warning-info" %}
+{% assign id = "anti-pattern-read-more" %}
+{% assign landmark = "hdr-anti-pattern-read-more" %}
+{% assign title = "Why is this an Anti-Pattern?" %}
 
-    <h2 id="hdr-anti-pattern-read-more">Why is this an Anti-Pattern?</h2>
+{% include guidance/header.html %}
 
     <p>Disclosure buttons are generally more user-friendly when they reveal content <em>below</em> them rather than <em>above</em>. When we stray from this best practice, we disrupt the natural user expectation of <em>downward vertical scrolling and interaction</em>, and compromise accessibility for specific user groups.</p>
 
@@ -40,4 +43,4 @@
 
     </figure>
 
-</section>
+{% include guidance/footer.html %}

@@ -1,10 +1,13 @@
-<section aria-labelledby="a11y-heading" class="a11y-info" id="a11y-info">
+{% assign class = "a11y-info" %}
+{% assign id = "a11y-iframe-label" %}
+{% assign landmark = "hdr-a11y-iframe-label" %}
+{% assign title = "Accessibility: Iframe Labels" %}
 
-    <h2 id="a11y-heading">Accessibility: Iframe Labels</h2>
+{% include guidance/header.html %}
 
     <p>Note the use of the <code>title</code> attribute on the <code>iframe</code> element. A brief description of the contents of the iframe must be provided to assist those who are using assistive technology, such as screen readers, to aid in the understanding of the contents of the frame. Alternatively, <code>aria-label</code> may also be used.</p>
 
-</section>
+{% include guidance/footer.html %}
 
 
 

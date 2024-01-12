@@ -1,5 +1,17 @@
 {% include icon.html %}
 
+{% if page.messages %} 
+
+    {% assign sortMessages = page.messages %}
+
+    {% for message in sortMessages %}
+
+    {% include message/{{ message }}.html %}
+
+    {% endfor %}
+
+{% endif %}
+
 <p>{{ page.desc }}</p>
 
   {% if page.in-page-custom %}
@@ -218,3 +230,291 @@
   </div>
 
   {% endif %}
+
+  {% if page.guidance %} 
+
+    {% assign sortGuidance = page.guidance %}
+
+    {% for item in sortGuidance %}
+
+      {% include guidance/{{ item }}.html %}
+
+    {% endfor %}
+
+  {% endif %}
+
+  <h2 id="properties">Properties</h2>
+
+<p>Use the following properties to configure this component.</p>
+
+{% if page.elements %} 
+
+<div class="table-container">
+
+    <table id="elements">
+    <caption><a class="anchor" href="#elements">{{ iconAnchor }} <span class="sr-only">Anchor (Elements)</span></a> Elements</caption>
+    <thead>
+    <tr>
+        <th>Element</th>
+        <th>Note</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% assign sortElements = page.elements %}
+
+    {% for element in sortElements %}
+
+    <tr>
+        <td>{% for html in element.html %}<code>{{ html }}</code>{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
+        <td>{% for note in element.note %}{{ note }}{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
+        <td>{{ element.desc }}</td>
+    </tr>
+
+    {% endfor %}
+
+    </tbody>
+    </table>
+  
+</div>
+
+{% endif %}
+
+{% if page.aria %} 
+
+<div class="table-container">
+
+    <table id="aria">
+    <caption><a class="anchor" href="#aria">{{ iconAnchor }} <span class="sr-only">Anchor (ARIA)</span></a> ARIA</caption>
+    <thead>
+    <tr>
+        <th>ARIA</th>
+        <th>Applies To</th>
+        <th>Note</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% assign sortAria = page.aria %}
+
+    {% for aria in sortAria %}
+
+    <tr>
+        <td><code>{{ aria.name }}</code></td>
+        <td><code>{% for html in aria.html %}<code>{{ html }}</code>{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</code></td>
+        <td>{% for note in aria.note %}{{ note }}{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
+        <td>{{ aria.desc }}</td>
+    </tr>
+
+    {% endfor %}
+
+    </tbody>
+    </table>
+  
+</div>
+
+{% endif %}
+
+{% if page.attributes %} 
+
+<div class="table-container">
+
+    <table id="attributes">
+    <caption><a class="anchor" href="#attributes">{{ iconAnchor }} <span class="sr-only">Anchor (Attributes)</span></a> Attributes</caption>
+    <thead>
+    <tr>
+        <th>Attribute</th>
+        <th>Applies To</th>
+        <th>Note</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% assign sortAttributes = page.attributes %}
+
+    {% for attribute in sortAttributes %}
+
+    <tr>
+        <td><code>{{ attribute.name }}</code></td>
+        <td>{% for html in attribute.html %}<code>{{ html }}</code>{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
+        <td>{% for note in attribute.note %}{{ note }}{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
+        <td>{{ attribute.desc }}</td>
+    </tr>
+
+    {% endfor %}
+
+    </tbody>
+    </table>
+  
+</div>
+
+{% endif %}
+
+{% if page.sass %} 
+
+<div class="table-container">
+
+    <table id="scss">
+    <caption><a class="anchor" href="#scss">{{ iconAnchor }} <span class="sr-only">Anchor (SCSS)</span></a> SCSS</caption>
+    <thead>
+    <tr>
+        <th>Variable</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% assign sortSass = page.sass %}
+
+    {% for scss in sortSass %}
+
+    <tr>
+        <td><code>{{ scss.name }}</code></td>
+        <td>{{ scss.desc }}</td>
+    </tr>
+
+    {% endfor %}
+
+    </tbody>
+    </table>
+  
+</div>
+
+{% endif %}
+
+{% if page.classes %} 
+
+<div class="table-container">
+
+    <table id="classes">
+    <caption><a class="anchor" href="#classes">{{ iconAnchor }} <span class="sr-only">Anchor (Classes)</span></a> Classes</caption>
+    <thead>
+    <tr>
+        <th>Class</th>
+        <th>Applies To</th>
+        <th>Note</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% assign sortClasses = page.classes %}
+
+    {% for class in sortClasses %}
+
+    <tr>
+        <td><code>{{ class.name }}</code></td>
+        <td>{% for html in class.html %}<code>{{ html }}</code>{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
+        <td>{% for note in class.note %}{{ note }}{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
+        <td>{{ class.desc }}</td>
+    </tr>
+
+    {% endfor %}
+
+    </tbody>
+    </table>
+  
+</div>
+
+{% endif %}
+
+{% if page.cookies %} 
+
+<div class="table-container">
+
+    <table id="cookies">
+    <caption><a class="anchor" href="#cookies">{{ iconAnchor }} <span class="sr-only">Anchor (Cookies)</span></a> Cookies</caption>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Value</th>
+        <th>Type</th>
+        <th>Secure</th>
+        <th>SameSite</th>
+        <th>Domain</th>
+        <th>Path</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% assign sortCookies = page.cookies %}
+
+    {% for cookie in sortCookies %}
+
+    <tr>
+        <td>{{ cookie.name }}</td>
+        <td>{{ cookie.value }}</td>
+        <td>{{ cookie.type }}</td>
+        <td>{{ cookie.secure }}</td>
+        <td>{{ cookie.samesite }}</td>
+        <td>{{ cookie.domain }}</td>
+        <td>{{ cookie.path }}</td>
+    </tr>
+
+    {% endfor %}
+
+    </tbody>
+    </table>
+  
+</div>
+
+{% endif %}
+
+{% if page.parameters %} 
+
+<div class="table-container">
+
+    <table id="parameters">
+    <caption><a class="anchor" href="#parameters">{{ iconAnchor }} <span class="sr-only">Anchor (Parameters)</span></a> Parameters</caption>
+    <thead>
+    <tr>
+        <th>Parameter</th>
+        <th>Note</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% assign sortParameters = page.parameters %}
+
+    {% for parameter in sortParameters %}
+
+    <tr>
+        <td>{{ parameter.name }}</td>
+        <td>{% for note in parameter.note %}{{ note }}{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
+        <td>{{ parameter.desc }}</td>
+    </tr>
+
+    {% endfor %}
+
+    </tbody>
+    </table>
+  
+</div>
+
+{% endif %}
+
+{% if page.notes %} 
+
+<h2 id="notes"><a class="anchor" href="#notes">{{ iconAnchor }} <span class="sr-only">Anchor (Notes)</span></a> Additional Notes</h2>
+
+<ul>
+    
+    {% assign sortNotes = page.notes %}
+
+    {% for note in sortNotes %}
+    
+    <li>{{ note }}</li> 
+    
+    {% endfor %}
+
+</ul>
+
+{% endif %}
+
+<h2 id="issues">Report Issues</h2>
+
+<p>Find a bug? Report it on <a href="https://jira.tmp.com/secure/Dashboard.jspa#create_link">JIRA</a>. You're so awesome!</p>

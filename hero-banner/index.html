@@ -1,4 +1,8 @@
 ---
+messages: 
+
+  - hero-banner-advisory
+
 components:
 
   - name: "Text Left Top"
@@ -45,6 +49,10 @@ components:
 
   - name: "Text Right Bottom (Constrain)"
     id: "text-right-bottom-constrain"
+
+guidance: 
+
+  - a11y-hero-headings
 
 sass:
 
@@ -168,10 +176,4 @@ title: "Hero Banner (Image) v1.1"
 desc: This component allows you to create a standard hero banner complete with a headline and supplementary text.
 ---
 
-{% include message/hero-banner-advisory.html %}
-
 {% include demo/template.html %}
-
-{% include guidance/a11y-hero-headings.html %}
-
-{% include demo/doc.html %} 

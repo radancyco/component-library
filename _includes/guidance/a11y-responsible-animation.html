@@ -1,6 +1,9 @@
-<section aria-labelledby="hdr-responsible-animation" class="a11y-info" id="responsible-animation">
+{% assign class = "a11y-info" %}
+{% assign id = "a11y-responsible-animation" %}
+{% assign landmark = "hdr-a11y-responsible-animation" %}
+{% assign title = "Responsible Animation" %}
 
-    <h2 id="hdr-responsible-animation">Responsible Animation</h2>
+{% include guidance/header.html %}
 
     <p>Be mindful of the impact that animation can have on people with disabilities. Animation can be a distraction for some, make others ill, and dangerous for those subject to seizures. By sticking to the following guidelines, we can make our web experiences pleasant and safe for everybody!</p>
 
@@ -10,9 +13,4 @@
         <li>Animations that flash more than <strong>3 times per second</strong> are <strong>not allowed</strong> on our websites, as they may induce seizures. A pause button will be ineffective here. If you suspect that an animation may be dangerous, please bring this to the attention of the <a href="mailto:a11y@radancy.com">Accessibility Team</a>.</li>
     </ol>
 
-</section>
-
-
-
-
-
+{% include guidance/footer.html %}

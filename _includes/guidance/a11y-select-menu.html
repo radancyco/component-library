@@ -1,6 +1,9 @@
-<section aria-labelledby="hdr-a11y-select-menu" class="a11y-info" id="a11y-select-menu">
+{% assign class = "a11y-info" %}
+{% assign id = "a11y-select-menu" %}
+{% assign landmark = "hdr-a11y-select-menu" %}
+{% assign title = "Accessibility: Select Menu" %}
 
-    <h2 id="hdr-a11y-select-menu">Accessibility: Select Menu</h2>
+{% include guidance/header.html %}
 
     <p>How we build components and the behaviors that they exhibit can have a serious impact on people with disabilities. Navigation systems come in several different flavors. One such version of this is the <code>select</code> menu navigation. By sticking to the following rules, we can ensure that this navigation type works well for everybody!</</p>
 
@@ -11,4 +14,4 @@
         <li>The only exception to the above rules are <code>select</code> menus that change content <strong>within</strong> the page. Here, a submit button is not required. Please see <a href="{{ site.baseurl }}/in-page/">Jump Menu (In-page)</a> for more details.</li>
     </ol>
 
-</section>
+{% include guidance/footer.html %}
