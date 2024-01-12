@@ -81,7 +81,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
   function setCookie(state) {
 
-    document.cookie = atCookieName + "=" + state + "; Secure; SameSite=Strict; path=/";
+    document.cookie = atCookieName + "=" + state + "; SameSite=None; Secure; path=/";
 
   }
 
