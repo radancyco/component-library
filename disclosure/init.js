@@ -14,7 +14,7 @@
 
   // Display which Disclosure is in use via console:
 
-  console.log('%c Disclosure v1.6 in use. ', 'background: #6e00ee; color: #fff');
+  console.log('%c Disclosure v1.7 in use. ', 'background: #6e00ee; color: #fff');
 
   // Commonly used Classes, Data Attributes, States, Strings, etc.
 
@@ -134,7 +134,11 @@
 
     }
 
-    document.querySelector(".disclosure--btn#" + disclosureID.id).setAttribute("aria-expanded", "true");
+    if(document.querySelector(".disclosure--btn#" + disclosureID.id)) {
+
+      document.querySelector(".disclosure--btn#" + disclosureID.id).setAttribute("aria-expanded", "true");
+
+    }
 
   }
 
