@@ -40,7 +40,7 @@ components:
     id: "poster"
     note: "Pause the video and then refresh the page. The first frame is from 25 seconds in. Please note that when pressing play, video will resume from this point."
 
-  - name: "Responsive"
+  - name: "Responsive (Media Queries)"
     id: "responsive"
     note: "Resize your browser window and refresh page. Loading alternatively sized and/or video formats to improve layout and performance is fully supported."
 
@@ -96,7 +96,7 @@ attributes:
       - Number
       - Optional
 
-    desc: Used to set the amount of times a video will loop. Please note that when a loop iteration is completed, video controls are removed from the interface.
+    desc: Used to set the amount of times a video will loop. Please note that when a loop iteration is completed, a video cannot be restarted.
 
   - name: data-pause-button
     html: .animation-toggle

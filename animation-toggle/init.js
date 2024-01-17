@@ -353,6 +353,8 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
     video.setAttribute("playsinline" , "");
     video.muted = true;
 
+    video.load();
+
     // If animation class on body exists...
 
     if (animationBody.classList.contains(atEnabledClassName)) {
@@ -388,18 +390,6 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
           iterations ++;
 
         } 
-
-        setTimeout(function(){
-
-          if(video.ended) {
-
-            // Remove controls
-
-            video.previousElementSibling.remove();
-
-          }
-
-        }, 500);
 
       }, false);
 
