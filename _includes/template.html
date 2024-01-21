@@ -12,7 +12,17 @@
 
 {% endif %}
 
-<p>{{ page.desc }}</p>
+{% if page.desc %}
+
+  <p>{{ page.desc }}</p>
+
+{% endif %}
+
+{% if contentblock %}
+
+  {{ contentblock }}
+
+{% endif %}
 
   {% if page.in-page-custom %}
 
@@ -38,7 +48,11 @@
 
   {% else %}
 
+  {% if !page.components %}
+
     <h2 id="basic-setup">Default Setup</h2>
+
+  {% endif %}
 
   {% endif %}
 
@@ -245,11 +259,11 @@
 
   <h2 id="properties">Properties</h2>
 
-<p>Use the following properties to configure this component.</p>
+  <p>Use the following properties to configure this component.</p>
 
-{% if page.elements %} 
+  {% if page.elements %} 
 
-<div class="table-container">
+  <div class="table-container">
 
     <table id="elements">
     <caption><a class="anchor" href="#elements">{{ iconAnchor }} <span class="sr-only">Anchor (Elements)</span></a> Elements</caption>
@@ -277,13 +291,13 @@
     </tbody>
     </table>
   
-</div>
+  </div>
 
-{% endif %}
+  {% endif %}
 
-{% if page.aria %} 
+  {% if page.aria %} 
 
-<div class="table-container">
+  <div class="table-container">
 
     <table id="aria">
     <caption><a class="anchor" href="#aria">{{ iconAnchor }} <span class="sr-only">Anchor (ARIA)</span></a> ARIA</caption>
@@ -313,13 +327,13 @@
     </tbody>
     </table>
   
-</div>
+  </div>
 
-{% endif %}
+  {% endif %}
 
-{% if page.attributes %} 
+  {% if page.attributes %} 
 
-<div class="table-container">
+  <div class="table-container">
 
     <table id="attributes">
     <caption><a class="anchor" href="#attributes">{{ iconAnchor }} <span class="sr-only">Anchor (Attributes)</span></a> Attributes</caption>
@@ -349,13 +363,13 @@
     </tbody>
     </table>
   
-</div>
+  </div>
 
-{% endif %}
+  {% endif %}
 
-{% if page.sass %} 
+  {% if page.sass %} 
 
-<div class="table-container">
+  <div class="table-container">
 
     <table id="scss">
     <caption><a class="anchor" href="#scss">{{ iconAnchor }} <span class="sr-only">Anchor (SCSS)</span></a> SCSS</caption>
@@ -381,13 +395,13 @@
     </tbody>
     </table>
   
-</div>
+  </div>
 
-{% endif %}
+  {% endif %}
 
-{% if page.classes %} 
+  {% if page.classes %} 
 
-<div class="table-container">
+  <div class="table-container">
 
     <table id="classes">
     <caption><a class="anchor" href="#classes">{{ iconAnchor }} <span class="sr-only">Anchor (Classes)</span></a> Classes</caption>
@@ -417,13 +431,13 @@
     </tbody>
     </table>
   
-</div>
+  </div>
 
-{% endif %}
+  {% endif %}
 
-{% if page.cookies %} 
+  {% if page.cookies %} 
 
-<div class="table-container">
+  <div class="table-container">
 
     <table id="cookies">
     <caption><a class="anchor" href="#cookies">{{ iconAnchor }} <span class="sr-only">Anchor (Cookies)</span></a> Cookies</caption>
@@ -459,13 +473,13 @@
     </tbody>
     </table>
   
-</div>
+  </div>
 
-{% endif %}
+  {% endif %}
 
-{% if page.parameters %} 
+  {% if page.parameters %} 
 
-<div class="table-container">
+  <div class="table-container">
 
     <table id="parameters">
     <caption><a class="anchor" href="#parameters">{{ iconAnchor }} <span class="sr-only">Anchor (Parameters)</span></a> Parameters</caption>
@@ -493,15 +507,15 @@
     </tbody>
     </table>
   
-</div>
+  </div>
 
-{% endif %}
+  {% endif %}
 
-{% if page.notes %} 
+  {% if page.notes %} 
 
-<h2 id="notes"><a class="anchor" href="#notes">{{ iconAnchor }} <span class="sr-only">Anchor (Notes)</span></a> Additional Notes</h2>
+  <h2 id="notes"><a class="anchor" href="#notes">{{ iconAnchor }} <span class="sr-only">Anchor (Notes)</span></a> Additional Notes</h2>
 
-<ul>
+  <ul>
     
     {% assign sortNotes = page.notes %}
 
@@ -511,10 +525,10 @@
     
     {% endfor %}
 
-</ul>
+  </ul>
 
-{% endif %}
+  {% endif %}
 
-<h2 id="issues">Report Issues</h2>
+  <h2 id="issues">Report Issues</h2>
 
-<p>Find a bug? Report it on <a href="https://jira.tmp.com/secure/Dashboard.jspa#create_link">JIRA</a>. You're so awesome!</p>
+  <p>Find a bug? Report it on <a href="https://jira.tmp.com/secure/Dashboard.jspa#create_link">JIRA</a>. You're so awesome!</p>
