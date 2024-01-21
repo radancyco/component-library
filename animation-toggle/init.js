@@ -361,8 +361,6 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
     } else {
 
-      video.load();
-
       // If video has poster...
     
       if(video.hasAttribute(dataPoster)) {
