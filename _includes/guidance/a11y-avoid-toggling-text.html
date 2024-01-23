@@ -13,13 +13,13 @@
 
 	<ul>
 		<li>Changing text may not announce the state change to assistive technology users.</li>
-    	<li>Changing text removes the initial context of the control, which can be confusing when returing to it later. In addition to this, further confusion is added when <code>aria-expanded</code> or <code>aria-pressed</code> is used to aid assistive technology users. Imagine hearing, "Job Saved, pressed" when "Save Job, pressed" or "Save Job, not pressed" would be more clear and consistent.</li>
+    	<li>Changing text removes the initial context of the control, which can be confusing when returing to it later. In addition to this, further confusion is added when <code>aria-expanded</code> or <code>aria-pressed</code> are used to aid assistive technology users. Imagine hearing, "Job Saved, pressed" when "Save Job, not pressed" was the initial context of the button. Hearing, "Save Job, pressed" and "Save Job, not pressed" would be more clear and consistent.</li>
 	</ul>
 
 	<h3>Solution</h3>
 
 	<ul>
-		<li>Instead of changing text, use visual affordance to convey that toggling behavior exists. This is a well-known and quickly understood convention. For example, using signifiers like up and down arrows, check marks, plus and minus, make it clear that an action has occured.</li>
+		<li>Instead of changing text, use visual affordance to convey a change of state. This is a well-known and quickly understood convention. For example, using signifiers like up and down arrows, check marks, plus and minus, make it clear that an action has occured, without confusion.</li>
 		<li>Using a single instruction means there is less text to translate.</li>
 	</ul>
 
