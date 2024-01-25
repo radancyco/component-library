@@ -349,6 +349,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
     // Add initial attributes.
 
     video.setAttribute("disableRemotePlayback", "");
+    video.setAttribute("disablePictureInPicture", "");
     video.id = "animation-toggle-video-" + (e + 1);   
     video.setAttribute("playsinline" , "");
     video.muted = true;
