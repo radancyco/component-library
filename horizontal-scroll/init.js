@@ -1,6 +1,6 @@
 /*!
 
-  Radancy Component Library: Carousel Grid
+  Radancy Component Library: Horizontal Scroll
 
   Contributor(s):
   Michael "Spell" Spellacy
@@ -9,7 +9,7 @@
 
 */
 
-var carousel = document.querySelector(".carousel-grid__container");
+var carousel = document.querySelector(".horizontal-scroll__container");
 var isDown = false;
 var startX;
 var scrollLeft;
