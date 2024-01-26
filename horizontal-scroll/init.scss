@@ -27,7 +27,7 @@ position: relative;
   display: flex;
   overflow-x: scroll;
   padding: 2em 0 2em 1em;
-  scrollbar-color: $base-color #fff;
+  scrollbar-color: $base-color;
   scrollbar-gutter: always; 
   -webkit-overflow-scrolling: touch;
 
@@ -43,7 +43,7 @@ position: relative;
     // However, if you require full support, then have a look at http://grsmto.github.io/simplebar/
 
     &::-webkit-scrollbar {
-    height: calc(6em / 16);
+    height: calc(8em / 16);
     }
 
     /* Track */

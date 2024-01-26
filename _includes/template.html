@@ -261,9 +261,13 @@
 
   {% endif %}
 
+  {% if page.elements or page.aria or page.attributes or page.sass or page.class or page.cookies or page.parameters %}
+
   <h2 id="properties">Properties</h2>
 
   <p>Use the following properties to configure this component.</p>
+
+  {% endif %}
 
   {% if page.elements %} 
 
