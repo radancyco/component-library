@@ -159,7 +159,7 @@ $breakpoint: em(860);
         
             code {
             scroll-snap-type: x mandatory;
-            scrollbar-color: $base-color #fff;
+            scrollbar-color: $base-color;
             scrollbar-gutter: always; 
             -webkit-overflow-scrolling: touch;
 
@@ -222,7 +222,7 @@ $breakpoint: em(860);
             overflow-y: scroll;
             padding: 0 em(16);
             scroll-snap-type: x mandatory;
-            scrollbar-color: $base-color #fff;
+            scrollbar-color: $base-color;
             scrollbar-gutter: always; 
             -webkit-overflow-scrolling: touch;
         
