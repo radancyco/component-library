@@ -10,6 +10,9 @@
 
 */
 
+
+Using Vanilla JavaScrpt, produce code than can cycle through a list of links using arrow keys. 
+
 /*!
 
   Radancy Component Library: TabCordion

@@ -1,14 +1,14 @@
 /*!
 
-  Radancy Component Library: TabCordion
+  Radancy Component Library: Tablist
 
-  Contributor(s):
-  Michael "Spell" Spellacy, Email: michael.spellacy@radancy.com, Twitter: @spellacy, GitHub: michaelspellacy
-  Andrew Hill, Email: andrew.hill@radancy.com
+  Contributor(s): 
+  Michael "Spell" Spellacy
 
   Dependencies: Sass
-  Instructions: To run locally, install Sass (https://sass-lang.com/install), CL to directory this file in and run:
-  sass --watch init.scss:init.css --style compressed
+
+  Instructions: 
+  sass --watch .:. --style compressed
 
 */
 
@@ -81,8 +81,8 @@ color: $base-color-active;
 
   &__panel  {
   background-color: $base-color;
-  display: none;
   padding: 1em;
+  display: none;
   position: relative;
 
     [role="tablist"] & {

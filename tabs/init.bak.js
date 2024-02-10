@@ -14,59 +14,48 @@
 
   // Display which TabCordion is in use via console:
 
-  console.log('%c TabCordion v1.8 in use. ', 'background: #6e00ee; color: #fff');
+  console.log('%c Tablist v1.0 in use. ', 'background: #6e00ee; color: #fff');
 
   // Commonly used Classes, Data Attributes, States, and Strings.
 
-  var tabCordionClass = ".tab-accordion";
-  var tabCordionActiveClass = ".active";
-  var tabCordionButtonClass = ".tab-accordion__button";
-  var tabCordionPanelClass = ".tab-accordion__panel";
-  var tabCordionActiveState = tabCordionActiveClass.replace(".", "");
-  var tabCordionExpandedState = "expanded";
+  var tabListClass = ".tablist";
+  var tabCordionButtonClass = ".tablist__tab";
+  var tabCordionPanelClass = ".tab-tablist__panel";
+
+  var tabCordionExpandedState = "expanded"; // figure out what this is
   var tabCordionDataActive = "data-tab-active";
   var tabCordionDataActiveChanged = "data-tab-active-changed";
-  var tabCordionDataBreakpoint = "data-tab-breakpoint";
-  var tabCoprdionDataDisableURL = "data-tab-disable-url";
+
+  var tabCoprdionDataDisableURL = "data-tab-disable-url"; // come back to this. 
   var tabCordionDataVertical = "data-tab-vertical";
-  var tabCordionCallback = document.querySelectorAll(".tab-accordion[data-tab-callback]");
+
 
   // Grab the hash (fragment) from the URL.
 
-  var URLFragment = window.location.hash.substr(1);
+  var URLFragment = location.hash.slice(1);
 
-  // Get all TabCordions on the page...
+  // Get all TabLists on the page...
 
-  var tabCordions = document.querySelectorAll(tabCordionClass);
+  var tabLists = document.querySelectorAll(tabListClass);
 
   // Create an array to store each TabCordions breakpoint in,
   // which we will loop through later...
 
-  var tabListBreakPoints = [];
+
 
   // loop through each TabCordion...
 
-  tabCordions.forEach(function(tabCordion){
 
-    // Get each TabCordion breakpoint...
-
-    var tabBreakPoint = tabCordion.getAttribute(tabCordionDataBreakpoint);
-
-    // Store each breakpoint in array (above) for later use by matchMedia.
-
-    tabListBreakPoints.push(window.matchMedia(tabBreakPoint));
-
-  });
 
   // TabAccordion Toggle
 
   
 
-  function viewPortChange() {
+
 
     // Loop through each TabCordion
 
-     tabCordions.forEach(function(tabCordion, i){
+    tabLists.forEach(function(tabCordion, i){
 
         var tabListButton = tabCordion.querySelectorAll(tabCordionButtonClass);
         var tabListPanel = tabCordion.querySelectorAll(tabCordionPanelClass);
@@ -233,7 +222,6 @@
             button.setAttribute("aria-selected", "false");
             button.setAttribute("role", "tab");
             button.setAttribute("tabindex", -1);
-            button.removeAttribute("aria-expanded");
 
             if(Number(tabListItemCount) === Number(tabPanelSelected)) {
 
@@ -271,88 +259,29 @@
 
           // Our Accordion UI buttons.
 
-          tabListButton.forEach(function(button, j){
 
-            var tabListItemCount = j + 1;
-
-            button.setAttribute("aria-expanded", "false");
-            button.removeAttribute("aria-selected");
-            button.removeAttribute("role");
-            button.removeAttribute("tabindex");
-
-            if(Number(tabListItemCount) === Number(tabPanelSelected)) {
-
-              button.setAttribute("aria-expanded", "true");
-
-            }
-
-          });
 
           // Our Accordion UI panels.
-
-          tabListPanel.forEach(function(panel){
-
-            panel.removeAttribute("role");
-            panel.removeAttribute("tabindex");
-            panel.removeAttribute("aria-labelledby");
-
-          });
 
         }
 
      });
 
-  }
 
   // Initiate viewPortWidth function when viewport is resized.
 
-  tabListBreakPoints.forEach(function(breakpoints){
 
-    breakpoints.addListener(viewPortChange);
-
-  });
-
-  // Initiate tabCordions on page load.
-
-  viewPortChange();
+  // Initiate tabLists on page load.
 
   // Callback OnLoad
 
-  tabCordionCallback.forEach(function(callback){
 
-    var callBackFunction = callback.dataset.tabCallback;
-    var callBackContent = callback.querySelectorAll("." + tabCordionExpandedState);
-
-    callBackContent.forEach(function(content){
-
-      contentTarget = content.getAttribute("id");
-      customCallback(contentTarget, callBackFunction);
-
-    });
-
-  });
 
   // Custom callback with variable name. Accepts ID of content you will target.
 
-  function customCallback(contentTarget, customCallBackName) {
 
-    if (customCallBackName !== null) {
-
-      window[customCallBackName](contentTarget);
-
-    }
-
-  }
 
 })();
 
 // Example Callback Function (No need to copy this if you do not need it.)
 
-function helloWorld(contentID) {
-
-  var targetContent = document.getElementById(contentID);
-  var message = document.createElement("p");
-  message.innerHTML = "<strong>Hello World! The ID of this content area is <em> " + contentID + "</em>. You can use a callback to initiate a function within the disclosed content area on page load and reinitiate the same function on button click.</strong>";
-  targetContent.append(message);
-
-}
