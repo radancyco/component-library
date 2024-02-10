@@ -4,10 +4,24 @@ components:
   - name: "Default Setup"
     id: "default-setup"
 
+  - name: "Enable URL"
+    id: "enable-url"
+
   - name: "Scroll"
     id: "scroll"
 
-folder: tabs
+attributes:
+
+  - name: data-enable-url
+    html: .tablist
+    note:
+  
+      - Boolean
+      - Optional
+      
+    desc: Used to include a URL fragment on click. Including this can be useful for sharing specific in-page content.
+
+folder: tablist
 in-page-custom: true
 localcss: "init.css"
 localjs: "init.js"

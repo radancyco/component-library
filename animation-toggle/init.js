@@ -11,6 +11,8 @@
 
 function loadAnimationToggle(url, callback) {
 
+  "use strict";
+
   // Install Language Pack.
 
   var componentLanguagePack = document.createElement("script");

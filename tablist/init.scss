@@ -22,6 +22,9 @@ $base-color-neutral: lightgrey;
 
 .tablist {
 color: $base-color-active;
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
 
   &[data-tab-animation] {
 
@@ -29,11 +32,6 @@ color: $base-color-active;
 
   }
 
-  &[role="tablist"] {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  }
 
   // Note: min-heiht to set consistent height in vertical tab panels. Adjust as needed.
   // Ideally, we would handle this via JavaScript, but can't due to display: none on each panel.
@@ -82,7 +80,7 @@ color: $base-color-active;
   &__panel  {
   background-color: $base-color;
   padding: 1em;
-  display: none;
+  // display: none;
   position: relative;
 
     [role="tablist"] & {

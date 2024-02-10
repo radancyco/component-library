@@ -1,0 +1,13 @@
+/*!
+
+  Radancy Component Library: Tablist
+
+  Contributor(s): 
+  Michael "Spell" Spellacy
+
+  Dependencies: Sass
+
+  Instructions: 
+  sass --watch .:. --style compressed
+
+*/.tablist{color:#fff;display:flex;flex-direction:row;flex-wrap:wrap}.tablist[data-tab-animation]{overflow:hidden}.tablist[aria-orientation=vertical]{display:grid;grid-template-columns:20% auto;min-height:400px}.tablist__list{display:flex;margin:0;padding:0;list-style:none}.tablist__tab{border:0;display:block;margin:0;padding:1.5em;width:100%}[role=tablist] .tablist__tab{background-color:#d3d3d3;order:-1;width:auto}.tablist__tab:focus,.tablist__tab:hover{background-color:#bababa}.tablist__tab[aria-selected=true]{background-color:#6f00ef;color:#fff}.tablist__panel{background-color:#6f00ef;padding:1em;position:relative}[role=tablist] .tablist__panel{flex-basis:100%}[aria-orientation=vertical] .tablist__panel{grid-area:1/2/6}@media(prefers-reduced-motion: no-preference){[data-tab-animation] .tablist__panel{display:block;position:absolute;visibility:hidden}}.tablist__panel a{color:inherit}.tablist__panel.expanded{display:block;width:100%}[data-tab-animation] .tablist__panel.expanded{position:static;visibility:visible}.tablist__content{position:relative}[data-tab-animation] .tablist__content{bottom:-100px;opacity:0;visibility:hidden}[data-tab-animation] .expanded .tablist__content{bottom:0;opacity:1;transition:all 400ms ease-in-out;visibility:visible}.tablist__list:focus,.tablist__panel:focus{outline-offset:-6px}/*# sourceMappingURL=init.css.map */

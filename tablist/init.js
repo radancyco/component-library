@@ -1,5 +1,7 @@
 (function() {
 
+  "use strict";
+
   // Display which Tablist version is in use via console:
 
   console.log('%c Tablist v1.0 in use. ', 'background: #6e00ee; color: #fff');
@@ -10,7 +12,8 @@
   var tabListListClass = ".tablist__list";
   var tabListClassName = "tablist__tab"
   var tabListTabClass = "." + tabListClassName;
-  var tabListPanelClass = ".tablist__panel"; 
+  var tabListDataEnableURL = "data-enable-url"
+  var tabListPanelClass = ".tablist__panel";
   var tabLists = document.querySelectorAll(tabListClass);
   var URLFragment = location.hash.slice(1);
 
@@ -18,25 +21,35 @@
 
   tabLists.forEach(function(list, e){
 
-    index = e + 1;
+    var index = e + 1;
 
     list.setAttribute("id", "tablist-" + index);
 
     list.querySelector(tabListListClass).setAttribute("role", "tablist");
 
-    // Get all tabs within tablist and begin prepping them.
+    // Get all tabs within tablist.
 
     var tabs = list.querySelectorAll(tabListTabClass);
 
-    // Get all tabpanels within tablist and begin prepping them. 
+    // Get all tabpanels within tablist. 
 
     var panels = list.querySelectorAll(tabListPanelClass);
 
-    var tabFragments = [];
+    // Array used to hold all panel IDs.
+
+    var panelNames = [];
+
+    // Prep each tab.
 
     tabs.forEach(function(tab){
 
       var tabID = tab.getAttribute("href").replace("#", "");
+
+      // Push all panel ID's to array.
+
+      panelNames.push(tabID);
+
+      // Setup each tab.
 
       tab.parentElement.setAttribute("role", "presentation");
       tab.setAttribute("aria-controls", tabID);
@@ -45,7 +58,7 @@
       tab.setAttribute("aria-selected", "false");
       tab.setAttribute("tabindex", "-1");
 
-      tabFragments.push(tabID);
+      // Highlight tab based on hash.
 
       if(tabID === URLFragment) {
 
@@ -65,18 +78,33 @@
 
           });
 
-          var panel = tab.closest(tabListClass).querySelector(".expanded");
-          panel.classList.remove("expanded");
-          var panelTarget = document.getElementById(panelID);
+          // Hide any open panels
 
-          panelTarget.classList.add("expanded");
+          var panels = tab.closest(tabListClass).querySelectorAll(tabListPanelClass);
+          var panelTarget = tab.closest(tabListClass).querySelector("#" + panelID);
+  
+          panels.forEach(function(panel){
+    
+            panel.setAttribute("hidden", "");
 
-          
+          });
+
+          // Show selected panel
+    
+          panelTarget.removeAttribute("hidden");
+
+          // Highlight selected tab
         
           this.setAttribute("aria-selected", "true");
           this.removeAttribute("tabindex");
 
-          // add hash tag support will need a data attribute to turn it on and history push. 
+          // TODO: add hash tag support will need a data attribute to turn it on and history push. 
+
+          if(this.closest(tabListClass).hasAttribute(tabListDataEnableURL)) {
+
+            history.pushState(null, null, "#" + tabID);
+
+          }
 
           e.preventDefault();
 
@@ -90,20 +118,21 @@
 
       panel.setAttribute("aria-labelledby", "tab-" + panelID);
       panel.setAttribute("role", "tabpanel");
+      panel.setAttribute("hidden", "");
 
       if(panelID === URLFragment) {
 
-        panel.classList.add("expanded");
+        panel.removeAttribute("hidden");
 
       }
     
     });
 
-    if(!URLFragment || !tabFragments.includes(URLFragment)) {
+    if(!URLFragment || !panelNames.includes(URLFragment)) {
 
       tabs[0].setAttribute("aria-selected", "true");
       tabs[0].removeAttribute("tabindex");
-      panels[0].classList.add("expanded");
+      panels[0].removeAttribute("hidden");
 
     }
 
