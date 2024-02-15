@@ -36,6 +36,10 @@ components:
     id: "multiple-videos"
     customcss: "multiple-videos"
 
+  - name: "No Pause Button"
+    id: "no-pause-button"
+    note: In some situations, it may be desirable to remove a pause button but still have animation benefit from cookie setting enabled in videos that do contain a pause button. This is not an attribute that should be used lightly.
+
   - name: "Poster (Fallback Image)"
     id: "poster"
     note: "Pause the video and then refresh the page. The first frame is from 25 seconds in. Please note that when pressing play, video will resume from this point."
@@ -106,6 +110,15 @@ attributes:
       - Optional
 
     desc: Used to pass custom label to <code>.animation-toggle__pause</code>. This will override the default label, which is "Pause Animation".
+
+  - name: data-pause-remove
+    html: .animation-toggle
+    note:
+
+      - Boolean
+      - Optional
+
+    desc: Used to remove a pause button from animation. This attribute should only be used in certain configurations. For example, short, non-looping animations. 
 
   - name: data-poster
     html: video
@@ -194,7 +207,7 @@ libraryjs: "callback-lottie.js"
 customjs: "callback-custom.js"
 section: component-library-animation-toggle
 tabcordion: true
-title: "Animation Toggle v1.5"
+title: "Animation Toggle v1.6"
 desc: This component enhances animation control, ensuring improved accessibility for disabled users and optimized performance across devices.
 ---
 
