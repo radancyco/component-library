@@ -1,11 +1,49 @@
 ---
+components:
+
+  - name: "Default Setup"
+    id: "default-setup"
+
+  - name: "Enable URL"
+    id: "enable-url"
+
+  - name: "Vertical Tabs"
+    id: "vertical-tabs"
+
+attributes:
+
+  - name: data-enable-url
+    html: .tablist
+    note:
+  
+      - Boolean
+      - Optional
+      
+    desc: Used to include a URL fragment on click. Including this can be useful for sharing specific in-page content.
+
+  - name: data-vertical
+    html: .tablist
+    note:
+  
+      - Boolean
+      - Optional
+      
+    desc: Used to change the layout of the tabs from horizontal to vertical. The CSS for this layout is tied to <code>aria-orientation</code>.
+
 folder: tablist
+in-page-custom: true
 localcss: "init.css"
 localjs: "init.js"
 tabcordion: true
 title: "Tablist v1.0"
-desc: Coming soon to a browser near you.
+desc: This component will allow you to implement a tablist user interface.
 ---
 
+<div class="warning">
+
+  <p><strong>Warning!</strong> This script is not ready for production! Do not use!</p>
+
+</div>
+  
 {% include template.html %}
 

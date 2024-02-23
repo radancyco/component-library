@@ -1,3 +1,15 @@
+
+/*!
+
+  Radancy Component Library: Tablist
+
+  Contributor(s): 
+  Michael "Spell" Spellacy
+
+  Dependencies: None
+
+*/
+
 (function() {
 
   "use strict";
@@ -13,6 +25,7 @@
   var tabListClassName = "tablist__tab"
   var tabListTabClass = "." + tabListClassName;
   var tabListDataEnableURL = "data-enable-url"
+  var tabListDataVertical = "data-vertical"
   var tabListPanelClass = ".tablist__panel";
   var tabLists = document.querySelectorAll(tabListClass);
   var URLFragment = location.hash.slice(1);
@@ -25,7 +38,15 @@
 
     list.setAttribute("id", "tablist-" + index);
 
-    list.querySelector(tabListListClass).setAttribute("role", "tablist");
+    var listContainer = list.querySelector(tabListListClass);
+
+    listContainer.setAttribute("role", "tablist");
+
+    if(list.hasAttribute(tabListDataVertical)) {
+
+      listContainer.setAttribute("aria-orientation", "vertical");
+
+    }
 
     // Get all tabs within tablist.
 
@@ -38,7 +59,7 @@
     // Array used to hold all panel IDs.
 
     var panelNames = [];
-
+    
     // Prep each tab.
 
     tabs.forEach(function(tab){
@@ -112,6 +133,43 @@
 
       });
 
+      // Get tab links used in tablist.
+
+      var tabLinks = list.querySelector(tabListListClass).querySelectorAll(tabListTabClass);
+
+      tab.addEventListener("keydown", function(e) {
+          
+        // Check if the key pressed is an arrow key
+                    
+        if (e.key === "ArrowUp" || e.key === "ArrowRight" || e.key === "ArrowDown" || e.key === "ArrowLeft") {
+      
+          e.preventDefault(); // Prevent default scrolling behavior when arrows keys clicked.
+        
+          // Get the index of the currently focused link
+        
+          var focusedIndex = Array.from(tabLinks).indexOf(document.activeElement);
+            
+          // Calculate the new index based on the arrow key pressed
+        
+          if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+                        
+            focusedIndex = (focusedIndex - 1 + tabLinks.length) % tabLinks.length; // Move left
+                      
+          } else if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+                
+            focusedIndex = (focusedIndex + 1) % tabLinks.length; // Move right
+                
+          }
+            
+          // Focus and trigger event
+                
+          tabLinks[focusedIndex].focus()
+          tabLinks[focusedIndex].click();
+                
+        }
+                  
+      });
+
     });
 
     panels.forEach(function(panel){
@@ -142,7 +200,6 @@
 
   });
   
-
   // All TabList panels must have unique IDs. Check to see if duplicate ID's exist and alert developer. 
   // Note: This function may not be needed. Instead, simply having functionality so dependent on ID, may make this moot. 
 
