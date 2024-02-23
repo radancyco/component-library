@@ -86,12 +86,14 @@
           panels.forEach(function(panel){
     
             panel.setAttribute("hidden", "");
+            panel.removeAttribute("tabindex");
 
           });
 
           // Show selected panel
     
           panelTarget.removeAttribute("hidden");
+          panelTarget.setAttribute("tabindex", "0");
 
           // Highlight selected tab
         
@@ -119,6 +121,7 @@
       panel.setAttribute("aria-labelledby", "tab-" + panelID);
       panel.setAttribute("role", "tabpanel");
       panel.setAttribute("hidden", "");
+      panel.setAttribute("tabindex", "0");
 
       if(panelID === URLFragment) {
 
@@ -133,6 +136,7 @@
       tabs[0].setAttribute("aria-selected", "true");
       tabs[0].removeAttribute("tabindex");
       panels[0].removeAttribute("hidden");
+      panels[0].setAttribute("tabindex", "0");
 
     }
 
