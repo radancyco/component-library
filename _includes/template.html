@@ -56,7 +56,7 @@
 
   {% endif %}
 
-  {% assign counter = 1 %}
+  {% assign counter = 0 %}
   
   {% for component in page.components %}
 
@@ -154,85 +154,91 @@
       {% assign counter = counter | plus: 1 %}
 
       <h2>Code</h2> 
-  
-      <div class="tab-accordion" data-tab-disable-url data-tab-breakpoint="(min-width: 0)">
 
-        <button class="tab-accordion__button">{{ iconHTML }} HTML</button>
+      <div class="tablist">
+
+        <ul class="tablist__list">
+          <li><a class="tablist__tab" href="#html-{{counter}}">{{ iconHTML }} HTML</a></li>
+          {% if page.localcss %}
+          <li><a class="tablist__tab" href="#css-{{counter}}">{{ iconGlobal }} CSS</a></li>
+          {% endif %}
+          {% if component.customcss %}
+          <li><a class="tablist__tab" href="#custom-css-{{counter}}">{{ iconCustom }} CSS (Custom)</a></li>
+          {% endif %}
+          {% if page.localjs %}
+          <li><a class="tablist__tab" href="#javascript-{{counter}}">{{ iconGlobal }} JavaScript</a></li>
+          {% endif %}
+          {% if component.customjs %}
+          <li><a class="tablist__tab" href="#custom-javascript-{{counter}}">{{ iconCustom }} JavaScript (Custom)</a></li>
+          {% endif %}
+        </ul>
       
-        <div class="tab-accordion__panel">
+        <div class="tablist__panel" id="html-{{counter}}">
       
-          <div class="tab-accordion__content" contenteditable spellcheck="false">
-      
+          <div class="tablist__content" contenteditable spellcheck="false">
+
             {% highlight html %}{% include_relative html/{{ component.id }}.html %}{% endhighlight %}
-            
+
           </div>
-      
+
         </div>
 
         {% if page.localcss %}
+
+        <div class="tablist__panel" id="css-{{counter}}">
       
-          <button class="tab-accordion__button">{{ iconGlobal }} CSS</button>
-      
-          <div class="tab-accordion__panel">
-      
-            <div class="tab-accordion__content" contenteditable spellcheck="false">
-      
-              {% highlight css %}{% include_relative init.scss %}{% endhighlight %}
-            
-            </div>
-      
+          <div class="tablist__content" contenteditable spellcheck="false">
+
+            {% highlight css %}{% include_relative init.scss %}{% endhighlight %}
+
           </div>
+
+        </div>
 
         {% endif %}
 
         {% if component.customcss %}
+
+        <div class="tablist__panel" id="custom-css-{{counter}}">
       
-          <button class="tab-accordion__button">{{ iconCustom }} CSS</button>
-    
-          <div class="tab-accordion__panel">
-    
-            <div class="tab-accordion__content" contenteditable spellcheck="false">
-    
-              {% highlight javascript %}{% include_relative {{ component.customcss }}.scss %}{% endhighlight %}
-          
-            </div>
-    
+          <div class="tablist__content" contenteditable spellcheck="false">
+
+            {% highlight javascript %}{% include_relative {{ component.customcss }}.scss %}{% endhighlight %}
+
           </div>
+
+        </div>
 
         {% endif %}
 
         {% if page.localjs %}
+
+        <div class="tablist__panel" id="javascript-{{counter}}">
       
-          <button class="tab-accordion__button">{{ iconGlobal }} JS</button>
-      
-          <div class="tab-accordion__panel">
-      
-            <div class="tab-accordion__content" contenteditable spellcheck="false">
-      
-              {% highlight javascript %}{% include_relative init.js %}{% endhighlight %}
-            
-            </div>
-      
+          <div class="tablist__content" contenteditable spellcheck="false">
+
+            {% highlight javascript %}{% include_relative init.js %}{% endhighlight %}
+
           </div>
+
+        </div>
 
         {% endif %}
 
         {% if component.customjs %}
+
+        <div class="tablist__panel" id="custom-javascript-{{counter}}">
       
-          <button class="tab-accordion__button">{{ iconCustom }} JS</button>
-      
-          <div class="tab-accordion__panel">
-      
-            <div class="tab-accordion__content" contenteditable spellcheck="false">
-      
-              {% highlight javascript %}{% include_relative {{ component.customjs }} %}{% endhighlight %}
-            
-            </div>
-      
+          <div class="tablist__content" contenteditable spellcheck="false">
+
+            {% highlight javascript %}{% include_relative {{ component.customjs }} %}{% endhighlight %}
+
           </div>
 
+        </div>
+
         {% endif %}
-      
+
       </div>
 
     {% if page.in-page-custom %}
