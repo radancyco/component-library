@@ -47,8 +47,7 @@ color: $base-color-active;
   -webkit-overflow-scrolling: touch;
 
     &::-webkit-scrollbar {
-    height: 6px;
-    width: -20px
+    height: calc(4rem/16);
     }
 
     &::-webkit-scrollbar-track {
@@ -57,6 +56,12 @@ color: $base-color-active;
         
     &::-webkit-scrollbar-thumb {
     background-color: $base-color;
+    border-radius: 5px;
+
+      &:active, &:hover {
+      background-color: #000;
+      }
+
     }
 
     [data-scroll-list] & {
