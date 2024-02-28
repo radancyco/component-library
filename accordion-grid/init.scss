@@ -1,6 +1,6 @@
 /*!
 
-  Radancy Component Library: Grid Disclosure
+  Radancy Component Library: Accordion Grid
 
   Contributor(s):
   Michael "Spell" Spellacy
@@ -14,19 +14,19 @@
 
 // Variables
 
-$grid-color: #6F00EF;
-$grid-color-active: #fff;
-$grid-color-neutral: #bababa;
+$accordion-grid-color: #6F00EF;
+$accordion-grid-color-active: #fff;
+$accordion-grid-color-neutral: #bababa;
 
-// Grid Disclosure
+// Accordion Grid
 
-.disclosure-grid {
+.accordion-grid {
 display: flex;
 flex-direction: row;
 flex-wrap: wrap;
 
     &__button {
-    background-color: $grid-color-neutral;
+    background-color: $accordion-grid-color-neutral;
     border: 0;
     color: inherit;
     cursor: pointer;
@@ -41,7 +41,7 @@ flex-wrap: wrap;
       // The project designer should be providing this state. When received, please ensure it is meeting correct ratio.
 
       &:focus, &:hover {
-      background-color: $grid-color;
+      background-color: $accordion-grid-color;
       color: #fff;
       }
 
@@ -52,7 +52,7 @@ flex-wrap: wrap;
         // Accent (Arrow)
 
         &::after {
-        border-color: transparent transparent $grid-color transparent;
+        border-color: transparent transparent $accordion-grid-color transparent;
         border-style: solid;
         border-width: 0 1.25em 1.25em 1.25em;
         bottom: -0.3125em;
@@ -65,7 +65,7 @@ flex-wrap: wrap;
         width: 0;
         }
 
-        + .disclosure-grid__content {
+        + .accordion-grid__content {
         display: block;
         }
 
@@ -74,8 +74,8 @@ flex-wrap: wrap;
     }
 
     &__content {
-    background-color: $grid-color;
-    color: $grid-color-active;
+    background-color: $accordion-grid-color;
+    color: $accordion-grid-color-active;
     display: none;
     margin: 0 0 0.15625em;
     padding: 1em;
@@ -109,7 +109,7 @@ flex-wrap: wrap;
 
     &__button, &__content {
 
-      &[data-grid-exclude] {
+      &[data-accordion-grid-exclude] {
       display: none;
       }
 
