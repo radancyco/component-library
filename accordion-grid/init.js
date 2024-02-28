@@ -5,8 +5,6 @@
   Contributor(s):
   Michael "Spell" Spellacy
 
-  Dependencies: None
-
 */
 
 (function() {
@@ -19,7 +17,7 @@
 
   // Commonly used Classes, Data Attributes, States, and Strings.
 
-  var accGridButtonGlass = ".accordion-grid__button";
+  var accGridButtonClass = ".accordion-grid__button";
   var accGridButtonId = "grid-button";
   var accGridClass = ".accordion-grid";
   var accGridCloseClass = "accordion-grid__close"
@@ -32,10 +30,9 @@
   var accGridDataExclude = "data-accordion-grid-exclude";
   var accGridDataLarge = "data-accordion-grid-large";
   var accGridDataMedium = "data-accordion-grid-medium";
-  var accGridDataSticky = "data-accordion-grid-sticky";
   var accGridDisclosureId = "accordion-grid";
   var accGridFormatClass = "accordion-grid-format";
-  var accGridButtonAll = document.querySelectorAll(accGridButtonGlass);
+  var accGridButtonAll = document.querySelectorAll(accGridButtonClass);
   var accGridCallBackAll = document.querySelectorAll(".accordion-grid[data-accordion-grid-callback]");
   var accGridContentAll = document.querySelectorAll(accGridContentClass);
   var accGridDisclosuresAll = document.querySelectorAll(accGridClass);
@@ -101,7 +98,7 @@
 
       // Get each Grids child buttons and content
 
-      var accGridButtonChild = accGridItem.querySelectorAll(accGridButtonGlass);
+      var accGridButtonChild = accGridItem.querySelectorAll(accGridButtonClass);
       var accGridContentChild = accGridItem.querySelectorAll(accGridContentClass);
 
       // Begin looping though grids and altering DOM as each viewport is met.
@@ -313,7 +310,7 @@
 
       if (this.getAttribute("aria-expanded") === "false") {
 
-        var accGridItemButtons = this.parentNode.querySelectorAll(accGridButtonGlass);
+        var accGridItemButtons = this.parentNode.querySelectorAll(accGridButtonClass);
 
         accGridItemButtons.forEach(function(buttons){
 
@@ -345,7 +342,7 @@
 
         if(accGridCallBack !== undefined) {
 
-          contentTarget = this.nextElementSibling.getAttribute("id");
+          var contentTarget = this.nextElementSibling.getAttribute("id");
           customCallback(contentTarget, accGridCallBack);
 
         };
@@ -354,15 +351,9 @@
 
           history.pushState(null, null, "#" + selectedAccGridContentID);
 
-        };
-
-        if (button.parentNode.getAttribute(accGridDataSticky) !== null) {
-
-          scrollIntoPosition(this);
-
         }
 
-      };
+      }
 
     });
 
@@ -396,11 +387,11 @@
   accGridCallBackAll.forEach(function(accgrid){
 
     var callBackFunction = accgrid.dataset.accordionGridCallback;
-    var callBackContent = accgrid.querySelectorAll(accGridButtonGlass + "[aria-expanded=true] + " + accGridContentClass);
+    var callBackContent = accgrid.querySelectorAll(accGridButtonClass + "[aria-expanded=true] + " + accGridContentClass);
 
     callBackContent.forEach(function(content){
 
-      contentTarget = content.getAttribute("id");
+      var contentTarget = content.getAttribute("id");
       customCallback(contentTarget, callBackFunction);
 
     });
@@ -450,45 +441,6 @@
         accGridContentTarget.focus();
 
       }, accGridDelay * 2);
-
-      // Get Sticky Element Offset
-
-      if (button.parentNode.getAttribute(accGridDataSticky) !== null) {
-
-        var stickyTargetID = button.parentNode.dataset.accordionGridSticky;
-
-        // Single or multiple target offsets
-
-        var stickyTargetArray = stickyTargetID.replace(" ", "").split(",");
-
-        // Get total outer height of all elements.
-
-        var stickyTargetHeight = 0;
-
-        stickyTargetArray.forEach(function(stickyTargetElement, e){
-
-          stickyTargetHeight += document.getElementById(stickyTargetElement).offsetHeight + 16;
-
-          // 16 is an arbitrary number to add a slight amount of space between top of grid button and target(s).
-          // TODO: Make a data-* so dev an offset however they wish.
-
-        });
-
-        window.scrollTo({
-
-          top: getOffset(gridContentTarget).top - stickyTargetHeight
-
-        });
-
-      } else {
-
-        window.scrollTo({
-
-          top: getOffset(gridContentTarget).top
-
-        });
-
-      };
 
     }, accGridDelay);
 
