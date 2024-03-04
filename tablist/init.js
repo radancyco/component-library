@@ -6,8 +6,6 @@
   Contributor(s): 
   Michael "Spell" Spellacy
 
-  Dependencies: None
-
 */
 
 (function() {
@@ -16,7 +14,7 @@
 
   // Display which Tablist version is in use via console:
 
-  console.log('%c Tablist v1.0 in use. ', 'background: #6e00ee; color: #fff');
+  console.log('%c Tablist v1.1 in use. ', 'background: #6e00ee; color: #fff');
 
   // Classes, data attributes, states, and strings.
 
@@ -24,7 +22,7 @@
   var tabListListClass = ".tablist__list";
   var tabListClassName = "tablist__tab"
   var tabListTabClass = "." + tabListClassName;
-  var tabListDataEnableURL = "data-enable-url"
+  var tabListDataEnableURL = "data-anchor"
   var tabListDataVertical = "data-vertical"
   var tabListPanelClass = ".tablist__panel";
   var tabLists = document.querySelectorAll(tabListClass);

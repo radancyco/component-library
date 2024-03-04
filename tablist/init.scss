@@ -17,6 +17,7 @@
 $base-color: #6F00EF;
 $base-color-active: white;
 $base-color-neutral: lightgrey;
+$tablist-breakpoint: 41.25em; // 660px
 
 // Tablist Container
 
@@ -26,7 +27,7 @@ position: relative;
 
   &:has([aria-orientation]) {
 
-    @media(min-width: 48.75em) {
+    @media(min-width: $tablist-breakpoint) {
   
       display: grid;
       grid-template-columns: 20% auto;
@@ -42,7 +43,7 @@ position: relative;
   margin: 0;
   padding: 0;
 
-    @media(min-width: 48.75em) {
+    @media(min-width: $tablist-breakpoint) {
 
       &[aria-orientation] {
 
@@ -52,23 +53,29 @@ position: relative;
 
     }
 
-    [data-scroll-list] & {
+    [data-scroll] & {
 
-      @media(max-width: 48.75em) {
+      // This max-width can be changed depending on amount of list items you have.
 
-        overflow-x: auto;
+      @media(max-width: $tablist-breakpoint) {
+
         flex-wrap: nowrap;
-        margin-bottom: calc(4em/16);
-        padding-bottom: calc(4em/16);
-        white-space: nowrap;
+        overflow-x: auto;
         padding-right: calc(32em/16);
+        scrollbar-color: $base-color $base-color-active;
+        scrollbar-width: thin;
+        white-space: nowrap;
+
+          // Directional Arrow
+          // TODO: Handle i18n at a later date.
 
           &::before {
+          align-items: center;
           background-image: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
           color: $base-color;
           content: "\00BB";
           display: flex;
-          font-size: 2.5rem;
+          font-size: calc(28rem/16);
           height: calc(64rem/16);
           justify-content: right;
           pointer-events: none;
@@ -76,7 +83,6 @@ position: relative;
           right: 0;
           top: 0;
           width: calc(64rem/16);
-          align-items: center;
           }
 
       }
@@ -86,7 +92,7 @@ position: relative;
     li {
     flex-grow: 1;
 
-      @media(min-width: 48.75em) {
+      @media(min-width: $tablist-breakpoint) {
 
         flex-grow: 0;
 
@@ -126,9 +132,8 @@ position: relative;
 
   // Focus State
 
-  // Accessibility: NEVER remove focus outlines! Either redesign them or design an alternative focus state. 
-  // In either case, a 3:1 ratio will be required. A 3:1 state between inactive and active state is also required. 
-  // If this too confusing, leave states alone. Learn: https://webaim.org/articles/contrast/
+  // Accessibility: Never remove focus outlines! Either redesign the state or design an alternative focus state. 
+  // However, a 3:1 ratio will be required. Learn: https://webaim.org/articles/contrast/
 
   &__tab, &__panel {
 

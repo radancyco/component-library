@@ -4,35 +4,35 @@ components:
   - name: "Default Setup"
     id: "default-setup"
 
-  - name: "Enable URL"
-    id: "enable-url"
+  - name: "Enable Anchor"
+    id: "enable-anchor"
 
   - name: "Scroll List"
     id: "scroll-list"
-    note: "To see and use the scroll, please view in a smaller viewport. Also note that scroll behavior and design may differ cross-browser. This is normal."
+    note: "To access the scroll, adjust the viewport size to be smaller. Additionally, please be aware that the design and functionality of the scroll may vary across different operating systems and browsers, which is completely normal and expected."
 
   - name: "Vertical Tabs"
     id: "vertical-tabs"
 
 attributes:
 
-  - name: data-enable-url
+  - name: data-anchor
     html: .tablist
     note:
   
       - Boolean
       - Optional
       
-    desc: Used to include a URL fragment on click. Including this can be useful for sharing specific in-page content.
+    desc: Used to include an anchor in the address bar when clicked on. Including this can be useful for sharing specific, in-page content.
 
-  - name: data-scroll-list
+  - name: data-scroll
     html: .tablist
     note:
   
       - Boolean
       - Optional
       
-    desc: Used to change the the list to a scroll in smaller viewport sizes.
+    desc: Used to change the list into a scroll in smaller viewport sizes.
 
   - name: data-vertical
     html: .tablist
@@ -47,7 +47,7 @@ folder: tablist
 in-page-custom: true
 localcss: "init.css"
 localjs: "init.js"
-title: "Tablist v1.0"
+title: "Tablist v1.1"
 desc: This component will allow you to implement a tablist user interface.
 ---
   
