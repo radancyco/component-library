@@ -13,14 +13,13 @@
 */
 
 $base-color: #6F00EF;
+$base-color-active: #FFF;
 
 .breadcrumb {
 overflow-x: auto;
 padding: 1em 0;
-scroll-snap-type: x mandatory;
-scrollbar-color: $base-color;
-scrollbar-gutter: always; 
--webkit-overflow-scrolling: touch;
+scrollbar-color: $base-color $base-color-active;
+scrollbar-width: thin;
 
   &__list {
   display: flex;
@@ -55,18 +54,6 @@ scrollbar-gutter: always;
 
     }
 
-  }
-
-  &::-webkit-scrollbar {
-  height: calc(6em / 16);
-  }
-  
-  &::-webkit-scrollbar-track {
-  background-color: #fff;
-  }
-  
-  &::-webkit-scrollbar-thumb {
-  background-color: $base-color;
   }
 
 }

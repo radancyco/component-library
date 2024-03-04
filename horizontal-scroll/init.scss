@@ -13,6 +13,7 @@
 */
 
 $base-color: #6F00EF;
+$base-color-active: #FFF;
 
 .horizontal-scroll {
 position: relative;
@@ -25,11 +26,10 @@ position: relative;
 
   &__container {
   display: flex;
-  overflow-x: scroll;
+  overflow-x: auto;
   padding: 2em 0 2em 1em;
-  scrollbar-color: $base-color;
-  scrollbar-gutter: always; 
-  -webkit-overflow-scrolling: touch;
+  scrollbar-color: $base-color $base-color-active;
+  scrollbar-width: thin;
 
     @media(min-width: 62.5em) {
 
@@ -37,22 +37,6 @@ position: relative;
       justify-content: space-around;
       overflow-x: auto;
 
-    }
-
-    // Scrollbar styling may be limited cross-browser. This is NOT a bad thing as majority of browsers are WebKit based.
-    // However, if you require full support, then have a look at http://grsmto.github.io/simplebar/
-
-    &::-webkit-scrollbar {
-    height: calc(8em / 16);
-    }
-
-    /* Track */
-    &::-webkit-scrollbar-track {
-    background-color: #fff;
-    }
-
-    &::-webkit-scrollbar-thumb {
-    background-color: $base-color;
     }
 
   }
