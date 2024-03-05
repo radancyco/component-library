@@ -43,7 +43,6 @@ position: relative;
   padding: 1em;
   position: relative;
   min-width: calc(300rem / 16);
-  scroll-snap-align: start;
   transition: all 300ms ease-in;
 
     @media(min-width: 62.5em) {
@@ -54,7 +53,7 @@ position: relative;
 
     }
 
-    &:hover, &:focus, &:focus-within {
+    &:hover, &:focus-within {
     background-color: #ccc;
     }
 

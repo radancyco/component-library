@@ -1,6 +1,6 @@
 /*!
 
-  Radancy Component Library: Jump Menu (In-Page)
+  Radancy Component Library: Jump Menu (In-page)
 
   Contributor(s):
   Michael "Spell" Spellacy
@@ -10,6 +10,8 @@
 */
 
 (function() {
+
+  "use strict";
 
   // Display which Jump Menu in use via console:
 

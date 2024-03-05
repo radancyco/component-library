@@ -16,17 +16,29 @@ $base-color: #6F00EF;
 $base-color-active: #FFF;
 
 .breadcrumb {
-overflow-x: auto;
 padding: 1em 0;
-scrollbar-color: $base-color $base-color-active;
-scrollbar-width: thin;
+
+  &[data-scroll] {
+
+    overflow-x: auto;
+    scrollbar-color: $base-color $base-color-active;
+    scrollbar-width: thin;
+
+  }
 
   &__list {
   display: flex;
+  flex-wrap: wrap;
   list-style: none;
   margin: 0;
   padding: 0;
   white-space: nowrap;
+
+    [data-scroll] & {
+
+      flex-wrap: nowrap;
+
+    }
 
     li {
 
@@ -45,7 +57,7 @@ scrollbar-width: thin;
     display: inline-block;
     line-height: normal;
     outline-offset: -5px;
-    padding: 1em;
+    padding: 0.5em 1em;
 
       &[aria-current] {
       font-weight: bold;

@@ -4,6 +4,21 @@ components:
   - name: "Default Setup"
     id: "default-setup"
 
+  - name: "Horizontal Scroll"
+    id: "horizontal-scroll"
+    note: "To access the scroll, adjust the viewport size to be smaller. Additionally, please be aware that the design and functionality of the scrollbar may vary across different operating systems and browsers, which is completely normal and expected."
+
+attributes:
+
+  - name: data-scroll
+    html: .breadcrumb
+    note:
+    
+      - Boolean
+      - Optional
+        
+    desc: Used to change the list into a scroll in smaller viewport sizes.
+
 aria:
 
   - name: aria-current
@@ -16,7 +31,7 @@ classes:
   - name: .breadcrumb
     html: nav
     note: Mandatory
-    desc: Used on the parent element that wraps your content. In this case, a <code>nav</code> element, which must always be present.
+    desc: Used on the parent element that wraps your content. In this case, a <code>nav</code> element, which must always be used and be given a distinct accessible name.
 
   - name: .breadcrumb__list	
     html: ol
@@ -25,12 +40,13 @@ classes:
 
 notes: 
 
-  - A dynamic version of this navigation will be created at a later date to handle applying <code>aria-current</code>.
+  - "Roadmap: A dynamic version of this navigation will be created at a later date to handle applying <code>aria-current</code>."
 
 folder: breadcrumbs
+in-page-custom: true
 localcss: "init.css"
 tablist: true
-title: "Breadcrumbs v1.0"
+title: "Breadcrumbs v1.1"
 desc: This component will allow you to add a breadcrumb navigation to your page.
 ---
 
