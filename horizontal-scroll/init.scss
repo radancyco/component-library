@@ -18,16 +18,10 @@ $base-color-active: #FFF;
 .horizontal-scroll {
 position: relative;
 
-  @media(min-width: 62.5em) {
-
-    border: 0;
-
-  }
-
   &__container {
   display: flex;
   overflow-x: auto;
-  padding: 2em 0 2em 1em;
+  padding: 1em 0;
   scrollbar-color: $base-color $base-color-active;
   scrollbar-width: thin;
 
@@ -35,7 +29,6 @@ position: relative;
 
       flex-wrap: wrap;
       justify-content: space-around;
-      overflow-x: auto;
 
     }
 
