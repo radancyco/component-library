@@ -4,8 +4,8 @@ components:
   - name: "Default Setup"
     id: "default-setup"
 
-  - name: "Enable Anchor"
-    id: "enable-anchor"
+  - name: "Disable Anchor"
+    id: "disable-anchor"
 
   - name: "Horizontal Scroll"
     id: "horizontal-scroll"
@@ -16,39 +16,39 @@ components:
 
 attributes:
 
-  - name: data-anchor
+  - name: data-disable-anchor
     html: .tablist
     note:
   
       - Boolean
       - Optional
-      
-    desc: Used to include an anchor in the address bar when clicked on. Including this can be useful for sharing specific, in-page content.
+
+    desc: Used to disable the anchor that appears in the address bar when clicked on. Do note that including an anchor can be useful for tracking and sharing specific, in-page content.
 
   - name: data-scroll
     html: .tablist
     note:
-  
+
       - Boolean
       - Optional
-      
+
     desc: Used to change the list into a scroll in smaller viewport sizes.
 
   - name: data-vertical
     html: .tablist
     note:
-  
+
       - Boolean
       - Optional
-      
+
     desc: Used to change the layout of the tabs from horizontal to vertical. The CSS for this layout is tied to <code>aria-orientation</code>.
 
 folder: tablist
 in-page-custom: true
 localcss: "init.css"
 localjs: "init.js"
-title: "Tablist v1.1"
+title: "Tablist v1.2"
 desc: This component will allow you to implement a tablist user interface.
 ---
-  
+
 {% include template.html %}

@@ -13,7 +13,7 @@
 
   // Display which Tablist version is in use via console:
 
-  console.log("%c Tablist v1.1 in use. ", "background: #6e00ee; color: #fff");
+  console.log("%c Tablist v1.2 in use. ", "background: #6e00ee; color: #fff");
 
   // Classes, data attributes, states, and strings.
 
@@ -21,7 +21,7 @@
   var tabListListClass = ".tablist__list";
   var tabListClassName = "tablist__tab";
   var tabListTabClass = "." + tabListClassName;
-  var tabListDataEnableURL = "data-anchor";
+  var tabListDataDisableAnchor = "data-disable-anchor";
   var tabListDataVertical = "data-vertical";
   var tabListPanelClass = ".tablist__panel";
   var tabLists = document.querySelectorAll(tabListClass);
@@ -118,9 +118,7 @@
           this.setAttribute("aria-selected", "true");
           this.removeAttribute("tabindex");
 
-          // TODO: add hash tag support will need a data attribute to turn it on and history push. 
-
-          if(this.closest(tabListClass).hasAttribute(tabListDataEnableURL)) {
+          if(!this.closest(tabListClass).hasAttribute(tabListDataDisableAnchor)) {
 
             history.pushState(null, null, "#" + tabID);
 
