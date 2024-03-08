@@ -23,7 +23,7 @@ attributes:
       - Boolean
       - Optional
 
-    desc: Used to disable the anchor that appears in the address bar when clicked on. Do note that including an anchor can be useful for tracking and sharing specific, in-page content.
+    desc: Used to disable the anchor that appears in the address bar when a tab is clicked on. Do note that including an anchor can be useful for tracking and sharing specific content, so we should only remove when we have a good reason.
 
   - name: data-scroll
     html: .tablist
@@ -32,7 +32,7 @@ attributes:
       - Boolean
       - Optional
 
-    desc: Used to change the list into a scroll in smaller viewport sizes.
+    desc: Used to change the list into a scroll in smaller viewport sizes. While scrolling is always an option, it should only be done sparingly. Allowing tabs to stack is always the better choice,
 
   - name: data-vertical
     html: .tablist
@@ -41,7 +41,7 @@ attributes:
       - Boolean
       - Optional
 
-    desc: Used to change the layout of the tabs from horizontal to vertical. The CSS for this layout is tied to <code>aria-orientation</code>.
+    desc: Used to change the layout of the tabs from horizontal to vertical. The CSS for this layout is tied to <code>aria-orientation</code>, which does not have wide assisitve technology support yet.
 
 folder: tablist
 in-page-custom: true
