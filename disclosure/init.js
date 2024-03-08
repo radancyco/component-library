@@ -12,9 +12,11 @@
 
 (function() {
 
+  "use strict";
+
   // Display which Disclosure is in use via console:
 
-  console.log('%c Disclosure v1.7 in use. ', 'background: #6e00ee; color: #fff');
+  console.log("%c Disclosure v1.7 in use. ", "background: #6e00ee; color: #fff");
 
   // Commonly used Classes, Data Attributes, States, Strings, etc.
 
@@ -185,7 +187,7 @@
     if(thisButton.hasAttribute("data-disclosure-enable-url")) {
 
       history.pushState(null, null, "#" + thisButton.id);
-      
+
     }
 
     // Pass content to div

@@ -11,9 +11,11 @@
 
 (function() {
 
+  "use strict";
+
   // Display which component in use via console:
 
-  console.log('%c Jump Menu (External) v1.0 in use. ', 'background: #6e00ee; color: #fff');
+  console.log("%c Jump Menu (External) v1.0 in use. ", "background: #6e00ee; color: #fff");
 
   var jumpMenuClass = ".jump-menu";
   var jumpMenuLabelClass = ".jump-menu__label";
@@ -41,7 +43,7 @@
 
       var jumpMenuSelected = this.closest(jumpMenuClass).getElementsByTagName("select")[0];
 
-   // jumpMenuSelected.selectedIndex = 0;
+      // jumpMenuSelected.selectedIndex = 0;
       location.href = jumpMenuSelected.value;
 
     });

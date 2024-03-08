@@ -4,7 +4,7 @@
 
   Contributor(s):
   Michael "Spell" Spellacy
-  
+
   Dependencies: None
 
 */
@@ -15,7 +15,7 @@
 
   // Display which Jump Menu in use via console:
 
-  console.log('%c Jump Menu (In-page) v1.0 in use. ', 'background: #6e00ee; color: #fff');
+  console.log("%c Jump Menu (In-page) v1.0 in use. ", "background: #6e00ee; color: #fff");
 
   var inPageClass = ".in-page";
   var inPageLabelClass = ".in-page__label";
@@ -32,7 +32,7 @@
 
   // On page load
 
-  inPage.forEach(function(component, e){
+  inPage.forEach(function(component){
 
     // Check to see if "dynamic" Jump Menu in use.
 
@@ -57,7 +57,7 @@
 
           var contentID = content.getAttribute("data-in-page-id");
 
-        } else { 
+        } else {
 
           var contentID = "content-" + count;
 
@@ -109,7 +109,7 @@
 
   });
 
-  // console.log(inPageContentList)
+  // console.log(inPageContentList);
 
   function inPageSelectedState() {
 

@@ -13,7 +13,7 @@
 
   // Display which Load More in use via console:
 
-  console.log('%c Load More v1.0 in use. ', 'background: #6e00ee; color: #fff');
+  console.log("%c Load More v1.0 in use. ", "background: #6e00ee; color: #fff");
 
   var $loadMore = $(".load-more");
   var $loadMoreItem = $(".load-more__item");
@@ -112,7 +112,7 @@
     // Also, is it better to put focus on item or first focusable element within item?
     // TODO: More research will be required.
 
-  //  $loadMoreItemsHidden.first().attr("tabindex", "-1").focus();
+    //  $loadMoreItemsHidden.first().attr("tabindex", "-1").focus();
 
     var $focusElms = "a, audio, button, input, select, video";
 

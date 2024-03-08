@@ -10,7 +10,6 @@
 
 */
 
-
 (function () {
 
 	var $cssAnimationCanvas = $(".css-animation__canvas");
@@ -36,7 +35,7 @@
 	var $cssAnimationButton = $(".css-animation__button");
 	var $cssAnimationCode = $(".css-animation__code");
 	var $cssAnimationCodeTarget = $cssAnimationCode.find("code");
-	
+
 	$cssAnimationButton.on("click", function() {
 
 		$(this).attr("aria-expanded", function (i, attr) {
@@ -70,7 +69,7 @@
 	// Always remove animation class when animation complete. 
 
 	$cssAnimationObject.on("animationend", function(){	
-	  
+
 		document.querySelector('.css-animation__object').className = "css-animation__object";
 
 		$cssAnimationMsg.text("");
@@ -133,11 +132,11 @@
   	}
 
 	// Hack to get back button to work. TODO: Revisit.
-	
+
 	$(window).on("popstate", function (e) {
 
 		location.reload();
-	
+
 	});
 
   	$window.on("scroll resize", checkTopPosition);

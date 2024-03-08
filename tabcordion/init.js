@@ -2,7 +2,7 @@
 
   Radancy Component Library: TabCordion
 
-  Contributor(s): 
+  Contributor(s):
   Andrew Hill
   Michael "Spell" Spellacy
 
@@ -12,9 +12,11 @@
 
 (function() {
 
+  "use strict";
+
   // Display which TabCordion is in use via console:
 
-  console.log('%c TabCordion v1.8 in use. ', 'background: #6e00ee; color: #fff');
+  console.log("%c TabCordion v1.8 in use. ", "background: #6e00ee; color: #fff");
 
   // Commonly used Classes, Data Attributes, States, and Strings.
 
@@ -123,7 +125,7 @@
 
       if(tabCallBack !== undefined) {
 
-        contentTarget = thisButton.nextElementSibling.getAttribute("id");
+        var contentTarget = thisButton.nextElementSibling.getAttribute("id");
         customCallback(contentTarget, tabCallBack);
 
       }
@@ -137,7 +139,6 @@
 
     var tabDisableURL = thisButton.parentNode.getAttribute(tabCoprdionDataDisableURL);
     var selectedPanelID = thisButton.nextElementSibling.getAttribute("id");
-    var targetPanel = document.getElementById(selectedPanelID)
 
     if(tabDisableURL === null) {
 
@@ -254,7 +255,7 @@
 
               // Work out which key the user is pressing calculate the new tab's index where appropriate
 
-              // Left:	37, Up: 38, Right: 39, Down: 40
+              // Left: 37, Up: 38, Right: 39, Down: 40
 
               if(tabVertical !== null) {
 
@@ -419,7 +420,7 @@
 
     callBackContent.forEach(function(content){
 
-      contentTarget = content.getAttribute("id");
+      var contentTarget = content.getAttribute("id");
       customCallback(contentTarget, callBackFunction);
 
     });

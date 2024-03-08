@@ -48,11 +48,11 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
   var atCallback = document.querySelectorAll(atClass + "[data-callback]");
   var atCookieName = "AnimationPaused";
   var atDescriptionTrackClass = ".animation-toggle__track";
-  var atEnabledClassName = "animation-enabled"
+  var atEnabledClassName = "animation-enabled";
   var atPauseButtonClassName = "animation-toggle__pause";
   var atPauseButtonClass = "." + atPauseButtonClassName;
   var atVideoClass = ".animation-toggle__video";
-  var atVideoControlsName = "animation-toggle__controls"
+  var atVideoControlsName = "animation-toggle__controls";
   var dataAudioDescriptionButton = "data-audio-description-button";
   var dataLoop = "data-loop";
   var dataPauseButton = "data-pause-button";
@@ -71,7 +71,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
   function getCookie(name) {
 
-    var match = document.cookie.match(RegExp('(?:^|;\\s*)' + name + '=([^;]*)')); 
+    var match = document.cookie.match(RegExp("(?:^|;\\s*)" + name + "=([^;]*)"));
     return match ? match[1] : null;
 
   }
@@ -113,7 +113,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
     btnControls.setAttribute("class", atVideoControlsName);
 
     // Prepend control wrapper to atClass.
-  
+
     wrapper.prepend(btnControls);
 
     // Create pause button if data-pause-remove not present.
@@ -201,7 +201,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
           setCookie("false");
 
-          // Get all pause buttons on page and set them to false. 
+          // Get all pause buttons on page and set them to false.
 
           animationPauseToggles.forEach(function(button){
 
@@ -291,10 +291,10 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
             track.mode = "hidden";
             track.oncuechange = function() {
-  
+
               var currentCue = this.activeCues[0];
 
-              console.log(currentCue)
+              console.log(currentCue);
 
               if (currentCue) {
 
@@ -327,7 +327,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
               var currentCue = this.activeCues[0];
 
-              console.log(currentCue)
+              console.log(currentCue);
 
               if (currentCue) {
   
@@ -357,7 +357,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
     video.setAttribute("disableRemotePlayback", "");
     video.setAttribute("disablePictureInPicture", "");
-    video.id = "animation-toggle-video-" + (e + 1);   
+    video.id = "animation-toggle-video-" + (e + 1);
     video.setAttribute("playsinline" , "");
     video.muted = true;
 
@@ -370,12 +370,12 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
     } else {
 
       // If video has poster...
-    
+
       if(video.hasAttribute(dataPoster)) {
 
         video.currentTime = video.getAttribute(dataPoster);
-    
-      } 
+
+      }
 
     }
 
@@ -413,7 +413,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
       video.setAttribute("loop" , "");
 
-    } 
+    }
 
     // If aria-label does not exist on video element, add default. 
 

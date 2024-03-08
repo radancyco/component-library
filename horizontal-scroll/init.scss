@@ -21,7 +21,7 @@ position: relative;
   &__container {
   display: flex;
   overflow-x: auto;
-  padding: 1em 0 0.5em;
+  padding: 1em 0;
   scrollbar-color: $base-color $base-color-active;
 
     @media(min-width: 62.5em) {

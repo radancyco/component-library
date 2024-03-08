@@ -13,14 +13,14 @@
 
   // Display which Accordion Grid version in use via console:
 
-  console.log('%c Accordion Grid v1.1 in use. ', 'background: #6F00EF; color: #fff');
+  console.log("%c Accordion Grid v1.1 in use. ", "background: #6F00EF; color: #fff");
 
   // Commonly used Classes, Data Attributes, States, and Strings.
 
   var accGridButtonClass = ".accordion-grid__button";
   var accGridButtonId = "grid-button";
   var accGridClass = ".accordion-grid";
-  var accGridCloseClass = "accordion-grid__close"
+  var accGridCloseClass = "accordion-grid__close";
   var accGridCloseText = "Close";
   var accGridContentAreaId = "grid-content";
   var accGridContentClass = ".accordion-grid__content";
@@ -82,7 +82,7 @@
 
     accGrid.setAttribute(accGridDataActive, accGridContentSelected);
 
-  };
+  }
 
   function accGridViewPort() {
 
@@ -121,7 +121,7 @@
 
         accGridItem.classList.remove(accGridFormatClass);
 
-      };
+      }
 
       var accGridButtonCount = 1;
       var accGridContentCount = accGridSize + 1; // WHEN SCREEN SIZE CHANGES, CHANGE THIS NUMBER TO 3
@@ -186,7 +186,7 @@
 
               accGridButtonCount += accGridSize;
 
-            };
+            }
 
             accGridButtonCount++
 
@@ -196,7 +196,7 @@
 
             button.removeAttribute("style");
 
-          };
+          }
 
           // Add additional attributes for accessibility, etc.
 
@@ -218,9 +218,9 @@
 
             button.setAttribute("aria-expanded", "false");
 
-          };
+          }
 
-        }; // End accGridDataExclude
+        } // End accGridDataExclude
 
       });
 
@@ -253,7 +253,7 @@
 
               accGridContentCount += accGridSize;
 
-            };
+            }
 
             accGridContentCount++
 
@@ -263,7 +263,7 @@
 
             content.removeAttribute("style");
 
-          };
+          }
 
           // Add additional attributes for accessibility, etc.
 
@@ -271,13 +271,13 @@
 
           content.setAttribute ("id", accGridContentAreaId + "-" + accGridID);
 
-        }; // End accGridDataExclude
+        } // End accGridDataExclude
 
       });
 
     });
 
-  };
+  }
 
   // Add listner and initiate accGridViewPort function when viewport is resized.
 
@@ -318,7 +318,7 @@
 
             buttons.setAttribute("aria-expanded", "false");
 
-          };
+          }
 
         });
 
@@ -345,7 +345,7 @@
           var contentTarget = this.nextElementSibling.getAttribute("id");
           customCallback(contentTarget, accGridCallBack);
 
-        };
+        }
 
         if(accGridURLBypass === null) {
 
@@ -380,7 +380,7 @@
 
       content.prepend(accGridCloseButton);
 
-    };
+    }
 
   });
 
@@ -406,24 +406,9 @@
 
       window[customCallBackName](contentTarget);
 
-    };
+    }
 
-  };
-
-  // Get Offset
-  // TODO: Remove this when scroll-margin-top is better supported in iOS
-
-  function getOffset(el) {
-
-    var rect = el.getBoundingClientRect();
-    return {
-
-      left: rect.left + window.scrollX,
-      top: rect.top + window.scrollY
-
-    };
-
-  };
+  }
 
   function scrollIntoPosition(button) {
 
@@ -444,7 +429,7 @@
 
     }, accGridDelay);
 
-  };
+  }
 
   // Back Button
 
@@ -476,11 +461,11 @@
 
         scrollIntoPosition(selectedGridButton);
 
-      };
+      }
 
-    };
+    }
 
-  };
+  }
 
   // If hash exists, focus and scroll to it.
 
@@ -496,9 +481,9 @@
 
       scrollIntoPosition(selectedGridButton);
 
-    };
+    }
 
-  };
+  }
 
   // Add Grid Disclosure to Window Object so that it can be called again if needed.
 
@@ -515,4 +500,4 @@ function helloWorld(contentID) {
   message.innerHTML = "<strong>Hello World! The ID of this content area is <em> " + contentID + "</em>. You can use a callback to initiate a function within the disclosed content area on page load and reinitiate the same function on button click.</strong>";
   targetContent.append(message);
 
-};
+}

@@ -302,5 +302,3 @@ if(currentPageLanguage === "ar") {
     var atPauseButtonLabel = "Pause Animation";
 
 }
-
-
