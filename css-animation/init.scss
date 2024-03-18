@@ -26,6 +26,7 @@
 }
 
 $base-color: #6F00EF;
+$base-color-active: #FFF;
 $breakpoint: em(860);
 
 .css-animation { 
@@ -158,27 +159,13 @@ $breakpoint: em(860);
         &:focus, &:hover {
         
             code {
-            scroll-snap-type: x mandatory;
-            scrollbar-color: $base-color;
-            scrollbar-gutter: always; 
-            -webkit-overflow-scrolling: touch;
+            scrollbar-color: #777 transparent;
+            scrollbar-width: thin;
 
                 @media (min-width: $breakpoint) {
         
                     overflow-y: scroll;
     
-                }
-            
-                &::-webkit-scrollbar {
-                width: rem(8);
-                }
-            
-                &::-webkit-scrollbar-track {
-                background-color: #fff;
-                }
-            
-                &::-webkit-scrollbar-thumb {
-                background-color: #777;
                 }
         
             }
@@ -217,27 +204,12 @@ $breakpoint: em(860);
         
             @media (min-width: $breakpoint) {
             
-            height: rem(400);
-            overflow-x: hidden;
-            overflow-y: scroll;
-            padding: 0 em(16);
-            scroll-snap-type: x mandatory;
-            scrollbar-color: $base-color;
-            scrollbar-gutter: always; 
-            -webkit-overflow-scrolling: touch;
-        
-                &::-webkit-scrollbar {
-                width: rem(8);
-                }
-        
-                &::-webkit-scrollbar-track {
-                background-color: #fff;
-                }
-        
-                &::-webkit-scrollbar-thumb {
-                background-color: $base-color;
-                }
-        
+                height: rem(400);
+                overflow-y: scroll;
+                padding: 0 em(16);
+                scrollbar-color: $base-color $base-color-active;
+                scrollbar-width: thin;
+
             }
         
         }
@@ -253,7 +225,6 @@ $breakpoint: em(860);
                 grid-template-columns: repeat(auto-fill, minmax(32.6%, 1fr));
         
             }
-  
         
         }
         

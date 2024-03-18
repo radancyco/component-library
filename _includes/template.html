@@ -107,10 +107,11 @@
       <nav aria-label="Code Functions" class="component-functions">
         
         <ul>
-          <li><button data-code="{{ page.url | absolute_url }}#{{ component.id }}">{{ iconCheck }}{{ iconCopyURL }} Copy link to example</button></li>
-          <li><form action="https://codepen.io/pen/define" id="{{ component.id }}-codepen" method="POST" target="_blank"><button>{{ iconCodePen }} Edit on CodePen</button></form></li>
-          <li><a href="{{ component.id }}" target="_blank">{{ iconNewWindow }} Open in new window</a></li>
-          <li><a href="{{ site.repo }}/blob/main/{{ page.folder }}/">{{ iconGit }} Visit Repository</a></li>
+          <li><button class="btn-copy-link" data-code="{{ page.url | absolute_url }}#{{ component.id }}">{{ iconCheck }}{{ iconCopyURL }} Copy link to example</button></li>
+          <li><form action="https://codepen.io/pen/define" id="{{ component.id }}-codepen" method="POST" target="_blank"><button class="btn-edit-codepen">{{ iconCodePen }} Edit on CodePen</button></form></li>
+          <li><a class="btn-new-window" href="{{ component.id }}" target="_blank">{{ iconNewWindow }} Open in new window</a></li>
+          <li><a class="btn-repository" href="{{ site.repo }}/blob/main/{{ page.folder }}/">{{ iconGit }} Repository</a></li>
+          <li><button class="btn-view-code">{{ iconHTML }} View Code</button></li>
         </ul>
 
       </nav>
@@ -153,99 +154,101 @@
 
       {% assign counter = counter | plus: 1 %}
 
-      <h2>Code</h2> 
+      <div class="content-view-code">
 
-      <div class="tablist">
+        <div class="tablist">
 
-        <ul class="tablist__list">
-          <li><a class="tablist__tab" href="#html-{{counter}}">{{ iconHTML }} HTML</a></li>
+          <ul class="tablist__list">
+            <li><a class="tablist__tab" href="#html-{{counter}}">{{ iconHTML }} HTML</a></li>
+            {% if page.localcss %}
+            <li><a class="tablist__tab" href="#css-{{counter}}">{{ iconCSS }} CSS</a></li>
+            {% endif %}
+            {% if component.customcss %}
+            <li><a class="tablist__tab" href="#custom-css-{{counter}}">{{ iconCSS }} CSS (Custom)</a></li>
+            {% endif %}
+            {% if page.localjs %}
+            <li><a class="tablist__tab" href="#javascript-{{counter}}">{{ iconJS }} JavaScript</a></li>
+            {% endif %}
+            {% if component.customjs %}
+            <li><a class="tablist__tab" href="#custom-javascript-{{counter}}">{{ iconJS }} JavaScript (Custom)</a></li>
+            {% endif %}
+          </ul>
+      
+          <div class="tablist__panel" id="html-{{counter}}">
+      
+            <div class="tablist__content" contenteditable spellcheck="false">
+
+              {% highlight html %}{% include_relative html/{{ component.id }}.html %}{% endhighlight %}
+
+            </div>
+
+          </div>
+
           {% if page.localcss %}
-          <li><a class="tablist__tab" href="#css-{{counter}}">{{ iconGlobal }} CSS</a></li>
+
+          <div class="tablist__panel" id="css-{{counter}}">
+      
+            <div class="tablist__content" contenteditable spellcheck="false">
+
+              {% highlight css %}{% include_relative init.scss %}{% endhighlight %}
+
+            </div>
+
+          </div>
+
           {% endif %}
+
           {% if component.customcss %}
-          <li><a class="tablist__tab" href="#custom-css-{{counter}}">{{ iconCustom }} CSS (Custom)</a></li>
+
+          <div class="tablist__panel" id="custom-css-{{counter}}">
+      
+            <div class="tablist__content" contenteditable spellcheck="false">
+
+              {% highlight javascript %}{% include_relative {{ component.customcss }}.scss %}{% endhighlight %}
+
+            </div>
+
+          </div>
+
           {% endif %}
+
           {% if page.localjs %}
-          <li><a class="tablist__tab" href="#javascript-{{counter}}">{{ iconGlobal }} JavaScript</a></li>
+
+          <div class="tablist__panel" id="javascript-{{counter}}">
+      
+            <div class="tablist__content" contenteditable spellcheck="false">
+
+              {% highlight javascript %}{% include_relative init.js %}{% endhighlight %}
+
+            </div>
+
+          </div>
+
           {% endif %}
+
           {% if component.customjs %}
-          <li><a class="tablist__tab" href="#custom-javascript-{{counter}}">{{ iconCustom }} JavaScript (Custom)</a></li>
+
+          <div class="tablist__panel" id="custom-javascript-{{counter}}">
+      
+            <div class="tablist__content" contenteditable spellcheck="false">
+
+              {% highlight javascript %}{% include_relative {{ component.customjs }} %}{% endhighlight %}
+
+            </div>
+
+          </div>
+
           {% endif %}
-        </ul>
-      
-        <div class="tablist__panel" id="html-{{counter}}">
-      
-          <div class="tablist__content" contenteditable spellcheck="false">
-
-            {% highlight html %}{% include_relative html/{{ component.id }}.html %}{% endhighlight %}
-
-          </div>
 
         </div>
-
-        {% if page.localcss %}
-
-        <div class="tablist__panel" id="css-{{counter}}">
-      
-          <div class="tablist__content" contenteditable spellcheck="false">
-
-            {% highlight css %}{% include_relative init.scss %}{% endhighlight %}
-
-          </div>
-
-        </div>
-
-        {% endif %}
-
-        {% if component.customcss %}
-
-        <div class="tablist__panel" id="custom-css-{{counter}}">
-      
-          <div class="tablist__content" contenteditable spellcheck="false">
-
-            {% highlight javascript %}{% include_relative {{ component.customcss }}.scss %}{% endhighlight %}
-
-          </div>
-
-        </div>
-
-        {% endif %}
-
-        {% if page.localjs %}
-
-        <div class="tablist__panel" id="javascript-{{counter}}">
-      
-          <div class="tablist__content" contenteditable spellcheck="false">
-
-            {% highlight javascript %}{% include_relative init.js %}{% endhighlight %}
-
-          </div>
-
-        </div>
-
-        {% endif %}
-
-        {% if component.customjs %}
-
-        <div class="tablist__panel" id="custom-javascript-{{counter}}">
-      
-          <div class="tablist__content" contenteditable spellcheck="false">
-
-            {% highlight javascript %}{% include_relative {{ component.customjs }} %}{% endhighlight %}
-
-          </div>
-
-        </div>
-
-        {% endif %}
 
       </div>
 
-    {% if page.in-page-custom %}
+      {% if page.in-page-custom %}
   
-    </div>
+      </div>
 
-    {% endif %}
+      {% endif %}
   
   {% endfor %}
 
