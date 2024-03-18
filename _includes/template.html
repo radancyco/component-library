@@ -116,42 +116,6 @@
 
       </nav>
 
-      <script>
-
-      var codePenForm = document.getElementById("{{ component.id }}-codepen");
-
-      var obj = {
-        
-        title: "{{ page.title }} {% if component.name %}: {{ component.name }} {% endif %}",
-        html: {{ html | jsonify }},
-        css_external: "https://radancy.dev/css/init.css",
-        css_pre_processor: "scss",
-        {% if component.customcss %}
-        css: {{ css | append: customcss | jsonify }},
-        {% else %}
-        css: {{ css | jsonify }}, 
-        {% endif %}
-        {% if component.customjs %}
-        js: {{ js | append: customjs | jsonify }},
-        {% else %}
-        js: {{ js | jsonify }},
-        {% endif %}
-        {% if component.codepenjs %}
-        js_external: '{% for item in component.codepenjs %}{% if item contains "://" %}{{ item }}{% else %}{{site.url}}/animation-library/{{ item }}{% endif %}{% if forloop.last %}{% else %};{% endif %}{% endfor %}',
-        {% endif %}
-
-      };
-
-      var json = JSON.stringify(obj);
-
-      var codePenInput = document.createElement("input");
-      codePenInput.setAttribute("type", "hidden");
-      codePenInput.setAttribute("name", "data");
-      codePenInput.setAttribute("value", json);
-      codePenForm.prepend(codePenInput);
-
-      </script>
-
       {% assign counter = counter | plus: 1 %}
 
       <div class="content-view-code">
@@ -243,6 +207,42 @@
         </div>
 
       </div>
+
+      <script>
+
+        var codePenForm = document.getElementById("{{ component.id }}-codepen");
+  
+        var obj = {
+          
+          title: "{{ page.title }} {% if component.name %}: {{ component.name }} {% endif %}",
+          html: {{ html | jsonify }},
+          css_external: "https://radancy.dev/css/init.css",
+          css_pre_processor: "scss",
+          {% if component.customcss %}
+          css: {{ css | append: customcss | jsonify }},
+          {% else %}
+          css: {{ css | jsonify }}, 
+          {% endif %}
+          {% if component.customjs %}
+          js: {{ js | append: customjs | jsonify }},
+          {% else %}
+          js: {{ js | jsonify }},
+          {% endif %}
+          {% if component.codepenjs %}
+          js_external: '{% for item in component.codepenjs %}{% if item contains "://" %}{{ item }}{% else %}{{site.url}}/animation-library/{{ item }}{% endif %}{% if forloop.last %}{% else %};{% endif %}{% endfor %}',
+          {% endif %}
+  
+        };
+  
+        var json = JSON.stringify(obj);
+  
+        var codePenInput = document.createElement("input");
+        codePenInput.setAttribute("type", "hidden");
+        codePenInput.setAttribute("name", "data");
+        codePenInput.setAttribute("value", json);
+        codePenForm.prepend(codePenInput);
+  
+        </script>
 
       {% if page.in-page-custom %}
   
