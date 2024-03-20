@@ -1,0 +1,46 @@
+---
+components:
+
+  - name: "Card (Image, 3x Grid)"
+    id: "card-grid"
+
+  - name: "Card (Image, Categories, 3x Grid)"
+    id: "card-category"
+
+  - name: "Card (Image, Eyebrow,  3x Grid)"
+    id: "card-eyebrow"
+
+  - name: "Card (Image, No Grid)"
+    id: "card-image"
+
+  - name: "Card (Image, Metadata, 3x Grid)"
+    id: "card-metadata"
+
+  - name: "Card (No Image, No Content, 3x Grid)"
+    id: "card-no-content"
+
+  - name: "Card (Image, Video)"
+    id: "card-video"
+    note: 'When incorporating a video, ensure that the title explicitly includes "(Video)" to aid assistive technology users, signaling their engagement with video content. Additionally, always provide captions for videos, and when needed, ensure transcripts are available.' 
+
+  - name: "Horizontal Card (No Image)"
+    id: "card-horizontal"
+
+  - name: "Horizontal Card (Image)"
+    id: "card-horizontal-image"
+
+  - name: "Horizontal Card Feed (Alternating Layout)"
+    id: "card-horizontal-feed"
+
+  - name: "Horizontal Card Feed (Kitchen Sink)"
+    id: "card-horizontal-kitchen-sink"
+
+folder: card
+in-page-custom: true
+localcss: "init.css"
+tablist: true
+title: "Card v1.0"
+desc: This component will allow you to implement a single or group of related content cards, which may include an image, summary text, and link. Cards are often used to present lists or grids of content such as featured articles or content related to a specific topic.
+---
+
+{% include template.html %}

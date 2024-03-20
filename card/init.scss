@@ -1,0 +1,274 @@
+/*!
+
+  Radancy Component Library: Card
+  Contributor(s):
+  Michael "Spell" Spellacy
+
+  Dependencies: Sass
+
+  Instructions:
+  sass --watch .:. --style compressed
+
+*/
+
+$base-color: #6F00EF;
+
+// Card (.card)
+
+.card {
+list-style: none;
+margin: 0;
+padding: 0;
+width: fit-content;
+
+  &:not([data-horizontal]) {
+
+    display: grid;
+    gap: 1em;
+  
+    @media (min-width: calc(40ch * 3)) {
+
+      grid-template-columns: repeat(3, 1fr);
+
+    }
+
+  }
+
+  // Item (.card__item)
+  
+  &__item {
+  border: 1px #ccc solid;
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  position: relative; // Needed for pseudo-element trick.
+  transition: 300ms;
+
+    [data-horizontal] & {
+
+      &:not(:last-child) {
+      margin-bottom: 1em;
+      }
+
+      @media (min-width: 60em) {
+
+        gap: 1em;
+        flex-direction: row;
+
+      }
+
+    }
+  
+    &:focus-within, &:hover {
+    background-color: #eee;
+  
+      .card__trigger {
+
+        &::after {
+        transform: translateX(5px);
+        }
+
+      }
+
+      .card__play {
+      transform:scale(1.2);
+      }
+  
+    }
+      
+  }
+
+  // Media (.card__media)
+  
+  &__media {
+  position: relative;
+  order: -1;
+
+    [data-horizontal] & {
+    
+      min-width: calc(225em/16);
+
+      @media (min-width: 60em) {
+
+        order: unset;
+
+      }
+
+    }
+
+    img {
+    border-radius: 5px;
+    width: 100%;
+    }
+
+  }
+
+  // Play Button (.card__play)
+
+  &__play {
+  inset-block-end: 1em;
+  inset-inline-end: 1em;
+  position: absolute;
+  transition: 300ms;
+  width: calc(40em/16);
+
+    path {
+    fill: #fff;
+    }
+
+  }
+
+  // Content (.card__content)
+
+  &__content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  }
+
+  // Shared: Heading Group (.card__group) & Title (.card__title)
+
+  &__group, &__title {
+  margin: 1em 0;
+
+    [data-horizontal] & {
+
+      @media (min-width: 60em) {
+
+        margin-top: 0;
+
+      }
+
+    }
+
+  }
+
+  // Shared: Eyebrow (.card__eyebrow) & Title (.card__title)
+
+  &__eyebrow, &__title {
+  
+    .card__group & {
+
+      margin: 0;
+   
+    }
+
+  }
+
+  // Eyebrow (.card__eyebrow)
+
+  &__eyebrow {
+  color: $base-color;
+  }
+
+  // Title (.card__title)
+  
+  &__title {
+  font-size: 1.4rem;
+  line-height: normal;
+
+    // If text is not a heading, then center it.
+  
+    &:not(h2):not(h3):not(h4):not(h5):not(h6) {
+    text-align: center;
+    }
+  
+  }
+
+  // Trigger (.card__trigger)
+
+  &__trigger {
+  background-color: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: block;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+    
+    // CTA
+
+    &:not(button) {
+  
+      &::after {
+      content: "\0279C";
+      display: inline-block;
+      margin-inline-start: .3em;
+      transition: 300ms;
+      }
+
+    }
+      
+    // Pseudo-element Trick
+    // Makes all content in container clickable. 
+  
+    &::before {
+    content: "";
+    display: block;
+    inset: 0;
+    position: absolute;
+    z-index: 1;
+    }
+  
+  }
+
+  // Summary Text (.card__summary)
+
+  &__summary {
+  margin: 0;
+  }
+
+  // Shared: Category (.card__category) & Metadata (.card__metadata)
+
+  &__category, &__metadata {
+  font-size: 0.9rem;
+  
+    ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 1em 0 0;
+    padding: 0;
+    }
+  
+    li:not(:last-child)::after {
+    padding: 0 0.5em;
+    }
+  
+  }
+
+  // Category (.card__category)
+
+  &__category {
+
+    ul {
+    gap: 0.5em;
+    }
+
+    li {
+    background-color: #eee;
+    border-radius: 5px;
+    line-height: normal;
+    padding: 0.5em 1em;
+    }
+  
+  }
+
+  // Metadata (.card__metadata)
+
+  &__metadata {
+  margin-top: auto;
+
+    ul {
+    color: #767676;
+    }
+
+    li:not(:last-child)::after {
+    content: "|";
+    }
+
+  }
+  
+}
