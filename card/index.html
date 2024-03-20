@@ -10,18 +10,16 @@ components:
   - name: "Card (Image, Eyebrow,  3x Grid)"
     id: "card-eyebrow"
 
-  - name: "Card (Image, No Grid)"
-    id: "card-image"
-
   - name: "Card (Image, Metadata, 3x Grid)"
     id: "card-metadata"
 
-  - name: "Card (No Image, No Content, 3x Grid)"
-    id: "card-no-content"
+  - name: "Card (Image, No Summary, 3x Grid)"
+    id: "card-no-summary"
+    note: "Examine this markup closely and you'll notice the absence of heading levels. This omission stems from the lack of a clear summary. Headings should exclusively introduce content; otherwise, they should not be used."
 
   - name: "Card (Image, Video)"
     id: "card-video"
-    note: 'When incorporating a video, ensure that the title explicitly includes "(Video)" to aid assistive technology users, signaling their engagement with video content. Additionally, always provide captions for videos, and when needed, ensure transcripts are available.' 
+    note: 'When incorporating a video, ensure that the title explicitly includes "(Video)" to aid assistive technology users, signaling their engagement with video content. If this content is not visually desired, you may use various techniques to visually hide it, but still make it accessible to assistive technology. Additionally, always provide captions for videos, and when needed, ensure transcripts are available.' 
 
   - name: "Horizontal Card (No Image)"
     id: "card-horizontal"
@@ -29,10 +27,10 @@ components:
   - name: "Horizontal Card (Image)"
     id: "card-horizontal-image"
 
-  - name: "Horizontal Card Feed (Alternating Layout)"
+  - name: "Horizontal Card (Feed)"
     id: "card-horizontal-feed"
 
-  - name: "Horizontal Card Feed (Kitchen Sink)"
+  - name: "Horizontal Card (Kitchen Sink)"
     id: "card-horizontal-kitchen-sink"
 
 folder: card

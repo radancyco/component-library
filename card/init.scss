@@ -12,6 +12,8 @@
 */
 
 $base-color: #6F00EF;
+$card-breakpoint: 60em;
+$card-transition: 300ms;
 
 // Card (.card)
 
@@ -42,7 +44,7 @@ width: fit-content;
   flex-direction: column;
   padding: 1em;
   position: relative; // Needed for pseudo-element trick.
-  transition: 300ms;
+  transition: $card-transition;
 
     [data-horizontal] & {
 
@@ -50,10 +52,10 @@ width: fit-content;
       margin-bottom: 1em;
       }
 
-      @media (min-width: 60em) {
+      @media (min-width: $card-breakpoint) {
 
-        gap: 1em;
         flex-direction: row;
+        gap: 1em;
 
       }
 
@@ -65,13 +67,13 @@ width: fit-content;
       .card__trigger {
 
         &::after {
-        transform: translateX(5px);
+        transform: translateX(calc(5em/16));
         }
 
       }
 
       .card__play {
-      transform:scale(1.2);
+      transform: scale(1.2);
       }
   
     }
@@ -82,17 +84,10 @@ width: fit-content;
   
   &__media {
   position: relative;
-  order: -1;
 
     [data-horizontal] & {
     
       min-width: calc(225em/16);
-
-      @media (min-width: 60em) {
-
-        order: unset;
-
-      }
 
     }
 
@@ -103,13 +98,19 @@ width: fit-content;
 
   }
 
+  // Media Preview (.card__preview)
+
+  &__preview {
+  position: relative;
+  }
+
   // Play Button (.card__play)
 
   &__play {
   inset-block-end: 1em;
   inset-inline-end: 1em;
   position: absolute;
-  transition: 300ms;
+  transition: $card-transition;
   width: calc(40em/16);
 
     path {
@@ -133,7 +134,7 @@ width: fit-content;
 
     [data-horizontal] & {
 
-      @media (min-width: 60em) {
+      @media (min-width: $card-breakpoint) {
 
         margin-top: 0;
 
@@ -188,7 +189,7 @@ width: fit-content;
   padding: 0;
   text-decoration: none;
     
-    // CTA
+    // CTA (HTML Entity being used, but you can use Font Awesome or inline SVG, too)
 
     &:not(button) {
   
@@ -196,7 +197,7 @@ width: fit-content;
       content: "\0279C";
       display: inline-block;
       margin-inline-start: .3em;
-      transition: 300ms;
+      transition: $card-transition;
       }
 
     }
@@ -224,6 +225,7 @@ width: fit-content;
 
   &__category, &__metadata {
   font-size: 0.9rem;
+  line-height: normal;
   
     ul {
     display: flex;
@@ -248,10 +250,9 @@ width: fit-content;
     }
 
     li {
-    background-color: #eee;
+    background-color: #EEE;
     border-radius: 5px;
-    line-height: normal;
-    padding: 0.5em 1em;
+    padding: 0.5em 1em 0.7em;
     }
   
   }
@@ -260,10 +261,6 @@ width: fit-content;
 
   &__metadata {
   margin-top: auto;
-
-    ul {
-    color: #767676;
-    }
 
     li:not(:last-child)::after {
     content: "|";
