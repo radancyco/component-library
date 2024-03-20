@@ -48,6 +48,8 @@ width: fit-content;
 
     [data-horizontal] & {
 
+      padding: 2em;
+
       &:not(:last-child) {
       margin-bottom: 1em;
       }
@@ -55,7 +57,7 @@ width: fit-content;
       @media (min-width: $card-breakpoint) {
 
         flex-direction: row;
-        gap: 1em;
+        gap: 2em;
 
       }
 
@@ -87,7 +89,7 @@ width: fit-content;
 
     [data-horizontal] & {
     
-      min-width: calc(225em/16);
+      min-width: calc(300em/16);
 
     }
 
