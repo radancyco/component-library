@@ -9,18 +9,18 @@ components:
 
   - name: "Card (Image, Eyebrow,  3x Grid)"
     id: "card-eyebrow"
-    note: "Examine this markup closely and you'll notice that we are using an element called <code>hgroup</code> to encapsulate the eyebrow and heading. This should be done instead of using multiple headings to markup alternative titles. See <a href='https://www.tpgi.com/subheadings-subtitles-alternative-titles-and-taglines-in-html/'>Subheadings, subtitles, alternative titles and taglines in HTML</a> for more details about this useful element and best practice."
+    note: 'Examine this markup closely and you will notice that we are using an element called <code>hgroup</code> to encapsulate the eyebrow and heading. This should be done instead of using multiple headings to markup alternative titles. See <a href="https://www.tpgi.com/subheadings-subtitles-alternative-titles-and-taglines-in-html/">Subheadings, subtitles, alternative titles and taglines in HTML</a> for more details about this useful element and best practice.'
 
   - name: "Card (Image, Metadata, 3x Grid)"
     id: "card-metadata"
 
   - name: "Card (Image, No Summary, 3x Grid)"
     id: "card-no-summary"
-    note: "Examine this markup closely and you'll notice the absence of heading levels. This omission stems from the lack of a clear summary. Headings should exclusively introduce content; otherwise, they should not be used."
+    note: "Examine this markup closely and you will notice the absence of heading levels. This omission stems from the lack of a clear summary. Headings should exclusively introduce content; otherwise, they should not be used."
 
   - name: "Card (Image, Video)"
     id: "card-video"
-    note: 'When incorporating a video, ensure that the title explicitly includes "(Video)" to aid assistive technology users, signaling their engagement with video content. If this content is not visually desired, you may use various techniques to visually hide it, but still make it accessible to assistive technology. Additionally, always provide captions for videos, and when needed, ensure transcripts are available.' 
+    note: 'When incorporating a video, ensure that the title explicitly includes "(Video)" to aid assistive technology users, signaling their engagement with video content. If this content is not visually desired, you may use various techniques to <a href="https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html">hide it</a>, but still make it accessible to assistive technology. Additionally, always provide captions for videos, and when needed, ensure transcripts are available.' 
 
   - name: "Card (Kitchen Sink)"
     id: "card-kitchen-sink"
@@ -39,7 +39,18 @@ components:
 
 guidance:
 
-  - a11y-card-read-more
+  - a11y-card
+
+attributes:
+
+  - name: data-horizontal
+    html: .card
+    note:
+
+      - Boolean
+      - Optional
+
+    desc: Used to change the card layout to horizontal. The default layout is a vertical grid.
 
 folder: card
 in-page-custom: true
