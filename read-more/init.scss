@@ -19,7 +19,6 @@ $base-color: #6F00EF;
 
   &__content {
   border: 1px #ccc solid;
-  margin-bottom: 1em;
   max-height: calc(280rem /16);
   overflow: hidden;
   padding: 1em;
@@ -57,9 +56,19 @@ $base-color: #6F00EF;
   background-color: $base-color;
   border: 0;
   color: #fff;
+  display: flex;
+  margin-block: 1em;
+  margin-inline: auto 0;
   padding: 1em;
 
+    [data-button-bottom] & {
+
+      margin-inline-start: 0;
+
+    }
+
     &--icon {
+    margin-inline-start: 0.5em;
 
       &::after {
       display: inline-block;
