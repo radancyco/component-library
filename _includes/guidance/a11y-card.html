@@ -7,19 +7,6 @@
 
     <p>Including a card interface can significantly improve users' comprehension of the information at hand. Here are some important things to consider when designing and developing them, especially where accessibility is concerned.</p>
 
-    <h3 id="learn-more">The Problem with "Learn More"</h3>
-
-    <p>Using "Learn More" as a Call to Action (CTA) may seem straightforward and sensible in design, but a significant issue arises with its frequent use as the primary link on cards. This poses accessibility challenges for screen reader users who encounter a list of <em>identical links</em> on a page, negatively impacting usability and potentially affecting SEO. Employing unique, contextually relevant links is essential for optimal accessibility and search engine optimization. Here are the two best solutions to consider over using "Learn More" text:</p>
-
-    <ul>
-        <li>Include relevant text in your CTA's to make them more clear. For example, instead of "Learn More" use "Learn More about Accessibility". Apple does this on its own <a href="apple-example.png">careers site</a>. Many designers and stakeholders do not like the addtional space this creates, but it really is the most effective way to handle the situation and prioritize accessibility.</li>
-        <li>Alternatively, and as seen in all examples here, linking the card title and incorporating affordances, such as arrows, can effectively prompt action just as well as text can. By removing the "Learn More" text, we mitigate the risk of them being programmed as hyperlinks.</li>
-    </ul>
-
-    <p>If "Learn More" is a necessary part of the design, it can be implemented as a <em>faux CTA</em>. Meaning, you can include the text, but do not mark it up as a hyperlink. It can even be hidden from assisitve technology by using ARIA, as it really is superflous.</li> 
-
-    <h3 id="additional-guidance">Additional Guidance</h3>
-
     <ul>
         <li>Avoid linking multiple regions of card content (image, title, summary). Doing so creates more "noise" for assistive technology users to have to listen to. This is why linking the card title only, is always preferred. See the <a href="#pseudo-element-trick">pseudo-element trick</a> to learn how to make entire card region clickable.</li>
         <li>If images are present, use alt text only when the image requires a description. <strong>The card title must never be used as alt text.</strong></li>
@@ -28,23 +15,5 @@
         <li>If a summary is not present, <a href="{{ site.url }}{{ site.baseurl }}/card/#card-no-summary">a heading must not be used</a>. Be sure to reflect this in your programming or if a request is made to remove a card summary.</li>
         <li>Be mindful of focus states. Applying <code>:focus</code> to <code>li</code> or <code>div</code> will not work for keyboard users. Use <code>:focus-within</code> instead.</li>
     </ul>
-
-    <h3 id="pseudo-element-trick">The pseudo-element Trick</h3>
-
-    <p>The <em>pseudo-element trick</em> provides a simple CSS solution for making entire card regions clickable, eliminating the necessity for multiple hyperlinks or links wrapping various content regions. Additionally, it improves accessibility by enabling us to prioritize linking the title, the most distinct and unique aspect of a card.</p>
-
-{% highlight css %}
-.card__item {
-position: relative;
-}
-
-.card__trigger::before {
-content: "";
-display: block;
-inset: 0;
-position: absolute;
-z-index: 1;
-}
-{% endhighlight %}
 
 {% include guidance/footer.html %}

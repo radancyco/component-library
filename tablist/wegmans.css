@@ -1,0 +1,13 @@
+﻿/*!
+
+  Radancy Component Library: Tablist
+
+  Contributor(s): 
+  Michael "Spell" Spellacy
+
+  Dependencies: Sass
+
+  Instructions: 
+  sass --watch .:. --style compressed
+
+*/.tablist{background-color:#f4f4f4;margin:0 auto;min-height:19.375em;padding:2em 0 1em;position:relative}@media(min-width: 50em){.tablist{padding:4.0625em 0}}.tablist__list{display:flex;flex-wrap:wrap;list-style:none;margin:0 0 1.25em;padding:0;justify-content:center;text-align:center}.tablist__list li{flex-grow:1}@media(min-width: 48.75em){.tablist__list li{flex-grow:0;width:32%}}.tablist__tab{margin-right:1.25em;padding:1em;display:block;color:#a93c96;background:#fff;transition:.3s;font-family:"AvenirLTstd-Black",sans-serif;text-decoration:none}.tablist__tab:focus-visible,.tablist__tab:hover,.tablist__tab[aria-selected=true]{color:#fff;background-color:#a93c96}.tablist__content{padding:2em 0 0;text-align:center}.tablist__content a{color:#000;line-height:1.3;transition:.3s;font-size:1.5rem;font-weight:bold;text-decoration:none;display:block;padding-bottom:.5rem;text-decoration:underline}.tablist__content a:focus,.tablist__content a:hover{color:purple;transform:translatey(-5px);text-decoration:none}.tablist__content span{align-items:center;display:flex;font-size:1.125rem;margin:0 10px 10px 0}.tablist__content span::before{font-family:"Font Awesome 6 Pro";display:inline-block;vertical-align:top;margin-right:10px;font-size:1.5rem;color:#a93c96;font-weight:900;min-width:24px}.tablist__content span.location::before{content:""}.tablist__content span.date::before{content:""}.tablist__content span.job-type::before{content:""}.tablist__content ul{display:flex;list-style:none;margin:0;text-align:left}.tablist__content li{width:32%}.tablist__content li:not(:last-child){margin:0 1em 0;border-right:2px #757678 solid}.tablist__tab:focus,.tablist__panel:focus{outline-offset:-6px}/*# sourceMappingURL=wegmans.css.map */

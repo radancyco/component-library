@@ -1,0 +1,24 @@
+{% assign class = "reminder-info" %}
+{% assign id = "pseudo-element" %}
+{% assign landmark = "hdr-pseudo-element" %}
+{% assign title = "The pseudo-element Trick" %}
+
+{% include guidance/header.html %}
+
+    <p>The <em>pseudo-element trick</em> provides a simple CSS solution for making entire card regions clickable, eliminating the necessity for multiple hyperlinks or links wrapping various content regions. Additionally, it improves accessibility by enabling us to prioritize linking the title, the most distinct and unique aspect of a card.</p>
+
+{% highlight css %}
+.card__item {
+position: relative;
+}
+
+.card__trigger::before {
+content: "";
+display: block;
+inset: 0;
+position: absolute;
+z-index: 1;
+}
+{% endhighlight %}
+
+{% include guidance/footer.html %}
