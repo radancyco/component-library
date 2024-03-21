@@ -169,6 +169,7 @@ width: fit-content;
   &__title {
   font-size: 1.4rem;
   line-height: normal;
+  text-align: start;
 
     // If text is not a heading, then center it.
   
@@ -189,7 +190,6 @@ width: fit-content;
   font: inherit;
   margin: 0;
   padding: 0;
-  text-align: start;
   text-decoration: none;
     
     // CTA
