@@ -55,6 +55,80 @@ attributes:
 
     desc: Used to change the card content to horizontal withing a vertical grid. The default layout for content is a vertical, within a horizontal grid.
 
+classes:
+
+  - name: .card
+    html: 
+      - ul
+      - div 
+    note: Mandatory
+    desc: Used on the parent element that wraps your card content. Standalone cards should use a <code>div</code> element.
+  
+  - name: .card__item
+    html: 
+      - li
+      - div
+    note: Mandatory
+    desc: Used on your card item. Must be a child of <code>.card</code>. If your card is a standalone, then use a <code>div</code>.
+      
+  - name: .card__media
+    html: div
+    note: Optional
+    desc: Used to define your media region. Must be a child of <code>.card__item</code>.
+
+  - name: .card__thumbnail
+    html: div
+    note: Optional
+    desc: Used to define your thumbnail image. Must be a child of <code>.card__media</code>.
+
+  - name: .card__content
+    html: div
+    note: Optional
+    desc: Used to define your content region. Must be a child of <code>.card__item</code>.
+
+  - name: .card__group
+    html: hgroup
+    note: Optional
+    desc: Used to define multiple card titles, specifically when <code>.card__eyebrow</code> is used. Must be a child of <code>.card__content</code>.
+
+  - name: .card__eyebrow
+    html: p
+    note: Optional
+    desc: Used to define additional card title. This class may only be applied to a <code>p</code> element. Must be a child of <code>.card__group</code>.
+
+  - name: .card__title
+    html: 
+      - h2
+      - h3
+      - h4 
+      - h5
+      - h6
+      - div
+    note: Optional
+    desc: Used to define primary card heading and may be applied to any logical heading or <code>div</code> if <code>.card__summary</code> is not present. Must be a child of <code>.card__content</code> or <code>.card__group</code>.
+     
+  - name: .card__trigger
+    html: 
+      - a
+      - button 
+    note: Mandatory
+    desc: Used to define a card interaction trigger. Must be a child of <code>.card__title</code>. 
+
+  - name: .card__summary
+    html: p 
+    note: Optional
+    desc: Used to define a card summary. Must be a child of <code>.card__content</code>.  
+
+  - name: .card__category
+    html: div 
+    note: Optional
+    desc: Used to define a card category list. Must be a child of <code>.card__content</code>.  
+
+  - name: .card__metadata
+    html: div 
+    note: Optional
+    desc: Used to define a card metadata list. Must be a child of <code>.card__content</code>.
+
 folder: card
 in-page-custom: true
 localcss: "init.css"
