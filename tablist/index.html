@@ -43,6 +43,33 @@ attributes:
 
     desc: Used to change the layout of the tabs from horizontal to vertical. The CSS for this layout is tied to <code>aria-orientation</code>, which does not have wide assisitve technology support yet.
 
+classes:
+
+  - name: .tablist
+    html: div 
+    note: Mandatory
+    desc: Used on the parent element that wraps your list and panels.
+
+  - name: .tablist__list	
+    html: ul
+    note: Mandatory
+    desc: Used on the <code>ul</code> element for each list. Must be a child of <code>.tablist</code>.
+    
+  - name: .tablist__tab	
+    html: a
+    note: Mandatory
+    desc: Used on the <code>a</code> element for each tab. Must be a child of <code>.tablist__list</code>.
+    
+  - name: .tablist__panel
+    html: div
+    note: Mandatory
+    desc: Used on the parent element that wraps your content. Must be a child of <code>.tablist</code>.
+    
+  - name: .tablist__content
+    html: div
+    note: Optional
+    desc: Used on the element that directly wraps your content. Must be a child of <code>.tablist__panel</code>.
+
 folder: tablist
 in-page-custom: true
 localcss: "init.css"

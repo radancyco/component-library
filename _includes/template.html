@@ -93,6 +93,16 @@
     {% endif %}
   
       {% include_relative html/{{ component.id }}.html %}
+
+      {% if component.warning %}
+  
+      <div class="warning">
+        
+        <p><strong>Warning:</strong> {{ component.warning }}</p>
+
+      </div>
+
+      {% endif %}
   
       {% if component.note %}
   
@@ -102,6 +112,16 @@
 
         </div>
   
+      {% endif %}
+
+      {% if component.experimental %}
+  
+      <div class="experimental">
+        
+        <p><strong>Experimental:</strong> {{ component.experimental }}</p>
+
+      </div>
+
       {% endif %}
 
       <nav aria-label="Code Functions" class="component-functions">

@@ -192,7 +192,8 @@ width: fit-content;
   text-align: start;
   text-decoration: none;
     
-    // CTA (HTML Entity being used, but you can use Font Awesome or inline SVG, too)
+    // CTA
+    // NOTE: HTML Entity being used, but you can use Font Awesome or inline SVG, too.
 
     &:not(button) {
   
@@ -206,7 +207,7 @@ width: fit-content;
     }
       
     // Pseudo-element Trick
-    // Makes all content in container clickable. 
+    // Makes all content in card clickable. 
   
     &::before {
     content: "";
@@ -218,7 +219,7 @@ width: fit-content;
   
   }
 
-  // Summary Text (.card__summary)
+  // Summary (.card__summary)
 
   &__summary {
   margin: 0;
@@ -248,6 +249,7 @@ width: fit-content;
   // Category (.card__category)
 
   &__category {
+  margin-bottom: 1em;
 
     li {
     background-color: #EEE;
