@@ -94,6 +94,7 @@ width: fit-content;
     }
 
     img {
+    display: block;
     border-radius: 5px;
     width: 100%;
     }
@@ -189,6 +190,7 @@ width: fit-content;
   font: inherit;
   margin: 0;
   padding: 0;
+  text-align: start;
   text-decoration: none;
     
     // CTA (HTML Entity being used, but you can use Font Awesome or inline SVG, too)
