@@ -228,6 +228,18 @@
 
       </div>
 
+      {% if component.guidance %}
+
+        {% assign componentGuidance = component.guidance %}
+  
+        {% for item in componentGuidance %}
+  
+          {% include guidance/{{ item }}.html %}
+  
+        {% endfor %}
+  
+      {% endif %}
+
       <script>
 
         var codePenForm = document.getElementById("{{ component.id }}-codepen");
