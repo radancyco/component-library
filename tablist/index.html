@@ -38,7 +38,16 @@ attributes:
       - Boolean
       - Optional
 
-    desc: Used to change the list into a scroll in smaller viewport sizes. While scrolling is always an option, it should only be done sparingly. Allowing tabs to stack is always the better choice,
+    desc: Used to change the list into a scroll in smaller viewport sizes. While scrolling is always an option, it should only be done sparingly. Allowing tabs to stack is always the better choice.
+
+  - name: data-stack
+    html: .tablist
+    note:
+
+      - Boolean
+      - Optional
+
+    desc: Used to change allow the list to stack in smaller viewport sizes. The default behavior of tab items is to wrap.
 
   - name: data-vertical
     html: .tablist
