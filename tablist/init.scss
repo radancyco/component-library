@@ -17,7 +17,7 @@
 $base-color: #6F00EF;
 $base-color-active: white;
 $base-color-neutral: lightgrey;
-$tablist-breakpoint: 41.25em; // 660px
+$tablist-breakpoint: 48.625em; // 778px
 
 // Tablist Container
 
@@ -27,7 +27,7 @@ position: relative;
 
   &:has([aria-orientation]) {
 
-    @media(min-width: $tablist-breakpoint) {
+    @media(min-width: 67.5em) {
   
       display: grid;
       grid-template-columns: 20% auto;
@@ -43,11 +43,21 @@ position: relative;
   margin: 0;
   padding: 0;
 
-    @media(min-width: $tablist-breakpoint) {
+    @media(min-width: 67.5em) {
 
       &[aria-orientation] {
 
         display: block; 
+
+      }
+
+    }
+
+    [data-stack] & {
+
+      @media(max-width: $tablist-breakpoint) {
+
+        display: block;
 
       }
 
