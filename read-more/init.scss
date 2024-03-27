@@ -31,20 +31,20 @@ $base-color: #6F00EF;
 
     }
 
-    &--icon {
-    margin-inline-start: 0.5em;
+  }
+
+  &__icon {
+  margin-inline-start: 0.5em;
+
+    &::after {
+    display: inline-block;
+    content: "+";
+    }
+
+    [aria-expanded="true"] & {
 
       &::after {
-      display: inline-block;
-      content: "+";
-      }
-
-      [aria-expanded="true"] & {
-
-        &::after {
-        content: "-";
-        }
-
+      content: "-";
       }
 
     }

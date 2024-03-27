@@ -10,24 +10,15 @@ components:
     id: "button-label"
     codepenjs: "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
 
-  - name: "Read More (Bottom)"
+  - name: "Custom Position: Bottom (Anti-Pattern)"
     id: "button-bottom"
     codepenjs: "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
-    warning: 'Placing the "Read More" button on the bottom is considered an anti-pattern and not recommended for use. Please see <a href="#anti-pattern-read-more">Why is this an Anti-Pattern?</a> for more details.'
+    warning: 'Positioning disclosure buttons on the bottom of content to be opened above them is considered an anti-pattern and <a href="#anti-pattern-read-more">not recommended</a>. Use at your own risk.'
     guidance: anti-pattern-read-more
 
 guidance: a11y-avoid-toggling-text
 
 attributes:
-
-  - name: data-button-label
-    html: .read-more
-    note:
-  
-      - String
-      - Optional
-
-    desc: 'Used to apply custom text to the toggle button, which can be useful, especially when translating. The default text is "Read More".'
 
   - name: data-button-bottom
     html: .read-more
@@ -36,7 +27,16 @@ attributes:
       - Boolean
       - Optional
 
-    desc: Used to position toggle button at the bottom. Please note that this is not recommended. 
+    desc: Used to position disclosure button at the bottom of the partially visible content. <em>Please note that this is not recommended.</em> The default position is at the top of the content. 
+
+  - name: data-button-label
+    html: .read-more
+    note:
+  
+      - String
+      - Optional
+
+    desc: 'Used to apply custom text to the disclosure button, which can be useful, especially when translations are required. The default text is "Read More".'
 
 classes:
 
@@ -49,15 +49,30 @@ classes:
     note: Mandatory
     desc: Used on the parent element that wraps your content.
 
-  - name: .read-more__content	
-    html: div
-    note: Mandatory
-    desc: Used on the element that wraps your partially hidden content. Must be a child of <code>.read-more</code>.
-
   - name: .read-more__btn
     html: button
     note: Component
-    desc: Used on the disclosure button. This element is dynamically inserted. Language support coming soon.
+    desc: Used on the disclosure button. This element is dynamically inserted by the component.
+
+  - name: .read-more__content	
+    html: div
+    note: Mandatory
+    desc: Used on the element that wraps your partially visible content. Must be a child of <code>.read-more</code>.
+    
+  - name: .read-more__icon
+    html: span
+    note: Component
+    desc: Used on the disclosure button icon. This element is dynamically inserted by the component.
+
+  - name: .read-more__label
+    html: span
+    note: Component
+    desc: Used on the disclosure button label. This element is dynamically inserted by the component.
+
+notes: 
+
+  - <b>Roadmap:</b> Support for custom button. For example, the title of the content might lend itself better to becoming the disclosure button.
+  - <b>Roadmap:</b> Support inline SVG in button.
 
 folder: read-more
 in-page-custom: true

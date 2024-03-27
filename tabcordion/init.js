@@ -6,8 +6,6 @@
   Andrew Hill
   Michael "Spell" Spellacy
 
-  Dependencies: None
-
 */
 
 (function() {

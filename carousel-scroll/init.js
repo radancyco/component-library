@@ -5,8 +5,6 @@
   Contributor(s):
   Michael "Spell" Spellacy
 
-  Dependencies: None
-
 */
 
 var carousel = document.querySelector(".carousel-scroll__container");

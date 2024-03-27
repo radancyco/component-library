@@ -6,8 +6,6 @@
   Bobby KC
   Michael "Spell" Spellacy
 
-  Dependencies: None
-
 */
 
 (function() {

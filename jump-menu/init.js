@@ -5,8 +5,6 @@
   Contributor(s):
   Michael "Spell" Spellacy
 
-  Dependencies: None
-
 */
 
 (function() {

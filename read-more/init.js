@@ -17,8 +17,9 @@
 
   var readMoreClass = ".read-more";
   var readMoreContentClass = ".read-more__content";
-  var readMoreButtonName = "read-more__btn"
-  var readMoreButtonIconName = "read-more__btn--icon"
+  var readMoreButtonName = "read-more__btn";
+  var readMoreButtonIconName = "read-more__icon";
+  var readMoreButtonLabelName = "read-more__label";
   var readMoreButtomPosition = "data-button-bottom";
   var readMoreButtonLabel = "data-button-label";
   var readMoreDefaultText = "Read More";
@@ -31,7 +32,7 @@
     
     focusElms.forEach(function(selector) {
       
-      // Get all elements matching the current selector within the "read-more__content" element
+      // Get all elements matching the current selector within the content area.
   
       var elements = target.querySelectorAll(selector);
   
@@ -71,31 +72,37 @@
 
     focusableElements(readMoreContent, true);
 
-    // Prep Buttons
+    // Prep Disclosure
 
     var readMoreButton = document.createElement("button");
 
     readMoreButton.setAttribute("aria-expanded", "false");
     readMoreButton.setAttribute("class", readMoreButtonName);
 
-    // Custom Text
+    // Disclosure Label
+
+    var readMoreLabel = document.createElement("span");
+    readMoreLabel.setAttribute("class", readMoreButtonLabelName);
+
+    // Disclosure Text
 
     if (content.hasAttribute(readMoreButtonLabel)) {
 
-      readMoreButton.textContent = content.getAttribute(readMoreButtonLabel);
-
+      readMoreLabel.textContent = content.getAttribute(readMoreButtonLabel);
+    
     } else { 
-
-      readMoreButton.textContent = readMoreDefaultText;
-
+    
+      readMoreLabel.textContent = readMoreDefaultText;
+    
     }
 
-    // Icon
+    // Disclosure Icon
 
     var readMoreButtonIcon = document.createElement("span");
-    readMoreButtonIcon.setAttribute("aria-hidden", "false");
+    readMoreButtonIcon.setAttribute("aria-hidden", "true");
     readMoreButtonIcon.setAttribute("class", readMoreButtonIconName);
 
+    readMoreButton.append(readMoreLabel);
     readMoreButton.append(readMoreButtonIcon);
 
     if (content.hasAttribute(readMoreButtomPosition)) {
@@ -107,6 +114,8 @@
       content.prepend(readMoreButton);
 
     }
+
+    // Disclosure Event
 
     readMoreButton.addEventListener("click", function() {
 
@@ -131,7 +140,7 @@
 
         }
 
-        // Remove tabindex from all focusable elements in "read-more__content"
+        // Remove tabindex from all focusable elements in content.
 
         focusableElements(readMoreContent);
 
@@ -151,7 +160,7 @@
 
         }
 
-        // Set tabindex on all focusable elements in "read-more__content"
+        // Set tabindex on all focusable elements in content.
 
         focusableElements(readMoreContent, true);
 
