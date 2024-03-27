@@ -5,105 +5,160 @@
   Contributor(s):
   Michael "Spell" Spellacy
 
-  Dependencies: jQuery
-
 */
 
-// Display which Read More version in use via console:
+(function() {
 
-console.log("%c Read More v1.1 in use. ", "background: #6e00ee; color: #fff");
+  "use strict";
 
-var $readMoreClass = $(".read-more");
-var $readMoreContentClass = $(".read-more__content");
-var readMoreDataBottom = "data-button-bottom";
-var readMoreDataLabel = "data-button-label";
+  // Display which Read More version in use via console:
 
-$readMoreClass.each(function( ) {
+  console.log("%c Read More v1.5 in use. ", "background: #6e00ee; color: #fff");
 
-  var readMoreDataBottomAttr = $(this).attr(readMoreDataBottom);
-  var readMoreDataLabelAttr = $(this).attr(readMoreDataLabel);
+  var readMoreClass = ".read-more";
+  var readMoreContentClass = ".read-more__content";
+  var readMoreButtonName = "read-more__btn"
+  var readMoreButtonIconName = "read-more__btn--icon"
+  var readMoreButtomPosition = "data-button-bottom";
+  var readMoreButtonLabel = "data-button-label";
+  var readMoreDefaultText = "Read More";
+  var readMore = document.querySelectorAll(readMoreClass);
+  var focusElms = ["a", "audio", "area", "button", "*[contenteditable]", "details", "input", "iframe", "object", "select", "summary", "textarea", "video", "*[tabindex]"];
 
-  if (typeof readMoreDataLabelAttr !== typeof undefined && readMoreDataLabelAttr !== false) {
+  function focusableElements(target, tabindex) {
 
-    var label = readMoreDataLabelAttr;
+    // Loop through each selector in the focusElms array
+    
+    focusElms.forEach(function(selector) {
+      
+      // Get all elements matching the current selector within the "read-more__content" element
+  
+      var elements = target.querySelectorAll(selector);
+  
+      // Loop through each matching element
+  
+      elements.forEach(function(el) {
+  
+        // Set the tabindex attribute to -1
 
-  } else { 
+        if(tabindex === true) {
+  
+          el.setAttribute("tabindex", "-1");
 
-    var label = "Read More";
+        } else {
+
+          el.removeAttribute("tabindex");
+
+        }
+  
+      });
+
+    });
 
   }
+  
+  // Set up and loop through all Read More components on page
 
-  var readMoreButton = "<button class='read-more__btn' aria-expanded='false'>" + label + " <span class='read-more__btn--icon' aria-hidden='true'></span></button>";
+  readMore.forEach(function(content){
 
-  if (typeof readMoreDataBottomAttr !== typeof undefined && readMoreDataBottomAttr !== false) {
+    // Prep Content
 
-    $(this).append(readMoreButton);
+    var readMoreContent = content.querySelector(readMoreContentClass);
 
-  } else {
+    readMoreContent.setAttribute("aria-hidden", "true");
 
-    $(this).prepend(readMoreButton);
+    // Set tabindex to all focusable elements in "read-more__content"
 
-  }
+    focusableElements(readMoreContent, true);
 
-});
+    // Prep Buttons
 
-var $readMoreBtnClass = $(".read-more__btn");
+    var readMoreButton = document.createElement("button");
 
-var $focusElms = "a, audio, button, input, select, video, *[tabindex]";
+    readMoreButton.setAttribute("aria-expanded", "false");
+    readMoreButton.setAttribute("class", readMoreButtonName);
 
-$readMoreContentClass.attr("aria-hidden", "true").find($focusElms).attr("tabindex", "-1");
+    // Custom Text
 
-$readMoreBtnClass.on("click", function() {
+    if (content.hasAttribute(readMoreButtonLabel)) {
 
-  toggleContent($(this));
+      readMoreButton.textContent = content.getAttribute(readMoreButtonLabel);
 
-});
+    } else { 
 
-function toggleContent(target) {
+      readMoreButton.textContent = readMoreDefaultText;
 
-  target.attr("aria-expanded", function (i, attr) {
+    }
 
-    return attr == "true" ? "false" : "true"
+    // Icon
+
+    var readMoreButtonIcon = document.createElement("span");
+    readMoreButtonIcon.setAttribute("aria-hidden", "false");
+    readMoreButtonIcon.setAttribute("class", readMoreButtonIconName);
+
+    readMoreButton.append(readMoreButtonIcon);
+
+    if (content.hasAttribute(readMoreButtomPosition)) {
+
+      content.append(readMoreButton);
+
+    } else {
+
+      content.prepend(readMoreButton);
+
+    }
+
+    readMoreButton.addEventListener("click", function() {
+
+      // Toggle aria-expanded
+
+      var ariaExpanded = this.getAttribute("aria-expanded") === "true" || false;
+  
+      this.setAttribute("aria-expanded", !ariaExpanded);
+
+      // Toggle Content
+
+      var readMoreContent = this.parentElement.querySelector(readMoreContentClass);
+  
+      if (readMoreContent.hasAttribute("aria-hidden")) {
+
+        readMoreContent.removeAttribute("aria-hidden")
+        readMoreContent.setAttribute("tabindex", "-1");
+
+        if(this.parentElement.hasAttribute(readMoreButtomPosition)) {
+      
+          readMoreContent.focus();
+
+        }
+
+        // Remove tabindex from all focusable elements in "read-more__content"
+
+        focusableElements(readMoreContent);
+
+      } else {
+  
+        readMoreContent.removeAttribute("tabindex");
+        readMoreContent.setAttribute("aria-hidden", "true");
+      
+        if(this.parentElement.hasAttribute(readMoreButtomPosition)) {
+      
+          readMoreContent.scrollIntoView({ 
+            
+            behavior: "smooth", 
+            block: "start" 
+          
+          });
+
+        }
+
+        // Set tabindex on all focusable elements in "read-more__content"
+
+        focusableElements(readMoreContent, true);
+
+      } 
+
+    });
 
   });
 
-  var attr = target.parent().attr(readMoreDataBottom);
-
-  if (typeof attr !== typeof undefined && attr !== false) {
-
-    var $parentTarget = target.prev();
-    var $parentTargetAttr = target.prev().attr("tabindex");
-
-  } else {
-
-    var $parentTarget = target.next();
-    var $parentTargetAttr = target.next().attr("tabindex");
-
-  }
-
-  if (typeof $parentTargetAttr !== typeof undefined && $parentTargetAttr !== false) {
-
-    $parentTarget.removeAttr("tabindex").attr("aria-hidden", "true");
-    $parentTarget.find($focusElms).attr("tabindex", "-1");
-
-    if (typeof attr !== typeof undefined && attr !== false) {
-
-      $("html, body").animate({scrollTop: $parentTarget.offset().top}, 0);
-
-    }
-
-  } else {
-
-    $parentTarget.removeAttr("aria-hidden").attr("tabindex", "-1");
-
-    if (typeof attr !== typeof undefined && attr !== false) {
-
-      $parentTarget.focus();
-
-    }
-
-    $parentTarget.find($focusElms).attr("tabindex", "0");
-
-  }
-
-}
+})();
