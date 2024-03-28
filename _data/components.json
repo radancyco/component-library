@@ -1,0 +1,96 @@
+{
+
+    "accordion-grid": {
+
+        "name" : "Accordion Grid",
+        "description" : "This component will allow you to implement and control the presentation of multiple disclosures, also known as an accordion.",
+        "path" : "accordion-grid",
+        "id" : "accordion-grid",
+        "version" : "1.1"
+
+   },
+   
+   "animation-toggle": {
+
+        "name" : "Animation Toggle",
+        "description" : "This component enhances animation control, ensuring improved accessibility for disabled users and optimized performance across devices.",
+        "path" : "animation-toggle",
+        "id" : "animation-toggle",
+        "version" : "1.6"
+
+   },
+   
+   "css-animation": {
+
+        "name" : "CSS Animation Library",
+        "description" : "Elevate your upcoming website design by incorporating these popular CSS animations.",
+        "path" : "css-animation",
+        "id" : "css-animation",
+        "thumbnail" : false
+
+    },
+
+    "card": {
+
+        "name" : "Card",
+        "description" : "This component will allow you to implement a single or group of related content cards, which may include an image, summary text, and link. Cards are often used to present lists or grids of content such as featured articles or content related to a specific topic.",
+        "path" : "card",
+        "id" : "card",
+        "thumbnail" : false,
+        "version" : "1.0"
+
+    },
+
+    "horizontal-scroll": {
+
+        "name" : "Horizontal Scroll",
+        "description" : "This component will allow you to add a grid layout that turns into a horizontal scroll in smaller viewports. It can be used as an alternative to carousels.",
+        "path" : "horizontal-scroll",
+        "id" : "horizontal-scroll",
+        "thumbnail" : false,
+        "version" : "1.0"
+
+    },
+
+    "disclosure": {
+
+        "name" : "Disclosure",
+        "description" : "This component will allow you to implement various types of disclosure widgets.",
+        "path" : "disclosure",
+        "id" : "disclosure",
+        "thumbnail" : false,
+        "version" : "1.7"
+
+    },
+
+    "read-more": {
+
+        "name" : "Partial Disclosure (Read More)",
+        "description" : "This component will allow you to expand partially visible content on your page.",
+        "path" : "read-more",
+        "id" : "read-more",
+        "thumbnail" : false,
+        "version" : "1.5"
+
+    },
+
+    "hero-banner-image": {
+
+        "name" : "Hero Banner (Image)",
+        "description" : "This component allows you to create a standard hero banner complete with a headline and supplementary text.",
+        "path" : "hero-banner",
+        "id" : "hero-banner",
+        "version" : "1.1"
+
+    }, 
+
+    "hero-banner-video": {
+
+        "name" : "Hero Banner (Video)",
+        "description" : "This component allows you to create a standard hero banner complete with a headline and supplementary text.",
+        "path" : "animation-toggle/#hero-banner",
+        "id" : "animation-toggle",
+
+    }
+
+}
