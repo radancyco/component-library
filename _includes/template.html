@@ -12,9 +12,13 @@
 
 {% endif %}
 
-{% if page.desc %}
+{% if component %}
 
-  <p>{{ page.desc }}</p>
+  <p class="component__summary">{{ component.desc }}</p>
+
+{% else if page.desc %}
+
+  <p class="page__summary">{{ page.desc }}</p>
 
 {% endif %}
 
@@ -70,7 +74,7 @@
 
     {% if page.localjs %}
 
-      {% capture js %}{% include_relative init.js %}{% endcapture %}
+      {% capture js %}{% include_relative script.js title=include.title version=include.version %}{% endcapture %}
 
     {% endif %}
 
@@ -202,7 +206,7 @@
       
             <div class="tablist__content" contenteditable spellcheck="false">
 
-              {% highlight javascript %}{% include_relative init.js %}{% endhighlight %}
+              {% highlight javascript %}{% include_relative script.js title=include.title version=include.version %}{% endhighlight %}
 
             </div>
 

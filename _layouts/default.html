@@ -1,3 +1,7 @@
+{% assign id = page.id %}
+{% assign module = page.module %}
+{% assign component = site.data.module[module][id] %}
+
 <!DOCTYPE html>
 <html lang="{{ site.lang }}" class="no-js">
 <head>
@@ -17,7 +21,7 @@
     <link href="{{ component.customcss }}.css" rel="stylesheet">{% endif %}{% endfor %}{% endif %}
     <link href="{{ site.git-url }}/favicon.ico" rel="icon">
     <link href="{{ site.git-url }}/manifest.json" rel="manifest">
-    <title>{{ page.title }} - {{ site.company-name }}</title>
+    <title>{% if component %}{{ component.title }}{% else %}{{ page.title }}{% endif %} - {{ site.company-name }}</title>
 </head>
 
 <body id="rad-{{ page.path | replace:'.html',''|  replace:'.md','' | replace:'_','' | replace: '/', '-'}}"{% if page.section %} class="{{ page.section }}"{% endif %}>
@@ -50,11 +54,19 @@
 
     <main{% if page.constrain != false %} id="content"{% endif %}>
 
-      {% if page.title %}
+      {% if component %}
+      
+        <h1 class="primary-heading">{{ component.title }} v{{ component.version }}</h1>
+      
+      {% else if page.title %}
 
-      {% if page.heading != false %}
+        {% if page.heading != false %}
+      
+          <h1 class="primary-heading">{{ page.title }}</h1>
 
-      <h1 class="primary-heading">{{ page.title }}</h1>
+        {% endif %}
+      
+      {% endif %}
 
       {% if page.layout == "micropubpost" %}
 
@@ -82,10 +94,6 @@
         </div>
 
       </div>
-
-      {% endif %}
-
-      {% endif %}
 
       {% endif %}
 

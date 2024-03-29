@@ -1,0 +1,131 @@
+component: 
+  accordion-grid:
+    desc: "This component will allow you to implement and control the presentation of multiple disclosures also known as an accordion."
+    id: "accordion-grid"
+    path: "accordion-grid"
+    title: "Accordion Grid"
+    version: "1.1"
+  animation-toggle: 
+    desc: "This component enhances animation control ensuring improved accessibility for disabled users and optimized performance across devices."
+    id: "animation-toggle"
+    path: "animation-toggle"
+    title: "Animation Toggle"
+    version: "1.6"
+  css-animation: 
+    desc: "Elevate your upcoming website design by incorporating these popular CSS animations."
+    id: "css-animation"
+    path: "css-animation"
+    title: "CSS Animation Library"
+    version: "2.0"
+  card: 
+    desc: "This component will allow you to implement a single or group of related content cards which may include an image summary text and link. Cards are often used to present lists or grids of content such as featured articles or content related to a specific topic."
+    id: "card"
+    path: "card"
+    thumbnail: false
+    title: "Card"
+    version: "1.0"
+  horizontal-scroll: 
+    desc: "This component will allow you to add a grid layout that turns into a horizontal scroll in smaller viewports. It can be used as an alternative to carousels."
+    id: "horizontal-scroll"
+    path: "horizontal-scroll"
+    thumbnail: false
+    title: "Horizontal Scroll"
+    version: "1.0"
+  disclosure: 
+    desc: "This component will allow you to implement various types of disclosure widgets."
+    id: "disclosure"
+    path: "disclosure"
+    thumbnail: false
+    title: "Disclosure"
+    version: "1.7"
+  read-more: 
+    desc: "This component will allow you to expand partially visible content on your page."
+    id: "read-more"
+    path: "read-more"
+    thumbnail: false
+    title: "Partial Disclosure (Read More)"
+    version: "1.5"
+  hero-banner-image: 
+    desc: "This component allows you to create a standard hero banner complete with a headline and supplementary text."
+    id: "hero-banner"
+    path: "hero-banner"
+    title: "Hero Banner (Image)"
+    version: "1.1"
+  hero-banner-video: 
+    desc: "This component allows you to create a standard hero banner complete with a headline and supplementary text."
+    hash: "#hero-banner"
+    id: "animation-toggle"
+    path: "animation-toggle"
+    title: "Hero Banner (Video)"
+  breadcrumbs: 
+    desc: "This component will allow you to add a breadcrumb navigation to your page."
+    id: "breadcrumbs"
+    path: "breadcrumbs"
+    thumbnail: false
+    title: "Breadcrumbs"
+    version: "1.1"
+  jump-menu: 
+    desc: "This component will allow you to add a accessible menu to your page. When a selection is made and the button is clicked, it will take you to another page."
+    id: "jump-menu"
+    path: "jump-menu"
+    thumbnail: false
+    title: "Jump Menu (External)"
+    version: "1.0"
+  in-page: 
+    desc: "This component will allow you to add an accessible menu to your page that can reveal in-page content."
+    id: "in-page"
+    path: "in-page"
+    thumbnail: false
+    title: "Jump Menu (In-page)"
+    version: "1.0"
+  load-more: 
+    desc: "This component will allow you to expand hidden content."
+    id: "load-more"
+    path: "load-more"
+    thumbnail: false
+    title: "Load More"
+    version: "1.0"
+  tabcordion: 
+    desc: "This component will allow you to add a combined Tab and Accordion (Disclosure) to your page."
+    id: "tabcordion"
+    path: "tabcordion"
+    thumbnail: false
+    title: "TabCordion"
+    version: "1.8"
+  tablist: 
+    desc: "This component will allow you to implement a tablist user interface."
+    id: "tablist"
+    path: "tablist"
+    thumbnail: false
+    title: "Tablist"
+    version: "1.2"
+layout: 
+  ajd: 
+    desc: "A boierplate system to produce Advanced Job Decscriptions more easily."
+    id: "ajd"
+    path: "tb-ajd-template"
+    thumbnail: false
+    title: "Advanced Job Details (AJD)"
+    version: "2.0"
+  flexspan: 
+    desc: "A flexible grid system capable of various functionalities, such as optional pre-defining of rows, a true gap system, customizable breakpoints, and offsets in both directions."
+    id: "flexspan"
+    path-full: "https://brockenstein.github.io/Flexspan-Grid-System/"
+    thumbnail: false
+    title: "FlexSpan Grid System"
+    version: "1.0"
+feed: 
+  instagram: 
+    desc: "This component can be used to display a client's Instagram feed."
+    id: "feeds-instagram"
+    path: "feeds/instagram"
+    thumbnail: false
+    title: "Instagram Feed"
+    version: "1.0"
+  youtube: 
+    desc: "This component can be used to display a client's YouTube feed."
+    id: "feeds-youtube"
+    path: "feeds/youtube"
+    thumbnail: false
+    title: "YouTube Feed"
+    version: "1.0"

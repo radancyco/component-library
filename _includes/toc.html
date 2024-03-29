@@ -1,33 +1,35 @@
 <h2 id="components">Components</h2>
 
 <ul>
-  <li><a href="{{ site.baseurl }}/accordion-grid/" data-nav-id="rad-accordion-grid-index">Accordion Grid</a></li>
-  <li><a href="{{ site.baseurl }}/animation-toggle/" data-nav-id="rad-animation-toggle-index">Animation Toggle</a></li>
-  <li><a href="{{ site.baseurl }}/css-animation/" data-nav-id="rad-css-animation-index">CSS Animation Library</a></li>
-  <li><a href="{{ site.baseurl }}/card/" data-nav-id="rad-card-index">Card</a></li>
-  <li><a href="{{ site.baseurl }}/horizontal-scroll/" data-nav-id="rad-horizontal-scroll-index">Horizontal Scroll</a></li>
-  <li><a href="{{ site.baseurl }}/disclosure/" data-nav-id="rad-disclosure-index">Disclosure</a></li>
-  <li><a href="{{ site.baseurl }}/read-more/" data-nav-id="rad-read-more-index">Partial Disclosure (Read More)</a></li>
-  <li><a href="{{ site.baseurl }}/hero-banner/" data-nav-id="rad-hero-banner-index">Hero Banner (Image)</a></li>
-  <li><a href="{{ site.baseurl }}/animation-toggle/#hero-banner" data-nav-id="rad-animation-toggle-index" data-nav-anchor>Hero Banner (Video)</a></li>
-  <li><a href="{{ site.baseurl }}/breadcrumbs/" data-nav-id="rad-breadcrumbs-index">Breadcrumbs</a></li>
-  <li><a href="{{ site.baseurl }}/jump-menu/" data-nav-id="rad-jump-menu-index">Jump Menu (External)</a></li>
-  <li><a href="{{ site.baseurl }}/in-page/" data-nav-id="rad-in-page-index">Jump Menu (In-page)</a></li>
-  <li><a href="{{ site.baseurl }}/load-more/" data-nav-id="rad-load-more-index">Load More</a></li>
-  <li><a href="{{ site.baseurl }}/tabcordion/" data-nav-id="rad-tabcordion-index">TabCordion</a></li>
-  <li><a href="{{ site.baseurl }}/tablist/" data-nav-id="rad-tablist-index">Tablist</a></li>
+
+  {% for item in site.data.module.component %}
+
+  <li><a data-nav-id="rad-{{ item[1]['id'] }}-index" href="{% if item[1]['path-full'] %}{{ item[1]['path-full'] }}{% else %}{{ site.baseurl }}/{{ item[1]['path'] }}/{{ item[1]['hash'] }}{% endif %}">{{ item[1]["title"] }}</a></li>
+
+  {% endfor %}
+
 </ul>
 
 <h2 id="layouts">Layouts</h2>
 
 <ul>
-  <li><a href="/tb-ajd-template/" data-nav-id="rad-advanced-job-details-index">Advanced Job Descriptions (AJD)</a></li>
-  <li><a href="https://brockenstein.github.io/Flexspan-Grid-System/">Flexspan Grid System</a></li>
+
+  {% for item in site.data.module.layout %}
+
+  <li class="card__item"><a data-nav-id="rad-{{ item[1]['id'] }}-index" href="{% if item[1]['path-full'] %}{{ item[1]['path-full'] }}{% else %}{{ site.baseurl }}/{{ item[1]['path'] }}/{{ item[1]['hash'] }}{% endif %}">{{ item[1]["title"] }}</a></li>
+
+  {% endfor %}
+
 </ul>
 
 <h2 id="third-party">Third-Party</h2>
 
 <ul>
-  <li><a href="{{ site.baseurl }}/feeds/instagram/" data-nav-id="rad-feeds-instagram-index">Instagram</a></li>
-  <li><a href="{{ site.baseurl }}/feeds/youtube/" data-nav-id="rad-feeds-youtube-index">YouTube</a></li>
+
+  {% for item in site.data.module.feed %}
+
+  <li><a data-nav-id="rad-{{ item[1]['id'] }}-index" href="{% if item[1]['path-full'] %}{{ item[1]['path-full'] }}{% else %}{{ site.baseurl }}/{{ item[1]['path'] }}/{{ item[1]['hash'] }}{% endif %}">{{ item[1]["title"] }}</a></li>
+
+  {% endfor %}
+
 </ul>

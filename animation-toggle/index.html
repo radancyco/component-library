@@ -199,16 +199,16 @@ notes:
   - "<b>Testing:</b> While the <code>disableremoteplayback</code> attribute may not be recognized as valid HTML, the error can be safely disregarded."
   - "<b>Roadmap:</b> Revisit <code>data-callback</code> and see if it makes sense to apply callback function to all animations if <code>data-callback</code> present on page at all. Right now, there is an animation disconnect between those that have the attribute and those that do not. Currently, we manually add the callback to all other page animations."
   
+customjs: "callback-custom.js"
 folder: animation-toggle
+id: animation-toggle
 in-page-custom: true
+libraryjs: "callback-lottie.js"
 localcss: "init.css"
 localjs: "init.js"
-libraryjs: "callback-lottie.js"
-customjs: "callback-custom.js"
+module: component
 section: component-library-animation-toggle
 tablist: true
-title: "Animation Toggle v1.6"
-desc: This component enhances animation control, ensuring improved accessibility for disabled users and optimized performance across devices.
 ---
 
-{% include template.html %}
+{% include init.html %}
