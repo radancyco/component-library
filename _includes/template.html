@@ -12,6 +12,9 @@
 
 {% endif %}
 
+{% assign path = component.path # used further doen the page for repo link %} 
+{% assign title = component.title # used further doen the page for repo link %} 
+
 {% if component %}
 
   <p class="component__summary">{{ component.desc }}</p>
@@ -134,7 +137,7 @@
           <li><button class="btn-copy-link" data-code="{{ page.url | absolute_url }}#{{ component.id }}">{{ iconCheck }}{{ iconCopyURL }} Copy link to example</button></li>
           <li><form action="https://codepen.io/pen/define" id="{{ component.id }}-codepen" method="POST" target="_blank"><button class="btn-edit-codepen">{{ iconCodePen }} Edit on CodePen</button></form></li>
           <li><a class="btn-new-window" href="{{ component.id }}" target="_blank">{{ iconNewWindow }} Open in new window</a></li>
-          <li><a class="btn-repository" href="{{ site.repo }}/blob/main/{{ page.folder }}/">{{ iconGit }} Repository</a></li>
+          <li><a class="btn-repository" href="{{ site.repo }}/blob/main/{{ path }}/">{{ iconGit }} Repository</a></li>
           <li><button class="btn-view-code">{{ iconCode }} View Code</button></li>
         </ul>
 
@@ -250,7 +253,7 @@
   
         var obj = {
           
-          title: "{{ page.title }} {% if component.name %}: {{ component.name }} {% endif %}",
+          title: "{{ title }} {% if component.name %}: {{ component.name }} {% endif %}",
           html: {{ html | jsonify }},
           css_external: "https://radancy.dev/css/init.css",
           css_pre_processor: "scss",
