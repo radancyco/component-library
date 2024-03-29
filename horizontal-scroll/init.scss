@@ -25,6 +25,7 @@ position: relative;
   overflow-x: auto;
   padding: 1em 0;
   scrollbar-color: $base-color $base-color-active;
+  scrollbar-width: thin;
 
     @media(min-width: 62.5em) {
 
