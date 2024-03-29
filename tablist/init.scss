@@ -148,7 +148,7 @@ position: relative;
 
       max-height: calc(480em/16);
       overflow-x: auto;
-      padding: 1em;
+      padding-inline-end: 1em;
       scrollbar-color: $base-color-active $base-color;
       scrollbar-gutter: stable;
       scrollbar-width: thin;
