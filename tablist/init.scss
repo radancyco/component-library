@@ -152,6 +152,7 @@ position: relative;
       padding: 1em;
       scrollbar-color: $base-color $base-color-active;
       scrollbar-width: thin;
+      scrollbar-track-color: #fff; // Non-standard
 
     }
 
