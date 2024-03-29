@@ -147,7 +147,6 @@ position: relative;
     [data-fixed-height] & {
 
       max-height: calc(480em/16);
-      min-height: calc(480em/16);
       overflow-x: auto;
       padding: 1em;
       scrollbar-color: $base-color $base-color-active;
