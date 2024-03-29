@@ -103,7 +103,7 @@ layout:
   ajd: 
     desc: "A boierplate system to produce Advanced Job Decscriptions more easily."
     id: "ajd"
-    path: "tb-ajd-template"
+    full-path: "/tb-ajd-template"
     thumbnail: false
     title: "Advanced Job Details (AJD)"
     version: "2.0"
