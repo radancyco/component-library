@@ -5,6 +5,13 @@ components:
     id: "default-setup"
     note: "By default, tabs will be inline on both mobile and desktop and wrap as needed depending on viewport and text size."
 
+  - name: "Disable Anchor"
+    id: "disable-anchor"
+    note: "By default, clicking a tab will append an anchor to the URL, but this can be disabled if desired."
+
+  - name: "Fixed Content Height (Mobile & Desktop)"
+    id: "fixed-height"
+
   - name: "Stacked Tabs (Mobile), Inline Tabs (Desktop)"
     id: "mobile-stack"
     note: "When desired, tabs can be stacked in smaller viewport sizes. To view stacked tabs, adjust the viewport size to be smaller."
@@ -16,10 +23,6 @@ components:
   - name: "Vertical Tabs (Desktop), Inline Tabs (Mobile)"
     id: "desktop-vertical"
 
-  - name: "Disable Anchor"
-    id: "disable-anchor"
-    note: "By default, clicking a tab will append an anchor to the URL, but this can be disabled if desired."
-
 attributes:
 
   - name: data-disable-anchor
@@ -30,6 +33,15 @@ attributes:
       - Optional
 
     desc: Used to disable the anchor that appears in the address bar when a tab is clicked on. Do note that including an anchor can be useful for tracking and sharing specific content, so we should only remove when we have a good reason.
+
+  - name: data-fixed-height
+    html: .tablist
+    note:
+
+      - Boolean
+      - Optional
+
+    desc: Used to fix the tab content to a specific height. The height may be adusted in the CSS.
 
   - name: data-scroll
     html: .tablist
