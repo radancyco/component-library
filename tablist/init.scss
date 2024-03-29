@@ -133,11 +133,27 @@ position: relative;
 
   }
 
-  // Tab panel
+  // Tab Panel
 
   &__panel  {
   background-color: $base-color;
   padding: 1em;
+  }
+
+  // Tab Content
+
+  &__content {
+
+    [data-fixed-height] & {
+
+      max-height: calc(480em/16);
+      overflow-x: auto;
+      padding: 1em;
+      scrollbar-color: $base-color $base-color-active;
+      scrollbar-width: thin;
+
+    }
+
   }
 
   // Focus State
