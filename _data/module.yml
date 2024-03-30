@@ -23,6 +23,14 @@ component:
     path: "card"
     title: "Card"
     version: "1.0"
+  card-flip: 
+    desc: "This component will allow you to implement a card that can be flipped when engaged with."
+    id: "card-flip"
+    path: "card-flip"
+    thumbnail: false
+    title: "Card Flip"
+    version: "1.0"
+    hidden: true
   horizontal-scroll: 
     desc: "This component will allow you to add a grid layout that turns into a horizontal scroll in smaller viewports. It can be used as an alternative to carousels."
     id: "horizontal-scroll"
@@ -109,12 +117,26 @@ layout:
     title: "FlexSpan Grid System"
     version: "1.0"
 feed: 
+  facebook: 
+    desc: "This component can be used to display a client's Facebook feed."
+    id: "feeds-facebook"
+    path: "feeds/facebook"
+    title: "Facebook Feed"
+    version: "1.0"
+    hidden: true
   instagram: 
     desc: "This component can be used to display a client's Instagram feed."
     id: "feeds-instagram"
     path: "feeds/instagram"
     title: "Instagram Feed"
     version: "1.0"
+  twitter: 
+    desc: "This component can be used to display a client's Twitter feed."
+    id: "feeds-twitter"
+    path: "feeds/twitter"
+    title: "Twitter (X) Feed"
+    version: "1.0"
+    hidden: true
   youtube: 
     desc: "This component can be used to display a client's YouTube feed."
     id: "feeds-youtube"

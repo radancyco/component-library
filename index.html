@@ -12,35 +12,39 @@ card: true
 
   {% for item in site.data.module.component %}
 
-  <li class="card__item">
+    {% if item[1]["hidden"] != true %}
 
-      <div class="card__media"> 
+      <li class="card__item">
 
-          <div class="card__thumbnail">
+        <div class="card__media"> 
 
-            {% if item[1]["thumbnail"] == false %}
+            <div class="card__thumbnail">
 
-                <img alt="" src="thumb.png">
+              {% if item[1]["thumbnail"] == false %}
 
-            {% else %}
+                  <img alt="" src="thumb.png">
 
-                <img alt="" src="{{ site.url }}{{ site.baseurl }}/{{ item[1]['path'] }}/thumb.png">
+              {% else %}
 
-            {% endif %}
+                  <img alt="" src="{{ site.url }}{{ site.baseurl }}/{{ item[1]['path'] }}/thumb.png">
 
-          </div>
+              {% endif %}
 
-      </div>
+            </div>
 
-      <div class="card__content">
+        </div>
 
-        <h3 class="card__title"><a class="card__trigger" class="card__trigger" href="{% if item[1]['path-full'] %}{{ item[1]['path-full'] }}{% else %}{{ site.baseurl }}/{{ item[1]['path'] }}/{{ item[1]['hash'] }}{% endif %}">{{ item[1]["title"] }} v{{ item[1]["version"] }}</a></h3>
+        <div class="card__content">
 
-          <p class="card__summary">{{ item[1]["desc"] }}</p>
+          <h3 class="card__title"><a class="card__trigger" class="card__trigger" href="{% if item[1]['path-full'] %}{{ item[1]['path-full'] }}{% else %}{{ site.baseurl }}/{{ item[1]['path'] }}/{{ item[1]['hash'] }}{% endif %}">{{ item[1]["title"] }} v{{ item[1]["version"] }}</a></h3>
 
-      </div>
+            <p class="card__summary">{{ item[1]["desc"] }}</p>
 
-  </li>
+        </div>
+
+      </li>
+
+    {% endif %}
 
   {% endfor %}
 
@@ -52,35 +56,39 @@ card: true
 
   {% for item in site.data.module.layout %}
 
-  <li class="card__item">
+    {% if item[1]["hidden"] != true %}
 
-      <div class="card__media">
+      <li class="card__item">
 
-          <div class="card__thumbnail">
+        <div class="card__media">
 
-            {% if item[1]["thumbnail"] == false %}
+            <div class="card__thumbnail">
 
-                <img alt="" src="thumb.png">
+              {% if item[1]["thumbnail"] == false %}
 
-            {% else %}
+                  <img alt="" src="thumb.png">
 
-                <img alt="" src="{{ site.url }}{{ site.baseurl }}/{{ item[1]['path'] }}/thumb.png">
+              {% else %}
 
-            {% endif %}
+                  <img alt="" src="{{ site.url }}{{ site.baseurl }}/{{ item[1]['path'] }}/thumb.png">
 
-          </div>
+              {% endif %}
 
-      </div>
+            </div>
 
-      <div class="card__content">
+        </div>
 
-          <h3 class="card__title"><a class="card__trigger" class="card__trigger" href="{% if item[1]['path-full'] %}{{ item[1]['path-full'] }}{% else %}{{ site.baseurl }}/{{ item[1]['path'] }}/{{ item[1]['hash'] }}{% endif %}">{{ item[1]["title"] }}</a></h3>
+        <div class="card__content">
 
-          <p class="card__summary">{{ item[1]["desc"] }}</p>
+            <h3 class="card__title"><a class="card__trigger" class="card__trigger" href="{% if item[1]['path-full'] %}{{ item[1]['path-full'] }}{% else %}{{ site.baseurl }}/{{ item[1]['path'] }}/{{ item[1]['hash'] }}{% endif %}">{{ item[1]["title"] }}</a></h3>
 
-      </div>
+            <p class="card__summary">{{ item[1]["desc"] }}</p>
 
-  </li>
+        </div>
+
+    </li>
+
+    {% endif %}
 
   {% endfor %}
 
@@ -92,9 +100,11 @@ card: true
 
   {% for item in site.data.module.feed %}
 
-  <li class="card__item">
+    {% if item[1]["hidden"] != true %}
 
-      <div class="card__media">
+      <li class="card__item">
+
+        <div class="card__media">
 
           <div class="card__thumbnail">
 
@@ -110,17 +120,19 @@ card: true
 
           </div>
 
-      </div>
+        </div>
 
-      <div class="card__content">
+        <div class="card__content">
 
-        <h3 class="card__title"><a class="card__trigger" class="card__trigger" href="{% if item[1]['path-full'] %}{{ item[1]['path-full'] }}{% else %}{{ site.baseurl }}/{{ item[1]['path'] }}/{{ item[1]['hash'] }}{% endif %}">{{ item[1]["title"] }} v{{ item[1]["version"] }}</a></h3>
+          <h3 class="card__title"><a class="card__trigger" class="card__trigger" href="{% if item[1]['path-full'] %}{{ item[1]['path-full'] }}{% else %}{{ site.baseurl }}/{{ item[1]['path'] }}/{{ item[1]['hash'] }}{% endif %}">{{ item[1]["title"] }} v{{ item[1]["version"] }}</a></h3>
 
-        <p class="card__summary">{{ item[1]["desc"] }}</p>
+          <p class="card__summary">{{ item[1]["desc"] }}</p>
 
-      </div>
+        </div>
 
-  </li>
+      </li>
+
+    {% endif %}
 
   {% endfor %}
 
