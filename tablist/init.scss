@@ -19,7 +19,7 @@ $base-color-active: white;
 $base-color-neutral: lightgrey;
 $tablist-breakpoint: 48.625em; // 778px
 
-// Tablist Container
+// Tablist
 
 .tablist {
 color: $base-color-active;
@@ -146,7 +146,7 @@ position: relative;
 
     [data-fixed-height] & {
 
-      height: calc(480em/16);
+      max-height: calc(480em/16);
       overflow-x: auto;
       padding-inline-end: 1em;
       scrollbar-color: $base-color-active $base-color;
