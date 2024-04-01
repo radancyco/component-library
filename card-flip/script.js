@@ -9,85 +9,77 @@
 
 (function() {
 
-    "use strict";
-  
-    // Display which version is in use via console:
-  
-    console.log("%c {{ include.title }} v{{ include.version }} in use. ", "background: #6e00ee; color: #fff");
-  
-    // Classes, data attributes, states, and strings.
-  
-    var cardFlipClass = ".cardflip";
-    var cardFlipCardClass = ".cardflip__item";
-    var cardFlip = document.querySelectorAll(cardFlipClass);
-  
-    // Set up all Tablists on page
-  
-    cardFlip.forEach(function(card){
+  "use strict";
 
+  // Display which version is in use via console:
 
-      var cardFlipCard = card.querySelectorAll(cardFlipCardClass);
-  
-      cardFlipCard.forEach(function(flip, x){
+  console.log("%c {{ include.title }} v{{ include.version }} in use. ", "background: #6e00ee; color: #fff");
 
-        var count = x + 1;
+  // Classes, data attributes, states, and strings.
 
-        var flipButton = document.createElement("button");
-        flipButton.setAttribute("aria-pressed", "false");
-        flipButton.classList.add("cardflip__trigger");
-        
+  var cardFlipClass = ".cardflip";
+  var cardFlipCardClass = ".cardflip__item";
+  var cardFlipTriggerName = "cardflip__trigger";
+  var cardFlipTriggerClass = "." + cardFlipTriggerName;
+  var cardFlipState = "show";
+  var cardFlip = document.querySelectorAll(cardFlipClass);
 
-        if(count === 1) {
+  // Set up all Tablists on page
 
-          flipButton.setAttribute("aria-label", "Open");
+  cardFlip.forEach(function(card){
 
-        } else {
+    var cardFlipCard = card.querySelectorAll(cardFlipCardClass);
 
-          flipButton.setAttribute("aria-label", "Close");
+    cardFlipCard.forEach(function(flip, x){
+
+      var flipButton = document.createElement("button");
+      flipButton.setAttribute("aria-pressed", "false");
+      flipButton.classList.add(cardFlipTriggerName);
+      flipButton.setAttribute("aria-label", "Show Content");
+
+      flip.prepend(flipButton);
+
+      flipButton.addEventListener("click", function() {
+
+        // Get all card list items and buttons
+
+        var cardItems = this.closest(cardFlipClass).querySelectorAll(cardFlipCardClass);
+        var cardButtons = this.closest(cardFlipClass).querySelectorAll(cardFlipTriggerClass);
+
+        if(this.parentNode.classList.contains(cardFlipState)) {
+
+          this.parentNode.classList.remove(cardFlipState);
+          this.setAttribute("aria-pressed", "false");
+
+        } else { 
+
+          // Remove class from all sibling divs
+
+          if(this.closest(cardFlipClass).hasAttribute("data-toggle-all")) {
+
+            cardItems.forEach(function(item) {
+
+              item.classList.remove(cardFlipState);
+
+            });
+
+            cardButtons.forEach(function(btn) {
+
+              btn.setAttribute("aria-pressed", "false");
+
+            });
+
+          } 
+
+          this.parentNode.classList.add(cardFlipState);
+          this.setAttribute("aria-pressed", "true");
 
         }
 
-        flipButton.addEventListener("click", function() {
-
-          var ariaExpanded = this.getAttribute("aria-pressed") === "true" || false;
-  
-          this.setAttribute("aria-pressed", !ariaExpanded);
-
-
- 
-
-            var siblingDivs = this.parentNode.parentNode.querySelectorAll(cardFlipCardClass); // Find sibling divs
-            
-
-
-
-            if(this.parentNode.classList.contains("active")) {
-
-              this.parentNode.classList.remove('active');
-
-
-            } else { 
-
-              // Remove class from all sibling divs
-              siblingDivs.forEach(function(sibling) {
-                sibling.classList.remove('active');
-              });
-
-              this.parentNode.classList.add('active');
-
-            }
-
-                        
-
-          
-
-        });
-
-        flip.prepend(flipButton);
-
       });
-     
-  
+
     });
-  
-  })();
+
+  });
+
+})();

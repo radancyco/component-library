@@ -8,7 +8,37 @@ components:
   - name: "Default Setup"
     id: "default-setup"
 
+  - name: "Enable Click"
+    id: "enable-click"
+
+  - name: "Toggle All"
+    id: "toggle-all"
+
+  - name: "Kitchen Sink"
+    id: "kitchen-sink"
+
+attributes:
+
+  - name: data-enable-click
+    html: .cardflip
+    note:
+  
+      - Boolean
+      - Optional
+  
+    desc: Used to enable clicking of entire card in addition to the button. By default, only the button is clickable.
+
+  - name: data-toggle-all
+    html: .cardflip
+    note:
+  
+      - Boolean
+      - Optional
+  
+    desc: Used to close open card when individual card is clicked on. Bt default, all cards may be opened.
+
 id: card-flip
+in-page-custom: true
 localcss: "init.css"
 localjs: "init.js"
 module: component
