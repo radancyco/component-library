@@ -74,7 +74,7 @@
 
           } 
 
-          this.parentNode.classList.add(cardFlipState);
+          cardItemParent.classList.add(cardFlipState);
           this.setAttribute("aria-pressed", "true");
 
         }
