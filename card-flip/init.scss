@@ -67,7 +67,6 @@ width: fit-content;
   background-color: $base-color;
   border-radius: 50%;
   border: 0;
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Increase shadow size on hover */
   color: #fff;
   cursor: pointer;
   font-size: 1.2rem;
@@ -79,11 +78,18 @@ width: fit-content;
   z-index: 1;
     
     // Button Icon
-    
-    &::after {
-    content: "+";
 
-      .show & {
+    &[aria-pressed="false"] {
+    
+      &::after {
+      content: "+";
+      }
+
+    }
+
+    &[aria-pressed="true"] {
+    
+      &::after {
       content: "-";
       }
 
@@ -131,8 +137,6 @@ width: fit-content;
   // CTA (.cardflip__cta)
 
   &__cta {
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
   place-content: center;
   }
 
