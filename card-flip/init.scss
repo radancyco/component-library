@@ -68,16 +68,21 @@ width: fit-content;
   cursor: pointer;
   font-size: 1.2rem;
   grid-area: 1 / 1;
-  height: calc(40em/16);
+  height: 40px;
   margin-block: 1em 0;
   margin-inline: auto 1em;
-  width: calc(40em/16);
+  width: 40px;
   z-index: 1;
     
     // Icon
     
     &::after {
     content: "+";
+
+      .show & {
+      content: "-";
+      }
+
     }
     
     // Pseudo-element Trick
@@ -122,10 +127,12 @@ width: fit-content;
   &__cta {
   transition: transform 0.8s;
   transform-style: preserve-3d;
+  place-content: center;
   }
 
   &__disclosure {
   transform: rotateY(180deg);
+  place-content: start;
   }
   
 }

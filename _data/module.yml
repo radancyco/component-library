@@ -27,7 +27,6 @@ component:
     desc: "This component will allow you to implement a card that can be flipped when engaged with."
     id: "card-flip"
     path: "card-flip"
-    thumbnail: false
     title: "Card Flip"
     version: "0.5"
   horizontal-scroll: 
