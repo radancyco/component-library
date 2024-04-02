@@ -18,44 +18,47 @@
   // Classes, data attributes, states, and strings.
 
   var cardFlipClass = ".cardflip";
-  var cardFlipCardClass = ".cardflip__item";
+  var cardFlipItemClass = ".cardflip__item";
   var cardFlipTriggerName = "cardflip__trigger";
   var cardFlipTriggerClass = "." + cardFlipTriggerName;
+  var cardFlipTriggerLabel = "Reveal Content";
   var cardFlipState = "show";
+  var dataCardFlipToggle = "data-toggle-cards";
   var cardFlip = document.querySelectorAll(cardFlipClass);
 
   // Set up all Tablists on page
 
   cardFlip.forEach(function(card){
 
-    var cardFlipCard = card.querySelectorAll(cardFlipCardClass);
+    var cardFlipCard = card.querySelectorAll(cardFlipItemClass);
 
     cardFlipCard.forEach(function(flip, x){
 
       var flipButton = document.createElement("button");
       flipButton.setAttribute("aria-pressed", "false");
       flipButton.classList.add(cardFlipTriggerName);
-      flipButton.setAttribute("aria-label", "Show Content");
+      flipButton.setAttribute("aria-label", cardFlipTriggerLabel);
 
       flip.prepend(flipButton);
 
       flipButton.addEventListener("click", function() {
 
-        // Get all card list items and buttons
+        // Get all card items and buttons
 
-        var cardItems = this.closest(cardFlipClass).querySelectorAll(cardFlipCardClass);
+        var cardItems = this.closest(cardFlipClass).querySelectorAll(cardFlipItemClass);
         var cardButtons = this.closest(cardFlipClass).querySelectorAll(cardFlipTriggerClass);
+        var cardItemParent = this.parentNode;
 
-        if(this.parentNode.classList.contains(cardFlipState)) {
+        if(cardItemParent.classList.contains(cardFlipState)) {
 
-          this.parentNode.classList.remove(cardFlipState);
+          cardItemParent.classList.remove(cardFlipState);
           this.setAttribute("aria-pressed", "false");
 
         } else { 
 
-          // Remove class from all sibling divs
+          // Remove class from all card items
 
-          if(this.closest(cardFlipClass).hasAttribute("data-toggle-all")) {
+          if(this.closest(cardFlipClass).hasAttribute(dataCardFlipToggle)) {
 
             cardItems.forEach(function(item) {
 

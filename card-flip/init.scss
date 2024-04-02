@@ -1,6 +1,7 @@
 /*!
 
   Radancy Component Library: Card Flip
+
   Contributor(s):
   Michael "Spell" Spellacy
 
@@ -12,39 +13,34 @@
 */
 
 $base-color: #6F00EF;
-$card-breakpoint: 60em;
-$card-transition: 300ms;
 
-// Card (.card)
+// Card (.cardflip)
 
 .cardflip {
+display: grid;
+gap: 1em;
 list-style: none;
 margin: 0;
 padding: 0;
 width: fit-content;
 
-  &:not([data-horizontal]) {
-
-    display: grid;
-    gap: 1em;
-
-    // Change 3 to 4 if you have a 4x grid.
+  // Change 3 to 4 (or higher) if you have a 4x grid.
   
-    @media (min-width: calc(40ch * 3)) {
+  @media (min-width: calc(40ch * 3)) {
 
-      grid-template-columns: repeat(3, 1fr);
-
-    }
+    grid-template-columns: repeat(3, 1fr);
 
   }
 
-  // Item (.card__item)
+  // Item (.cardflip__item)
   
   &__item {
   display: grid;
   perspective: 1000px;
   position: relative; // Needed for pseudo-element trick.
   }
+
+  // Item (.cardflip__content)
 
   &__content {
   display: grid;
@@ -65,7 +61,7 @@ width: fit-content;
 
   }
 
-  // Button
+  // Button (.cardflip__trigger)
 
   &__trigger {
   background-color: $base-color;
@@ -82,7 +78,7 @@ width: fit-content;
   width: 40px;
   z-index: 1;
     
-    // Icon
+    // Button Icon
     
     &::after {
     content: "+";
@@ -93,9 +89,9 @@ width: fit-content;
 
     }
     
-    // Pseudo-element Trick
-    
-    [data-enable-click] & {
+    [data-full-card-click] & {
+
+      // Pseudo-element Trick
     
       &::before {
       content: "";
@@ -109,7 +105,7 @@ width: fit-content;
     
   }
 
-  // Label
+  // Label (.cardflip__label)
 
   &__label {
   font-size: 2rem;
@@ -119,7 +115,7 @@ width: fit-content;
   text-align: center;
   }
 
-  // Card
+  // Card (.cardflip__cta & .cardflip__disclosure)
 
   &__cta, &__disclosure {
   background-color: #fff;
@@ -132,11 +128,15 @@ width: fit-content;
   padding: 1em;
   }
 
+  // CTA (.cardflip__cta)
+
   &__cta {
   transition: transform 0.8s;
   transform-style: preserve-3d;
   place-content: center;
   }
+
+  // Disclosure (.cardflip__disclosure)
 
   &__disclosure {
   transform: rotateY(180deg);

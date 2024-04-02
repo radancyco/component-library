@@ -4,18 +4,20 @@ components:
   - name: "Default Setup"
     id: "default-setup"
 
-  - name: "Enable Click"
-    id: "enable-click"
+  - name: "Full Card Click"
+    id: "full-card-click"
+    note: In this example, the entire card region is clickable. If the card contains interactive content, this setting should not be used.
 
-  - name: "Toggle All"
-    id: "toggle-all"
+  - name: "Toggle Cards"
+    id: "toggle-cards"
+    note: "In this example, opening one card will close any card this is open."
 
   - name: "Kitchen Sink"
     id: "kitchen-sink"
 
 attributes:
 
-  - name: data-enable-click
+  - name: data-full-card-click
     html: .cardflip
     note:
   
@@ -24,14 +26,55 @@ attributes:
   
     desc: Used to enable clicking of entire card in addition to the button. By default, only the button is clickable.
 
-  - name: data-toggle-all
+  - name: data-toggle-cards
     html: .cardflip
     note:
   
       - Boolean
       - Optional
   
-    desc: Used to close open card when individual card is clicked on. Bt default, all cards may be opened.
+    desc: Used to close an open card when another card is opened. Bt default, all cards may be opened. Do not use if card contain interactive content.
+
+classes:
+
+  - name: .cardflip
+    html: 
+      - ul
+      - div 
+    note: Mandatory
+    desc: Used on the parent element that wraps your card. Standalone cards should use a <code>div</code> element.
+    
+  - name: .cardflip__item
+    html: 
+      - li
+      - div
+    note: Mandatory
+    desc: Used on your card item. Must be a child of <code>.cardflip</code>. If your card is a standalone, then use a <code>div</code>. 
+  
+  - name: .cardflip__content
+    html: div
+    note: Mandatory
+    desc: Used to wrap card content. Must be a child of <code>.cardflip__item</code>.
+       
+  - name: .cardflip__trigger
+    html: button 
+    note: Component
+    desc: The cards interaction trigger. Always a child of <code>.cardflip__item</code>. 
+
+  - name: .cardflip__cta
+    html: div 
+    note: Mandatory
+    desc: The front of the card. Always a child of <code>.cardflip__content</code>. 
+
+  - name: .cardflip__label
+    html: div 
+    note: Optional
+    desc: The card label that appears on front of the card. Always a child of <code>.cardflip__cta</code>. 
+
+  - name: .cardflip__disclosure
+    html: div 
+    note: Mandatory
+    desc: The back of the card. Always a child of <code>.cardflip__content</code>. 
 
 id: card-flip
 in-page-custom: true

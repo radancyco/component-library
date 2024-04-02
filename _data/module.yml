@@ -24,11 +24,11 @@ component:
     title: "Card"
     version: "1.0"
   card-flip: 
-    desc: "This component will allow you to implement a card that can be flipped when engaged with."
+    desc: "This component will allow you to implement a single or group of content cards that can be <em>flipped</em> when engaged with."
     id: "card-flip"
     path: "card-flip"
     title: "Card Flip"
-    version: "0.5"
+    version: "0.7"
   horizontal-scroll: 
     desc: "This component will allow you to add a grid layout that turns into a horizontal scroll in smaller viewports. It can be used as an alternative to carousels."
     id: "horizontal-scroll"
