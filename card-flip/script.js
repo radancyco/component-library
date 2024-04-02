@@ -32,13 +32,12 @@
 
     var cardFlipCard = card.querySelectorAll(cardFlipItemClass);
 
-    cardFlipCard.forEach(function(flip, x){
+    cardFlipCard.forEach(function(flip){
 
       var flipButton = document.createElement("button");
       flipButton.setAttribute("aria-pressed", "false");
       flipButton.classList.add(cardFlipTriggerName);
       flipButton.setAttribute("aria-label", cardFlipTriggerLabel);
-
       flip.prepend(flipButton);
 
       flipButton.addEventListener("click", function() {
@@ -52,6 +51,7 @@
         if(cardItemParent.classList.contains(cardFlipState)) {
 
           cardItemParent.classList.remove(cardFlipState);
+        
           this.setAttribute("aria-pressed", "false");
 
         } else { 

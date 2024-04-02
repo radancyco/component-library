@@ -28,7 +28,7 @@ component:
     id: "card-flip"
     path: "card-flip"
     title: "Card Flip"
-    version: "0.7"
+    version: "0.9"
   horizontal-scroll: 
     desc: "This component will allow you to add a grid layout that turns into a horizontal scroll in smaller viewports. It can be used as an alternative to carousels."
     id: "horizontal-scroll"
