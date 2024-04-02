@@ -26,7 +26,7 @@
   var dataCardFlipToggle = "data-toggle-cards";
   var cardFlip = document.querySelectorAll(cardFlipClass);
 
-  // Set up all Tablists on page
+  // For each component
 
   cardFlip.forEach(function(card){
 
