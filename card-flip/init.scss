@@ -26,7 +26,9 @@ width: fit-content;
   &:not([data-horizontal]) {
 
     display: grid;
-    gap: 2em;
+    gap: 1em;
+
+    // Change 3 to 4 if you have a 4x grid.
   
     @media (min-width: calc(40ch * 3)) {
 
@@ -45,11 +47,17 @@ width: fit-content;
   }
 
   &__content {
-  transform-style: preserve-3d;
-  transition: transform 0.8s;
-  will-change: transform;
   display: grid;
   grid-area: 1 / 1;
+  transform-style: preserve-3d;
+  transition-property: transform;
+  will-change: transform;
+
+    @media (prefers-reduced-motion: no-preference) {
+
+      transition-duration: 0.8s;
+
+    }
 
     .show & {
     transform: rotateY(180deg);
