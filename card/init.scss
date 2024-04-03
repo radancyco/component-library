@@ -222,7 +222,11 @@ width: fit-content;
   // Summary (.card__summary)
 
   &__summary {
-  margin: 0;
+
+    p {
+    margin: 0;
+    }
+
   }
 
   // Shared: Category (.card__category) & Metadata (.card__metadata)
