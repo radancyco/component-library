@@ -18,7 +18,7 @@ component:
     title: "CSS Animation Library"
     version: "2.0"
   card: 
-    desc: "This component will allow you to implement a single or group of related content cards which may include an image summary text and link. Cards are often used to present lists or grids of content such as featured articles or content related to a specific topic."
+    desc: "This component will allow you to implement single or grouped content cards with images, text, and links, commonly used for presenting articles or topic-related content."
     id: "card"
     path: "card"
     title: "Card"
