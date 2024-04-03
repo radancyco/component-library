@@ -84,7 +84,6 @@ component:
     desc: "This component will allow you to expand hidden content."
     id: "load-more"
     path: "load-more"
-    thumbnail: false
     title: "Load More"
     version: "1.0"
   tabcordion: 
