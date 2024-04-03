@@ -37,7 +37,7 @@ width: fit-content;
   
   &__item {
   display: grid;
-  perspective: 1000px;
+  perspective: 1500px;
   position: relative; // Needed for pseudo-element trick.
   }
 
@@ -95,21 +95,7 @@ width: fit-content;
       }
 
     }
-    
-    [data-full-card-click] & {
 
-      // Pseudo-element Trick
-    
-      &::before {
-      content: "";
-      display: block;
-      inset: 0;
-      position: absolute;
-      z-index: 1;
-      }
-    
-    }
-    
   }
 
   // Label (.cardflip__label)
@@ -161,6 +147,29 @@ width: fit-content;
     .show & {
     opacity: 1;
     visibility: visible;
+    }
+
+  }
+
+  // Clickable Region
+  
+  // Note: Only allow entire region to be clickable when certain elements are not present in card. 
+  // This should cover most use cases, but do add new conditions as needs arise.
+
+  &:not(:has(a)):not(:has(video)):not(:has(.cardflip__content button)) {
+
+    .cardflip__trigger {
+
+      // Pseudo-element Trick
+  
+      &::before {
+      content: "";
+      display: block;
+      inset: 0;
+      position: absolute;
+      z-index: 1;
+      }
+
     }
 
   }

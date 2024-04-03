@@ -23,7 +23,7 @@
   var cardFlipTriggerClass = "." + cardFlipTriggerName;
   var cardFlipTriggerLabel = "Reveal Content";
   var cardFlipState = "show";
-  var dataCardFlipToggle = "data-toggle-cards";
+  var dataCardFlipOpen = "data-open-all";
   var cardFlip = document.querySelectorAll(cardFlipClass);
 
   // For each component
@@ -58,7 +58,7 @@
 
           // Remove class from all card items
 
-          if(this.closest(cardFlipClass).hasAttribute(dataCardFlipToggle)) {
+          if(!this.closest(cardFlipClass).hasAttribute(dataCardFlipOpen)) {
 
             cardItems.forEach(function(item) {
 
