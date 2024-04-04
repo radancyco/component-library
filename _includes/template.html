@@ -12,6 +12,36 @@
 
 {% endif %}
 
+{% if page.warning %}
+  
+<div class="warning">
+  
+  <p><strong>Warning:</strong> {{ page.warning }}</p>
+
+</div>
+
+{% endif %}
+
+{% if page.note %}
+  
+<div class="warning">
+  
+  <p><strong>Warning:</strong> {{ page.note }}</p>
+
+</div>
+
+{% endif %}
+
+{% if page.reminder %}
+  
+<div class="reminder">
+  
+  <p><strong>Reminder:</strong> {{ page.reminder }}</p>
+
+</div>
+
+{% endif %}
+
 {% assign path = component.path # used further doen the page for repo link %} 
 {% assign title = component.title # used further doen the page for repo link %} 
 
@@ -120,6 +150,26 @@
         </div>
   
       {% endif %}
+
+      {% if component.warning %}
+  
+        <div class="warning">
+          
+          <p><strong>Warning:</strong> {{ component.warning }}</p>
+
+        </div>
+  
+      {% endif %}
+
+      {% if component.reminder %}
+  
+      <div class="warning">
+        
+        <p><strong>Reminder:</strong> {{ component.reminder }}</p>
+
+      </div>
+
+    {% endif %}
 
       {% if component.experimental %}
   
