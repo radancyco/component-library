@@ -40,8 +40,7 @@ width: fit-content;
   
   &__item {
   border: 1px #767676 solid;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   padding: 1em;
   position: relative; // Needed for pseudo-element trick.
   transition: $card-transition;
@@ -56,7 +55,7 @@ width: fit-content;
 
         padding: 2em;
         gap: 2em;
-        flex-direction: row;
+        grid-auto-flow: column;
 
       }
 
@@ -95,7 +94,7 @@ width: fit-content;
     img {
     display: block;
     border-radius: 5px;
-    width: 100%;
+    inline-size: 100%;
     }
 
   }
@@ -109,11 +108,11 @@ width: fit-content;
   // Play Button (.card__play)
 
   &__play {
+  inline-size: calc(40em/16);
   inset-block-end: 1em;
   inset-inline-end: 1em;
   position: absolute;
   transition: $card-transition;
-  width: calc(40em/16);
 
     path {
     fill: #fff;

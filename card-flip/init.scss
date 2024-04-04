@@ -125,8 +125,9 @@ width: fit-content;
   // CTA (.cardflip__cta)
 
   &__cta {
-  place-content: center;
+  background-color: #eee;
   opacity: 1;
+  place-content: center;
   visibility: visible;
 
     .show & {
