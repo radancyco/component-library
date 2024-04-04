@@ -24,6 +24,7 @@ position: relative;
   grid-auto-flow: column;
   overflow-x: auto;
   padding: 1em 0;
+  scroll-snap-type: inline mandatory;
   scrollbar-color: $base-color $base-color-active;
   scrollbar-width: thin;
 
@@ -43,6 +44,7 @@ position: relative;
   padding: 1em;
   position: relative;
   min-width: calc(300rem / 16);
+  scroll-snap-align: start;
   transition: 300ms;
 
     &:hover, &:focus-within {
