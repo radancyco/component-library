@@ -4,15 +4,16 @@ components:
 
   - name: "Default Setup"
     id: "default-setup"
-    codepenjs: "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
 
   - name: "Custom Button Label"
-    id: "button-label"
-    codepenjs: "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
+    id: "custom-label"
+
+  - name: "Custom Trigger"
+    id: "custom-trigger"
+    note: "In this example, the title triggers the hidden content below it. This might be better than using a button offset from the content. The <code>.read-more__trigger</code> class can be placed on any element you wish to include as a trigger."
 
   - name: "Custom Position: Bottom (Anti-Pattern)"
-    id: "button-bottom"
-    codepenjs: "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
+    id: "custom-position-bottom"
     warning: 'Positioning disclosure buttons on the bottom of content to be opened above them is considered an anti-pattern and <a href="#anti-pattern-read-more">not recommended</a>. Use at your own risk.'
     guidance: anti-pattern-read-more
 
@@ -68,6 +69,11 @@ classes:
     html: span
     note: Component
     desc: Used on the disclosure button label. This element is dynamically inserted by the component.
+
+  - name: .read-more__trigger
+    html: All
+    note: Optional
+    desc: Used to initiate a custom trigger. Can be placed on any HTML element. May only be used once.
 
 notes: 
 

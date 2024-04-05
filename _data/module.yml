@@ -46,7 +46,7 @@ component:
     id: "read-more"
     path: "read-more"
     title: "Partial Disclosure (Read More)"
-    version: "1.5"
+    version: "1.6"
   hero-banner-image: 
     desc: "This component allows you to create a standard hero banner complete with a headline and supplementary text."
     id: "hero-banner"

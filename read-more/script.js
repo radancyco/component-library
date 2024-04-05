@@ -62,6 +62,10 @@
 
   readMore.forEach(function(content){
 
+    // Get custom trigger if it exists.
+
+    var customReadMoreBtn = content.querySelector(".read-more__trigger");
+
     // Prep Content
 
     var readMoreContent = content.querySelector(readMoreContentClass);
@@ -77,7 +81,12 @@
     var readMoreButton = document.createElement("button");
 
     readMoreButton.setAttribute("aria-expanded", "false");
-    readMoreButton.setAttribute("class", readMoreButtonName);
+
+    if(!customReadMoreBtn) {
+
+      readMoreButton.setAttribute("class", readMoreButtonName);
+
+    }
 
     // Disclosure Label
 
@@ -91,8 +100,19 @@
       readMoreLabel.textContent = content.getAttribute(readMoreButtonLabel);
     
     } else { 
+
+      if(customReadMoreBtn) {
     
-      readMoreLabel.textContent = readMoreDefaultText;
+        var customReadMoreTxt = customReadMoreBtn.textContent;
+  
+        readMoreLabel.textContent = customReadMoreTxt;
+        customReadMoreBtn.textContent = "";
+  
+      } else {
+    
+        readMoreLabel.textContent = readMoreDefaultText;
+
+      }
     
     }
 
@@ -111,7 +131,15 @@
 
     } else {
 
-      content.prepend(readMoreButton);
+      if(customReadMoreBtn) {
+
+        customReadMoreBtn.append(readMoreButton);
+
+      } else {
+
+        content.prepend(readMoreButton);
+
+      }
 
     }
 
@@ -127,14 +155,14 @@
 
       // Toggle Content
 
-      var readMoreContent = this.parentElement.querySelector(readMoreContentClass);
+      var readMoreContent = this.closest(readMoreClass).querySelector(readMoreContentClass);
   
       if (readMoreContent.hasAttribute("aria-hidden")) {
 
         readMoreContent.removeAttribute("aria-hidden")
         readMoreContent.setAttribute("tabindex", "-1");
 
-        if(this.parentElement.hasAttribute(readMoreButtomPosition)) {
+        if(this.closest(readMoreClass).hasAttribute(readMoreButtomPosition)) {
       
           readMoreContent.focus();
 
@@ -149,7 +177,7 @@
         readMoreContent.removeAttribute("tabindex");
         readMoreContent.setAttribute("aria-hidden", "true");
       
-        if(this.parentElement.hasAttribute(readMoreButtomPosition)) {
+        if(this.closest(readMoreClass).hasAttribute(readMoreButtomPosition)) {
       
           readMoreContent.scrollIntoView({ 
             
