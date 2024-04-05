@@ -42,6 +42,12 @@ card: true
               
               <p>{{ item[1]["desc"] }}</p>
 
+              {% if item[1]["deprecated"] == true %}
+
+              <p class="alert">This component is deprecated and should no longer be used.</p>
+
+              {% endif %}
+
             </div>
 
         </div>
@@ -90,6 +96,12 @@ card: true
               
               <p>{{ item[1]["desc"] }}</p>
 
+              {% if item[1]["deprecated"] == true %}
+
+              <p class="alert">This component is deprecated and should no longer be used.</p>
+
+              {% endif %}
+
             </div>
 
         </div>
@@ -137,6 +149,12 @@ card: true
           <div class="card__summary">
             
             <p>{{ item[1]["desc"] }}</p>
+
+            {% if item[1]["deprecated"] == true %}
+
+              <p class="alert">This component is deprecated and should no longer be used.</p>
+
+            {% endif %}
 
           </div>
 

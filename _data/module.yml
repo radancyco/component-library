@@ -87,6 +87,7 @@ component:
     title: "Load More"
     version: "1.0"
   tabcordion: 
+    deprecated: true
     desc: "This component will allow you to add a combined Tab and Accordion to your page."
     id: "tabcordion"
     path: "tabcordion"
