@@ -26,7 +26,15 @@ card: true
 
               {% else %}
 
+                {% if item[1]["thumbnail"] != nil %}
+
+                  <img alt="" src="{{ item[1]['thumbnail'] }}">
+
+                {% else %}
+
                   <img alt="" src="{{ site.url }}{{ site.baseurl }}/{{ item[1]['path'] }}/thumb.png">
+
+                {% endif %}
 
               {% endif %}
 
@@ -72,19 +80,27 @@ card: true
 
         <div class="card__media">
 
-            <div class="card__thumbnail">
+          <div class="card__thumbnail">
 
-              {% if item[1]["thumbnail"] == false %}
+            {% if item[1]["thumbnail"] == false %}
 
-                  <img alt="" src="thumb.png">
+                <img alt="" src="thumb.png">
+
+            {% else %}
+
+              {% if item[1]["thumbnail"] != nil %}
+
+                <img alt="" src="{{ item[1]['thumbnail'] }}">
 
               {% else %}
 
-                  <img alt="" src="{{ site.url }}{{ site.baseurl }}/{{ item[1]['path'] }}/thumb.png">
+                <img alt="" src="{{ site.url }}{{ site.baseurl }}/{{ item[1]['path'] }}/thumb.png">
 
               {% endif %}
 
-            </div>
+            {% endif %}
+
+          </div>
 
         </div>
 
@@ -134,7 +150,15 @@ card: true
 
             {% else %}
 
+              {% if item[1]["thumbnail"] != nil %}
+
+                <img alt="" src="{{ item[1]['thumbnail'] }}">
+
+              {% else %}
+
                 <img alt="" src="{{ site.url }}{{ site.baseurl }}/{{ item[1]['path'] }}/thumb.png">
+
+              {% endif %}
 
             {% endif %}
 

@@ -111,7 +111,7 @@ layout:
     desc: "A flexible grid system capable of various functionalities, such as optional pre-defining of rows, gaps, customizable breakpoints, and offsets in both directions."
     id: "flexspan"
     path-full: "https://brockenstein.github.io/Flexspan-Grid-System/"
-    thumbnail: false
+    thumbnail: "thumb-flexspan.png"
     title: "FlexSpan Grid System"
     version: "1.0"
 feed: 
