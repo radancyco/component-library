@@ -5,13 +5,15 @@
 
 {% include guidance/header.html %}
 
-    <p>Using "Learn More" as a Call to Action (CTA) may seem straightforward and sensible in design, but a significant issue arises with its frequent use as the primary link on cards and other similar interfaces, especially when used multiple times on a single page. This poses accessibility challenges for screen reader users who encounter a list of <em>identical links</em>, negatively impacting usability and potentially affecting SEO. Employing unique, contextually relevant links is essential for optimal accessibility and search engine optimization. Here are the two best solutions to consider over using "Learn More" text:</p>
-
-    <ul>
-        <li>Include relevant text in your CTA's to make them more clear. For example, instead of "Learn More" use "Learn More about Accessibility". Apple does this on its own <a href="apple-example.png">careers site</a>. Many designers and stakeholders do not like the addtional space this creates, but it really is the most effective way to handle the situation and prioritize accessibility.</li>
-        <li>Alternatively, and as seen in all examples here, linking the card title and incorporating affordances, such as arrows, can effectively prompt action just as well as text can. By removing the "Learn More" text, we mitigate the risk of them being programmed as hyperlinks.</li>
-    </ul>
-
-    <p>If "Learn More" is a necessary part of the design, it can be implemented as a <em>faux CTA</em>. Meaning, you can include the text, but do not mark it up as a hyperlink. It can even be hidden from assisitve technology by using ARIA, as it really is superflous.</li> 
+    <p>Consider alternatives to using "Learn More" or "Read More" as CTAs, as their frequent use as the sole link on cards and similar interfaces poses accessibility challenges for screen reader users encountering lists of identical links. This can hinder usability and SEO. Opt for friendly, unique, contextually relevant links for improved accessibility. Before implementing these CTAs, explore these solutions and recommendations:</p>
+   
+    <ol>
+        <li>Include relevant text in your CTA's to make them more clear. For example, instead of "Learn More" use "Learn More about Accessibility". Apple does this on its own <a href="apple-example.png">careers site</a>. Many designers and stakeholders do not like the addtional space this creates, but it really is the most effective way to prioritize accessibility.</li>
+        <li>Alternatively, and as seen in all examples in the <a href="cards">cards demo</a>, linking the card title and incorporating affordances, such as arrows, can effectively prompt action just as well as text can. By removing the "Learn More" text, we mitigate the risk of them being programmed as hyperlinks.</li>
+        <li>Use visually hidden text techniques. However, this technique should not be used in client managed, CMS content.</li>
+        <li>ARIA can also be used, but <em>sparingling</em> and only when all other options have been exhausted. Here also, this techniqe should not be used in client managed, CMS content.</li>
+        <li>If "Learn More" is a necessary part of the design, it can be implemented as a <em>faux CTA</em>. Meaning, you can include the text, but do not mark it up as a hyperlink. It can even be hidden from assisitve technology by using ARIA, as it really is superflous. In CMS content situations, you may wish to avoid this as it can be mistakenly linked.</li> 
+        <li>If your card requires two distinct links, like in the <a href="#card-multiple-links">multiple links</a> example, strive to include visually hidden text with each link for improved accessibility. If not feasible, ensure that your cards are in a list format with a clear heading and that the multiple links are organized as a nested list for better understanding.</li>
+    </ol>
 
 {% include guidance/footer.html %}
