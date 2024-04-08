@@ -104,7 +104,7 @@ layout:
     desc: "A boierplate system to produce Advanced Job Decscription pages more easily."
     id: "ajd"
     path-full: "/tb-ajd-template"
-    thumbnail: false
+    thumbnail: "thumb-ajd.png"
     title: "Advanced Job Details (AJD)"
     version: "2.0"
   flexspan: 
