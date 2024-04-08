@@ -107,6 +107,13 @@ layout:
     thumbnail: "thumb-ajd.png"
     title: "Advanced Job Details (AJD)"
     version: "2.0"
+  cpg: 
+    desc: "A tool to help you easily produce career paths to be used in Advanced Job Details pages."
+    id: "cpg"
+    path-full: "/career-path-generator"
+    thumbnail: "thumb-cpg.png"
+    title: "Career Path Generator (CPG)"
+    version: "1.0"
   flexspan: 
     desc: "A flexible grid system capable of various functionalities, such as optional pre-defining of rows, gaps, customizable breakpoints, and offsets in both directions."
     id: "flexspan"
