@@ -43,9 +43,9 @@ position: relative;
   margin: 0;
   padding: 0;
 
-    @media(min-width: 67.5em) {
+    &[aria-orientation] {
 
-      &[aria-orientation] {
+      @media(min-width: 67.5em) {
 
         display: block; 
 
@@ -72,6 +72,7 @@ position: relative;
         flex-wrap: nowrap;
         overflow-x: auto;
         padding-right: calc(32em/16);
+        scroll-snap-type: inline mandatory;
         scrollbar-color: $base-color $base-color-active;
         scrollbar-width: thin;
         white-space: nowrap;
@@ -83,7 +84,7 @@ position: relative;
           align-items: center;
           background-image: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
           color: $base-color;
-          content: "\00BB";
+          content: "";
           display: flex;
           font-size: calc(28rem/16);
           height: calc(64rem/16);
@@ -101,6 +102,7 @@ position: relative;
 
     li {
     flex-grow: 1;
+    scroll-snap-align: start;
 
       @media(min-width: $tablist-breakpoint) {
 
@@ -147,7 +149,8 @@ position: relative;
     [data-fixed-height] & {
 
       max-height: calc(480em/16);
-      overflow-x: auto;
+      overflow-y: auto;
+      overscroll-behavior-y: contain;
       padding-inline-end: 1em;
       scrollbar-color: $base-color-active $base-color;
       scrollbar-gutter: stable;
@@ -159,7 +162,7 @@ position: relative;
 
   // Focus State
 
-  // Accessibility: Never remove focus outlines! Either redesign the state or design an alternative focus state. 
+  // Accessibility: Never remove focus outlines! Either redesign the outline or design an alternative focus state. 
   // However, a 3:1 ratio will be required. Learn: https://webaim.org/articles/contrast/
 
   &__tab, &__panel {
