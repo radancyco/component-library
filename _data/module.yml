@@ -100,7 +100,7 @@ component:
     id: "tablist"
     path: "tablist"
     title: "Tablist"
-    version: "1.4"
+    version: "1.5"
 layout: 
   ajd: 
     desc: "A boierplate system to produce Advanced Job Decscription pages more easily."
