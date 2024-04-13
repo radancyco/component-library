@@ -13,12 +13,12 @@ component:
     path: "animation-toggle"
     title: "Animation Toggle"
     version: "1.6"
-  css-animation: 
-    desc: "Elevate your upcoming website design by incorporating these popular CSS animations."
-    id: "css-animation"
-    path: "css-animation"
-    title: "CSS Animation Library"
-    version: "2.0"
+  breadcrumbs: 
+    desc: "This component will allow you to add a breadcrumb navigation to your page."
+    id: "breadcrumbs"
+    path: "breadcrumbs"
+    title: "Breadcrumbs"
+    version: "1.1"
   card: 
     desc: "This component will allow you to implement single or grouped content cards with images, text, and links, commonly used for presenting articles or topic-related content."
     id: "card"
@@ -31,24 +31,18 @@ component:
     path: "card-flip"
     title: "Card Flip"
     version: "1.0"
-  horizontal-scroll: 
-    desc: "This component will allow you to add a grid layout that turns into a horizontal scroll in smaller viewports. It can be used as an alternative to carousels."
-    id: "horizontal-scroll"
-    path: "horizontal-scroll"
-    title: "Horizontal Scroller"
-    version: "1.0"
+  css-animation: 
+    desc: "Elevate your upcoming website design by incorporating these popular CSS animations."
+    id: "css-animation"
+    path: "css-animation"
+    title: "CSS Animation Library"
+    version: "2.0"
   disclosure: 
     desc: "This component will allow you to implement various types of disclosure widgets."
     id: "disclosure"
     path: "disclosure"
     title: "Disclosure"
     version: "1.7"
-  read-more: 
-    desc: "This component will allow you to expand partially visible content on your page."
-    id: "read-more"
-    path: "read-more"
-    title: "Partial Disclosure (Read More)"
-    version: "1.6"
   hero-banner-image: 
     desc: "This component allows you to create a standard hero banner complete with a headline and supplementary text."
     id: "hero-banner"
@@ -62,12 +56,12 @@ component:
     path: "animation-toggle"
     title: "Hero Banner (Video)"
     version: "1.6"
-  breadcrumbs: 
-    desc: "This component will allow you to add a breadcrumb navigation to your page."
-    id: "breadcrumbs"
-    path: "breadcrumbs"
-    title: "Breadcrumbs"
-    version: "1.1"
+  horizontal-scroll: 
+    desc: "This component will allow you to add a grid layout that turns into a horizontal scroll in smaller viewports. It can be used as an alternative to carousels."
+    id: "horizontal-scroll"
+    path: "horizontal-scroll"
+    title: "Horizontal Scroller"
+    version: "1.0"
   jump-menu: 
     desc: "This component will allow you to add a accessible menu to your page. When a selection is made and the button is clicked, it will take you to another page."
     id: "jump-menu"
@@ -86,6 +80,12 @@ component:
     path: "load-more"
     title: "Load More"
     version: "1.0"
+  read-more: 
+    desc: "This component will allow you to expand partially visible content on your page."
+    id: "read-more"
+    path: "read-more"
+    title: "Partial Disclosure (Read More)"
+    version: "1.6"
   tabcordion: 
     deprecated: true
     desc: "This component will allow you to add a combined Tab and Accordion to your page."
