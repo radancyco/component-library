@@ -1,0 +1,13 @@
+/*!
+
+  Radancy Component Library: Card Flip
+
+  Contributor(s):
+  Michael "Spell" Spellacy
+
+  Dependencies: Sass
+
+  Instructions:
+  sass --watch .:. --style compressed
+
+*/.tile{display:grid;gap:1.5em;list-style:none;margin:0;padding:0;width:fit-content}@media(min-width: 120ch){.tile{grid-template-columns:repeat(3, 1fr)}}.tile__item{display:grid;perspective:1500px;position:relative}.tile__content{display:grid;grid-area:1/1;transform-style:preserve-3d;transition-property:transform;will-change:transform}@media(prefers-reduced-motion: no-preference){.tile__content{transition-duration:.8s}}.show .tile__content{transform:rotateY(180deg)}.tile__trigger{background-color:#6f00ef;border-radius:50%;border:0;color:#fff;cursor:pointer;font-size:1.2rem;grid-area:1/1;height:40px;margin-block:1em 0;margin-inline:auto 1em;width:40px;z-index:1}.tile__trigger[aria-pressed=false]::after{content:"+"}.tile__trigger[aria-pressed=true]::after{content:"-"}.tile__label{font-size:2rem;font-weight:bold;line-height:normal;place-self:center;text-align:center}.tile__cta,.tile__disclosure{background-color:#fff;backface-visibility:hidden;border:1px #767676 solid;border-radius:5px;display:grid;grid-column:1;grid-row:1;padding:1em;transition:.8s}.tile__cta{background-color:#eee;opacity:1;place-content:center;visibility:visible}.show .tile__cta{opacity:0;visibility:hidden}.tile__disclosure{transform:rotateY(180deg);place-content:start;opacity:0;visibility:hidden}.show .tile__disclosure{opacity:1;visibility:visible}.tile:not(:has(a)):not(:has(video)):not(:has(.tile__content button)) .tile__trigger::before{content:"";display:block;inset:0;position:absolute;z-index:1}/*# sourceMappingURL=init.css.map */

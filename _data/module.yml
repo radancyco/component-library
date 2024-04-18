@@ -1,14 +1,12 @@
 component: 
   accordion-grid:
     desc: "This component will allow you to implement and control the presentation of multiple disclosures also known as an accordion."
-    directory: "accordion-grid/html"
     id: "accordion-grid"
     path: "accordion-grid"
     title: "Accordion Grid"
     version: "1.1"
   animation-toggle: 
     desc: "This component enhances animation control ensuring improved accessibility for disabled users and optimized performance across devices."
-    directory: "animation-toggle/html"
     id: "animation-toggle"
     path: "animation-toggle"
     title: "Animation Toggle"
@@ -24,12 +22,6 @@ component:
     id: "card"
     path: "card"
     title: "Card"
-    version: "1.0"
-  card-flip: 
-    desc: "This component will allow you to implement a single or group of content cards that can be <em>flipped</em> when engaged with."
-    id: "card-flip"
-    path: "card-flip"
-    title: "Card Flip"
     version: "1.0"
   css-animation: 
     desc: "Elevate your upcoming website design by incorporating these popular CSS animations."
@@ -99,6 +91,12 @@ component:
     path: "tablist"
     title: "Tablist"
     version: "1.5"
+  tile: 
+    desc: "This component will allow you to implement a single or group of tiles that can be <em>flipped</em> when engaged with."
+    id: "tile"
+    path: "tile"
+    title: "Tile"
+    version: "1.0"
 layout: 
   ajd: 
     desc: "A boierplate system to produce Advanced Job Decscription pages more easily."

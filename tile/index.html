@@ -15,7 +15,7 @@ components:
 attributes:
 
   - name: data-open-all
-    html: .cardflip
+    html: .tile
     note:
   
       - Boolean
@@ -25,46 +25,46 @@ attributes:
 
 classes:
 
-  - name: .cardflip
+  - name: .tile
     html: 
       - ul
       - div 
     note: Mandatory
     desc: Used on the parent element that wraps your card. Standalone cards should use a <code>div</code> element.
     
-  - name: .cardflip__item
+  - name: .tile__item
     html: 
       - li
       - div
     note: Mandatory
-    desc: Used on your card item. Must be a child of <code>.cardflip</code>. If your card is a standalone, then use a <code>div</code>. 
+    desc: Used on your card item. Must be a child of <code>.tile</code>. If your card is a standalone, then use a <code>div</code>. 
   
-  - name: .cardflip__content
+  - name: .tile__content
     html: div
     note: Mandatory
-    desc: Used to wrap card content. Must be a child of <code>.cardflip__item</code>.
+    desc: Used to wrap card content. Must be a child of <code>.tile__item</code>.
        
-  - name: .cardflip__trigger
+  - name: .tile__trigger
     html: button 
     note: Component
-    desc: The cards interaction trigger. Always a child of <code>.cardflip__item</code>. 
+    desc: The cards interaction trigger. Always a child of <code>.tile__item</code>. 
 
-  - name: .cardflip__cta
+  - name: .tile__cta
     html: div 
     note: Mandatory
-    desc: The front of the card. Always a child of <code>.cardflip__content</code>. 
+    desc: The front of the card. Always a child of <code>.tile__content</code>. 
 
-  - name: .cardflip__label
+  - name: .tile__label
     html: div 
     note: Optional
-    desc: The card label that appears on front of the card. Always a child of <code>.cardflip__cta</code>. 
+    desc: The card label that appears on front of the card. Always a child of <code>.tile__cta</code>. 
 
-  - name: .cardflip__disclosure
+  - name: .tile__disclosure
     html: div 
     note: Mandatory
-    desc: The back of the card. Always a child of <code>.cardflip__content</code>. 
+    desc: The back of the card. Always a child of <code>.tile__content</code>. 
 
-id: card-flip
+id: tile
 in-page-custom: true
 localcss: "init.css"
 localjs: "init.js"
