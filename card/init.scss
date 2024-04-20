@@ -14,6 +14,7 @@
 $base-color: #6F00EF;
 $card-breakpoint: 60em;
 $card-transition: 300ms;
+$card-columns: 3;
 
 // Card (.card)
 
@@ -28,9 +29,9 @@ width: fit-content;
     display: grid;
     gap: 1em;
   
-    @media (min-width: calc(40ch * 3)) {
+    @media (min-width: calc(40ch * $card-columns)) {
 
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat($card-columns, 1fr);
 
     }
 
@@ -40,7 +41,6 @@ width: fit-content;
   
   &__item {
   border: 1px #767676 solid;
-  display: grid;
   padding: 1em;
   position: relative; // Needed for pseudo-element trick.
   transition: $card-transition;
@@ -53,6 +53,7 @@ width: fit-content;
 
       @media (min-width: $card-breakpoint) {
 
+        display: grid;
         padding: 2em;
         gap: 2em;
         grid-auto-flow: column;
@@ -83,6 +84,7 @@ width: fit-content;
   // Media (.card__media)
   
   &__media {
+  margin-bottom: 1em;
   position: relative;
 
     [data-horizontal] & {
@@ -128,39 +130,11 @@ width: fit-content;
   flex: 1;
   }
 
-  // Shared: Heading Group (.card__group) & Title (.card__title)
-
-  &__group, &__title {
-  margin: 1em 0;
-
-    [data-horizontal] & {
-
-      @media (min-width: $card-breakpoint) {
-
-        margin-top: 0;
-
-      }
-
-    }
-
-  }
-
-  // Shared: Eyebrow (.card__eyebrow) & Title (.card__title)
-
-  &__eyebrow, &__title {
-  
-    .card__group & {
-
-      margin: 0;
-   
-    }
-
-  }
-
   // Eyebrow (.card__eyebrow)
 
   &__eyebrow {
   color: $base-color;
+  margin: 0 0 0.5em;
   }
 
   // Title (.card__title)
@@ -168,12 +142,14 @@ width: fit-content;
   &__title {
   font-size: 1.4rem;
   line-height: normal;
+  margin: 0 0 1em;
   text-align: start;
 
     // If text is not a heading, then center it.
   
     &:not(h2):not(h3):not(h4):not(h5):not(h6) {
     text-align: center;
+    margin-bottom: 0;
     }
   
   }
@@ -232,15 +208,6 @@ width: fit-content;
 
   &__links {
 
-    ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1em;
-    list-style: none;
-    margin: 1em 0 0;
-    padding: 0;
-    }
-
     a {
     background-color: $base-color;
     color: #fff;
@@ -258,7 +225,7 @@ width: fit-content;
 
   // Shared: Category (.card__category) & Metadata (.card__metadata)
 
-  &__category, &__metadata {
+  &__category, &__metadata, &__links {
   font-size: 0.9rem;
   line-height: normal;
   
@@ -280,7 +247,6 @@ width: fit-content;
   // Category (.card__category)
 
   &__category {
-  margin-bottom: 1em;
 
     li {
     background-color: #EEE;
@@ -293,7 +259,6 @@ width: fit-content;
   // Metadata (.card__metadata)
 
   &__metadata {
-  margin-top: auto;
 
     li:not(:last-child)::after {
     content: "|";
