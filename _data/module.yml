@@ -10,7 +10,7 @@ component:
     id: "animation-toggle"
     path: "animation-toggle"
     title: "Animation Toggle"
-    version: "1.6"
+    version: "1.7"
   breadcrumbs: 
     desc: "This component will allow you to add a breadcrumb navigation to your page."
     id: "breadcrumbs"

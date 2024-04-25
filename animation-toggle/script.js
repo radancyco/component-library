@@ -56,7 +56,6 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
   var dataAudioDescriptionButton = "data-audio-description-button";
   var dataLoop = "data-loop";
   var dataPauseButton = "data-pause-button";
-  var dataPauseRemove = "data-pause-remove";
   var dataPoster = "data-poster";
   var getAnimationWrappers = document.querySelectorAll(atClass);
   var getBackgroundVideos = document.querySelectorAll(atVideoClass);
@@ -116,98 +115,96 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
     wrapper.prepend(btnControls);
 
-    // Create pause button if data-pause-remove not present.
+    // Create pause button
 
-    if(!wrapper.hasAttribute(dataPauseRemove)) {
+    var btnPlayPause = document.createElement("button");
 
-      var btnPlayPause = document.createElement("button");
+    // See if wrapper contains custom pause button value; use over default if true.
 
-      // See if wrapper contains custom pause button value; use over default if true.
+    if(wrapper.hasAttribute(dataPauseButton)) {
 
-      if(wrapper.hasAttribute(dataPauseButton)) {
+      btnPlayPause.setAttribute("aria-label", wrapper.getAttribute(dataPauseButton));
 
-        btnPlayPause.setAttribute("aria-label", wrapper.getAttribute(dataPauseButton));
+    } else {
 
-      } else {
+      btnPlayPause.setAttribute("aria-label", atPauseButtonLabel);
 
-        btnPlayPause.setAttribute("aria-label", atPauseButtonLabel);
+    }
 
-      }
+    // Add class to pause button.
 
-      // Add class to pause button.
+    btnPlayPause.classList.add(atPauseButtonClassName);
 
-      btnPlayPause.classList.add(atPauseButtonClassName);
+    // Check to see if cookie is false or null.
 
-      // Check to see if cookie is false or null.
+    if(animationPaused === "false" || animationPaused === null) {
 
-      if(animationPaused === "false" || animationPaused === null) {
+      // Set aria-pressed to false.
 
-        // Set aria-pressed to false.
+      btnPlayPause.setAttribute("aria-pressed", "false");
 
-        btnPlayPause.setAttribute("aria-pressed", "false");
+      // Remove animation enabled class from body.
+
+      animationBody.classList.add(atEnabledClassName);
+
+    } else {
+
+      // Set aria-pressed to true.
+
+      btnPlayPause.setAttribute("aria-pressed", "true");
+
+      // Add animation enabled class to body.
+
+      animationBody.classList.remove(atEnabledClassName);
+
+    }
+
+    // Append pause button.
+
+    btnControls.append(btnPlayPause);
+
+    // Pause Toggle Event.
+
+    btnPlayPause.addEventListener("click", function() {
+
+      var getAtPauseButtonClass = document.querySelectorAll(atPauseButtonClass);
+      var animationPauseToggles = getAtPauseButtonClass;
+
+      if (this.getAttribute("aria-pressed") === "false") {
 
         // Remove animation enabled class from body.
 
-        animationBody.classList.add(atEnabledClassName);
+        animationBody.classList.remove(atEnabledClassName);
+
+        // Set cookie to true.
+
+        setCookie("true");
+
+        // Get all pause buttons on page and set them to true.
+
+        animationPauseToggles.forEach(function(button){
+
+          button.setAttribute("aria-pressed", "true");
+
+        });
 
       } else {
 
-        // Set aria-pressed to true.
-
-        btnPlayPause.setAttribute("aria-pressed", "true");
-
         // Add animation enabled class to body.
 
-        animationBody.classList.remove(atEnabledClassName);
+        animationBody.classList.add(atEnabledClassName);
 
-      }
+        // Set cookie to false.
 
-      // Append pause button.
+        setCookie("false");
 
-      btnControls.append(btnPlayPause);
+        // Get all pause buttons on page and set them to false.
 
-      // Pause Toggle Event.
+        animationPauseToggles.forEach(function(button){
 
-      btnPlayPause.addEventListener("click", function() {
+          button.setAttribute("aria-pressed", "false");
 
-        var getAtPauseButtonClass = document.querySelectorAll(atPauseButtonClass);
-        var animationPauseToggles = getAtPauseButtonClass;
-
-        if (this.getAttribute("aria-pressed") === "false") {
-
-          // Remove animation enabled class from body.
-
-          animationBody.classList.remove(atEnabledClassName);
-
-          // Set cookie to true.
-
-          setCookie("true");
-
-          // Get all pause buttons on page and set them to true.
-
-          animationPauseToggles.forEach(function(button){
-
-            button.setAttribute("aria-pressed", "true");
-
-          });
-
-        } else {
-
-          // Add animation enabled class to body.
-
-          animationBody.classList.add(atEnabledClassName);
-
-          // Set cookie to false.
-
-          setCookie("false");
-
-          // Get all pause buttons on page and set them to false.
-
-          animationPauseToggles.forEach(function(button){
-
-            button.setAttribute("aria-pressed", "false");
-
-          });
+        });
 
       }
 
@@ -241,8 +238,6 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
       }
 
     });
-
-    }
 
     if (wrapper.querySelector("track") !== null) {
 
