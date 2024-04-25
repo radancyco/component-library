@@ -1,8 +1,57 @@
 // Example: Transparent Video
 
+.transparent-video-example {
+position: relative;
+overflow: hidden;
+
+    // Not Required
+
+    &::before, &::after {
+    bottom: 0;
+    content: "";
+    display: block;
+    height: calc(800em/16);
+    position: absolute;
+    width: 33.3%;
+    }
+
+    &:before {
+    background-color: orange;
+    left: 0;
+    }
+
+    &:after {
+    background-color: #6F00EF;
+    right: 0;
+    }
+
+}
+
 .section-animation {
 
+    // Not Required
+
+    &:before {
+    background-color: tomato;
+    content: "";
+    height: calc(150rem/16);
+    left: 20%;
+    opacity: 0.9;
+    position: absolute;
+    top: 20%;
+    width: 20%;
+    z-index: 2;
+    }
+
+    // Required
+
     &__video {
+    inset: auto 0 0 0;
+    margin: auto;
+    max-width: 1920px;
+    pointer-events: none; // Required so that elements behind video object can be selected and pressed. 
+    position: relative;
+    width: 100%;
     z-index: 1;
     }
 

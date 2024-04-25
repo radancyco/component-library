@@ -1,9 +1,18 @@
 // Example: Intersection Observer
+// Learn More: https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
 
 function scrollObserver() {
 
     var sectionAnimation = document.querySelectorAll(".section-animation");
     var sectionAnimationVideoClass = ".section-animation__video";
+    var sectionAnimationVideo = document.querySelectorAll(sectionAnimationVideoClass);
+
+    sectionAnimationVideo.forEach(function(video){
+
+        video.setAttribute("aria-hidden", "true"); // A11y: Purely a decorative, visual flourish, so let's hide from AT. 
+        video.setAttribute("tabindex", "-1");
+    
+    });
 
     function sectionAnimationVideoScroll(sections, observer) {
 

@@ -52,10 +52,12 @@ components:
     id: "svg-animation"
     customcss: "svg-animation"
 
-  - name: "Transparent Video"
+  - name: "Transparent Video (Intersection Observer)"
     id: "transparent"
     customcss: "transparent"
     customjs: "transparent.js"
+    note: Although the animation loads instantly, this video is implemented using an <a href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API">Intersection Observer</a>, which is initiated using a callback function. When positioned lower on the page, the video will begin to play as you scroll to its location in the page.
+    guidance: note-transparent-video
 
 guidance:
 
@@ -203,6 +205,7 @@ notes:
   - "<b>Behavior:</b> Phones in low power mode may automatically pause auto-playing videos to conserve battery life."
   - "<b>Testing:</b> While the <code>disableremoteplayback</code> attribute may not be recognized as valid HTML, the error can be safely disregarded."
   - "<b>Roadmap:</b> Revisit <code>data-callback</code> and see if it makes sense to apply callback function to all animations if <code>data-callback</code> present on page at all. Right now, there is an animation disconnect between those that have the attribute and those that do not. Currently, we manually add the callback to all other page animations."
+  - "<b>Roadmap:</b> Include a reload button to enable playback of videos that loop only once, allowing users to replay them if desired."
   
 customjs: "callback-custom.js"
 id: animation-toggle
