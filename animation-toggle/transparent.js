@@ -9,7 +9,7 @@ function scrollObserver() {
 
     sectionAnimationVideo.forEach(function(video){
 
-        video.pause();
+        video.pause(); // Animations that animate on scroll must be immediately paused to override the default animation behavior to play on page load. 
         video.setAttribute("aria-hidden", "true"); // A11y: Purely a decorative, visual flourish, so let's hide from AT. 
         video.setAttribute("tabindex", "-1");
     
