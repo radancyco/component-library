@@ -9,6 +9,7 @@ function scrollObserver() {
 
     sectionAnimationVideo.forEach(function(video){
 
+        video.pause();
         video.setAttribute("aria-hidden", "true"); // A11y: Purely a decorative, visual flourish, so let's hide from AT. 
         video.setAttribute("tabindex", "-1");
     
@@ -31,7 +32,11 @@ function scrollObserver() {
 
                     selectVideo.play();
 
-                } 
+                } else {
+
+                    selectVideo.pause();
+
+                }
 
                 // Stop observing once the element is in view (if needed)
 
