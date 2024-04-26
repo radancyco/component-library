@@ -177,6 +177,7 @@
           <li><button class="btn-copy-link" data-code="{{ page.url | absolute_url }}#{{ component.id }}">{{ iconCheck }}{{ iconCopyURL }} Copy link to example</button></li>
           <li><form action="https://codepen.io/pen/define" id="{{ component.id }}-codepen" method="POST" target="_blank"><button class="btn-edit-codepen">{{ iconCodePen }} Edit on CodePen</button></form></li>
           <li><a class="btn-new-window" href="{{ component.id }}" target="_blank">{{ iconNewWindow }} Open in new window</a></li>
+          <li><button class="btn-view-code" onclick="javascript:location.reload();">{{ iconRefresh }} Refresh</button></li>
           <li><a class="btn-repository" href="{{ site.repo }}/blob/main/{{ path }}/">{{ iconGit }} Repository</a></li>
           <li><button class="btn-view-code">{{ iconCode }} View Code</button></li>
         </ul>
