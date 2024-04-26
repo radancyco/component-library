@@ -48,6 +48,7 @@ overflow: hidden;
     &__video {
     inset: auto 0 0 0;
     margin: auto;
+    max-height: 400px;
     max-width: 1920px;
     pointer-events: none; // Required so that elements behind video object can be selected and pressed. 
     position: relative;
