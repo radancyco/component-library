@@ -56,7 +56,7 @@ components:
     id: "transparent"
     customcss: "transparent"
     customjs: "transparent.js"
-    note: This video is implemented using an <a href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API">Intersection Observer</a>, which is initiated using a callback function. When positioned lower on the page, the video will begin to play as you scroll to its location. The demo will only play once, so you will need to refrsh this page to see it play again.
+    note: This video utilizes an <a href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API">Intersection Observer</a> triggered by a callback function. When positioned at the top of the page, it loads instantly; when lower, it plays as you scroll to it. This demo will only play once, requiring a page refresh for replay.
     guidance: note-transparent-video
 
 guidance:
@@ -206,6 +206,7 @@ notes:
   - "<b>Testing:</b> While the <code>disableremoteplayback</code> attribute may not be recognized as valid HTML, the error can be safely disregarded."
   - "<b>Roadmap:</b> Revisit <code>data-callback</code> and see if it makes sense to apply callback function to all animations if <code>data-callback</code> present on page at all. Right now, there is an animation disconnect between those that have the attribute and those that do not. Currently, we manually add the callback to all other page animations."
   - "<b>Roadmap:</b> Include a reload button to enable playback of videos that loop only once, allowing users to replay them if desired."
+  - "<b>Roadmap:</b> If <code>data-pause-remove</code> is used, override it temporarily to include play button, so that video does not obscure content. Especially true when transparent video is used."
   
 customjs: "callback-custom.js"
 id: animation-toggle
