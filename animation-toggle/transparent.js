@@ -1,4 +1,4 @@
-// Example: Intersection Observer
+// Callback: Transparent Video (Intersection Observer)
 // Learn More: https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
 
 function scrollObserver() {

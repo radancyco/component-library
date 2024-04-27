@@ -4,16 +4,16 @@ components:
 
   - name: "Default Setup"
     id: "default-setup"
+    note: "In this example, the title triggers the hidden content below it. This is more clear and preferred over offsetting a button. The <code>.read-more__trigger</code> class can be placed on any element you wish to include as a trigger."
 
-  - name: "Custom Button Label"
-    id: "custom-label"
+  - name: "Offset Buttom (Default)"
+    id: "offset-button"
 
-  - name: "Custom Trigger"
-    id: "custom-trigger"
-    note: "In this example, the title triggers the hidden content below it. This might be better than using a button offset from the content. The <code>.read-more__trigger</code> class can be placed on any element you wish to include as a trigger."
-
-  - name: "Custom Position: Bottom (Anti-Pattern)"
-    id: "custom-position-bottom"
+  - name: "Offset Button (Custom Label)"
+    id: "offset-button-custom-label"
+    
+  - name: Offset Button (Bottom, Anti-Pattern)"
+    id: "offset-button-bottom"
     warning: 'Positioning disclosure buttons on the bottom of content to be opened above them is considered an anti-pattern and <a href="#anti-pattern-read-more">not recommended</a>. Use at your own risk.'
     guidance: anti-pattern-read-more
 
@@ -82,7 +82,6 @@ notes:
 
 id: read-more
 in-page-custom: true
-jquery: true
 localcss: "init.css"
 localjs: "init.js"
 module: component
