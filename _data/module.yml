@@ -117,7 +117,7 @@ layout:
     id: "flexspan"
     path-full: "https://brockenstein.github.io/Flexspan-Grid-System/"
     thumbnail: "thumb-flexspan.png"
-    title: "FlexSpan Grid System"
+    title: "FlexSpan Grid System (FGS)"
     version: "1.0"
 feed: 
   facebook: 
