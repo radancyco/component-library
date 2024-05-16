@@ -15,11 +15,11 @@
 
   console.log("%c {{ include.title }} v{{ include.version }} in use. ", "background: #6e00ee; color: #fff");
 
-  var readMoreClass = ".read-more";
-  var readMoreContentClass = ".read-more__content";
-  var readMoreButtonName = "read-more__btn";
-  var readMoreButtonIconName = "read-more__icon";
-  var readMoreButtonLabelName = "read-more__label";
+  var readMoreClass = ".partial-disclosure";
+  var readMoreContentClass = ".partial-disclosure__content";
+  var readMoreButtonName = "partial-disclosure__btn";
+  var readMoreButtonIconName = "partial-disclosure__icon";
+  var readMoreButtonLabelName = "partial-disclosure__label";
   var readMoreButtomPosition = "data-button-bottom";
   var readMoreButtonLabel = "data-button-label";
   var readMoreDefaultText = "Read More";
@@ -64,7 +64,7 @@
 
     // Get custom trigger if it exists.
 
-    var customReadMoreBtn = content.querySelector(".read-more__trigger");
+    var customReadMoreBtn = content.querySelector(".partial-disclosure__trigger");
 
     // Prep Content
 
@@ -72,7 +72,7 @@
 
     readMoreContent.setAttribute("aria-hidden", "true");
 
-    // Set tabindex to all focusable elements in "read-more__content"
+    // Set tabindex to all focusable elements in "partial-disclosure__content"
 
     focusableElements(readMoreContent, true);
 

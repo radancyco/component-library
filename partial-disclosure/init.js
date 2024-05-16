@@ -1,7 +1,7 @@
 ---
 layout: null
 module: components
-id: disclosure
+id: partial-disclosure
 ---
 
 {% include script.html %}

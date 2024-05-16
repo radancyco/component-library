@@ -1,0 +1,177 @@
+/*!
+
+  Radancy Component Library: Tablist
+
+  Contributor(s): 
+  Michael "Spell" Spellacy
+
+  Dependencies: Sass
+
+  Instructions: 
+  sass --watch .:. --style compressed
+
+*/
+
+// Variables
+
+$base-color: #6F00EF;
+$base-color-active: white;
+$base-color-neutral: lightgrey;
+
+// Tablist Container
+
+.tablist {
+background-color: #f4f4f4;
+margin: 0 auto;
+min-height: 19.375em;
+padding: 2em 0 1em;
+position: relative;
+
+  @media(min-width: 50em) {
+
+    padding: 4.0625em 0;
+
+  }
+
+
+
+  &__list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0 0 1.25em;
+  padding: 0;
+  justify-content: center;
+  text-align: center;
+  
+
+    li {
+    flex-grow: 1;
+
+      @media(min-width: 48.75em) {
+
+        flex-grow: 0;
+        width: 32%;
+
+      }
+
+    }
+
+  }
+
+  // Tab Button
+
+  &__tab {
+  margin-right: 1.25em;
+  padding: 1em;
+  display: block;
+  color: #a93c96;
+  background: #fff;
+  transition: 0.3s;
+  font-family: "AvenirLTstd-Black", sans-serif;
+  text-decoration: none;
+
+    &:focus-visible, &:hover, &[aria-selected="true"]  {
+    color: #fff;
+    background-color: #a93c96;
+    }
+
+  }
+
+  // Tab panel
+
+  &__panel  {
+  // padding: 1em;
+  }
+
+  // Tab Content 
+
+  &__content {
+  padding: 2em 0 0;
+  text-align: center;
+
+
+    a {
+    color: #000;
+    line-height: 1.3;
+    transition: 0.3s;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    padding-bottom: 0.5rem;
+    text-decoration: underline;
+
+      &:focus, &:hover {
+      color: purple;
+      transform: translatey(-5px);
+      text-decoration: none;
+      }
+
+    }
+
+    span {
+    align-items: center;
+    display: flex;
+    font-size: 1.125rem;
+    margin: 0 10px 10px 0;
+
+      &::before {
+      font-family: 'Font Awesome 6 Pro';
+      display: inline-block;
+      vertical-align: top;
+      margin-right: 10px;
+      font-size: 1.5rem;
+      color: #a93c96;
+      font-weight: 900;
+      min-width: 24px;
+      }
+
+      &.location::before {
+      content: "\f3c5";
+      }
+
+      &.date::before {
+      content: "\f3c5";
+      }
+
+      &.job-type::before {
+      content: "\f3c5";
+      }
+
+    }
+
+    ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    text-align: left;
+    }
+
+    li {
+    width: 32%;
+
+      &:not(:last-child) {
+      margin: 0 1em 0;
+      border-right: 2px #757678 solid; 
+      }
+
+    }
+
+  }
+
+  // Focus State
+
+  // Accessibility: NEVER remove focus outlines! Either redesign them or design an alternative focus state. 
+  // In either case, a 3:1 ratio will be required. A 3:1 state between inactive and active state is also required. 
+  // If this too confusing, leave states alone. Learn: https://webaim.org/articles/contrast/
+
+  &__tab, &__panel {
+
+    &:focus {
+    outline-offset: -6px;
+    }
+
+  }
+
+}

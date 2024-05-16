@@ -1,28 +1,10 @@
 ---
-
-components:
-
-  - name: "Default Setup"
-    id: "default-setup"
-    note: "In this example, the title triggers the hidden content below it. This is more clear and preferred over offsetting a button. The <code>.read-more__trigger</code> class can be placed on any element you wish to include as a trigger."
-
-  - name: "Offset Buttom (Default)"
-    id: "offset-button"
-
-  - name: "Offset Button (Custom Label)"
-    id: "offset-button-custom-label"
-    
-  - name: Offset Button (Bottom, Anti-Pattern)"
-    id: "offset-button-bottom"
-    warning: 'Positioning disclosure buttons on the bottom of content to be opened above them is considered an anti-pattern and <a href="#anti-pattern-read-more">not recommended</a>. Use at your own risk.'
-    guidance: anti-pattern-read-more
-
 guidance: a11y-avoid-toggling-text
 
 attributes:
 
   - name: data-button-bottom
-    html: .read-more
+    html: .partial-disclosure
     note:
 
       - Boolean
@@ -31,7 +13,7 @@ attributes:
     desc: Used to position disclosure button at the bottom of the partially visible content. <em>Please note that this is not recommended.</em> The default position is at the top of the content. 
 
   - name: data-button-label
-    html: .read-more
+    html: .partial-disclosure
     note:
   
       - String
@@ -41,7 +23,7 @@ attributes:
 
 classes:
 
-  - name: .read-more
+  - name: .partial-disclosure
     html: 
 
       - div
@@ -50,27 +32,27 @@ classes:
     note: Mandatory
     desc: Used on the parent element that wraps your content.
 
-  - name: .read-more__btn
+  - name: .partial-disclosure__btn
     html: button
     note: Component
     desc: Used on the disclosure button. This element is dynamically inserted by the component.
 
-  - name: .read-more__content	
+  - name: .partial-disclosure__content	
     html: div
     note: Mandatory
-    desc: Used on the element that wraps your partially visible content. Must be a child of <code>.read-more</code>.
+    desc: Used on the element that wraps your partially visible content. Must be a child of <code>.partial-disclosure</code>.
     
-  - name: .read-more__icon
+  - name: .partial-disclosure__icon
     html: span
     note: Component
     desc: Used on the disclosure button icon. This element is dynamically inserted by the component.
 
-  - name: .read-more__label
+  - name: .partial-disclosure__label
     html: span
     note: Component
     desc: Used on the disclosure button label. This element is dynamically inserted by the component.
 
-  - name: .read-more__trigger
+  - name: .partial-disclosure__trigger
     html: All
     note: Optional
     desc: Used to initiate a custom trigger. Can be placed on any HTML element. May only be used once.
@@ -80,11 +62,11 @@ notes:
   - <b>Roadmap:</b> Support for custom button. For example, the title of the content might lend itself better to becoming the disclosure button.
   - <b>Roadmap:</b> Support inline SVG in button.
 
-id: read-more
+id: partial-disclosure
 in-page-custom: true
 localcss: "init.css"
 localjs: "init.js"
-module: component
+module: components
 tablist: true
 ---
 

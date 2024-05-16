@@ -1,28 +1,4 @@
 ---
-components:
-
-  - name: "Inline Tabs (Mobile & Desktop)"
-    id: "default-setup"
-    note: "By default, tabs will be inline on both mobile and desktop and wrap as needed depending on viewport and text size."
-
-  - name: "Disable Anchor"
-    id: "disable-anchor"
-    note: "By default, clicking a tab will append an anchor to the URL, but this can be disabled if desired."
-
-  - name: "Fixed Content Height (Mobile & Desktop)"
-    id: "fixed-height"
-
-  - name: "Stacked Tabs (Mobile), Inline Tabs (Desktop)"
-    id: "mobile-stack"
-    note: "When desired, tabs can be stacked in smaller viewport sizes. To view stacked tabs, adjust the viewport size to be smaller."
-
-  - name: "Scrolling Tabs (Mobile), Inline Tabs (Desktop)"
-    id: "mobile-scroll"
-    note: "To view the scroll, adjust the viewport size to be smaller. Additionally, please be aware that the design and functionality of the scrollbar may vary across different operating systems and browsers, which is completely normal and expected."
-
-  - name: "Vertical Tabs (Desktop), Inline Tabs (Mobile)"
-    id: "desktop-vertical"
-
 attributes:
 
   - name: data-disable-anchor
@@ -101,7 +77,7 @@ id: tablist
 in-page-custom: true
 localcss: "init.css"
 localjs: "init.js"
-module: component
+module: components
 ---
 
 {% include init.html %}

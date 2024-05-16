@@ -1,6 +1,6 @@
 ---
 layout: null
-module: component
+module: components
 id: in-page
 ---
 

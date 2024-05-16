@@ -3,62 +3,6 @@ messages:
 
   - animation
 
-components:
-
-  - name: "Default Setup"
-    id: "default-setup"
-
-  - name: "Audio Description (Experimental)"
-    id: "audio-description"
-    note: "This is an experimental feature that will allow the video to include an audio description. A valid, self-produced <a href='demo.vtt'>VTT</a> file is required."
-
-  - name: "Callback Example (After Effects)"
-    id: "callback"
-    codepenjs: "https://radancy.dev/component-library/animation-toggle/callback-lottie.js"
-    customcss: "callback-custom"
-    customjs: "callback-custom.js"
-
-  - name: "CSS Animation"
-    id: "css-animation"
-    customcss: "css-animation"
-
-  - name: "Custom Loop"
-    id: "custom-loop"
-    note: "The video will only loop one time. Once complete, it cannot be restarted."
-
-  - name: "Hero Banner (Video)"
-    id: "hero-banner"
-
-  - name: "Kitchen Sink"
-    id: "kitchen-sink"
-
-  - name: "Multiple Videos"
-    id: "multiple-videos"
-    customcss: "multiple-videos"
-
-  - name: "No Pause Button"
-    id: "no-pause-button"
-    note: In some situations, it may be desirable to remove a pause button but still have animation benefit from cookie setting enabled in videos that do contain a pause button. This is not a feature that should be used lightly.
-
-  - name: "Poster (Fallback Image)"
-    id: "poster"
-    note: "Pause the video and then refresh the page. The first frame is from 25 seconds in. Please note that when pressing play, video will resume from this point."
-
-  - name: "Responsive (Media Queries)"
-    id: "responsive"
-    note: "Resize your browser window and refresh page. Loading alternatively sized and/or video formats to improve layout and performance is fully supported."
-
-  - name: "SVG Animation"
-    id: "svg-animation"
-    customcss: "svg-animation"
-
-  - name: "Transparent Video (Intersection Observer)"
-    id: "transparent"
-    customcss: "transparent"
-    customjs: "transparent.js"
-    note: This video utilizes an <a href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API">Intersection Observer</a> triggered by a callback function. When positioned at the top of the page, it loads instantly; when lower, it plays as you scroll to it. This demo will only play once, requiring a page refresh for replay.
-    guidance: note-transparent-video
-
 guidance:
 
   - a11y-responsible-animation
@@ -214,7 +158,7 @@ in-page-custom: true
 libraryjs: "callback-lottie.js"
 localcss: "init.css"
 localjs: "init.js"
-module: component
+module: components
 section: component-library-animation-toggle
 tablist: true
 ---

@@ -1,148 +1,490 @@
-component: 
-  accordion-grid:
+components:
+
+  - id: "accordion-grid"
     desc: "This component will allow you to implement and control the presentation of multiple disclosures also known as an accordion."
-    id: "accordion-grid"
     path: "accordion-grid"
     title: "Accordion Grid"
-    version: "1.1"
-  animation-toggle: 
+    version: "1.1" 
+    examples: 
+
+      - name: "Default Setup"
+        id: "default-setup"
+
+      - name: "Active Tab"
+        id: "active-tab"
+
+      - name: "Advanced Breakpoints"
+        id: "advanced-breakpoints"
+
+      - name: "Disable URL"
+        id: "disable-url"
+
+      - name: "Function Callback"
+        id: "function-callback"
+
+      - name: "Grid Exclusion"
+        id: "grid-exclusion"
+        note: The third and fourth button (<strong>.accordion-grid__button</strong>) and content (<strong>.accordion-grid__content</strong>) elements include <strong>data-accordion-grid-exclude</strong>. Only grids one, two, five, and six will be visible.</p>
+      
+      - name: "Remove Close Button"
+        id: "remove-close-button"
+
+  - id: "animation-toggle"
     desc: "This component enhances animation control ensuring improved accessibility for disabled users and optimized performance across devices."
-    id: "animation-toggle"
     path: "animation-toggle"
     title: "Animation Toggle"
     version: "1.8"
-  breadcrumbs: 
+    examples:
+
+      - name: "Default Setup"
+        id: "default-setup"
+
+      - name: "Audio Description (Experimental)"
+        id: "audio-description"
+        note: "This is an experimental feature that will allow the video to include an audio description. A valid, self-produced <a href='demo.vtt'>VTT</a> file is required."
+      
+      - name: "Callback Example (After Effects)"
+        id: "callback"
+        codepenjs: "https://radancy.dev/component-library/animation-toggle/callback-lottie.js"
+        customcss: "callback-custom"
+        customjs: "callback-custom.js"
+
+      - name: "CSS Animation"
+        id: "css-animation"
+        customcss: "css-animation"
+
+      - name: "Custom Loop"
+        id: "custom-loop"
+        note: "The video will only loop one time. Once complete, it cannot be restarted."
+
+      - name: "Hero Banner (Video)"
+        id: "hero-banner"
+
+      - name: "Kitchen Sink"
+        id: "kitchen-sink"
+
+      - name: "Multiple Videos"
+        id: "multiple-videos"
+        customcss: "multiple-videos"
+
+      - name: "No Pause Button"
+        id: "no-pause-button"
+        note: In some situations, it may be desirable to remove a pause button but still have animation benefit from cookie setting enabled in videos that do contain a pause button. This is not a feature that should be used lightly.
+
+      - name: "Poster (Fallback Image)"
+        id: "poster"
+        note: "Pause the video and then refresh the page. The first frame is from 25 seconds in. Please note that when pressing play, video will resume from this point."
+
+      - name: "Responsive (Media Queries)"
+        id: "responsive"
+        note: "Resize your browser window and refresh page. Loading alternatively sized and/or video formats to improve layout and performance is fully supported."
+
+      - name: "SVG Animation"
+        id: "svg-animation"
+        customcss: "svg-animation"
+
+      - name: "Transparent Video (Intersection Observer)"
+        id: "transparent"
+        customcss: "transparent"
+        customjs: "transparent.js"
+        note: This video utilizes an <a href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API">Intersection Observer</a> triggered by a callback function. When positioned at the top of the page, it loads instantly; when lower, it plays as you scroll to it. This demo will only play once, requiring a page refresh for replay.
+        guidance: note-transparent-video
+
+  - id: "breadcrumbs" 
     desc: "This component will allow you to add a breadcrumb navigation to your page."
-    id: "breadcrumbs"
     path: "breadcrumbs"
     title: "Breadcrumbs"
     version: "1.1"
-  card: 
+    examples:
+
+      - name: "Default Setup"
+        id: "default-setup"
+
+      - name: "Horizontal Scroll"
+        id: "horizontal-scroll"
+        note: "To access the scroll, adjust the viewport size to be smaller. Additionally, please be aware that the design and functionality of the scrollbar may vary across different operating systems and browsers, which is completely normal and expected."
+  
+  - id: "card" 
     desc: "This component will allow you to implement single or grouped content cards with images, text, and links, commonly used for presenting articles or topic-related content."
-    id: "card"
     path: "card"
     title: "Card"
     version: "1.0"
-  css-animation: 
+    examples: 
+
+      - name: "Card (Image, 3x)"
+        id: "card-grid"
+
+      - name: "Card (Image, Categories, 3x)"
+        id: "card-category"
+
+      - name: "Card (Image, Eyebrow,  3x)"
+        id: "card-eyebrow"
+        note: 'Examine this markup closely and you will notice that we are using an element called <code>hgroup</code> to encapsulate the eyebrow and heading. This should be done instead of using multiple headings to markup alternative titles. See <a href="https://www.tpgi.com/subheadings-subtitles-alternative-titles-and-taglines-in-html/">Subheadings, subtitles, alternative titles and taglines in HTML</a> for more details about this useful element and best practice.'
+
+      - name: "Card (Image, Metadata, 3x)"
+        id: "card-metadata"
+
+      - name: "Card (Image, Multiple Links, 3x)"
+        id: "card-multiple-links"
+        note: If multple links must be used, try your best to include visually hidden text to provide better context. If this cannot be done, context can be provided in how the interface is structured. In this example, the cards are an unordered list, with headings and nested lists of relevant links.
+
+      - name: "Card (Image, No Summary, 3x)"
+        id: "card-no-summary"
+        warning: "Examine this markup closely and you will notice the absence of heading levels. This omission stems from the lack of a clear summary. Headings should exclusively introduce content; otherwise, they should not be used."
+
+      - name: "Card (Image, 1x)"
+        id: "card-image"
+      
+      - name: "Card (Image, Video, 3x)"
+        id: "card-video"
+        note: 'When incorporating a video, ensure that the title explicitly includes "(Video)" to aid assistive technology users, signaling their engagement with video content. If this content is not visually desired, you may use various techniques to <a href="https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html">hide it</a>, but still make it accessible to assistive technology. Additionally, always provide captions for videos, and when needed, ensure transcripts are available.' 
+
+      - name: "Card (Kitchen Sink)"
+        id: "card-kitchen-sink"
+
+      - name: "Card (No Image, 3x)"
+        id: "card-no-image"
+
+      - name: "Horizontal Card (Feed)"
+        id: "card-horizontal-feed"
+
+      - name: "Horizontal Card (Image)"
+        id: "card-horizontal-image"
+
+      - name: "Horizontal Card (No Image)"
+        id: "card-horizontal"
+
+      - name: "Horizontal Card (Kitchen Sink)"
+        id: "card-horizontal-kitchen-sink"
+
+  - id: "css-animation" 
     desc: "Elevate your upcoming website design by incorporating these popular CSS animations."
-    id: "css-animation"
     path: "css-animation"
     title: "CSS Animation Library"
     version: "2.0"
-  disclosure: 
+
+  - id: "disclosure"
     desc: "This component will allow you to implement various types of disclosure widgets."
-    id: "disclosure"
     path: "disclosure"
     title: "Disclosure"
     version: "1.7"
-  hero-banner-image: 
+    examples:
+
+      - name: "Default Setup"
+        id: "default-setup"
+
+      - name: "Animation"
+        id: "animation"
+
+      - name: "Enable URL"
+        id: "enable-url"
+
+      - name: "Interactive Heading"
+        id: "interactive-heading"
+      
+      - name: "Interactive Heading (Viewport Friendly)"
+        id: "viewport-friendly"
+      
+      - name: "Open Disclosure"
+        id: "open-disclosure"
+
+      - name: "Show All"
+        id: "show-all"
+        guidance: reminder-show-all-button
+      
+      - name: "Visual Affordance"
+        id: "visual-affordance"
+
+  - id: "hero-banner-image" 
     desc: "This component allows you to create a standard hero banner complete with a headline and supplementary text."
-    id: "hero-banner"
     path: "hero-banner"
     title: "Hero Banner (Image)"
     version: "1.1"
-  hero-banner-video: 
+    examples:
+
+      - name: "Text Left Top"
+        id: "text-left-top"
+
+      - name: "Text Left Top (Constrain)"
+        id: "text-left-top-constrain"
+
+      - name: "Text Left Center"
+        id: "text-left-center"
+
+      - name: "Text Left Center (Constrain)"
+        id: "text-left-center-constrain"
+
+      - name: "Text Left Bottom"
+        id: "text-left-bottom"
+
+      - name: "Text Left Bottom (Constrain)"
+        id: "text-left-bottom-constrain"
+
+      - name: "Text Center Top"
+        id: "text-center-top"
+
+      - name: "Text Center Center"
+        id: "text-center-center"
+
+      - name: "Text Center Bottom"
+        id: "text-center-bottom"
+
+      - name: "Text Right Top"
+        id: "text-right-top"
+
+      - name: "Text Right Top (Constrain)"
+        id: "text-right-top-constrain"
+
+      - name: "Text Right Center"
+        id: "text-right-center"
+
+      - name: "Text Right Center (Constrain)"
+        id: "text-right-center-constrain"
+
+      - name: "Text Right Bottom"
+        id: "text-right-bottom"
+
+      - name: "Text Right Bottom (Constrain)"
+        id: "text-right-bottom-constrain"
+
+  - id: "hero-banner-video" 
     desc: "This component allows you to create a standard hero banner complete with a headline and supplementary text."
     hash: "#hero-banner"
-    id: "animation-toggle"
     path: "animation-toggle"
     title: "Hero Banner (Video)"
     version: "1.6"
-  horizontal-scroll: 
+
+  - id: "horizontal-scroll" 
     desc: "This component will allow you to add a grid layout that turns into a horizontal scroll in smaller viewports. It can be used as an alternative to carousels."
-    id: "horizontal-scroll"
     path: "horizontal-scroll"
     title: "Horizontal Scroller"
     version: "1.0"
-  jump-menu: 
+    examples:
+
+      - name: "Default Setup"
+        id: "default-setup"
+        warning: "This scroll may only be used if interactive content is present within scroll area. Having interactive content withn each card item will allow keyboard users to tab through it."
+        note: "To access the scroll, adjust the viewport size to be smaller. Additionally, please be aware that the design and functionality of the scrollbar may vary across different operating systems and browsers, which is completely normal and expected."
+
+  - id: "jump-menu"
     desc: "This component will allow you to add a accessible menu to your page. When a selection is made and the button is clicked, it will take you to another page."
-    id: "jump-menu"
     path: "jump-menu"
     title: "Jump Menu (External)"
     version: "1.0"
-  in-page: 
+    examples:
+
+      - name: Default Setup
+        id: default-setup
+
+  - id: "in-page"
     desc: "This component will allow you to add an accessible menu to your page that can reveal in-page content."
-    id: "in-page"
     path: "in-page"
     title: "Jump Menu (In-page)"
     version: "1.0"
-  load-more: 
+    examples:
+
+      - name: "Default Setup"
+        id: "default-setup"
+
+      - name: "Custom Aria-Live"
+        id: "custom-aria-live"
+
+      - name: "Dynamic Setup"
+        id: "dynamic-setup"
+
+  - id: "load-more"
     desc: "This component will allow you to expand hidden content."
-    id: "load-more"
     path: "load-more"
     title: "Load More"
     version: "1.0"
-  read-more: 
+    examples:
+
+      - name: Default Setup
+        id: default-setup
+        codepenjs: "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
+
+  - id: "partial-disclosure"
     desc: "This component will allow you to expand partially visible content on your page."
-    id: "read-more"
-    path: "read-more"
+    path: "partial-disclosure"
     title: "Partial Disclosure (Read More)"
-    version: "1.6"
-  tabcordion: 
+    version: "1.7"
+    examples:
+
+      - name: "Default Setup"
+        id: "default-setup"
+        note: "In this example, the title triggers the hidden content below it. This is more clear and preferred over offsetting a button. The <code>.partial-disclosure__trigger</code> class can be placed on any element you wish to include as a trigger."
+
+      - name: "Offset Buttom (Default)"
+        id: "offset-button"
+
+      - name: "Offset Button (Custom Label)"
+        id: "offset-button-custom-label"
+          
+      - name: Offset Button (Bottom, Anti-Pattern)"
+        id: "offset-button-bottom"
+        warning: 'Positioning disclosure buttons on the bottom of content to be opened above them is considered an anti-pattern and <a href="#anti-pattern-read-more">not recommended</a>. Use at your own risk.'
+        guidance: anti-pattern-read-more
+
+  - id: "tabcordion"
     deprecated: true
     desc: "This component will allow you to add a combined Tab and Accordion to your page."
-    id: "tabcordion"
     path: "tabcordion"
     title: "TabCordion"
     version: "1.8"
-  tablist: 
+    examples:
+
+      - name: "Default Setup"
+        id: "default-setup"
+
+      - name: "Active Tab"
+        id: "active-tab"
+
+      - name: "Advanced Media Query"
+        id: "advanced-media-query"
+        note: In this example, tabs will only be available when viewport width is between 50em (800px) and 75em (1200px).
+
+      - name: "Animation"
+        id: "animation"
+      
+      - name: "Disable URL"
+        id: "disable-url"
+        note: In this example, note how the URL never changes when each item is clicked on.
+
+      - name: "Function Callback"
+        id: "function-callback"
+        note: In this example, a function is run everytime an item is clicked on.
+
+      - name: "Tabs Only"
+        id: "tabs-only"
+        note: In this example, the component will only ever be a tabbed interface, regardless of the viewport.
+
+      - name: "Vertical Tabs"
+        id: "vertical-tabs"
+
+  - id: "tablist"
     desc: "This component will allow you to implement a tablist user interface."
-    id: "tablist"
     path: "tablist"
     title: "Tablist"
     version: "1.5"
-  tile: 
+    examples:
+
+      - name: "Inline Tabs (Mobile & Desktop)"
+        id: "default-setup"
+        note: "By default, tabs will be inline on both mobile and desktop and wrap as needed depending on viewport and text size."
+
+      - name: "Disable Anchor"
+        id: "disable-anchor"
+        note: "By default, clicking a tab will append an anchor to the URL, but this can be disabled if desired."
+
+      - name: "Fixed Content Height (Mobile & Desktop)"
+        id: "fixed-height"
+
+      - name: "Stacked Tabs (Mobile), Inline Tabs (Desktop)"
+        id: "mobile-stack"
+        note: "When desired, tabs can be stacked in smaller viewport sizes. To view stacked tabs, adjust the viewport size to be smaller."
+
+      - name: "Scrolling Tabs (Mobile), Inline Tabs (Desktop)"
+        id: "mobile-scroll"
+        note: "To view the scroll, adjust the viewport size to be smaller. Additionally, please be aware that the design and functionality of the scrollbar may vary across different operating systems and browsers, which is completely normal and expected."
+
+      - name: "Vertical Tabs (Desktop), Inline Tabs (Mobile)"
+        id: "desktop-vertical"
+
+  - id: "tile"
     desc: "This component will allow you to implement a single or group of tiles that can be <em>flipped</em> when engaged with."
-    id: "tile"
     path: "tile"
     title: "Tile"
     version: "1.0"
-layout: 
-  ajd: 
+    examples: 
+
+      - name: "Default Setup"
+        id: "default-setup"
+
+      - name: "Button Click Only"
+        id: "button-click"
+        note: In this example, only the button is accessible because the card contains specific interactive elements, like hyperlinks, which should never be obscured. By default, the entire card region is clickable.
+      
+      - name: "Open All Cards"
+        id: "open-all"
+        note: "In this example, each card is allowed to be opened. By default, opening a new card will close any others that are open."
+
+layouts: 
+
+  - id: "ajd"
     desc: "A boierplate system to produce Advanced Job Decscription pages more easily."
-    id: "ajd"
     path-full: "/tb-ajd-template"
     thumbnail: "thumb-ajd.png"
     title: "Advanced Job Details (AJD)"
     version: "2.0"
-  cpg: 
+
+  - id: "cpg"
     desc: "A tool to help you easily produce career paths to be used in Advanced Job Details pages."
-    id: "cpg"
     path-full: "/career-path-generator"
     thumbnail: "thumb-cpg.png"
     title: "Career Path Generator (CPG)"
     version: "1.0"
-  flexspan: 
+
+  - id: "flexspan"
     desc: "A flexible grid system capable of various functionalities, such as optional pre-defining of rows, gaps, customizable breakpoints, and offsets in both directions."
-    id: "flexspan"
     path-full: "https://brockenstein.github.io/Flexspan-Grid-System/"
     thumbnail: "thumb-flexspan.png"
     title: "FlexSpan Grid System (FGS)"
     version: "1.0"
-feed: 
-  facebook: 
+
+feeds: 
+
+  - id: "facebook"
     desc: "This component can be used to display a client's Facebook feed."
-    id: "feeds-facebook"
     path: "feeds/facebook"
     title: "Facebook Feed"
     version: "1.0"
     hidden: true
-  instagram: 
-    desc: "This component can be used to display a client's Instagram feed."
-    id: "feeds-instagram"
+    examples:
+
+      - name: "Default Setup"
+        id: "default-setup"
+        codepenjs: "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
+
+  - id: "instagram"
+    desc: "This component can be used to display a client's Instagram feed." 
     path: "feeds/instagram"
     title: "Instagram Feed"
     version: "1.0"
-  twitter: 
+    examples: 
+
+      - name: "Default Setup"
+        id: "default-setup"
+        codepenjs: "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
+
+  - id: "twitter"
     desc: "This component can be used to display a client's Twitter feed."
-    id: "feeds-twitter"
     path: "feeds/twitter"
     title: "Twitter (X) Feed"
     version: "1.0"
     hidden: true
-  youtube: 
+    examples:
+
+    - name: "Default Setup"
+      id: "default-setup"
+
+  - id: "youtube"
     desc: "This component can be used to display a client's YouTube feed."
-    id: "feeds-youtube"
     path: "feeds/youtube"
     title: "YouTube Feed"
     version: "1.0"
+    examples:
+
+    - name: "Default Setup"
+      id: "default-setup"
+
+    - name: "Custom Styling"
+      id: "custom-styling"
+
+    - name: "Embedded Video"
+      id: "embedded-video"
+
+    - name: "Load Playlist"
+      id: "playlist"
+
+    - name: "No Thumbnails"
+      id: "no-thumbnails"

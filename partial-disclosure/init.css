@@ -1,0 +1,13 @@
+/*!
+
+  Radancy Component Library: Partial Disclosure
+
+  Contributor(s): 
+  Michael "Spell" Spellacy
+
+  Dependencies: Sass
+
+  Instructions: 
+  sass --watch .:. --style compressed
+
+*/.partial-disclosure__trigger{margin-bottom:0}.partial-disclosure__trigger button{background-color:rgba(0,0,0,0);border:0;color:#6f00ef;cursor:pointer;font:inherit}.partial-disclosure__btn{background-color:#6f00ef;border:0;color:#fff;display:flex;margin-block:1em;margin-inline:auto 0;padding:1em}[data-button-bottom] .partial-disclosure__btn{margin-inline-start:0}.partial-disclosure__icon{margin-inline-start:.5em}.partial-disclosure__icon::after{display:inline-block;content:"+"}[aria-expanded=true] .partial-disclosure__icon::after{content:"-"}.partial-disclosure__content{max-height:none;overflow:hidden;padding:.5em .5em 1em;position:relative}.partial-disclosure__content::after{background-image:linear-gradient(rgba(255, 255, 255, 0) 50%, rgb(255, 255, 255) 100%);content:"";display:none;height:6.25rem;inset-block-end:0;inset-inline-start:0;position:absolute;width:100%;z-index:1}.partial-disclosure__content[aria-hidden]{max-height:17.5rem}.partial-disclosure__content[aria-hidden] *{pointer-events:none}.partial-disclosure__content[aria-hidden]::after{display:block}/*# sourceMappingURL=init.css.map */

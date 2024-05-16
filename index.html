@@ -4,15 +4,33 @@ navigation: false
 card: true
 ---
 
-<p>Access a library of modular components that seamlessly combine to empower the creation of dynamic website interfaces.</p>
+{% assign selectedComponents = site.data.module.components %}
+{% assign selectedFeeds = site.data.module.feeds %}
+{% assign allSelections = selectedComponents | concat: selectedFeeds %}
+
+{% for component in allSelections %}
+
+  {% if component.hidden != true %}
+
+    {% assign total_component_count = total_component_count | plus: 1 %}
+
+    {% assign example_count = component.examples | size %}
+
+    {% assign total_example_count = total_example_count | plus: example_count %}
+
+  {% endif %}
+
+{% endfor %}
+
+<p>Access a library of modular components that seamlessly combine to assist in creating dynamic web interfaces. The library now includes <strong>{{ total_component_count }}</strong> unique components, with over <strong>{{ total_example_count }}</strong> examples to choose from.</p>
 
 <h2 id="components">Components</h2>
 
 <ul class="card">
 
-  {% for item in site.data.module.component %}
+  {% for component in site.data.module.components %}
 
-    {% if item[1]["hidden"] != true %}
+    {% if component.hidden != true %}
 
       <li class="card__item">
 
@@ -20,7 +38,7 @@ card: true
 
             <div class="card__thumbnail">
 
-              {% if item[1]["thumbnail"] == false %}
+              {% if component.thumbnail == false %}
 
                   <img alt="" src="thumb.png">
 
@@ -28,11 +46,11 @@ card: true
 
                 {% if item[1]["thumbnail"] != nil %}
 
-                  <img alt="" src="{{ item[1]['thumbnail'] }}">
+                  <img alt="" src="{{ component.thumbnail }}">
 
                 {% else %}
 
-                  <img alt="" src="{{ site.url }}{{ site.baseurl }}/{{ item[1]['path'] }}/thumb.png">
+                  <img alt="" src="{{ site.url }}{{ site.baseurl }}/{{ component.path }}/thumb.png">
 
                 {% endif %}
 
@@ -44,16 +62,24 @@ card: true
 
         <div class="card__content">
 
-          <h3 class="card__title"><a class="card__trigger" class="card__trigger" href="{% if item[1]['path-full'] %}{{ item[1]['path-full'] }}{% else %}{{ site.baseurl }}/{{ item[1]['path'] }}/{{ item[1]['hash'] }}{% endif %}">{{ item[1]["title"] }} v{{ item[1]["version"] }}</a></h3>
+          <h3 class="card__title"><a class="card__trigger" class="card__trigger" href="{% if component.path-full %}{{ component.path-full }}{% else %}{{ site.baseurl }}/{{ component.path }}/{{ component.hash }}{% endif %}">{{ component.title }} v{{ component.version }}</a></h3>
 
             <div class="card__summary">
               
-              <p>{{ item[1]["desc"] }}</p>
+              <p>{{ component.desc }}</p>
 
-              {% if item[1]["deprecated"] == true %}
+              {% if component.deprecated == true %}
 
               <p class="alert">This component is deprecated and should no longer be used.</p>
 
+              {% endif %}
+
+              {% assign example_count = component.examples | size %}
+    
+              {% if example_count > 0 %}
+              
+                <p>Examples: <b>{{ example_count }}</b></p>
+              
               {% endif %}
 
             </div>
@@ -72,9 +98,9 @@ card: true
 
 <ul class="card">
 
-  {% for item in site.data.module.layout %}
+  {% for layout in site.data.module.layouts %}
 
-    {% if item[1]["hidden"] != true %}
+    {% if layout.hidden != true %}
 
       <li class="card__item">
 
@@ -82,19 +108,19 @@ card: true
 
           <div class="card__thumbnail">
 
-            {% if item[1]["thumbnail"] == false %}
+            {% if layout.thumbnail == false %}
 
                 <img alt="" src="thumb.png">
 
             {% else %}
 
-              {% if item[1]["thumbnail"] != nil %}
+              {% if layout.thumbnail != nil %}
 
-                <img alt="" src="{{ item[1]['thumbnail'] }}">
+                <img alt="" src="{{ layout.thumbnail }}">
 
               {% else %}
 
-                <img alt="" src="{{ site.url }}{{ site.baseurl }}/{{ item[1]['path'] }}/thumb.png">
+                <img alt="" src="{{ site.url }}{{ site.baseurl }}/{{ layout.path }}/thumb.png">
 
               {% endif %}
 
@@ -106,13 +132,13 @@ card: true
 
         <div class="card__content">
 
-            <h3 class="card__title"><a class="card__trigger" class="card__trigger" href="{% if item[1]['path-full'] %}{{ item[1]['path-full'] }}{% else %}{{ site.baseurl }}/{{ item[1]['path'] }}/{{ item[1]['hash'] }}{% endif %}">{{ item[1]["title"] }}</a></h3>
+            <h3 class="card__title"><a class="card__trigger" class="card__trigger" href="{% if layout.path-full %}{{ layout.path-full }}{% else %}{{ site.baseurl }}/{{ layout.path }}/{{ layout.hash }}{% endif %}">{{ layout.title }}</a></h3>
 
             <div class="card__summary">
               
-              <p>{{ item[1]["desc"] }}</p>
+              <p>{{ layout.desc }}</p>
 
-              {% if item[1]["deprecated"] == true %}
+              {% if layout.deprecated == true %}
 
               <p class="alert">This component is deprecated and should no longer be used.</p>
 
@@ -134,9 +160,9 @@ card: true
 
 <ul class="card">
 
-  {% for item in site.data.module.feed %}
+  {% for feed in site.data.module.feeds %}
 
-    {% if item[1]["hidden"] != true %}
+    {% if feed.hidden != true %}
 
       <li class="card__item">
 
@@ -144,19 +170,19 @@ card: true
 
           <div class="card__thumbnail">
 
-            {% if item[1]["thumbnail"] == false %}
+            {% if feed.thumbnail == false %}
 
                 <img alt="" src="thumb.png">
 
             {% else %}
 
-              {% if item[1]["thumbnail"] != nil %}
+              {% if feed.thumbnail != nil %}
 
-                <img alt="" src="{{ item[1]['thumbnail'] }}">
+                <img alt="" src="{{ feed.thumbnail }}">
 
               {% else %}
 
-                <img alt="" src="{{ site.url }}{{ site.baseurl }}/{{ item[1]['path'] }}/thumb.png">
+                <img alt="" src="{{ site.url }}{{ site.baseurl }}/{{ feed.path }}/thumb.png">
 
               {% endif %}
 
@@ -168,16 +194,24 @@ card: true
 
         <div class="card__content">
 
-          <h3 class="card__title"><a class="card__trigger" class="card__trigger" href="{% if item[1]['path-full'] %}{{ item[1]['path-full'] }}{% else %}{{ site.baseurl }}/{{ item[1]['path'] }}/{{ item[1]['hash'] }}{% endif %}">{{ item[1]["title"] }} v{{ item[1]["version"] }}</a></h3>
+          <h3 class="card__title"><a class="card__trigger" class="card__trigger" href="{% if feed.path-full %}{{ feed.path-full }}{% else %}{{ site.baseurl }}/{{ feed.path }}/{{ feed.hash }}{% endif %}">{{ feed.title }} v{{ feed.version }}</a></h3>
 
           <div class="card__summary">
             
-            <p>{{ item[1]["desc"] }}</p>
+            <p>{{ feed.desc }}</p>
 
-            {% if item[1]["deprecated"] == true %}
+            {% if feed.deprecated == true %}
 
-              <p class="alert">This component is deprecated and should no longer be used.</p>
+              <p class="alert">This feed is deprecated and should no longer be used.</p>
 
+            {% endif %}
+
+            {% assign example_count = feed.examples | size %}
+    
+            {% if example_count > 0 %}
+            
+              <p>Examples: <b>{{ example_count }}</b></p>
+            
             {% endif %}
 
           </div>

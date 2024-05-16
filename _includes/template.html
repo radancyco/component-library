@@ -1,12 +1,27 @@
+{% comment %}
+
+  Radancy Component Library: Main Page Template
+
+  Contributor(s):
+  Michael "Spell" Spellacy
+
+{% endcomment %}
+
+{% comment %} Data connections and other variables. {% endcomment %}
+
+{% assign current_id = page.id %}
+{% assign selectedComponents = site.data.module.components %}
+{% assign selectedFeeds = site.data.module.feeds %}
+{% assign allSelections = selectedComponents | concat: selectedFeeds %}
+{% assign counter = 0 %}
+
 {% include icon.html %}
 
 {% if page.messages %} 
 
-    {% assign sortMessages = page.messages %}
+    {% for message in page.messages %}
 
-    {% for message in sortMessages %}
-
-    {% include message/{{ message }}.html %}
+      {% include message/{{ message }}.html %}
 
     {% endfor %}
 
@@ -14,36 +29,33 @@
 
 {% if page.warning %}
   
-<div class="warning">
+  <div class="warning">
   
-  <p><strong>Warning:</strong> {{ page.warning }}</p>
+    <p><strong>Warning:</strong> {{ page.warning }}</p>
 
-</div>
+  </div>
 
 {% endif %}
 
 {% if page.note %}
   
-<div class="note">
+  <div class="note">
   
-  <p><strong>Note:</strong> {{ page.note }}</p>
+    <p><strong>Note:</strong> {{ page.note }}</p>
 
-</div>
+  </div>
 
 {% endif %}
 
 {% if page.reminder %}
   
-<div class="reminder">
+  <div class="reminder">
   
-  <p><strong>Reminder:</strong> {{ page.reminder }}</p>
+    <p><strong>Reminder:</strong> {{ page.reminder }}</p>
 
-</div>
+  </div>
 
 {% endif %}
-
-{% assign path = component.path # used further doen the page for repo link %} 
-{% assign title = component.title # used further doen the page for repo link %} 
 
 {% if component %}
 
@@ -61,304 +73,315 @@
 
 {% endif %}
 
-  {% if page.in-page-custom %}
+{% if page.in-page-custom %}
 
-    <div class="in-page-custom" data-in-page-dynamic>
-
-  {% endif %}
-
-  {% if page.in-page-custom %}
+  <div class="in-page-custom" data-in-page-dynamic>
 
     <h2 id="examples">Examples</h2>
 
     <nav aria-label="Example" class="in-page-custom__nav">
 
-        <label class="in-page-custom__label">Choose an example:</label>
+      <label class="in-page-custom__label">Choose an example:</label>
 
-        <select class="in-page-custom__select">
+      <select class="in-page-custom__select">
 
-        </select>
+      </select>
 
-        <div class="sr-only" aria-live="polite"></div>
+      <div class="sr-only" aria-live="polite"></div>
 
     </nav>
 
-  {% else %}
+{% endif %}
 
-  {% if !page.components %}
+{% assign total_example_count = 0 %}
 
-    <h2 id="basic-setup">Default Setup</h2>
+{% for component in allSelections %}
+
+  {% if component.id == current_id %}
+
+    {% assign example_count = component.examples | size %}
+    {% assign total_example_count = total_example_count | plus: example_count %}
 
   {% endif %}
 
-  {% endif %}
+{% endfor %}
 
-  {% assign counter = 0 %}
+{% if total_example_count == 1 %}
+
+  <h2 id="basic-setup">Default Setup</h2>
+
+{% endif %}
+
+{% for component in allSelections %}
+
+    {% if component.id == current_id %}
   
-  {% for component in page.components %}
+      {% for example in component.examples %}
 
-    {% capture html %}{% include_relative html/{{ component.id }}.html %}{% endcapture %}
+        {% capture html %}{% include_relative html/{{ example.id }}.html %}{% endcapture %}
 
-    {% if page.localcss %}
+        {% if page.localcss %}
 
-      {% capture css %}{% include_relative init.scss %}{% endcapture %}
+          {% capture css %}{% include_relative init.scss %}{% endcapture %}
 
-    {% endif %}
+        {% endif %}
 
-    {% if page.localjs %}
+        {% if page.localjs %}
 
-      {% capture js %}{% include_relative script.js title=include.title version=include.version %}{% endcapture %}
+          {% capture js %}{% include_relative script.js title=component.title version=component.version %}{% endcapture %}
 
-    {% endif %}
+        {% endif %}
 
-    {% if component.customcss %}
+        {% if example.customcss %}
 
-      {% capture customcss %}{% include_relative {{ component.customcss }}.scss %}{% endcapture %}
+          {% capture customcss %}{% include_relative {{ example.customcss }}.scss %}{% endcapture %}
 
-    {% endif %}
+        {% endif %}
 
-    {% if component.customjs %}
+        {% if example.customjs %}
 
-      {% capture customjs %}{% include_relative {{ component.customjs }} %}{% endcapture %}
+          {% capture customjs %}{% include_relative {{ example.customjs }} %}{% endcapture %}
 
-    {% endif %}
+        {% endif %}
 
-    {% if page.in-page-custom %}
+        {% if page.in-page-custom %}
 
-    <div class="in-page-custom__content" data-in-page-name="{{ component.name }}" data-in-page-id="{{ component.id }}">
+          <div class="in-page-custom__content" data-in-page-name="{{ example.name }}" data-in-page-id="{{ example.id }}">
 
-    {% endif %}
+        {% endif %}
   
-      {% include_relative html/{{ component.id }}.html %}
+        {% include_relative html/{{ example.id }}.html %}
 
-      {% if component.warning %}
+        {% if example.warning %}
   
-      <div class="warning">
+          <div class="warning">
         
-        <p><strong>Warning:</strong> {{ component.warning }}</p>
+            <p><strong>Warning:</strong> {{ example.warning }}</p>
 
-      </div>
+          </div>
 
-      {% endif %}
+        {% endif %}
   
-      {% if component.note %}
+        {% if example.note %}
   
-        <div class="note">
+          <div class="note">
           
-          <p><strong>Note:</strong> {{ component.note }}</p>
+            <p><strong>Note:</strong> {{ example.note }}</p>
 
-        </div>
+          </div>
   
-      {% endif %}
+        {% endif %}
 
-      {% if component.reminder %}
+        {% if example.reminder %}
   
-      <div class="reminder">
+          <div class="reminder">
         
-        <p><strong>Reminder:</strong> {{ component.reminder }}</p>
+            <p><strong>Reminder:</strong> {{ example.reminder }}</p>
 
-      </div>
+          </div>
 
-      {% endif %}
+        {% endif %}
 
-      {% if component.experimental %}
+        {% if example.experimental %}
   
-      <div class="experimental">
+          <div class="experimental">
         
-        <p><strong>Experimental:</strong> {{ component.experimental }}</p>
+            <p><strong>Experimental:</strong> {{ example.experimental }}</p>
 
-      </div>
+          </div>
 
-      {% endif %}
+        {% endif %}
 
-      <nav aria-label="Code Functions" class="component-functions">
+        <nav aria-label="Code Functions" class="component-functions">
         
-        <ul>
-          <li><button class="btn-copy-link" data-code="{{ page.url | absolute_url }}#{{ component.id }}">{{ iconCheck }}{{ iconCopyURL }} Copy link to example</button></li>
-          <li><form action="https://codepen.io/pen/define" id="{{ component.id }}-codepen" method="POST" target="_blank"><button class="btn-edit-codepen">{{ iconCodePen }} Edit on CodePen</button></form></li>
-          <li><a class="btn-new-window" href="{{ component.id }}" target="_blank">{{ iconNewWindow }} Open in new window</a></li>
-          <li><button class="btn-view-code" onclick="javascript:location.reload();">{{ iconRefresh }} Refresh</button></li>
-          <li><a class="btn-repository" href="{{ site.repo }}/blob/main/{{ path }}/">{{ iconGit }} Repository</a></li>
-          <li><button class="btn-view-code">{{ iconCode }} View Code</button></li>
-        </ul>
-
-      </nav>
-
-      {% assign counter = counter | plus: 1 %}
-
-      <div class="content-view-code">
-
-        <div class="tablist" data-fixed-height>
-
-          <ul class="tablist__list">
-            <li><a class="tablist__tab" href="#html-{{counter}}">{{ iconHTML }} HTML</a></li>
-            {% if page.localcss %}
-            <li><a class="tablist__tab" href="#css-{{counter}}">{{ iconCSS }} CSS</a></li>
-            {% endif %}
-            {% if component.customcss %}
-            <li><a class="tablist__tab" href="#custom-css-{{counter}}">{{ iconCSS }} CSS (Custom)</a></li>
-            {% endif %}
-            {% if page.localjs %}
-            <li><a class="tablist__tab" href="#javascript-{{counter}}">{{ iconJS }} JavaScript</a></li>
-            {% endif %}
-            {% if component.customjs %}
-            <li><a class="tablist__tab" href="#custom-javascript-{{counter}}">{{ iconJS }} JavaScript (Custom)</a></li>
-            {% endif %}
+          <ul>
+            <li><button class="btn-copy-link" data-code="{{ page.url | absolute_url }}#{{ example.id }}">{{ iconCheck }}{{ iconCopyURL }} Copy link to example</button></li>
+            <li><form action="https://codepen.io/pen/define" id="{{ example.id }}-codepen" method="POST" target="_blank"><button class="btn-edit-codepen">{{ iconCodePen }} Edit on CodePen</button></form></li>
+            <li><a class="btn-new-window" href="{{ example.id }}" target="_blank">{{ iconNewWindow }} Open in new window</a></li>
+            <li><button class="btn-view-code" onclick="javascript:location.reload();">{{ iconRefresh }} Refresh</button></li>
+            <li><a class="btn-repository" href="{{ site.repo }}/blob/main/{{ component.path }}/">{{ iconGit }} Repository</a></li>
+            <li><button class="btn-view-code">{{ iconCode }} View Code</button></li>
           </ul>
-      
-          <div class="tablist__panel" id="html-{{counter}}">
-      
-            <div class="tablist__content" contenteditable spellcheck="false">
 
-              {% highlight html %}{% include_relative html/{{ component.id }}.html %}{% endhighlight %}
+        </nav>
+
+        {% assign counter = counter | plus: 1 %}
+
+        <div class="content-view-code">
+
+          <div class="tablist" data-fixed-height>
+
+            <ul class="tablist__list">
+              <li><a class="tablist__tab" href="#html-{{counter}}">{{ iconHTML }} HTML</a></li>
+              {% if page.localcss %}
+              <li><a class="tablist__tab" href="#css-{{counter}}">{{ iconCSS }} CSS</a></li>
+              {% endif %}
+              {% if example.customcss %}
+              <li><a class="tablist__tab" href="#custom-css-{{counter}}">{{ iconCSS }} CSS (Custom)</a></li>
+              {% endif %}
+              {% if page.localjs %}
+              <li><a class="tablist__tab" href="#javascript-{{counter}}">{{ iconJS }} JavaScript</a></li>
+              {% endif %}
+              {% if example.customjs %}
+              <li><a class="tablist__tab" href="#custom-javascript-{{counter}}">{{ iconJS }} JavaScript (Custom)</a></li>
+              {% endif %}
+            </ul>
+      
+            <div class="tablist__panel" id="html-{{counter}}">
+      
+              <div class="tablist__content" contenteditable spellcheck="false">
+
+                {% highlight html %}{% include_relative html/{{ example.id }}.html %}{% endhighlight %}
+
+              </div>
 
             </div>
 
-          </div>
+            {% if page.localcss %}
 
-          {% if page.localcss %}
-
-          <div class="tablist__panel" id="css-{{counter}}">
+              <div class="tablist__panel" id="css-{{counter}}">
       
-            <div class="tablist__content" contenteditable spellcheck="false">
+                <div class="tablist__content" contenteditable spellcheck="false">
 
-              {% highlight css %}{% include_relative init.scss %}{% endhighlight %}
+                  {% highlight css %}{% include_relative init.scss %}{% endhighlight %}
 
-            </div>
+                </div>
 
-          </div>
+              </div>
 
-          {% endif %}
+            {% endif %}
 
-          {% if component.customcss %}
+            {% if example.customcss %}
 
-          <div class="tablist__panel" id="custom-css-{{counter}}">
+              <div class="tablist__panel" id="custom-css-{{counter}}">
       
-            <div class="tablist__content" contenteditable spellcheck="false">
+                <div class="tablist__content" contenteditable spellcheck="false">
 
-              {% highlight javascript %}{% include_relative {{ component.customcss }}.scss %}{% endhighlight %}
+                  {% highlight javascript %}{% include_relative {{ example.customcss }}.scss %}{% endhighlight %}
 
-            </div>
+                </div>
 
-          </div>
+              </div>
 
-          {% endif %}
+            {% endif %}
 
-          {% if page.localjs %}
+            {% if page.localjs %}
 
-          <div class="tablist__panel" id="javascript-{{counter}}">
+              <div class="tablist__panel" id="javascript-{{counter}}">
       
-            <div class="tablist__content" contenteditable spellcheck="false">
+                <div class="tablist__content" contenteditable spellcheck="false">
 
-              {% highlight javascript %}{% include_relative script.js title=include.title version=include.version %}{% endhighlight %}
+                  {% highlight javascript %}{% include_relative script.js title=component.title version=component.version %}{% endhighlight %}
 
-            </div>
+                </div>
 
-          </div>
+              </div>
 
-          {% endif %}
+            {% endif %}
 
-          {% if component.customjs %}
+            {% if example.customjs %}
 
-          <div class="tablist__panel" id="custom-javascript-{{counter}}">
+              <div class="tablist__panel" id="custom-javascript-{{counter}}">
       
-            <div class="tablist__content" contenteditable spellcheck="false">
+                <div class="tablist__content" contenteditable spellcheck="false">
 
-              {% highlight javascript %}{% include_relative {{ component.customjs }} %}{% endhighlight %}
+                  {% highlight javascript %}{% include_relative {{ example.customjs }} %}{% endhighlight %}
 
-            </div>
+                </div>
+
+              </div>
+
+            {% endif %}
 
           </div>
-
-          {% endif %}
 
         </div>
 
-      </div>
-
-      {% if component.guidance %}
-
-        {% assign componentGuidance = component.guidance %}
+        {% if example.guidance %}
   
-        {% for item in componentGuidance %}
+          {% for item in example.guidance %}
   
-          {% include guidance/{{ item }}.html %}
+            {% include guidance/{{ item }}.html %}
   
-        {% endfor %}
+          {% endfor %}
   
       {% endif %}
 
       <script>
 
-        var codePenForm = document.getElementById("{{ component.id }}-codepen");
-  
-        var obj = {
-          
-          title: "{{ title }} {% if component.name %}: {{ component.name }} {% endif %}",
-          html: {{ html | jsonify }},
-          css_external: "https://radancy.dev/css/init.css",
-          css_pre_processor: "scss",
-          {% if component.customcss %}
-          css: {{ css | append: customcss | jsonify }},
-          {% else %}
-          css: {{ css | jsonify }}, 
-          {% endif %}
-          {% if component.customjs %}
-          js: {{ js | append: customjs | jsonify }},
-          {% else %}
-          js: {{ js | jsonify }},
-          {% endif %}
-          {% if component.codepenjs %}
-          js_external: '{% for item in component.codepenjs %}{% if item contains "://" %}{{ item }}{% else %}{{site.url}}/animation-library/{{ item }}{% endif %}{% if forloop.last %}{% else %};{% endif %}{% endfor %}',
-          {% endif %}
-  
-        };
-  
-        var json = JSON.stringify(obj);
-  
-        var codePenInput = document.createElement("input");
-        codePenInput.setAttribute("type", "hidden");
-        codePenInput.setAttribute("name", "data");
-        codePenInput.setAttribute("value", json);
-        codePenForm.prepend(codePenInput);
-  
-        </script>
+      var codePenForm = document.getElementById("{{ example.id }}-codepen");
+    
+      var obj = {
+            
+        title: "{{ component.title }} {% if example.name %}: {{ example.name }} {% endif %}",
+        html: {{ html | jsonify }},
+        css_external: "https://radancy.dev/css/init.css",
+        css_pre_processor: "scss",
+        {% if example.customcss %}
+        css: {{ css | append: customcss | jsonify }},
+        {% else %}
+        css: {{ css | jsonify }}, 
+        {% endif %}
+        {% if example.customjs %}
+        js: {{ js | append: customjs | jsonify }},
+        {% else %}
+        js: {{ js | jsonify }},
+        {% endif %}
+        {% if example.codepenjs %}
+        js_external: '{% for item in example.codepenjs %}{% if item contains "://" %}{{ item }}{% else %}{{site.url}}/animation-library/{{ item }}{% endif %}{% if forloop.last %}{% else %};{% endif %}{% endfor %}',
+        {% endif %}
+    
+      };
+    
+      var json = JSON.stringify(obj);
+    
+      var codePenInput = document.createElement("input");
+      codePenInput.setAttribute("type", "hidden");
+      codePenInput.setAttribute("name", "data");
+      codePenInput.setAttribute("value", json);
+      codePenForm.prepend(codePenInput);
+    
+      </script>
 
       {% if page.in-page-custom %}
   
-      </div>
+        </div>
 
       {% endif %}
-  
-  {% endfor %}
-
-  {% if page.in-page-custom %}
-  
-  </div>
-
-  {% endif %}
-
-  {% if page.guidance %} 
-
-    {% assign sortGuidance = page.guidance %}
-
-    {% for item in sortGuidance %}
-
-      {% include guidance/{{ item }}.html %}
 
     {% endfor %}
 
   {% endif %}
 
-  {% if page.elements or page.aria or page.attributes or page.sass or page.class or page.cookies or page.parameters %}
+{% endfor %}
+
+{% if page.in-page-custom %}
+  
+</div>
+
+{% endif %}
+
+{% if page.guidance %} 
+
+  {% assign sortGuidance = page.guidance %}
+
+  {% for item in sortGuidance %}
+
+    {% include guidance/{{ item }}.html %}
+
+  {% endfor %}
+
+{% endif %}
+
+{% if page.elements or page.aria or page.attributes or page.sass or page.class or page.cookies or page.parameters %}
 
   <h2 id="properties">Properties</h2>
 
   <p>Use the following properties to configure this component.</p>
 
-  {% endif %}
+{% endif %}
 
-  {% if page.elements %} 
+{% if page.elements %} 
 
   <div class="table-container">
 
@@ -366,9 +389,9 @@
     <caption><a class="anchor" href="#elements">{{ iconAnchor }} <span class="sr-only">Anchor (Elements)</span></a> Elements</caption>
     <thead>
     <tr>
-        <th>Element</th>
-        <th>Note</th>
-        <th>Description</th>
+      <th>Element</th>
+      <th>Note</th>
+      <th>Description</th>
     </tr>
     </thead>
     <tbody>
@@ -377,22 +400,22 @@
 
     {% for element in sortElements %}
 
-    <tr>
+      <tr>
         <td>{% for html in element.html %}<code>{{ html }}</code>{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
         <td>{% for note in element.note %}{{ note }}{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
         <td>{{ element.desc }}</td>
-    </tr>
+      </tr>
 
     {% endfor %}
 
     </tbody>
     </table>
-  
+
   </div>
 
-  {% endif %}
+{% endif %}
 
-  {% if page.aria %} 
+{% if page.aria %} 
 
   <div class="table-container">
 
@@ -400,10 +423,10 @@
     <caption><a class="anchor" href="#aria">{{ iconAnchor }} <span class="sr-only">Anchor (ARIA)</span></a> ARIA</caption>
     <thead>
     <tr>
-        <th>ARIA</th>
-        <th>Applies To</th>
-        <th>Note</th>
-        <th>Description</th>
+      <th>ARIA</th>
+      <th>Applies To</th>
+      <th>Note</th>
+      <th>Description</th>
     </tr>
     </thead>
     <tbody>
@@ -412,23 +435,23 @@
 
     {% for aria in sortAria %}
 
-    <tr>
+      <tr>
         <td><code>{{ aria.name }}</code></td>
         <td><code>{% for html in aria.html %}<code>{{ html }}</code>{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</code></td>
         <td>{% for note in aria.note %}{{ note }}{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
         <td>{{ aria.desc }}</td>
-    </tr>
+      </tr>
 
     {% endfor %}
 
     </tbody>
     </table>
-  
+
   </div>
 
-  {% endif %}
+{% endif %}
 
-  {% if page.attributes %} 
+{% if page.attributes %} 
 
   <div class="table-container">
 
@@ -436,10 +459,10 @@
     <caption><a class="anchor" href="#attributes">{{ iconAnchor }} <span class="sr-only">Anchor (Attributes)</span></a> Attributes</caption>
     <thead>
     <tr>
-        <th>Attribute</th>
-        <th>Applies To</th>
-        <th>Note</th>
-        <th>Description</th>
+      <th>Attribute</th>
+      <th>Applies To</th>
+      <th>Note</th>
+      <th>Description</th>
     </tr>
     </thead>
     <tbody>
@@ -448,7 +471,7 @@
 
     {% for attribute in sortAttributes %}
 
-    <tr>
+      <tr>
         <td><code>{{ attribute.name }}</code></td>
         <td>{% for html in attribute.html %}<code>{{ html }}</code>{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
         <td>{% for note in attribute.note %}{{ note }}{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
@@ -459,12 +482,12 @@
 
     </tbody>
     </table>
-  
+
   </div>
 
-  {% endif %}
+{% endif %}
 
-  {% if page.sass %} 
+{% if page.sass %} 
 
   <div class="table-container">
 
@@ -472,8 +495,8 @@
     <caption><a class="anchor" href="#scss">{{ iconAnchor }} <span class="sr-only">Anchor (SCSS)</span></a> SCSS</caption>
     <thead>
     <tr>
-        <th>Variable</th>
-        <th>Description</th>
+      <th>Variable</th>
+      <th>Description</th>
     </tr>
     </thead>
     <tbody>
@@ -482,7 +505,7 @@
 
     {% for scss in sortSass %}
 
-    <tr>
+      <tr>
         <td><code>{{ scss.name }}</code></td>
         <td>{{ scss.desc }}</td>
     </tr>
@@ -491,12 +514,12 @@
 
     </tbody>
     </table>
-  
+
   </div>
 
-  {% endif %}
+{% endif %}
 
-  {% if page.classes %} 
+{% if page.classes %} 
 
   <div class="table-container">
 
@@ -504,10 +527,10 @@
     <caption><a class="anchor" href="#classes">{{ iconAnchor }} <span class="sr-only">Anchor (Classes)</span></a> Classes</caption>
     <thead>
     <tr>
-        <th>Class</th>
-        <th>Applies To</th>
-        <th>Note</th>
-        <th>Description</th>
+      <th>Class</th>
+      <th>Applies To</th>
+      <th>Note</th>
+      <th>Description</th>
     </tr>
     </thead>
     <tbody>
@@ -516,23 +539,23 @@
 
     {% for class in sortClasses %}
 
-    <tr>
+      <tr>
         <td><code>{{ class.name }}</code></td>
         <td>{% for html in class.html %}<code>{{ html }}</code>{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
         <td>{% for note in class.note %}{{ note }}{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
         <td>{{ class.desc }}</td>
-    </tr>
+      </tr>
 
     {% endfor %}
 
     </tbody>
     </table>
-  
+
   </div>
 
-  {% endif %}
+{% endif %}
 
-  {% if page.cookies %} 
+{% if page.cookies %} 
 
   <div class="table-container">
 
@@ -540,13 +563,13 @@
     <caption><a class="anchor" href="#cookies">{{ iconAnchor }} <span class="sr-only">Anchor (Cookies)</span></a> Cookies</caption>
     <thead>
     <tr>
-        <th>Name</th>
-        <th>Value</th>
-        <th>Type</th>
-        <th>Secure</th>
-        <th>SameSite</th>
-        <th>Domain</th>
-        <th>Path</th>
+      <th>Name</th>
+      <th>Value</th>
+      <th>Type</th>
+      <th>Secure</th>
+      <th>SameSite</th>
+      <th>Domain</th>
+      <th>Path</th>
     </tr>
     </thead>
     <tbody>
@@ -555,7 +578,7 @@
 
     {% for cookie in sortCookies %}
 
-    <tr>
+      <tr>
         <td>{{ cookie.name }}</td>
         <td>{{ cookie.value }}</td>
         <td>{{ cookie.type }}</td>
@@ -563,18 +586,18 @@
         <td>{{ cookie.samesite }}</td>
         <td>{{ cookie.domain }}</td>
         <td>{{ cookie.path }}</td>
-    </tr>
+      </tr>
 
     {% endfor %}
 
     </tbody>
     </table>
-  
+
   </div>
 
-  {% endif %}
+{% endif %}
 
-  {% if page.parameters %} 
+{% if page.parameters %} 
 
   <div class="table-container">
 
@@ -582,9 +605,9 @@
     <caption><a class="anchor" href="#parameters">{{ iconAnchor }} <span class="sr-only">Anchor (Parameters)</span></a> Parameters</caption>
     <thead>
     <tr>
-        <th>Parameter</th>
-        <th>Note</th>
-        <th>Description</th>
+      <th>Parameter</th>
+      <th>Note</th>
+      <th>Description</th>
     </tr>
     </thead>
     <tbody>
@@ -593,22 +616,22 @@
 
     {% for parameter in sortParameters %}
 
-    <tr>
+      <tr>
         <td>{{ parameter.name }}</td>
         <td>{% for note in parameter.note %}{{ note }}{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
         <td>{{ parameter.desc }}</td>
-    </tr>
+      </tr>
 
     {% endfor %}
 
     </tbody>
     </table>
-  
+
   </div>
 
-  {% endif %}
+{% endif %}
 
-  {% if page.notes %} 
+{% if page.notes %} 
 
   <h2 id="notes"><a class="anchor" href="#notes">{{ iconAnchor }} <span class="sr-only">Anchor (Notes)</span></a> Additional Notes</h2>
 
@@ -618,14 +641,14 @@
 
     {% for note in sortNotes %}
     
-    <li>{{ note }}</li> 
+      <li>{{ note }}</li> 
     
     {% endfor %}
 
   </ul>
 
-  {% endif %}
+{% endif %}
 
-  <h2 id="issues">Report Issues</h2>
+<h2 id="issues">Report Issues</h2>
 
-  <p>Find a bug? Report it on <a href="https://jira.tmp.com/secure/Dashboard.jspa#create_link">JIRA</a>. You're so awesome!</p>
+<p>Find a bug? Report it on <a href="https://jira.tmp.com/secure/Dashboard.jspa#create_link">JIRA</a>. You're so awesome!</p>

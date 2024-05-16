@@ -1,6 +1,6 @@
 ---
 layout: null
-module: feed
+module: feeds
 id: instagram
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: null
-module: component
-id: read-more
+module: components
+id: accordion
 ---
 
 {% include script.html %}

@@ -3,54 +3,6 @@ messages:
 
 - education-only
 
-components:
-
-  - name: "Card (Image, 3x)"
-    id: "card-grid"
-
-  - name: "Card (Image, Categories, 3x)"
-    id: "card-category"
-
-  - name: "Card (Image, Eyebrow,  3x)"
-    id: "card-eyebrow"
-    note: 'Examine this markup closely and you will notice that we are using an element called <code>hgroup</code> to encapsulate the eyebrow and heading. This should be done instead of using multiple headings to markup alternative titles. See <a href="https://www.tpgi.com/subheadings-subtitles-alternative-titles-and-taglines-in-html/">Subheadings, subtitles, alternative titles and taglines in HTML</a> for more details about this useful element and best practice.'
-
-  - name: "Card (Image, Metadata, 3x)"
-    id: "card-metadata"
-
-  - name: "Card (Image, Multiple Links, 3x)"
-    id: "card-multiple-links"
-    note: If multple links must be used, try your best to include visually hidden text to provide better context. If this cannot be done, context can be provided in how the interface is structured. In this example, the cards are an unordered list, with headings and nested lists of relevant links.
-
-  - name: "Card (Image, No Summary, 3x)"
-    id: "card-no-summary"
-    warning: "Examine this markup closely and you will notice the absence of heading levels. This omission stems from the lack of a clear summary. Headings should exclusively introduce content; otherwise, they should not be used."
-
-  - name: "Card (Image, 1x)"
-    id: "card-image"
-  
-  - name: "Card (Image, Video, 3x)"
-    id: "card-video"
-    note: 'When incorporating a video, ensure that the title explicitly includes "(Video)" to aid assistive technology users, signaling their engagement with video content. If this content is not visually desired, you may use various techniques to <a href="https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html">hide it</a>, but still make it accessible to assistive technology. Additionally, always provide captions for videos, and when needed, ensure transcripts are available.' 
-
-  - name: "Card (Kitchen Sink)"
-    id: "card-kitchen-sink"
-
-  - name: "Card (No Image, 3x)"
-    id: "card-no-image"
-
-  - name: "Horizontal Card (Feed)"
-    id: "card-horizontal-feed"
-
-  - name: "Horizontal Card (Image)"
-    id: "card-horizontal-image"
-
-  - name: "Horizontal Card (No Image)"
-    id: "card-horizontal"
-
-  - name: "Horizontal Card (Kitchen Sink)"
-    id: "card-horizontal-kitchen-sink"
-
 guidance:
 
   - a11y-card
@@ -145,7 +97,7 @@ classes:
 id: card
 in-page-custom: true
 localcss: "init.css"
-module: component
+module: components
 tablist: true
 ---
 
