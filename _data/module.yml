@@ -195,7 +195,7 @@ components:
       - name: "Visual Affordance"
         id: "visual-affordance"
 
-  - id: "hero-banner-image" 
+  - id: "hero-banner" 
     desc: "This component allows you to create a standard hero banner complete with a headline and supplementary text."
     path: "hero-banner"
     title: "Hero Banner (Image)"

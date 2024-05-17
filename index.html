@@ -68,18 +68,18 @@ card: true
               
               <p>{{ component.desc }}</p>
 
-              {% if component.deprecated == true %}
-
-              <p class="alert">This component is deprecated and should no longer be used.</p>
-
-              {% endif %}
-
               {% assign example_count = component.examples | size %}
     
               {% if example_count > 0 %}
               
                 <p>Examples: <b>{{ example_count }}</b></p>
               
+              {% endif %}
+
+              {% if component.deprecated == true %}
+
+              <p class="warning" style="margin-top: 0.5em;"><strong>Warning:</strong> This component is deprecated and should no longer be used.</p>
+
               {% endif %}
 
             </div>
