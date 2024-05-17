@@ -9,11 +9,15 @@
 
 {% comment %} Data connections and other variables. {% endcomment %}
 
-{% assign current_id = page.id %}
-{% assign selectedComponents = site.data.module.components %}
-{% assign selectedFeeds = site.data.module.feeds %}
-{% assign allSelections = selectedComponents | concat: selectedFeeds %}
-{% assign counter = 0 %}
+{% if site.name == "Component Library" %}
+
+  {% assign current_id = page.id %}
+  {% assign selectedComponents = site.data.module.components %}
+  {% assign selectedFeeds = site.data.module.feeds %}
+  {% assign allSelections = selectedComponents | concat: selectedFeeds %}
+  {% assign counter = 0 %}
+
+{% endif %}
 
 {% include icon.html %}
 

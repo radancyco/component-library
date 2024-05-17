@@ -1,10 +1,14 @@
-{% assign current_id = page.id %}
-{% assign module = page.module %}
-{% assign component = site.data.module[module] | where: "id", current_id | first %}
+{% if site.name == "Component Library" %}
 
-{% assign selectedComponents = site.data.module.components %}
-{% assign selectedFeeds = site.data.module.feeds %}
-{% assign allSelections = selectedComponents | concat: selectedFeeds %}
+  {% assign current_id = page.id %}
+  {% assign module = page.module %}
+  {% assign component = site.data.module[module] | where: "id", current_id | first %}
+
+  {% assign selectedComponents = site.data.module.components %}
+  {% assign selectedFeeds = site.data.module.feeds %}
+  {% assign allSelections = selectedComponents | concat: selectedFeeds %}
+
+{% endif %}
 
 <!DOCTYPE html>
 <html lang="{{ site.lang }}" class="no-js">
