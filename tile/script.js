@@ -21,7 +21,7 @@
   var tileItemClass = ".tile__item";
   var tileTriggerName = "tile__trigger";
   var tileTriggerClass = "." + tileTriggerName;
-  var tileTriggerLabel = "Reveal Content";
+  var tileTriggerLabel = "Show Content";
   var tileState = "show";
   var dataTileOpen = "data-open-all";
   var tiles = document.querySelectorAll(tileClass);
