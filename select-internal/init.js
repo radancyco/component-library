@@ -1,7 +1,7 @@
 ---
 layout: null
 module: components
-id: in-page
+id: select-internal
 ---
 
 {% include script.html %}

@@ -1,17 +1,17 @@
 {% assign class = "a11y-info" %}
 {% assign id = "select-menu" %}
 {% assign landmark = "hdr-a11y-select-menu" %}
-{% assign guidance-title = "Using Select Dropdowns for Navigation" %}
+{% assign guidance-title = "Using Select Element for Navigation" %}
 
 {% include guidance/header.html %}
 
-    <p>How we build components and the behaviors that they exhibit can have a serious impact on people with disabilities. Navigation components come in several different flavors. One such version of this is the <code>select</code> menu dropdown. By sticking to the following rules, we can ensure that this navigation type works well for everybody!</</p>
+    <p>How we build components and the behaviors that they exhibit can have a serious impact on people with disabilities. Navigation components come in several different flavors. One such version of this is using the <code>select</code> element to navigate. By sticking to the following rules, we can ensure that this navigation type works well for everybody!</</p>
 
     <ol>
         <li>All <code>select</code> menus <strong> must include a submit button</strong>. Unexpectedly taking a user to another page, <strong>without warning</strong>, will cause a <strong>change of context</strong>. This can be confusing to users and it is a <a href=https://www.w3.org/WAI/WCAG21/Understanding/on-input.html>WCAG failure</a>.</li>
         <li>If you wish to navigate away from a page without a submit button, then use a <strong>hyperlink</strong> or a <a href="{{ site.baseurl }}/disclosure/">disclosure</a> that reveals a list of hyperlinks to other pages.</li>
         <li>A select menu must always contain a <code>label</code> element. This label should include a note on anticipated behavior.</li>
-        <li>The only exception to the above rules are <code>select</code> menus that change content <strong>within</strong> the page. Here, a submit button is not required. Please see <a href="{{ site.baseurl }}/in-page/">Jump Menu (In-page)</a> for more details.</li>
+        <li>The only exception to the above rules are <code>select</code> menus that change content <strong>within</strong> the page. Here, a submit button is not required. Please see <a href="{{ site.baseurl }}/select-internal/">Select Navigation (Internal)</a> for more details.</li>
     </ol>
 
 {% include guidance/footer.html %}

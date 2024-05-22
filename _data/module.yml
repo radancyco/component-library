@@ -271,32 +271,6 @@ components:
         warning: "This scroll may only be used if interactive content is present within scroll area. Having interactive content withn each card item will allow keyboard users to tab through it."
         note: "To access the scroll, adjust the viewport size to be smaller. Additionally, please be aware that the design and functionality of the scrollbar may vary across different operating systems and browsers, which is completely normal and expected."
 
-  - id: "jump-menu"
-    desc: "This component will allow you to add a accessible menu to your page. When a selection is made and the button is clicked, it will take you to another page."
-    path: "jump-menu"
-    title: "Jump Menu (External)"
-    version: "1.0"
-    examples:
-
-      - name: Default Setup
-        id: default-setup
-
-  - id: "in-page"
-    desc: "This component will allow you to add an accessible menu to your page that can reveal in-page content."
-    path: "in-page"
-    title: "Jump Menu (In-page)"
-    version: "1.0"
-    examples:
-
-      - name: "Default Setup"
-        id: "default-setup"
-
-      - name: "Custom Aria-Live"
-        id: "custom-aria-live"
-
-      - name: "Dynamic Setup"
-        id: "dynamic-setup"
-
   - id: "load-more"
     desc: "This component will allow you to expand hidden content."
     path: "load-more"
@@ -329,6 +303,32 @@ components:
         id: "offset-button-bottom"
         warning: 'Positioning disclosure buttons on the bottom of content to be opened above them is considered an anti-pattern and <a href="#anti-pattern-read-more">not recommended</a>. Use at your own risk.'
         guidance: anti-pattern-read-more
+
+  - id: "select-external"
+    desc: "This component will allow you to add a select navigation to your page. When a selection is made and the button is pressed, it will take you to an external page."
+    path: "select-external"
+    title: "Select Navigation (External)"
+    version: "1.1"
+    examples:
+
+      - name: Default Setup
+        id: default-setup
+
+  - id: "select-internal"
+    desc: "This component will allow you to add a select navigation to your page that can reveal in-page content."
+    path: "select-internal"
+    title: "Select Navigation (Internal)"
+    version: "1.3"
+    examples:
+
+      - name: "Default Setup"
+        id: "default-setup"
+
+      - name: "Custom Aria-Live"
+        id: "custom-aria-live"
+
+      - name: "Dynamic Setup"
+        id: "dynamic-setup"
 
   - id: "tabcordion"
     deprecated: true
