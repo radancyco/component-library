@@ -1,6 +1,6 @@
 /*!
 
-  Radancy Component Library: YouTube Feed (iframe)
+  Radancy Component Library: YouTube Feed
 
   Contributor(s):
   Bobby KC
@@ -20,6 +20,7 @@ background-position: center;
 background-repeat: no-repeat;
 border-radius: 5px;
 border: 1px #767676 solid;
-height: calc(580rem / 16);
+height: calc(580em / 16);
+padding: .5em;
 width: 100%;
 }

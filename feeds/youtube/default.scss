@@ -1,6 +1,6 @@
 /*!
 
-  Radancy Component Library: YouTube Feed (iframe) - Default
+  Radancy Component Library: YouTube Feed - Default
 
   Contributor(s):
   Bobby KC
@@ -9,12 +9,17 @@
   Dependencies: Sass
 
   Instructions: 
-  sass --watch init.scss:init.css --style compressed
+  sass --watch .:. --style compressed
 
 */
 
 * {
 box-sizing: border-box;
+}
+
+html {
+scrollbar-width: thin;
+scrollbar-gutter: stable;
 }
   
 body {

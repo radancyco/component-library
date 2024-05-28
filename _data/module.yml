@@ -268,7 +268,7 @@ components:
 
       - name: "Default Setup"
         id: "default-setup"
-        warning: "This scroll may only be used if interactive content is present within scroll area. Having interactive content withn each card item will allow keyboard users to tab through it."
+        warning: "This scroll may only be used if interactive content is present within scroll area. Having interactive content withn each card item will allow keyboard users to tab through it. Non-interactive support will be added at a later date. See Notes."
         note: "To access the scroll, adjust the viewport size to be smaller. Additionally, please be aware that the design and functionality of the scrollbar may vary across different operating systems and browsers, which is completely normal and expected."
 
   - id: "load-more"
