@@ -12,163 +12,147 @@
 
 */
 
-// Variables
+@layer tablist {
 
-$base-color: #6F00EF;
-$base-color-active: white;
-$base-color-neutral: lightgrey;
-$tablist-breakpoint: 48.625em; // 778px
+  .tablist {
 
-// Tablist
+  // Component Variables
 
-.tablist {
-color: $base-color-active;
-position: relative;
+  --base-color: #6F00EF;
+  --base-color-active: white;
+  --base-color-neutral: lightgray;
+  --base-color-interactive: darkgray;
 
-  &:has([aria-orientation]) {
+  color: var(--base-color-active);
+  position: relative;
 
-    @media(min-width: 67.5em) {
-  
-      display: grid;
-      grid-template-columns: 20% auto;
-
-    }
-  
-  }
-
-  &__list {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-
-    &[aria-orientation] {
+    &:has([aria-orientation]) {
 
       @media(min-width: 67.5em) {
+    
+        display: grid;
+        grid-template-columns: 20% auto;
 
-        display: block; 
+      }
+    
+    }
+
+    &__list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+      &[aria-orientation] {
+
+        @media(min-width: 67.5em) {
+
+          display: block; 
+
+        }
+
+      }
+
+      [data-stack] & {
+
+        @media(max-width: 48.625em) {
+
+          display: block;
+
+        }
+
+      }
+
+      [data-scroll] & {
+
+        // This max-width can be changed depending on amount of list items you have.
+
+        @media(max-width: 48.625em) {
+
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          padding-inline-end: calc(32em/16);
+          scroll-snap-type: inline mandatory;
+          scrollbar-color: var(--base-color) var(--base-color-active);
+          scrollbar-width: thin;
+          white-space: nowrap;
+
+        }
+
+      }
+
+      li {
+      flex-grow: 1;
+      scroll-snap-align: start;
+
+        @media(min-width: 48.625em) {
+
+          flex-grow: 0;
+
+        }
 
       }
 
     }
 
-    [data-stack] & {
+    // Tab Button
 
-      @media(max-width: $tablist-breakpoint) {
+    &__tab {
+    background-color: var(--base-color-neutral);
+    color: #000;
+    display: block;
+    padding: 1em;
+    text-align: center;
+    text-decoration: none;
 
-        display: block;
+      &:focus-visible, &:hover {
+      background-color: var(--base-color-interactive);
+      }
 
+      &[aria-selected="true"] {
+      background-color: var(--base-color);
+      color: var(--base-color-active);
       }
 
     }
 
-    [data-scroll] & {
+    // Tab Panel
 
-      // This max-width can be changed depending on amount of list items you have.
+    &__panel  {
+    background-color: var(--base-color);
+    padding: 1em;
+    }
 
-      @media(max-width: $tablist-breakpoint) {
+    // Tab Content
 
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        padding-right: calc(32em/16);
-        scroll-snap-type: inline mandatory;
-        scrollbar-color: $base-color $base-color-active;
+    &__content {
+
+      [data-fixed-height] & {
+
+        max-height: calc(480em/16);
+        overflow-y: auto;
+        overscroll-behavior-y: contain;
+        padding-inline-end: 1em;
+        scrollbar-color: var(--base-color-active) var(--base-color);
+        scrollbar-gutter: stable;
         scrollbar-width: thin;
-        white-space: nowrap;
-
-          // Directional Arrow
-          // TODO: Handle i18n at a later date.
-
-          &::before {
-          align-items: center;
-          background-image: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
-          color: $base-color;
-          content: "";
-          display: flex;
-          font-size: calc(28rem/16);
-          height: calc(64rem/16);
-          justify-content: right;
-          pointer-events: none;
-          position: absolute;
-          right: 0;
-          top: 0;
-          width: calc(64rem/16);
-          }
 
       }
 
     }
 
-    li {
-    flex-grow: 1;
-    scroll-snap-align: start;
+    // Focus State
 
-      @media(min-width: $tablist-breakpoint) {
+    // Accessibility: Never remove focus outlines! Either redesign the outline or design an alternative focus state. 
+    // However, a 3:1 ratio will be required. Learn: https://webaim.org/articles/contrast/
 
-        flex-grow: 0;
+    &__tab, &__panel {
 
+      &:focus {
+      outline-offset: -6px;
       }
 
-    }
-
-  }
-
-  // Tab Button
-
-  &__tab {
-  background-color: $base-color-neutral;
-  color: #000;
-  display: block;
-  padding: 1em;
-  text-align: center;
-  text-decoration: none;
-
-    &:focus-visible, &:hover {
-    background-color: darken($base-color-neutral, 10%);
-    }
-
-    &[aria-selected="true"] {
-    background-color: $base-color;
-    color: $base-color-active;
-    }
-
-  }
-
-  // Tab Panel
-
-  &__panel  {
-  background-color: $base-color;
-  padding: 1em;
-  }
-
-  // Tab Content
-
-  &__content {
-
-    [data-fixed-height] & {
-
-      max-height: calc(480em/16);
-      overflow-y: auto;
-      overscroll-behavior-y: contain;
-      padding-inline-end: 1em;
-      scrollbar-color: $base-color-active $base-color;
-      scrollbar-gutter: stable;
-      scrollbar-width: thin;
-
-    }
-
-  }
-
-  // Focus State
-
-  // Accessibility: Never remove focus outlines! Either redesign the outline or design an alternative focus state. 
-  // However, a 3:1 ratio will be required. Learn: https://webaim.org/articles/contrast/
-
-  &__tab, &__panel {
-
-    &:focus {
-    outline-offset: -6px;
     }
 
   }
