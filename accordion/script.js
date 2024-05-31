@@ -7,6 +7,14 @@
 
 */
 
+
+// Look to this as another potential layout scenario other than having content appear under the accordion button (search our jobs area)
+
+// https://barclaysgst.runmytests.com/technology
+
+// https://app.screencast.com/YHRx0VbkSnIup
+
+
 (function() {
 
   "use strict";

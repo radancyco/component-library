@@ -293,7 +293,7 @@ components:
         id: "default-setup"
         note: "In this example, the title triggers the hidden content below it. This is more clear and preferred over offsetting a button. The <code>.partial-disclosure__trigger</code> class can be placed on any element you wish to include as a trigger."
 
-      - name: "Offset Buttom (Default)"
+      - name: "Offset Button (Default)"
         id: "offset-button"
 
       - name: "Offset Button (Custom Label)"
