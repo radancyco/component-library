@@ -82,6 +82,12 @@
 
     readMoreButton.setAttribute("aria-expanded", "false");
 
+    // Tracking
+
+    readMoreButton.setAttribute("data-custom-event", "true");
+    readMoreButton.setAttribute("data-custom-category", "Component");
+    readMoreButton.setAttribute("data-custom-label", "{{ include.title }} v{{ include.version }}");
+
     if(!customReadMoreBtn) {
 
       readMoreButton.setAttribute("class", readMoreButtonName);
