@@ -278,8 +278,8 @@ components:
     version: "1.0"
     examples:
 
-      - name: Default Setup
-        id: default-setup
+      - name: "Default Setup"
+        id: "default-setup"
         codepenjs: "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
 
   - id: "partial-disclosure"
@@ -299,7 +299,7 @@ components:
       - name: "Offset Button (Custom Label)"
         id: "offset-button-custom-label"
           
-      - name: Offset Button (Bottom, Anti-Pattern)"
+      - name: "Offset Button (Bottom, Anti-Pattern)"
         id: "offset-button-bottom"
         warning: 'Positioning disclosure buttons on the bottom of content to be opened above them is considered an anti-pattern and <a href="#anti-pattern-read-more">not recommended</a>. Use at your own risk.'
         guidance: anti-pattern-read-more
@@ -311,8 +311,8 @@ components:
     version: "1.1"
     examples:
 
-      - name: Default Setup
-        id: default-setup
+      - name: "Default Setup"
+        id: "default-setup"
 
   - id: "select-internal"
     desc: "This component will allow you to add a select navigation to your page that can reveal in-page content."
