@@ -354,6 +354,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
     // Add initial attributes.
 
+    video.setAttribute("crossorigin", "anonymous")
     video.setAttribute("disableRemotePlayback", "");
     video.setAttribute("disablePictureInPicture", "");
     video.id = "animation-toggle-video-" + (e + 1);
