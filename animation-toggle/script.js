@@ -363,16 +363,6 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
     // If animation class on body exists...
 
-    // Ensure the first frame is displayed and the video is paused
-    video.addEventListener('loadedmetadata', function() {
-      // Set currentTime to a small value to load the first frame
-      video.currentTime = 0.1;
-    });
-
-    video.addEventListener('seeked', function() {
-      video.pause(); // Pause the video after seeking to the first frame
-    });
-
     if (animationBody.classList.contains(atEnabledClassName)) {
 
       video.play();
