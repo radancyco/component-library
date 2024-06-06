@@ -360,6 +360,9 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
     video.id = "animation-toggle-video-" + (e + 1);
     video.setAttribute("playsinline" , "");
     video.muted = true;
+
+    // Some browsers require videos to be loaded before they can play, especially iOS in low power mode, where videos may appear blank if not preloaded.
+
     video.load();
 
     // If animation class on body exists...
