@@ -365,19 +365,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
     if (animationBody.classList.contains(atEnabledClassName)) {
 
-
-      video.addEventListener('loadeddata', function() {
-        if (!this.readyState >= 2) {
-          this.pause();
-          // Seek to the first frame
-          this.currentTime = 0;
-        } else {
-
-          this.play();
-
-        }
-      });
-
+      video.play();
 
     } else {
 
