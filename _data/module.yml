@@ -44,7 +44,7 @@ components:
     desc: "This component enhances animation control ensuring improved accessibility for disabled users and optimized performance across devices."
     path: "animation-toggle"
     title: "Animation Toggle"
-    version: "1.9"
+    version: "2.0"
     examples:
 
       - name: "Default Setup"
