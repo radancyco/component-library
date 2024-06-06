@@ -361,6 +361,17 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
     video.setAttribute("playsinline" , "");
     video.muted = true;
 
+    // Ensure the first frame is displayed and the video is paused
+    video.addEventListener('loadeddata', function() {
+      if (this.readyState >= 2) {
+        this.pause();
+        this.currentTime = 0;
+      }
+    });
+
+    // Explicitly load the video to ensure the first frame is available
+    video.load();
+
     // If animation class on body exists...
 
     if (animationBody.classList.contains(atEnabledClassName)) {
