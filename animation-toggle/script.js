@@ -367,7 +367,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
 
       video.addEventListener('loadeddata', function() {
-        if (this.readyState >= 2) {
+        if (!this.readyState >= 2) {
           this.pause();
           // Seek to the first frame
           this.currentTime = 0;
