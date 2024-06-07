@@ -143,16 +143,19 @@ notes:
   - "<b>Behavior:</b> When no cookie is set and reduce animation is enabled, the animation stops."
   - "<b>Behavior:</b> When no cookie is set and reduce animation is not enabled, the animation plays."
   - "<b>Behavior:</b> When cookie is set to false (not paused) and reduce animation is enabled, OS setting take precedent and cookie is set to true (paused)."
-  - "<b>Roadmap:</b> When cookie is set to true (paused) and reduce animation is disabled, cookie is not set to false (not paused). Page needs to be refreshed. This may not be an issue, but to work, we may need another condition to hook into here."
   - "<b>Behavior:</b> When reduce animation is not enabled, cookie settings take precedent."
   - "<b>Roadmap:</b> When reduce animation is enabled, it would be great if local page settings could override OS setting."
   - "<b>Behavior:</b> Phones in low power mode may automatically pause auto-playing videos to conserve battery life."
   - "<b>Testing:</b> While the <code>disableremoteplayback</code> attribute may not be recognized as valid HTML, the error can be safely disregarded."
-  - "<b>Roadmap:</b> Revisit <code>data-callback</code> and see if it makes sense to apply callback function to all animations if <code>data-callback</code> present on page at all. Right now, there is an animation disconnect between those that have the attribute and those that do not. Currently, we manually add the callback to all other page animations."
-  - "<b>Roadmap:</b> Include a reload button to enable playback of videos that loop only once, allowing users to replay them if desired."
-  - "<b>Roadmap:</b> If <code>data-pause-remove</code> is used, override it temporarily to include play button, so that video does not obscure content. Especially true when transparent video is used."
-  - "<b>Roadmap:</b> When phone is in low power mode the video is paused, but the toggle button does not reflect a paused state. See if video is playing or paused and alter state of toggle button."
-  - "<b>Roadmap:</b> Add a condition to check if the video is paused when using the <code>data-poster</code> attribute. This attribute does not work in low power mode, which can be problematic if the first frame has no content or images. While a quick fix is to use a <code>poster</code> element, we would prefer to avoid this solution."
+
+roadmap:
+
+  - "When cookie is set to true (paused) and reduce animation is disabled, cookie is not set to false (not paused). Page needs to be refreshed. This may not be an issue, but to work, we may need another condition to hook into here."
+  - "Revisit <code>data-callback</code> and see if it makes sense to apply callback function to all animations if <code>data-callback</code> present on page at all. Right now, there is an animation disconnect between those that have the attribute and those that do not. Currently, we manually add the callback to all other page animations."
+  - "Include a reload button to enable playback of videos that loop only once, allowing users to replay them if desired."
+  - "If <code>data-pause-remove</code> is used, override it temporarily to include play button, so that video does not obscure content. Especially true when transparent video is used."
+  - "When phone is in low power mode the video is paused, but the toggle button does not reflect a paused state. See if video is playing or paused and alter state of toggle button."
+  - "Add a condition to check if the video is paused when using the <code>data-poster</code> attribute. This attribute does not work in low power mode, which can be problematic if the first frame has no content or images. While a quick fix is to use a <code>poster</code> element, we would prefer to avoid this solution."
   
 customjs: "callback-custom.js"
 id: animation-toggle

@@ -653,6 +653,24 @@
 
 {% endif %}
 
+{% if page.roadmap %} 
+
+  <h2 id="roadmap"><a class="anchor" href="#roadmap">{{ iconAnchor }} <span class="sr-only">Anchor (Notes)</span></a> Roadmap</h2>
+
+  <ul>
+    
+    {% assign sortRoadmap = page.roadmap %}
+
+    {% for roadmap in sortRoadmap %}
+    
+      <li>{{ roadmap }}</li> 
+    
+    {% endfor %}
+
+  </ul>
+
+{% endif %}
+
 <h2 id="issues">Report Issues</h2>
 
 <p>Find a bug? Report it on <a href="https://jira.radancy.com/secure/Dashboard.jspa#create_link">JIRA</a>. You're so awesome!</p>
