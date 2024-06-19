@@ -371,7 +371,31 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
     if (animationBody.classList.contains(atEnabledClassName)) {
 
-      video.play();
+      // Play video.
+
+      video.onloadeddata = function() {
+
+        var playPromise = video.play();
+      
+        if (playPromise !== undefined) {
+
+          playPromise.then(function() {
+            
+            // Automatic playback started!
+            // Show playing UI.
+            
+          }).catch(function(error) {
+            
+            // Auto-play was prevented
+            // Show paused UI.
+
+            console.error('Playback error:', error);
+          
+          });
+        
+        }
+      
+      }
 
     } else {
 
