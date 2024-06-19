@@ -15,18 +15,20 @@ function loadAnimationToggle(url, callback) {
 
   // Install Language Pack.
 
-  var componentLanguagePack = document.createElement("script");
-
-  componentLanguagePack.setAttribute("src", url);
-  componentLanguagePack.setAttribute("id", "component-library-language-pack");
-  componentLanguagePack.onreadystatechange = callback;
-  componentLanguagePack.onload = callback;
-
-  // Only load one language pack per page.
-
   var getComponentLanguagePack = document.getElementById("component-library-language-pack");
 
-  if(getComponentLanguagePack === null) {
+  if (getComponentLanguagePack) {
+
+    callback();
+
+  } else {
+
+    var componentLanguagePack = document.createElement("script");
+
+    componentLanguagePack.setAttribute("src", url);
+    componentLanguagePack.setAttribute("id", "component-library-language-pack");
+    componentLanguagePack.onreadystatechange = callback;
+    componentLanguagePack.onload = callback;
 
     document.getElementsByTagName("head")[0].appendChild(componentLanguagePack);
 
