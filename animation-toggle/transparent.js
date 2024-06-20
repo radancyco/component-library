@@ -9,7 +9,24 @@ function scrollObserver() {
 
     sectionAnimationVideo.forEach(function(video){
 
-        video.pause(); // Animations that animate on scroll must be immediately paused to override the default animation behavior to play on page load. 
+        // Animations that animate on scroll must be immediately paused to override the default animation behavior to play on page load. 
+
+        video.onloadeddata = function() {
+
+            var playPromise = video.play();
+          
+            if (playPromise !== undefined) {
+    
+              playPromise.then(function() {
+                
+                video.pause();
+                
+              });
+            
+            }
+          
+        }
+
         video.setAttribute("aria-hidden", "true"); // A11y: Purely a decorative, visual flourish, so let's hide from AT. 
         video.setAttribute("tabindex", "-1");
     
