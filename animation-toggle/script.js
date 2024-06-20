@@ -56,7 +56,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
   var atVideoClass = ".animation-toggle__video";
   var atVideoControlsName = "animation-toggle__controls";
   var dataAudioDescriptionButton = "data-audio-description-button";
-  var dataAutoplayDisabled = "data-autoplay-disabled";
+  var dataAutoplayDisable = "data-autoplay-disable";
   var dataDecorative = "data-decorative";
   var dataLoop = "data-loop";
   var dataPauseButton = "data-pause-button";
@@ -375,7 +375,7 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
       // Play video.
 
-      if(!video.hasAttribute(dataAutoplayDisabled)) {
+      if(!video.hasAttribute(dataAutoplayDisable)) {
 
         video.onloadeddata = function() {
 
