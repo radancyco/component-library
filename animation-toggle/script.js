@@ -56,6 +56,8 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
   var atVideoClass = ".animation-toggle__video";
   var atVideoControlsName = "animation-toggle__controls";
   var dataAudioDescriptionButton = "data-audio-description-button";
+  var dataAutoplayDisabled = "data-autoplay-disabled";
+  var dataDecorative = "data-decorative";
   var dataLoop = "data-loop";
   var dataPauseButton = "data-pause-button";
   var dataPoster = "data-poster";
@@ -373,26 +375,30 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
       // Play video.
 
-      video.onloadeddata = function() {
+      if(!video.hasAttribute(dataAutoplayDisabled)) {
 
-        var playPromise = video.play();
+        video.onloadeddata = function() {
+
+          var playPromise = video.play();
       
-        if (playPromise !== undefined) {
+          if (playPromise !== undefined) {
 
-          playPromise.then(function() {
+            playPromise.then(function() {
             
             // Automatic playback started!
             // Show playing UI.
             
-          }).catch(function(error) {
+            }).catch(function(error) {
             
-            // Auto-play was prevented
-            // Show paused UI.
+              // Auto-play was prevented
+              // Show paused UI.
 
-            console.error('Playback error:', error);
+              console.error('Playback error:', error);
           
-          });
+            });
         
+          }
+
         }
       
       }
@@ -450,6 +456,16 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
     if(!video.hasAttribute("aria-label")) {
 
       video.setAttribute("aria-label", atVideoLabel);
+
+    }
+
+    // If video is decorative 
+
+    if(video.hasAttribute(dataDecorative)) {
+
+      video.setAttribute("aria-hidden", "true");
+      video.setAttribute("tabindex", "-1");
+      video.removeAttribute("aria-label");
 
     }
 

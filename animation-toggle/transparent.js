@@ -5,24 +5,6 @@ function scrollObserver() {
 
     var sectionAnimation = document.querySelectorAll(".section-animation");
     var sectionAnimationVideoClass = ".section-animation__video";
-    var sectionAnimationVideo = document.querySelectorAll(sectionAnimationVideoClass);
-
-    sectionAnimationVideo.forEach(function(video){
-
-        // Animations that animate on scroll must be immediately paused to override the default animation behavior to play on page load. 
-
-        video.load();
-
-        video.onloadeddata = function() {
-
-            video.pause();
-
-        }
-
-        video.setAttribute("aria-hidden", "true"); // A11y: Purely a decorative, visual flourish, so let's hide from AT. 
-        video.setAttribute("tabindex", "-1"); // A11y: Let's also be sure it cannot be tabbed to.
-    
-    });
 
     function sectionAnimationVideoScroll(sections, observer) {
 

@@ -35,6 +35,15 @@ attributes:
 
     desc: Used to pass custom label to <code>.animation-toggle__audio</code>. This will override the default label, which is "Audio Description".
 
+  - name: data-autoplay-disabled
+    html: video
+    note:
+
+      - Boolean
+      - Optional
+
+    desc: Used to prevent the video from autoplaying on page load. This may be useful when used with <code>data-callback</code>, where you may wish for the video to only load, for example, using an intersection observer.
+
   - name: data-callback
     html: .animation-toggle
     note:
@@ -43,6 +52,15 @@ attributes:
       - Optional
 
     desc: Used to define a custom callback function to initiate when animation first loads and pause button is accessed. Particularly useful for handling third-party scripts. The callback accepts a single parameter called <code>thisButton</code> that you can use to target the button itself, if needed.
+
+  - name: data-decorative
+    html: video
+    note:
+
+      - Boolean
+      - Optional
+
+    desc: Used to define a purely decorative video, which will not be accessible to assistive technology or keyboard users. Often, this should be used with <code>data-pause-remove</code>.
   
   - name: data-loop
     html: video
