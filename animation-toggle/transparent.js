@@ -28,7 +28,7 @@ function scrollObserver() {
         }
 
         video.setAttribute("aria-hidden", "true"); // A11y: Purely a decorative, visual flourish, so let's hide from AT. 
-        video.setAttribute("tabindex", "-1");
+        video.setAttribute("tabindex", "-1"); // A11y: Let's also be sure it cannot be tabbed to.
     
     });
 
