@@ -132,6 +132,10 @@ components:
         id: "card-eyebrow"
         note: 'Examine this markup closely and you will notice that we are using an element called <code>hgroup</code> to encapsulate the eyebrow and heading. This should be done instead of using multiple headings to markup alternative titles. See <a href="https://www.tpgi.com/subheadings-subtitles-alternative-titles-and-taglines-in-html/">Subheadings, subtitles, alternative titles and taglines in HTML</a> for more details about this useful element and best practice.'
 
+      - name: "Card (Image, Faux CTA,  3x)"
+        id: "card-faux-cta"
+        note: As usual, our heading is the hyperlink, but we are also including an additional text CTA, which is not a hyperlink and never should be. Ideally, we should <a href="#learn-more">avoid using these kinds of CTAs</a> and look to visual cues to call attention to the action to be taken. Additionally, <code>aria-hidden="true"</code> could be included to hide this superfluous text.
+
       - name: "Card (Image, Metadata, 3x)"
         id: "card-metadata"
 

@@ -195,6 +195,16 @@ width: fit-content;
   
   }
 
+  // CTA (.card__cta)
+
+  &__cta {
+
+    p {
+    font-weight: bold;
+    }
+
+  }
+
   // Summary (.card__summary)
 
   &__summary {
