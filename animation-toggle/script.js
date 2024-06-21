@@ -216,8 +216,6 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
       getBackgroundVideos.forEach(function(video){
 
-        // Note: https://stackoverflow.com/questions/36803176/how-to-prevent-the-play-request-was-interrupted-by-a-call-to-pause-error/37172024#37172024
-
         if(!video.parentNode.querySelector(atPauseButtonClass).hasAttribute("disabled")) {
 
           var isPaused = video.parentNode.querySelector(atPauseButtonClass).getAttribute("aria-pressed");
