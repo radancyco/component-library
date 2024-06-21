@@ -220,9 +220,9 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
         if(!video.parentNode.querySelector(atPauseButtonClass).hasAttribute("disabled")) {
 
-          var isPlaying = video.currentTime > 0 && !video.paused && !video.ended && video.readyState > video.HAVE_CURRENT_DATA;
+          var isPaused = video.parentNode.querySelector(atPauseButtonClass).getAttribute("aria-pressed");
 
-          if(!isPlaying) {
+          if(isPaused === "false") {
 
             video.play();
 
