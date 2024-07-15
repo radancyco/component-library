@@ -216,9 +216,9 @@ loadAnimationToggle("https://services.tmpwebeng.com/component-library/language-p
 
       getBackgroundVideos.forEach(function(video){
 
-        if(!video.parentNode.querySelector(atPauseButtonClass).hasAttribute("disabled")) {
+        if(!video.closest(atClass).querySelector(atPauseButtonClass).hasAttribute("disabled")) {
 
-          var isPaused = video.parentNode.querySelector(atPauseButtonClass).getAttribute("aria-pressed");
+          var isPaused = video.closest(atClass).querySelector(atPauseButtonClass).getAttribute("aria-pressed");
 
           if(isPaused === "false") {
 
