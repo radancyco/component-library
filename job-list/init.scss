@@ -1,0 +1,159 @@
+/*!
+
+  Radancy Component Library: Job List
+  Contributor(s): 
+  Michael "Spell" Spellacy
+
+  Dependencies: Sass
+
+  Instructions: 
+  sass --watch .:. --style compressed
+
+*/
+
+
+/* 
+
+
+<ul class="job-list">
+  <li class="job-list__item">
+
+    <div class="job-list__overview">
+
+      <a class="job-list__link" href="https://www.google.com">
+
+        <h2 class="job-list__heading">Job Title</h2>
+
+        <ul class="job-list__metadata">
+          <li>Location</li>
+          <li>Custom Field</li>
+          <li>Date</li>
+          <li>Remote</li>
+        </ul>
+
+      </a>
+
+    </div>
+
+    <div class="job-list__summary">
+
+      <p>Pellentesque habitant tristique senectus et malesuada fames ac egestas. Sed ut perspiciatis unde omnis iste error sit voluptatem doloremque. Habitant morbi tristique senectus et netus. Unde omnis iste natus error sit voluptatem accusantium doloremque. Pellentesque habitant tristique senectus et malesuada fames ac egestas. Sed ut perspiciatis unde omnis iste error sit voluptatem doloremque. Habitant morbi tristique senectus et netus. Unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
+
+    </div>
+
+    <div aria-hidden="true" class="job-list__cta">View Role</div>
+
+    <button class="job-list__save">Save Job</button>
+  
+  </li>
+</ul>
+
+
+*/
+
+$base-color: #6F00EF;
+
+.job-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  
+  &__item {
+  display: grid;
+  gap: .5em; 
+  position: relative;
+  margin-bottom: .5em;
+
+    @media (min-width: 48rem) {
+
+      grid-template-columns: auto max-content;
+
+    }
+
+  }
+
+  &__overview {
+
+    align-content: center;
+    background-color: #eee;
+    grid-column: 1 / span 2;
+    padding: 1em;
+
+    @media (min-width: 48rem) {
+
+      grid-column: auto;
+      grid-row: 1 / span 2;
+
+    }
+
+  }
+  
+  a {
+  display: block;
+  color: $base-color;
+  text-decoration: none;
+  outline-offset: .5em;
+
+    &::after {
+    content: "";
+    display: block;
+    inset: 0;
+    position: absolute;
+    z-index: 1;
+    }
+  
+  }
+
+  &__metadata {
+  display: grid;
+  gap: 1em;
+  grid-auto-columns: max-content;
+  grid-auto-flow: column;
+  list-style: none;
+  padding: 0;
+
+    li {
+    
+      &::before {
+      content: "\25A5 ";
+      margin-inline-end: .5em;
+      }
+
+    }
+
+  }
+  
+  &__cta {
+  
+    &::after {
+    content: "\0279C";
+    }
+
+  }
+  
+  &__save {
+  border: 0;
+  position: relative;
+  z-index: 1;
+
+    &::after {
+    content: "\2665";
+    }
+
+  }
+  
+  &__cta, &__save {
+  background-color: $base-color;
+  color: #fff;
+  font: inherit;
+  align-content: center;
+  text-align: center;
+  padding: 1em;
+
+    &::after {
+    margin-inline-start: .3em;
+    }
+
+  }
+
+}

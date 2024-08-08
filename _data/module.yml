@@ -275,6 +275,17 @@ components:
         warning: "This scroll may only be used if interactive content is present within scroll area. Having interactive content withn each card item will allow keyboard users to tab through it. Non-interactive support will be added at a later date. See Notes."
         note: "To access the scroll, adjust the viewport size to be smaller. Additionally, please be aware that the design and functionality of the scrollbar may vary across different operating systems and browsers, which is completely normal and expected."
 
+  - id: "job-list"
+    desc: "This component will allow you to implement and control the presentation of job search result listings."
+    path: "job-list"
+    title: "Job List"
+    version: "1.0" 
+    hidden: true
+    examples: 
+
+      - name: "Default Setup"
+        id: "default-setup"
+
   - id: "load-more"
     desc: "This component will allow you to expand hidden content."
     path: "load-more"

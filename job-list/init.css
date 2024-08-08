@@ -1,0 +1,12 @@
+﻿/*!
+
+  Radancy Component Library: Job List
+  Contributor(s): 
+  Michael "Spell" Spellacy
+
+  Dependencies: Sass
+
+  Instructions: 
+  sass --watch .:. --style compressed
+
+*/.job-list{list-style:none;margin:0;padding:0}.job-list__item{display:grid;gap:.5em;position:relative;margin-bottom:.5em}@media(min-width: 48rem){.job-list__item{grid-template-columns:auto max-content}}.job-list__overview{align-content:center;background-color:#eee;grid-column:1/span 2;padding:1em}@media(min-width: 48rem){.job-list__overview{grid-column:auto;grid-row:1/span 2}}.job-list a{display:block;color:#6f00ef;text-decoration:none;outline-offset:.5em}.job-list a::after{content:"";display:block;inset:0;position:absolute;z-index:1}.job-list__metadata{display:grid;gap:1em;grid-auto-columns:max-content;grid-auto-flow:column;list-style:none;padding:0}.job-list__metadata li::before{content:"▥";margin-inline-end:.5em}.job-list__cta::after{content:"➜"}.job-list__save{border:0;position:relative;z-index:1}.job-list__save::after{content:"♥"}.job-list__cta,.job-list__save{background-color:#6f00ef;color:#fff;font:inherit;align-content:center;text-align:center;padding:1em}.job-list__cta::after,.job-list__save::after{margin-inline-start:.3em}/*# sourceMappingURL=init.css.map */
