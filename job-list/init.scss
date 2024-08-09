@@ -44,8 +44,9 @@
         }
 
         .job-list__cta {
-        transition: all 300ms ease-in-out;
-        transform: scale(1.1);
+        transition: all 300ms;
+        background-color: var(--base-color-neutral);
+        color: #000;
         }
 
       }
@@ -90,7 +91,10 @@
       li {
       display: inline-block;
       margin-inline-end: .5em;
-      
+      }
+
+      &__icon {
+
         &::before {
         content: "\25A5";
         margin-inline-end: .5em;
@@ -107,17 +111,25 @@
     font: inherit;
     padding: 1em;
     text-align: center;
+
+      &__icon {
   
-      &::after {
-      margin-inline-start: .3em;
+        &::after {
+        margin-inline-start: .3em;
+        }
+
       }
   
     }
 
     &__cta {
+
+      &__icon {
     
-      &::after {
-      content: "\0279C";
+        &::after {
+        content: "\0279C";
+        }
+
       }
 
     }
@@ -127,8 +139,12 @@
     position: relative;
     z-index: 1;
 
-      &::after {
-      content: "\2665";
+      &__icon {
+
+        &::after {
+        content: "\2665";
+        }
+
       }
 
     }
