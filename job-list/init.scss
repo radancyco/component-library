@@ -37,6 +37,19 @@
 
       }
 
+      &:hover, &:focus-within {
+
+        .job-list__heading {
+        text-decoration: underline;
+        }
+
+        .job-list__cta {
+        transition: all 300ms ease-in-out;
+        transform: scale(1.1);
+        }
+
+      }
+
     }
 
     &__overview {
@@ -76,17 +89,31 @@
 
       li {
       display: inline-block;
-      margin-inline-end: 1em;
+      margin-inline-end: .5em;
       
         &::before {
-        content: "\25A5 ";
+        content: "\25A5";
         margin-inline-end: .5em;
         }
 
       }
 
     }
-    
+
+    &__cta, &__save {
+    align-content: center;
+    background-color: var(--base-color);
+    color: var(--base-color-active);
+    font: inherit;
+    padding: 1em;
+    text-align: center;
+  
+      &::after {
+      margin-inline-start: .3em;
+      }
+  
+    }
+
     &__cta {
     
       &::after {
@@ -102,20 +129,6 @@
 
       &::after {
       content: "\2665";
-      }
-
-    }
-    
-    &__cta, &__save {
-    align-content: center;
-    background-color: var(--base-color);
-    color: var(--base-color-active);
-    font: inherit;
-    padding: 1em;
-    text-align: center;
-
-      &::after {
-      margin-inline-start: .3em;
       }
 
     }
