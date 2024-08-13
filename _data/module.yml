@@ -283,8 +283,20 @@ components:
     hidden: true
     examples: 
 
-      - name: "Default Setup"
+      - name: "Basic Layout"
         id: "default-setup"
+
+      - name: "Basic Layout (Save Job)"
+        id: "save-job"
+
+      - name: "Basic Layout (Save Job, Summary, View Role)"
+        id: "summary"
+
+      - name: "Basic Layout (View Role, Save Job)"
+        id: "view-role"
+
+      - name: "Grid Layout (View Role, Save Job)"
+        id: "grid-layout"
 
   - id: "load-more"
     desc: "This component will allow you to expand hidden content."
