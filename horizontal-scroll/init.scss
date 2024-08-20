@@ -33,7 +33,7 @@ position: relative;
   scroll-snap-type: inline mandatory;
   scrollbar-color: $base-color $base-color-active;
   scrollbar-width: thin;
-  visibility: visible;
+  visibility: visible; 
 
     @media(min-width: 62.5em) {
 

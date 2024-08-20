@@ -6,27 +6,27 @@ attributes:
     note: 
 
       - String
-      - Mandatory
+      - Optional
 
-    desc: If the component contains no interactive elements, it must be given an accessible name, which can be any name of your choosing.
+    desc: Optional except when component contains <strong>no</strong> interactive elements. In this scenario, it <strong>must</strong> be given an accessible name, which can be any name of your choosing.
   
   - name: role
     html: .horizontal-scroll 
     note: 
 
       - String
-      - Mandatory
+      - Optional
 
-    desc: If the component contains no interactive elements, it must be given a role, which much always be a value of "region".
+    desc: Optional except when component contains <strong>no</strong> interactive elements. In this scenario, it <strong>must</strong> be given a role, which must always be a value of "region".
   
   - name: tabindex
     html: .horizontal-scroll 
     note: 
 
       - Number
-      - Mandatory
+      - Optinal
 
-    desc: If the component contains no interactive elements, it must be given a tabindex, which much always be a value of "0".
+    desc: Optional except when component contains <strong>no</strong> interactive elements. In this scenario, it <strong>must</strong> be given a tabindex, which must always be a value of "0".
 
 classes:
 
