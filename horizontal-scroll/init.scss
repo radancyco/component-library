@@ -18,6 +18,12 @@ $base-color-active: #FFF;
 .horizontal-scroll {
 position: relative;
 
+  @media(min-width: 62.5em) {
+
+    visibility: hidden;
+
+  }
+
   &__container {
   display: grid;
   gap: 1em;
@@ -27,6 +33,7 @@ position: relative;
   scroll-snap-type: inline mandatory;
   scrollbar-color: $base-color $base-color-active;
   scrollbar-width: thin;
+  visibility: visible;
 
     @media(min-width: 62.5em) {
 

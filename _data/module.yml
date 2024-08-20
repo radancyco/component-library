@@ -264,15 +264,20 @@ components:
     version: "1.6"
 
   - id: "horizontal-scroll" 
-    desc: "This component will allow you to add a grid layout that turns into a horizontal scroll in smaller viewports. It can be used as an alternative to carousels."
+    desc: "This component will allow you to add a grid layout that turns into a horizontal scroll in smaller viewports. It can be used as an alternative to carousels and is CMS-friendly."
     path: "horizontal-scroll"
     title: "Horizontal Scroller"
     version: "1.0"
     examples:
 
-      - name: "Default Setup"
-        id: "default-setup"
-        warning: "This scroll may only be used if interactive content is present within scroll area. Having interactive content withn each card item will allow keyboard users to tab through it. Non-interactive support will be added at a later date. See Notes."
+      - name: "Grid (Interactive Elements)"
+        id: "grid-interactive"
+        warning: "If all items in grid contain interactive elements, such as a link or button, then the component requires no accessible name, role, and tabindex."
+        note: "To access the scroll, adjust the viewport size to be smaller. Additionally, please be aware that the design and functionality of the scrollbar may vary across different operating systems and browsers, which is completely normal and expected."
+
+      - name: "Grid (Non-Interactive Elements)"
+        id: "grid-non-interactive"
+        warning: "If all items in grid contain no interactive elements, such as a link or button, then the component <strong>must include</strong> an accessible name, role, and tabindex."
         note: "To access the scroll, adjust the viewport size to be smaller. Additionally, please be aware that the design and functionality of the scrollbar may vary across different operating systems and browsers, which is completely normal and expected."
 
   - id: "job-list"
