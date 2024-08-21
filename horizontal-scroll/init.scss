@@ -12,72 +12,70 @@
 
 */
 
-$base-color: #6F00EF;
-$base-color-active: #FFF;
+@layer horizontalscroll {
 
-.horizontal-scroll {
-position: relative;
+  .horizontal-scroll {
 
-  @media(min-width: 62.5em) {
+  // Component Variables
 
-    visibility: hidden;
+  --base-color: #6F00EF;
+  --base-color-active: #fff;
 
-  }
-
-  &__container {
+  position: relative;
   display: grid;
   gap: 1em;
   grid-auto-flow: column;
   overflow-x: auto;
   padding: 1em 0;
   scroll-snap-type: inline mandatory;
-  scrollbar-color: $base-color $base-color-active;
+  scrollbar-color: var(--base-color) var(--base-color-active);
   scrollbar-width: thin;
-  visibility: visible; 
 
-    @media(min-width: 62.5em) {
+    @media (min-width: 62.5em) {
 
       grid-auto-flow: unset;
       grid-template-columns: repeat(4, 1fr);
+      visibility: hidden; // Do not remove.
 
     }
 
-  }
+    &__card {
+    background-color: #fff;
+    border-radius: calc(10rem / 16);
+    border: calc(1rem / 16) #666 solid;
+    min-width: calc(300rem / 16);
+    padding: 1em;
+    position: relative;
+    scroll-snap-align: start;
+    transition: 300ms;
+    visibility: visible; // Do not remove.
 
-  &__card {
-  background-color: #fff;
-  border-radius: calc(10rem / 16);
-  border: calc(1rem / 16) #666 solid;
-  padding: 1em;
-  position: relative;
-  min-width: calc(300rem / 16);
-  scroll-snap-align: start;
-  transition: 300ms;
+      &:hover, &:focus-within {
+      background-color: #ccc;
+      }
 
-    &:hover, &:focus-within {
-    background-color: #ccc;
+      @media(min-width: 62.5em) {
+
+        min-width: auto;
+
+      }
+
     }
 
-    @media(min-width: 62.5em) {
+    &__heading {
 
-      min-width: auto;
-
-    }
-
-  }
-
-  &__heading {
-
-    a {
-    display: block;
-
-      // Make entire card clickable
-
-      &::before {
-      content: "";
+      a {
       display: block;
-      inset: 0;
-      position: absolute;
+
+        // Make entire card clickable
+
+        &::before {
+        content: "";
+        display: block;
+        inset: 0;
+        position: absolute;
+        }
+
       }
 
     }
