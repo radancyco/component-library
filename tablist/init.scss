@@ -122,23 +122,25 @@
     &__panel  {
     background-color: var(--base-color);
     padding: 1em;
-    }
-
-    // Tab Content
-
-    &__content {
-
+    
       [data-fixed-height] & {
 
-        max-height: calc(480em/16);
+        max-height: calc(400em/16);
         overflow-y: auto;
         overscroll-behavior-y: contain;
-        padding-inline-end: 1em;
         scrollbar-color: var(--base-color-active) var(--base-color);
         scrollbar-gutter: stable;
         scrollbar-width: thin;
 
       }
+    
+    }
+
+    // Tab Content
+
+    &__content { 
+
+      
 
     }
 

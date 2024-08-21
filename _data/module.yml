@@ -402,7 +402,7 @@ components:
     desc: "This component will allow you to implement a tablist user interface."
     path: "tablist"
     title: "Tablist"
-    version: "1.6"
+    version: "1.7"
     examples:
 
       - name: "Inline Tabs (Mobile & Desktop)"
