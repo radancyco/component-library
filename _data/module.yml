@@ -272,12 +272,12 @@ components:
 
       - name: "Grid (Interactive Elements)"
         id: "grid-interactive"
-        warning: "If all items in the grid contain interactive elements, such as a link or button, then the component <strong>does not</strong> require an accessible name, role, and tabindex."
+        warning: "If all items in the grid contain interactive elements, such as a link or button, then the component <strong>does not</strong> require an <strong>accessible name</strong>, <strong>role</strong>, and <strong>tabindex</strong>."
         note: "To access the scroll, adjust the viewport size to be smaller. Additionally, please be aware that the design and functionality of the scrollbar may vary across different operating systems and browsers, which is completely normal and expected."
 
       - name: "Grid (Non-Interactive Elements)"
         id: "grid-non-interactive"
-        warning: "If all items in the grid contain no interactive elements, such as a link or button, then the component <strong>must include</strong> an accessible name, role, and tabindex."
+        warning: "If all items in the grid contain <strong>no</strong> interactive elements, such as a link or button, then the component <strong>must include</strong> an <strong>accessible name</strong>, <strong>role</strong>, and <strong>tabindex</strong>."
         note: "To access the scroll, adjust the viewport size to be smaller. Additionally, please be aware that the design and functionality of the scrollbar may vary across different operating systems and browsers, which is completely normal and expected."
 
   - id: "job-list"

@@ -51,7 +51,13 @@
     visibility: visible; // Do not remove.
 
       &:hover, &:focus-within {
-      background-color: #ccc;
+
+        &:not[aria-label] & {
+
+          background-color: #ccc;
+      
+        }
+
       }
 
       @media(min-width: 62.5em) {
