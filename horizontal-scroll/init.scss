@@ -50,12 +50,10 @@
     transition: 300ms;
     visibility: visible; // Do not remove.
 
-      &:hover, &:focus-within {
+      &:has(a, button) {
 
-        &:not[aria-label] & {
-
-          background-color: #ccc;
-      
+        &:hover, &:focus-within {
+        background-color: #ccc;
         }
 
       }
