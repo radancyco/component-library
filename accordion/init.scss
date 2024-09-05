@@ -23,9 +23,21 @@
     --accordion-grid-color-neutral: #bababa;
 
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     gap: 5px;
     grid-auto-flow: dense; /* Pack new grid items to the empty spaces */
+
+    @media (min-width: 20em) {
+
+      grid-template-columns: repeat(2, 1fr); 
+
+    }
+
+    @media (min-width: 48.75em) {
+
+      grid-template-columns: repeat(3, 1fr); 
+
+    }
 
       &__button {
       background-color: var(--accordion-grid-color-neutral);
@@ -55,7 +67,7 @@
           border-color: transparent transparent var(--accordion-grid-color) transparent;
           border-style: solid;
           border-width: 0 1.25em 1.25em 1.25em;
-          bottom: -0.3125em;
+          bottom: -5px;
           content: "";
           display: block;
           height: 0;
@@ -77,10 +89,22 @@
       background-color: var(--accordion-grid-color);
       color: var(--accordion-grid-color-active);
       display: none;
-      grid-column: 1 / span 3; /* Span all three columns */
+      
       // margin: 0 0 0.15625em;
       padding: 1em;
       position: relative;
+
+      @media (min-width: 20em) {
+
+        grid-column: 1 / span 2; /* Span all three columns */
+
+      }
+
+      @media (min-width: 48.75em) {
+
+        grid-column: 1 / span 3; /* Span all three columns */
+
+      }
 
         a {
         color: inherit;

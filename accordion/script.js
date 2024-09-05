@@ -19,7 +19,7 @@
 
   "use strict";
 
-  function initTablist() {
+  function initAccordion() {
 
     // Classes, data attributes, states, and strings.
   
@@ -42,151 +42,79 @@
   
       acc.setAttribute("id", "accordion-" + index);
   
-      // Get all tabs within tablist.
+      // Get all button within accordion.
   
-      var tabs = list.querySelectorAll(tabListTabClass);
+      var buttons = acc.querySelectorAll(accordionButtonClass);
   
-      // Get all tabpanels within tablist.
+      // Get all disclosures within accordion.
   
-      var panels = list.querySelectorAll(tabListPanelClass);
+      var disclosures = acc.querySelectorAll(accordionContentClass);
   
       // Array used to hold all panel IDs.
   
-      var panelNames = [];
+      var disclosureNames = [];
   
-      // Prep each tab.
+      // Prep each button.
+
+      // <button class="disclosure--btn" aria-expanded="false" id="disclosure-btn-1" 
+      // aria-controls="disclosure-content-1">Learn More</button>
+
+      // <div class="disclosure--content" id="disclosure-content-1" role="group">
+
+      // 
   
-      tabs.forEach(function(tab){
+      buttons.forEach(function(btn){
   
-        var tabID = tab.getAttribute("href").replace("#", "");
+        var buttonID = btn.getAttribute("id");
   
-        // Push all panel ID's to array.
+        // Push all button ID's to array.
   
-        panelNames.push(tabID);
+        disclosureNames.push(buttonID);
   
-        // Setup each tab.
+        // Setup each btn.
   
-        tab.parentElement.setAttribute("role", "presentation");
-        tab.setAttribute("aria-controls", tabID);
-        tab.setAttribute("id", "tab-" + tabID);
-        tab.setAttribute("role", "tab");
-        tab.setAttribute("aria-selected", "false");
-        tab.setAttribute("tabindex", "-1");
+        btn.setAttribute("aria-controls", "accordion-" + buttonID);
+        btn.setAttribute("aria-expanded", "false");
+        btn.nextElementSibling.setAttribute("id", "accordion-" + buttonID)
+        btn.nextElementSibling.setAttribute("role", "group");
   
         // Highlight tab based on hash.
   
-        if(tabID === URLFragment) {
+        if(buttonID === URLFragment) {
   
-          tab.setAttribute("aria-selected", "true");
-          tab.removeAttribute("tabindex");
-  
-        }
-  
-        tab.addEventListener("click", function(e) {
-  
-          var panelID = tab.getAttribute("href").replace("#", "");
-  
-          tabs.forEach(function(tab){
-  
-              tab.setAttribute("aria-selected", "false");
-              tab.setAttribute("tabindex", "-1");
-  
-            });
-  
-            // Hide any open panels
-  
-            var panels = tab.closest(tabListClass).querySelectorAll(tabListPanelClass);
-            var panelTarget = tab.closest(tabListClass).querySelector("#" + panelID);
-  
-            panels.forEach(function(panel){
-  
-              panel.setAttribute("hidden", "");
-              panel.removeAttribute("tabindex");
-  
-            });
-  
-            // Show selected panel
-  
-            panelTarget.removeAttribute("hidden");
-            panelTarget.setAttribute("tabindex", "0");
-  
-            // Highlight selected tab
-  
-            this.setAttribute("aria-selected", "true");
-            this.removeAttribute("tabindex");
-  
-            if(!this.closest(tabListClass).hasAttribute(tabListDataDisableAnchor)) {
-  
-              history.pushState(null, null, "#" + tabID);
-  
-            }
-  
-            e.preventDefault();
-  
-        });
-  
-        // Get tab links used in tablist.
-  
-        var tabLinks = list.querySelector(tabListListClass).querySelectorAll(tabListTabClass);
-  
-        tab.addEventListener("keydown", function(e) {
-  
-          // Check if the key pressed is an arrow key
-  
-          if (e.key === "ArrowUp" || e.key === "ArrowRight" || e.key === "ArrowDown" || e.key === "ArrowLeft") {
-  
-            e.preventDefault(); // Prevent default scrolling behavior when arrows keys clicked.
-  
-            // Get the index of the currently focused link
-  
-            var focusedIndex = Array.from(tabLinks).indexOf(document.activeElement);
-  
-            // Calculate the new index based on the arrow key pressed
-  
-            if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
-  
-              focusedIndex = (focusedIndex - 1 + tabLinks.length) % tabLinks.length; // Move left
-  
-            } else if (e.key === "ArrowRight" || e.key === "ArrowDown") {
-  
-              focusedIndex = (focusedIndex + 1) % tabLinks.length; // Move right
-  
-            }
-  
-            // Focus and trigger event
-  
-            tabLinks[focusedIndex].focus()
-            tabLinks[focusedIndex].click();
-  
-          }
-  
-        });
-  
-      });
-  
-      panels.forEach(function(panel){
-  
-        var panelID = panel.getAttribute("id");
-  
-        panel.setAttribute("aria-labelledby", "tab-" + panelID);
-        panel.setAttribute("role", "tabpanel");
-        panel.setAttribute("hidden", "");
-        panel.setAttribute("tabindex", "0");
-  
-        if(panelID === URLFragment) {
-  
-          panel.removeAttribute("hidden");
+          btn.setAttribute("aria-expanded", "true");
   
         }
   
+        btn.addEventListener("click", function(e) {
+  
+          var disclosureID = btn.getAttribute("id");
+  
+          buttons.forEach(function(btn){
+  
+              btn.setAttribute("aria-expanded", "false");
+  
+            });
+  
+            
+  
+            this.setAttribute("aria-expanded", "true");
+  
+           // if(!this.closest(tabListClass).hasAttribute(tabListDataDisableAnchor)) {
+  
+             // history.pushState(null, null, "#" + buttonID);
+  
+          //  }
+  
+        });
+  
+  
       });
+
   
-      if(!URLFragment || !panelNames.includes(URLFragment)) {
+      if(!URLFragment || !disclosureNames.includes(URLFragment)) {
   
-        tabs[0].setAttribute("aria-selected", "true");
-        tabs[0].removeAttribute("tabindex");
-        panels[0].removeAttribute("hidden");
-        panels[0].setAttribute("tabindex", "0");
+        buttons[0].setAttribute("aria-expanded", "true");
   
       }
   
@@ -196,7 +124,7 @@
     // Note: This function may not be needed. Instead, simply having functionality so dependent on ID, may make this moot.
   
     var allPanelID = [];
-    var tabPanels = document.querySelectorAll(tabListPanelClass);
+    var tabPanels = document.querySelectorAll(accordionContentClass);
   
     tabPanels.forEach(function(panel){
   
@@ -214,7 +142,7 @@
   
         if (element === nextElement) {
   
-          console.log("%c Warning: Duplicate Tablist ID found: #" + element + ". Tab panels must only contain unique ID values. ", "background: #ff0000; color: #fff");
+          console.log("%c Warning: Duplicate Accordion ID found: #" + element + ". Tab panels must only contain unique ID values. ", "background: #ff0000; color: #fff");
   
         }
   
@@ -224,6 +152,6 @@
 
   }
 
-  initTablist();
+  initAccordion();
 
 })();
