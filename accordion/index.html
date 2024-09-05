@@ -1,10 +1,65 @@
 ---
-components:
+attributes:
 
-  - name: "Default Setup"
-    id: "default-setup"
+  - name: data-close-button
+    html: .accordion
+    note:
+
+      - Boolean
+      - Optional
+    
+    desc: Specifies that each accordion should have its own close button. By default, no close buttons are provided.
+
+  - name: data-disable-anchor
+    html: .accordion
+    note:
+
+      - Boolean
+      - Optional
+    
+    desc: Used to disable the anchor that appears in the address bar when a tab is clicked on. Do note that including an anchor can be useful for tracking and sharing specific content, so we should only remove when we have a good reason.
+
+  - name: data-open-state
+    html: .accordion__button
+    note:
+
+      - Boolean
+      - Optional
+    
+    desc: Specifies which accordion panel should be open on page load. If not specified, no panels will be open by default.
+
+  - name: id
+    html: .accordion__button
+    note:
+
+      - String
+      - Mandatory
+    
+    desc: Each accordion button must have a unique ID with no spaces. The console will display an error if this requirement is not met.
+
+classes:
+
+  - name: .accordion	
+    html: 
+
+      - div
+      - section
+    
+    note: Mandatory
+    desc: Required on the parent element that wraps your content.
+  
+  - name: .accordion__button
+    html: button
+    note: Mandatory
+    desc: Required on your accordion button.
+  
+  - name: .accordion__content
+    html: div
+    note: Mandatory
+    desc: Required on your accordion content.
 
 id: accordion
+in-page-custom: true
 localcss: "init.css"
 localjs: "init.js"
 module: components

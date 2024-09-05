@@ -18,29 +18,34 @@
 
     // Variables
 
-    --accordion-grid-color: #6F00EF;
-    --accordion-grid-color-active: #fff;
-    --accordion-grid-color-neutral: #bababa;
+    --accordion-color: #6F00EF;
+    --accordion-color-active: #fff;
+    --accordion-color-neutral: #bababa;
+
+    // Change amount of grid items per 
+
+    --accordion-medium: 2;
+    --accordion-large: 3;
 
     display: grid;
     grid-template-columns: 1fr;
     gap: 5px;
-    grid-auto-flow: dense; /* Pack new grid items to the empty spaces */
+    grid-auto-flow: dense;
 
-    @media (min-width: 20em) {
+      @media (min-width: 37.5em) {
 
-      grid-template-columns: repeat(2, 1fr); 
+        grid-template-columns: repeat(var(--accordion-medium), 1fr); 
 
-    }
+      }
 
-    @media (min-width: 48.75em) {
+      @media (min-width: 55em) {
 
-      grid-template-columns: repeat(3, 1fr); 
+        grid-template-columns: repeat(var(--accordion-large), 1fr); 
 
-    }
+      }
 
       &__button {
-      background-color: var(--accordion-grid-color-neutral);
+      background-color: var(--accordion-color-neutral);
       border: 0;
       color: inherit;
       cursor: pointer;
@@ -53,7 +58,7 @@
         // The project designer should be providing this state. When received, please ensure it is meeting correct ratio.
 
         &:focus, &:hover {
-        background-color: var(--accordion-grid-color);
+        background-color: var(--accordion-color);
         color: #fff;
         }
 
@@ -64,7 +69,7 @@
           // Accent (Arrow)
 
           &::after {
-          border-color: transparent transparent var(--accordion-grid-color) transparent;
+          border-color: transparent transparent var(--accordion-color) transparent;
           border-style: solid;
           border-width: 0 1.25em 1.25em 1.25em;
           bottom: -5px;
@@ -86,25 +91,23 @@
       }
 
       &__content {
-      background-color: var(--accordion-grid-color);
-      color: var(--accordion-grid-color-active);
+      background-color: var(--accordion-color);
+      color: var(--accordion-color-active);
       display: none;
-      
-      // margin: 0 0 0.15625em;
       padding: 1em;
       position: relative;
 
-      @media (min-width: 20em) {
+        @media (min-width: 37.5em) {
 
-        grid-column: 1 / span 2; /* Span all three columns */
+          grid-column: 1 / span var(--accordion-medium);
 
-      }
+        }
 
-      @media (min-width: 48.75em) {
+        @media (min-width: 55em) {
 
-        grid-column: 1 / span 3; /* Span all three columns */
+          grid-column: 1 / span var(--accordion-large);
 
-      }
+        }
 
         a {
         color: inherit;
@@ -129,14 +132,6 @@
       inset-inline-end: 2em;
       inset-block-start: 2em;
       width: 2.5rem;
-      }
-
-      &__button, &__content {
-
-        &[data-accordion-grid-exclude] {
-        display: none;
-        }
-
       }
 
       // Focus State
