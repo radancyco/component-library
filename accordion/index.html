@@ -19,6 +19,24 @@ attributes:
     
     desc: Used to disable the anchor that appears in the address bar when a tab is clicked on. Do note that including an anchor can be useful for tracking and sharing specific content, so we should only remove when we have a good reason.
 
+  - name: data-fixed-height
+    html: .accordion
+    note:
+
+      - Boolean
+      - Optional
+    
+    desc: Used to fix the panel content to a specific height. The height may be adusted in the CSS.
+
+  - name: data-grid
+    html: .accordion
+    note:
+
+      - Boolean
+      - Optional
+    
+    desc: Used to apply a default grid layout to the accordion. The grid may be adjusted in the CSS.
+
   - name: data-open
     html: .accordion__button
     note:
@@ -27,6 +45,15 @@ attributes:
       - Optional
     
     desc: Specifies which accordion panel should be open on page load. If not specified, no panels will be open by default. Only one accordion should be open.
+
+  - name: data-toggle
+    html: .accordion
+    note:
+
+      - Boolean
+      - Optional
+    
+    desc: Enables toggling of individual accordion panels with repeated button presses. The default behavior is for panels to close when a new one is opened.
 
   - name: id
     html: .accordion__button
