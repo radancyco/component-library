@@ -19,14 +19,14 @@ attributes:
     
     desc: Used to disable the anchor that appears in the address bar when a tab is clicked on. Do note that including an anchor can be useful for tracking and sharing specific content, so we should only remove when we have a good reason.
 
-  - name: data-open-state
+  - name: data-open
     html: .accordion__button
     note:
 
       - Boolean
       - Optional
     
-    desc: Specifies which accordion panel should be open on page load. If not specified, no panels will be open by default.
+    desc: Specifies which accordion panel should be open on page load. If not specified, no panels will be open by default. Only one accordion should be open.
 
   - name: id
     html: .accordion__button
@@ -35,7 +35,7 @@ attributes:
       - String
       - Mandatory
     
-    desc: Each accordion button must have a unique ID with no spaces. The console will display an error if this requirement is not met.
+    desc: Each accordion button must have a unique ID with no spaces. The console will display an error if this requirement is not met. Allowing a developer to handle the ID, allows for custom anchoring.
 
 classes:
 

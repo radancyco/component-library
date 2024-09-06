@@ -8,8 +8,8 @@ components:
     hidden: true
     examples: 
 
-      - name: "Default Setup"
-        id: "default-setup"
+      - name: "Default"
+        id: "default"
 
       - name: "Close Button"
         id: "close-button"
@@ -17,8 +17,11 @@ components:
       - name: "Disable Anchor"
         id: "disable-anchor"
 
-      - name: "Open State"
-        id: "open-state"
+      - name: "Open Accordion"
+        id: "open"
+
+      - name: "Toggle Buttons"
+        id: "toggle"
 
   - id: "accordion-grid"
     desc: "This component will allow you to implement and control the presentation of multiple disclosures also known as an accordion."

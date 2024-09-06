@@ -21,7 +21,7 @@
     var accordionButtonClassName = "accordion__button";
     var accordionButtonClass = "." + accordionButtonClassName;
     var accordionContentClass = ".accordion__content";
-    var accordionDataDefaultOpen = "data-open-state";
+    var accordionDataDefaultOpen = "data-open";
     var accordionDataCloseButton = "data-close-button";
     var accordionDataDisableAnchor = "data-disable-anchor";
     var accordions = document.querySelectorAll(accordionClass);
@@ -31,9 +31,11 @@
   
     console.log("%c {{ include.title }} v{{ include.version }} in use. ", "background: #6e00ee; color: #fff");
   
-    // Set up all components on page
+    // Set up all accordions on the page
   
     accordions.forEach(function(acc, e){
+
+      // Set unique ID on all accordions.
   
       var index = e + 1;
   
@@ -47,83 +49,123 @@
   
       var contents = acc.querySelectorAll(accordionContentClass);
   
-      // Array used to hold all accordion IDs. We will need these later.
-  
-      var disclosureNames = [];
-  
-      // Prep each button.
+      // Set variable for slected button target
 
-      var urlFragmentMatched = false;
-  
-      buttons.forEach(function(btn){
-  
+      var expandedButton = null;
+
+      // Loop through each button
+
+      buttons.forEach(function(btn) {
+
         var buttonID = btn.getAttribute("id");
-  
-        // Push all button ID's to array.
-  
-        disclosureNames.push(buttonID);
-  
+
         // Setup each button.
-  
+
         btn.setAttribute("aria-controls", "accordion-" + buttonID);
         btn.setAttribute("aria-expanded", "false");
 
-        // Setup each discosure.
+        // Click event for each button.
 
-        btn.nextElementSibling.setAttribute("id", "accordion-" + buttonID)
-        btn.nextElementSibling.setAttribute("role", "group");
-  
-        // Highlight tab based on hash or if specicic accordion item is opened.
+        btn.addEventListener("click", function() {
+
+          // Get button ID.
+
+          var disclosureID = btn.getAttribute("id");
+
+          // Close all accordions before opening the clicked one.
+
+          if(this.closest(accordionClass).hasAttribute("data-toggle")) {
+
+            var  isExpanded = this.getAttribute("aria-expanded");
    
+            if (isExpanded === "true") {
+
+              // Close All Buttons
+
+              buttons.forEach(function(btn) {
+
+                btn.setAttribute("aria-expanded", "false");
+
+              });
+    
+            } else {
+    
+              // Close All Buttons
+
+              buttons.forEach(function(btn) {
+
+                btn.setAttribute("aria-expanded", "false");
+
+              });
+
+              // Open Selected
+    
+              this.setAttribute("aria-expanded", "true");
+
+            }
+  
+          } else {
+
+            buttons.forEach(function(btn) {
+
+              btn.setAttribute("aria-expanded", "false");
+
+            });
+    
+            this.setAttribute("aria-expanded", "true");
+
+          }
+
+          // Handle history push if not disabled
+
+          if (!this.closest(accordionClass).hasAttribute(accordionDataDisableAnchor)) {
+
+            history.pushState(null, null, "#" + disclosureID);
+
+          }
+
+        });
+
+        // Check the URL fragment or data attribute to set aria-expanded="true" only for one button
+
         if (buttonID === URLFragment) {
 
-          btn.setAttribute("aria-expanded", "true");
+          expandedButton = btn; // Save this button matching the URL fragment
 
-          urlFragmentMatched = true; 
+        } else if (btn.hasAttribute(accordionDataDefaultOpen)) {
 
-        } 
+          // If no button has matched the URL fragment, save the one with the default open attribute
 
-        if(!URLFragment) {
+          if (!expandedButton) {
 
-          if(btn.hasAttribute(accordionDataDefaultOpen || !urlFragmentMatched)) {
-
-            btn.setAttribute("aria-expanded", "true");
+            expandedButton = btn; // Save this button matching the URL fragment
 
           }
 
         }
 
-        // Do stuff when button is clicked.
-  
-        btn.addEventListener("click", function(e) {
-  
-          var disclosureID = btn.getAttribute("id");
-
-          // Set any open accordion to closed.
-  
-          buttons.forEach(function(btn){
-  
-            btn.setAttribute("aria-expanded", "false");
-  
-          });
-
-          // Open accordion
-  
-          this.setAttribute("aria-expanded", "true");
-
-          // Disable default behavior of anchoring if data-disable-anchor present.
-  
-          if(!this.closest(accordionClass).hasAttribute(accordionDataDisableAnchor)) {
-  
-             history.pushState(null, null, "#" + disclosureID);
-  
-          }
-  
-        });
-  
       });
 
+      // After all buttons are initialized, set aria-expanded="true" only for the relevant one
+
+      if (expandedButton) {
+
+        expandedButton.setAttribute("aria-expanded", "true");
+
+      }
+
+      // Loop through each disclosure.
+
       contents.forEach(function(content){
+
+         // Setup each disclosure.
+
+         var contentID = content.previousElementSibling.getAttribute("id");
+
+         content.setAttribute("id", "accordion-" + contentID);
+         content.setAttribute("role", "region");
+         content.setAttribute("tabindex", "0");
+         content.setAttribute("aria-labelledby", contentID + " " + "accordion-" + contentID);
     
         // Close Button
 
