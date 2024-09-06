@@ -24,6 +24,7 @@
     var accordionDataDefaultOpen = "data-open";
     var accordionDataCloseButton = "data-close-button";
     var accordionDataDisableAnchor = "data-disable-anchor";
+    var accordionDataFixedHeight = "data-fixed-height";
     var accordions = document.querySelectorAll(accordionClass);
     var URLFragment = location.hash.slice(1);
 
@@ -47,7 +48,7 @@
   
       // Get all disclosures within accordion.
   
-      var contents = acc.querySelectorAll(accordionContentClass);
+      var panels = acc.querySelectorAll(accordionContentClass);
   
       // Set variable for slected button target
 
@@ -156,32 +157,38 @@
 
       // Loop through each disclosure.
 
-      contents.forEach(function(content){
+      panels.forEach(function(panel){
 
          // Setup each disclosure.
 
-         var contentID = content.previousElementSibling.getAttribute("id");
+         var panelID = panel.previousElementSibling.getAttribute("id");
 
-         content.setAttribute("id", "accordion-" + contentID);
-         content.setAttribute("role", "region");
-         content.setAttribute("tabindex", "0");
-         content.setAttribute("aria-labelledby", contentID + " " + "accordion-" + contentID);
+         panel.setAttribute("id", "accordion-" + panelID);
+
+         if(panel.closest(accordionClass).hasAttribute(accordionDataFixedHeight)) {
+
+          panel.setAttribute("role", "region");
+          panel.setAttribute("tabindex", "0");
+          panel.setAttribute("aria-labelledby", panelID + " " + "accordion-" + panelID);
+
+         }
+
     
         // Close Button
 
-        if(content.parentNode.hasAttribute(accordionDataCloseButton)) {
+        if(panel.parentNode.hasAttribute(accordionDataCloseButton)) {
 
-          var contentButton = document.createElement("button");
-          contentButton.setAttribute("aria-label", accordionCloseButtonLabel);
-          contentButton.classList.add(accordionCloseClassName);
+          var panelButton = document.createElement("button");
+          panelButton.setAttribute("aria-label", accordionCloseButtonLabel);
+          panelButton.classList.add(accordionCloseClassName);
 
-          contentButton.addEventListener("click", function () {
+          panelButton.addEventListener("click", function () {
 
             this.parentNode.previousElementSibling.setAttribute("aria-expanded", "false");
 
           });
 
-          content.prepend(contentButton);
+          panel.prepend(panelButton);
 
         }
 

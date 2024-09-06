@@ -17,6 +17,15 @@ components:
       - name: "Disable Anchor"
         id: "disable-anchor"
 
+      - name: "Grid Layout"
+        id: "grid"
+
+      - name: "Grid Layout with Toggle"
+        id: "grid-toggle"
+
+      - name: "Fixed Content Height"
+        id: "fixed-height"
+
       - name: "Open Accordion"
         id: "open"
 

@@ -32,15 +32,19 @@
     gap: 5px;
     grid-auto-flow: dense;
 
-      @media (min-width: 37.5em) {
+      &[data-grid] {
 
-        grid-template-columns: repeat(var(--accordion-medium), 1fr); 
+        @media (min-width: 37.5em) {
 
-      }
+          grid-template-columns: repeat(var(--accordion-medium), 1fr); 
 
-      @media (min-width: 55em) {
+        }
 
-        grid-template-columns: repeat(var(--accordion-large), 1fr); 
+        @media (min-width: 55em) {
+
+          grid-template-columns: repeat(var(--accordion-large), 1fr); 
+
+        }
 
       }
 
@@ -52,6 +56,7 @@
       padding: 2em;
       position: relative;
       text-align: center;
+      width: 100%;
 
         // Note: Focus and hover states must meet a 3:1 color ratio between background color and foreground text.
         // The project designer should be providing this state. When received, please ensure it is meeting correct ratio.
@@ -96,15 +101,30 @@
       padding: 1em;
       position: relative;
 
-        @media (min-width: 37.5em) {
+        [data-grid] & {
 
-          grid-column: 1 / span var(--accordion-medium);
+          @media (min-width: 37.5em) {
+
+            grid-column: 1 / span var(--accordion-medium);
+
+          }
+
+          @media (min-width: 55em) {
+
+            grid-column: 1 / span var(--accordion-large);
+
+          }
 
         }
 
-        @media (min-width: 55em) {
+        [data-fixed-height] & {
 
-          grid-column: 1 / span var(--accordion-large);
+          max-height: 18.75em;
+          overflow-y: auto;
+          overscroll-behavior-y: contain;
+          scrollbar-color: var(--accordion-color-active) var(--accordion-color);
+          scrollbar-gutter: stable;
+          scrollbar-width: thin;
 
         }
 
