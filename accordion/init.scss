@@ -53,10 +53,15 @@
       border: 0;
       color: inherit;
       display: block;
-      padding: 2em;
+      padding: 1em;
       position: relative;
-      text-align: center;
+      text-align: start;
       width: 100%;
+
+        [data-grid] & {
+        padding: 2em;
+        text-align: center;
+        }
 
         // Note: Focus and hover states must meet a 3:1 color ratio between background color and foreground text.
         // The project designer should be providing this state. When received, please ensure it is meeting correct ratio.
