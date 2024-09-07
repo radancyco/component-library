@@ -20,7 +20,7 @@
     var accordionCloseClassName = "accordion__close";
     var accordionButtonClassName = "accordion__button";
     var accordionButtonClass = "." + accordionButtonClassName;
-    var accordionContentClass = ".accordion__content";
+    var accordionPanelClass = ".accordion__panel";
     var accordionDataDefaultOpen = "data-open";
     var accordionDataCloseButton = "data-close-button";
     var accordionDataDisableAnchor = "data-disable-anchor";
@@ -29,201 +29,139 @@
     var URLFragment = location.hash.slice(1);
 
     // Display which version is in use via console:
-  
+
     console.log("%c {{ include.title }} v{{ include.version }} in use. ", "background: #6e00ee; color: #fff");
-  
-    // Set up all accordions on the page
-  
-    accordions.forEach(function(acc, e){
+
+    // Loop through and set up all accordions on the page.
+
+    accordions.forEach(function(accordion, index) {
 
       // Set unique ID on all accordions.
-  
-      var index = e + 1;
-  
-      acc.setAttribute("id", "accordion-" + index);
-  
+
+      accordion.setAttribute("id", "accordion-" + (index + 1));
+
       // Get all buttons within accordion.
-  
-      var buttons = acc.querySelectorAll(accordionButtonClass);
-  
-      // Get all disclosures within accordion.
-  
-      var panels = acc.querySelectorAll(accordionContentClass);
-  
-      // Set variable for slected button target
+
+      var buttons = accordion.querySelectorAll(accordionButtonClass);
+
+      // Get all panels within accordion.
+      
+      var panels = accordion.querySelectorAll(accordionPanelClass);
+
+      // Set variable for slected button target.
 
       var expandedButton = null;
 
-      // Loop through each button
+      // Loop through each button.
 
       buttons.forEach(function(btn) {
 
+        // Get button ID. Remember: ID's should always be unique.
+
         var buttonID = btn.getAttribute("id");
 
-        // Setup each button.
+        // Set up each button.
 
         btn.setAttribute("aria-controls", "accordion-" + buttonID);
         btn.setAttribute("aria-expanded", "false");
 
-        // Click event for each button.
+        // Handle button click.
 
         btn.addEventListener("click", function() {
 
-          // Get button ID.
+          var isExpanded = btn.getAttribute("aria-expanded") === "true";
 
-          var disclosureID = btn.getAttribute("id");
+          buttons.forEach(function(button) {
 
-          // Close all accordions before opening the clicked one.
+            button.setAttribute("aria-expanded", "false");
 
-          if(this.closest(accordionClass).hasAttribute("data-toggle")) {
+          });
 
-            var  isExpanded = this.getAttribute("aria-expanded");
-   
-            if (isExpanded === "true") {
+          btn.setAttribute("aria-expanded", isExpanded ? "false" : "true");
 
-              // Close All Buttons
+          // Add URL Fragment to URL if not disabled.
 
-              buttons.forEach(function(btn) {
+          if (!accordion.hasAttribute(accordionDataDisableAnchor)) {
 
-                btn.setAttribute("aria-expanded", "false");
-
-              });
-    
-            } else {
-    
-              // Close All Buttons
-
-              buttons.forEach(function(btn) {
-
-                btn.setAttribute("aria-expanded", "false");
-
-              });
-
-              // Open Selected
-    
-              this.setAttribute("aria-expanded", "true");
-
-            }
-  
-          } else {
-
-            buttons.forEach(function(btn) {
-
-              btn.setAttribute("aria-expanded", "false");
-
-            });
-    
-            this.setAttribute("aria-expanded", "true");
-
-          }
-
-          // Handle history push if not disabled
-
-          if (!this.closest(accordionClass).hasAttribute(accordionDataDisableAnchor)) {
-
-            history.pushState(null, null, "#" + disclosureID);
+            history.pushState(null, null, "#" + buttonID);
 
           }
 
         });
 
-        // Check the URL fragment or data attribute to set aria-expanded="true" only for one button
+        // Default open based on URL fragment or data-open attribute.
 
-        if (buttonID === URLFragment) {
-
-          expandedButton = btn; // Save this button matching the URL fragment
-
-        } else if (btn.hasAttribute(accordionDataDefaultOpen)) {
-
-          // If no button has matched the URL fragment, save the one with the default open attribute
-
-          if (!expandedButton) {
-
-            expandedButton = btn; // Save this button matching the URL fragment
-
-          }
+        if (buttonID === URLFragment || (!expandedButton && btn.hasAttribute(accordionDataDefaultOpen))) {
+          
+          expandedButton = btn;
 
         }
 
       });
 
-      // After all buttons are initialized, set aria-expanded="true" only for the relevant one
-
-      if (expandedButton) {
-
+      if (expandedButton) { 
+        
         expandedButton.setAttribute("aria-expanded", "true");
 
       }
 
-      // Loop through each disclosure.
+      // Loop through each panel.
 
-      panels.forEach(function(panel){
+      panels.forEach(function(panel) {
 
-         // Setup each disclosure.
+        // Set up each disclosure.
 
-         var panelID = panel.previousElementSibling.getAttribute("id");
+        var panelID = panel.previousElementSibling.getAttribute("id");
 
-         panel.setAttribute("id", "accordion-" + panelID);
+        panel.setAttribute("id", "accordion-" + panelID);
 
-         if(panel.closest(accordionClass).hasAttribute(accordionDataFixedHeight)) {
+        if (accordion.hasAttribute(accordionDataFixedHeight)) {
 
           panel.setAttribute("role", "region");
           panel.setAttribute("tabindex", "0");
-          panel.setAttribute("aria-labelledby", panelID + " " + "accordion-" + panelID);
+          panel.setAttribute("aria-labelledby", "accordion-" + panelID);
 
-         }
+        }
 
-    
-        // Close Button
+        // Add close button
 
-        if(panel.parentNode.hasAttribute(accordionDataCloseButton)) {
+        if (accordion.hasAttribute(accordionDataCloseButton)) {
 
-          var panelButton = document.createElement("button");
-          panelButton.setAttribute("aria-label", accordionCloseButtonLabel);
-          panelButton.classList.add(accordionCloseClassName);
+          var closeButton = document.createElement("button");
 
-          panelButton.addEventListener("click", function () {
+          closeButton.setAttribute("aria-label", accordionCloseButtonLabel);
+          closeButton.classList.add(accordionCloseClassName);
 
-            this.parentNode.previousElementSibling.setAttribute("aria-expanded", "false");
+          closeButton.addEventListener("click", function() {
+
+            panel.previousElementSibling.setAttribute("aria-expanded", "false");
 
           });
 
-          panel.prepend(panelButton);
+          panel.prepend(closeButton);
 
         }
 
       });
-  
+
     });
+
+    // Check for duplicate IDs and log a warning
+
+    var buttonIDs = Array.prototype.map.call(document.querySelectorAll(accordionButtonClass), function(btn) {
   
-    // All accordions must have unique IDs. Check to see if duplicate ID's exist and alert developer.
-    // Note: This function may not be needed. Instead, simply having functionality so dependent on ID, may make this moot.
-  
-    var allButtonID = [];
-    var accordionButtons = document.querySelectorAll(accordionButtonClass);
-  
-    accordionButtons.forEach(function(btn){
-  
-      var buttonID = btn.id;
-  
-      allButtonID.push(buttonID);
-  
+      return btn.id;
+
     });
-  
-    allButtonID.forEach(function(element, index, array) {
-  
-      // Check if the current element is equal to any subsequent element
-  
-      array.slice(index + 1).forEach(function(nextElement) {
-  
-        if (element === nextElement) {
-  
-          console.log("%c Warning: Duplicate Accordion ID found: #" + element + ". Accordions must only contain unique ID values. ", "background: #ff0000; color: #fff");
-  
-        }
-  
-      });
-  
+
+    buttonIDs.forEach(function(id, index) {
+
+      if (buttonIDs.indexOf(id, index + 1) !== -1) {
+
+        console.warn("%c Warning: Duplicate Accordion ID found: #" + id + ". Accordions must have unique ID values.", "background: #ff0000; color: #fff");
+
+      }
+
     });
 
   }

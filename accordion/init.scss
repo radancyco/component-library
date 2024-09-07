@@ -88,7 +88,7 @@
             width: 0;
             }
 
-            + .accordion__content {
+            + .accordion__panel {
             display: block;
             }
 
@@ -98,7 +98,7 @@
 
       }
 
-      &__content {
+      &__panel {
       background-color: var(--accordion-color);
       color: var(--accordion-color-active);
       display: none;
