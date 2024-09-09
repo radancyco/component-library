@@ -54,6 +54,10 @@
 
       &[data-grid-overlap] {
 
+        &:has(.accordion__button[aria-expanded="true"]) .accordion__button  {
+        position: absolute;
+        }
+
         &:has(.accordion__button[aria-expanded="true"]) .accordion__button[aria-expanded="false"]  {
         visibility: hidden;
         }
@@ -134,9 +138,6 @@
         [data-grid-overlap] & {
 
           grid-area: 1 / 1;
-          height: 100%;
-          position: absolute;
-          z-index: 1;
 
         }
 

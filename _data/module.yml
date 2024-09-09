@@ -11,9 +11,6 @@ components:
       - name: "Default"
         id: "default"
 
-      - name: "Close Button"
-        id: "close-button"
-
       - name: "Disable Anchor"
         id: "disable-anchor"
 
