@@ -18,11 +18,12 @@
 
     // Variables
 
-    --accordion-border: 1px transparent solid;
-    --accordion-color: #6F00EF;
-    --accordion-color-active: #b677ff;
-    --accordion-color-neutral: #bababa;
-    --accordion-gap: 5px;
+    --accordion-button-active: #fff;
+    --accordion-button-color: #ccc;
+    --accordion-button-state: #6F00EF;
+    --accordion-panel-border: 1px #666 solid;
+    --accordion-panel-color: #ccc;
+    --accordion-gap: calc(5rem/16);
 
     // Change amount of grid items per 
 
@@ -51,15 +52,12 @@
       }
 
       &__button, &__filler {
-      background-color: var(--accordion-color);
+      background-color: var(--accordion-button-color);
       border: 0;
-      color: #fff;
-      display: block;
       font-size: unset;
       padding: 1em;
       position: relative;
       text-align: start;
-      width: 100%;
 
         [data-grid] & {
         padding: 2em;
@@ -67,39 +65,39 @@
         }
 
         // Note: Focus and hover states must meet a 3:1 color ratio between background color and foreground text.
-        // The project designer should be providing this state. When received, please ensure it is meeting correct ratio.
+        // The project designer should be providing this state.
 
         &:not(div) {
         cursor: pointer;
 
           &:focus, &:hover {
-          background-color: var(--accordion-color-active);
-          color: #000;
+          background-color: var(--accordion-button-state);
+          color: #fff;
           }
 
           &[aria-expanded="true"] {
-          background-color: var(--accordion-color-active);
-          color: #000;
+          background-color: var(--accordion-button-active);
+          color: inherit;
 
             [data-grid] & {
 
               // Accent (Arrow)
 
               &::after {
-              background-color: var(--accordion-color-neutral);
-              border-left: var(--accordion-border);
-              border-top: var(--accordion-border);
-              bottom: -18px;
+              background-color: var(--accordion-panel-color);
+              border-left: var(--accordion-panel-border);
+              border-top: var(--accordion-panel-border);
+              bottom: calc(17.5rem/16 * -1);
               content: "";
               display: block;
-              height: 0;
-              height: 25px;
-              left: 50%;
-              margin-left: -1.25em;
+              height: calc(25rem/16);
+              left: 0;
+              margin: auto;
+              pointer-events: none;
               position: absolute;
+              right: 0;
               transform: rotate(45deg);
-              width: 0;
-              width: 25px;
+              width: calc(25rem/16);
               z-index: 1;
               }   
 
@@ -116,14 +114,14 @@
       }
 
       &__panel {
-      background-color: var(--accordion-color-neutral);
+      background-color: var(--accordion-panel-color);
       display: none;
       margin-top: calc(var(--accordion-gap) * -1);
       padding: 1em;
       position: relative;
 
         [data-grid] & {
-        border: var(--accordion-border);
+        border: var(--accordion-panel-border);
         margin-top: auto;
 
           @media (min-width: 37.5em) {
@@ -145,7 +143,7 @@
           max-height: 18.75em;
           overflow-y: auto;
           overscroll-behavior-y: contain;
-          scrollbar-color: var(--accordion-color-active) var(--accordion-color);
+          // scrollbar-color: var(--accordion-button-active) var(--accordion-button-color);
           scrollbar-gutter: stable;
           scrollbar-width: thin;
 
