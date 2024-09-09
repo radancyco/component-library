@@ -18,6 +18,7 @@
     var accordionClass = ".accordion";
     var accordionCloseButtonLabel = "Close";
     var accordionCloseClassName = "accordion__close";
+    var accordionCloseClass = "." + accordionCloseClassName;
     var accordionButtonClassName = "accordion__button";
     var accordionButtonClass = "." + accordionButtonClassName;
     var accordionPanelClass = ".accordion__panel";
@@ -79,6 +80,14 @@
 
           btn.setAttribute("aria-expanded", isExpanded ? "false" : "true");
 
+          // Place focus on close button if present.
+
+          if (accordion.hasAttribute(accordionDataCloseButton)) {
+
+            btn.nextElementSibling.querySelector(accordionCloseClass).focus();
+
+          }
+
           // Add URL Fragment to URL if not disabled.
 
           if (!accordion.hasAttribute(accordionDataDisableAnchor)) {
@@ -134,7 +143,10 @@
 
           closeButton.addEventListener("click", function() {
 
-            panel.previousElementSibling.setAttribute("aria-expanded", "false");
+            var thisButton = panel.previousElementSibling;
+
+            thisButton.setAttribute("aria-expanded", "false");
+            thisButton.focus();
 
           });
 

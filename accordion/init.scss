@@ -52,17 +52,9 @@
 
       }
 
-      &[data-grid-overlap] {
+      &[data-close-button] {
 
         &:has(.accordion__button[aria-expanded="true"]) .accordion__button  {
-        position: absolute;
-        }
-
-        &:has(.accordion__button[aria-expanded="true"]) .accordion__button[aria-expanded="false"]  {
-        visibility: hidden;
-        }
-
-        &:has(.accordion__button[aria-expanded="true"]) .accordion__button::after  {
         display: none;
         }
 
@@ -87,7 +79,7 @@
         &:not(div) {
         cursor: pointer;
 
-          &:focus, &:hover, &[aria-expanded="true"] {
+          &:focus-visible, &:hover, &[aria-expanded="true"] {
           background-color: var(--accordion-button-state);
           color: #fff;
           }
@@ -135,7 +127,7 @@
       padding: 1em;
       position: relative;
 
-        [data-grid-overlap] & {
+        [data-close-button] & {
 
           grid-area: 1 / 1;
 
