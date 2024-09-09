@@ -19,8 +19,9 @@
     // Variables
 
     --accordion-color: #6F00EF;
-    --accordion-color-active: #fff;
+    --accordion-color-active: #b677ff;
     --accordion-color-neutral: #bababa;
+    --accordion-gap: 5px;
 
     // Change amount of grid items per 
 
@@ -29,7 +30,7 @@
 
     display: grid;
     grid-template-columns: 1fr;
-    gap: 5px;
+    gap: var(--accordion-gap);
     grid-auto-flow: dense;
 
       &[data-grid] {
@@ -49,10 +50,11 @@
       }
 
       &__button, &__filler {
-      background-color: var(--accordion-color-neutral);
+      background-color: var(--accordion-color);
       border: 0;
-      color: inherit;
+      color: #fff;
       display: block;
+      font-size: unset;
       padding: 1em;
       position: relative;
       text-align: start;
@@ -67,14 +69,15 @@
         // The project designer should be providing this state. When received, please ensure it is meeting correct ratio.
 
         &:not(div) {
+        cursor: pointer;
 
           &:focus, &:hover {
-          background-color: var(--accordion-color);
-          color: #fff;
+          background-color: var(--accordion-color-active);
+          color: #000;
           }
 
           &[aria-expanded="true"] {
-          background-color: #fff;
+          background-color: var(--accordion-color-active);
           color: #000;
 
             [data-grid] & {
@@ -82,18 +85,22 @@
               // Accent (Arrow)
 
               &::after {
-              border-color: transparent transparent var(--accordion-color) transparent;
-              border-style: solid;
-              border-width: 0 1.25em 1.25em 1.25em;
-              bottom: -5px;
+              background-color: var(--accordion-color-neutral);
+              border-left: 2px var(--accordion-color) solid;
+              border-top: 2px var(--accordion-color) solid;
+              bottom: -18px;
               content: "";
               display: block;
               height: 0;
+              height: 25px;
               left: 50%;
               margin-left: -1.25em;
               position: absolute;
+              transform: rotate(45deg);
               width: 0;
-              }
+              width: 25px;
+              z-index: 1;
+              }   
 
             }
 
@@ -108,13 +115,15 @@
       }
 
       &__panel {
-      background-color: var(--accordion-color);
-      color: var(--accordion-color-active);
+      background-color: var(--accordion-color-neutral);
       display: none;
+      margin-top: calc(var(--accordion-gap) * -1);
       padding: 1em;
       position: relative;
 
         [data-grid] & {
+        border: 2px var(--accordion-color) solid;
+        margin-top: auto;
 
           @media (min-width: 37.5em) {
 
@@ -155,7 +164,6 @@
       background-size: 1.5625rem;
       border: 0;
       color: inherit;
-      cursor: pointer;
       display: block;
       filter: invert(1);
       height: 2.5rem;
