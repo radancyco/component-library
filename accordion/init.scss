@@ -21,7 +21,7 @@
     --accordion-button-active: #fff;
     --accordion-button-color: #d3d3d3;
     --accordion-button-state: #6F00EF;
-    --accordion-panel-border: 1px #666 solid;
+    --accordion-panel-border: 1px transparent solid;
     --accordion-panel-color: #d3d3d3;
     --accordion-gap: calc(5rem/16);
 
@@ -34,6 +34,7 @@
     grid-template-columns: 1fr;
     gap: var(--accordion-gap);
     grid-auto-flow: dense;
+    position: relative;
 
       &[data-grid] {
 
@@ -47,6 +48,18 @@
 
           grid-template-columns: repeat(var(--accordion-large), 1fr); 
 
+        }
+
+      }
+
+      &[data-grid-overlap] {
+
+        &:has(.accordion__button[aria-expanded="true"]) .accordion__button[aria-expanded="false"]  {
+        visibility: hidden;
+        }
+
+        &:has(.accordion__button[aria-expanded="true"]) .accordion__button::after  {
+        display: none;
         }
 
       }
@@ -70,14 +83,12 @@
         &:not(div) {
         cursor: pointer;
 
-          &:focus, &:hover {
+          &:focus, &:hover, &[aria-expanded="true"] {
           background-color: var(--accordion-button-state);
           color: #fff;
           }
 
           &[aria-expanded="true"] {
-          background-color: var(--accordion-button-active);
-          color: inherit;
 
             [data-grid] & {
 
@@ -119,6 +130,15 @@
       margin-top: calc(var(--accordion-gap) * -1);
       padding: 1em;
       position: relative;
+
+        [data-grid-overlap] & {
+
+          grid-area: 1 / 1;
+          height: 100%;
+          position: absolute;
+          z-index: 1;
+
+        }
 
         [data-grid] & {
         border: var(--accordion-panel-border);
@@ -162,6 +182,7 @@
       background-repeat: no-repeat;
       background-size: 1.5625rem;
       border: 0;
+      cursor: pointer;
       display: block;
       height: 2.5rem;
       padding: 0;
@@ -177,7 +198,7 @@
       &__button {
 
         &:focus {
-        outline-offset: -4px;
+        outline-offset: -5px;
         }
 
       }

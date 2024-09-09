@@ -26,9 +26,6 @@ components:
       - name: "Grid Layout with Close Button"
         id: "grid-close-button"
 
-      - name: "Grid Layout with Toggle"
-        id: "grid-toggle"
-
       - name: "Open Accordion"
         id: "open"
 
