@@ -93,10 +93,19 @@ width: fit-content;
 
     }
 
-    img {
+    img, video {
+    aspect-ratio: 16 / 9;
     display: block;
     border-radius: 5px;
     inline-size: 100%;
+
+    [data-horizontal] & {
+
+      aspect-ratio: auto;
+
+    }
+
+
     }
 
   }

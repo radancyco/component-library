@@ -169,6 +169,9 @@ components:
         id: "card-video"
         note: 'When incorporating a video, ensure that the title explicitly includes "(Video)" to aid assistive technology users, signaling their engagement with video content. If this content is not visually desired, you may use various techniques to <a href="https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html">hide it</a>, but still make it accessible to assistive technology. Additionally, always provide captions for videos, and when needed, ensure transcripts are available.' 
 
+      - name: "Card (Image, Video, Inline, 3x)"
+        id: "card-video-inline"
+
       - name: "Card (Kitchen Sink)"
         id: "card-kitchen-sink"
 
