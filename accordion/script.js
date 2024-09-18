@@ -71,6 +71,7 @@
         btn.addEventListener("click", function() {
 
           var isExpanded = btn.getAttribute("aria-expanded") === "true";
+          var isOpen = btn.closest(accordionClass).hasAttribute("data-open");
 
           buttons.forEach(function(button) {
 
@@ -79,6 +80,18 @@
           });
 
           btn.setAttribute("aria-expanded", isExpanded ? "false" : "true");
+
+          // Toggle the "data-open" attribute on the parent accordion. This is for future useage.
+    
+          if (isOpen) {
+            
+            accordion.removeAttribute(accordionDataDefaultOpen);
+  
+          } else {
+            
+            accordion.setAttribute(accordionDataDefaultOpen, "");
+  
+          }
 
           // Place focus on close button if present.
 

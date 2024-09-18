@@ -33,10 +33,14 @@
 
     @media (min-width: 62.5em) {
 
-      grid-auto-flow: unset;
-      grid-template-columns: repeat(4, 1fr);
-      visibility: hidden; // Do not remove.
+      &:not([data-viewport-large]) { 
 
+        grid-auto-flow: unset;
+        grid-template-columns: repeat(4, 1fr);
+        visibility: hidden; // Do not remove.
+
+      }
+   
     }
 
     &__card {
@@ -60,7 +64,11 @@
 
       @media(min-width: 62.5em) {
 
-        min-width: auto;
+        &:not([data-viewport-large]) & { 
+
+          min-width: auto;
+
+        }
 
       }
 
@@ -84,6 +92,24 @@
 
     }
 
+  }
+
+  // Use for desktop example. You can use whatever classes and properties you want here. 
+
+  .grid {
+  display: grid;
+  gap: 1em;
+  
+    @media(min-width: 62.5em) {
+
+      grid-template-columns: minmax(auto, 480px) 1fr;
+
+    }
+
+  }
+
+  .grid-item {
+  overflow: hidden;
   }
 
 }
