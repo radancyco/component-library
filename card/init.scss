@@ -29,7 +29,7 @@ width: fit-content;
     display: grid;
     gap: 1em;
   
-    @media (min-width: calc(40ch * $card-columns)) {
+    @media (min-width: calc(40ch * #{$card-columns})) {
 
       grid-template-columns: repeat($card-columns, 1fr);
 
