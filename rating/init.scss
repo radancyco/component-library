@@ -20,16 +20,20 @@
     --unchecked-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3e%3cpath fill='%23fff' stroke='%23666' d='m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z'/%3e%3c/svg%3e");
 
     border: 0;
-    width: min-content;
+    margin: 0;
+    padding: 0;
+    width: fit-content;
 
     &__container {
     display: grid;
     gap: .8em;
     grid-template-columns: repeat(var(--max-stars), 1fr);
+
     }
 
     legend {
     font-weight: bold;
+    margin-bottom: .5em;
     }
 
     label {
@@ -38,10 +42,10 @@
     background-repeat: no-repeat;
     background-size: contain;
     display: block;
-    height: calc(75em/16);
+    height: calc(60em/16);
     margin: 0;
     padding: 0;
-    width: calc(75em/16);
+    width: calc(60em/16);
     }
 
     input {
