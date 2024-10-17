@@ -354,6 +354,16 @@ components:
         warning: 'Positioning disclosure buttons on the bottom of content to be opened above them is considered an anti-pattern and <a href="#anti-pattern-read-more">not recommended</a>. Use at your own risk.'
         guidance: anti-pattern-read-more
 
+  - id: "rating"
+    desc: "This component will allow you to add a custom rating group."
+    path: "rating"
+    title: "Rating"
+    version: "1.0"
+    examples:
+
+      - name: "Default Setup"
+        id: "default-setup"
+
   - id: "select-external"
     desc: "This component will allow you to add a select navigation to your page. When a selection is made and the button is pressed, it will take you to an external page."
     path: "select-external"

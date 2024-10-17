@@ -1,0 +1,80 @@
+/*!
+
+  Radancy Component Library: Rating
+  Contributor(s): 
+  Michael "Spell" Spellacy
+
+  Dependencies: Sass
+
+  Instructions: 
+  sass --watch .:. --style compressed
+
+*/
+
+@layer rating {
+
+  .rating{
+
+    --checked-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3e%3cpath fill='blueviolet' stroke='%23666' stroke-width='2' d='m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z'/%3e%3c/svg%3e");
+    --max-stars: 5;
+    --unchecked-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3e%3cpath fill='%23fff' stroke='%23666' d='m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z'/%3e%3c/svg%3e");
+
+    border: 0;
+    width: min-content;
+
+    &__container {
+    display: grid;
+    gap: .8em;
+    grid-template-columns: repeat(var(--max-stars), 1fr);
+    }
+
+    legend {
+    font-weight: bold;
+    }
+
+    label {
+    background-image: var(--unchecked-image); 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: block;
+    height: calc(75em/16);
+    margin: 0;
+    padding: 0;
+    width: calc(75em/16);
+    }
+
+    input {
+
+      &:checked, &:focus-visible, &:hover { 
+  
+        + label {
+        background-image: var(--checked-image); 
+        }
+
+      }
+
+      &:focus-visible {
+
+        + label {
+        outline: 2px solid black;
+        outline-offset: 2px;
+        }
+
+      }
+
+    }
+
+    input, label span {
+    clip: rect(0 0 0 0); 
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap; 
+    width: 1px;
+    }
+
+  }
+
+}
