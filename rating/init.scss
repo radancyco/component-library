@@ -48,26 +48,30 @@
     width: calc(60em/16);
     }
 
-    input {
+    .active {
 
-      &:checked, &:focus-visible, &:hover { 
-  
-        + label {
-        background-image: var(--checked-image); 
-        }
-
+      label {
+      background-image: var(--checked-image); 
       }
 
-      &:focus-visible {
+      // Make sure there is always a visible focus state when cycling through input element. We can't trust that creative will alwways give us contrast friendly icon states.
 
-        + label {
-        outline: 2px solid black;
-        outline-offset: 2px;
+      input {
+
+        &:focus-visible {
+
+          + label {
+          outline: 2px solid black;
+          outline-offset: 2px;
+          }
+
         }
 
       }
 
     }
+
+    // Accessibly hide input and span inside label.
 
     input, label span {
     clip: rect(0 0 0 0); 
