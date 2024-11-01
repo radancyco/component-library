@@ -202,7 +202,7 @@
             <li><button class="btn-copy-link" data-code="{{ page.url | absolute_url }}#{{ example.id }}">{{ iconCheck }}{{ iconCopyURL }} Copy link to example</button></li>
             <li><form action="https://codepen.io/pen/define" id="{{ example.id }}-codepen" method="POST" target="_blank"><button class="btn-edit-codepen">{{ iconCodePen }} Edit on CodePen</button></form></li>
             <li><a class="btn-new-window" href="{{ example.id }}" target="_blank">{{ iconNewWindow }} Open in new window</a></li>
-            <li><button class="btn-view-code" onclick="javascript:location.reload();">{{ iconRefresh }} Refresh Page</button></li>
+            <li><button class="btn-refresh-page" onclick="javascript:location.reload();">{{ iconRefresh }} Refresh Page</button></li>
             <li><a class="btn-repository" href="{{ site.repo }}/blob/main/{{ component.path }}/">{{ iconGit }} View Repository</a></li>
             <li><button class="btn-view-code">{{ iconCode }} View Source Code</button></li>
           </ul>
