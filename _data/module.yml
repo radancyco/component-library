@@ -210,6 +210,7 @@ components:
       
       - name: "Interactive Heading (Viewport Friendly)"
         id: "viewport-friendly"
+        note: "To understand how this works, try clicking on the headings. As you can see, nothing happens. However, when you resize the viewport to be smaller, the headings become interactive."
       
       - name: "Open Disclosure"
         id: "open-disclosure"
