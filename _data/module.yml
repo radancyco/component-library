@@ -19,9 +19,11 @@ components:
 
       - name: "Grid Layout"
         id: "grid"
+        reminder: 'Do not confuse a horizontal accordion with a tabbed interface; they are not the same, and the key difference lies in their behavior. If you need a content section to always remain open and never be closed, then you should use the <a href="../tablist/">TabList</a> component.'
 
       - name: "Grid Layout with Close Button"
         id: "grid-close-button"
+        reminder: 'Do not confuse a horizontal accordion with a tabbed interface; they are not the same, and the key difference lies in their behavior. If you need a content section to always remain open and never be closed, then you should use the <a href="../tablist/">TabList</a> component.'
 
       - name: "Open Accordion"
         id: "open"
@@ -351,7 +353,7 @@ components:
           
       - name: "Offset Button (Bottom, Anti-Pattern)"
         id: "offset-button-bottom"
-        warning: 'Positioning disclosure buttons on the bottom of content to be opened above them is considered an anti-pattern and <a href="#anti-pattern-read-more">not recommended</a>. Use at your own risk.'
+        warning: 'Positioning disclosure buttons on the bottom of content to be opened above them is considered an anti-pattern and <a href="#read-more">not recommended</a>. Use at your own risk.'
         guidance: anti-pattern-read-more
 
   - id: "rating"
