@@ -18,17 +18,16 @@
 
     // Variables
 
+    --accordion-accent-size: calc(25rem/16);
     --accordion-button-active: #6F00EF;
     --accordion-button-color: #d3d3d3;
     --accordion-button-state: #a9a9a9;
     --accordion-panel-border: 1px transparent solid;
     --accordion-panel-color: #d3d3d3;
     --accordion-gap: calc(5rem/16);
-
-    // Change amount of grid items per 
-
     --accordion-medium: 2;
-    --accordion-large: 3;
+    --accordion-large: 4;
+    --accordion-icon-size: 1rem;
 
     display: grid;
     grid-template-columns: 1fr;
@@ -49,62 +48,146 @@
           grid-template-columns: repeat(var(--accordion-large), 1fr); 
 
         }
-
+        
       }
 
-      &__button, &__filler {
+      &__state {
+      justify-self: end;
+      transform: rotate(-45deg);
+      inline-size: var(--accordion-icon-size);
+      block-size: var(--accordion-icon-size);
+      border: 2px transparent solid;
+      border-inline-start-color: #000;
+      border-block-end-color: #000;
+      }
+
+      &__button {
       background-color: var(--accordion-button-color);
       border: 0;
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: auto 1fr;
       font-size: unset;
       padding: 1em;
       position: relative;
       text-align: start;
-
+        
         [data-grid] & {
-        padding: 2em;
-        text-align: center;
+          
+          padding: 2em;
+          text-align: center;
+
+          // Accent (Arrow)
+
+          &::after {
+          background-color: var(--accordion-panel-color);
+          block-size: var(--accordion-accent-size);
+          border-left: var(--accordion-panel-border);
+          border-top: var(--accordion-panel-border);
+          content: "";
+          display: none;
+          inline-size: var(--accordion-accent-size);
+          inset-block-end: calc(var(--accordion-accent-size) * -1);
+          inset-inline-end: 0;
+          inset-inline-start: 50%;
+          pointer-events: none;
+          position: absolute;
+          transform: rotate(45deg) translateX(-50%);
+          z-index: 1;
+
+            [data-animation] & {
+
+              opacity: 0;
+              translate: 0 var(--accordion-accent-size);
+    
+            }
+  
+          }   
+
+        }
+
+        [data-animation] & {
+        transition: 300ms;
+        }
+
+        [data-overlay][data-active] & {
+        display: none;
         }
 
         // Note: Focus and hover states must meet a 3:1 color ratio between background color and foreground text.
         // The project designer should be providing this state.
 
-        &:not(div) {
-        cursor: pointer;
+        &:focus-visible, &:hover {
+        background-color: var(--accordion-button-state);
+        }
 
-          &:focus-visible, &:hover {
-          background-color: var(--accordion-button-state);
+        &[aria-expanded="true"] {
+        background-color: var(--accordion-button-active);
+        color: #fff;
+
+          [data-grid] & {
+
+            // Accent (Arrow)
+
+            &::after {
+            display: block;
+            }
+
           }
 
-          &[aria-expanded="true"] {
-          background-color: var(--accordion-button-active);
-          color: #fff;
+          [data-animation] & { 
 
-            [data-grid] & {
+            // Accent (Arrow) - Animated
+              
+            &::after {
+            opacity: 1;
+            transition-behavior: allow-discreate;
+            transition-delay: 500ms;
+            transition-duration: 1s;
+            transition-property: display opacity translate;
+            transition-timing-function: ease;
+            translate: 0 0;
 
-              // Accent (Arrow)
+              @starting-style {
 
-              &::after {
-              background-color: var(--accordion-panel-color);
-              border-left: var(--accordion-panel-border);
-              border-top: var(--accordion-panel-border);
-              bottom: calc(17.5rem/16 * -1);
-              content: "";
-              display: block;
-              height: calc(25rem/16);
-              left: 0;
-              margin: auto;
-              pointer-events: none;
-              position: absolute;
-              right: 0;
-              transform: rotate(45deg);
-              width: calc(25rem/16);
-              z-index: 1;
-              }   
+                opacity: 0;
+                translate: 0 var(--accordion-accent-size);
+
+              }
 
             }
 
-            + .accordion__panel {
-            display: block;
+          }
+
+          .accordion__state {
+          border-inline-start-color: #fff;
+          border-block-end-color: #fff;
+          transform: rotate(135deg);
+          translate: 0 calc(8rem/16);
+
+            [data-grid] & {
+
+              display: none;
+
+            }
+
+          }
+
+          + .accordion__panel {
+          display: block;
+
+            [data-animation] & {
+
+              opacity: 1;
+              max-height: 5000px;
+
+                @starting-style {
+
+                  opacity: 0;
+                  max-height: 0;
+
+                }
+
             }
 
           }
@@ -119,6 +202,17 @@
       margin-top: calc(var(--accordion-gap) * -1);
       padding: 1em;
       position: relative;
+
+        [data-animation] & {
+
+          max-height: 0;
+          opacity: 0;
+          transition-behavior: allow-discreate;
+          transition-duration: 1s;
+          transition-property: display opacity max-height;
+          transition-timing-function: ease-in-out;
+
+        }
 
         [data-close-button] & {
 
@@ -169,12 +263,12 @@
       background-size: calc(20rem/16);
       border: 0;
       cursor: pointer;
-      height: calc(30rem/16);
+      block-size: calc(30rem/16);
       padding: 0;
       position: absolute;
       inset-inline-end: 1.5em;
       inset-block-start: 1.5em;
-      width: calc(30rem/16);
+      inline-size: calc(30rem/16);
       }
 
       // Focus State

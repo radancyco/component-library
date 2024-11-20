@@ -22,6 +22,7 @@
     var accordionButtonClassName = "accordion__button";
     var accordionButtonClass = "." + accordionButtonClassName;
     var accordionPanelClass = ".accordion__panel";
+    var accordionDataActiveState = "data-active";
     var accordionDataDefaultOpen = "data-open";
     var accordionDataCloseButton = "data-close-button";
     var accordionDataDisableAnchor = "data-disable-anchor";
@@ -66,12 +67,19 @@
         btn.setAttribute("aria-controls", "accordion-" + buttonID);
         btn.setAttribute("aria-expanded", "false");
 
+        // Add Toggle Icon
+
+        var toggleState = document.createElement("span");
+
+        toggleState.setAttribute("aria-hidden", "true");
+        toggleState.classList.add("accordion__state");
+        btn.append(toggleState);
+
         // Handle button click.
 
         btn.addEventListener("click", function() {
 
           var isExpanded = btn.getAttribute("aria-expanded") === "true";
-          var isOpen = btn.closest(accordionClass).hasAttribute("data-open");
 
           buttons.forEach(function(button) {
 
@@ -81,17 +89,9 @@
 
           btn.setAttribute("aria-expanded", isExpanded ? "false" : "true");
 
-          // Toggle the "data-open" attribute on the parent accordion. This is for future useage.
+          // Add "data-active" attribute on the parent accordion. Might be useful to achieve interesting UX.
     
-          if (isOpen) {
-            
-            accordion.removeAttribute(accordionDataDefaultOpen);
-  
-          } else {
-            
-            accordion.setAttribute(accordionDataDefaultOpen, "");
-  
-          }
+          accordion.setAttribute(accordionDataActiveState, "");
 
           // Place focus on close button if present.
 
@@ -157,6 +157,12 @@
           closeButton.addEventListener("click", function() {
 
             var thisButton = panel.previousElementSibling;
+
+            // Remove "data-active" attribute.
+
+            accordion.removeAttribute(accordionDataActiveState);
+
+            // Reset button state, move focus to button that initiated click.
 
             thisButton.setAttribute("aria-expanded", "false");
             thisButton.focus();
