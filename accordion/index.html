@@ -8,7 +8,7 @@ attributes:
       - Boolean
       - Optional
     
-    desc: Specifies that each accordion should have its own close button. By default, no close buttons are provided.
+    desc: Specifies that each accordion should have its own close button. By default, no close buttons are provided. Should only be used with <code>data-overlay</code>.
 
   - name: data-disable-anchor
     html: .accordion
@@ -44,16 +44,7 @@ attributes:
       - Boolean
       - Optional
     
-    desc: Specifies which accordion panel should be open on page load. If not specified, no panels will be open by default. Only one accordion should be open.
-
-  - name: data-toggle
-    html: .accordion
-    note:
-
-      - Boolean
-      - Optional
-    
-    desc: Enables toggling of individual accordion panels with repeated button presses. The default behavior is for panels to close when a new one is opened.
+    desc: Specifies which accordion panel should be open on page load. If not specified, no panels will be open by default. Only one accordion may be opened at a time.
 
   - name: id
     html: .accordion__button

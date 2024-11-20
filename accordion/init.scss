@@ -22,12 +22,12 @@
     --accordion-button-active: #6F00EF;
     --accordion-button-color: #d3d3d3;
     --accordion-button-state: #a9a9a9;
+    --accordion-gap: calc(5rem/16);
+    --accordion-icon-size: 1rem;
     --accordion-panel-border: 1px transparent solid;
     --accordion-panel-color: #d3d3d3;
-    --accordion-gap: calc(5rem/16);
-    --accordion-medium: 2;
-    --accordion-large: 4;
-    --accordion-icon-size: 1rem;
+    --accordion-size-large: 4;
+    --accordion-size-medium: 2;
 
     display: grid;
     grid-template-columns: 1fr;
@@ -39,13 +39,13 @@
 
         @media (min-width: 37.5em) {
 
-          grid-template-columns: repeat(var(--accordion-medium), 1fr); 
+          grid-template-columns: repeat(var(--accordion-size-medium), 1fr); 
 
         }
 
         @media (min-width: 55em) {
 
-          grid-template-columns: repeat(var(--accordion-large), 1fr); 
+          grid-template-columns: repeat(var(--accordion-size-large), 1fr); 
 
         }
         
@@ -66,8 +66,8 @@
       border: 0;
       cursor: pointer;
       display: grid;
-      grid-template-columns: auto 1fr;
       font-size: unset;
+      grid-template-columns: auto 1fr;
       padding: 1em;
       position: relative;
       text-align: start;
@@ -160,8 +160,8 @@
           }
 
           .accordion__state {
-          border-inline-start-color: #fff;
           border-block-end-color: #fff;
+          border-inline-start-color: #fff;
           transform: rotate(135deg);
           translate: 0 calc(8rem/16);
 
@@ -196,6 +196,8 @@
 
       }
 
+      // Accordion Panel
+
       &__panel {
       background-color: var(--accordion-panel-color);
       display: none;
@@ -226,13 +228,13 @@
 
           @media (min-width: 37.5em) {
 
-            grid-column: 1 / span var(--accordion-medium);
+            grid-column: 1 / span var(--accordion-size-medium);
 
           }
 
           @media (min-width: 55em) {
 
-            grid-column: 1 / span var(--accordion-large);
+            grid-column: 1 / span var(--accordion-size-large);
 
           }
 
