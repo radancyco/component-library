@@ -20,6 +20,7 @@
     var accordionCloseClassName = "accordion__close";
     var accordionCloseClass = "." + accordionCloseClassName;
     var accordionButtonClassName = "accordion__button";
+    var accordionIconClassName = "accordion__icon";
     var accordionButtonClass = "." + accordionButtonClassName;
     var accordionPanelClass = ".accordion__panel";
     var accordionDataActiveState = "data-active";
@@ -72,7 +73,7 @@
         var toggleState = document.createElement("span");
 
         toggleState.setAttribute("aria-hidden", "true");
-        toggleState.classList.add("accordion__state");
+        toggleState.classList.add(accordionIconClassName);
         btn.append(toggleState);
 
         // Handle button click.

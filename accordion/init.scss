@@ -29,6 +29,11 @@
     --accordion-size-large: 4;
     --accordion-size-medium: 2;
 
+    // Breakpoints (CSS variables are not allowed in media queries)
+
+    $breakpoint-large: 55em; 
+    $breakpoint-medium: 37.5em; 
+
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--accordion-gap);
@@ -37,13 +42,13 @@
 
       &[data-grid] {
 
-        @media (min-width: 37.5em) {
+        @media (min-width: $breakpoint-medium) {
 
           grid-template-columns: repeat(var(--accordion-size-medium), 1fr); 
 
         }
 
-        @media (min-width: 55em) {
+        @media (min-width: $breakpoint-large) {
 
           grid-template-columns: repeat(var(--accordion-size-large), 1fr); 
 
@@ -51,7 +56,7 @@
         
       }
 
-      &__state {
+      &__icon {
       justify-self: end;
       transform: rotate(-45deg);
       inline-size: var(--accordion-icon-size);
@@ -142,11 +147,11 @@
             &::after {
             opacity: 1;
             transition-behavior: allow-discreate;
-            transition-delay: 500ms;
-            transition-duration: 1s;
+            transition-delay: 300ms;
+            transition-duration: 800ms;
             transition-property: display opacity translate;
-            transition-timing-function: ease;
-            translate: 0 0;
+            transition-timing-function: ease-in;
+            translate: 0 .1rem;
 
               @starting-style {
 
@@ -226,13 +231,13 @@
         border: var(--accordion-panel-border);
         margin-top: auto;
 
-          @media (min-width: 37.5em) {
+          @media (min-width: $breakpoint-medium) {
 
             grid-column: 1 / span var(--accordion-size-medium);
 
           }
 
-          @media (min-width: 55em) {
+          @media (min-width: $breakpoint-large) {
 
             grid-column: 1 / span var(--accordion-size-large);
 
