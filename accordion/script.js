@@ -48,6 +48,7 @@ initAccordion("https://services.tmpwebeng.com/component-library/language-pack.js
   var accordionButtonClassName = "accordion__button";
   var accordionIconClassName = "accordion__icon";
   var accordionButtonClass = "." + accordionButtonClassName;
+  var accordionShowAllClass = ".accordion__show";
   var accordionHeadingClassName = "accordion__heading";
   var accordionPanelClass = ".accordion__panel";
   var accordionDataActiveState = "data-active";
@@ -56,7 +57,6 @@ initAccordion("https://services.tmpwebeng.com/component-library/language-pack.js
   var accordionDataDisableAnchor = "data-disable-anchor";
   var accordionDataFixedHeight = "data-fixed-height";
   var accordionDataMultiExpand = "data-multi-expand";
-  var accordionDataShowAll = "data-show-all";
   var accordions = document.querySelectorAll(accordionClass);
   var URLFragment = location.hash.slice(1);
 

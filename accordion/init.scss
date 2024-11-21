@@ -37,6 +37,7 @@
   gap: var(--accordion-gap);
   grid-auto-flow: dense;
   position: relative;
+  margin: 0;
 
     &[data-grid] {
 
@@ -58,6 +59,10 @@
 
     &__heading {
     all: unset;
+    }
+
+    ol, ul, li {
+    display: contents;
     }
 
     // Accordion Icon

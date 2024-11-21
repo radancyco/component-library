@@ -32,7 +32,7 @@ components:
 
       - name: "FAQ (Interactive Headings)"
         id: "faq"
-        note: "In this example, take note of the headings used to wrap the <code>button</code>. Using headings in cases like this is a great way to provide a logical and interactive structure, which is often found on FAQs and similar layouts."
+        note: 'In this example, take note of the headings used to wrap the <code>button</code> element, creating a logical, interactive, and navigable structure for assistive technology users. The list markup helps convey the number of items, and wrapping the accordion in a <code>section</code> element connected to the "My FAQ" heading with <code>aria-labelledby</code> enhances clarity. Together, these techniques improve the components accessibility for users with disabilities.'
         
       - name: "Multiple Expansion"
         id: "multi-expand"
