@@ -29,7 +29,7 @@
     --accordion-size-large: 4;
     --accordion-size-medium: 2;
 
-    // Breakpoints (CSS variables are not allowed in media queries)
+    // Breakpoints (CSS variables are not allowed in media queries - boo!)
 
     $breakpoint-large: 55em; 
     $breakpoint-medium: 37.5em; 
@@ -56,15 +56,19 @@
         
       }
 
+      // Accordion Icon
+
       &__icon {
+      block-size: var(--accordion-icon-size);
+      border-block-end-color: var(--accordion-button-active);
+      border-inline-start-color: var(--accordion-button-active);
+      border: 2px transparent solid;
+      inline-size: var(--accordion-icon-size);
       justify-self: end;
       transform: rotate(-45deg);
-      inline-size: var(--accordion-icon-size);
-      block-size: var(--accordion-icon-size);
-      border: 2px transparent solid;
-      border-inline-start-color: var(--accordion-button-active);
-      border-block-end-color: var(--accordion-button-active);
       }
+
+      // Accordion Buttons
 
       &__button {
       background-color: var(--accordion-button-color);
@@ -164,6 +168,8 @@
 
           }
 
+          // Accordion Icon
+
           .accordion__icon {
           border-block-end-color: #fff;
           border-inline-start-color: #fff;
@@ -177,6 +183,8 @@
             }
 
           }
+
+          // Accordion Panel
 
           + .accordion__panel {
           display: block;
@@ -261,6 +269,8 @@
         }
 
       }
+
+      // Accordion Close Button
 
       &__close {
       background-color: transparent;
