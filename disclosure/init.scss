@@ -28,7 +28,7 @@ position: relative;
 
 }
 
-.disclosure--btn, .disclosure--toggle-all {
+.disclosure--btn {
 background-color: $base-color;
 border: 0;
 color: #fff;
@@ -38,34 +38,6 @@ padding: 1em;
 position: relative;
 text-align: start; 
 width: 100%;
-}
-
-.disclosure--toggle-all {
-inset-block-start: 0;
-inset-inline-end: 0;
-position: absolute;
-max-width: 6.8rem;
-
-  .disclosure--toggle-all-icon {
-
-    &::after {
-    content: "+";
-    }
-
-  }
-
-  &[aria-pressed="true"] {
-
-    .disclosure--toggle-all-icon {
-
-      &::after {
-      content: "-";
-      }
-
-    }
-
-  }
-
 }
 
 .disclosure--heading {

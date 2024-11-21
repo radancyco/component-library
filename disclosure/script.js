@@ -21,7 +21,6 @@
   var disclosure = document.querySelectorAll(".disclosure");
   var disclosureBtn = document.querySelectorAll(".disclosure--btn");
   var disclosureContent = document.querySelectorAll(".disclosure--content");
-  var disclosureToggleAll = document.querySelectorAll(".disclosure--toggle-all");
 
   // Add Listener and other needed attributes to disclosure button
 
@@ -98,21 +97,6 @@
   disclosureContent.forEach(function(content, e) {
 
     content.setAttribute("role", "group");
-
-  });
-
-  // Multiple
-
-  disclosureToggleAll.forEach(function(toggle, e) {
-
-    toggle.setAttribute("aria-pressed", "false");
-    toggle.insertAdjacentHTML("beforeend", " <span class='disclosure--toggle-all-icon' aria-hidden='true'></span>");
-
-    toggle.addEventListener("click", function () {
-
-      discloseMultiple(this);
-
-    });
 
   });
 
@@ -269,58 +253,6 @@
       }
 
     }
-
-  }
-
-  function discloseMultiple(thisButton){
-
-    var isActive = thisButton.getAttribute("aria-pressed");
-
-    if(isActive === "true") {
-
-      thisButton.setAttribute("aria-pressed", "false");
-
-    } else {
-
-      thisButton.setAttribute("aria-pressed", "true");
-
-    }
-
-    var openAll = thisButton.closest(".disclosure").querySelectorAll(".disclosure--btn");
-
-    openAll.forEach(function(button, e) {
-
-      if (isActive === "true") {
-
-        button.setAttribute("aria-expanded", "false");
-
-        if(button.closest(".disclosure--heading")) {
-
-          button.closest(".disclosure--heading").classList.remove("open");
-
-        } else {
-
-          button.classList.remove("open");
-
-        }
-
-      } else {
-
-        button.setAttribute("aria-expanded", "true");
-
-        if(button.closest(".disclosure--heading")) {
-
-          button.closest(".disclosure--heading").classList.add("open");
-
-        } else {
-
-          button.classList.add("open");
-
-        }
-
-      }
-
-    });
 
   }
 
