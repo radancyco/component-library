@@ -62,8 +62,8 @@
       inline-size: var(--accordion-icon-size);
       block-size: var(--accordion-icon-size);
       border: 2px transparent solid;
-      border-inline-start-color: #000;
-      border-block-end-color: #000;
+      border-inline-start-color: var(--accordion-button-active);
+      border-block-end-color: var(--accordion-button-active);
       }
 
       &__button {
