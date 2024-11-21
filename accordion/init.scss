@@ -60,9 +60,9 @@
 
       &__icon {
       block-size: var(--accordion-icon-size);
+      border: 2px transparent solid;
       border-block-end-color: var(--accordion-button-active);
       border-inline-start-color: var(--accordion-button-active);
-      border: 2px transparent solid;
       inline-size: var(--accordion-icon-size);
       justify-self: end;
       transform: rotate(-45deg);
