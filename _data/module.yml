@@ -442,7 +442,7 @@ components:
   - id: "tablist"
     desc: "This component will allow you to implement a tablist user interface."
     path: "tablist"
-    title: "Tablist"
+    title: "TabList"
     version: "1.7"
     examples:
 
