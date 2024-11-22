@@ -16,7 +16,7 @@ components:
       - name: "Fixed Content Height"
         id: "fixed-height"
 
-      - name: "Grid Layout (Animated)"
+      - name: "Grid Layout (Animated, Experimental)"
         id: "grid-animation"
         experimental: "Please note that this example uses the new <a href='https://caniuse.com/mdn-css_at-rules_starting-style'>@starting-style</a> rule to animate <code>display: none</code>. This technique is <a href='https://caniuse.com/mdn-css_at-rules_starting-style'>supported</a> in most major browsers. If you require animation in non-supporting browser, you will need to come up with an alternative solution. Non-supporting browsers will simply toggle the display of the content."
         reminder: 'Do not confuse a horizontal accordion with a tabbed interface&mdash;they are not the same. The key difference lies in their behavior. If you need a content section to always remain open and never be closed, then you should use the <a href="../tablist/">TabList</a> component.'
@@ -25,9 +25,9 @@ components:
         id: "grid-default"
         reminder: 'Do not confuse a horizontal accordion with a tabbed interface&mdash;they are not the same. The key difference lies in their behavior. If you need a content section to always remain open and never be closed, then you should use the <a href="../tablist/">TabList</a> component.'
 
-      - name: "Grid Layout (Overlay)"
+      - name: "Grid Layout (Overlay, Experimental)"
         id: "grid-overlay"
-        experimental: 'This is an experimental layout. While it is has been designed and developed with accessibility in mind and should not be an issue, we do yet know how it may impact disabled users.'
+        experimental: 'This is an experimental layout. While it is has been designed and developed with accessibility in mind and should not be an issue, we do yet know how it may impact all disabled users.'
         reminder: 'Do not confuse a horizontal accordion with a tabbed interface&mdash;they are not the same. The key difference lies in their behavior. If you need a content section to always remain open and never be closed, then you should use the <a href="../tablist/">TabList</a> component.'
 
       - name: "FAQ (Interactive Headings)"
