@@ -172,7 +172,13 @@
       }
 
       [data-animation] & {
-      transition: 300ms;
+
+        @media (prefers-reduced-motion: no-preference) {
+      
+          transition: 300ms;
+
+        }
+
       }
 
       [data-overlay][data-active] & {
@@ -215,12 +221,17 @@
             
           &::after {
           opacity: 1;
-          transition-behavior: allow-discreate;
-          transition-delay: 300ms;
-          transition-duration: 800ms;
-          transition-property: display opacity translate;
-          transition-timing-function: ease-in;
           translate: 0 .1rem;
+
+            @media (prefers-reduced-motion: no-preference) {
+
+              transition-behavior: allow-discreate;
+              transition-delay: 300ms;
+              transition-duration: 800ms;
+              transition-property: display opacity translate;
+              transition-timing-function: ease-in;
+
+            }
 
             @starting-style {
 
@@ -274,10 +285,15 @@
 
         max-height: 0;
         opacity: 0;
-        transition-behavior: allow-discreate;
-        transition-duration: 1s;
-        transition-property: display opacity max-height;
-        transition-timing-function: ease-in-out;
+
+        @media (prefers-reduced-motion: no-preference) {
+
+          transition-behavior: allow-discreate;
+          transition-duration: 1s;
+          transition-property: display opacity max-height;
+          transition-timing-function: ease-in-out;
+
+        }
 
       }
 
