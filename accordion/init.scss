@@ -68,6 +68,7 @@
     // Accordion Icon
 
     &__icon {
+    justify-self: end;
     margin-inline-start: 1em;
 
       &::before {
@@ -79,7 +80,6 @@
         content: "";
         display: block;
         inline-size: var(--accordion-icon-size);
-        justify-self: end;
         transform: rotate(-45deg);
 
           :dir(rtl) & {
@@ -116,7 +116,6 @@
       inline-size: auto;
       margin-block-end: 1em;
       padding: 1em;
-
 
     }
 
