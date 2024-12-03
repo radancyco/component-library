@@ -109,7 +109,7 @@ initAccordion("https://services.tmpwebeng.com/component-library/language-pack.js
 
       btn.addEventListener("click", function() {
 
-        var isExpanded = btn.getAttribute("aria-expanded") === "true";
+        var isExpanded = btn.getAttribute("aria-expanded") === "true"; 
 
         if (!accordion.hasAttribute(accordionDataMultiExpand)) {
 
