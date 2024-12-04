@@ -11,7 +11,7 @@
 
   "use strict";
 
-  // Display which component in use via console:
+  // Display which component is in use via console:
 
   console.log("%c {{ include.title }} v{{ include.version }} in use. ", "background: #6e00ee; color: #fff");
 
@@ -24,48 +24,39 @@
   var inPageLabel = document.querySelectorAll(inPageLabelClass);
   var inPageSelect = document.querySelectorAll(inPageSelectClass);
   var inPageState = "active";
-  var inPageHash =  window.location.hash;
-  var inPageFragment = inPageHash.substr(1);
   var inPageContentList = [];
 
   // On page load
 
-  inPage.forEach(function(component){
+  inPage.forEach(function(component) {
 
-    // Check to see if "dynamic" Jump Menu in use.
+    // Check if "dynamic" Jump Menu is in use.
 
-    if(component.hasAttribute("data-in-page-dynamic")){
+    if (component.hasAttribute("data-in-page-dynamic")) {
 
       var inPageContent = component.querySelectorAll(inPageContentClass);
       var inPageContentNth = component.querySelectorAll(inPageContentClass + ":nth-of-type(n + 2)");
 
-      inPageContentNth.forEach(function(content, i){
+      inPageContentNth.forEach(function(content) {
 
         content.setAttribute("hidden", "");
 
       });
 
-      inPageContent.forEach(function(content, i){
+      inPageContent.forEach(function(content, i) {
 
-        var count = (i + 1);
+        var count = i + 1;
 
         // If custom ID present
 
-        if(content.hasAttribute("data-in-page-id")) {
-
-          var contentID = content.getAttribute("data-in-page-id");
-
-        } else {
-
-          var contentID = "content-" + count;
-
-        }
+        var contentID = content.hasAttribute("data-in-page-id") ? content.getAttribute("data-in-page-id"): "content-" + count;
 
         content.setAttribute("id", contentID);
 
         // Create option element
 
         var option = document.createElement("option");
+
         option.setAttribute("value", "#" + contentID);
         option.textContent = content.getAttribute("data-in-page-name");
 
@@ -83,7 +74,7 @@
 
   var inPageOption = document.querySelectorAll(inPageOptionClass);
 
-  inPageLabel.forEach(function(label, e){
+  inPageLabel.forEach(function(label, e) {
 
     // Apply "for" attribute to each label.
 
@@ -91,7 +82,7 @@
 
   });
 
-  inPageSelect.forEach(function(select, e){
+  inPageSelect.forEach(function(select, e) {
 
     // Apply "id" to each select.
 
@@ -101,45 +92,60 @@
 
   // Get all Job Menu options on page and push to array.
 
-  inPageOption.forEach(function(option){
+  inPageOption.forEach(function(option) {
 
     inPageContentList.push(option.getAttribute("value"));
 
   });
 
-  // console.log(inPageContentList);
-
   function inPageSelectedState() {
+
+    var inPageHash = window.location.hash || inPageContentList[0];
+    var inPageFragment = inPageHash.substr(1);
 
     // Check array against hash
 
-    if(inPageContentList.includes(inPageHash)) {
+    if (inPageContentList.includes(inPageHash)) {
 
-      // If hash matches one of the array selections, then load the selected content in hash
-
-      var inPageSelected =  document.getElementById(inPageFragment);
+      // If hash matches one of the array selections, load the selected content in hash
+    
+      var inPageSelected = document.getElementById(inPageFragment);
       var inPageContent = inPageSelected.closest(inPageClass).querySelectorAll(inPageContentClass);
 
-      inPageContent.forEach(function(content, i){
-
+      inPageContent.forEach(function(content) {
+      
         content.setAttribute("hidden", "");
 
       });
 
       inPageSelected.removeAttribute("hidden");
 
-      inPageOption.forEach(function(select){
+      inPageOption.forEach(function(option) {
 
-        var optionvalue  = select.getAttribute("value");
+        var optionValue = option.getAttribute("value");
 
-        if (location.hash === optionvalue) {
+        if (location.hash === optionValue) {
 
-          select.setAttribute("selected", "");
-          select.closest(inPageClass).classList.add(inPageState);
+          option.setAttribute("selected", "");
+          option.closest(inPageClass).classList.add(inPageState);
+
+        } else {
+
+          option.removeAttribute("selected");
 
         }
 
       });
+
+      // Update select dropdown
+
+      var select = document.querySelector(`${inPageClass} select`);
+
+      if (select) {
+
+        select.value = inPageHash;
+
+      }
 
     }
 
@@ -147,41 +153,34 @@
 
   inPageSelectedState();
 
+  // Hash change event listener
+
   window.addEventListener("hashchange", inPageSelectedState);
 
-  inPageSelect.forEach(function(select){
+  inPageSelect.forEach(function(select) {
 
-    select.addEventListener("change", function () {
+    select.addEventListener("change", function() {
 
       var inPageParent = this.closest(inPageClass);
-
-      var inPageSelected = inPageParent.getElementsByTagName("select")[0];
-
-      if(!inPageParent.hasAttribute("data-in-page-aria-live")){
-
-        var inPageAnnounce = inPageParent.querySelector("div[aria-live]");
-
-        inPageAnnounce.textContent = "Selected Content: " + this.options[this.selectedIndex].text;
-
-      }
-
-      history.replaceState(null, null, inPageSelected.value);
-
-      var inPageContentSelected = window.location.hash.substr(1);
-
       var inPageContent = inPageParent.querySelectorAll(inPageContentClass);
 
-      inPageContent.forEach(function(content, i){
+      // Update hash in URL
+
+      history.replaceState(null, null, this.value);
+
+      inPageContent.forEach(function(content) {
 
         content.setAttribute("hidden", "");
 
       });
 
+      var inPageContentSelected = window.location.hash.substr(1);
+
       document.getElementById(inPageContentSelected).removeAttribute("hidden");
 
       // Set selected jump menu to active.
 
-      inPage.forEach(function(menu){
+      inPage.forEach(function(menu) {
 
         menu.classList.remove(inPageState);
 
@@ -193,11 +192,11 @@
 
   });
 
-  // Some browsers fail to place the select back to 0 when back button selected. This fixes that.
+  // Fix for some browsers not resetting the select index on page unload.
 
-  window.addEventListener("beforeunload", function () {
+  window.addEventListener("beforeunload", function() {
 
-    inPage.forEach(function(menu){
+    inPage.forEach(function(menu) {
 
       if (!menu.classList.contains(inPageState)) {
 
