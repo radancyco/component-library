@@ -174,7 +174,7 @@
 
       });
 
-      var inPageContentSelected = window.location.hash.substr(1);
+      var inPageContentSelected = window.location.hash.slice(1);
 
       document.getElementById(inPageContentSelected).removeAttribute("hidden");
 
