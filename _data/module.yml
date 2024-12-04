@@ -13,6 +13,7 @@ components:
 
       - name: "Disable Anchor"
         id: "disable-anchor"
+        note: "Please note that including an anchor can be useful for tracking and sharing specific content, so we should only remove when we have a good reason to."
 
       - name: "Fixed Content Height"
         id: "fixed-height"
@@ -33,7 +34,7 @@ components:
 
       - name: "FAQ (Interactive Headings)"
         id: "faq"
-        note: 'In this example, take note of the headings used to wrap the <code>button</code> element, creating a logical, interactive, and navigable structure for assistive technology users. List markup is also present to help convey the number of accordion items, and wrapping the accordion in a <code>section</code> element connected to the "My FAQ" heading via <code>aria-labelledby</code> enhances clarity. Together, these techniques improve the understanding of the component for users with disabilities. Please watch the <a href="faq.mp4">demo</a> to thie behavior in action.'
+        note: 'In this example, take note of the headings used to wrap the <code>button</code> elements, creating a logical, interactive, and navigable structure for assistive technology users. List markup is also present to help convey the number of accordion items, and wrapping the accordion in a <code>section</code> element connected to the "My FAQ" heading via <code>aria-labelledby</code> creates a landmark region, enhancing clarity further. Together, these techniques improve the understanding of the component for users with disabilities. Please watch the <a href="faq.mp4">demo</a> to thie behavior in action.'
         
       - name: "Multiple Expansion"
         id: "multi-expand"
@@ -41,6 +42,11 @@ components:
 
       - name: "Open Accordion"
         id: "open"
+        note: "Please note that only one accordion can be opened on page load. This content can be closed and should not be confused with the <a href='/tablist/'>TabList</a>, which may never have content closed."
+
+      - name: "Viewport Context"
+        id: "viewport-context"
+        note: "In some scenarios, we may only want the accordion to be present on smaller viewports. In such cases, it is crucial to ensure that accessibility on larger screens is not compromised by leaving buttons accessible to assistive technologies. To see this solution in action, try clicking on or tabbing to the headings on larger viewport sizes. As you'll notice, the headings are not interactive and all content is revealed, which is exactly what we want. However, when you resize the viewport to a smaller size, the component then becomes a traditional accordion. This kind of behavior can often be found in the footer of an application of website, where space is more critical on mobile."
 
   - id: "accordion-grid"
     deprecated: true
@@ -219,11 +225,7 @@ components:
 
       - name: "Interactive Heading"
         id: "interactive-heading"
-      
-      - name: "Interactive Heading (Viewport Friendly)"
-        id: "viewport-friendly"
-        note: "To understand how this works, try clicking on the headings. As you can see, nothing happens. However, when you resize the viewport to be smaller, the headings become interactive."
-      
+
       - name: "Open Disclosure"
         id: "open-disclosure"
 

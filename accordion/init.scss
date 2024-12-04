@@ -61,7 +61,7 @@
     all: unset;
     }
 
-    ol, ul, li {
+    > ol, > ul, > ul > li {
     display: contents;
     }
 
@@ -70,6 +70,16 @@
     &__icon {
     justify-self: end;
     margin-inline-start: 1em;
+
+      [data-viewport-context] & {
+
+        @media (min-width: $breakpoint-medium) {
+
+          display: none;
+
+        }
+
+      }
 
       &::before {
 
@@ -133,7 +143,17 @@
     padding: 1em;
     position: relative;
     text-align: start;
-      
+
+      [data-animation] & {
+
+        @media (prefers-reduced-motion: no-preference) {
+    
+          transition: 300ms;
+
+        }
+
+      }
+
       [data-grid] & {
 
         @media (min-width: $breakpoint-medium) {
@@ -171,18 +191,26 @@
 
       }
 
-      [data-animation] & {
-
-        @media (prefers-reduced-motion: no-preference) {
+      [data-overlay][data-active] & {
+        
+        display: none;
       
-          transition: 300ms;
+      }
+
+      [data-viewport-context] & {
+
+        @media (min-width: $breakpoint-medium) {
+
+          pointer-events: none;
+          visibility: hidden;
+
+            span {
+            color: var(--accordion-button-active);
+            visibility: visible;
+            }
 
         }
 
-      }
-
-      [data-overlay][data-active] & {
-      display: none;
       }
 
       // Note: Focus and hover states must meet a 3:1 color ratio between background color and foreground text.
@@ -192,7 +220,6 @@
       background-color: var(--accordion-button-state);
       }
 
-      // Focus State
       // Accessibility: NEVER remove focus outlines! Either redesign them or design an alternative focus state. Learn: https://webaim.org/articles/contrast/
 
       &:focus-visible {
@@ -204,16 +231,6 @@
       &[aria-expanded="true"] {
       background-color: var(--accordion-button-active);
       color: #fff;
-
-        [data-grid] & {
-
-          // Accent (Arrow)
-
-          &::after {
-          display: block;
-          }
-
-        }
 
         [data-animation] & { 
 
@@ -240,6 +257,16 @@
 
             }
 
+          }
+
+        }
+
+        [data-grid] & {
+
+          // Accent (Arrow)
+
+          &::after {
+          display: block;
           }
 
         }
@@ -329,6 +356,17 @@
         scrollbar-color: var(--accordion-button-state) var(--accordion-button-color);
         scrollbar-gutter: stable;
         scrollbar-width: thin;
+
+      }
+
+      [data-viewport-context] & {
+
+        @media (min-width: $breakpoint-medium) {
+
+          background-color: transparent;
+          display: block;
+
+        }
 
       }
 
