@@ -139,7 +139,7 @@
 
       // Update select dropdown
 
-      var select = document.querySelector(`${inPageClass} select`);
+      var select = document.querySelector(inPageClass + " select");
 
       if (select) {
 
