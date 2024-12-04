@@ -164,9 +164,9 @@
 
 		var selectedContent = document.querySelector(inPageContentClass + ":not([hidden])");
     var selectedContentID = selectedContent.getAttribute("id");
-    var URLHash = window.location.hash.slice(1);
+    var URLHash = window.location.hash.substr(1);
 
-    if(selectedContentID === URLHash) {
+    if(URLHash === selectedContentID) {
 
 		  selectedContent.setAttribute("tabindex", "-1");
 		  selectedContent.focus();
@@ -202,7 +202,7 @@
 
       });
 
-      var inPageContentSelected = window.location.hash.slice(1);
+      var inPageContentSelected = window.location.hash.substr(1);
 
       document.getElementById(inPageContentSelected).removeAttribute("hidden");
 
