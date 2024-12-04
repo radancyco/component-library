@@ -188,7 +188,7 @@
 
         var inPageAnnounce = inPageParent.querySelector("div[aria-live]");
 
-        inPageAnnounce.textContent = "Selected Content: " + this.options[this.selectedIndex].text;
+        inPageAnnounce.textContent = "Selected Content: " + this.options[this.selectedIndex].text; // TODO: Tokenize for i18n.
 
       }
 
