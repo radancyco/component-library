@@ -100,8 +100,15 @@
 
   function inPageSelectedState() {
 
-    var inPageHash = window.location.hash || inPageContentList[0];
-    var inPageFragment = inPageHash.substr(1);
+    var inPageHash = location.hash || inPageContentList[0];
+
+    if (!inPageHash) {
+
+      return;
+    
+    }
+
+    var inPageFragment = inPageHash.slice(1);
 
     // Check array against hash
 
