@@ -164,7 +164,7 @@
 
 		var selectedContent = document.querySelector(inPageContentClass + ":not([hidden])");
     var selectedContentID = selectedContent.getAttribute("id");
-    var URLHash = window.location.hash.substr(1);
+    var URLHash = location.hash.slice(1);
 
     if(URLHash === selectedContentID) {
 
@@ -202,7 +202,7 @@
 
       });
 
-      var inPageContentSelected = window.location.hash.substr(1);
+      var inPageContentSelected = location.hash.slice(1);
 
       document.getElementById(inPageContentSelected).removeAttribute("hidden");
 
