@@ -84,7 +84,7 @@ components:
 
       - name: "Audio Description (Experimental)"
         id: "audio-description"
-        note: "This is an experimental feature that will allow the video to include an audio description. A valid, self-produced <a href='demo.vtt'>VTT</a> file is required."
+        experimental: "This is an experimental feature that will allow the video to include an audio description. A valid, self-produced <a href='demo.vtt'>VTT</a> file is required."
       
       - name: "Callback Example (After Effects)"
         id: "callback"
@@ -98,13 +98,10 @@ components:
 
       - name: "Custom Loop"
         id: "custom-loop"
-        note: "The video will only loop one time. Once complete, it cannot be restarted."
+        note: "In this example, the video is set to loop one time. Once complete, it cannot be restarted."
 
       - name: "Hero Banner (Video)"
         id: "hero-banner"
-
-      - name: "Kitchen Sink"
-        id: "kitchen-sink"
 
       - name: "Multiple Videos"
         id: "multiple-videos"
@@ -112,7 +109,7 @@ components:
 
       - name: "No Pause Button"
         id: "no-pause-button"
-        note: In some situations, it may be desirable to remove a pause button but still have animation benefit from cookie setting enabled in videos that do contain a pause button. This is not a feature that should be used lightly.
+        warning: In some situations, it may be desirable to remove a pause button but still have animation benefit from cookie setting enabled in videos that do contain a pause button. This is not a feature that should be used lightly.
 
       - name: "Poster (Fallback Image)"
         id: "poster"
