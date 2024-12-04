@@ -101,7 +101,7 @@
 
   // Get all Job Menu options on page and push to array.
 
-  inPageOption.forEach(function(option, e){
+  inPageOption.forEach(function(option){
 
     inPageContentList.push(option.getAttribute("value"));
 
@@ -128,7 +128,7 @@
 
       inPageSelected.removeAttribute("hidden");
 
-      inPageOption.forEach(function(select, i){
+      inPageOption.forEach(function(select){
 
         var optionvalue  = select.getAttribute("value");
 
@@ -147,7 +147,9 @@
 
   inPageSelectedState();
 
-  inPageSelect.forEach(function(select, e){
+  window.addEventListener("hashchange", inPageSelectedState);
+
+  inPageSelect.forEach(function(select){
 
     select.addEventListener("change", function () {
 
@@ -179,7 +181,7 @@
 
       // Set selected jump menu to active.
 
-      inPage.forEach(function(menu, e){
+      inPage.forEach(function(menu){
 
         menu.classList.remove(inPageState);
 
@@ -195,7 +197,7 @@
 
   window.addEventListener("beforeunload", function () {
 
-    inPage.forEach(function(menu, e){
+    inPage.forEach(function(menu){
 
       if (!menu.classList.contains(inPageState)) {
 

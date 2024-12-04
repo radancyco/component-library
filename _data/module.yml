@@ -9,6 +9,7 @@ components:
 
       - name: "Default"
         id: "default"
+        note: "Please keep in mind that this is a basic example of accordion functionality. Adding additional markup, such as headings and lists, can enhance the component's accessibility and make it more understandable for users with disabilities. See the <a href='#faq'>FAQ</a> example for more details."
 
       - name: "Disable Anchor"
         id: "disable-anchor"
@@ -23,16 +24,16 @@ components:
 
       - name: "Grid Layout (Default)"
         id: "grid-default"
-        reminder: 'Do not confuse a horizontal accordion with a tabbed interface&mdash;they are not the same. The key difference lies in their behavior. If you need a content section to always remain open and never be closed, then you should use the <a href="../tablist/">TabList</a> component.'
+        reminder: 'Do not confuse a horizontal accordion with a tabbed interface&mdash;they are not the same. The key difference lies in their behavior. If you need a content section to <em>always</em> remain open and never be closed, then you should use the <a href="../tablist/">TabList</a> component.'
 
       - name: "Grid Layout (Overlay, Experimental)"
         id: "grid-overlay"
         experimental: 'This is an experimental layout. While it is has been designed and developed with accessibility in mind and should not be an issue, we do yet know how it may impact all disabled users.'
-        reminder: 'Do not confuse a horizontal accordion with a tabbed interface&mdash;they are not the same. The key difference lies in their behavior. If you need a content section to always remain open and never be closed, then you should use the <a href="../tablist/">TabList</a> component.'
+        reminder: 'Do not confuse a horizontal accordion with a tabbed interface&mdash;they are not the same. The key difference lies in their behavior. If you need a content section to always <em>always</em> open and never be closed, then you should use the <a href="../tablist/">TabList</a> component.'
 
       - name: "FAQ (Interactive Headings)"
         id: "faq"
-        note: 'In this example, take note of the headings used to wrap the <code>button</code> element, creating a logical, interactive, and navigable structure for assistive technology users. The list markup helps convey the number of items, and wrapping the accordion in a <code>section</code> element connected to the "My FAQ" heading with <code>aria-labelledby</code> enhances clarity. Together, these techniques improve the components accessibility for users with disabilities. Please watch <a href="faq.mp4">demo</a> of this behavior.'
+        note: 'In this example, take note of the headings used to wrap the <code>button</code> element, creating a logical, interactive, and navigable structure for assistive technology users. List markup is also present to help convey the number of accordion items, and wrapping the accordion in a <code>section</code> element connected to the "My FAQ" heading via <code>aria-labelledby</code> enhances clarity. Together, these techniques improve the understanding of the component for users with disabilities. Please watch the <a href="faq.mp4">demo</a> to thie behavior in action.'
         
       - name: "Multiple Expansion"
         id: "multi-expand"
@@ -391,7 +392,7 @@ components:
     desc: "This component will allow you to add a select navigation to your page that can reveal in-page content."
     path: "select-internal"
     title: "Select Navigation (Internal)"
-    version: "1.3"
+    version: "1.4"
     examples:
 
       - name: "Default Setup"
@@ -480,7 +481,7 @@ components:
 
       - name: "Button Click Only"
         id: "button-click"
-        note: In this example, only the button is accessible because the card contains specific interactive elements, like hyperlinks, which should never be obscured. By default, the entire card region is clickable.
+        note: In this example, only the button is clickable because the card contains specific interactive elements, like hyperlinks, which should never be obscured. By default, the entire card region is clickable.
       
       - name: "Open All Cards"
         id: "open-all"
