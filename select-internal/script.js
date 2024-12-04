@@ -20,6 +20,7 @@
   var inPageSelectClass = ".in-page__select";
   var inPageOptionClass = ".in-page__select option";
   var inPageContentClass = ".in-page__content";
+  var inPageDataCustomAriaLive = "data-custom-aria-live";
   var inPage = document.querySelectorAll(inPageClass);
   var inPageLabel = document.querySelectorAll(inPageLabelClass);
   var inPageSelect = document.querySelectorAll(inPageSelectClass);
@@ -60,11 +61,9 @@
         option.setAttribute("value", "#" + contentID);
         option.textContent = content.getAttribute("data-in-page-name");
 
-        var thisSelect = content.closest(inPageClass).getElementsByTagName("select")[0];
-
         // Append each dynamic option.
 
-        thisSelect.appendChild(option);
+        component.querySelector("select").appendChild(option);
 
       });
 
@@ -191,7 +190,7 @@
 
       // Send message to screen reader.
 
-      if(!inPageParent.hasAttribute("data-in-page-aria-live")){
+      if(!inPageParent.hasAttribute(inPageDataCustomAriaLive)){
 
         var inPageAnnounce = inPageParent.querySelector("div[aria-live]");
 
@@ -235,7 +234,7 @@
 
       if (!menu.classList.contains(inPageState)) {
 
-        menu.getElementsByTagName("select")[0].selectedIndex = 0;
+        menu.querySelector("select").selectedIndex = 0;
 
       }
 
