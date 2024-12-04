@@ -163,9 +163,15 @@
 		// If this causes issues elsewhere on page when haschange is fired, let me know.
 
 		var selectedContent = document.querySelector(inPageContentClass + ":not([hidden])");
+    var selectedContentID = selectedContent.getAttribute("id");
+    var URLHash = window.location.hash.slice(1);
 
-		selectedContent.setAttribute("tabindex", "-1");
-		selectedContent.focus();
+    if(selectedContentID === URLHash) {
+
+		  selectedContent.setAttribute("tabindex", "-1");
+		  selectedContent.focus();
+
+    }
 
 	});
 
@@ -175,6 +181,16 @@
 
       var inPageParent = this.closest(inPageClass);
       var inPageContent = inPageParent.querySelectorAll(inPageContentClass);
+
+      // Send message to screen reader.
+
+      if(!inPageParent.hasAttribute("data-in-page-aria-live")){
+
+        var inPageAnnounce = inPageParent.querySelector("div[aria-live]");
+
+        inPageAnnounce.textContent = "Selected Content: " + this.options[this.selectedIndex].text;
+
+      }
 
       // Update hash in URL
 
