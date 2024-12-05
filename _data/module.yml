@@ -46,7 +46,7 @@ components:
 
       - name: "Viewport Context"
         id: "viewport-context"
-        note: "In some scenarios, we may only want the accordion to be present on smaller viewports. In such cases, it is crucial to ensure that accessibility on larger screens is not compromised by leaving buttons accessible to assistive technologies. To see this solution in action, try clicking on or tabbing to the headings on larger viewport sizes. As you'll notice, the headings are not interactive and all content is revealed, which is exactly what we want. However, when you resize the viewport to a smaller size, the component then becomes a traditional accordion. This kind of behavior can often be found in the footer of an application of website, where space is more critical on mobile."
+        note: "In some scenarios, we may only want the accordion to be present on smaller viewports. In such cases, it is crucial to ensure that accessibility on larger screens is not compromised by leaving buttons accessible to assistive technologies. To see this solution in action, try clicking on or tabbing to the headings on larger viewport sizes. As you'll notice, the headings are not interactive and all content is revealed, which is exactly what we want. However, when you resize the viewport to a smaller size, the component then becomes a traditional accordion. This kind of behavior can often be found in the footer of applications or website, where space is more limited on smaller screens."
 
   - id: "accordion-grid"
     deprecated: true
