@@ -30,6 +30,7 @@ border-radius: 5px;
   }
 
   &__content {
+  margin-top: 2em;
   
     &:target {
     scroll-margin-top: calc(190em / 16);
