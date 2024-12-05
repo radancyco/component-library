@@ -3,11 +3,11 @@
   Radancy Component Library: Jump Menu (In-page)
 
   Contributor(s):
-  Michael "Spell" Spellacy, Email: michael.spellacy@radancy.com, Twitter: @spellacy, GitHub: michaelspellacy
+  Michael "Spell" Spellacy
 
   Dependencies: Sass
 
-  Instructions: To run locally, install Sass (https://sass-lang.com/install), CL to directory this file in and run:
-  sass --watch init.scss:init.css --style compressed
+  Instructions:
+  sass --watch .:. --style compressed
 
-*/.in-page{background-color:#eee;border-radius:5px;padding:1em}.in-page__label{display:block;font-weight:bold;margin-inline-end:.3em}@media(min-width: 48.625em){.in-page__label{display:inline-block}}.in-page__select{font-size:inherit;margin-inline-end:.3em;padding:.5em}.in-page__content:target{scroll-margin-top:11.875em}/*# sourceMappingURL=init.css.map */
+*/.in-page{border-radius:5px}.in-page__label{display:block;font-weight:bold;margin-inline-end:.3em}.in-page__select{font-size:inherit;margin-inline-end:.3em;padding:.5em}.in-page__content:target{scroll-margin-top:11.875em}/*# sourceMappingURL=init.css.map */

@@ -15,21 +15,12 @@
 $base-color: #6F00EF;
 
 .in-page {
-background-color: #eee;
 border-radius: 5px;
-padding: 1em;
 
   &__label {
   display: block;
   font-weight: bold;
   margin-inline-end: .3em;
-
-    @media(min-width: 48.625em) {
-
-      display: inline-block;
-
-    }
-
   }
 
   &__select {

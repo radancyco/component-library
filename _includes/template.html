@@ -77,17 +77,17 @@
 
 {% endif %}
 
-{% if page.in-page-custom %}
+{% if page.in-page %}
 
-  <div class="in-page-custom" data-in-page-dynamic>
+  <div class="in-page" data-in-page-dynamic>
 
     <h2 id="examples">Examples</h2>
 
-    <nav aria-label="Example" class="in-page-custom__nav">
+    <nav aria-label="Example" class="in-page__nav">
 
-      <label class="in-page-custom__label">Choose an example:</label>
+      <label class="in-page__label">Choose an example:</label>
 
-      <select class="in-page-custom__select">
+      <select class="in-page__select">
 
       </select>
 
@@ -148,9 +148,9 @@
 
         {% endif %}
 
-        {% if page.in-page-custom %}
+        {% if page.in-page %}
 
-          <div class="in-page-custom__content" data-in-page-name="{{ example.name }}" data-in-page-id="{{ example.id }}">
+          <div class="in-page__content" data-in-page-name="{{ example.name }}" data-in-page-id="{{ example.id }}">
 
         {% endif %}
   
@@ -347,7 +347,7 @@
     
       </script>
 
-      {% if page.in-page-custom %}
+      {% if page.in-page %}
   
         </div>
 
@@ -359,7 +359,7 @@
 
 {% endfor %}
 
-{% if page.in-page-custom %}
+{% if page.in-page %}
   
 </div>
 
@@ -383,14 +383,19 @@
 
   <p>Use the following properties to configure this component.</p>
 
+  <div class="accordion">
+
 {% endif %}
 
 {% if page.elements %} 
 
+<button class="accordion__button" id="elements">Elements</button>
+
+<div class="accordion__panel">
+
   <div class="table-container">
 
-    <table id="elements">
-    <caption><a class="anchor" href="#elements">{{ iconAnchor }} <span class="sr-only">Anchor (Elements)</span></a> Elements</caption>
+    <table>
     <thead>
     <tr>
       <th>Element</th>
@@ -417,14 +422,19 @@
 
   </div>
 
+</div>
+
 {% endif %}
 
 {% if page.aria %} 
 
+<button class="accordion__button" id="aria">ARIA</button>
+
+<div class="accordion__panel">
+
   <div class="table-container">
 
-    <table id="aria">
-    <caption><a class="anchor" href="#aria">{{ iconAnchor }} <span class="sr-only">Anchor (ARIA)</span></a> ARIA</caption>
+    <table>
     <thead>
     <tr>
       <th>ARIA</th>
@@ -453,14 +463,19 @@
 
   </div>
 
+</div>
+
 {% endif %}
 
 {% if page.attributes %} 
 
+<button class="accordion__button" id="attributes">Attributes</button>
+
+<div class="accordion__panel">
+
   <div class="table-container">
 
-    <table id="attributes">
-    <caption><a class="anchor" href="#attributes">{{ iconAnchor }} <span class="sr-only">Anchor (Attributes)</span></a> Attributes</caption>
+    <table>
     <thead>
     <tr>
       <th>Attribute</th>
@@ -480,23 +495,28 @@
         <td>{% for html in attribute.html %}<code>{{ html }}</code>{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
         <td>{% for note in attribute.note %}{{ note }}{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
         <td>{{ attribute.desc }}</td>
-    </tr>
+      </tr>
 
-    {% endfor %}
+      {% endfor %}
 
     </tbody>
     </table>
 
   </div>
 
+</div>
+
 {% endif %}
 
 {% if page.sass %} 
 
+<button class="accordion__button" id="sass">SASS</button>
+
+<div class="accordion__panel">
+
   <div class="table-container">
 
-    <table id="scss">
-    <caption><a class="anchor" href="#scss">{{ iconAnchor }} <span class="sr-only">Anchor (SCSS)</span></a> SCSS</caption>
+    <table>
     <thead>
     <tr>
       <th>Variable</th>
@@ -521,14 +541,19 @@
 
   </div>
 
+</div>
+
 {% endif %}
 
 {% if page.classes %} 
 
+<button class="accordion__button" id="classes">Classes</button>
+
+<div class="accordion__panel">
+
   <div class="table-container">
 
-    <table id="classes">
-    <caption><a class="anchor" href="#classes">{{ iconAnchor }} <span class="sr-only">Anchor (Classes)</span></a> Classes</caption>
+    <table>
     <thead>
     <tr>
       <th>Class</th>
@@ -557,14 +582,19 @@
 
   </div>
 
+</div>
+
 {% endif %}
 
 {% if page.cookies %} 
 
+<button class="accordion__button" id="cookies">Cookies</button>
+
+<div class="accordion__panel">
+
   <div class="table-container">
 
-    <table id="cookies">
-    <caption><a class="anchor" href="#cookies">{{ iconAnchor }} <span class="sr-only">Anchor (Cookies)</span></a> Cookies</caption>
+    <table>
     <thead>
     <tr>
       <th>Name</th>
@@ -603,10 +633,13 @@
 
 {% if page.parameters %} 
 
+<button class="accordion__button" id="parameters">Parameters</button>
+
+<div class="accordion__panel">
+
   <div class="table-container">
 
-    <table id="parameters">
-    <caption><a class="anchor" href="#parameters">{{ iconAnchor }} <span class="sr-only">Anchor (Parameters)</span></a> Parameters</caption>
+    <table>
     <thead>
     <tr>
       <th>Parameter</th>
@@ -633,11 +666,15 @@
 
   </div>
 
+</div>
+
 {% endif %}
 
 {% if page.notes %} 
 
-  <h2 id="notes"><a class="anchor" href="#notes">{{ iconAnchor }} <span class="sr-only">Anchor (Notes)</span></a> Additional Notes</h2>
+<button class="accordion__button" id="notes">Additional Notes</button>
+
+<div class="accordion__panel">
 
   <ul>
     
@@ -651,26 +688,38 @@
 
   </ul>
 
+</div>
+
 {% endif %}
 
 {% if page.roadmap %} 
 
-  <h2 id="roadmap"><a class="anchor" href="#roadmap">{{ iconAnchor }} <span class="sr-only">Anchor (Notes)</span></a> Roadmap</h2>
+  <button class="accordion__button" id="roadmap">Roadmap</button>
 
-  <ul>
-    
-    {% assign sortRoadmap = page.roadmap %}
+  <div class="accordion__panel">
 
-    {% for roadmap in sortRoadmap %}
+    <ul>
     
-      <li>{{ roadmap }}</li> 
-    
-    {% endfor %}
+      {% assign sortRoadmap = page.roadmap %}
 
-  </ul>
+      {% for roadmap in sortRoadmap %}
+    
+        <li>{{ roadmap }}</li> 
+    
+      {% endfor %}
+
+    </ul>
+
+  </div>
+
+{% endif %}
+
+{% if page.elements or page.aria or page.attributes or page.sass or page.class or page.cookies or page.parameters %}
+
+</div>
 
 {% endif %}
 
 <h2 id="issues">Report Issues</h2>
 
-<p>Find a bug? Report it on <a href="https://jira.radancy.com/secure/Dashboard.jspa#create_link">JIRA</a>. You're so awesome!</p>
+<p>Find a bug? Want a new feature? Report it on <a href="https://jira.radancy.com/secure/Dashboard.jspa#create_link">JIRA</a>. You're so awesome!</p>
