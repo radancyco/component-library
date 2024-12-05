@@ -292,24 +292,24 @@ components:
     version: "1.6"
 
   - id: "horizontal-scroll" 
-    desc: "This component will allow you to add a grid layout that turns into a horizontal scroll in smaller viewports. It can be used as an alternative to carousels."
+    desc: "This component enables you to create a layout that transitions into a horizontal scroll on both smaller and larger viewports. It can serve as an excellent alternative to traditional carousels."
     path: "horizontal-scroll"
     title: "Horizontal Scroller"
-    version: "1.0"
+    version: "1.1"
     examples:
 
-      - name: "Interactive Elements (Large Viewport)"
+      - name: "Interactive Scroller (Large Viewport)"
         id: "large-interactive"
 
-      - name: "Interactive Elements (Small Viewport)"
+      - name: "Interactive Scroller (Small Viewport)"
         id: "small-interactive"
-        warning: "If all items in the grid contain interactive elements, such as a link or button, then the component <strong>does not</strong> require an <strong>accessible name</strong>, <strong>role</strong>, and <strong>tabindex</strong>."
-        note: "To access the scroll, adjust the viewport size to be smaller. Additionally, please be aware that the design and functionality of the scrollbar may vary across different operating systems and browsers, which is normal and expected."
+        warning: "If all items contain interactive elements, such as a link or button, then the component <strong>does not</strong> require an <strong>accessible name</strong>, <strong>role</strong>, and <strong>tabindex</strong>."
+        reminder: "To access the scroll, adjust the viewport size to be smaller. Additionally, please be aware that the design and functionality of the scrollbar may vary across different operating systems and browsers, which is normal and expected."
 
-      - name: "Non-Interactive Elements (Small Viewport)"
+      - name: "Non-Interactive Scroller (Small Viewport)"
         id: "small-non-interactive"
-        warning: "If all items contain <strong>no</strong> interactive elements, such as a link or button, then the component <strong>must include</strong> an <strong>accessible name</strong>, <strong>role</strong>, and <strong>tabindex</strong>."
-        note: "To access the scroll, adjust the viewport size to be smaller. Additionally, please be aware that the design and functionality of the scrollbar may vary across different operating systems and browsers, which is normal and expected."
+        warning: "If <strong>no</strong> items contain interactive elements, such as a link or button, then the component <strong>must include</strong> an <strong>accessible name</strong>, <strong>role</strong>, and <strong>tabindex</strong>."
+        reminder: "To access the scroll, adjust the viewport size to be smaller. Additionally, please be aware that the design and functionality of the scrollbar may vary across different operating systems and browsers, which is normal and expected."
 
   - id: "job-list"
     desc: "This component will allow you to implement and control the presentation of job search result listings."
