@@ -305,6 +305,7 @@
     background-color: var(--accordion-panel-color);
     display: none;
     margin-top: calc(var(--accordion-gap) * -1);
+    overflow: hidden;
     padding: 1em;
     position: relative;
 
