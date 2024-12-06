@@ -398,7 +398,7 @@
     <table>
     <thead>
     <tr>
-      <th scopr="row">Element</th>
+      <th scope="row">Element</th>
       <th>Note</th>
       <th>Description</th>
     </tr>
@@ -410,7 +410,7 @@
     {% for element in sortElements %}
 
       <tr>
-        <th scopr="row">{% for html in element.html %}<code>{{ html }}</code>{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</th>
+        <th scope="row">{% for html in element.html %}<code>{{ html }}</code>{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</th>
         <td>{% for note in element.note %}{{ note }}{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
         <td>{{ element.desc }}</td>
       </tr>
@@ -437,7 +437,7 @@
     <table>
     <thead>
     <tr>
-      <th scopr="row">ARIA</th>
+      <th scope="row">ARIA</th>
       <th>Applies To</th>
       <th>Note</th>
       <th>Description</th>
@@ -450,7 +450,7 @@
     {% for aria in sortAria %}
 
       <tr>
-        <th scopr="row"><code>{{ aria.name }}</code></th>
+        <th scope="row"><code>{{ aria.name }}</code></th>
         <td><code>{% for html in aria.html %}<code>{{ html }}</code>{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</code></td>
         <td>{% for note in aria.note %}{{ note }}{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
         <td>{{ aria.desc }}</td>
@@ -478,7 +478,7 @@
     <table>
     <thead>
     <tr>
-      <th scopr="row">Attribute</th>
+      <th scope="row">Attribute</th>
       <th>Applies To</th>
       <th>Note</th>
       <th>Description</th>
@@ -491,7 +491,7 @@
     {% for attribute in sortAttributes %}
 
       <tr>
-        <th scopr="row"><code>{{ attribute.name }}</code></th>
+        <th scope="row"><code>{{ attribute.name }}</code></th>
         <td>{% for html in attribute.html %}<code>{{ html }}</code>{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
         <td>{% for note in attribute.note %}{{ note }}{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
         <td>{{ attribute.desc }}</td>
@@ -519,7 +519,7 @@
     <table>
     <thead>
     <tr>
-      <th scopr="row">Variable</th>
+      <th scope="row">Variable</th>
       <th>Description</th>
     </tr>
     </thead>
@@ -530,7 +530,7 @@
     {% for scss in sortSass %}
 
       <tr>
-        <th scopr="row"><code>{{ scss.name }}</code></th>
+        <th scope="row"><code>{{ scss.name }}</code></th>
         <td>{{ scss.desc }}</td>
     </tr>
 
@@ -556,7 +556,7 @@
     <table>
     <thead>
     <tr>
-      <th scopr="row">Class</th>
+      <th scope="row">Class</th>
       <th>Applies To</th>
       <th>Note</th>
       <th>Description</th>
@@ -569,7 +569,7 @@
     {% for class in sortClasses %}
 
       <tr>
-        <th scopr="row"><code>{{ class.name }}</code></th>
+        <th scope="row"><code>{{ class.name }}</code></th>
         <td>{% for html in class.html %}<code>{{ html }}</code>{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
         <td>{% for note in class.note %}{{ note }}{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
         <td>{{ class.desc }}</td>
@@ -597,7 +597,7 @@
     <table>
     <thead>
     <tr>
-      <th scopr="row">Name</th>
+      <th scope="row">Name</th>
       <th>Value</th>
       <th>Type</th>
       <th>Secure</th>
@@ -613,7 +613,7 @@
     {% for cookie in sortCookies %}
 
       <tr>
-        <th scopr="row">{{ cookie.name }}</th>
+        <th scope="row">{{ cookie.name }}</th>
         <td>{{ cookie.value }}</td>
         <td>{{ cookie.type }}</td>
         <td>{{ cookie.secure }}</td>
@@ -642,7 +642,7 @@
     <table>
     <thead>
     <tr>
-      <th scopr="row">Parameter</th>
+      <th scope="row">Parameter</th>
       <th>Note</th>
       <th>Description</th>
     </tr>
@@ -654,7 +654,7 @@
     {% for parameter in sortParameters %}
 
       <tr>
-        <th scopr="row">{{ parameter.name }}</th>
+        <th scope="row">{{ parameter.name }}</th>
         <td>{% for note in parameter.note %}{{ note }}{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
         <td>{{ parameter.desc }}</td>
       </tr>
