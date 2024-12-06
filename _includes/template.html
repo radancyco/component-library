@@ -196,7 +196,7 @@
 
         {% endif %}
 
-        <nav aria-label="Code Functions" class="component-functions">
+        <nav aria-label="Component Tools" class="component-functions">
         
           <ul>
             <li><button class="btn-copy-link" data-code="{{ page.url | absolute_url }}#{{ example.id }}">{{ iconCheck }}{{ iconCopyURL }} Copy link to example</button></li>
@@ -377,7 +377,7 @@
 
 {% endif %}
 
-{% if page.elements or page.aria or page.attributes or page.sass or page.class or page.cookies or page.parameters %}
+{% if page.elements or page.aria or page.attributes or page.sass or page.class or page.cookies or page.parameters or page.notes %}
 
   <h2 id="properties">Properties</h2>
 
@@ -714,7 +714,7 @@
 
 {% endif %}
 
-{% if page.elements or page.aria or page.attributes or page.sass or page.class or page.cookies or page.parameters %}
+{% if page.elements or page.aria or page.attributes or page.sass or page.class or page.cookies or page.parameters or page.notes %}
 
 </div>
 
