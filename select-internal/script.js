@@ -200,7 +200,17 @@
 
       // Update hash in URL
 
-      history.replaceState(null, null, this.value);
+      if (this.value === "") {
+
+        var urlWithoutHash = window.location.href.split("#")[0];
+        
+        history.replaceState(null, null, urlWithoutHash);
+
+      } else {
+
+        history.replaceState(null, null, this.value);
+
+      }
 
       inPageContent.forEach(function(content) {
 

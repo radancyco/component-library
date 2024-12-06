@@ -393,15 +393,21 @@ components:
     title: "Select Navigation (Internal)"
     version: "1.6"
     examples:
-
+      
       - name: "Default Setup"
         id: "default-setup"
+
+      - name: "Default Label (No Content)"
+        id: "default-label"
 
       - name: "Custom Aria-Live"
         id: "custom-aria-live"
 
       - name: "Dynamic Setup"
         id: "dynamic-setup"
+
+      - name: "Optgroup" 
+        id: "optgroup"
 
   - id: "tabcordion"
     deprecated: true
