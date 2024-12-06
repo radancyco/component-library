@@ -110,12 +110,6 @@
 
 {% endfor %}
 
-{% if total_example_count == 1 %}
-
-  <h2 id="basic-setup">Default Setup</h2>
-
-{% endif %}
-
 {% for component in allSelections %}
 
     {% if component.id == current_id %}
@@ -151,6 +145,12 @@
         {% if page.in-page %}
 
           <div class="in-page__content" data-in-page-name="{{ example.name }}" data-in-page-id="{{ example.id }}">
+
+        {% endif %}
+
+        {% if page.in-page != true %}
+
+          <h2 id="{{ example.id }}"><a class="anchor" href="#{{ example.id }}">{{ iconAnchor }} <span class="sr-only">Anchor ({{ example.name }})</span></a> {{ example.name }}</h2>
 
         {% endif %}
   
