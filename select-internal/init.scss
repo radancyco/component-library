@@ -17,16 +17,21 @@ $base-color: #6F00EF;
 .in-page {
 border-radius: 5px;
 
+  &__nav {
+  background-color: #eee;
+  display: block;
+  max-width: calc(420rem / 16);
+  padding: 1em;
+  }
+
   &__label {
   display: block;
   font-weight: bold;
-  margin-inline-end: .3em;
+  margin: 0 0 .3em;
   }
 
   &__select {
   font-size: inherit;
-  margin-inline-end: .3em;
-  max-width: calc(420rem / 16);
   padding: .5em;
   width: 100%;
   }
