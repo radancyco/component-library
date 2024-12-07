@@ -17,7 +17,7 @@ function loadAnimationToggle(url, callback) {
 
   var getComponentLanguagePack = document.getElementById("component-library-language-pack");
 
-  if (getComponentLanguagePack) {
+  if (getComponentLanguagePack === null) {
 
     callback();
 
