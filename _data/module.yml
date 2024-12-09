@@ -298,15 +298,15 @@ components:
     version: "1.1"
     examples:
 
-      - name: "Interactive Scroller (Large Viewport)"
+      - name: "Interactive Scroller (Desktop)"
         id: "large-interactive"
 
-      - name: "Interactive Scroller (Small Viewport)"
+      - name: "Interactive Scroller (Mobile)"
         id: "small-interactive"
         warning: "If all items contain interactive elements, such as a link or button, then the component <strong>does not</strong> require an <strong>accessible name</strong>, <strong>role</strong>, and <strong>tabindex</strong>."
         reminder: "To access the scroll, adjust the viewport size to be smaller. Additionally, please be aware that the design and functionality of the scrollbar may vary across different operating systems and browsers, which is normal and expected."
 
-      - name: "Non-Interactive Scroller (Small Viewport)"
+      - name: "Non-Interactive Scroller (Mobile)"
         id: "small-non-interactive"
         warning: "If <strong>no</strong> items contain interactive elements, such as a link or button, then the component <strong>must include</strong> an <strong>accessible name</strong>, <strong>role</strong>, and <strong>tabindex</strong>."
         reminder: "To access the scroll, adjust the viewport size to be smaller. Additionally, please be aware that the design and functionality of the scrollbar may vary across different operating systems and browsers, which is normal and expected."
