@@ -397,16 +397,17 @@ components:
       - name: "Default Setup"
         id: "default-setup"
 
-      - name: "Default Label (No Content)"
-        id: "default-label"
-
       - name: "Custom Aria-Live"
         id: "custom-aria-live"
 
-      - name: "Dynamic Setup"
+      - name: "Dynamic Setup (Experimental)"
         id: "dynamic-setup"
+        experimental: "Please note that this example is experimental. You may use in production, but it may have unanticipated or unknown issues."
 
-      - name: "Optgroup" 
+      - name: "Placeholder Option"
+        id: "placeholder"
+
+      - name: "Placeholder Option (Optgroup)" 
         id: "optgroup"
 
   - id: "tabcordion"
