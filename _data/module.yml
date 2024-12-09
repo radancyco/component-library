@@ -402,7 +402,7 @@ components:
 
       - name: "Dynamic Setup (Experimental)"
         id: "dynamic-setup"
-        experimental: "Please note that this example is experimental. You may use in production, but it may have unanticipated or unknown issues."
+        experimental: "This example is experimental. Experimental components may require more work, further testing, and must be carefully considered before using in a production environment. Use at own risk."
 
       - name: "Placeholder Option"
         id: "placeholder"
