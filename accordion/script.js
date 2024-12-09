@@ -185,6 +185,9 @@ initAccordion("https://services.tmpwebeng.com/component-library/language-pack.js
 
       if (accordion.hasAttribute(accordionDataFixedHeight)) {
 
+        // For scrollbale content, we need to add a role and accName and tabindex, so user can access panel. 
+        // Firefox does this natively. If interactive content is present in panel, then these attributes are not really needed (but it probably does not hurt to keep them).
+
         panel.setAttribute("role", "region");
         panel.setAttribute("tabindex", "0");
         panel.setAttribute("aria-labelledby", "accordion-" + panelID);
