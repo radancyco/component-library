@@ -1,6 +1,6 @@
 /*!
 
-  Radancy Component Library: Language Pack
+  Radancy Component Library: Language Pack for i18n
 
   Contributor(s):
   Michael "Spell" Spellacy
