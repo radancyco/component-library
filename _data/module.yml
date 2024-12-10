@@ -25,12 +25,12 @@ components:
 
       - name: "Grid Layout (Default)"
         id: "grid-default"
-        reminder: 'Do not confuse a horizontal accordion with a tabbed interface&mdash;they are not the same. The key difference lies in their behavior. If you need a content section to <em>always</em> remain open and never be closed, then you should use the <a href="../tablist/">TabList</a> component.'
+        reminder: 'Do not confuse a horizontal accordion with a tabbed interface&mdash;they are not the same. The key difference lies in their behavior. If you need a content section to <em>always</em> remain open and never be closed, then use the <a href="../tablist/">TabList</a> component.'
 
       - name: "Grid Layout (Overlay, Experimental)"
         id: "grid-overlay"
         experimental: 'This is an experimental layout. While it is has been designed and developed with accessibility in mind and should not be an issue, we do yet know how it may impact all disabled users.'
-        reminder: 'Do not confuse a horizontal accordion with a tabbed interface&mdash;they are not the same. The key difference lies in their behavior. If you need a content section to always <em>always</em> open and never be closed, then you should use the <a href="../tablist/">TabList</a> component.'
+        reminder: 'Do not confuse a horizontal accordion with a tabbed interface&mdash;they are not the same. The key difference lies in their behavior. If you need a content section to <em>always</em> remain open and never be closed, then use the <a href="../tablist/">TabList</a> component.'
 
       - name: "FAQ (Interactive Headings)"
         id: "faq"
@@ -42,11 +42,11 @@ components:
 
       - name: "Open Accordion"
         id: "open"
-        note: "Please note that only one accordion can be opened on page load. This content can be closed and should not be confused with the <a href='/tablist/'>TabList</a>, which may never have content closed."
+        note: "Please note that only one accordion can be opened on page load. This content can be closed and should not be confused with the <a href='/tablist/'>TabList</a>, which may never have collapsed content."
 
       - name: "Viewport Context"
         id: "viewport-context"
-        note: "In some scenarios, we may only want the accordion to be present on smaller viewports. In such cases, it is crucial to ensure that accessibility on larger screens is not compromised by leaving buttons accessible to assistive technologies. To see this solution in action, try clicking on or tabbing to the headings on larger viewport sizes. As you'll notice, the headings are not interactive and all content is revealed, which is exactly what we want. However, when you resize the viewport to a smaller size, the component then becomes a traditional accordion. This kind of behavior can often be found in the footer of applications or website, where space is more limited on smaller screens."
+        note: "In some scenarios, we may only want the accordion to be present on smaller viewports. In such cases, it is crucial to ensure that accessibility on larger screens is not compromised by leaving buttons accessible to assistive technologies. To see this solution in action, try pressing or tabbing to the headings in larger viewport sizes. As you'll notice, the headings are not interactive and all content that would normally be collapsed is revealed, which is exactly what we want. However, when you resize the viewport to a smaller size, the component then becomes a traditional accordion. This kind of behavior can often be found in the footer of applications or website, where space is more limited on smaller screens."
 
   - id: "accordion-grid"
     deprecated: true
