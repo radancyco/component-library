@@ -10,4 +10,4 @@
   Instructions:
   sass --watch .:. --style compressed
 
-*/.in-page{border-radius:5px}.in-page__nav{background-color:#eee;display:block;max-width:26.25rem;padding:1em}.in-page__label{display:block;font-weight:bold;margin:0 0 .3em}.in-page__select{background-color:#fff;font-size:inherit;padding:.5em;width:100%}.in-page__content{margin-top:2em}.in-page__content:target{scroll-margin-top:11.875em}/*# sourceMappingURL=init.css.map */
+*/.in-page{border-radius:5px}.in-page__nav{background-color:#eee;display:block;max-width:26.25rem;padding:1em}.in-page__label{display:block;font-weight:bold;margin:0 0 .3em}.in-page__select{background-color:#fff;border:1px #ccc solid;font-size:inherit;padding:.5em;width:100%}.in-page__content{margin-top:2em}.in-page__content:target{scroll-margin-top:11.875em}/*# sourceMappingURL=init.css.map */
