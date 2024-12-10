@@ -12,8 +12,6 @@
 
 */
 
-$base-color: #6F00EF;
-
 .in-page {
 border-radius: 5px;
 
@@ -31,6 +29,7 @@ border-radius: 5px;
   }
 
   &__select {
+  background-color: #fff;
   font-size: inherit;
   padding: .5em;
   width: 100%;
