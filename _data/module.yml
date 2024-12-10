@@ -146,7 +146,7 @@ components:
       - name: "Default Setup"
         id: "default-setup"
 
-      - name: "Horizontal Scroll"
+      - name: "Horizontal Scroll (Mobile)"
         id: "horizontal-scroll"
         note: "To access the scroll, adjust the viewport size to be smaller. Additionally, please be aware that the design and functionality of the scrollbar may vary across different operating systems and browsers, which is completely normal and expected."
   
