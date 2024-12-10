@@ -55,6 +55,7 @@
       var accordionPanelClass = ".accordion__panel";
       var accordionDataActiveState = "data-active";
       var accordionDataDefaultOpen = "data-open";
+      var accordionDataOverlay = "data-overlay";
       var accordionDataCloseButton = "data-close-button";
       var accordionDataDisableAnchor = "data-disable-anchor";
       var accordionDataFixedHeight = "data-fixed-height";
@@ -185,14 +186,20 @@
 
           panel.setAttribute("id", "accordion-" + panelID);
 
-          if (accordion.hasAttribute(accordionDataFixedHeight)) {
+           // To better support scrolling and repositioned focus, the panels should have a proper role and accName.
 
-            // For scrollbale content, we need to add a role and accName and tabindex, so user can access panel. 
-            // ome browsers do this natively. If interactive content is present in panel, then these attributes are not really needed (but it likely does not hurt to keep them).
+          if (accordion.hasAttribute(accordionDataFixedHeight) || accordion.hasAttribute(accordionDataOverlay)) {
 
             panel.setAttribute("role", "region");
+            panel.setAttribute("aria-labelledby", panelID);
+
+          }
+
+           // To better support inner-scrolling, the panels must be focusable.
+
+          if (accordion.hasAttribute(accordionDataFixedHeight)) {
+
             panel.setAttribute("tabindex", "0");
-            panel.setAttribute("aria-labelledby", "accordion-" + panelID);
 
           }
 

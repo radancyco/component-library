@@ -13,7 +13,7 @@ components:
 
       - name: "Disable Anchor"
         id: "disable-anchor"
-        note: "Please note that including an anchor can be useful for tracking and sharing specific content, so we should only remove when we have a good reason to."
+        note: "By default, pressing an accordion button will append an anchor to the URL, but this can be disabled if desired. Please note that including an anchor can be useful for sharing specific content (and tracking), so we should only remove when we have a good reason to."
 
       - name: "Fixed Content Height"
         id: "fixed-height"
@@ -459,7 +459,7 @@ components:
 
       - name: "Disable Anchor"
         id: "disable-anchor"
-        note: "By default, clicking a tab will append an anchor to the URL, but this can be disabled if desired."
+        note: "By default, pressing a tab will append an anchor to the URL, but this can be disabled if desired. Please note that including an anchor can be useful for sharing specific content (and tracking), so we should only remove when we have a good reason to."
 
       - name: "Fixed Content Height (Mobile & Desktop)"
         id: "fixed-height"

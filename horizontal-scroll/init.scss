@@ -12,105 +12,101 @@
 
 */
 
-@layer horizontalscroll {
+.horizontal-scroll {
 
-  .horizontal-scroll {
+// Component Variables
 
-  // Component Variables
+--base-color: #6F00EF;
+--base-color-active: #fff;
 
-  --base-color: #6F00EF;
-  --base-color-active: #fff;
+position: relative;
+display: grid;
+gap: 1em;
+grid-auto-flow: column;
+list-style: none;
+overflow-x: auto;
+padding: 1em 0;
+scroll-snap-type: inline mandatory;
+scrollbar-color: var(--base-color) var(--base-color-active);
+scrollbar-width: thin;
 
-  position: relative;
-  display: grid;
-  gap: 1em;
-  grid-auto-flow: column;
-  list-style: none;
-  overflow-x: auto;
-  padding: 1em 0;
-  scroll-snap-type: inline mandatory;
-  scrollbar-color: var(--base-color) var(--base-color-active);
-  scrollbar-width: thin;
+  @media (min-width: 62.5em) {
 
-    @media (min-width: 62.5em) {
+    &:not([data-viewport-large]) { 
 
-      &:not([data-viewport-large]) { 
-
-        grid-auto-flow: unset;
-        grid-template-columns: repeat(4, 1fr);
-        visibility: hidden; // Do not remove.
-
-      }
-   
-    }
-
-    &__card {
-    background-color: #fff;
-    border-radius: calc(10rem / 16);
-    border: calc(1rem / 16) #666 solid;
-    min-width: calc(300rem / 16);
-    padding: 1em;
-    position: relative;
-    scroll-snap-align: start;
-    transition: 300ms;
-    visibility: visible; // Do not remove.
-
-      &:has(a, button) {
-
-        &:hover, &:focus-within {
-        background-color: #ccc;
-        }
-
-      }
-
-      @media(min-width: 62.5em) {
-
-        &:not([data-viewport-large]) & { 
-
-          min-width: auto;
-
-        }
-
-      }
+      grid-auto-flow: unset;
+      grid-template-columns: repeat(4, 1fr);
+      visibility: hidden; // Do not remove.
 
     }
-
-    &__heading {
-
-      a {
-      display: block;
-
-        // Make entire card clickable
-
-        &::before {
-        content: "";
-        display: block;
-        inset: 0;
-        position: absolute;
-        }
-
-      }
-
-    }
-
+  
   }
 
-  // Use for desktop example. You can use whatever classes and properties you want here. 
+  &__card {
+  background-color: #fff;
+  border-radius: calc(10rem / 16);
+  border: calc(1rem / 16) #666 solid;
+  min-width: calc(300rem / 16);
+  padding: 1em;
+  position: relative;
+  scroll-snap-align: start;
+  transition: 300ms;
+  visibility: visible; // Do not remove.
 
-  .grid {
-  display: grid;
-  gap: 1em;
-  
+    &:has(a, button) {
+
+      &:hover, &:focus-within {
+      background-color: #ccc;
+      }
+
+    }
+
     @media(min-width: 62.5em) {
 
-      grid-template-columns: minmax(auto, 480px) 1fr;
+      &:not([data-viewport-large]) & { 
+
+        min-width: auto;
+
+      }
 
     }
 
   }
 
-  .grid-item {
-  overflow: hidden;
+  &__heading {
+
+    a {
+    display: block;
+
+      // Make entire card clickable
+
+      &::before {
+      content: "";
+      display: block;
+      inset: 0;
+      position: absolute;
+      }
+
+    }
+
   }
 
+}
+
+// Use for desktop example. You can use whatever classes and properties you want here. 
+
+.grid {
+display: grid;
+gap: 1em;
+
+  @media(min-width: 62.5em) {
+
+    grid-template-columns: minmax(auto, 480px) 1fr;
+
+  }
+
+}
+
+.grid-item {
+overflow: hidden;
 }

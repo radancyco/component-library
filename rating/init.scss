@@ -11,78 +11,74 @@
 
 */
 
-@layer rating {
+.rating {
 
-  .rating{
+  --checked-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3e%3cpath fill='blueviolet' stroke='%23666' stroke-width='2' d='m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z'/%3e%3c/svg%3e");
+  --max-stars: 5;
+  --unchecked-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3e%3cpath fill='%23fff' stroke='%23666' d='m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z'/%3e%3c/svg%3e");
 
-    --checked-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3e%3cpath fill='blueviolet' stroke='%23666' stroke-width='2' d='m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z'/%3e%3c/svg%3e");
-    --max-stars: 5;
-    --unchecked-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3e%3cpath fill='%23fff' stroke='%23666' d='m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z'/%3e%3c/svg%3e");
+  border: 0;
+  margin: 0;
+  padding: 0;
+  width: fit-content;
 
-    border: 0;
-    margin: 0;
-    padding: 0;
-    width: fit-content;
+  &__container {
+  display: grid;
+  gap: .8em;
+  grid-template-columns: repeat(var(--max-stars), 1fr);
 
-    &__container {
-    display: grid;
-    gap: .8em;
-    grid-template-columns: repeat(var(--max-stars), 1fr);
+  }
 
-    }
+  legend {
+  font-weight: bold;
+  margin-bottom: .5em;
+  }
 
-    legend {
-    font-weight: bold;
-    margin-bottom: .5em;
-    }
+  label {
+  background-image: var(--unchecked-image); 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: block;
+  height: calc(60em/16);
+  margin: 0;
+  padding: 0;
+  width: calc(60em/16);
+  }
+
+  .active {
 
     label {
-    background-image: var(--unchecked-image); 
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    display: block;
-    height: calc(60em/16);
-    margin: 0;
-    padding: 0;
-    width: calc(60em/16);
+    background-image: var(--checked-image); 
     }
 
-    .active {
+    // Make sure there is always a visible focus state when cycling through input element. We can't trust that creative will alwways give us contrast friendly icon states.
 
-      label {
-      background-image: var(--checked-image); 
-      }
+    input {
 
-      // Make sure there is always a visible focus state when cycling through input element. We can't trust that creative will alwways give us contrast friendly icon states.
+      &:focus-visible {
 
-      input {
-
-        &:focus-visible {
-
-          + label {
-          outline: 2px solid black;
-          outline-offset: 2px;
-          }
-
+        + label {
+        outline: 2px solid black;
+        outline-offset: 2px;
         }
 
       }
 
     }
 
-    // Accessibly hide input and span inside label.
+  }
 
-    input, label span {
-    clip: rect(0 0 0 0); 
-    clip-path: inset(50%);
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
-    white-space: nowrap; 
-    width: 1px;
-    }
+  // Accessibly hide input and span inside label.
 
+  input, label span {
+  clip: rect(0 0 0 0); 
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap; 
+  width: 1px;
   }
 
 }

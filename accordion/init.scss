@@ -63,6 +63,10 @@
 
     > ol, > ul, > dl, > ul > li {
     display: contents;
+    } 
+
+    dd {
+    margin: 0;
     }
 
     // Accordion Icon
