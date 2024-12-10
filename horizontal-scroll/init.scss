@@ -42,6 +42,11 @@ scrollbar-width: thin;
   
   }
 
+  > ul, > ol {
+  display: contents;
+  list-style-type: none;
+  }
+
   &__card {
   background-color: #fff;
   border-radius: calc(10rem / 16);

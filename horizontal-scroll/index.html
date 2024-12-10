@@ -40,9 +40,13 @@ classes:
     desc: Used on the parent element that wraps your content.
 
   - name: .horizontal-scroll__card
-    html: div
+    html: 
+    
+        - div
+        - li
+
     note: Mandatory
-    desc: Used for each individual content container. Must be a child of <code>.horizontal-scroll__container</code>.
+    desc: Used for each individual content container.
 
   - name: .horizontal-scroll__heading
     html: 
@@ -55,10 +59,6 @@ classes:
   
     note: Mandatory
     desc: Used for each individual content heading. Ideally, you'll want each heading to contain your hyperlink, so that purpose of each content block can be better understood by assistive technologies.
-
-roadmap:
-
-  - Add support for lists in the Non-interactive Scroller.
 
 id: horizontal-scroll
 localcss: "init.css"
