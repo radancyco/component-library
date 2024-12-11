@@ -190,9 +190,9 @@
 
       // Send message to screen reader.
 
-      if(!inPageParent.hasAttribute(inPageDataCustomAriaLive)){
+      var inPageAnnounce = inPageParent.querySelector("div[aria-live]");
 
-        var inPageAnnounce = inPageParent.querySelector("div[aria-live]");
+      if(!inPageParent.hasAttribute(inPageDataCustomAriaLive)){
 
         inPageAnnounce.textContent = "Selected Content: " + this.options[this.selectedIndex].text; // TODO: Tokenize for i18n.
 
@@ -205,6 +205,8 @@
         var urlWithoutHash = window.location.href.split("#")[0];
         
         history.replaceState(null, null, urlWithoutHash);
+
+        inPageAnnounce.textContent = "";
 
       } else {
 
