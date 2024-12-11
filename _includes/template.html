@@ -684,7 +684,7 @@
 
     {% for note in sortNotes %}
     
-      <li>{{ note }}</li> 
+    <li>{{ note | replace: "Behavior - ", "<span class='note-label behavior'>Behavior:</span> " | replace: "Bug - ", "<span class='note-label behavior'>Behavior:</span> " | replace: "Feature - ", "<span class='note-label feature'>Feature:</span> " | replace: "Logic - ", "<span class='note-label logic'>Logic:</span> " | replace: "Roadmap - ", "<span class='note-label roadmap'>Roadmap:</span> " | replace: "Testing - ", "<span class='note-label testing'>Testing:</span> " }}</li> 
     
     {% endfor %}
 
@@ -706,7 +706,7 @@
 
       {% for roadmap in sortRoadmap %}
     
-        <li>{{ roadmap }}</li> 
+      <li>{{ roadmap | replace: "Behavior - ", "<span class='note-label behavior'>Behavior:</span> " | replace: "Bug - ", "<span class='note-label behavior'>Behavior:</span> " | replace: "Feature - ", "<span class='note-label feature'>Feature:</span> " | replace: "Logic - ", "<span class='note-label logic'>Logic:</span> " | replace: "Roadmap - ", "<span class='note-label roadmap'>Roadmap:</span> " | replace: "Testing - ", "<span class='note-label testing'>Testing:</span> " }}</li> 
     
       {% endfor %}
 
