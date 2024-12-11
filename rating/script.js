@@ -17,13 +17,13 @@
 
     // Select all rating items
 
-    const ratingItems = document.querySelectorAll(".rating__item");
+    var ratingItems = document.querySelectorAll(".rating__item");
 
     // Initial check for any checked input and set up event listeners
 
     ratingItems.forEach(function(ratingItem, index) {
 
-        const input = ratingItem.querySelector("input[type='radio']");
+        var input = ratingItem.querySelector("input[type='radio']");
 
         // If input is checked on load, apply selected classes
 
@@ -64,11 +64,11 @@
 
         // First, clear all classes to reset the selection
 
-        ratingItems.forEach(function(ratingItem, idx) {
+        ratingItems.forEach(function(ratingItem, index) {
 
             ratingItem.classList.remove("active", "selected");
 
-            if (idx <= currentIndex) {
+            if (index <= currentIndex) {
 
                 ratingItem.classList.add("active", "selected");
 
@@ -82,13 +82,13 @@
 
     function applyActiveClasses(currentIndex) {
 
-        ratingItems.forEach(function(ratingItem, idx) {
+        ratingItems.forEach(function(ratingItem, index) {
 
-            // Apply "active" only if idx is up to the current index
+            // Apply "active" only if index is up to the current index
 
             // Preserve "selected" items even when applying "active"
 
-            ratingItem.classList.toggle("active", idx <= currentIndex || ratingItem.classList.contains("selected"));
+            ratingItem.classList.toggle("active", index <= currentIndex || ratingItem.classList.contains("selected"));
 
         });
 
