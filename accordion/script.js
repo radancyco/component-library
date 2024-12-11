@@ -151,6 +151,12 @@
           // Default open based on URL fragment or data-open attribute.
 
           if (buttonID === URLFragment || (!expandedButton && btn.hasAttribute(accordionDataDefaultOpen))) {
+
+            // Add data-active to parent.
+
+            accordion.setAttribute(accordionDataActiveState, "");
+
+            // Open targeted element.
             
             expandedButton = btn;
 
