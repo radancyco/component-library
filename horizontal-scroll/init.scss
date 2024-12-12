@@ -30,15 +30,21 @@ scroll-snap-type: inline mandatory;
 scrollbar-color: var(--base-color) var(--base-color-active);
 scrollbar-width: thin;
 
-  @media (min-width: 62.5em) {
-
     &:not([data-viewport-large]) { 
 
-      grid-auto-flow: unset;
-      grid-template-columns: repeat(4, 1fr);
-      visibility: hidden; // Do not remove.
+      @media (min-width: 62.5em) {
 
-    }
+        grid-auto-flow: unset;
+        grid-template-columns: repeat(4, 1fr);
+        visibility: hidden; // Do not remove.
+
+        .horizontal-scroll__card {
+
+          min-width: auto;
+
+        }
+
+      }
   
   }
 
@@ -62,16 +68,6 @@ scrollbar-width: thin;
 
       &:hover, &:focus-within {
       background-color: #ccc;
-      }
-
-    }
-
-    @media(min-width: 62.5em) {
-
-      &:not([data-viewport-large]) & { 
-
-        min-width: auto;
-
       }
 
     }
