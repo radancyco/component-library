@@ -7,7 +7,7 @@ components:
     version: "2.1" 
     examples: 
 
-      - name: "Default"
+      - name: "Default Setup"
         id: "default"
         note: "Please keep in mind that this is a basic example of accordion functionality. Adding additional markup, such as headings and lists, can enhance the component's accessibility and make it more understandable for users with disabilities. See the <a href='#faq'>FAQ</a> example for more details."
 
