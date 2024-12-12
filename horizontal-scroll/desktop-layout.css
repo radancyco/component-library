@@ -1,0 +1,1 @@
+.grid{display:grid;gap:1em}@media(min-width: 62.5em){.grid{grid-template-columns:minmax(auto, 480px) 1fr}}.grid-item{overflow:hidden}/*# sourceMappingURL=desktop-layout.css.map */

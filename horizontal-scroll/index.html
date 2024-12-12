@@ -6,27 +6,27 @@ attributes:
     note: 
 
       - String
-      - Optional
+      - Mandatory
 
-    desc: Optional except when component contains <strong>no</strong> interactive elements. In this scenario, it <strong>must</strong> be given an accessible name, which can be any name of your choosing.
+    desc: All scrollers <strong>must</strong> be given a unique accessible name, which relates to items within. The script will decide if this attribute is required based on the presence of interactive elements within component.
   
   - name: role
     html: .horizontal-scroll 
     note: 
 
       - String
-      - Optional
+      - Mandatory
 
-    desc: Optional except when component contains <strong>no</strong> interactive elements. In this scenario, it <strong>must</strong> be given a role, which must always be a value of "region".
+    desc: All scrollers <strong>must</strong> be given a role with a value of "region". The script will decide if this attribute is required based on the presence of interactive elements within component.
   
   - name: tabindex
     html: .horizontal-scroll 
     note: 
 
       - Number
-      - Optinal
+      - Mandatory
 
-    desc: Optional except when component contains <strong>no</strong> interactive elements. In this scenario, it <strong>must</strong> be given a tabindex, which must always be a value of "0".
+    desc: All scrollers <strong>must</strong> be given a tabindex with a value "0". The script will decide if this attribute is required based on the presence of interactive elements within component.
 
 classes:
 
@@ -45,8 +45,8 @@ classes:
         - div
         - li
 
-    note: Mandatory
-    desc: Used for each individual content container.
+    note: Recommended
+    desc: Used for each individual content container. Recommended, but if custom CSS is desired you may create your own.
 
   - name: .horizontal-scroll__heading
     html: 
@@ -57,10 +57,15 @@ classes:
       - h5
       - h6 
   
-    note: Mandatory
-    desc: Used for each individual content heading. Ideally, you'll want each heading to contain your hyperlink, so that purpose of each content block can be better understood by assistive technologies.
+    note: Recommended
+    desc: Used for each individual content heading. Ideally, you'll want each heading to contain your hyperlink, so that the purpose of each content block can be better understood by assistive technologies. Recommended, but if custom HTML and CSS is desired you may create your own.
 
+notes: 
+
+  - Behavior - If the script fails to load, the component will still be operable via keyboard, though there will be a double tabstop in cases where interactive elements like <code>a</code> and <code>button</code> are present.
+  
 id: horizontal-scroll
+localjs: "init.js"
 localcss: "init.css"
 module: components
 in-page: true

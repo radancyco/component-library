@@ -1,0 +1,17 @@
+// Example: Desktop Layout
+
+.grid {
+display: grid;
+gap: 1em;
+    
+    @media(min-width: 62.5em) {
+    
+    grid-template-columns: minmax(auto, 480px) 1fr;
+    
+    }
+    
+}
+    
+.grid-item {
+overflow: hidden;
+}

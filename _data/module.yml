@@ -295,22 +295,20 @@ components:
     desc: "This component enables you to create a layout that transitions into a horizontal scroll on both smaller and larger viewports. It can serve as an excellent alternative to traditional carousels."
     path: "horizontal-scroll"
     title: "Horizontal Scroller"
-    version: "1.1"
+    version: "1.2"
     examples:
 
-      - name: "Interactive Scroller (Desktop)"
-        id: "large-interactive"
+      - name: "Default Setup"
+        id: "default"
+        note: "All markup examples include <code>aria-label</code>, <code>role</code>, and <code>tabindex</code> attributes. These are mandatory when the component's content (e.g., in a CMS) may or may not include interactive elements. If interactive elements are present, the script will dynamically remove these attributes. However, the script is optional—if you are certain the component will always have interactive content, you can omit these attributes and take a hardcoded approach instead."
 
-      - name: "Interactive Scroller (Mobile)"
-        id: "small-interactive"
-        warning: "If all items contain interactive elements, such as a link or button, then the component <strong>does not</strong> require an <strong>accessible name</strong>, <strong>role</strong>, and <strong>tabindex</strong>."
-        reminder: "To access the scroll, adjust the viewport size to be smaller. Additionally, please be aware that the design and functionality of the scrollbar may vary across different operating systems and browsers, which is normal and expected."
+      - name: "Default Setup (Non-Interactive)"
+        id: "default-non-interactive"
 
-      - name: "Non-Interactive Scroller (Mobile)"
-        id: "small-non-interactive"
-        warning: "If <strong>no</strong> items contain interactive elements, such as a link or button, then the component <strong>must include</strong> an <strong>accessible name</strong>, <strong>role</strong>, and <strong>tabindex</strong>."
-        reminder: "To access the scroll, adjust the viewport size to be smaller. Additionally, please be aware that the design and functionality of the scrollbar may vary across different operating systems and browsers, which is normal and expected."
-
+      - name: "Desktop Layout (Interactive)"
+        id: "desktop-layout"
+        customcss: "desktop-layout"
+  
   - id: "job-list"
     desc: "This component will allow you to implement and control the presentation of job search result listings."
     path: "job-list"
