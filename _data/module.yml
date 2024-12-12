@@ -301,9 +301,11 @@ components:
       - name: "Default Setup"
         id: "default"
         note: "All markup examples include <code>aria-label</code>, <code>role</code>, and <code>tabindex</code> attributes. These are mandatory when the component's content (e.g., in a CMS) may or may not include interactive elements. If interactive elements are present, the script will dynamically remove these attributes. However, the script is optional—if you are certain the component will always have interactive content, you can omit these attributes and take a hardcoded approach instead."
+        reminder: "To access the scroll, adjust the viewport size to be smaller. Additionally, please be aware that the design and functionality of the scrollbar will vary across different operating systems and browsers, which is completly normal and expected."
 
       - name: "Default Setup (Non-Interactive)"
         id: "default-non-interactive"
+        reminder: "To access the scroll, adjust the viewport size to be smaller. Additionally, please be aware that the design and functionality of the scrollbar will vary across different operating systems and browsers, which is completly normal and expected."
 
       - name: "Desktop Layout (Interactive)"
         id: "desktop-layout"
