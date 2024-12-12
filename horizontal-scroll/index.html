@@ -8,7 +8,7 @@ attributes:
       - String
       - Mandatory
 
-    desc: All scrollers <strong>must</strong> be given a unique accessible name, which relates to group of items within. The script will decide if this attribute is required based on the presence of interactive elements within component and it is used as a fallback to provide an accessible name if fails.
+    desc: All scrollers <strong>must</strong> be given a unique accessible name, which relates to group of items within. The script will decide if this attribute is required based on the presence of interactive elements within component and it is used as a fallback to provide an accessible name if script fails. May be omitted for hardcoded scrollers where interactive elements will be known to always exist.
   
   - name: role
     html: .horizontal-scroll 
@@ -17,7 +17,7 @@ attributes:
       - String
       - Mandatory
 
-    desc: All scrollers <strong>must</strong> be given a role with a value of "region". The script will decide if this attribute is required based on the presence of interactive elements within component and it is used as a fallback to identify the region if script fails.
+    desc: All scrollers <strong>must</strong> be given a role with a value of "region". The script will decide if this attribute is required based on the presence of interactive elements within component and it is used as a fallback to identify the region if script fails. May be omitted for hardcoded scrollers where interactive elements will be known to always exist.
   
   - name: tabindex
     html: .horizontal-scroll 
@@ -26,7 +26,7 @@ attributes:
       - Number
       - Mandatory
 
-    desc: All scrollers <strong>must</strong> be given a tabindex with a value "0". The script will decide if this attribute is required based on the presence of interactive elements within component and it is used as a fallback to scroll if script fails.
+    desc: All scrollers <strong>must</strong> be given a tabindex with a value "0". The script will decide if this attribute is required based on the presence of interactive elements within component and it is used as a fallback to scroll if script fails. May be omitted for hardcoded scrollers where interactive elements will be known to always exist.
 
   - name: data-always-scroll
     html: .horizontal-scroll 
