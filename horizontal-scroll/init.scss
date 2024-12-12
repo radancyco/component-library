@@ -30,7 +30,7 @@ scroll-snap-type: inline mandatory;
 scrollbar-color: var(--base-color) var(--base-color-active);
 scrollbar-width: thin;
 
-    &:not([data-viewport-large]) { 
+    &:not([data-always-scroll]) { 
 
       @media (min-width: 62.5em) {
 
@@ -51,7 +51,10 @@ scrollbar-width: thin;
   > ul, > ol {
   display: contents;
   list-style-type: none;
+  visibility: visible; // Do not remove.
   }
+
+  // .horizontal-scroll__card (Recommended)
 
   &__card {
   background-color: #fff;
@@ -62,7 +65,6 @@ scrollbar-width: thin;
   position: relative;
   scroll-snap-align: start;
   transition: 300ms;
-  visibility: visible; // Do not remove.
 
     &:has(a, button) {
 
@@ -73,6 +75,8 @@ scrollbar-width: thin;
     }
 
   }
+
+  // .horizontal-scroll__heading (Recommended)
 
   &__heading {
 
@@ -94,20 +98,3 @@ scrollbar-width: thin;
 
 }
 
-// Used for desktop example. You can use whatever classes and properties you want here. 
-
-.grid {
-display: grid;
-gap: 1em;
-
-  @media(min-width: 62.5em) {
-
-    grid-template-columns: minmax(auto, 480px) 1fr;
-
-  }
-
-}
-
-.grid-item {
-overflow: hidden;
-}

@@ -28,6 +28,15 @@ attributes:
 
     desc: All scrollers <strong>must</strong> be given a tabindex with a value "0". The script will decide if this attribute is required based on the presence of interactive elements within component.
 
+  - name: data-always-scroll
+    html: .horizontal-scroll 
+    note: 
+
+      - Boolean
+      - Optional
+
+    desc: By default, scolling is present on smaller screens but not on larger ones. This is used as hook in the CSS to bypass the default behavior, allowing a scroll to be present across all viewport sizes. 
+
 classes:
 
   - name: .horizontal-scroll
