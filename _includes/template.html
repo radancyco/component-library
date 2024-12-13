@@ -252,12 +252,10 @@
             </ul>
       
             <div class="tablist__panel" id="html-{{counter}}">
+
+              <button aria-label="Copy HTML" class="btn-code-copy" data-content-id="content-html-{{counter}}">{{ iconCheck }}{{ iconCopyURL }}</button>
       
-              <div class="tablist__content" contenteditable spellcheck="false">
-
-                {% highlight html %}{% include_relative html/{{ example.id }}.html %}{% endhighlight %}
-
-              </div>
+              <div class="tablist__content" contenteditable id="content-html-{{counter}}" spellcheck="false">{% highlight html %}{% include_relative html/{{ example.id }}.html %}{% endhighlight %}</div>
 
             </div>
 
@@ -265,11 +263,9 @@
 
               <div class="tablist__panel" id="css-{{counter}}">
 
-                <div class="tablist__content" contenteditable spellcheck="false">
+                <button aria-label="Copy CSS" class="btn-code-copy" data-content-id="content-css-{{counter}}">{{ iconCheck }}{{ iconCopyURL }}</button>
 
-                  {% highlight css %}{% include_relative init.scss %}{% endhighlight %}
-
-                </div>
+                <div class="tablist__content" contenteditable id="content-css-{{counter}}" spellcheck="false">{% highlight css %}{% include_relative init.scss %}{% endhighlight %}</div>
 
               </div>
 
@@ -279,11 +275,9 @@
 
               <div class="tablist__panel" id="custom-css-{{counter}}">
 
-                <div class="tablist__content" contenteditable spellcheck="false">
+                <button aria-label="Copy Custom CSS" class="btn-code-copy" data-content-id="content-custom-css-{{counter}}">{{ iconCheck }}{{ iconCopyURL }}</button>
 
-                  {% highlight javascript %}{% include_relative {{ example.customcss }}.scss %}{% endhighlight %}
-
-                </div>
+                <div class="tablist__content" contenteditable id="content-custom-css-{{counter}}" spellcheck="false">{% highlight javascript %}{% include_relative {{ example.customcss }}.scss %}{% endhighlight %}</div>
 
               </div>
 
@@ -292,12 +286,10 @@
             {% if page.localjs %}
 
               <div class="tablist__panel" id="javascript-{{counter}}">
+
+                <button aria-label="Copy JavaScript" class="btn-code-copy" data-content-id="content-javascript-{{counter}}">{{ iconCheck }}{{ iconCopyURL }}</button>
       
-                <div class="tablist__content" contenteditable spellcheck="false">
-
-                  {% highlight javascript %}{% include_relative script.js title=component.title version=component.version %}{% endhighlight %}
-
-                </div>
+                <div class="tablist__content" contenteditable id="content-javascript-{{counter}}" spellcheck="false">{% highlight javascript %}{% include_relative script.js title=component.title version=component.version %}{% endhighlight %}</div>
 
               </div>
 
@@ -306,12 +298,10 @@
             {% if example.customjs %}
 
               <div class="tablist__panel" id="custom-javascript-{{counter}}">
+
+                <button aria-label="Copy Custom JavaScript" class="btn-code-copy" data-content-id="content-custom-javascript-{{counter}}">{{ iconCheck }}{{ iconCopyURL }}</button>
       
-                <div class="tablist__content" contenteditable spellcheck="false">
-
-                  {% highlight javascript %}{% include_relative {{ example.customjs }} %}{% endhighlight %}
-
-                </div>
+                <div class="tablist__content" contenteditable id="content-custom-javascript-{{counter}}" spellcheck="false">{% highlight javascript %}{% include_relative {{ example.customjs }} %}{% endhighlight %}</div>
 
               </div>
 
