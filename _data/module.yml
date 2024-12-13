@@ -20,7 +20,7 @@ components:
 
       - name: "Grid Layout (Animated, Experimental)"
         id: "grid-animation"
-        experimental: "Please note that this example uses the new <a href='https://caniuse.com/mdn-css_at-rules_starting-style'>@starting-style</a> rule to animate <code>display: none</code>. This technique is <a href='https://caniuse.com/mdn-css_at-rules_starting-style'>supported</a> in most major browsers. If you require animation in non-supporting browser, you will need to come up with an alternative solution. Non-supporting browsers will simply toggle the display of the content."
+        experimental: "Please note that this example uses the new <a href='https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style'>@starting-style</a> at-rule to animate <code>display: none</code>. This technique is <a href='https://caniuse.com/mdn-css_at-rules_starting-style'>supported</a> in most major browsers. If you require animation in non-supporting browser, you will need to come up with an alternative solution. Non-supporting browsers will simply toggle the display of the content."
         reminder: 'Do not confuse a horizontal accordion with a tabbed interface&mdash;they are not the same. The key difference lies in their behavior. If you need a content section to always remain open and never be closed, then you should use the <a href="../tablist/">TabList</a> component.'
 
       - name: "Grid Layout (Default)"
@@ -208,7 +208,7 @@ components:
         id: "card-horizontal-kitchen-sink"
 
   - id: "disclosure"
-    desc: "This component will allow you to implement various types of disclosure widgets."
+    desc: "This component will allow you to implement a simple disclosure widget."
     path: "disclosure"
     title: "Disclosure"
     version: "1.8"
@@ -216,6 +216,7 @@ components:
 
       - name: "Default Setup"
         id: "default-setup"
+        reminder: "A disclosure is intended for single-purpose use. If you need to group multiple disclosures, such as in a FAQ or similar layout, please use the <a href='/accordion/#faq'>Accordion</a> component."
 
       - name: "Animation"
         id: "animation"

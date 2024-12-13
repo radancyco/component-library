@@ -412,7 +412,7 @@
       <tr>
         <th scope="row">{% for html in element.html %}<code>{{ html }}</code>{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</th>
         <td>{% for note in element.note %}{{ note }}{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
-        <td>{{ element.desc }}</td>
+        <td><div>{{ element.desc }}</div></td>
       </tr>
 
     {% endfor %}
@@ -453,7 +453,7 @@
         <th scope="row"><code>{{ aria.name }}</code></th>
         <td><code>{% for html in aria.html %}<code>{{ html }}</code>{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</code></td>
         <td>{% for note in aria.note %}{{ note }}{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
-        <td>{{ aria.desc }}</td>
+        <td><div>{{ aria.desc }}</div></td>
       </tr>
 
     {% endfor %}
@@ -494,7 +494,7 @@
         <th scope="row"><code>{{ attribute.name }}</code></th>
         <td>{% for html in attribute.html %}<code>{{ html }}</code>{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
         <td>{% for note in attribute.note %}{{ note }}{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
-        <td>{{ attribute.desc }}</td>
+        <td><div>{{ attribute.desc }}</div></td>
       </tr>
 
       {% endfor %}
@@ -531,7 +531,7 @@
 
       <tr>
         <th scope="row"><code>{{ scss.name }}</code></th>
-        <td>{{ scss.desc }}</td>
+        <td><div>{{ scss.desc }}</div></td>
     </tr>
 
     {% endfor %}
@@ -572,7 +572,7 @@
         <th scope="row"><code>{{ class.name }}</code></th>
         <td>{% for html in class.html %}<code>{{ html }}</code>{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
         <td>{% for note in class.note %}{{ note }}{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
-        <td>{{ class.desc }}</td>
+        <td><div>{{ class.desc }}</div></td>
       </tr>
 
     {% endfor %}
@@ -658,7 +658,7 @@
       <tr>
         <th scope="row">{{ parameter.name }}</th>
         <td>{% for note in parameter.note %}{{ note }}{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
-        <td>{{ parameter.desc }}</td>
+        <td><div>{{ parameter.desc }}</div></td>
       </tr>
 
     {% endfor %}
@@ -684,7 +684,7 @@
 
     {% for note in sortNotes %}
     
-    <li>{{ note | replace: "Behavior - ", "<span class='note-label behavior'>Behavior:</span> " | replace: "Bug - ", "<span class='note-label behavior'>Behavior:</span> " | replace: "Feature - ", "<span class='note-label feature'>Feature:</span> " | replace: "Logic - ", "<span class='note-label logic'>Logic:</span> " | replace: "Roadmap - ", "<span class='note-label roadmap'>Roadmap:</span> " | replace: "Testing - ", "<span class='note-label testing'>Testing:</span> " }}</li> 
+    <li>{{ note | replace: "Behavior - ", "<span class='note-label behavior'>Behavior:</span> " | replace: "Bug - ", "<span class='note-label behavior'>Behavior:</span> " | replace: "Feature - ", "<span class='note-label feature'>Feature:</span> " | replace: "Logic - ", "<span class='note-label logic'>Logic:</span> " | replace: "Maintenance - ", "<span class='note-label maintenance'>Maintenance:</span> " | replace: "Roadmap - ", "<span class='note-label roadmap'>Roadmap:</span> " | replace: "Testing - ", "<span class='note-label testing'>Testing:</span> " }}</li> 
     
     {% endfor %}
 
@@ -701,13 +701,13 @@
   <div class="accordion__panel">
 
     <ul>
-    
+
       {% assign sortRoadmap = page.roadmap %}
 
       {% for roadmap in sortRoadmap %}
-    
-      <li>{{ roadmap | replace: "Behavior - ", "<span class='note-label behavior'>Behavior:</span> " | replace: "Bug - ", "<span class='note-label behavior'>Behavior:</span> " | replace: "Feature - ", "<span class='note-label feature'>Feature:</span> " | replace: "Logic - ", "<span class='note-label logic'>Logic:</span> " | replace: "Roadmap - ", "<span class='note-label roadmap'>Roadmap:</span> " | replace: "Testing - ", "<span class='note-label testing'>Testing:</span> " }}</li> 
-    
+
+      <li>{{ roadmap | replace: "Behavior - ", "<span class='note-label behavior'>Behavior:</span> " | replace: "Bug - ", "<span class='note-label behavior'>Behavior:</span> " | replace: "Feature - ", "<span class='note-label feature'>Feature:</span> " | replace: "Logic - ", "<span class='note-label logic'>Logic:</span> " | replace: "Maintenance - ", "<span class='note-label maintenance'>Maintenance:</span> " | replace: "Roadmap - ", "<span class='note-label roadmap'>Roadmap:</span> " | replace: "Testing - ", "<span class='note-label testing'>Testing:</span> " }}</li> 
+
       {% endfor %}
 
     </ul>
