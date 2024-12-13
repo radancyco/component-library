@@ -196,6 +196,26 @@
 
         {% endif %}
 
+        {% if component.message %}
+        
+          {% for msg in component.message %}
+
+            {% include message/{{ msg }}.html %}
+
+        {% endfor %}
+
+        {% endif %}
+
+        {% if example.message %}
+        
+          {% for msg in example.message %}
+
+            {% include message/{{ msg }}.html %}
+
+          {% endfor %}
+
+        {% endif %}
+
         <nav aria-label="Component Tools" class="component-functions">
         
           <ul>

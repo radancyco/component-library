@@ -3,6 +3,7 @@ components:
   - id: "accordion"
     desc: "This component will allow you to implement and control the presentation of multiple disclosures, also known as an accordion."
     path: "accordion"
+    message: use-tablist
     title: "Accordion"
     version: "2.1" 
     examples: 
@@ -17,20 +18,18 @@ components:
 
       - name: "Fixed Content Height"
         id: "fixed-height"
+        message: scrollbars
 
       - name: "Grid Layout (Animated, Experimental)"
         id: "grid-animation"
         experimental: "Please note that this example uses the new <a href='https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style'>@starting-style</a> at-rule to animate <code>display: none</code>. This technique is <a href='https://caniuse.com/mdn-css_at-rules_starting-style'>supported</a> in most major browsers. If you require animation in non-supporting browser, you will need to come up with an alternative solution. Non-supporting browsers will simply toggle the display of the content."
-        reminder: 'Do not confuse a horizontal accordion with a tabbed interface&mdash;they are not the same. The key difference lies in their behavior. If you need a content section to always remain open and never be closed, then you should use the <a href="../tablist/">TabList</a> component.'
 
       - name: "Grid Layout (Default)"
         id: "grid-default"
-        reminder: 'Do not confuse a horizontal accordion with a tabbed interface&mdash;they are not the same. The key difference lies in their behavior. If you need a content section to <em>always</em> remain open and never be closed, then use the <a href="../tablist/">TabList</a> component.'
 
       - name: "Grid Layout (Overlay, Experimental)"
         id: "grid-overlay"
-        experimental: 'This is an experimental layout. While it is has been designed and developed with accessibility in mind and should not be an issue, we do yet know how it may impact all disabled users.'
-        reminder: 'Do not confuse a horizontal accordion with a tabbed interface&mdash;they are not the same. The key difference lies in their behavior. If you need a content section to <em>always</em> remain open and never be closed, then use the <a href="../tablist/">TabList</a> component.'
+        message: experimental
 
       - name: "FAQ (Interactive Headings)"
         id: "faq"
@@ -209,6 +208,7 @@ components:
 
   - id: "disclosure"
     desc: "This component will allow you to implement a simple disclosure widget."
+    message: disclosure-use
     path: "disclosure"
     title: "Disclosure"
     version: "1.8"
@@ -216,7 +216,6 @@ components:
 
       - name: "Default Setup"
         id: "default-setup"
-        reminder: "A disclosure is intended for single-purpose use. If you need to group multiple disclosures, such as in a FAQ or similar layout, please use the <a href='/accordion/#faq'>Accordion</a> component."
 
       - name: "Animation"
         id: "animation"
@@ -235,6 +234,7 @@ components:
 
   - id: "hero-banner" 
     desc: "This component allows you to create a standard hero banner complete with a headline and supplementary text."
+    message: picture-element
     path: "hero-banner"
     title: "Hero Banner (Image)"
     version: "1.1"
@@ -293,7 +293,8 @@ components:
     version: "1.6"
 
   - id: "horizontal-scroll" 
-    desc: "This component enables you to create a layout that transitions into a horizontal scroll on both smaller and larger viewports. It can serve as an excellent alternative to traditional carousels."
+    desc: "This component allows you to create a layout that transitions into a horizontal scroll on both smaller and larger viewports. It can serve as an excellent alternative to traditional carousels."
+    message: scrollbars
     path: "horizontal-scroll"
     title: "Horizontal Scroller"
     version: "1.2"
@@ -301,12 +302,10 @@ components:
 
       - name: "Default Setup"
         id: "default"
-        note: "All markup examples include <code>aria-label</code>, <code>role</code>, and <code>tabindex</code> attributes. These are mandatory when the component's content (e.g., in a CMS) may or may not include interactive elements. If interactive elements are present, the script will dynamically remove these attributes. However, the script is optional—if you are certain the component will always have interactive content, you can omit these attributes and take a hardcoded approach instead."
-        reminder: "To access the scroll, adjust the viewport size to be smaller. Additionally, please be aware that the design and functionality of the scrollbar will vary across different operating systems and browsers, which is completly normal and expected."
+        note: "All markup examples include <code>aria-label</code>, <code>role</code>, and <code>tabindex</code> attributes. These are mandatory when the component's content (e.g., produced via CMS) may or may not include interactive elements. If interactive elements are present, the script will dynamically remove these attributes. However, the script is optional—if you are certain the component will always have interactive content, you can omit these attributes and take a hardcoded approach instead."
 
       - name: "Default Setup (Non-Interactive)"
         id: "default-non-interactive"
-        reminder: "To access the scroll, adjust the viewport size to be smaller. Additionally, please be aware that the design and functionality of the scrollbar will vary across different operating systems and browsers, which is completly normal and expected."
 
       - name: "Desktop Layout (Interactive)"
         id: "desktop-layout"
@@ -337,6 +336,7 @@ components:
 
   - id: "load-more"
     desc: "This component will allow you to expand hidden content."
+    message: experimental
     path: "load-more"
     title: "Load More"
     version: "1.0"
@@ -403,7 +403,7 @@ components:
 
       - name: "Dynamic Setup (Experimental)"
         id: "dynamic-setup"
-        experimental: "This example is experimental. Experimental components may require more work, further testing, and must be carefully considered before using in a production environment. Use at own risk."
+        message: experimental
 
       - name: "Placeholder Option"
         id: "placeholder"
@@ -464,6 +464,7 @@ components:
 
       - name: "Fixed Content Height (Mobile & Desktop)"
         id: "fixed-height"
+        message: scrollbars
 
       - name: "Stacked Tabs (Mobile), Inline Tabs (Desktop)"
         id: "mobile-stack"
