@@ -1,0 +1,2 @@
+  Instructions: 
+  sass --watch .:. --style compressed
