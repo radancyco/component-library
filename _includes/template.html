@@ -217,7 +217,7 @@
         {% endif %}
 
         <nav aria-label="Component Tools" class="component-functions">
-        
+
           <ul>
             <li><button class="btn-copy-link" data-code="{{ page.url | absolute_url }}#{{ example.id }}">{{ iconCheck }}{{ iconCopyURL }} <span>Copy link to example</span></button></li>
             <li><form action="https://codepen.io/pen/define" id="{{ example.id }}-codepen" method="POST" target="_blank"><button class="btn-edit-codepen">{{ iconCodePen }} <span>Edit on CodePen</span></button></form></li>
@@ -264,7 +264,7 @@
             {% if page.localcss %}
 
               <div class="tablist__panel" id="css-{{counter}}">
-      
+
                 <div class="tablist__content" contenteditable spellcheck="false">
 
                   {% highlight css %}{% include_relative init.scss %}{% endhighlight %}
@@ -278,7 +278,7 @@
             {% if example.customcss %}
 
               <div class="tablist__panel" id="custom-css-{{counter}}">
-      
+
                 <div class="tablist__content" contenteditable spellcheck="false">
 
                   {% highlight javascript %}{% include_relative {{ example.customcss }}.scss %}{% endhighlight %}
