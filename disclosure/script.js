@@ -92,14 +92,6 @@
 
   });
 
-  // Prep each content area.
-
-  disclosureContent.forEach(function(content, e) {
-
-    content.setAttribute("role", "group");
-
-  });
-
   // Open selected disclosure via URL
 
   var url = document.location.href;
