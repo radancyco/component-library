@@ -3,7 +3,6 @@ components:
   - id: "accordion"
     desc: "This component will allow you to implement and control the presentation of multiple disclosures, also known as an accordion."
     path: "accordion"
-    message: use-tablist
     title: "Accordion"
     version: "2.1" 
     examples: 
@@ -23,13 +22,18 @@ components:
       - name: "Grid Layout (Animated, Experimental)"
         id: "grid-animation"
         experimental: "Please note that this example uses the new <a href='https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style'>@starting-style</a> at-rule to animate <code>display: none</code>. This technique is <a href='https://caniuse.com/mdn-css_at-rules_starting-style'>supported</a> in most major browsers. If you require animation in non-supporting browser, you will need to come up with an alternative solution. Non-supporting browsers will simply toggle the display of the content."
-
+        message: use-tablist
+  
       - name: "Grid Layout (Default)"
         id: "grid-default"
+        message: use-tablist
 
       - name: "Grid Layout (Overlay, Experimental)"
         id: "grid-overlay"
-        message: experimental
+        message: 
+        
+          - experimental
+          - use-tablist
 
       - name: "FAQ (Interactive Headings)"
         id: "faq"
@@ -450,6 +454,7 @@ components:
   - id: "tablist"
     desc: "This component will allow you to implement a tablist user interface."
     path: "tablist"
+    message: use-accordion
     title: "TabList"
     version: "1.7"
     examples:
