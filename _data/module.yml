@@ -11,6 +11,10 @@ components:
         id: "default"
         note: "Please keep in mind that this is a basic example of accordion functionality. Adding additional markup, such as headings and lists, can enhance the component's accessibility and make it more understandable for users with disabilities. See the <a href='#faq'>FAQ</a> example for more details."
 
+      - name: "Default Opened Accordion"
+        id: "open"
+        note: "Please note that only one accordion can be opened on page load. This content can be closed and should not be confused with the <a href='../tablist/'>TabList</a>, which may never have collapsed content."
+
       - name: "Disable Anchor"
         id: "disable-anchor"
         note: "By default, pressing an accordion button will append an anchor to the URL, but this can be disabled if desired. Please note that including an anchor can be useful for sharing specific content (and tracking), so we should only remove when we have a good reason to."
@@ -19,33 +23,29 @@ components:
         id: "fixed-height"
         message: scrollbars
 
-      - name: "Grid Layout (Animated, Experimental)"
+      - name: "Horizontal Layout (Animated)"
         id: "grid-animation"
         experimental: "Please note that this example uses the new <a href='https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style'>@starting-style</a> at-rule to animate <code>display: none</code>. This technique is <a href='https://caniuse.com/mdn-css_at-rules_starting-style'>supported</a> in most major browsers. If you require animation in non-supporting browser, you will need to come up with an alternative solution. Non-supporting browsers will simply toggle the display of the content."
         message: use-tablist
   
-      - name: "Grid Layout (Default)"
+      - name: "Horizontal Layout (Default)"
         id: "grid-default"
         message: use-tablist
 
-      - name: "Grid Layout (Overlay, Experimental)"
+      - name: "Horizontal Layout (Overlay)"
         id: "grid-overlay"
         message: 
         
           - experimental
           - use-tablist
 
-      - name: "FAQ (Interactive Headings)"
+      - name: "Interactive Headings (FAQ)"
         id: "faq"
         note: 'In this example, take note of the headings used to wrap the <code>button</code> elements, creating a logical, interactive, and navigable structure for assistive technology users. List markup is also present to help convey the number of accordion items, and wrapping the accordion in a <code>section</code> element connected to the "My FAQ" heading via <code>aria-labelledby</code> creates a landmark region for the grouping, enhancing clarity further. Together, these techniques improve the overall understanding of the component for users with disabilities. Please watch the <a href="faq.mp4">demo</a> to see this behavior in action.'
         
-      - name: "Multiple Expansion"
+      - name: "Multiple Expansions"
         id: "multi-expand"
         note: "Ideally, only one accordion section should be open at a time. However, there may be cases where allowing multiple sections to be open simultaneously is desirable, such as when a user wants to compare or search through the content."
-
-      - name: "Open Accordion"
-        id: "open"
-        note: "Please note that only one accordion can be opened on page load. This content can be closed and should not be confused with the <a href='/tablist/'>TabList</a>, which may never have collapsed content."
 
       - name: "Viewport Context"
         id: "viewport-context"
