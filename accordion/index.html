@@ -1,7 +1,12 @@
 ---
 attributes:
 
-  - name: data-close-button
+  - name: data-active
+    html: .accordion
+    note: Component
+    desc: Applied by the script. Can be used as a hook for various styling possibilities.
+
+  - name: data-close
     html: .accordion
     note:
 
@@ -9,6 +14,15 @@ attributes:
       - Optional
     
     desc: Specifies that each accordion should have its own close button. By default, no close buttons are provided. Should only be used with <code>data-overlay</code>.
+
+  - name: data-context
+    html: .accordion
+    note:
+  
+      - Boolean
+      - Optional
+  
+    desc: Used to allow the accordion to become non-interactive on larger viewport sizes. Often used in mobile footers.
 
   - name: data-disable-anchor
     html: .accordion
@@ -28,14 +42,23 @@ attributes:
     
     desc: Used to fix the panel content to a specific height. The height may be adusted in the CSS.
 
-  - name: data-grid
+  - name: data-horizontal
     html: .accordion
     note:
 
       - Boolean
       - Optional
     
-    desc: Used to apply a default grid layout to the accordion. The grid may be adjusted in the CSS.
+    desc: Used to apply a horizontal layout to the accordion, which may be adjusted in the CSS.
+
+  - name: data-multiple
+    html: .accordion
+    note:
+
+      - Boolean
+      - Optional
+    
+    desc: Used to allow multiple accordion disclosures to be opened instead of one at a time.
 
   - name: data-open
     html: .accordion__button
@@ -45,15 +68,6 @@ attributes:
       - Optional
     
     desc: Specifies which accordion panel should be open on page load. If not specified, no panels will be open by default. Only one accordion may be opened at a time.
-
-  - name: data-viewport-context
-    html: .accordion
-    note:
-
-      - Boolean
-      - Optional
-    
-    desc: Used to allow the accordion to become non-interactive on larger viewport sizes. Often used in mobile footers.
 
   - name: id
     html: .accordion__button
@@ -87,7 +101,7 @@ classes:
 
 roadmap:
 
-  - Behavior - Add Escape Key functionality to <a href="#grid-overlay">Overlay</a> example (High).
+  - Behavior - Add Escape Key functionality to <a href="#horizontal-overlay">Overlay</a> example (High).
   - Behavior - Add back button support. Currently, the URL fragment changes, but not the content (High).
   - Behavior - Add video support for YouTube, Vimeo, and HTML5. Video needs to reset when accordion is closed. Delievery team to workaround for now (High).
   - Feature - Move the "Show All" feature from the <a href="../disclosure/">Disclosure</a> component to here (Low).

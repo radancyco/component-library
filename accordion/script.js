@@ -56,10 +56,10 @@
       var accordionDataActiveState = "data-active";
       var accordionDataDefaultOpen = "data-open";
       var accordionDataOverlay = "data-overlay";
-      var accordionDataCloseButton = "data-close-button";
+      var accordionDataCloseButton = "data-close";
       var accordionDataDisableAnchor = "data-disable-anchor";
       var accordionDataFixedHeight = "data-fixed-height";
-      var accordionDataMultiExpand = "data-multi-expand";
+      var accordionDataMultiOpen = "data-multiple";
       var accordions = document.querySelectorAll(accordionClass);
       var URLFragment = location.hash.slice(1);
 
@@ -114,7 +114,7 @@
 
             var isExpanded = btn.getAttribute("aria-expanded") === "true";
 
-            if (!accordion.hasAttribute(accordionDataMultiExpand)) {
+            if (!accordion.hasAttribute(accordionDataMultiOpen)) {
 
               buttons.forEach(function(button) {
 
@@ -152,7 +152,7 @@
 
           if (buttonID === URLFragment || (!expandedButton && btn.hasAttribute(accordionDataDefaultOpen))) {
 
-            // Add data-active to parent.
+            // Add "data-active" to parent.
 
             accordion.setAttribute(accordionDataActiveState, "");
 

@@ -9,10 +9,10 @@ components:
 
       - name: "Default Setup"
         id: "default"
-        note: "Please keep in mind that this is a basic example of accordion functionality. Adding additional markup, such as headings and lists, can enhance the component's accessibility and make it more understandable for users with disabilities. See the <a href='#faq'>FAQ</a> example for more details."
+        note: "Please keep in mind that this is a basic example of accordion functionality. Adding additional markup, such as headings and lists, can enhance the component's accessibility and make it more understandable for users with disabilities. See the <a href='#headings'>FAQ</a> example for more details."
 
       - name: "Default Opened Content"
-        id: "open"
+        id: "default-opened"
         note: "Please note that only one accordion may be opened on page load. This content can be closed and should not be confused with the <a href='../tablist/'>TabList</a>, which may never have collapsed content."
 
       - name: "Disable Anchor"
@@ -23,33 +23,33 @@ components:
         id: "fixed-height"
         message: scrollbars
 
-      - name: "Horizontal Layout (Animated)"
-        id: "grid-animation"
-        experimental: "Please note that this example uses the new <a href='https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style'>@starting-style</a> at-rule to animate <code>display: none</code>. This technique is <a href='https://caniuse.com/mdn-css_at-rules_starting-style'>supported</a> in most major browsers. If you require animation in non-supporting browser, you will need to come up with an alternative solution. Non-supporting browsers will simply toggle the display of the content."
+      - name: "Horizontal Layout"
+        id: "horizontal"
         message: use-tablist
-  
-      - name: "Horizontal Layout (Default)"
-        id: "grid-default"
+
+      - name: "Horizontal Layout (Animated)"
+        id: "horizontal-animated"
+        experimental: "Please note that this example uses the new <a href='https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style'>@starting-style</a> at-rule to animate <code>display: none</code>. This technique is <a href='https://caniuse.com/mdn-css_at-rules_starting-style'>supported</a> in most major browsers. If you require animation in non-supporting browser, you will need to come up with an alternative solution. Non-supporting browsers will simply toggle the display of the content."
         message: use-tablist
 
       - name: "Horizontal Layout (Overlay)"
-        id: "grid-overlay"
+        id: "horizontal-overlay"
         message: 
         
           - experimental
           - use-tablist
 
       - name: "Interactive Headings (FAQ)"
-        id: "faq"
-        note: 'In this example, take note of the headings used to wrap the <code>button</code> elements, creating a logical, interactive, and navigable structure for assistive technology users. List markup is also present to help convey the number of accordion items, and wrapping the accordion in a <code>section</code> element connected to the "My FAQ" heading via <code>aria-labelledby</code> creates a landmark region for the grouping. Together, these techniques improve the overall understanding of the component for users with disabilities. Please watch the <a href="faq.mp4">demo</a> to see this behavior in action.'
+        id: "headings"
+        note: 'In this example, take note of the headings used to wrap the <code>button</code> elements, creating a logical, interactive, and navigable structure for assistive technology users. List markup is also present to help convey the number of accordion items, and wrapping the accordion in a <code>section</code> element connected to the "My FAQ" heading via <code>aria-labelledby</code> creates a landmark region for the grouping. Together, these techniques improve the overall understanding of the component for users with disabilities. Please watch the <a href="headings.mp4">demo</a> to see this behavior in action.'
         
       - name: "Multiple Open"
-        id: "multi-expand"
+        id: "multiple-open"
         note: "Ideally, only one accordion section should be open at a time. However, there may be cases where allowing multiple sections to be open simultaneously is desirable, such as when a user wants to compare or search through the content."
 
       - name: "Viewport Context"
         id: "viewport-context"
-        note: "In some scenarios, we may only want the accordion to be present on smaller viewports. In such cases, it is crucial to ensure that accessibility on larger screens is not compromised by leaving buttons accessible to assistive technologies. To see this solution in action, try pressing or tabbing to the headings in larger viewport sizes. As you'll notice, the headings are not interactive and all content that would normally be collapsed is revealed, which is exactly what we want. However, when you resize the viewport to a smaller size, the component then becomes a traditional accordion. This kind of behavior can often be found in the footer of applications or website, where space is more limited on smaller screens."
+        note: "In some scenarios, we may only want the accordion to be present on smaller viewports. In such cases, it is crucial to ensure that accessibility on larger screens is not compromised by leaving buttons accessible to assistive technologies. To see this solution in action, try pressing or tabbing to the headings in larger viewport sizes. As you'll notice, the headings are not interactive and all content that would normally be collapsed is revealed, which is exactly what we want. However, when you change the viewport to a smaller size, the component then becomes a traditional accordion. This kind of behavior can often be found in the footer of applications or website, where space is more limited on smaller screens."
 
   - id: "accordion-grid"
     deprecated: true

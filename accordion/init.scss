@@ -36,7 +36,7 @@
   position: relative;
   margin: 0;
 
-    &[data-grid] {
+    &[data-horizontal] {
 
       @media (min-width: $breakpoint-medium) {
 
@@ -72,7 +72,7 @@
     justify-self: end;
     margin-inline-start: 1em;
 
-      [data-viewport-context] & {
+      [data-context] & {
 
         @media (min-width: $breakpoint-medium) {
 
@@ -156,7 +156,7 @@
 
       }
 
-      [data-grid] & {
+      [data-horizontal] & {
 
         @media (min-width: $breakpoint-medium) {
         
@@ -199,7 +199,7 @@
       
       }
 
-      [data-viewport-context] & {
+      [data-context] & {
 
         @media (min-width: $breakpoint-medium) {
 
@@ -263,7 +263,7 @@
 
         }
 
-        [data-grid] & {
+        [data-horizontal] & {
 
           // Accent (Arrow)
 
@@ -287,7 +287,7 @@
             transform: rotate(-135deg);
             }
 
-            [data-grid] & {
+            [data-horizontal] & {
 
               display: none;
 
@@ -327,13 +327,13 @@
 
       }
 
-      [data-close-button] & {
+      [data-close] & {
 
         padding-inline-end: 4em;
 
       }
 
-      [data-grid] & {
+      [data-horizontal] & {
       border: var(--accordion-panel-border);
       margin-top: auto;
 
@@ -362,7 +362,7 @@
 
       }
 
-      [data-viewport-context] & {
+      [data-context] & {
 
         @media (min-width: $breakpoint-medium) {
 

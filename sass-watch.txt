@@ -1,2 +1,1 @@
-  Instructions: 
-  sass --watch .:. --style compressed
+sass --watch .:. --style compressed
