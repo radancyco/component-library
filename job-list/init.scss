@@ -8,7 +8,7 @@
 
 */
 
-@layer joblist {
+
 
   .job-list {
 
@@ -38,7 +38,6 @@
     &__item {
     display: grid;
     gap: .5rem;
-    position: relative;
 
       @media (min-width: 67.5rem) {
 
@@ -67,8 +66,8 @@
     &__overview {
     align-content: center;
     background-color: var(--base-color-neutral);
-    grid-column: 1 / span 2;
     padding: 1rem;
+    position: relative;
 
       @media (min-width: 67.5rem) {
 
@@ -130,10 +129,13 @@
     &__cta, &__save {
     align-content: center;
     background-color: var(--base-color);
+    border: 0;
     color: var(--base-color-active);
+    cursor: pointer;
     font: inherit;
     padding: 1rem;
     text-align: center;
+    text-decoration: none;
     white-space: nowrap;
 
       &__icon {
@@ -159,10 +161,8 @@
     }
     
     &__save {
-    border: 0;
-    position: relative;
-    z-index: 1;
-
+    
+    
       &__icon {
 
         &::after {
@@ -174,5 +174,3 @@
     }
 
   }
-
-}

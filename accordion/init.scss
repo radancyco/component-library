@@ -13,7 +13,7 @@
 
   // Variables
 
-  --accordion-accent-size: calc(25rem/16);
+  --accordion-pointer-size: calc(25rem/16);
   --accordion-button-active: #6F00EF;
   --accordion-button-color: #d3d3d3;
   --accordion-button-state: #a9a9a9;
@@ -164,17 +164,27 @@
 
         }
 
-        // Accent (Arrow)
+      }
+
+      [data-overlay][data-active] & {
+        
+        display: none;
+      
+      }
+
+      // Content Pointer
+
+      [data-pointer] & {
 
         &::after {
         background-color: var(--accordion-panel-color);
-        block-size: var(--accordion-accent-size);
+        block-size: var(--accordion-pointer-size);
         border-left: var(--accordion-panel-border);
         border-top: var(--accordion-panel-border);
         content: "";
         display: none;
-        inline-size: var(--accordion-accent-size);
-        inset-block-end: calc(var(--accordion-accent-size) * -1);
+        inline-size: var(--accordion-pointer-size);
+        inset-block-end: calc(var(--accordion-pointer-size) * -1);
         inset-inline-end: 0;
         inset-inline-start: 50%;
         pointer-events: none;
@@ -185,18 +195,12 @@
           [data-animation] & {
 
             opacity: 0;
-            translate: 0 var(--accordion-accent-size);
-  
+            translate: 0 var(--accordion-pointer-size);
+
           }
 
         }   
 
-      }
-
-      [data-overlay][data-active] & {
-        
-        display: none;
-      
       }
 
       [data-context] & {
@@ -234,9 +238,9 @@
       background-color: var(--accordion-button-active);
       color: #fff;
 
-        [data-animation] & { 
+        [data-animation][data-pointer] & { 
 
-          // Accent (Arrow) - Animated
+          // Content Pointer - Animated
             
           &::after {
           opacity: 1;
@@ -255,7 +259,7 @@
             @starting-style {
 
               opacity: 0;
-              translate: 0 var(--accordion-accent-size);
+              translate: 0 var(--accordion-pointer-size);
 
             }
 
@@ -263,9 +267,9 @@
 
         }
 
-        [data-horizontal] & {
+        [data-pointer] & { 
 
-          // Accent (Arrow)
+          // Conent Pointer
 
           &::after {
           display: block;
@@ -287,7 +291,7 @@
             transform: rotate(-135deg);
             }
 
-            [data-horizontal] & {
+            [data-pointer] & {
 
               display: none;
 

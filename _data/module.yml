@@ -39,6 +39,12 @@ components:
           - experimental
           - use-tablist
 
+      - name: "Horizontal Layout (Content Pointer)"
+        id: "horizontal-pointer"
+        message: 
+
+          - use-tablist
+
       - name: "Interactive Headings (FAQ)"
         id: "headings"
         note: 'In this example, take note of the headings used to wrap the <code>button</code> elements, creating a logical, interactive, and navigable structure for assistive technology users. List markup is also present to help convey the number of accordion items, and wrapping the accordion in a <code>section</code> element connected to the "My FAQ" heading via <code>aria-labelledby</code> creates a landmark region for the grouping. Together, these techniques improve the overall understanding of the component for users with certain disabilities, specifically blind and low vision users. Please watch the <a href="headings.mp4">demo</a> to see this behavior in action.'
@@ -317,10 +323,10 @@ components:
   
   - id: "job-list"
     desc: "This component will allow you to implement and control the presentation of job search result listings."
+    hidden: true
     path: "job-list"
     title: "Job List"
     version: "1.0" 
-    hidden: true
     examples: 
 
       - name: "Default Setup"
