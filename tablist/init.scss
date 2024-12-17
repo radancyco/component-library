@@ -69,7 +69,7 @@ position: relative;
         overflow-x: auto;
         padding-inline-end: calc(32em/16);
         scroll-snap-type: inline mandatory;
-        scrollbar-color: var(--base-color) var(--base-color-active);
+        scrollbar-color: var(--base-color-interactive) var(--base-color-active);
         scrollbar-width: thin;
         white-space: nowrap;
 
