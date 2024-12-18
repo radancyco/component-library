@@ -11,7 +11,7 @@
 
 .accordion {
 
-// Variables
+// Component Variables
 
 --accordion-arrow-size: 0.8em;
 --accordion-column-large: 4;
@@ -81,7 +81,6 @@ margin: 0;
   inline-size: var(--accordion-arrow-size);
   justify-self: end;
   margin-inline-start: 1em;
-  transform-origin: center;
   transform: rotate(-45deg);
   
     [data-context] & {
@@ -225,7 +224,7 @@ margin: 0;
     outline-offset: -5px;
     }
 
-    // Accordion Toggle Button: Pressed Behavior
+    // Accordion Toggle Button: Behavior
 
     &[aria-expanded="true"] {
     background-color: var(--accordion-button-active);
@@ -233,7 +232,7 @@ margin: 0;
 
       [data-animation][data-pointer] & { 
 
-        // Content Pointer (Animated)
+        // Content Pointer: Animated
           
         &::after {
         opacity: 1;
