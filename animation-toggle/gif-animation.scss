@@ -1,0 +1,26 @@
+// Example: GIF Animation
+
+.gif-animation {
+margin: 0 auto;
+
+    &--off {
+    display: block;
+    }
+
+    &--on {
+    display: none;
+    }
+
+  .animation-enabled & {
+
+    &--off {
+    display: none;
+    }
+
+    &--on {
+    display: block;
+    }
+
+  }
+
+} 
