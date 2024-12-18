@@ -118,7 +118,7 @@ components:
       - name: "GIF Animation"
         id: "gif-animation"
         customcss: "gif-animation"
-        note: 'To "pause" an animated GIF, you need two images: the animated version and a static version, which can be any desired frame. Animated GIFs should only be used as a last resort when video is not a viable option.'
+        note: 'To "pause" an animated GIF, you will need two images: the animated version and a static version, which can be any desired frame. Animated GIFs should only be used as a last resort when video is not a viable option.'
 
       - name: "Hero Banner (Video)"
         id: "hero-banner"
