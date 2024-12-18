@@ -48,9 +48,9 @@
       var accordionClass = ".accordion";
       var accordionCloseClassName = "accordion__close";
       var accordionCloseClass = "." + accordionCloseClassName;
-      var accordionButtonClassName = "accordion__button";
-      var accordionIconClassName = "accordion__icon";
-      var accordionButtonClass = "." + accordionButtonClassName;
+      var accordionToggleClassName = "accordion__toggle";
+      var accordionArrowClassName = "accordion__arrow";
+      var accordionToggleClass = "." + accordionToggleClassName;
       var accordionHeadingClassName = "accordion__heading";
       var accordionPanelClass = ".accordion__panel";
       var accordionDataActiveState = "data-active";
@@ -77,7 +77,7 @@
 
         // Get all buttons within accordion.
 
-        var buttons = accordion.querySelectorAll(accordionButtonClass);
+        var buttons = accordion.querySelectorAll(accordionToggleClass);
 
         // Get all panels within accordion.
         
@@ -105,7 +105,7 @@
           var toggleState = document.createElement("span");
 
           toggleState.setAttribute("aria-hidden", "true");
-          toggleState.classList.add(accordionIconClassName);
+          toggleState.classList.add(accordionArrowClassName);
           btn.append(toggleState);
 
           // Handle button click.
@@ -182,7 +182,7 @@
 
           if(currentPanel.classList.contains(accordionHeadingClassName)) {
 
-            panelID = currentPanel.querySelector(accordionButtonClass).getAttribute("id");
+            panelID = currentPanel.querySelector(accordionToggleClass).getAttribute("id");
 
           } else { 
 
@@ -243,7 +243,7 @@
 
       // Check for duplicate IDs and log a warning
 
-      var buttonIDs = Array.prototype.map.call(document.querySelectorAll(accordionButtonClass), function(btn) {
+      var buttonIDs = Array.prototype.map.call(document.querySelectorAll(accordionToggleClass), function(btn) {
 
         return btn.id;
 
