@@ -461,7 +461,7 @@
 
       <tr>
         <th scope="row"><code>{{ aria.name }}</code></th>
-        <td><code>{% for html in aria.html %}<code>{{ html }}</code>{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</code></td>
+        <td>{% for html in aria.html %}<code>{{ html }}</code>{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
         <td>{% for note in aria.note %}{{ note }}{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
         <td><div>{{ aria.desc }}</div></td>
       </tr>
@@ -623,7 +623,7 @@
     {% for cookie in sortCookies %}
 
       <tr>
-        <th scope="row">{{ cookie.name }}</th>
+        <th scope="row"><code>{{ cookie.name }}</code></th>
         <td>{{ cookie.value }}</td>
         <td>{{ cookie.type }}</td>
         <td>{{ cookie.secure }}</td>
