@@ -9,7 +9,7 @@ components:
 
       - name: "Default Setup"
         id: "default"
-        note: "Please note that this is a basic example of accordion functionality. Adding additional markup, such as headings and lists, can enhance the component's accessibility and make it more understandable to assistive technology users. See the <a href='#headings'>FAQ</a> example for more details."
+        note: "Please note that this is a basic example of accordion functionality. Adding additional markup, such as headings, can enhance the component's accessibility and make it more understandable to assistive technology users. See the <a href='#headings'>FAQ</a> example for more details."
 
       - name: "Default Opened Content"
         id: "default-opened"
@@ -47,7 +47,7 @@ components:
 
       - name: "Interactive Headings (FAQ)"
         id: "headings"
-        note: 'In this example, take note of the headings used to wrap the <code>button</code> elements, creating a logical, interactive, and navigable structure for assistive technology users. List markup is also present to help convey the number of accordion items, and wrapping the accordion in a <code>section</code> element connected to the "My FAQ" heading via <code>aria-labelledby</code> creates a landmark region for the grouping. Together, these techniques improve the overall understanding of the component for users with certain disabilities, specifically blind and low vision users. Please watch the <a href="headings.mp4">demo</a> to see this behavior in action.'
+        note: 'In this example, take note of the headings used to wrap the <code>button</code> elements, creating a logical, interactive, and navigable structure for assistive technology users. Default list markup is also present to help convey the number of accordion items, and wrapping the accordion in a <code>section</code> element connected to the "My FAQ" heading via <code>aria-labelledby</code> creates a landmark region for the grouping. Together, these techniques improve the overall understanding of the component for users with certain disabilities, specifically blind and low vision users. Please watch the <a href="headings.mp4">demo</a> to see this behavior in action.'
         
       - name: "Multiple Open"
         id: "multiple-open"
@@ -99,7 +99,7 @@ components:
 
       - name: "Audio Description (Experimental)"
         id: "audio-description"
-        experimental: "This is an experimental feature that will allow the video to include an audio description. A valid, self-produced <a href='demo.vtt'>VTT</a> file is required."
+        experimental: "This is an experimental feature that will allow the video to include an audio description. A valid, third-party or self-produced <a href='demo.vtt'>VTT</a> file is required."
       
       - name: "Callback Example (After Effects)"
         id: "callback"
