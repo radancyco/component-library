@@ -14,7 +14,7 @@
 // Component Variables
 
 --accordion-arrow-size: 0.8em; // Toggle Arrow Size
---accordion-arrow-border: calc(2rem / 16); // Toggle Arrow Border Width. Note: Setting to higher number will create a full arrow.
+--accordion-arrow-border: calc(2rem / 16); // Toggle Arrow Border. Note: Setting to higher number will create a full arrow.
 --accordion-close-size: calc(30rem / 16); // Close Button Size
 --accordion-color-active: #a9a9a9; // Active State
 --accordion-color-default: #d3d3d3; // Default States
@@ -66,21 +66,23 @@ margin: 0;
       
   }
 
-  // Accordion Arrow
+  // Accordion Toggle Arrow
 
   &__arrow {
   block-size: var(--accordion-arrow-size);
-  border-style: solid;
   border-width: var(--accordion-arrow-border);
   border-block-color: transparent var(--accordion-color-selected);
+  border-block-start-width: 0;
   border-inline-color: var(--accordion-color-selected) transparent;
+  border-inline-end-width: 0;
+  border-style: solid;
   content: "";
   direction: ltr;
   display: block;
   inline-size: var(--accordion-arrow-size);
   justify-self: end;
-  margin-inline-start: 0.5em;
   margin-block-start: calc(var(--accordion-arrow-border) * -2);
+  margin-inline-start: 0.5em;
   transform: rotate(-45deg);
   
     [data-context] & {
@@ -286,7 +288,7 @@ margin: 0;
 
       }
 
-      // Accordion Arrow
+      // Accordion Toggle Arrow
 
       .accordion__arrow {
       border-block-end-color: #fff;
