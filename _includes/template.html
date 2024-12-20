@@ -77,17 +77,17 @@
 
 {% endif %}
 
-{% if page.in-page %}
+{% if page.select-internal %}
 
-  <div class="in-page" data-in-page-dynamic>
+  <div class="select-internal" data-dynamic>
 
     <h2 id="examples">Examples</h2>
 
-    <nav aria-label="Example" class="in-page__nav">
+    <nav aria-label="Example" class="select-internal__nav">
 
-      <label class="in-page__label">Choose an example:</label>
+      <label class="select-internal__label">Choose an example:</label>
 
-      <select class="in-page__select">
+      <select class="select-internal__select">
 
       </select>
 
@@ -142,13 +142,13 @@
 
         {% endif %}
 
-        {% if page.in-page %}
+        {% if page.select-internal %}
 
-          <div class="in-page__content" data-in-page-name="{{ example.name }}" data-in-page-id="{{ example.id }}">
+          <div class="select-internal__content" data-label="{{ example.name }}" data-id="{{ example.id }}">
 
         {% endif %}
 
-        {% if page.in-page != true %}
+        {% if page.select-internal != true %}
 
           <h2 id="{{ example.id }}"><a class="anchor" href="#{{ example.id }}">{{ iconAnchor }} <span class="sr-only">Anchor ({{ example.name }})</span></a> {{ example.name }}</h2>
 
@@ -357,7 +357,7 @@
     
       </script>
 
-      {% if page.in-page %}
+      {% if page.select-internal %}
   
         </div>
 
@@ -369,7 +369,7 @@
 
 {% endfor %}
 
-{% if page.in-page %}
+{% if page.select-internal %}
   
 </div>
 

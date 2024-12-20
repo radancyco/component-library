@@ -8,13 +8,16 @@
   Dependencies: Sass
 
 */
-
-$base-color: #6F00EF;
-
 .jump-menu {
+
+// Component Variable
+
+--jump-menu-primary-color: #6F00EF;
+--jump-menu-secondary-color: #69788C;
+--jump-menu-tertiary-color: #CCC;
+
 background-color: #eee;
 border-radius: 5px;
-font-size: 1.2rem;
 padding: 1em;
 
   &__label {
@@ -34,16 +37,20 @@ padding: 1em;
   font-size: inherit;
   margin-inline-end: .3em;
   padding: .5em;
+
+
+
+  
   }
 
   &__btn {
-  background-color: $base-color;
+  background-color: var(--jump-menu-primary-color);
   border: 0;
   color: white;
   font-size: inherit;
 
-    &:focus {
-    background-color: #69788C;
+    &:focus-visible {
+    background-color: var(--jump-menu-secondary-color);
     }
 
   }

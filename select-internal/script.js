@@ -15,12 +15,12 @@
 
   console.log("%c {{ include.title }} v{{ include.version }} in use. ", "background: #6e00ee; color: #fff");
 
-  var inPageClass = ".in-page";
-  var inPageLabelClass = ".in-page__label";
-  var inPageSelectClass = ".in-page__select";
-  var inPageOptionClass = ".in-page__select option";
-  var inPageContentClass = ".in-page__content";
-  var inPageDataCustomAriaLive = "data-custom-aria-live";
+  var inPageClass = ".select-internal";
+  var inPageLabelClass = ".select-internal__label";
+  var inPageSelectClass = ".select-internal__select";
+  var inPageOptionClass = ".select-internal__select option";
+  var inPageContentClass = ".select-internal__content";
+  var inPageDataCustomAriaLive = "data-aria-live";
   var inPage = document.querySelectorAll(inPageClass);
   var inPageLabel = document.querySelectorAll(inPageLabelClass);
   var inPageSelect = document.querySelectorAll(inPageSelectClass);
@@ -33,7 +33,7 @@
 
     // Check if "dynamic" Jump Menu is in use.
 
-    if (component.hasAttribute("data-in-page-dynamic")) {
+    if (component.hasAttribute("data-dynamic")) {
 
       var inPageContent = component.querySelectorAll(inPageContentClass);
       var inPageContentNth = component.querySelectorAll(inPageContentClass + ":nth-of-type(n + 2)");
@@ -50,7 +50,7 @@
 
         // If custom ID present
 
-        var contentID = content.hasAttribute("data-in-page-id") ? content.getAttribute("data-in-page-id"): "content-" + count;
+        var contentID = content.hasAttribute("data-id") ? content.getAttribute("data-id"): "content-" + count;
 
         content.setAttribute("id", contentID);
 
@@ -59,7 +59,7 @@
         var option = document.createElement("option");
 
         option.setAttribute("value", "#" + contentID);
-        option.textContent = content.getAttribute("data-in-page-name");
+        option.textContent = content.getAttribute("data-label");
 
         // Append each dynamic option.
 
@@ -77,7 +77,7 @@
 
     // Apply "for" attribute to each label.
 
-    label.setAttribute("for", "in-page-select-" + (e + 1));
+    label.setAttribute("for", "select-internal-" + (e + 1));
 
   });
 
@@ -85,7 +85,7 @@
 
     // Apply "id" to each select.
 
-    select.setAttribute("id", "in-page-select-" + (e + 1));
+    select.setAttribute("id", "select-internal-" + (e + 1));
 
   });
 

@@ -6,51 +6,51 @@ guidance:
 aria:
 
   - name: aria-label
-    html: .in-page__nav
+    html: .select-internal__nav
     note: Mandatory
     desc: Used to pass a custom label to <code>nav</code> element. All menus must have a unique name describing them. Multiple menus on the page, should have a unique name.
 
 attributes:
 
-  - name: data-in-page-aria-live
-    html: .in-page
+  - name: data-aria-live
+    html: .select-internal
     note: 
 
       - Boolean
       - Optional
 
-    desc: Used to suppress dynamic <code>aria-live</code> announcements. Here, you will be expected to wrap all of your <code>.in-page__content</code> blocks with a single <code>&lt;div aria-live="polite"&gt;&lt;/div&gt;</code>. This technique should be used sparingly and only when each content area contains a minimal amount of content.
+    desc: Used to suppress dynamic <code>aria-live</code> announcements. Here, you will be expected to wrap all of your <code>.select-internal__content</code> blocks with a single <code>&lt;div aria-live="polite"&gt;&lt;/div&gt;</code>. This technique should be used sparingly and only when each content area contains a minimal amount of content.
 
-  - name: data-in-page-dynamic	
-    html: .in-page
+  - name: data-dynamic	
+    html: .select-internal
     note: 
 
       - Boolean
       - Optional
 
-    desc: Used in situations where you do not wish to hardcode the <code>option</code> element. The name of each <code>option</code> will be pulled from <code>data-in-page-name</code>.
+    desc: Used in situations where you do not wish to hardcode the <code>option</code> element. The name of each <code>option</code> will be pulled from <code>data-name</code>.
 
-  - name: data-in-page-id	
-    html: .in-page__content
+  - name: data-id	
+    html: .select-internal__content
     note: 
 
       - String
       - Optional
 
-    desc: Used with <code>data-in-page-dynamic</code>. This will provide a custom <code>id</code> value to each <code>.in-page__content</code> container and a custom value to each <code>option</code> element. Custom values will override dynamically generated content-1, content-2, etc. Each custom value must be unique.
+    desc: Used with <code>data-dynamic</code>. This will provide a custom <code>id</code> value to each <code>.select-internal__content</code> container and a custom value to each <code>option</code> element. Custom values will override dynamically generated content-1, content-2, etc. Each custom value must be unique.
 
-  - name: data-in-page-name	
-    html: .in-page__content
+  - name: data-label
+    html: .select-internal__content
     note: 
 
       - String
       - Mandatory
 
-    desc: Used with <code>data-in-page-dynamic</code>. This will provide a custom value for any dynamically created <code>option</code> elements.
+    desc: Used with <code>data-dynamic</code>. This will provide a custom value for any dynamically created <code>option</code> elements.
 
 classes:
 
-  - name: .in-page
+  - name: .select-internal
     html: 
   
       - div
@@ -59,17 +59,17 @@ classes:
     note: Mandatory
     desc: Required on the parent element that wraps the menu and content.
 
-  - name: .in-page__nav	
+  - name: .select-internal__nav	
     html: nav
     note: Mandatory
     desc: Required on the <code>nav</code> element that wraps the <code>label</code> and <code>select</code> elements.
 
-  - name: .in-page__select
+  - name: .select-internal__select
     html: select
     note: Mandatory
     desc: Required on the <code>select</code> element.
 
-  - name: .in-page__content
+  - name: .select-internal__content
     html: div
     note: Mandatory
     desc: Required on each element that wraps individual content.

@@ -397,6 +397,7 @@ components:
     desc: "This component will allow you to add a select navigation to your page. When a selection is made and the button is pressed, it will take you to an external page."
     path: "select-external"
     title: "Select Navigation (External)"
+    hidden: true
     version: "1.1"
     examples:
 
@@ -407,7 +408,7 @@ components:
     desc: "This component will allow you to add a select navigation to your page that can reveal in-page content."
     path: "select-internal"
     title: "Select Navigation (Internal)"
-    version: "1.6"
+    version: "1.7"
     examples:
       
       - name: "Default Setup"
