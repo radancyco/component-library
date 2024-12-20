@@ -7,4 +7,4 @@
 
   Dependencies: Sass
 
-*/.select-internal{border-radius:5px}.select-internal__nav{background-color:#eee;display:block;max-width:26.25rem;padding:1em}.select-internal__label{display:block;font-weight:bold;margin:0 0 .3em}.select-internal__select{background-color:#fff;border:1px #ccc solid;font-size:inherit;padding:.5em;width:100%}.select-internal__content{margin-top:2em}.select-internal__content:target{scroll-margin-top:11.875em}/*# sourceMappingURL=init.css.map */
+*/.select-internal__nav{background-color:#eee;border-radius:.5em;display:grid;gap:.5em;max-width:26.25rem;padding:1em}.select-internal__label{font-weight:bold;margin:0}.select-internal__select{font-size:inherit;padding:.5em}.select-internal__select{background-color:#fff;border:1px #ccc solid;width:100%}.select-internal__content{margin-top:2em}.select-internal__content:target{scroll-margin-top:11.875em}/*# sourceMappingURL=init.css.map */

@@ -1,17 +1,19 @@
 
-<div class="jump-menu">
+<div class="select-external">
 
-    <nav aria-label="Jump Menu" class="jump-menu__nav">
+    <nav aria-label="Jump Menu" class="select-external__nav">
 
-      <label class="jump-menu__label">My favorite component is:</label>
+      <label class="select-external__label">My favorite component is:</label>
 
-      <select class="jump-menu__select">
+      <select class="select-external__select">
+        <option value="{{ site.url }}{{ site.baseurl }}/accordion/">Accordion</option>
         <option value="{{ site.url }}{{ site.baseurl }}/animation-toggle/">Animation Toggle</option>
         <option value="{{ site.url }}{{ site.baseurl }}/disclosure/">Disclosure</option>
         <option value="{{ site.url }}{{ site.baseurl }}/hero-banner/">Hero Banner</option>
+        <option value="{{ site.url }}{{ site.baseurl }}/tablist/">TabList</option>
       </select>
 
-      <button class="jump-menu__btn">Learn More</button>
+      <button class="select-external__btn">Go</button>
 
     </nav>
 

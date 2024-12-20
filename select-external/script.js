@@ -15,34 +15,33 @@
 
   console.log("%c {{ include.title }} v{{ include.version }} in use. ", "background: #6e00ee; color: #fff");
 
-  var jumpMenuClass = ".jump-menu";
-  var jumpMenuLabelClass = ".jump-menu__label";
-  var jumpMenuSelectClass = ".jump-menu__select";
-  var jumpMenuBtnClass = ".jump-menu__btn";
-  var jumpMenuLabel = document.querySelectorAll(jumpMenuLabelClass);
-  var jumpMenuSelect = document.querySelectorAll(jumpMenuSelectClass);
-  var jumpMenuBtn = document.querySelectorAll(jumpMenuBtnClass);
+  var selectExternalClass = ".select-external";
+  var selectExternalLabelClass = ".select-external__label";
+  var selectExternalSelectClass = ".select-external__select";
+  var selectExternalBtnClass = ".select-external__btn";
+  var selectExternalLabel = document.querySelectorAll(selectExternalLabelClass);
+  var selectExternalSelect = document.querySelectorAll(selectExternalSelectClass);
+  var selectExternalBtn = document.querySelectorAll(selectExternalBtnClass);
 
-  jumpMenuLabel.forEach(function(label, e){
+  selectExternalLabel.forEach(function(label, e){
 
-    label.setAttribute("for", "jump-menu-select-" + (e + 1));
-
-  });
-
-  jumpMenuSelect.forEach(function(select, e){
-
-    select.setAttribute("id", "jump-menu-select-" + (e + 1));
+    label.setAttribute("for", "select-external-" + (e + 1));
 
   });
 
-  jumpMenuBtn.forEach(function(button, e){
+  selectExternalSelect.forEach(function(select, e){
+
+    select.setAttribute("id", "select-external-" + (e + 1));
+
+  });
+
+  selectExternalBtn.forEach(function(button){
 
     button.addEventListener("click", function () {
 
-      var jumpMenuSelected = this.closest(jumpMenuClass).getElementsByTagName("select")[0];
+      var selectExternalSelected = this.closest(selectExternalClass).getElementsByTagName("select")[0];
 
-      // jumpMenuSelected.selectedIndex = 0;
-      location.href = jumpMenuSelected.value;
+      location.href = selectExternalSelected.value;
 
     });
 

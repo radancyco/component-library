@@ -15,36 +15,36 @@
 
   console.log("%c {{ include.title }} v{{ include.version }} in use. ", "background: #6e00ee; color: #fff");
 
-  var inPageClass = ".select-internal";
-  var inPageLabelClass = ".select-internal__label";
-  var inPageSelectClass = ".select-internal__select";
-  var inPageOptionClass = ".select-internal__select option";
-  var inPageContentClass = ".select-internal__content";
-  var inPageDataCustomAriaLive = "data-aria-live";
-  var inPage = document.querySelectorAll(inPageClass);
-  var inPageLabel = document.querySelectorAll(inPageLabelClass);
-  var inPageSelect = document.querySelectorAll(inPageSelectClass);
-  var inPageState = "active";
-  var inPageContentList = [];
+  var selectInternalClass = ".select-internal";
+  var selectInternalLabelClass = ".select-internal__label";
+  var selectInternalSelectClass = ".select-internal__select";
+  var selectInternalOptionClass = ".select-internal__select option";
+  var selectInternalContentClass = ".select-internal__content";
+  var selectInternalDataCustomAriaLive = "data-aria-live";
+  var selectInternal = document.querySelectorAll(selectInternalClass);
+  var selectInternalLabel = document.querySelectorAll(selectInternalLabelClass);
+  var selectInternalSelect = document.querySelectorAll(selectInternalSelectClass);
+  var selectInternalState = "active";
+  var selectInternalContentList = [];
 
   // On page load
 
-  inPage.forEach(function(component) {
+  selectInternal.forEach(function(component) {
 
     // Check if "dynamic" Jump Menu is in use.
 
     if (component.hasAttribute("data-dynamic")) {
 
-      var inPageContent = component.querySelectorAll(inPageContentClass);
-      var inPageContentNth = component.querySelectorAll(inPageContentClass + ":nth-of-type(n + 2)");
+      var selectInternalContent = component.querySelectorAll(selectInternalContentClass);
+      var selectInternalContentNth = component.querySelectorAll(selectInternalContentClass + ":nth-of-type(n + 2)");
 
-      inPageContentNth.forEach(function(content) {
+      selectInternalContentNth.forEach(function(content) {
 
         content.setAttribute("hidden", "");
 
       });
 
-      inPageContent.forEach(function(content, i) {
+      selectInternalContent.forEach(function(content, i) {
 
         var count = i + 1;
 
@@ -71,9 +71,9 @@
 
   });
 
-  var inPageOption = document.querySelectorAll(inPageOptionClass);
+  var selectInternalOption = document.querySelectorAll(selectInternalOptionClass);
 
-  inPageLabel.forEach(function(label, e) {
+  selectInternalLabel.forEach(function(label, e) {
 
     // Apply "for" attribute to each label.
 
@@ -81,7 +81,7 @@
 
   });
 
-  inPageSelect.forEach(function(select, e) {
+  selectInternalSelect.forEach(function(select, e) {
 
     // Apply "id" to each select.
 
@@ -91,49 +91,49 @@
 
   // Get all Job Menu options on page and push to array.
 
-  inPageOption.forEach(function(option) {
+  selectInternalOption.forEach(function(option) {
 
-    inPageContentList.push(option.getAttribute("value"));
+    selectInternalContentList.push(option.getAttribute("value"));
 
   });
 
-  function inPageSelectedState() {
+  function selectInternalSelectedState() {
 
-    var inPageHash = location.hash || inPageContentList[0];
+    var selectInternalHash = location.hash || selectInternalContentList[0];
 
-    if (!inPageHash) {
+    if (!selectInternalHash) {
 
       return;
     
     }
 
-    var inPageFragment = inPageHash.slice(1);
+    var selectInternalFragment = selectInternalHash.slice(1);
 
     // Check array against hash
 
-    if (inPageContentList.includes(inPageHash)) {
+    if (selectInternalContentList.includes(selectInternalHash)) {
 
       // If hash matches one of the array selections, load the selected content in hash
     
-      var inPageSelected = document.getElementById(inPageFragment);
-      var inPageContent = inPageSelected.closest(inPageClass).querySelectorAll(inPageContentClass);
+      var selectInternalSelected = document.getElementById(selectInternalFragment);
+      var selectInternalContent = selectInternalSelected.closest(selectInternalClass).querySelectorAll(selectInternalContentClass);
 
-      inPageContent.forEach(function(content) {
+      selectInternalContent.forEach(function(content) {
       
         content.setAttribute("hidden", "");
 
       });
 
-      inPageSelected.removeAttribute("hidden");
+      selectInternalSelected.removeAttribute("hidden");
 
-      inPageOption.forEach(function(option) {
+      selectInternalOption.forEach(function(option) {
 
         var optionValue = option.getAttribute("value");
 
         if (location.hash === optionValue) {
 
           option.setAttribute("selected", "");
-          option.closest(inPageClass).classList.add(inPageState);
+          option.closest(selectInternalClass).classList.add(selectInternalState);
 
         } else {
 
@@ -145,11 +145,11 @@
 
       // Update select dropdown
 
-      var select = document.querySelector(inPageClass + " select");
+      var select = document.querySelector(selectInternalClass + " select");
 
       if (select) {
 
-        select.value = inPageHash;
+        select.value = selectInternalHash;
 
       }
 
@@ -157,44 +157,44 @@
 
   }
 
-  inPageSelectedState();
+  selectInternalSelectedState();
 
   // Hash change event listener
+  
+  window.addEventListener("hashchange", function() {
 
-	window.addEventListener("hashchange", function() {
+    selectInternalSelectedState();
 
-		inPageSelectedState();
+    // When link is pressed, place programatic focus on selected content. This is useful if links are elsewhere on the page.
+    // If this causes issues elsewhere on page when haschange is fired, let me know.
 
-		// When link is pressed, place programatic focus on selected content. This is useful if links are elsewhere on the page.
-		// If this causes issues elsewhere on page when haschange is fired, let me know.
-
-		var selectedContent = document.querySelector(inPageContentClass + ":not([hidden])");
+    var selectedContent = document.querySelector(selectInternalContentClass + ":not([hidden])");
     var selectedContentID = selectedContent.getAttribute("id");
     var URLHash = location.hash.slice(1);
 
     if(URLHash === selectedContentID) {
 
-		  selectedContent.setAttribute("tabindex", "-1");
-		  selectedContent.focus();
+      selectedContent.setAttribute("tabindex", "-1");
+      selectedContent.focus();
 
     }
 
-	});
+  });
 
-  inPageSelect.forEach(function(select) {
+  selectInternalSelect.forEach(function(select) {
 
     select.addEventListener("change", function() {
 
-      var inPageParent = this.closest(inPageClass);
-      var inPageContent = inPageParent.querySelectorAll(inPageContentClass);
+      var selectInternalParent = this.closest(selectInternalClass);
+      var selectInternalContent = selectInternalParent.querySelectorAll(selectInternalContentClass);
 
       // Send message to screen reader.
 
-      var inPageAnnounce = inPageParent.querySelector("div[aria-live]");
+      var selectInternalAnnounce = selectInternalParent.querySelector("div[aria-live]");
 
-      if(!inPageParent.hasAttribute(inPageDataCustomAriaLive)){
+      if(!selectInternalParent.hasAttribute(selectInternalDataCustomAriaLive)){
 
-        inPageAnnounce.textContent = "Selected Content: " + this.options[this.selectedIndex].text; // TODO: Tokenize for i18n.
+        selectInternalAnnounce.textContent = "Selected Content: " + this.options[this.selectedIndex].text; // TODO: Tokenize for i18n.
 
       }
 
@@ -206,7 +206,7 @@
         
         history.replaceState(null, null, urlWithoutHash);
 
-        inPageAnnounce.textContent = "";
+        selectInternalAnnounce.textContent = "";
 
       } else {
 
@@ -214,25 +214,25 @@
 
       }
 
-      inPageContent.forEach(function(content) {
+      selectInternalContent.forEach(function(content) {
 
         content.setAttribute("hidden", "");
 
       });
 
-      var inPageContentSelected = location.hash.slice(1);
+      var selectInternalContentSelected = location.hash.slice(1);
 
-      document.getElementById(inPageContentSelected).removeAttribute("hidden");
+      document.getElementById(selectInternalContentSelected).removeAttribute("hidden");
 
       // Set selected jump menu to active.
 
-      inPage.forEach(function(menu) {
+      selectInternal.forEach(function(menu) {
 
-        menu.classList.remove(inPageState);
+        menu.classList.remove(selectInternalState);
 
       });
 
-      inPageParent.classList.add(inPageState);
+      selectInternalParent.classList.add(selectInternalState);
 
     });
 
@@ -242,9 +242,9 @@
 
   window.addEventListener("beforeunload", function() {
 
-    inPage.forEach(function(menu) {
+    selectInternal.forEach(function(menu) {
 
-      if (!menu.classList.contains(inPageState)) {
+      if (!menu.classList.contains(selectInternalState)) {
 
         menu.querySelector("select").selectedIndex = 0;
 

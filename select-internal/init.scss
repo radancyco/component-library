@@ -10,36 +10,40 @@
 */
 
 .select-internal {
-border-radius: 5px;
-
+  
   &__nav {
-  background-color: #eee;
-  display: block;
+  background-color: #EEE;
+  border-radius: .5em;
+  display: grid;
+  gap: .5em;
   max-width: calc(420rem / 16);
   padding: 1em;
   }
-
+  
   &__label {
-  display: block;
   font-weight: bold;
-  margin: 0 0 .3em;
+  margin: 0;
   }
 
   &__select {
-  background-color: #fff;
-  border: 1px #ccc solid;
   font-size: inherit;
   padding: .5em;
+  }
+  
+  &__select {
+  background-color: #FFF;
+  border: 1px #ccc solid;
   width: 100%;
   }
 
   &__content {
   margin-top: 2em;
-  
+    
     &:target {
     scroll-margin-top: calc(190em / 16);
     }
-
+  
   }
-
+  
 }
+

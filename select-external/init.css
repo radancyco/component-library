@@ -1,10 +1,10 @@
 /*!
 
-  Radancy Component Library: Jump Menu (External)
+  Radancy Component Library: Select Navigation (External)
 
   Contributor(s):
   Michael "Spell" Spellacy
 
   Dependencies: Sass
 
-*/.jump-menu{--jump-menu-primary-color: #6F00EF;--jump-menu-secondary-color: #69788C;--jump-menu-tertiary-color: #CCC;background-color:#eee;border-radius:5px;padding:1em}.jump-menu__label{display:block;font-weight:bold;margin-inline-end:.3em}@media(min-width: 48.625em){.jump-menu__label{display:inline-block}}.jump-menu__select,.jump-menu__btn{font-size:inherit;margin-inline-end:.3em;padding:.5em}.jump-menu__btn{background-color:var(--jump-menu-primary-color);border:0;color:#fff;font-size:inherit}.jump-menu__btn:focus-visible{background-color:var(--jump-menu-secondary-color)}/*# sourceMappingURL=init.css.map */
+*/.select-external__nav{background-color:#eee;border-radius:.5em;display:grid;gap:.5em;max-width:26.25rem;padding:1em}.select-external__label{grid-column:span 2;font-weight:bold;margin:0}.select-external__select,.select-external__btn{font-size:inherit;padding:.5em}.select-external__select{background-color:#fff;border:1px #ccc solid;width:100%}.select-external__btn{background-color:#6f00ef;border:0;color:#fff}/*# sourceMappingURL=init.css.map */
