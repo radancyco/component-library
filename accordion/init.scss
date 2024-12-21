@@ -28,8 +28,8 @@
 
 // Breakpoints (CSS variables are not allowed in media queries - boo!)
 
-$breakpoint-large: 55em; // Large Viewport
-$breakpoint-medium: 37.5em; // Medium Viewport
+$accordion-large: 55em; // Large Viewport
+$accordion-medium: 37.5em; // Medium Viewport
 
 display: grid;
 grid-template-columns: 1fr;
@@ -52,13 +52,13 @@ margin: 0;
 
   &[data-horizontal] {
 
-    @media (min-width: $breakpoint-medium) {
+    @media (min-width: $accordion-medium) {
 
       grid-template-columns: repeat(var(--accordion-column-medium), 1fr); 
 
     }
 
-    @media (min-width: $breakpoint-large) {
+    @media (min-width: $accordion-large) {
 
       grid-template-columns: repeat(var(--accordion-column-large), 1fr); 
 
@@ -87,7 +87,7 @@ margin: 0;
   
     [data-context] & {
   
-      @media (min-width: $breakpoint-medium) {
+      @media (min-width: $accordion-medium) {
   
         display: none;
   
@@ -164,7 +164,7 @@ margin: 0;
 
     [data-context] & {
 
-      @media (min-width: $breakpoint-medium) {
+      @media (min-width: $accordion-medium) {
 
         pointer-events: none;
         visibility: hidden;
@@ -182,7 +182,7 @@ margin: 0;
 
     [data-horizontal] & {
 
-      @media (min-width: $breakpoint-medium) {
+      @media (min-width: $accordion-medium) {
       
         padding: 1.5em;
 
@@ -342,13 +342,13 @@ margin: 0;
     border: var(--accordion-panel-border);
     margin-top: auto;
 
-      @media (min-width: $breakpoint-medium) {
+      @media (min-width: $accordion-medium) {
 
         grid-column: 1 / span var(--accordion-column-medium);
 
       }
 
-      @media (min-width: $breakpoint-large) {
+      @media (min-width: $accordion-large) {
 
         grid-column: 1 / span var(--accordion-column-large);
 
@@ -373,7 +373,7 @@ margin: 0;
 
     [data-context] & {
 
-      @media (min-width: $breakpoint-medium) {
+      @media (min-width: $accordion-medium) {
 
         background-color: transparent;
         display: block;

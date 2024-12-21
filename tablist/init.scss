@@ -15,21 +15,44 @@
 
 --base-color: #6F00EF;
 --base-color-active: white;
---base-color-neutral: lightgray;
+--base-color-neutral: #d3d3d3;
 --base-color-interactive: darkgray;
+
+// Breakpoints (CSS variables are not allowed in media queries - boo!)
+
+$tablist-large: 55em; // Large Viewport
+$tablist-medium: 48.625em; // Medium Viewport
 
 color: var(--base-color-active);
 position: relative;
 
   &:has([aria-orientation]) {
 
-    @media(min-width: 67.5em) {
+    @media(min-width: $tablist-large) {
   
       display: grid;
-      grid-template-columns: 20% auto;
+      grid-template-columns: calc(280rem /16) auto;
 
     }
   
+  }
+
+  // Tablist Container (Optional)
+
+  &__container {
+
+  }
+
+  // Tablist Heading (Optional)
+
+  &__heading {
+  color: var(--base-color);
+  font-size: 1.9rem;
+  text-align: center;
+  }
+
+  &__container, &__list {
+  align-self: center;
   }
 
   &__list {
@@ -41,7 +64,7 @@ position: relative;
 
     &[aria-orientation] {
 
-      @media(min-width: 67.5em) {
+      @media(min-width: $tablist-large) {
 
         display: block; 
 
@@ -51,7 +74,7 @@ position: relative;
 
     [data-stack] & {
 
-      @media(max-width: 48.625em) {
+      @media(max-width: $tablist-medium) {
 
         display: block;
 
@@ -63,7 +86,7 @@ position: relative;
 
       // This max-width can be changed depending on amount of list items you have.
 
-      @media(max-width: 48.625em) {
+      @media(max-width: $tablist-medium) {
 
         flex-wrap: nowrap;
         overflow-x: auto;
@@ -80,7 +103,7 @@ position: relative;
     flex-grow: 1;
     scroll-snap-align: start;
 
-      @media(min-width: 48.625em) {
+      @media(min-width: $tablist-medium) {
 
         flex-grow: 0;
 
@@ -131,7 +154,7 @@ position: relative;
   
   }
 
-  // Tab Content
+  // Tab Content (Optional)
 
   &__content { 
   

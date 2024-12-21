@@ -23,7 +23,6 @@
   display: grid;
   gap: .8em;
   grid-template-columns: repeat(var(--max-stars), 1fr);
-
   }
 
   legend {
@@ -49,7 +48,7 @@
     background-image: var(--checked-image); 
     }
 
-    // Make sure there is always a visible focus state when cycling through input element. We can't trust that creative will alwways give us contrast friendly icon states.
+    // Make sure there is always a visible focus state when cycling through input element.
 
     input {
 
