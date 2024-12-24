@@ -32,11 +32,7 @@ $accordion-large: 55em; // Large Viewport
 $accordion-medium: 37.5em; // Medium Viewport
 
 display: grid;
-grid-template-columns: 1fr;
 gap: var(--accordion-gap);
-grid-auto-flow: dense;
-position: relative;
-margin: 0;
 
   // Accordion Defaults & Resets: Do not remove!
 
@@ -51,7 +47,8 @@ margin: 0;
 
     @media (min-width: $accordion-medium) {
 
-      grid-template-columns: repeat(var(--accordion-column-medium), 1fr); 
+      grid-auto-flow: dense;
+      grid-template-columns: repeat(var(--accordion-column-medium), 1fr);
 
     }
 
