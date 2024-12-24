@@ -40,11 +40,8 @@ margin: 0;
 
   // Accordion Defaults & Resets: Do not remove!
 
-  dd, &__heading {
-  all: unset;
-  }
-      
   > ol, > ul, > dl, > ul > li, &__heading {
+  all: unset;
   display: contents;
   } 
 
