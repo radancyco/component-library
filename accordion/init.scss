@@ -18,6 +18,7 @@
 --accordion-close-size: calc(30rem / 16); // Close Button Size
 --accordion-color-active: #a9a9a9; // Active State
 --accordion-color-default: #d3d3d3; // Default States
+--accordion-color-interactive: #666; // Interactive State 
 --accordion-color-selected: #6F00EF; // Selected States
 --accordion-column-large: 4; // Horizontal Layout (Large Vieport)
 --accordion-column-medium: 2; // Horizontal Layout (Medium Vieport)
@@ -357,9 +358,37 @@ gap: var(--accordion-gap);
       max-height: 18.75em;
       overflow-y: auto;
       overscroll-behavior-y: contain;
-      scrollbar-color: var(--accordion-color-active) var(--accordion-color-default);
       scrollbar-gutter: stable;
+
+      // Fallback Scrollbar
+
+      scrollbar-color: var(--accordion-color-active) var(--accordion-color-default);
       scrollbar-width: thin;
+
+      @supports selector(::-webkit-scrollbar) {
+
+        scrollbar-color: initial;
+        scrollbar-width: auto;
+  
+        &::-webkit-scrollbar {
+        width: calc(16rem / 16);
+        }
+    
+        &::-webkit-scrollbar-track {
+        background-color: var(--accordion-color-default);
+        }
+    
+        &::-webkit-scrollbar-thumb {
+        background-color: var(--accordion-color-active);
+        border: calc(4rem / 16) var(--accordion-color-default) solid;
+        border-radius: 100vw;
+        }
+    
+        &::-webkit-scrollbar-thumb:hover {
+        background-color: var(--accordion-color-interactive);
+        }
+      
+      }
 
     }
 

@@ -91,9 +91,33 @@ position: relative;
         flex-wrap: nowrap;
         overflow-x: auto;
         scroll-snap-type: inline mandatory;
-        scrollbar-color: var(--base-color-interactive) var(--base-color-active);
-        scrollbar-width: thin;
         white-space: nowrap;
+
+        // Fallback Scrollbar
+
+        scrollbar-color: var(--base-color-active) var(--base-color);
+        scrollbar-width: thin;
+
+        @supports selector(::-webkit-scrollbar) {
+
+          scrollbar-color: initial;
+          scrollbar-width: auto;
+    
+          &::-webkit-scrollbar {
+          height: calc(16rem / 16);
+          }
+      
+          &::-webkit-scrollbar-track {
+          background-color: var(--base-color);
+          }
+      
+          &::-webkit-scrollbar-thumb {
+          background-color: var(--base-color-active);
+          border: calc(4rem / 16) var(--base-color) solid;
+          border-radius: 100vw;
+          }
+        
+        }
 
       }
 
@@ -146,9 +170,33 @@ position: relative;
       max-height: calc(400em/16);
       overflow-y: auto;
       overscroll-behavior-y: contain;
-      scrollbar-color: var(--base-color-active) var(--base-color);
       scrollbar-gutter: stable;
+
+      // Fallback Scrollbar
+
+      scrollbar-color: var(--base-color-active) var(--base-color);
       scrollbar-width: thin;
+
+      @supports selector(::-webkit-scrollbar) {
+
+        scrollbar-color: initial;
+        scrollbar-width: auto;
+  
+        &::-webkit-scrollbar {
+        width: calc(16rem / 16);
+        }
+    
+        &::-webkit-scrollbar-track {
+        background-color: var(--base-color);
+        }
+    
+        &::-webkit-scrollbar-thumb {
+        background-color: var(--base-color-active);
+        border: calc(4rem / 16) var(--base-color) solid;
+        border-radius: 100vw;
+        }
+      
+      }
 
     }
   
