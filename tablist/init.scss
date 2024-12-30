@@ -181,6 +181,7 @@ position: relative;
 
         scrollbar-color: initial;
         scrollbar-width: auto;
+        padding-inline-end: 0.5em;
   
         &::-webkit-scrollbar {
         width: calc(18rem / 16);
