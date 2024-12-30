@@ -369,6 +369,7 @@ gap: var(--accordion-gap);
 
         scrollbar-color: initial;
         scrollbar-width: auto;
+        padding-inline-end: 0.5em;
   
         &::-webkit-scrollbar {
         width: calc(18rem / 16);
@@ -376,6 +377,7 @@ gap: var(--accordion-gap);
     
         &::-webkit-scrollbar-track {
         background-color: var(--accordion-color-default);
+        margin-block: 0.5em;
         }
     
         &::-webkit-scrollbar-thumb {
