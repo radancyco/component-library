@@ -2,6 +2,6 @@
 
 {% include message/header.html %}
 
-    <p><strong>Reminder:</strong> This component may intentionally include scrollbars or when resized. Please note that the design and behavior of scrollbars can vary across different operating systems and browsers, which is completely normal and expected. Development will not include custom scrollbars beyond standard CSS capabilities supported by browsers.</p>
+    <p><strong>Reminder:</strong> This component may include scrollbars, especially when resized. Scrollbar design and behavior can vary across operating systems and browsers, which is normal. If using <code>::-webkit-scrollbar</code>, note that some browsers may not support this and will default to non-prefixed properties, where look and behavior may differ. For accessibility, ensure sufficient color contrast of 3:1 and touch target of at least 44px by 44px.</p>
 
 {% include message/footer.html %}
