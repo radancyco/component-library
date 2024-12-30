@@ -39,17 +39,20 @@ scrollbar-width: thin;
       scrollbar-width: auto;
 
       &::-webkit-scrollbar {
-      height: 0.75em;
+      height: calc(20rem / 16);
+      }
+
+      &::-webkit-scrollbar-track, &::-webkit-scrollbar-thumb {
+      border-radius: 100vw;
       }
   
       &::-webkit-scrollbar-track {
       background-color: var(--scroll-color-gutter);
-      border-radius: 100vw;
       }
   
       &::-webkit-scrollbar-thumb {
       background-color: var(--scroll-color-default);
-      border-radius: 100vw;
+      border: calc(5rem / 16) var(--scroll-color-gutter) solid;
       }
   
       &::-webkit-scrollbar-thumb:hover {
