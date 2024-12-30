@@ -326,7 +326,7 @@ components:
         id: "desktop-layout"
         customcss: "desktop-layout"
 
-      - name: "Horizontal Layout (Custom Scrollbar)"
+      - name: "Desktop Layout (Custom Scrollbar)"
         id: "custom-scrollbar"
         message: experimental
   
