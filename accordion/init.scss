@@ -384,6 +384,7 @@ gap: var(--accordion-gap);
         background-color: var(--accordion-color-active);
         border: calc(6rem / 16) var(--accordion-color-default) solid;
         border-radius: 100vw;
+        min-height: calc(100rem / 16);
         }
     
         &::-webkit-scrollbar-thumb:hover {

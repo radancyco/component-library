@@ -185,6 +185,7 @@ position: relative;
   
         &::-webkit-scrollbar {
         width: calc(18rem / 16);
+        height: 2em;
         }
     
         &::-webkit-scrollbar-track {
@@ -196,6 +197,7 @@ position: relative;
         background-color: var(--base-color-active);
         border: calc(6rem / 16) var(--base-color) solid;
         border-radius: 100vw;
+        min-height: calc(100rem / 16);
         }
       
       }
