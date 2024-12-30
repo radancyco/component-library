@@ -371,7 +371,7 @@ gap: var(--accordion-gap);
         scrollbar-width: auto;
   
         &::-webkit-scrollbar {
-        width: calc(16rem / 16);
+        width: calc(18rem / 16);
         }
     
         &::-webkit-scrollbar-track {
@@ -380,7 +380,7 @@ gap: var(--accordion-gap);
     
         &::-webkit-scrollbar-thumb {
         background-color: var(--accordion-color-active);
-        border: calc(4rem / 16) var(--accordion-color-default) solid;
+        border: calc(6rem / 16) var(--accordion-color-default) solid;
         border-radius: 100vw;
         }
     
