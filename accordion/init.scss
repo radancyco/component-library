@@ -365,7 +365,7 @@ gap: var(--accordion-gap);
       scrollbar-color: var(--accordion-color-active) var(--accordion-color-default);
       scrollbar-width: thin;
 
-      @supports selector(::-webkit-scrollbar) {
+      @supports #{"\selector(::-webkit-scrollbar)"} {
 
         scrollbar-color: initial;
         scrollbar-width: auto;

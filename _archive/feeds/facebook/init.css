@@ -8,7 +8,7 @@
 
   Dependencies: Sass
 
-  Instructions: To run locally, install Sass (https://sass-lang.com/install), CL to directory this file in and run:
-  sass --watch init.scss:init.css --style compressed
+  Instructions: 
+  sass --watch .:. --style compressed
 
 */#tmp-facebook-feed *{box-sizing:border-box}#tmp-facebook-feed:empty:before{content:"Sorry, no content available.";color:#c00}#tmp-facebook-feed ul{list-style:none;margin:0;padding:0}@media(min-width: 55em){#tmp-facebook-feed ul{display:flex;flex-flow:row wrap;justify-content:space-between}}@media(min-width: 55em){#tmp-facebook-feed li{margin-bottom:.8em;padding:.8em;width:33.33%}}#tmp-facebook-feed .tmp-facebook-content{margin-top:0;min-height:9.375rem;padding:0}#tmp-facebook-feed .tmp-facebook-url{display:block}#tmp-facebook-feed .tmp-facebook-url img{display:block;width:100%}#tmp-facebook-feed .tmp-facebook-url p{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#tmp-facebook-feed .visually-hidden,#tmp-facebook-feed .wai{clip:rect(0 0 0 0);clip-path:inset(50%);height:1px;overflow:hidden;position:absolute;white-space:nowrap;width:1px}/*# sourceMappingURL=init.css.map */

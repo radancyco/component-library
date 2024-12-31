@@ -31,7 +31,7 @@ scroll-snap-type: inline mandatory;
 scrollbar-color: var(--scroll-color-thumb) var(--scroll-color-track);
 scrollbar-width: thin;
 
-  @supports selector(::-webkit-scrollbar) {
+  @supports #{"\selector(::-webkit-scrollbar)"} {
 
     scrollbar-color: initial;
     scrollbar-width: auto;

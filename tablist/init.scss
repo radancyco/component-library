@@ -98,7 +98,7 @@ position: relative;
         scrollbar-color: var(--base-color-active) var(--base-color);
         scrollbar-width: thin;
 
-        @supports selector(::-webkit-scrollbar) {
+        @supports #{"\selector(::-webkit-scrollbar)"} {
 
           scrollbar-color: initial;
           scrollbar-width: auto;
@@ -177,7 +177,7 @@ position: relative;
       scrollbar-color: var(--base-color-active) var(--base-color);
       scrollbar-width: thin;
 
-      @supports selector(::-webkit-scrollbar) {
+      @supports #{"\selector(::-webkit-scrollbar)"} {
 
         scrollbar-color: initial;
         scrollbar-width: auto;
