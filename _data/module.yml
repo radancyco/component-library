@@ -162,7 +162,8 @@ components:
 
       - name: "Horizontal Scroll (Mobile)"
         id: "horizontal-scroll"
-        nmessage: scrollbars
+        message: scrollbars
+        note: "To test the scrollable area, resize the screen to a smaller width. When designing, ensure a partial item is visible at the edge to indicate scrollability and enhance usability."
   
   - id: "card" 
     desc: "This component will allow you to implement single or grouped content cards with images, text, and links, commonly used for presenting articles or topic-related content."
