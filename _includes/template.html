@@ -9,7 +9,7 @@
 
 {% comment %} Data connections and other variables. {% endcomment %}
 
-{% if site.name == "Component Library" %}
+{% if site.repo == "https://github.com/radancyco/component-library" %}
 
   {% assign current_id = page.id %}
   {% assign selectedComponents = site.data.module.components %}
@@ -31,7 +31,7 @@
 
 {% endif %}
 
-{% if page.warning %}
+{%- if page.warning %}
   
   <div class="warning">
   
@@ -39,9 +39,9 @@
 
   </div>
 
-{% endif %}
+{%- endif %}
 
-{% if page.note %}
+{%- if page.note %}
   
   <div class="note">
   
@@ -49,9 +49,9 @@
 
   </div>
 
-{% endif %}
+{%- endif %}
 
-{% if page.reminder %}
+{%- if page.reminder %}
   
   <div class="reminder">
   
@@ -59,25 +59,25 @@
 
   </div>
 
-{% endif %}
+{%- endif %}
 
-{% if component %}
+{%- if component %}
 
   <p class="component__summary">{{ component.desc }}</p>
 
-{% else if page.desc %}
+{%- else if page.desc %}
 
   <p class="page__summary">{{ page.desc }}</p>
 
-{% endif %}
+{%- endif %}
 
-{% if contentblock %}
+{%- if contentblock %}
 
   {{ contentblock }}
 
-{% endif %}
+{%- endif %}
 
-{% if page.select-internal %}
+{%- if page.select-internal %}
 
   <div class="select-internal" data-dynamic>
 
@@ -93,7 +93,7 @@
 
     </nav>
 
-{% endif %}
+{%- endif %}
 
 {% assign total_example_count = 0 %}
 
@@ -110,214 +110,214 @@
 
 {% for component in allSelections %}
 
-    {% if component.id == current_id %}
+  {% if component.id == current_id %}
   
-      {% for example in component.examples %}
+    {% for example in component.examples %}
 
-        {% capture html %}{% include_relative html/{{ example.id }}.html %}{% endcapture %}
+      {% capture html %}{% include_relative html/{{ example.id }}.html %}{% endcapture %}
 
-        {% if page.localcss %}
+      {% if page.localcss %}
 
-          {% capture css %}{% include_relative init.scss %}{% endcapture %}
+        {% capture css %}{% include_relative init.scss %}{% endcapture %}
 
-        {% endif %}
+      {% endif %}
 
-        {% if page.localjs %}
+      {% if page.localjs %}
 
-          {% capture js %}{% include_relative script.js title=component.title version=component.version %}{% endcapture %}
+        {% capture js %}{% include_relative script.js title=component.title version=component.version %}{% endcapture %}
 
-        {% endif %}
+      {% endif %}
 
-        {% if example.customcss %}
+      {% if example.customcss %}
 
-          {% capture customcss %}{% include_relative {{ example.customcss }}.scss %}{% endcapture %}
+        {% capture customcss %}{% include_relative {{ example.customcss }}.scss %}{% endcapture %}
 
-        {% endif %}
+      {% endif %}
 
-        {% if example.customjs %}
+      {% if example.customjs %}
 
-          {% capture customjs %}{% include_relative {{ example.customjs }} %}{% endcapture %}
+        {% capture customjs %}{% include_relative {{ example.customjs }} %}{% endcapture %}
 
-        {% endif %}
+      {% endif %}
 
-        {% if page.select-internal %}
+      {%- if page.select-internal %}
 
-          <div class="select-internal__content" data-label="{{ example.name }}" data-id="{{ example.id }}">
+        <div class="select-internal__content" data-label="{{ example.name }}" data-id="{{ example.id }}">
 
-        {% endif %}
+      {%- endif %}
 
-        {% if page.select-internal != true %}
+      {%- if page.select-internal != true %}
 
-          <h2 id="{{ example.id }}"><a class="anchor" href="#{{ example.id }}">{{ iconAnchor }} <span class="sr-only">Anchor ({{ example.name }})</span></a> {{ example.name }}</h2>
+        <h2 id="{{ example.id }}"><a class="anchor" href="#{{ example.id }}">{{ iconAnchor }} <span class="sr-only">Anchor ({{ example.name }})</span></a> {{ example.name }}</h2>
 
-        {% endif %}
+      {%- endif %}
   
-        {% include_relative html/{{ example.id }}.html %}
+      {% include_relative html/{{ example.id }}.html %}
 
-        {% if example.warning %}
+      {%- if example.warning %}
   
-          <div class="warning">
+        <div class="warning">
         
-            <p><strong>Warning:</strong> {{ example.warning }}</p>
-
-          </div>
-
-        {% endif %}
-  
-        {% if example.note %}
-  
-          <div class="note">
-          
-            <p><strong>Note:</strong> {{ example.note }}</p>
-
-          </div>
-  
-        {% endif %}
-
-        {% if example.reminder %}
-  
-          <div class="reminder">
-        
-            <p><strong>Reminder:</strong> {{ example.reminder }}</p>
-
-          </div>
-
-        {% endif %}
-
-        {% if example.experimental %}
-  
-          <div class="experimental">
-        
-            <p><strong>Experimental:</strong> {{ example.experimental }}</p>
-
-          </div>
-
-        {% endif %}
-
-        {% if component.message %}
-        
-          {% for msg in component.message %}
-
-            {% include message/{{ msg }}.html %}
-
-        {% endfor %}
-
-        {% endif %}
-
-        {% if example.message %}
-        
-          {% for msg in example.message %}
-
-            {% include message/{{ msg }}.html %}
-
-          {% endfor %}
-
-        {% endif %}
-
-        <nav aria-label="Component Tools" class="component-functions">
-
-          <ul role="list">
-            <li><button class="btn-copy-link" data-code="{{ page.url | absolute_url }}#{{ example.id }}">{{ iconCheck }}{{ iconCopyURL }} <span>Copy link to example</span></button></li>
-            <li><form action="https://codepen.io/pen/define" id="{{ example.id }}-codepen" method="POST" target="_blank"><button class="btn-edit-codepen">{{ iconCodePen }} <span>Edit on CodePen</span></button></form></li>
-            <li><a class="btn-new-window" href="{{ example.id }}" target="_blank">{{ iconNewWindow }} <span>Open in new window</span></a></li>
-            <li><button class="btn-refresh-page" onclick="javascript:location.reload();">{{ iconRefresh }} <span>Refresh Page</span></button></li>
-            <li><a class="btn-repository" href="{{ site.repo }}/blob/main/{{ component.path }}/">{{ iconGit }} <span>View Repository</span></a></li>
-            <li><button class="btn-view-code">{{ iconCode }} <span>View Source Code</span></button></li>
-          </ul>
-
-        </nav>
-
-        {% assign counter = counter | plus: 1 %}
-
-        <div class="content-view-code">
-
-          <div class="tablist" data-fixed-height>
-
-            <ul class="tablist__list">
-              <li><a class="tablist__tab" href="#html-{{counter}}">{{ iconHTML }} HTML</a></li>
-              {% if page.localcss %}
-              <li><a class="tablist__tab" href="#css-{{counter}}">{{ iconCSS }} CSS</a></li>
-              {% endif %}
-              {% if example.customcss %}
-              <li><a class="tablist__tab" href="#custom-css-{{counter}}">{{ iconCSS }} CSS (Custom)</a></li>
-              {% endif %}
-              {% if page.localjs %}
-              <li><a class="tablist__tab" href="#javascript-{{counter}}">{{ iconJS }} JavaScript</a></li>
-              {% endif %}
-              {% if example.customjs %}
-              <li><a class="tablist__tab" href="#custom-javascript-{{counter}}">{{ iconJS }} JavaScript (Custom)</a></li>
-              {% endif %}
-            </ul>
-      
-            <div class="tablist__panel" id="html-{{counter}}">
-
-              <button aria-label="Copy HTML" class="btn-code-copy" data-content-id="content-html-{{counter}}">{{ iconCheck }}{{ iconCopyURL }}</button>
-      
-              <div class="tablist__content" contenteditable id="content-html-{{counter}}" spellcheck="false">{% highlight html %}{% include_relative html/{{ example.id }}.html %}{% endhighlight %}</div>
-
-            </div>
-
-            {% if page.localcss %}
-
-              <div class="tablist__panel" id="css-{{counter}}">
-
-                <button aria-label="Copy CSS" class="btn-code-copy" data-content-id="content-css-{{counter}}">{{ iconCheck }}{{ iconCopyURL }}</button>
-
-                <div class="tablist__content" contenteditable id="content-css-{{counter}}" spellcheck="false">{% highlight css %}{% include_relative init.scss %}{% endhighlight %}</div>
-
-              </div>
-
-            {% endif %}
-
-            {% if example.customcss %}
-
-              <div class="tablist__panel" id="custom-css-{{counter}}">
-
-                <button aria-label="Copy Custom CSS" class="btn-code-copy" data-content-id="content-custom-css-{{counter}}">{{ iconCheck }}{{ iconCopyURL }}</button>
-
-                <div class="tablist__content" contenteditable id="content-custom-css-{{counter}}" spellcheck="false">{% highlight javascript %}{% include_relative {{ example.customcss }}.scss %}{% endhighlight %}</div>
-
-              </div>
-
-            {% endif %}
-
-            {% if page.localjs %}
-
-              <div class="tablist__panel" id="javascript-{{counter}}">
-
-                <button aria-label="Copy JavaScript" class="btn-code-copy" data-content-id="content-javascript-{{counter}}">{{ iconCheck }}{{ iconCopyURL }}</button>
-      
-                <div class="tablist__content" contenteditable id="content-javascript-{{counter}}" spellcheck="false">{% highlight javascript %}{% include_relative script.js title=component.title version=component.version %}{% endhighlight %}</div>
-
-              </div>
-
-            {% endif %}
-
-            {% if example.customjs %}
-
-              <div class="tablist__panel" id="custom-javascript-{{counter}}">
-
-                <button aria-label="Copy Custom JavaScript" class="btn-code-copy" data-content-id="content-custom-javascript-{{counter}}">{{ iconCheck }}{{ iconCopyURL }}</button>
-      
-                <div class="tablist__content" contenteditable id="content-custom-javascript-{{counter}}" spellcheck="false">{% highlight javascript %}{% include_relative {{ example.customjs }} %}{% endhighlight %}</div>
-
-              </div>
-
-            {% endif %}
-
-          </div>
+          <p><strong>Warning:</strong> {{ example.warning }}</p>
 
         </div>
 
-        {% if example.guidance %}
+      {%- endif %}
   
-          {% for item in example.guidance %}
+      {%- if example.note %}
   
-            {% include guidance/{{ item }}.html %}
+        <div class="note">
+          
+          <p><strong>Note:</strong> {{ example.note }}</p>
+
+        </div>
   
-          {% endfor %}
+      {%- endif %}
+
+      {%- if example.reminder %}
   
-      {% endif %}
+        <div class="reminder">
+        
+          <p><strong>Reminder:</strong> {{ example.reminder }}</p>
+
+        </div>
+
+      {%- endif %}
+
+      {%- if example.experimental %}
+  
+        <div class="experimental">
+        
+          <p><strong>Experimental:</strong> {{ example.experimental }}</p>
+
+        </div>
+
+      {%- endif %}
+
+      {%- if component.message %}
+        
+        {% for msg in component.message %}
+
+          {% include message/{{ msg }}.html %}
+
+        {% endfor %}
+
+      {%- endif %}
+
+      {%- if example.message %}
+        
+        {% for msg in example.message %}
+
+          {% include message/{{ msg }}.html %}
+
+        {% endfor %}
+
+      {%- endif %}
+
+      <nav aria-label="Component Tools" class="component-functions">
+
+        <ul role="list">
+          <li><button class="btn-copy-link" data-code="{{ page.url | absolute_url }}#{{ example.id }}">{{ iconCheck }}{{ iconCopyURL }} <span>Copy link to example</span></button></li>
+          <li><form action="https://codepen.io/pen/define" id="{{ example.id }}-codepen" method="POST" target="_blank"><button class="btn-edit-codepen">{{ iconCodePen }} <span>Edit on CodePen</span></button></form></li>
+          <li><a class="btn-new-window" href="{{ example.id }}" target="_blank">{{ iconNewWindow }} <span>Open in new window</span></a></li>
+          <li><button class="btn-refresh-page" onclick="javascript:location.reload();">{{ iconRefresh }} <span>Refresh Page</span></button></li>
+          <li><a class="btn-repository" href="{{ site.repo }}/blob/main/{{ component.path }}/">{{ iconGit }} <span>View Repository</span></a></li>
+          <li><button class="btn-view-code">{{ iconCode }} <span>View Source Code</span></button></li>
+        </ul>
+
+      </nav>
+
+      {% assign counter = counter | plus: 1 %}
+
+      <div class="content-view-code">
+
+        <div class="tablist" data-fixed-height>
+
+          <ul class="tablist__list">
+            <li><a class="tablist__tab" href="#html-{{counter}}">{{ iconHTML }} HTML</a></li>
+            {%- if page.localcss %}
+            <li><a class="tablist__tab" href="#css-{{counter}}">{{ iconCSS }} CSS</a></li>
+            {%- endif %}
+            {%- if example.customcss %}
+            <li><a class="tablist__tab" href="#custom-css-{{counter}}">{{ iconCSS }} CSS (Custom)</a></li>
+            {%- endif %}
+            {%- if page.localjs %}
+            <li><a class="tablist__tab" href="#javascript-{{counter}}">{{ iconJS }} JavaScript</a></li>
+            {%- endif %}
+            {%- if example.customjs %}
+            <li><a class="tablist__tab" href="#custom-javascript-{{counter}}">{{ iconJS }} JavaScript (Custom)</a></li>
+            {%- endif %}
+          </ul>
+      
+          <div class="tablist__panel" id="html-{{counter}}">
+
+            <button aria-label="Copy HTML" class="btn-code-copy" data-content-id="content-html-{{counter}}">{{ iconCheck }}{{ iconCopyURL }}</button>
+      
+            <div class="tablist__content" contenteditable id="content-html-{{counter}}" spellcheck="false">{% highlight html %}{% include_relative html/{{ example.id }}.html %}{% endhighlight %}</div>
+
+          </div>
+
+          {%- if page.localcss %}
+
+            <div class="tablist__panel" id="css-{{counter}}">
+
+              <button aria-label="Copy CSS" class="btn-code-copy" data-content-id="content-css-{{counter}}">{{ iconCheck }}{{ iconCopyURL }}</button>
+
+              <div class="tablist__content" contenteditable id="content-css-{{counter}}" spellcheck="false">{% highlight css %}{% include_relative init.scss %}{% endhighlight %}</div>
+
+            </div>
+
+          {%- endif %}
+
+          {%- if example.customcss %}
+
+            <div class="tablist__panel" id="custom-css-{{counter}}">
+
+              <button aria-label="Copy Custom CSS" class="btn-code-copy" data-content-id="content-custom-css-{{counter}}">{{ iconCheck }}{{ iconCopyURL }}</button>
+
+              <div class="tablist__content" contenteditable id="content-custom-css-{{counter}}" spellcheck="false">{% highlight javascript %}{% include_relative {{ example.customcss }}.scss %}{% endhighlight %}</div>
+
+            </div>
+
+          {%- endif %}
+
+          {%- if page.localjs %}
+
+            <div class="tablist__panel" id="javascript-{{counter}}">
+
+              <button aria-label="Copy JavaScript" class="btn-code-copy" data-content-id="content-javascript-{{counter}}">{{ iconCheck }}{{ iconCopyURL }}</button>
+      
+              <div class="tablist__content" contenteditable id="content-javascript-{{counter}}" spellcheck="false">{% highlight javascript %}{% include_relative script.js title=component.title version=component.version %}{% endhighlight %}</div>
+
+            </div>
+
+          {%- endif %}
+
+          {%- if example.customjs %}
+
+            <div class="tablist__panel" id="custom-javascript-{{counter}}">
+
+              <button aria-label="Copy Custom JavaScript" class="btn-code-copy" data-content-id="content-custom-javascript-{{counter}}">{{ iconCheck }}{{ iconCopyURL }}</button>
+      
+              <div class="tablist__content" contenteditable id="content-custom-javascript-{{counter}}" spellcheck="false">{% highlight javascript %}{% include_relative {{ example.customjs }} %}{% endhighlight %}</div>
+
+            </div>
+
+          {%- endif %}
+
+        </div>
+
+      </div>
+
+      {%- if example.guidance %}
+  
+        {% for item in example.guidance %}
+  
+          {% include guidance/{{ item }}.html %}
+  
+        {% endfor %}
+  
+      {%- endif %}
 
       <script>
 
@@ -329,25 +329,25 @@
         html: {{ html | jsonify }},
         css_external: "https://radancy.dev/css/init.css",
         css_pre_processor: "scss",
-        {% if example.customcss %}
+        {%- if example.customcss %}
         css: {{ css | append: customcss | jsonify }},
-        {% else %}
+        {%- else %}
         css: {{ css | jsonify }}, 
-        {% endif %}
-        {% if example.customjs %}
+        {%- endif %}
+        {%- if example.customjs %}
         js: {{ js | append: customjs | jsonify }},
-        {% else %}
+        {%- else %}
         js: {{ js | jsonify }},
-        {% endif %}
-        {% if example.codepenjs %}
+        {%- endif %}
+        {%- if example.codepenjs %}
         js_external: '{% for item in example.codepenjs %}{% if item contains "://" %}{{ item }}{% else %}{{site.url}}/animation-library/{{ item }}{% endif %}{% if forloop.last %}{% else %};{% endif %}{% endfor %}',
-        {% endif %}
+        {%- endif %}
     
       };
     
       var json = JSON.stringify(obj);
-    
       var codePenInput = document.createElement("input");
+      
       codePenInput.setAttribute("type", "hidden");
       codePenInput.setAttribute("name", "data");
       codePenInput.setAttribute("value", json);
@@ -355,11 +355,11 @@
     
       </script>
 
-      {% if page.select-internal %}
+      {%- if page.select-internal %}
   
-        </div>
+      </div>
 
-      {% endif %}
+      {%- endif %}
 
     {% endfor %}
 
@@ -367,11 +367,11 @@
 
 {% endfor %}
 
-{% if page.select-internal %}
+{%- if page.select-internal %}
   
 </div>
 
-{% endif %}
+{%- endif %}
 
 {% if page.guidance %} 
 
@@ -385,7 +385,7 @@
 
 {% endif %}
 
-{% if page.elements or page.aria or page.attributes or page.sass or page.class or page.cookies or page.parameters or page.notes %}
+{%- if page.elements or page.aria or page.attributes or page.sass or page.class or page.cookies or page.parameters or page.notes %}
 
   <h2 id="properties">Properties</h2>
 
@@ -393,9 +393,9 @@
 
   <div class="accordion">
 
-{% endif %}
+{%- endif %}
 
-{% if page.elements %} 
+{%- if page.elements %} 
 
 <button class="accordion__toggle" id="elements">Elements</button>
 
@@ -432,9 +432,9 @@
 
 </div>
 
-{% endif %}
+{%- endif %}
 
-{% if page.aria %} 
+{%- if page.aria %} 
 
 <button class="accordion__toggle" id="aria">ARIA</button>
 
@@ -473,9 +473,9 @@
 
 </div>
 
-{% endif %}
+{%- endif %}
 
-{% if page.attributes %} 
+{%- if page.attributes %} 
 
 <button class="accordion__toggle" id="attributes">Attributes</button>
 
@@ -514,9 +514,9 @@
 
 </div>
 
-{% endif %}
+{%- endif %}
 
-{% if page.sass %} 
+{%- if page.sass %} 
 
 <button class="accordion__toggle" id="sass">SASS</button>
 
@@ -551,9 +551,9 @@
 
 </div>
 
-{% endif %}
+{%- endif %}
 
-{% if page.classes %} 
+{%- if page.classes %} 
 
 <button class="accordion__toggle" id="classes">Classes</button>
 
@@ -592,9 +592,9 @@
 
 </div>
 
-{% endif %}
+{%- endif %}
 
-{% if page.cookies %} 
+{%- if page.cookies %} 
 
 <button class="accordion__toggle" id="cookies">Cookies</button>
 
@@ -639,9 +639,9 @@
 
 </div>
 
-{% endif %}
+{%- endif %}
 
-{% if page.parameters %} 
+{%- if page.parameters %} 
 
 <button class="accordion__toggle" id="parameters">Parameters</button>
 
@@ -680,7 +680,7 @@
 
 {% endif %}
 
-{% if page.notes %} 
+{%- if page.notes %} 
 
 <button class="accordion__toggle" id="notes">Additional Notes</button>
 
@@ -700,9 +700,9 @@
 
 </div>
 
-{% endif %}
+{%- endif %}
 
-{% if page.roadmap %} 
+{%- if page.roadmap %} 
 
   <button class="accordion__toggle" id="roadmap">Roadmap</button>
 
@@ -722,13 +722,13 @@
 
   </div>
 
-{% endif %}
+{%- endif %}
 
-{% if page.elements or page.aria or page.attributes or page.sass or page.class or page.cookies or page.parameters or page.notes %}
+{%- if page.elements or page.aria or page.attributes or page.sass or page.class or page.cookies or page.parameters or page.notes %}
 
 </div>
 
-{% endif %}
+{%- endif %}
 
 <h2 id="issues">Report Issues</h2>
 

@@ -1,6 +1,6 @@
 /*!
 
-  Radancy Component Library: Tablist
+  Radancy Component Library: TabList
 
   Contributor(s): 
   Michael "Spell" Spellacy
@@ -104,7 +104,7 @@ position: relative;
           scrollbar-width: auto;
     
           &::-webkit-scrollbar {
-          height: calc(16rem / 16);
+          height: calc(20rem / 16);
           }
       
           &::-webkit-scrollbar-track {
@@ -113,7 +113,7 @@ position: relative;
       
           &::-webkit-scrollbar-thumb {
           background-color: var(--base-color-active);
-          border: calc(4rem / 16) var(--base-color) solid;
+          border: calc(8rem / 16) var(--base-color) solid;
           border-radius: 100vw;
           }
         

@@ -13,9 +13,9 @@
 
 // Component Variables
 
---scroll-color-gutter: #eee; // Active State
---scroll-color-default: #6F00EF; // Default States
---scroll-color-selected: #666; // Selected States
+--scroll-color-track: #EEE; // Track Color
+--scroll-color-thumb: #6F00EF; // Thumb Color
+--scroll-color-active: #666; // Active State
 
 position: relative;
 display: grid;
@@ -28,7 +28,7 @@ scroll-snap-type: inline mandatory;
 
 // Fallback Scrollbar
 
-scrollbar-color: var(--scroll-color-default) var(--scroll-color-gutter);
+scrollbar-color: var(--scroll-color-thumb) var(--scroll-color-track);
 scrollbar-width: thin;
 
   @supports selector(::-webkit-scrollbar) {
@@ -45,14 +45,14 @@ scrollbar-width: thin;
     }
 
     &::-webkit-scrollbar-track {
-    background-color: var(--scroll-color-gutter);
+    background-color: var(--scroll-color-track);
     }
 
     &::-webkit-scrollbar-thumb {
-    background-color: var(--scroll-color-default);
+    background-color: var(--scroll-color-thumb);
     
       &:hover {
-      background-color: var(--scroll-color-selected);
+      background-color: var(--scroll-color-active);
       }
 
     }

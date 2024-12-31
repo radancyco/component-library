@@ -9,17 +9,50 @@
 
 */
 
-$base-color: #6F00EF;
-$base-color-active: #FFF;
-
 .breadcrumb {
+
+--breadcrumb-color-track: #EEE; // Track Color
+--breadcrumb-color-thumb: #6F00EF; // Thumb Color
+--breadcrumb-color-active: #666; // Active State
+
 padding: 1em 0;
 
   &[data-scroll] {
 
     overflow-x: auto;
-    scrollbar-color: $base-color $base-color-active;
+
+    // Fallback Scrollbar
+
+    scrollbar-color: var(--breadcrumb-color-track) var(--breadcrumb-color-thumb);
     scrollbar-width: thin;
+
+    @supports selector(::-webkit-scrollbar) {
+
+      scrollbar-color: initial;
+      scrollbar-width: auto;
+
+      &::-webkit-scrollbar {
+      height: calc(6rem / 16);
+      }
+
+      &::-webkit-scrollbar-track, &::-webkit-scrollbar-thumb {
+      border-radius: 100vw;
+      }
+  
+      &::-webkit-scrollbar-track {
+      background-color: var(--breadcrumb-color-track);
+      }
+  
+      &::-webkit-scrollbar-thumb {
+      background-color: var(--breadcrumb-color-thumb);
+
+        &:hover {
+        background-color: var(--breadcrumb-color-active);
+        }
+
+      }
+    
+    }
 
   }
 
