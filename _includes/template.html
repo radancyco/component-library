@@ -85,7 +85,7 @@
 
   <div class="select-internal">
 
-    <nav aria-label="Example" class="select-internal__nav">
+    <nav aria-label="Examples" class="select-internal__nav">
 
       <label class="select-internal__label">Choose an example:</label>
 
@@ -166,7 +166,7 @@
 
       {%- if page.select-internal != true %}
 
-        <h2 id="{{ example.id }}"><a class="anchor" href="#{{ example.id }}">{{ iconAnchor }} <span class="sr-only">Anchor ({{ example.name }})</span></a> {{ example.name }}</h2>
+        <h2 id="{{ example.id }}">{{ example.name }} <a class="anchor" href="#{{ example.id }}">{{ iconAnchor }} <span class="sr-only">Anchor ({{ example.name }})</span></a></h2>
 
       {%- endif %}
   
