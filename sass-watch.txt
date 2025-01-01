@@ -1,2 +1,8 @@
-sass --watch .:. --style compressed // local director
-sass --watch . --style compressed // entire directory
+
+# Watch Local Directory 
+
+sass --watch .:. --style compressed
+
+# Watch Global Directory
+
+sass --watch . --style compressed

@@ -79,13 +79,27 @@
 
 {%- if page.select-internal %}
 
-  <div class="select-internal" data-dynamic>
+  <div class="select-internal">
 
     <nav aria-label="Example" class="select-internal__nav">
 
       <label class="select-internal__label">Choose an example:</label>
 
       <select class="select-internal__select">
+
+      {%- for component in allSelections %}
+
+        {% if component.id == current_id %}
+  
+          {% for example in component.examples %}
+
+            <option value="#{{ example.id }}">{{ example.name }}</option>
+
+          {% endfor %}
+
+        {% endif %}
+
+      {%- endfor %}
 
       </select>
 
@@ -142,7 +156,7 @@
 
       {%- if page.select-internal %}
 
-        <div class="select-internal__content" data-label="{{ example.name }}" data-id="{{ example.id }}">
+        <div class="select-internal__content" id="{{ example.id }}" {% unless forloop.first %}hidden{% endunless %}>
 
       {%- endif %}
 
