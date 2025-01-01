@@ -1,6 +1,6 @@
 {% comment %}
 
-  Radancy Component Library: Main Page Template
+  Radancy Component Library: Component Page Template
 
   Contributor(s):
   Michael "Spell" Spellacy
@@ -19,17 +19,11 @@
 
 {% endif %}
 
+{% comment %} Get Icon Library {% endcomment %}
+
 {% include icon.html %}
 
-{% if page.messages %} 
-
-    {% for message in page.messages %}
-
-      {% include message/{{ message }}.html %}
-
-    {% endfor %}
-
-{% endif %}
+{% comment %} Top Messages {% endcomment %}
 
 {%- if page.warning %}
   
@@ -60,6 +54,16 @@
   </div>
 
 {%- endif %}
+
+{% if page.messages %} 
+
+    {% for message in page.messages %}
+
+      {% include message/{{ message }}.html %}
+
+    {% endfor %}
+
+{% endif %}
 
 {%- if component %}
 
@@ -678,7 +682,7 @@
     {% for parameter in sortParameters %}
 
       <tr>
-        <th scope="row">{{ parameter.name }}</th>
+        <th scope="row"><code>{{ parameter.name }}</code></th>
         <td>{% for note in parameter.note %}{{ note }}{% if forloop.last %}{% else %}, {% endif %} {% endfor %}</td>
         <td><div>{{ parameter.desc }}</div></td>
       </tr>
