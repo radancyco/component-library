@@ -61,7 +61,7 @@ attributes:
     desc: Used to allow multiple accordion disclosures to be opened instead of one at a time.
 
   - name: data-open
-    html: .accordion__button
+    html: .accordion__toggle
     note:
 
       - Boolean
@@ -78,9 +78,17 @@ attributes:
     
     desc: Used to apply a visual pointer that connects the button to the content. In this state, the down arrow, which is usually present on the button, will not be visible as it is unnecessary. The content pointer can be applied to both horizontal and vertical accordions.
 
+  - name: data-remove-icon
+    html: .accordion
+    note:
+
+      - Boolean
+      - Optional
+    
+    desc: By default, all buttons include a span element for icons, styled via a CSS pseudo-element. If this is not desirable, you can remove it by adding this attribute. For custom icons, ensure they are hidden from assistive technologies by using <code>aria-hidden="true"</code>. 
 
   - name: id
-    html: .accordion__button
+    html: .accordion__toggle
     note:
 
       - String
@@ -99,7 +107,7 @@ classes:
     note: Mandatory
     desc: Required on the parent element that wraps your content.
   
-  - name: .accordion__button
+  - name: .accordion__toggle
     html: button
     note: Mandatory
     desc: Required on your accordion button.
@@ -109,12 +117,17 @@ classes:
     note: Mandatory
     desc: Required on your accordion panel.
 
+elements:
+
+  - html: button[.accordion__toggle-btn]    
+    note: Optional
+    desc: Required as a direct child of <code>.accordion</code> when a "Show All" button is desired.
+
 roadmap:
 
   - Behavior - Add Escape Key functionality to <a href="#horizontal-overlay">Overlay</a> example (High).
   - Behavior - Add back button support. Currently, the URL fragment changes, but not the content (High).
   - Behavior - Add video support for YouTube, Vimeo, and HTML5. Video needs to reset when accordion is closed. Delievery team to workaround for now (High).
-  - Feature - Move the "Show All" feature from the <a href="../disclosure/">Disclosure</a> component to here (Low).
   - Feature - Reinstate callback functionality. While it is no longer needed in this component, it may still be useful to have (Medium).
   - Feature - Consider the possibility of introducing arrow key support. While optional, it might be a nice inclusion (Low).
 

@@ -76,8 +76,6 @@ gap: var(--accordion-gap);
   display: block;
   inline-size: var(--accordion-arrow-size);
   justify-self: end;
-  margin-block-start: calc(var(--accordion-arrow-border) * -2);
-  margin-inline-start: 0.5em;
   transform: rotate(-45deg);
   
     [data-context] & {
@@ -127,21 +125,27 @@ gap: var(--accordion-gap);
 
   }
 
-  // Accordion Toggle Button
+  // Accordion Toggle & Toggle All Button
 
-  &__toggle {
-  align-items: center;
+  &__toggle, &__toggle-all {
   background-color: var(--accordion-color-default);
   border: 0;
   color: inherit;
   cursor: pointer;
   display: grid;
   font-size: inherit;
-  grid-template-columns: auto 1fr;
-  line-height: 1.5;
+  gap: 1em;
+  grid-auto-flow: column;
+  line-height: normal;
   padding: 1em;
   position: relative;
   text-align: start;
+
+    // Multi-purpose Span
+
+    span {
+    line-height: 1.5;
+    }
 
     // Accordion Animation
 
@@ -240,7 +244,7 @@ gap: var(--accordion-gap);
 
     // Accordion Toggle Button: Behavior
 
-    &[aria-expanded="true"] {
+    &[aria-expanded="true"], &[aria-pressed="true"] {
     background-color: var(--accordion-color-selected);
     color: #fff;
 
@@ -301,6 +305,14 @@ gap: var(--accordion-gap);
 
     }
 
+  }
+
+  // Accordion Toggle All Button 
+
+  &__toggle-all {
+  justify-self: end;
+  margin-block: 0 1em;
+  width: fit-content;
   }
 
   // Accordion Panel

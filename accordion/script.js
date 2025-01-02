@@ -51,6 +51,7 @@
       var accordionToggleClassName = "accordion__toggle";
       var accordionArrowClassName = "accordion__arrow";
       var accordionToggleClass = "." + accordionToggleClassName;
+      var accordionToggleAllClass = ".accordion__toggle-all";
       var accordionHeadingClassName = "accordion__heading";
       var accordionPanelClass = ".accordion__panel";
       var accordionDataActiveState = "data-active";
@@ -60,6 +61,7 @@
       var accordionDataDisableAnchor = "data-disable-anchor";
       var accordionDataFixedHeight = "data-fixed-height";
       var accordionDataMultiOpen = "data-multiple";
+      var accordionDataRemoveIcon = "data-remove-icon";
       var accordions = document.querySelectorAll(accordionClass);
       var URLFragment = location.hash.slice(1);
 
@@ -71,25 +73,33 @@
 
       accordions.forEach(function(accordion, index) {
 
+        // Script Enabled (Future PE Usage)
+
+        accordion.classList.add("accordion__js");
+
         // Set unique ID on all accordions.
 
         accordion.setAttribute("id", "accordion-" + (index + 1));
 
         // Get all buttons within accordion.
 
-        var buttons = accordion.querySelectorAll(accordionToggleClass);
+        var accordionToggles = accordion.querySelectorAll(accordionToggleClass);
 
         // Get all panels within accordion.
         
-        var panels = accordion.querySelectorAll(accordionPanelClass);
+        var accordionPanels = accordion.querySelectorAll(accordionPanelClass);
 
-        // Set variable for slected button target.
+        // Set variable for selected button target.
 
         var expandedButton = null;
 
-        // Loop through each button.
+        // Get "Toggle All " button.
 
-        buttons.forEach(function(btn) {
+        var btnToggleAll = accordion.querySelector(accordionToggleAllClass);
+
+        // Loop through each toggle button.
+
+        accordionToggles.forEach(function(btn) {
 
           // Get button ID. Remember: ID's should always be unique.
 
@@ -102,11 +112,15 @@
 
           // Add Toggle Icon
 
-          var toggleState = document.createElement("span");
+          if(!accordion.hasAttribute(accordionDataRemoveIcon)) {
 
-          toggleState.setAttribute("aria-hidden", "true");
-          toggleState.classList.add(accordionArrowClassName);
-          btn.append(toggleState);
+            var toggleState = document.createElement("span");
+
+            toggleState.setAttribute("aria-hidden", "true");
+            toggleState.classList.add(accordionArrowClassName);
+            btn.append(toggleState);
+
+          }
 
           // Handle button click.
 
@@ -116,7 +130,7 @@
 
             if (!accordion.hasAttribute(accordionDataMultiOpen)) {
 
-              buttons.forEach(function(button) {
+              accordionToggles.forEach(function(button) {
 
                 button.setAttribute("aria-expanded", "false");
 
@@ -129,6 +143,14 @@
             // Add "data-active" attribute on the parent accordion. Might be useful to achieve interesting UX.
       
             accordion.setAttribute(accordionDataActiveState, "");
+
+            // If "Toggle All" button is present, then always set it to false.
+
+            if(btnToggleAll) {
+            
+              btnToggleAll.setAttribute("aria-pressed", "false")
+            
+            }
 
             // Place focus on close button if present.
 
@@ -170,9 +192,61 @@
 
         }
 
+        // If "Toggle All" button is present...
+
+        if(btnToggleAll) {
+
+          btnToggleAll.setAttribute("aria-pressed", "false");
+
+          if(!accordion.hasAttribute(accordionDataRemoveIcon)) {
+
+            var toggleAllState = document.createElement("span");
+
+            toggleAllState.setAttribute("aria-hidden", "true");
+            toggleAllState.classList.add(accordionArrowClassName);
+            btnToggleAll.append(toggleAllState);
+
+          }
+
+          // Toggle All Event
+
+          btnToggleAll.addEventListener("click", function() {
+
+            var isPressed = this.getAttribute("aria-pressed");
+
+            if(isPressed === "true") {
+
+              this.setAttribute("aria-pressed", "false");
+      
+            } else {
+      
+              this.setAttribute("aria-pressed", "true");
+      
+            }
+
+            // Get all accordion buttons and handle their state based on toggle button state.
+
+            accordionToggles.forEach(function(btn) {
+
+              if (isPressed === "true") {
+
+                btn.setAttribute("aria-expanded", "false");
+
+              } else {
+
+                btn.setAttribute("aria-expanded", "true");
+
+              }
+
+            });
+
+          });
+
+        }
+
         // Loop through each panel.
 
-        panels.forEach(function(panel) {
+        accordionPanels.forEach(function(panel) {
 
           // Set up each disclosure.
 
