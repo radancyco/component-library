@@ -73,10 +73,6 @@
 
       accordions.forEach(function(accordion, index) {
 
-        // Script Enabled (Future PE Usage)
-
-        accordion.classList.add("accordion__js");
-
         // Set unique ID on all accordions.
 
         accordion.setAttribute("id", "accordion-" + (index + 1));
