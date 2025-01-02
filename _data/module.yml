@@ -66,6 +66,7 @@ components:
     path: "accordion-grid"
     title: "Accordion Grid"
     version: "1.1" 
+    hidden: true
     examples: 
 
       - name: "Default Setup"
@@ -420,7 +421,7 @@ components:
       - name: "Custom Aria-Live"
         id: "custom-aria-live"
 
-      - name: "Dynamic Setup (Experimental)"
+      - name: "Dynamic Setup"
         id: "dynamic-setup"
         message: experimental
 
@@ -436,6 +437,7 @@ components:
     path: "tabcordion"
     title: "TabCordion"
     version: "1.8"
+    hidden: true
     examples:
 
       - name: "Default Setup"
