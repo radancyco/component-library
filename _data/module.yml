@@ -106,11 +106,6 @@ components:
         id: "default-setup"
         group: Video
 
-      - name: "Audio Description"
-        id: "audio-description"
-        group: Experimental
-        experimental: "This is an experimental feature that will allow the video to include an audio description. A valid, third-party or self-produced <a href='demo.vtt'>VTT</a> file is required."
-      
       - name: "After Effects (Callback)"
         id: "callback"
         group: Non-Video
@@ -128,6 +123,11 @@ components:
         group: Video
         note: "In this example, the video is set to loop one time. Once complete, it cannot be restarted."
 
+      - name: "Audio Description"
+        id: "audio-description"
+        group: Experimental
+        experimental: "This is an experimental feature that will allow the video to include an audio description. A valid, third-party or self-produced <a href='demo.vtt'>VTT</a> file is required."
+      
       - name: "GIF Animation"
         id: "gif-animation"
         group: Non-Video
@@ -163,9 +163,9 @@ components:
         group: Non-Video
         customcss: "svg-animation"
 
-      - name: "Transparent Video (Intersection Observer)"
+      - name: "Transparent Video"
         id: "transparent"
-        group: Video
+        group: Demo
         customcss: "transparent"
         customjs: "transparent.js"
         note: This video utilizes an <a href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API">Intersection Observer</a> triggered by a callback function. When positioned at the top of the page, it loads instantly; when lower, it plays as you scroll to it. This demo will only play once, requiring a page refresh for replay.
