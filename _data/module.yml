@@ -11,7 +11,7 @@ components:
         id: "default"
         note: "Please note that this is a basic example of accordion functionality. Adding additional markup, such as headings, can enhance the component's accessibility and make it more understandable to assistive technology users. See the <a href='#headings'>Interactive Headings (FAQ)</a> example for more details."
 
-      - name: "Default Opened Content"
+      - name: "Default Opened"
         id: "default-opened"
         note: "Please note that only one accordion may be opened on page load. This content can be closed and should not be confused with the <a href='../tablist/'>TabList</a>, which may never have collapsed content."
 
@@ -19,28 +19,24 @@ components:
         id: "disable-anchor"
         note: "By default, clicking a button adds an anchor to the URL, but this can be disabled if needed. However, anchors are useful for sharing specific content and tracking, so they should only be removed with a valid reason."
 
-      - name: "Fixed Content Height"
+      - name: "Fixed Height"
         id: "fixed-height"
         message: scrollbars
 
-      - name: "Horizontal Layout"
+      - name: "Default Grid"
         id: "horizontal"
+        group: Horizontal Layout (Grid)
         message: use-tablist
 
-      - name: "Horizontal Layout (Animated)"
+      - name: "Animation"
         id: "horizontal-animated"
+        group: Horizontal Layout (Grid)
         experimental: "Please note that this example uses the new <a href='https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style'>@starting-style</a> at-rule to animate <code>display: none</code>. This technique is <a href='https://caniuse.com/mdn-css_at-rules_starting-style'>supported</a> in most major browsers. If you require animation in non-supporting browser, you will need to come up with an alternative solution. Non-supporting browsers will simply toggle the display of the content."
         message: use-tablist
 
-      - name: "Horizontal Layout (Overlay)"
-        id: "horizontal-overlay"
-        message: 
-        
-          - experimental
-          - use-tablist
-
-      - name: "Horizontal Layout (Content Pointer)"
+      - name: "Content Pointer"
         id: "horizontal-pointer"
+        group: Horizontal Layout (Grid)
         message: 
 
           - use-tablist
@@ -59,6 +55,14 @@ components:
       - name: "Viewport Context"
         id: "viewport-context"
         note: "In some scenarios, we may only want the accordion to be present on smaller viewports. In such cases, it is crucial to ensure that accessibility on larger screens is not compromised by leaving buttons accessible to assistive technologies. To see this solution in action, try pressing or tabbing to the headings in larger viewport sizes. As you'll notice, the headings are not interactive and all content that would normally be collapsed is revealed, which is exactly what we want. However, when you change the viewport to a smaller size, the component then becomes a traditional accordion. This kind of behavior can often be found in the footer of applications or website, where space is more limited on smaller screens."
+
+      - name: "Overlay"
+        id: "horizontal-overlay"
+        group: Experimental
+        message: 
+        
+          - experimental
+          - use-tablist
 
   - id: "accordion-grid"
     deprecated: true
@@ -397,7 +401,7 @@ components:
   - id: "partial-disclosure"
     desc: "This component will allow you to expand partially visible content on your page."
     path: "partial-disclosure"
-    title: "Partial Disclosure (Read More)"
+    title: "Partial Disclosure"
     version: "1.7"
     examples:
 
@@ -411,8 +415,9 @@ components:
       - name: "Offset Button (Custom Label)"
         id: "offset-button-custom-label"
           
-      - name: "Offset Button (Bottom, Anti-Pattern)"
+      - name: "Offset Button (Bottom)"
         id: "offset-button-bottom"
+        group: Anti-Pattern
         warning: 'Positioning disclosure buttons on the bottom of content to be opened above them is considered an anti-pattern and <a href="#read-more">not recommended</a>. Use at your own risk.'
         guidance: anti-pattern-read-more
 
