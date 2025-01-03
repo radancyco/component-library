@@ -93,15 +93,37 @@
 
       {%- for component in allSelections %}
 
-        {% if component.id == current_id %}
-  
-          {% for example in component.examples %}
+          {% if component.id == current_id %}
 
-            <option value="#{{ example.id }}">{{ example.name }}</option>
+            {% assign grouped_examples = component.examples | group_by: "group" %}
 
-          {% endfor %}
+            {% for group in grouped_examples %}
 
-        {% endif %}
+              {% if group.name != "" %}
+
+                <optgroup label="{{ group.name }}">
+
+                  {% for example in group.items %}
+
+                    <option value="#{{ example.id }}">{{ example.name }}</option>
+
+                  {% endfor %}
+
+                </optgroup>
+
+              {% else %}
+
+                {% for example in group.items %}
+
+                  <option value="#{{ example.id }}">{{ example.name }}</option>
+
+                {% endfor %}
+
+              {% endif %}
+
+            {% endfor %}
+
+          {% endif %}
 
       {%- endfor %}
 

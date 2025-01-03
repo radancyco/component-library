@@ -1,0 +1,10 @@
+/*!
+
+  Radancy Component Library: Select Navigation (External)
+
+  Contributor(s):
+  Michael "Spell" Spellacy
+
+  Dependencies: Sass
+
+*/.select-external__nav{background-color:#eee;border-radius:.5em;display:grid;gap:.5em;max-width:26.25rem;padding:1em}.select-external__label{grid-column:span 2;font-weight:bold;margin:0}.select-external__select,.select-external__btn{font-size:inherit;padding:.5em}.select-external__select{background-color:#fff;border:1px #ccc solid;width:100%}.select-external__btn{background-color:#6f00ef;border:0;color:#fff}/*# sourceMappingURL=init.css.map */
