@@ -550,11 +550,11 @@ components:
 
       - name: "Button Click Only"
         id: "button-click"
-        note: In this example, only the button is clickable because the card contains specific interactive elements, like hyperlinks, which should never be obscured. By default, the entire card region is clickable.
+        note: In this example, only the button is clickable because the tile contains specific interactive elements, like hyperlinks, which should never be obscured. By default, the entire tile region is clickable.
       
-      - name: "Open All Cards"
+      - name: "Open All Tiles"
         id: "open-all"
-        note: "In this example, each card is allowed to be opened. By default, opening a new card will close any others that are open."
+        note: "In this example, each tile is allowed to be opened. By default, opening a new tile will close any others that are open."
 
 layouts: 
 
