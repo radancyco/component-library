@@ -11,6 +11,11 @@ components:
         id: "default"
         note: "Please note that this is a basic example of accordion functionality. Adding additional markup, such as headings, can enhance the component's accessibility and make it more understandable to assistive technology users. See the <a href='#headings'>Interactive Headings (FAQ)</a> example for more details."
 
+      - name: "Animation"
+        id: "animation"
+        experimental: "Please note that this example uses the new <a href='https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style'>@starting-style</a> at-rule to animate <code>display: none</code>. This technique is <a href='https://caniuse.com/mdn-css_at-rules_starting-style'>supported</a> in most major browsers. If you require animation in non-supporting browser, you will need to come up with an alternative solution. Non-supporting browsers will simply toggle the display of the content."
+        message: use-tablist
+      
       - name: "Default Opened"
         id: "default-opened"
         note: "Please note that only one accordion may be opened on page load. This content can be closed and should not be confused with the <a href='../tablist/'>TabList</a>, which may never have collapsed content."
@@ -23,20 +28,14 @@ components:
         id: "fixed-height"
         message: scrollbars
 
-      - name: "Default Grid"
+      - name: "Default (Horizontal)"
         id: "horizontal"
-        group: Horizontal Layout (Grid)
-        message: use-tablist
-
-      - name: "Animation"
-        id: "horizontal-animated"
-        group: Horizontal Layout (Grid)
-        experimental: "Please note that this example uses the new <a href='https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style'>@starting-style</a> at-rule to animate <code>display: none</code>. This technique is <a href='https://caniuse.com/mdn-css_at-rules_starting-style'>supported</a> in most major browsers. If you require animation in non-supporting browser, you will need to come up with an alternative solution. Non-supporting browsers will simply toggle the display of the content."
+        group: Horizontal Layout
         message: use-tablist
 
       - name: "Content Pointer"
         id: "horizontal-pointer"
-        group: Horizontal Layout (Grid)
+        group: Horizontal Layout
         message: 
 
           - use-tablist
