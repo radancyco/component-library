@@ -516,7 +516,7 @@ components:
         id: "disable-anchor"
         note: "By default, clicking a tab adds an anchor to the URL, but this can be disabled if needed. However, anchors are useful for sharing specific content and tracking, so they should only be removed with a valid reason."
 
-      - name: "Fixed Content Height"
+      - name: "Fixed Height"
         id: "fixed-height"
         message: scrollbars
 
