@@ -529,11 +529,13 @@ components:
         id: "stacked-tabs"
         note: "Tabs can stack on mobile and display inline on desktop. To see the stacked tabs, resize the screen to a smaller width."
 
-      - name: "Vertical Tabs"
+      - name: "Default (Vertical)"
         id: "vertical-tabs"
+        group: Vertical Tabs
         note: "In this example, tabs will be placed vertically on desktop and display inline on mobile. To test this, resize the screen to a smaller width."
 
-      - name: "Vertical Tabs (Heading)"
+      - name: "Section Heading"
+        group: Vertical Tabs
         id: "vertical-heading"
 
   - id: "tile"
