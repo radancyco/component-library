@@ -101,9 +101,15 @@ scroll-snap-type: inline mandatory;
       justify-self: end;
       margin-block-start: 0.5em;
       margin-inline-end: 0.5em;
-      opacity: 0;
       transition: 300ms;
       width: 1.125rem;
+
+        @media(min-width: 62.5em) {
+
+          opacity: 0;
+
+        }
+
       }
     
     }
