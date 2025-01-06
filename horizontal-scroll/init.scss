@@ -17,7 +17,6 @@
 --scroll-color-thumb: #6F00EF; // Thumb Color
 --scroll-color-active: #666; // Active State
 
-position: relative;
 display: grid;
 gap: 1em;
 grid-auto-flow: column;
@@ -90,7 +89,6 @@ scrollbar-width: thin;
   border: calc(1rem / 16) #666 solid;
   min-width: calc(300rem / 16);
   padding: 1em;
-  position: relative;
   scroll-snap-align: start;
   transition: 300ms;
 
