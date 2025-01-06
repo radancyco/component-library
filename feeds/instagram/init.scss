@@ -119,23 +119,28 @@ scroll-snap-type: inline mandatory;
       }
     
     }
+
+    p {
+    margin: 1em 0 0;
+    }
     
     img {
-    aspect-ratio: 1; // If images look stretched, you will need to remove this property
+    aspect-ratio: 1;
     display: block;
     grid-area: 1 / 1;
     min-width: 100%;
-    object-fit: fill !important;
+    height: 100%;
     }
     
   }
 
   .visually-hidden, .wai {
+  display: block;
   clip: rect(1px, 1px, 1px, 1px);
   height: 1px;
-  grid-area: 1 / 1; // Fixes an overflow bug when parent set to grid. Weird.
+  grid-area: 1 / 1; // Fixes an overflow bug when parent set to grid.
   overflow: hidden;
-  position: absolute;
+  position: static; // Fixes an overflow bug when parent set to grid.
   white-space: nowrap;
   width: 1px;
   }
