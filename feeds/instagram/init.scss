@@ -135,7 +135,7 @@ scroll-snap-type: inline mandatory;
   height: 1px;
   grid-area: 1 / 1; // Fixes an overflow bug when parent set to grid. Weird.
   overflow: hidden;
-  position: absolute;
+  position: static;
   white-space: nowrap;
   width: 1px;
   }
