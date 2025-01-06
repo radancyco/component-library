@@ -21,7 +21,6 @@ position: relative;
 display: grid;
 gap: 1em;
 grid-auto-flow: column;
-list-style: none;
 overflow-x: auto;
 padding: 1em 0;
 scroll-snap-type: inline mandatory;
@@ -79,7 +78,7 @@ scrollbar-width: thin;
 
   > ul, > ol {
   display: contents;
-  list-style-type: none;
+  list-style: none;
   visibility: visible; // Do not remove.
   }
 
