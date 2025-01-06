@@ -78,7 +78,7 @@ scroll-snap-type: inline mandatory;
     
   a {
   display: grid;
-  min-width: calc(280rem / 16);
+  min-width: calc(220rem / 16);
   scroll-snap-align: start;
     
     &[target="_blank"] {
@@ -136,7 +136,6 @@ scroll-snap-type: inline mandatory;
   position: absolute;
   white-space: nowrap;
   width: 1px;
-  display: none;
   }
     
 }
