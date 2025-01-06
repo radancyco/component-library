@@ -81,7 +81,7 @@ scroll-snap-type: inline mandatory;
   align-items: start;
   display: grid;
   grid-template-rows: auto 1fr;
-  min-width: calc(240rem / 16);
+  min-width: calc(260rem / 16);
   scroll-snap-align: start;
     
     &[target="_blank"] {
