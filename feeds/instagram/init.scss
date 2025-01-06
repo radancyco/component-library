@@ -27,13 +27,15 @@ padding: 0;
         grid-template-columns: repeat(3, 1fr);
     
     }
+
+    // Future use. Please keep.
       
     &.no-feed-available {
     color: #c00;
     grid-template-columns: none;
     }
     
-    ul, li {
+    figure, ul, li {
     display: contents;
     }
     

@@ -6,6 +6,8 @@
   Bobby KC
   Michael "Spell" Spellacy
 
+  Dependencies: jQuery
+
 */
 
 (function() {
