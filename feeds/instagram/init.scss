@@ -130,11 +130,10 @@ scroll-snap-type: inline mandatory;
     
   }
 
-  // If this class is in your global CSS, you may remove this.
-    
   .visually-hidden, .wai {
   clip: rect(1px, 1px, 1px, 1px);
   height: 1px;
+  grid-area: 1 / 1; // Fixes an overflow bug when parent set to grid. Weird.
   overflow: hidden;
   position: absolute;
   white-space: nowrap;
