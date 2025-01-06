@@ -25,15 +25,9 @@ overflow-x: auto;
 padding: 1em 0;
 scroll-snap-type: inline mandatory;
     
-  @media(min-width: 26.25em) {
+  @media(min-width: 62.5em) {
     
     grid-auto-flow: unset;
-    grid-template-columns: repeat(2, 1fr);
-    
-  }
-    
-  @media(min-width: 55em) {
-    
     grid-template-columns: repeat(3, 1fr);
     
   }
