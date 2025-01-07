@@ -102,6 +102,76 @@ card: true
 
 </ul>
 
+<h2 id="third-party">Third-Party <a class="anchor" href="#third-party">{{ iconAnchor }} <span class="sr-only">Anchor (Third-Party)</span></a></h2>
+
+<ul class="card" role="list">
+
+  {% for feed in site.data.module.feeds %}
+
+    {% if feed.hidden != true %}
+
+      <li class="card__item">
+
+        <div class="card__media">
+
+          <div class="card__thumbnail">
+
+            {% if feed.thumbnail == false %}
+
+                <img alt="" src="thumb.png">
+
+            {% else %}
+
+              {% if feed.thumbnail != nil %}
+
+                <img alt="" src="{{ feed.thumbnail }}">
+
+              {% else %}
+
+                <img alt="" src="{{ site.url }}{{ site.baseurl }}/{{ feed.path }}/thumb.png">
+
+              {% endif %}
+
+            {% endif %}
+
+          </div>
+
+        </div>
+
+        <div class="card__content">
+
+          <h3 class="card__title"><a class="card__trigger" href="{% if feed.path-full %}{{ feed.path-full }}{% else %}{{ site.baseurl }}/{{ feed.path }}/{{ feed.hash }}{% endif %}">{{ feed.title }}{% if feed.version %} v{{ feed.version }}{% endif %}</a></h3>
+
+          <div class="card__summary">
+            
+            <p>{{ feed.desc }}</p>
+
+            {% if feed.deprecated == true %}
+
+              <p class="alert">This feed is deprecated.</p>
+
+            {% endif %}
+
+            {% assign example_count = feed.examples | size %}
+    
+            {% if example_count > 0 %}
+            
+              <p>Examples: <b>{{ example_count }}</b></p>
+            
+            {% endif %}
+
+          </div>
+
+        </div>
+
+      </li>
+
+    {% endif %}
+
+  {% endfor %}
+
+</ul>
+
 <h2 id="layouts">Layouts <a class="anchor" href="#layouts">{{ iconAnchor }} <span class="sr-only">Anchor (Layouts)</span></a></h2>
 
 <ul class="card" role="list">
@@ -223,76 +293,6 @@ card: true
               {% endif %}
 
             </div>
-
-        </div>
-
-      </li>
-
-    {% endif %}
-
-  {% endfor %}
-
-</ul>
-
-<h2 id="third-party">Third-Party <a class="anchor" href="#third-party">{{ iconAnchor }} <span class="sr-only">Anchor (Third-Party)</span></a></h2>
-
-<ul class="card" role="list">
-
-  {% for feed in site.data.module.feeds %}
-
-    {% if feed.hidden != true %}
-
-      <li class="card__item">
-
-        <div class="card__media">
-
-          <div class="card__thumbnail">
-
-            {% if feed.thumbnail == false %}
-
-                <img alt="" src="thumb.png">
-
-            {% else %}
-
-              {% if feed.thumbnail != nil %}
-
-                <img alt="" src="{{ feed.thumbnail }}">
-
-              {% else %}
-
-                <img alt="" src="{{ site.url }}{{ site.baseurl }}/{{ feed.path }}/thumb.png">
-
-              {% endif %}
-
-            {% endif %}
-
-          </div>
-
-        </div>
-
-        <div class="card__content">
-
-          <h3 class="card__title"><a class="card__trigger" href="{% if feed.path-full %}{{ feed.path-full }}{% else %}{{ site.baseurl }}/{{ feed.path }}/{{ feed.hash }}{% endif %}">{{ feed.title }}{% if feed.version %} v{{ feed.version }}{% endif %}</a></h3>
-
-          <div class="card__summary">
-            
-            <p>{{ feed.desc }}</p>
-
-            {% if feed.deprecated == true %}
-
-              <p class="alert">This feed is deprecated.</p>
-
-            {% endif %}
-
-            {% assign example_count = feed.examples | size %}
-    
-            {% if example_count > 0 %}
-            
-              <p>Examples: <b>{{ example_count }}</b></p>
-            
-            {% endif %}
-
-          </div>
 
         </div>
 
