@@ -22,7 +22,7 @@ display: grid;
 gap: 1em;
 grid-auto-flow: column;
 overflow-x: auto;
-padding: 1em 0;
+padding-block-end: 1em;
 scroll-snap-type: inline mandatory;
     
   @media(min-width: 62.5em) {
