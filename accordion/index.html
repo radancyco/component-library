@@ -6,6 +6,15 @@ attributes:
     note: Component
     desc: Applied by the script. Can be used as a hook for various styling possibilities.
 
+  - name: data-animation
+    html: .accordion
+    note:
+    
+      - Boolean
+      - Optional
+
+    desc: Used to enable content to be animated when opened. Please note that the default animation leverages <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style">@starting-style</a> at-rule.
+
   - name: data-close
     html: .accordion
     note:
@@ -69,6 +78,15 @@ attributes:
     
     desc: Specifies which accordion panel should be open on page load. If not specified, no panels will be open by default. Only one accordion may be opened at a time.
 
+  - name: data-overlay
+    html: .accordion
+    note:
+
+      - Boolean
+      - Optional
+    
+    desc: Used to allow content to <a href="#horizontal-overlay">overlay</a> the accordion buttons. This is currently an experimental feature and could, at any time, be removed. Should only be used with <code>data-horizontal</code>.
+
   - name: data-pointer
     html: .accordion
     note:
@@ -85,7 +103,7 @@ attributes:
       - Boolean
       - Optional
     
-    desc: By default, all buttons include a span element for icons. If this is not desirable, you can remove it by adding this attribute. For custom icons, ensure they are hidden from assistive technologies by using <code>aria-hidden="true"</code>. 
+    desc: By default, all buttons include a span element for icons. If this is not desirable, you can remove it by adding this attribute and using your own inline or CSS icon. For custom inline icons, ensure they are hidden from assistive technologies by using <code>aria-hidden="true"</code>. 
 
   - name: id
     html: .accordion__toggle

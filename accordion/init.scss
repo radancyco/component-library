@@ -14,7 +14,7 @@
 // Component Variables
 
 --accordion-arrow-size: 0.8em; // Toggle Arrow Size
---accordion-arrow-border: calc(2rem / 16); // Toggle Arrow Border.
+--accordion-arrow-border: calc(2rem / 16); // Toggle Arrow Border
 --accordion-close-size: calc(30rem / 16); // Close Button Size
 --accordion-color-active: #a9a9a9; // Active State
 --accordion-color-default: #d3d3d3; // Default States
@@ -23,7 +23,7 @@
 --accordion-column-large: 4; // Horizontal Layout (Large Vieport)
 --accordion-column-medium: 2; // Horizontal Layout (Medium Vieport)
 --accordion-gap: calc(5rem / 16); // Accordion Gap
---accordion-panel-border: calc(2rem /16) transparent solid; // Sets border on pointer and panel. Not for use with default animation.
+--accordion-panel-border: calc(2rem /16) transparent solid; // Sets border on pointer and panel. Not for use with default animation
 --accordion-panel-default: #d3d3d3; // Panel State (Default)
 --accordion-pointer-size: calc(25rem / 16); // Content Pointer Size
 
@@ -143,7 +143,7 @@ gap: var(--accordion-gap);
 
     // Multi-purpose Span
 
-    span {
+    span:not(&__arrow) {
     line-height: 1.5;
     }
 
@@ -221,7 +221,6 @@ gap: var(--accordion-gap);
 
         [data-animation] & {
 
-          opacity: 0;
           translate: 0 var(--accordion-pointer-size);
 
         }
@@ -253,22 +252,16 @@ gap: var(--accordion-gap);
         // Content Pointer: Animated
           
         &::after {
-        opacity: 1;
         translate: 0 .1rem;
 
           @media (prefers-reduced-motion: no-preference) {
 
-            transition-behavior: allow-discreate;
-            transition-delay: 300ms;
-            transition-duration: 800ms;
-            transition-property: display opacity translate;
-            transition-timing-function: ease-in;
+            transition: translate 800ms, display 0s allow-discrete;
 
           }
 
           @starting-style {
 
-            opacity: 0;
             translate: 0 var(--accordion-pointer-size);
 
           }
@@ -330,14 +323,10 @@ gap: var(--accordion-gap);
     [data-animation] & {
 
       max-height: 0;
-      opacity: 0;
 
       @media (prefers-reduced-motion: no-preference) {
 
-        transition-behavior: allow-discreate;
-        transition-duration: 1s;
-        transition-property: display opacity max-height;
-        transition-timing-function: ease-in-out;
+        transition: max-height 3s, display 0s allow-discrete;
 
       }
 
@@ -428,11 +417,9 @@ gap: var(--accordion-gap);
   display: block;
   
     [data-animation] & {
-    opacity: 1;
     max-height: 5000px;
 
       @starting-style {
-      opacity: 0;
       max-height: 0;
       }
   

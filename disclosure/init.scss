@@ -3,119 +3,121 @@
   Radancy Component Library: Disclosure
 
   Contributor(s):
-  Andrew Hill
   Michael "Spell" Spellacy
-  Eric Porter
 
   Dependencies: Sass
 
 */
 
-$base-color: #6F00EF;
-
-.disclosure {
-padding-top: 4em;
-position: relative;
-
-  ul, li {
-  margin: 0;
-  padding:0;
-  list-style: none;
-  }
-
-}
+// Disclosure Button
 
 .disclosure--btn {
-background-color: $base-color;
+
+--disclosure-arrow-size: 0.8em; // Toggle Arrow Size
+--disclosure-arrow-border: calc(2rem / 16); // Toggle Arrow Border
+--disclosure-color-active: #a9a9a9; // Active State
+--disclosure-color-default: #d3d3d3; // Default States
+--disclosure-color-interactive: #666; // Interactive State 
+--disclosure-color-selected: #6F00EF; // Selected States
+
+background-color: var(--disclosure-color-default) ;
 border: 0;
-color: #fff;
+color: inherit;
 cursor: pointer;
-font-size: unset;
-margin-bottom: 1em;
+display: grid;
+font-size: inherit;
+grid-auto-flow: column;
+line-height: normal;
 padding: 1em;
 position: relative;
-text-align: start; 
+text-align: start;
 width: 100%;
+
+  // Accessibility: Focus and hover states must meet a 3:1 color ratio between background color and foreground text.
+  // The project designer should be providing this state. Also, never remove focus outlines! Either redesign them or 
+  // design an alternative focus state. Learn: https://webaim.org/articles/contrast/
+
+  &:focus-visible, &:hover {
+  background-color: var(--disclosure-color-active);
+  }
+    
+  &:focus-visible {
+  outline-offset: -5px;
+  }
+
+  &[aria-expanded="true"] {
+  background-color: var(--disclosure-color-selected);
+  color: #fff;
+
+    // Disclosure Arrow: State
+
+    .disclosure--arrow {
+    border-block-end-color: #fff;
+    border-inline-start-color: #fff;
+    transform: rotate(135deg);
+    translate: 0 calc(8rem/16);
+    }
+
+  }
+
 }
+
+// Disclosure Heading
 
 .disclosure--heading {
-font-size: unset;
-margin: 0;
+all: unset;
+display: contents;
 }
 
-.disclosure--icon {
-position: absolute;
-inset-inline-end: 15px;
-inset-block-start: 10px;
-font-size: x-large;
-line-height: normal;
+// Disclosure Arrow
 
-  // This can be whatever you want.
+.disclosure--arrow {
+block-size: var(--disclosure-arrow-size);
+border-width: var(--disclosure-arrow-border);
+border-block-color: transparent var(--disclosure-color-selected);
+border-block-start-width: 0;
+border-inline-color: var(--disclosure-color-selected) transparent;
+border-inline-end-width: 0;
+border-style: solid;
+content: "";
+direction: ltr;
+display: block;
+inline-size: var(--disclosure-arrow-size);
+justify-self: end;
+transform: rotate(-45deg);
+}
 
-  &::after {
-  content: "+";
+// Disclosure Content
+
+.disclosure--content {
+background-color: #d3d3d3;
+display: none;
+overflow: hidden;
+padding: 1em;
+
+  &[data-animation] {
+  max-height: 0;
+  
+    @media (prefers-reduced-motion: no-preference) {
+  
+      transition: max-height 3s, display 0s allow-discrete;
+  
+    }
+  
   }
 
 }
 
-.disclosure--heading, .disclosure--btn {
+// Disclosure Event
 
-  // Open State
+.disclosure--btn[aria-expanded="true"] + .disclosure--content, .disclosure--heading:has(.disclosure--btn[aria-expanded="true"]) + .disclosure--content {
+display: block;
 
-  &.open {
+  &[data-animation] {
+  max-height: 5000px;
 
-    // Toggle Icon
-
-    .disclosure--icon {
-
-      &::after {
-      content: "-";
-      }
-
-    }
-
-    // Show Content
-
-    + .disclosure--content {
-    display: block;
-
-      // Animation
-
-      &.disclosure--animate {
-      grid-template-rows: 1fr;
-      }
-
-    }
-
-  }
-
-  + .disclosure--content {
-    display: none;
-
-    // Demo: You can remove the following styles if not desired.
-
-    background-color: #ccc;
-    margin: -2em 0 1em;
-    padding: 1em;
-
-    // Animation
-
-    &.disclosure--animate {
-    background-color: transparent;
-    display: grid;
-    grid-template-rows: 0fr; 
-    overflow: hidden;
-    
-      @media (prefers-reduced-motion: no-preference) {
-        
-        transition: 0.4s ease-in-out;
-        
-      }
-      
-      > div {
-      min-height: 0;
-      }
-
+    @starting-style {
+    max-height: 0;
     }
 
   }
