@@ -31,7 +31,7 @@ attributes:
       - Boolean
       - Optional
     
-    desc: Used to disable the anchor that appears in the address bar when a tab is clicked on. Do note that including an anchor can be useful for tracking and sharing specific content, so we should only remove when we have a good reason.
+    desc: Used to disable the anchor that appears in the address bar when a button is pressed. Do note that including an anchor can be useful for tracking and sharing specific content, so we should only remove when we have a good reason.
 
   - name: data-fixed-height
     html: .accordion
@@ -78,14 +78,14 @@ attributes:
     
     desc: Used to apply a visual pointer that connects the button to the content. In this state, the down arrow, which is usually present on the button, will not be visible as it is unnecessary. The content pointer can be applied to both horizontal and vertical accordions.
 
-  - name: data-remove-icon
+  - name: data-remove-arrow
     html: .accordion
     note:
 
       - Boolean
       - Optional
     
-    desc: By default, all buttons include a span element for icons, styled via a CSS pseudo-element. If this is not desirable, you can remove it by adding this attribute. For custom icons, ensure they are hidden from assistive technologies by using <code>aria-hidden="true"</code>. 
+    desc: By default, all buttons include a span element for icons. If this is not desirable, you can remove it by adding this attribute. For custom icons, ensure they are hidden from assistive technologies by using <code>aria-hidden="true"</code>. 
 
   - name: id
     html: .accordion__toggle

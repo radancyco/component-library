@@ -61,7 +61,7 @@
       var accordionDataDisableAnchor = "data-disable-anchor";
       var accordionDataFixedHeight = "data-fixed-height";
       var accordionDataMultiOpen = "data-multiple";
-      var accordionDataRemoveIcon = "data-remove-icon";
+      var accordionDataRemoveArrow = "data-remove-arrow";
       var accordions = document.querySelectorAll(accordionClass);
       var URLFragment = location.hash.slice(1);
 
@@ -106,9 +106,9 @@
           btn.setAttribute("aria-controls", "accordion-" + buttonID);
           btn.setAttribute("aria-expanded", "false");
 
-          // Add Toggle Icon
+          // Add Toggle Arrow
 
-          if(!accordion.hasAttribute(accordionDataRemoveIcon)) {
+          if(!accordion.hasAttribute(accordionDataRemoveArrow)) {
 
             var toggleState = document.createElement("span");
 
@@ -194,7 +194,7 @@
 
           btnToggleAll.setAttribute("aria-pressed", "false");
 
-          if(!accordion.hasAttribute(accordionDataRemoveIcon)) {
+          if(!accordion.hasAttribute(accordionDataRemoveArrow)) {
 
             var toggleAllState = document.createElement("span");
 
