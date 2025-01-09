@@ -1,0 +1,7 @@
+{% assign class = "experimental" %}
+
+{% include message/header.html %}
+
+    <p><strong>Experimental:</strong> Please note that this example uses the new <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style">@starting-style</a> at-rule and <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition-behavior#allow-discrete">transition-behavior: allow-discrete;</a> to animate <code>display: none</code>. This technique is supported in most major browsers. If you require specific animation in non-supporting browser, you will need to come up with a traditional solution. Non-supporting browsers will simply toggle the display of the content.</p>
+
+{% include message/footer.html %}
