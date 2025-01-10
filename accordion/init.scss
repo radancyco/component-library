@@ -414,7 +414,7 @@ gap: var(--accordion-gap);
   // Accordion Panel Reveal
 
   &__toggle[aria-expanded="true"] + &__panel, &__heading:has(&__toggle[aria-expanded="true"]) + &__panel {
-  display: grid;
+  display: block;
   
     [data-animation] & {
 
