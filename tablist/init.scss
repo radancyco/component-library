@@ -13,17 +13,17 @@
 
 // Component Variables
 
---base-color: #6F00EF;
---base-color-active: white;
---base-color-neutral: #d3d3d3;
---base-color-interactive: darkgray;
+--tablist-color-active: #ffffff; // Active State
+--tablist-color-default: #d3d3d3; // Default States
+--tablist-color-interactive: #a9a9a9; // Interactive State 
+--tablist-color-selected: #6F00EF; // Selected States
 
 // Breakpoints (CSS variables are not allowed in media queries - boo!)
 
 $tablist-large: 55em; // Large Viewport
 $tablist-medium: 48.625em; // Medium Viewport
 
-color: var(--base-color-active);
+color: var(--tablist-color-active);
 position: relative;
 
   &:has([aria-orientation]) {
@@ -46,7 +46,7 @@ position: relative;
   // Tablist Heading (Optional)
 
   &__heading {
-  color: var(--base-color);
+  color: var(--tablist-color-selected);
   font-size: 1.9rem;
   text-align: center;
   }
@@ -95,7 +95,7 @@ position: relative;
 
         // Fallback Scrollbar
 
-        scrollbar-color: var(--base-color-active) var(--base-color);
+        scrollbar-color: var(--tablist-color-active) var(--tablist-color-selected);
         scrollbar-width: thin;
 
         @supports #{"\selector(::-webkit-scrollbar)"} {
@@ -108,12 +108,12 @@ position: relative;
           }
       
           &::-webkit-scrollbar-track {
-          background-color: var(--base-color);
+          background-color: var(--tablist-color-selected);
           }
       
           &::-webkit-scrollbar-thumb {
-          background-color: var(--base-color-active);
-          border: calc(8rem / 16) var(--base-color) solid;
+          background-color: var(--tablist-color-active);
+          border: calc(8rem / 16) var(--tablist-color-selected) solid;
           border-radius: 100vw;
           }
         
@@ -140,20 +140,30 @@ position: relative;
   // Tab Button
 
   &__tab {
-  background-color: var(--base-color-neutral);
+  background-color: var(--tablist-color-default);
   color: #000;
   display: block;
   padding: 1em;
   text-align: center;
   text-decoration: none;
 
+    [data-animation] & {
+
+      @media (prefers-reduced-motion: no-preference) {
+
+        transition: 600ms;
+
+      }
+
+    }
+
     &:hover {
-    background-color: var(--base-color-interactive);
+    background-color: var(--tablist-color-interactive);
     }
 
     &[aria-selected="true"] {
-    background-color: var(--base-color);
-    color: var(--base-color-active);
+    background-color: var(--tablist-color-selected);
+    color: var(--tablist-color-active);
     }
 
   }
@@ -161,10 +171,11 @@ position: relative;
   // Tab Panel
 
   &__panel  {
-  background-color: var(--base-color);
+  background-color: var(--tablist-color-selected);
+  overflow: hidden;
   padding: 1em;
   position: relative;
-  
+
     [data-fixed-height] & {
 
       max-height: calc(400em/16);
@@ -174,7 +185,7 @@ position: relative;
 
       // Fallback Scrollbar
 
-      scrollbar-color: var(--base-color-active) var(--base-color);
+      scrollbar-color: var(--tablist-color-active) var(--tablist-color-selected);
       scrollbar-width: thin;
 
       @supports #{"\selector(::-webkit-scrollbar)"} {
@@ -188,13 +199,13 @@ position: relative;
         }
     
         &::-webkit-scrollbar-track {
-        background-color: var(--base-color);
+        background-color: var(--tablist-color-selected);
         margin-block: 0.5em;
         }
     
         &::-webkit-scrollbar-thumb {
-        background-color: var(--base-color-active);
-        border: calc(6rem / 16) var(--base-color) solid;
+        background-color: var(--tablist-color-active);
+        border: calc(6rem / 16) var(--tablist-color-selected) solid;
         border-radius: 100vw;
         min-height: calc(100rem / 16);
         }
@@ -205,10 +216,37 @@ position: relative;
   
   }
 
-  // Tab Content (Optional)
+  // Tab Content
 
   &__content { 
+  position: relative;
+
+    // Your specific styles, if any.
+
+    [data-animation] & {
+
+      :not([hidden]) & {
+
+        inset-block-start: 0;
+        opacity: 1;
   
+        @starting-style {
+        
+          inset-block-start: 3em;
+          opacity: 0;
+        
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+
+          transition: inset 600ms, opacity 300ms;
+  
+        }
+    
+      }
+
+    }
+
   }
 
   // Focus State

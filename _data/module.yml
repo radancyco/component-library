@@ -4,7 +4,7 @@ components:
     desc: "This component will allow you to implement and control the presentation of multiple disclosures, also known as an accordion."
     path: "accordion"
     title: "Accordion"
-    version: "2.4" 
+    version: "2.5" 
     examples: 
 
       - name: "Default Setup"
@@ -265,7 +265,7 @@ components:
     message: disclosure-use
     path: "disclosure"
     title: "Disclosure"
-    version: "2.0"
+    version: "2.1"
     examples:
 
       - name: "Default Setup"
@@ -505,12 +505,16 @@ components:
     path: "tablist"
     message: use-accordion
     title: "TabList"
-    version: "1.7"
+    version: "1.8"
     examples:
 
       - name: "Default Setup"
         id: "default-setup"
         note: "By default, tabs display inline on both mobile and desktop, wrapping as needed based on screen size."
+
+      - name: "Animation"
+        id: "animation"
+        message: starting-style
 
       - name: "Disable Anchor"
         id: "disable-anchor"
@@ -606,13 +610,16 @@ feeds:
     path: "feeds/instagram"
     title: "Instagram Feed"
     message: feed
-    version: "1.2"
+    # version: "1.3"
+    varsion: "1.2"
     examples: 
 
       - name: "Default Setup"
         id: "default-setup"
-        codepenjs: "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
 
+     # - name: "Horizontal Scroll (Mobile)"
+     #   id: "horizontal-scroll"
+        
   - id: "twitter"
     desc: "This component can be used to display a client's Twitter feed."
     path: "feeds/twitter"
