@@ -611,7 +611,7 @@ feeds:
     title: "Instagram Feed"
     message: feed
     # version: "1.3"
-    varsion: "1.2"
+    version: "1.2"
     examples: 
 
       - name: "Default Setup"
