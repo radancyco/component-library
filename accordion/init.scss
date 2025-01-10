@@ -77,6 +77,7 @@ gap: var(--accordion-gap);
   display: block;
   inline-size: var(--accordion-arrow-size);
   justify-self: end;
+  margin-block: 0 calc(4rem / 16);
   transform: rotate(-45deg);
   
     [data-context] & {
@@ -129,6 +130,7 @@ gap: var(--accordion-gap);
   // Accordion Toggle & Toggle All Button
 
   &__toggle, &__toggle-all {
+  align-items: center;
   background-color: var(--accordion-color-default);
   border: 0;
   border-radius: var(--accordion-toggle-border-radius);
