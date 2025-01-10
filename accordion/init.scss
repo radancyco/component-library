@@ -325,9 +325,11 @@ gap: var(--accordion-gap);
 
     [data-animation] & {
 
+      max-height: 0;
+
       @media (prefers-reduced-motion: no-preference) {
 
-        transition: display 0s, max-height 3s allow-discrete;
+        transition: display 0s, max-height 2s ease-in-out allow-discrete;
 
       }
 
@@ -424,7 +426,7 @@ gap: var(--accordion-gap);
 
       @starting-style {
       
-        max-height: 0;
+        max-height: 1px;
       
       }
   
