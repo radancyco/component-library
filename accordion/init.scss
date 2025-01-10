@@ -26,6 +26,7 @@
 --accordion-panel-border: calc(2rem /16) transparent solid; // Sets border on pointer and panel. Not for use with default animation
 --accordion-panel-default: #d3d3d3; // Panel State (Default)
 --accordion-pointer-size: calc(25rem / 16); // Content Pointer Size
+--accordion-toggle-border-radius: 0; // Button Border Radius
 
 // Breakpoints (CSS variables are not allowed in media queries - boo!)
 
@@ -130,6 +131,7 @@ gap: var(--accordion-gap);
   &__toggle, &__toggle-all {
   background-color: var(--accordion-color-default);
   border: 0;
+  border-radius: var(--accordion-toggle-border-radius);
   color: inherit;
   cursor: pointer;
   display: grid;
