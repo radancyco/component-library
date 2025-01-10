@@ -96,11 +96,10 @@ overflow: hidden;
 padding: 1em;
 
   &[data-animation] {
-  max-height: 0;
   
     @media (prefers-reduced-motion: no-preference) {
   
-      transition: max-height 3s, display 0s allow-discrete;
+      transition: display 0s, max-height 3s allow-discrete;
   
     }
   
@@ -111,13 +110,16 @@ padding: 1em;
 // Disclosure Event
 
 .disclosure--btn[aria-expanded="true"] + .disclosure--content, .disclosure--heading:has(.disclosure--btn[aria-expanded="true"]) + .disclosure--content {
-display: block;
+display: grid;
 
   &[data-animation] {
-  max-height: 5000px;
+  
+    max-height: 5000px;
 
     @starting-style {
-    max-height: 0;
+    
+      max-height: 0;
+    
     }
 
   }
