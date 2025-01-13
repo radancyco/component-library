@@ -297,18 +297,21 @@ components:
 
       - name: "Text Left Top (Constrain)"
         id: "text-left-top-constrain"
+        group: "Constrain"
 
       - name: "Text Left Center"
         id: "text-left-center"
 
       - name: "Text Left Center (Constrain)"
         id: "text-left-center-constrain"
+        group: "Constrain"
 
       - name: "Text Left Bottom"
         id: "text-left-bottom"
 
       - name: "Text Left Bottom (Constrain)"
         id: "text-left-bottom-constrain"
+        group: "Constrain"
 
       - name: "Text Center Top"
         id: "text-center-top"
@@ -324,18 +327,21 @@ components:
 
       - name: "Text Right Top (Constrain)"
         id: "text-right-top-constrain"
+        group: "Constrain"
 
       - name: "Text Right Center"
         id: "text-right-center"
 
       - name: "Text Right Center (Constrain)"
         id: "text-right-center-constrain"
+        group: "Constrain"
 
       - name: "Text Right Bottom"
         id: "text-right-bottom"
 
       - name: "Text Right Bottom (Constrain)"
         id: "text-right-bottom-constrain"
+        group: "Constrain"
 
   - id: "hero-banner-video" 
     desc: "This component allows you to create a standard video hero banner complete with a headline and supplementary text."
