@@ -81,7 +81,7 @@ scrollbar-width: thin;
   visibility: visible; // Do not remove.
   }
 
-  // .horizontal-scroll__card (Recommended)
+  // .horizontal-scroll__card
 
   &__card {
   background-color: #fff;
@@ -96,14 +96,15 @@ scrollbar-width: thin;
     &:has(a, button) {
 
       &:hover, &:focus-within {
-      background-color: #ccc;
+      background-color: #eee;
+      border-color: #6F00EF;
       }
 
     }
 
   }
 
-  // .horizontal-scroll__heading (Recommended)
+  // .horizontal-scroll__heading
 
   &__heading {
 
