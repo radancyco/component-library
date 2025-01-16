@@ -1,7 +1,7 @@
 components:
 
   - id: "accordion"
-    desc: "This component will allow you to implement and control the presentation of multiple disclosures, also known as an accordion."
+    desc: "Organize content into expandable and collapsible sections, allowing users to reveal or hide information as needed."
     path: "accordion"
     title: "Accordion"
     version: "2.5" 
@@ -97,7 +97,7 @@ components:
         id: "remove-close-button"
 
   - id: "animation-toggle"
-    desc: "This component enhances animation control ensuring improved accessibility for disabled users and optimized performance across devices."
+    desc: "Allows users to pause or resume web animations, videos, or other dynamic content for improved control and accessibility."
     path: "animation-toggle"
     title: "Animation Toggle"
     version: "2.6"
@@ -173,7 +173,7 @@ components:
         guidance: note-transparent-video
 
   - id: "breadcrumbs" 
-    desc: "This component will allow you to add a breadcrumb navigation to your page."
+    desc: "Provides a navigational trail that helps users understand their location within a website's hierarchy."
     path: "breadcrumbs"
     title: "Breadcrumbs"
     version: "1.1"
@@ -623,8 +623,8 @@ feeds:
       - name: "Default Setup"
         id: "default-setup"
 
-     # - name: "Horizontal Scroll (Mobile)"
-     #   id: "horizontal-scroll"
+      #- name: "Horizontal Scroll (Mobile)"
+      #  id: "horizontal-scroll"
         
   - id: "twitter"
     desc: "This component can be used to display a client's Twitter feed."
