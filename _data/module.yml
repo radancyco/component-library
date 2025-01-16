@@ -67,7 +67,7 @@ components:
 
   - id: "accordion-grid"
     deprecated: true
-    desc: "This component will allow you to implement and control the presentation of multiple disclosures, also known as an accordion."
+    desc: "Organize content into expandable and collapsible sections via a horizontal grid, allowing users to reveal or hide information as needed."
     path: "accordion-grid"
     title: "Accordion Grid"
     version: "1.1" 
@@ -471,7 +471,7 @@ components:
 
   - id: "tabcordion"
     deprecated: true
-    desc: "This component will allow you to add a combined Tab and Accordion to your page."
+    desc: "Combine the functionality of tabs and accordions, allowing user to toggle between sections while ensuring only one section is open at a time."
     path: "tabcordion"
     title: "TabCordion"
     version: "1.8"
@@ -600,7 +600,7 @@ resources:
 feeds: 
 
   - id: "facebook"
-    desc: "This component can be used to display a client's Facebook feed."
+    desc: "Display a series of posts from a Facebook account, including images and captions."
     path: "feeds/facebook"
     title: "Facebook Feed"
     version: "1.0"
@@ -627,7 +627,7 @@ feeds:
       #  id: "horizontal-scroll"
         
   - id: "twitter"
-    desc: "This component can be used to display a client's Twitter feed."
+    desc: "Display a series of posts from a Twitter account, including images and captions."
     path: "feeds/twitter"
     title: "Twitter (X) Feed"
     version: "1.0"
