@@ -97,7 +97,7 @@ components:
         id: "remove-close-button"
 
   - id: "animation-toggle"
-    desc: "Allows users to pause or resume web animations, videos, or other dynamic content for improved control and accessibility."
+    desc: "Allow users to pause or resume web animations, videos, or other dynamic content for improved control and accessibility."
     path: "animation-toggle"
     title: "Animation Toggle"
     version: "2.6"
@@ -188,7 +188,7 @@ components:
         note: "To test the scrollable area, resize the screen to a smaller width. When designing, ensure a partial item is visible at the edge to indicate scrollability and enhance usability."
   
   - id: "card" 
-    desc: "This component will allow you to implement single or grouped content cards with images, text, and links, commonly used for presenting articles or topic-related content."
+    desc: "Group content such as images, text, and related links, offering a compact and organized way to display information."
     path: "card"
     title: "Card"
     version: "1.0"
@@ -245,7 +245,7 @@ components:
         id: "card-horizontal-kitchen-sink"
 
   - id: "carousel"
-    desc: "This component will allow you to add a carousel to your page."
+    desc: "Display a series of content items, such as images or text, in a rotating or sliding manner, allowing user to cycle through them."
     path: "carousel"
     title: "Carousel"
     version: "1.0"
@@ -261,7 +261,7 @@ components:
         group: "My Defaults"
 
   - id: "disclosure"
-    desc: "This component will allow you to implement a simple disclosure widget."
+    desc: "Reaveal or hide additional content when triggered, helping to manage the display of supplementary information."
     message: disclosure-use
     path: "disclosure"
     title: "Disclosure"
@@ -285,7 +285,7 @@ components:
         id: "heading"
 
   - id: "hero-banner" 
-    desc: "This component allows you to create a standard hero banner complete with a headline and supplementary text."
+    desc: "Highlight key content or messaging with a bold visual, featuring an image, heading, and call-to-action at the top of a page."
     message: picture-element
     path: "hero-banner"
     title: "Hero Banner (Image)"
@@ -344,13 +344,13 @@ components:
         group: "Constrain"
 
   - id: "hero-banner-video" 
-    desc: "This component allows you to create a standard video hero banner complete with a headline and supplementary text."
+    desc: "Highlight key content or messaging with a bold visual, featuring a video, heading, and call-to-action at the top of a page."
     hash: "#hero-banner"
     path: "animation-toggle"
     title: "Hero Banner (Video)"
 
   - id: "horizontal-scroll" 
-    desc: "This component allows you to create a layout that transitions into a horizontal scroll on both smaller and larger viewports. It can serve as an excellent alternative to traditional carousels."
+    desc: "Enables horizontal scrolling of content within a limited width, serving as a sleek alternative to carousels."
     message: scrollbars
     path: "horizontal-scroll"
     title: "Horizontal Scroller"
@@ -369,7 +369,7 @@ components:
         customcss: "desktop-layout"
   
   - id: "job-list"
-    desc: "This component will allow you to implement and control the presentation of job search result listings."
+    desc: 'Display job opportunity listings in various layouts, featuring options like a "Save Job" button.'
     hidden: true
     path: "job-list"
     title: "Job List"
@@ -392,7 +392,7 @@ components:
         id: "grid-layout"
 
   - id: "load-more"
-    desc: "This component will allow you to expand hidden content."
+    desc: "Allow user to reveal additional content by pressing a button to load more items dynamically."
     message: experimental
     path: "load-more"
     title: "Load More"
@@ -404,7 +404,7 @@ components:
         codepenjs: "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
 
   - id: "partial-disclosure"
-    desc: "This component will allow you to expand partially visible content on your page."
+    desc: "Reaveal or hide partially visible content when triggered, helping to manage the display of supplementary information."
     path: "partial-disclosure"
     title: "Partial Disclosure"
     version: "1.7"
@@ -427,7 +427,7 @@ components:
         guidance: anti-pattern-read-more
 
   - id: "rating"
-    desc: "This component will allow you to add a custom rating group."
+    desc: "Allow user to evaluate content by selecting a rating, typically displayed as stars or other visual indicators."
     path: "rating"
     title: "Rating"
     version: "1.0"
@@ -437,7 +437,7 @@ components:
         id: "default-setup"
 
   - id: "select-external"
-    desc: "This component will allow you to add a select navigation to your page. When a selection is made and the button is pressed, it will take you to an external page."
+    desc: "Allow user to choose an item from a select menu and navigate to a corresponding page."
     path: "select-external"
     title: "Select Navigation (External)"
     version: "1.2"
@@ -447,7 +447,7 @@ components:
         id: "default-setup"
 
   - id: "select-internal"
-    desc: "This component will allow you to add a select navigation to your page that can reveal in-page content."
+    desc: "Allow user to choose an item from a select menu, updating the content on the same page."
     path: "select-internal"
     title: "Select Navigation (Internal)"
     version: "1.7"
@@ -507,7 +507,7 @@ components:
         id: "vertical-tabs"
 
   - id: "tablist"
-    desc: "This component will allow you to implement a tabbed user interface."
+    desc: "Organize content into separate sections, allowing user to switch between them by selecting different tabs."
     path: "tablist"
     message: use-accordion
     title: "TabList"
@@ -549,7 +549,7 @@ components:
         id: "vertical-heading"
 
   - id: "tile"
-    desc: "This component will allow you to implement a single or group of tiles that can be <em>flipped</em> when engaged with."
+    desc: "Group content in a visually organized layout, with the ability to flip and reveal additional information when a button is pressed."
     path: "tile"
     title: "Tile"
     version: "1.0"
@@ -576,7 +576,7 @@ layouts:
     version: "2.0"
 
   - id: "cpg"
-    desc: "A tool to help you easily produce career paths to be used in Advanced Job Details pages."
+    desc: "A tool to help you easily produce career paths to be used in Advanced Job Detail pages."
     path-full: "/career-path-generator"
     thumbnail: "thumb-cpg.png"
     title: "Career Path Generator (CPG)"
@@ -612,7 +612,7 @@ feeds:
         codepenjs: "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
 
   - id: "instagram"
-    desc: "This component can be used to display a client's Instagram feed." 
+    desc: "Display a series of posts from an Instagram account, including images and captions." 
     path: "feeds/instagram"
     title: "Instagram Feed"
     message: feed
@@ -638,7 +638,7 @@ feeds:
       id: "default-setup"
 
   - id: "youtube"
-    desc: "This component can be used to display a client's YouTube feed."
+    desc: "Display a series of videos from a YouTube channel or playlist, including video thumbnails and titles."
     path: "feeds/youtube"
     title: "YouTube Feed"
     version: "1.0"
