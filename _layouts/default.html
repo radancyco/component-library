@@ -59,6 +59,12 @@
 
     <link href="{{ site.git-url }}/css/init.css" rel="stylesheet">
 
+    {%- if site.css %}
+
+    <link href="/css/init.css" rel="stylesheet">
+
+    {%- endif %}
+
     {%- if page.librarycss %}
 
     <link href="{{ page.librarycss}}" rel="stylesheet">
