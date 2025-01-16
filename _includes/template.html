@@ -726,14 +726,19 @@
 
 <div class="accordion__panel">
 
-  <ul role="list">
+  <ul class="notes" role="list">
     
     {% assign sortNotes = page.notes %}
 
     {% for note in sortNotes %}
     
-    <li>{{ note | replace: "Behavior - ", "<span class='note-label behavior'>Behavior:</span> " | replace: "Bug - ", "<span class='note-label behavior'>Behavior:</span> " | replace: "Feature - ", "<span class='note-label feature'>Feature:</span> " | replace: "Logic - ", "<span class='note-label logic'>Logic:</span> " | replace: "Maintenance - ", "<span class='note-label maintenance'>Maintenance:</span> " | replace: "Roadmap - ", "<span class='note-label roadmap'>Roadmap:</span> " | replace: "Testing - ", "<span class='note-label testing'>Testing:</span> " }}</li> 
-    
+    <li class="notes__item">
+        
+      <span class="notes__label notes__label--{{ note.label | downcase }}">{{ note.label }}:</span>
+      <span class="notes__content">{{ note.content }}</span>
+  
+    </li>
+
     {% endfor %}
 
   </ul>
@@ -748,13 +753,18 @@
 
   <div class="accordion__panel">
 
-    <ul role="list">
+    <ul class="notes" role="list">
 
       {% assign sortRoadmap = page.roadmap %}
 
       {% for roadmap in sortRoadmap %}
 
-      <li>{{ roadmap | replace: "Behavior - ", "<span class='note-label behavior'>Behavior:</span> " | replace: "Bug - ", "<span class='note-label behavior'>Behavior:</span> " | replace: "Feature - ", "<span class='note-label feature'>Feature:</span> " | replace: "Logic - ", "<span class='note-label logic'>Logic:</span> " | replace: "Maintenance - ", "<span class='note-label maintenance'>Maintenance:</span> " | replace: "Roadmap - ", "<span class='note-label roadmap'>Roadmap:</span> " | replace: "Testing - ", "<span class='note-label testing'>Testing:</span> " }}</li> 
+        <li class="notes__item">
+        
+          <span class="notes__label notes__label--{{ roadmap.label | downcase }}">{{ roadmap.label }}:</span>
+          <span class="notes__content">{{ roadmap.content }}</span>
+      
+        </li>
 
       {% endfor %}
 

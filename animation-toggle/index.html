@@ -156,25 +156,55 @@ cookies:
 
 notes: 
 
-  - Behavior - Pausing one animation will result in a pause for all site-wide animations utilizing this script. Any animations that are paused will maintain their paused state when user returns to the site.
-  - Behavior - The script utilizes <code>prefers-reduced-motion</code>. If a user disables system animations, all animations will honor this setting.
-  - Behavior - When no cookie is set and reduce animation is enabled, the animation stops.
-  - Behavior - When no cookie is set and reduce animation is not enabled, the animation plays.
-  - Behavior - When cookie is set to false (not paused) and reduce animation is enabled, OS setting take precedent and cookie is set to true (paused).
-  - Behavior - When reduce animation is not enabled, cookie settings take precedent.
-  - Roadmap - When reduce animation is enabled, it would be great if local page settings could override OS setting.
-  - Behavior - Phones in low power mode may automatically pause auto-playing videos to conserve battery life.
-  - Testing - While the <code>disableremoteplayback</code> attribute may not be recognized as valid HTML, the error can be safely disregarded.
+  - label: Behavior
+    content: Pausing one animation will result in a pause for all site-wide animations utilizing this script. Any animations that are paused will maintain their paused state when user returns to the site.
+  
+  - label: Behavior 
+    content: The script utilizes <code>prefers-reduced-motion</code>. If a user disables system animations, all animations will honor this setting.
+  
+  - label: Behavior 
+    content: When no cookie is set and reduce animation is enabled, the animation stops.
+  
+  - label: Behavior
+    content: When no cookie is set and reduce animation is not enabled, the animation plays.
+  
+  - label: Behavior
+    content: When cookie is set to false (not paused) and reduce animation is enabled, OS setting take precedent and cookie is set to true (paused).
+  
+  - label: Behavior
+    content: When reduce animation is not enabled, cookie settings take precedent.
+  
+  - label: Roadmap
+    content: When reduce animation is enabled, it would be great if local page settings could override OS setting.
+  
+  - label: Behavior
+    content: Phones in low power mode may automatically pause auto-playing videos to conserve battery life.
+  
+  - label: Testing
+    content: While the <code>disableremoteplayback</code> attribute may not be recognized as valid HTML, the error can be safely disregarded.
 
 roadmap:
 
-  - Behavior - When cookie is set to true (paused) and reduce animation is disabled, cookie is not set to false (not paused). Page needs to be refreshed. This may not be an issue, but to work, we may need another condition to hook into here.
-  - Behavior - Revisit <code>data-callback</code> and see if it makes sense to apply callback function to all animations if <code>data-callback</code> present on page at all. Right now, there is an animation disconnect between those that have the attribute and those that do not. Currently, we manually add the callback to all other page animations.
-  - Behavior - Include a reload button to enable playback of videos that loop only once, allowing users to replay them if desired.
-  - Behavior - If <code>data-pause-remove</code> is used, override it temporarily to include play button, so that video does not obscure content. Especially true when transparent video is used.
-  - Behavior - When phone is in low power mode the video is paused, but the toggle button does not reflect a paused state. See if video is playing or paused and alter state of toggle button.
-  - Logic - Add a condition to check if the video is paused when using the <code>data-poster</code> attribute. This attribute does not work in low power mode, which can be problematic if the first frame has no content or images. While a quick fix is to use a <code>poster</code> element, we would prefer to avoid this solution.
-  - Behavior - Add a possible replay button for videos that only play once.
+  - label: Behavior
+    content: When cookie is set to true (paused) and reduce animation is disabled, cookie is not set to false (not paused). Page needs to be refreshed. This may not be an issue, but to work, we may need another condition to hook into here.
+  
+  - label: Behavior
+    content: Revisit <code>data-callback</code> and see if it makes sense to apply callback function to all animations if <code>data-callback</code> present on page at all. Right now, there is an animation disconnect between those that have the attribute and those that do not. Currently, we manually add the callback to all other page animations.
+  
+  - label: Behavior
+    content: Include a reload button to enable playback of videos that loop only once, allowing users to replay them if desired.
+  
+  - label: Behavior
+    content: If <code>data-pause-remove</code> is used, override it temporarily to include play button, so that video does not obscure content. Especially true when transparent video is used.
+  
+  - label: Behavior
+    content: When phone is in low power mode the video is paused, but the toggle button does not reflect a paused state. See if video is playing or paused and alter state of toggle button.
+  
+  - label: Logic
+    content: Add a condition to check if the video is paused when using the <code>data-poster</code> attribute. This attribute does not work in low power mode, which can be problematic if the first frame has no content or images. While a quick fix is to use a <code>poster</code> element, we would prefer to avoid this solution.
+  
+  - label: Behavior
+    content: Add a possible replay button for videos that only play once.
 
 customjs: "callback-custom.js"
 id: animation-toggle
