@@ -146,6 +146,8 @@ padding: 0;
         &--important {
         background-color: red;
         border-color: tomato;
+        border-style: dashed;
+        color: #fff;
         }
         
         &--maintenance {
