@@ -137,10 +137,15 @@ padding: 0;
         border-color: purple;
         color: #fff
         }
-        
+
         &--logic {
         background-color: lightblue;
         border-color: darkblue;
+        }
+        
+        &--important {
+        background-color: red;
+        border-color: tomato;
         }
         
         &--maintenance {
