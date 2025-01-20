@@ -79,8 +79,14 @@ card: true
               {% assign example_count = component.examples | size %}
     
               {% if example_count > 0 %}
+
+              <div class="card__metadata">
               
-                <p>Examples: <b>{{ example_count }}</b></p>
+                <ul role="list">
+                  <li>Examples: <b>{{ example_count }}</b></li>
+                </ul>
+  
+              </div>
               
               {% endif %}
 
@@ -155,8 +161,14 @@ card: true
             {% assign example_count = feed.examples | size %}
     
             {% if example_count > 0 %}
+
+            <div class="card__metadata">
             
-              <p>Examples: <b>{{ example_count }}</b></p>
+              <ul role="list">
+                <li>Examples: <b>{{ example_count }}</b></li>
+              </ul>
+
+            </div>
             
             {% endif %}
 
@@ -281,8 +293,14 @@ card: true
               {% assign example_count = resource.examples | size %}
     
               {% if example_count > 0 %}
+
+              <div class="card__metadata">
               
-                <p>Examples: <b>{{ example_count }}</b></p>
+                <ul role="list">
+                  <li>Examples: <b>{{ example_count }}</b></li>
+                </ul>
+  
+              </div>
               
               {% endif %}
 
