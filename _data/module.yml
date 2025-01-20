@@ -194,51 +194,48 @@ components:
     version: "1.0"
     examples: 
 
-      - name: "Card (Image, 3x)"
+      - name: "Card (Images)"
         id: "card-grid"
 
-      - name: "Card (Image, Categories, 3x)"
+      #- name: "Card (Alternative CTA)"
+      #  id: "card-alt-cta"
+
+      - name: "Card (Categories)"
         id: "card-category"
 
-      - name: "Card (Image, Eyebrow,  3x)"
+      - name: "Card (Eyebrow)"
         id: "card-eyebrow"
         note: 'Examine this markup closely and you will notice that we are using an element called <code>hgroup</code> to encapsulate the eyebrow and heading. This should be done instead of using multiple headings to markup alternative titles. See <a href="https://www.tpgi.com/subheadings-subtitles-alternative-titles-and-taglines-in-html/">Subheadings, subtitles, alternative titles and taglines in HTML</a> for more details about this useful element and best practice.'
 
-      - name: "Card (Image, Faux CTA,  3x)"
+      - name: "Card (Faux CTA)"
         id: "card-faux-cta"
-        note: As usual, our heading is the hyperlink, but we are also including an additional text CTA, which is not a hyperlink and never should be. Ideally, we should <a href="#learn-more">avoid using these kinds of CTAs</a> and look to visual cues to call attention to the action to be taken. Additionally, <code>aria-hidden="true"</code> could be included to hide this superfluous text.
+        note: By default, our headings in these examples serve as the primary hyperlink, but we're also including a "Faux CTA," a non-hyperlinked text CTA. Ideally, <a href="#learn-more">these should be avoided</a> in favor of visual cues like arrows to guide actions. If avoiding a faux CTA isn't possible, explore alternatives like the <a href="#card-alt-cta">Card (Alternative CTA)</a> approach.
 
-      - name: "Card (Image, Metadata, 3x)"
+      - name: "Card (Metadata)"
         id: "card-metadata"
 
-      - name: "Card (Image, Multiple Links, 3x)"
+      - name: "Card (Multiple Links)"
         id: "card-multiple-links"
         note: If multple links must be used, try your best to include visually hidden text to provide better context. If this cannot be done, context can be provided in how the interface is structured. In this example, the cards are an unordered list, with headings and nested lists of relevant links.
 
-      - name: "Card (Image, No Summary, 3x)"
+      - name: "Card (No Summary)"
         id: "card-no-summary"
         warning: "Examine this markup closely and you will notice the absence of heading levels. This omission stems from the lack of a clear summary. Headings should exclusively introduce content; otherwise, they should not be used."
-
-      - name: "Card (Image, 1x)"
-        id: "card-image"
       
-      - name: "Card (Image, Video, 3x)"
+      - name: "Card (Video)"
         id: "card-video"
         note: 'When incorporating a video, ensure that the title explicitly includes "(Video)" to aid assistive technology users, signaling their engagement with video content. If this content is not visually desired, you may use various techniques to <a href="https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html">hide it</a>, but still make it accessible to assistive technology. Additionally, always provide captions for videos, and when needed, ensure transcripts are available.' 
 
       - name: "Card (Kitchen Sink)"
         id: "card-kitchen-sink"
 
-      - name: "Card (No Image, 3x)"
+      - name: "Card (No Images)"
         id: "card-no-image"
-
-      - name: "Horizontal Card (Feed)"
-        id: "card-horizontal-feed"
 
       - name: "Horizontal Card (Image)"
         id: "card-horizontal-image"
 
-      - name: "Horizontal Card (No Image)"
+      - name: "Horizontal Card (No Images)"
         id: "card-horizontal"
 
       - name: "Horizontal Card (Kitchen Sink)"
