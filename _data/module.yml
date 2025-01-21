@@ -211,6 +211,9 @@ components:
         id: "card-faux-cta"
         note: By default, our headings in these examples serve as the primary hyperlink, but we're also including a "Faux CTA," a non-hyperlinked text CTA. Ideally, <a href="#learn-more">these should be avoided</a> in favor of visual cues like arrows to guide actions. If avoiding a faux CTA isn't possible, explore alternatives like the <a href="#card-alt-cta">Card (Alternative CTA)</a> approach.
 
+      - name: "Card (Alternative CTA)"
+        id: "card-alt-cta"
+
       - name: "Card (Metadata)"
         id: "card-metadata"
 
@@ -237,9 +240,6 @@ components:
 
       - name: "Horizontal Card (No Images)"
         id: "card-horizontal"
-
-      - name: "Horizontal Card (Kitchen Sink)"
-        id: "card-horizontal-kitchen-sink"
 
   - id: "carousel"
     desc: "Display a series of content items, such as images or text, in a rotating or sliding manner, allowing user to cycle through them."
