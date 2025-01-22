@@ -1,1 +1,1 @@
-.animation-grid{display:flex;flex-wrap:wrap}.animation-grid video{width:50%}/*# sourceMappingURL=multiple-videos.css.map */
+.animation-grid{display:grid;gap:1em;grid-area:1/1;grid-template-columns:1fr 1fr}.animation-grid video{grid-area:unset}/*# sourceMappingURL=multiple-videos.css.map */

@@ -1,9 +1,9 @@
 // Example: SVG Animation
 
 .svg-example {
-display: block;
-margin: 0 auto;
-max-width: calc(400rem/16);
+grid-area: 1 / 1;
+justify-self: center;
+max-width: calc(400rem / 16);
     
     &__path {
     fill: #6F00EF;

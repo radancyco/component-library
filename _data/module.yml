@@ -100,7 +100,7 @@ components:
     desc: "Allow users to pause or resume web animations, videos, or other dynamic content for improved control and accessibility."
     path: "animation-toggle"
     title: "Animation Toggle"
-    version: "2.6"
+    version: "2.7"
     examples:
 
       - name: "Default Setup"

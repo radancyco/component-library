@@ -1,7 +1,8 @@
 // Example: GIF Animation
 
 .gif-animation {
-margin: 0 auto;
+grid-area: 1 / 1;
+justify-self: center;
 
     &--off {
     display: block;

@@ -1,11 +1,13 @@
 // Example: Multiple Videos
 
 .animation-grid {
-display: flex;
-flex-wrap: wrap;
+display: grid;
+gap: 1em;
+grid-area: 1 / 1;
+grid-template-columns: 1fr 1fr;
 
     video {
-    width: 50%;
+    grid-area: unset;
     }
 
 }
