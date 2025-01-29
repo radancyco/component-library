@@ -165,12 +165,12 @@ padding: 1em;
         display: none;
         }
 
-    }
+        + .disclosure--content {
+          background-color: transparent;
+          display: block;
+          padding: 0;
+          }
 
-    + .disclosure--content {
-    background-color: transparent;
-    display: block;
-    padding: 0;
     }
 
   }
@@ -180,7 +180,7 @@ padding: 1em;
 // Disclosure Event
 
 .disclosure--btn[aria-expanded="true"] + .disclosure--content, .disclosure--heading:has(.disclosure--btn[aria-expanded="true"]) + .disclosure--content {
-display: grid;
+display: block;
 
   &[data-animation] {
   
