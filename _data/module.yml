@@ -283,7 +283,7 @@ components:
 
       - name: "Persistent State"
         id: "persistent"
-        note: Reduce your screen size to reveal disclosure button. In some cases, we may only require a discosure to be present on mobile, but not on desktop. 
+        note: Reduce your screen size to reveal the disclosure button. In some cases, we may only require a discosure to be present on mobile, but not on desktop. 
         warning: This approach should be used sparingly. Try to avoid removing interactive components based on screen size, as it can disrupt usability. If a user zooms in and focuses on a button, they will lose focus when zooming out because the button is then removed, which can be disorienting.
 
   - id: "hero-banner" 
