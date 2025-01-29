@@ -262,7 +262,7 @@ components:
     message: disclosure-use
     path: "disclosure"
     title: "Disclosure"
-    version: "2.1"
+    version: "2.2"
     examples:
 
       - name: "Default Setup"
@@ -280,6 +280,10 @@ components:
 
       - name: "Interactive Heading"
         id: "heading"
+
+      - name: "Persistent State"
+        id: "persistent"
+        note: Reduce your screen size to reveal disclosure button. In some cases, we may only require a discosure to be present on mobile, but not on desktop. 
 
   - id: "hero-banner" 
     desc: "Highlight key content or messaging with a bold visual, featuring an image, heading, and call-to-action at the top of a page."

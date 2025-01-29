@@ -9,16 +9,24 @@
 
 */
 
+// Sass Variables
+
+$disclosure-breakpoint: 60em;
+
+:root {
+
+  --disclosure-arrow-size: 0.8em; // Toggle Arrow Size
+  --disclosure-arrow-border: calc(2rem / 16); // Toggle Arrow Border
+  --disclosure-color-active: #a9a9a9; // Active State
+  --disclosure-color-default: #d3d3d3; // Default States
+  --disclosure-color-interactive: #666; // Interactive State 
+  --disclosure-color-selected: #6F00EF; // Selected States
+
+}
+
 // Disclosure Button
 
 .disclosure--btn {
-
---disclosure-arrow-size: 0.8em; // Toggle Arrow Size
---disclosure-arrow-border: calc(2rem / 16); // Toggle Arrow Border
---disclosure-color-active: #a9a9a9; // Active State
---disclosure-color-default: #d3d3d3; // Default States
---disclosure-color-interactive: #666; // Interactive State 
---disclosure-color-selected: #6F00EF; // Selected States
 
 background-color: var(--disclosure-color-default) ;
 border: 0;
@@ -32,6 +40,16 @@ padding: 1em;
 position: relative;
 text-align: start;
 width: 100%;
+
+  &[data-persistent] {
+
+    @media (min-width: $disclosure-breakpoint) {
+
+      display: none;
+
+    }
+
+  }
 
   // Accessibility: Focus and hover states must meet a 3:1 color ratio between background color and foreground text.
   // The project designer should be providing this state. Also, never remove focus outlines! Either redesign them or 
@@ -90,10 +108,20 @@ transform: rotate(-45deg);
 // Disclosure Content
 
 .disclosure--content {
-background-color: #d3d3d3;
+background-color: --disclosure-color-default;
 display: none;
 overflow: hidden;
 padding: 1em;
+
+  &[data-persistent] {
+
+    @media (min-width: $disclosure-breakpoint) {
+
+      display: grid; // Default is grid, but you can use block or flex if you are not using grid.
+
+    }
+
+  }
 
   &[data-animation] {
   
