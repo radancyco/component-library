@@ -108,7 +108,7 @@ transform: rotate(-45deg);
 // Disclosure Content
 
 .disclosure--content {
-background-color: --disclosure-color-default;
+background-color: var(--disclosure-color-default);
 display: none;
 overflow: hidden;
 padding: 1em;
