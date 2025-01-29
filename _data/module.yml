@@ -56,6 +56,7 @@ components:
       - name: "Viewport Context"
         id: "viewport-context"
         note: "In some scenarios, we may only want the accordion to be present on smaller viewports. In such cases, it is crucial to ensure that accessibility on larger screens is not compromised by leaving buttons accessible to assistive technologies. To see this solution in action, try pressing or tabbing to the headings in larger viewport sizes. As you'll notice, the headings are not interactive and all content that would normally be collapsed is revealed, which is exactly what we want. However, when you change the viewport to a smaller size, the component then becomes a traditional accordion. This kind of behavior can often be found in the footer of applications or website, where space is more limited on smaller screens."
+        message: button-removal
 
       - name: "Overlay"
         id: "horizontal-overlay"
@@ -284,7 +285,12 @@ components:
       - name: "Persistent State"
         id: "persistent"
         note: Reduce your screen size to reveal the disclosure button. In some cases, we may only require a discosure to be present on mobile, but not on desktop. 
-        warning: This approach should be used sparingly. Try to avoid removing interactive components based on screen size, as it can disrupt usability. If a user zooms in and focuses on a button, they will lose focus when zooming out because the button is then removed, which can be disorienting.
+        message: button-removal
+
+      - name: "Viewport Context"
+        id: "viewport-context"
+        note: "In some scenarios, we may only want the disclosure to be present on smaller viewports. In such cases, it is crucial to ensure that accessibility on larger screens is not compromised by leaving buttons accessible to assistive technologies. To see this solution in action, try pressing or tabbing to the headings in larger viewport sizes. As you'll notice, the headings are not interactive and all content that would normally be collapsed is revealed, which is exactly what we want. However, when you change the viewport to a smaller size, the component then becomes a traditional accordion. This kind of behavior can often be found in the footer of applications or website, where space is more limited on smaller screens."
+        message: button-removal
 
   - id: "hero-banner" 
     desc: "Highlight key content or messaging with a bold visual, featuring an image, heading, and call-to-action at the top of a page."
