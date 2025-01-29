@@ -10,6 +10,19 @@ attributes:
 
     desc: Used to enable content to be animated when opened. Please note that the default animation leverages <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style">@starting-style</a> at-rule.
 
+  - name: data-context
+    html: 
+
+      - .disclosure--btn 
+      - .disclosure--heading 
+    
+    note:
+  
+      - Boolean
+      - Optional
+  
+    desc: Used to allow the disclosure to become non-interactive on larger viewport sizes, while maintaining interactivity on mobile.
+
   - name: data-enable-anchor
     html: .disclosure--btn
     note:
@@ -32,7 +45,7 @@ attributes:
     html: 
     
       - .disclosure--btn
-      - .disclosure--content
+      - .disclosure--heading
 
     note:
 
