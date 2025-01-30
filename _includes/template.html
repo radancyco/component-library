@@ -747,6 +747,33 @@
 
 {%- endif %}
 
+{%- if page.changelog %} 
+
+  <button class="accordion__toggle" id="changelog">Changelog</button>
+
+  <div class="accordion__panel">
+
+    <ul class="notes" role="list">
+
+      {% assign sortChangelog = page.changelog %}
+
+      {% for log in sortChangelog %}
+
+        <li class="notes__item">
+        
+          <span class="notes__label notes__label--{{ log.label | downcase }}">{{ log.label }}:</span>
+          <span class="notes__content">{{ log.content }}</span>
+      
+        </li>
+
+      {% endfor %}
+
+    </ul>
+
+  </div>
+
+{%- endif %}
+
 {%- if page.roadmap %} 
 
   <button class="accordion__toggle" id="roadmap">Roadmap</button>

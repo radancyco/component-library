@@ -139,7 +139,7 @@ padding: 1em;
 
 .disclosure--btn, .disclosure--heading {
 
-  &[data-context] {
+  &[data-context], &[data-disclosure-viewport] {
 
     @media(min-width: $disclosure-breakpoint) {
 

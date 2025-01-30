@@ -21,7 +21,7 @@ attributes:
       - Boolean
       - Optional
   
-    desc: Used to allow the disclosure to become non-interactive on larger viewport sizes, while maintaining interactivity on mobile.
+    desc: Used to allow the disclosure to become non-interactive on larger viewport sizes, while maintaining interactivity on mobile. The older attribute, <code>data-disclosure-viewport</code> has been depracted and should no longer be used.
 
   - name: data-enable-anchor
     html: .disclosure--btn
@@ -91,6 +91,14 @@ classes:
     
     note: Optional
     desc: Include this class on any heading you might have that wraps your button. A heading should always wrap a button and not the other way around. 
+
+changelog: 
+
+  - label: Feature
+    content: "January 29th, 2025: Added new feature. A new data attribute of <code>data-persistent</code> can now be added to <code>.disclosure--btn</code> to allow trigger to be hidden on desktop, but hidden on mobile."
+
+  - label: Behavior
+    content: "January 29th, 2025: Reinstated the <strong>viewport-friendly</strong> method to allow triggers to not be interactive in larger viewports. There has been a name change to the attribute though, and this is now called <code>data-context</code>, which should be used moving forward. The attribute <code>data-disclosure-viewport</code> is now depracted and will be removed in a future release."
 
 id: disclosure
 localcss: "init.css"
