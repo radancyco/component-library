@@ -110,10 +110,14 @@
 
   if(disclosureID) {
 
-    var disclosureTarget = disclosureButtonClass + "#" + disclosureID.id;
+    var disclosureTarget = document.querySelector(disclosureButtonClass + "#" + disclosureID.id);
 
-    document.querySelector(disclosureTarget).setAttribute("aria-expanded", "true");
-    document.querySelector(disclosureTarget).focus();
+    if (disclosureTarget) {
+
+      disclosureTarget.setAttribute("aria-expanded", "true");
+      disclosureTarget.focus();
+
+    }
 
   }
 

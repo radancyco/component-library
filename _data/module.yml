@@ -263,7 +263,7 @@ components:
     message: disclosure-use
     path: "disclosure"
     title: "Disclosure"
-    version: "2.2"
+    version: "2.3"
     examples:
 
       - name: "Default Setup"
