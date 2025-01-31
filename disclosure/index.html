@@ -4,7 +4,7 @@ attributes:
   - name: data-animation
     html: .disclosure--content
     note:
-    
+
       - Boolean
       - Optional
 
@@ -15,12 +15,12 @@ attributes:
 
       - .disclosure--btn 
       - .disclosure--heading 
-    
+
     note:
-  
+
       - Boolean
       - Optional
-  
+
     desc: Used to allow the disclosure to become non-interactive on larger viewport sizes, while maintaining interactivity on mobile. The older attribute, <code>data-disclosure-viewport</code> has been depracted and should no longer be used.
 
   - name: data-enable-anchor
@@ -29,7 +29,7 @@ attributes:
 
       - Boolean
       - Optional
-    
+
     desc: Used to enable the anchor that appears in the address bar when a disclosure is pressed. Including an anchor can be useful for tracking and sharing specific content.
 
   - name: data-open
@@ -38,12 +38,12 @@ attributes:
 
       - Boolean
       - Optional
-    
+
     desc: Specifies that content should be open on page load. If not specified, no content will be opened.
 
   - name: data-persistent
     html: 
-    
+
       - .disclosure--btn
       - .disclosure--heading
 
@@ -51,7 +51,7 @@ attributes:
 
       - Boolean
       - Optional
-    
+
     desc: Specifies that the content should remain persistent and always open in larger viewports. Attribute must be included on both the button and content. Must not be used with <code>.disclosure--heading</code>.
 
   - name: data-remove-arrow
@@ -60,25 +60,25 @@ attributes:
 
       - Boolean
       - Optional
-    
+
     desc: By default, all buttons include a span element for icons. If this is not desirable, you can remove it by adding this attribute and using your own inline or CSS icon. For custom inline icons, ensure they are hidden from assistive technologies by using <code>aria-hidden="true"</code>. 
-  
+
 classes:
 
   - name: .disclosure--btn
     html: button
     note: Mandatory
     desc: Required on your disclosure button.
-  
+
   - name: .disclosure--content
     html: 
 
       - div
       - section
-    
+
     note: Mandatory
     desc: Required on your disclosure content.
-  
+
   - name: .disclosure--heading	
     html: 
 
@@ -88,7 +88,7 @@ classes:
       - h4
       - h5
       - h6
-    
+
     note: Optional
     desc: Include this class on any heading you might have that wraps your button. A heading should always wrap a button and not the other way around. 
 
@@ -103,13 +103,13 @@ changelog:
   - label: Behavior
     content: "January 29, 2025: Reinstated the <strong>viewport-friendly</strong> method, allowing triggers to be non-interactive on larger viewports. The attribute is now called <code>data-context</code> and should be used going forward. <code>data-disclosure-viewport</code> is deprecated and will be removed in a future release."
 
+accordion: true
 id: disclosure
 localcss: "init.css"
 localjs: "init.js"
 module: components
 select-internal: true
 tablist: true
-accordion: true
 ---
 
 {% include init.html %}

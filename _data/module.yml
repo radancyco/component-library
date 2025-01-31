@@ -4,7 +4,7 @@ components:
     desc: "Organize content into expandable and collapsible sections, allowing users to reveal or hide information as needed."
     path: "accordion"
     title: "Accordion"
-    version: "2.5" 
+    version: "2.6" 
     examples: 
 
       - name: "Default Setup"

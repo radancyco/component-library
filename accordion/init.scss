@@ -148,7 +148,7 @@ gap: var(--accordion-gap);
 
     // Multi-purpose Span
 
-    span:not(&__arrow) {
+    span:not(.accordion__arrow) {
     line-height: 1.5;
     }
 
