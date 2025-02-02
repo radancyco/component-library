@@ -46,9 +46,9 @@ components:
         id: "headings"
         note: 'In this example, take note of the headings used to wrap the <code>button</code> elements, creating a more logical, interactive, and navigable structure for assistive technology users. Default list markup is also present to help convey the number of accordion items there are, and wrapping the accordion in a <code>section</code> element connected to the "My FAQ" heading via <code>aria-labelledby</code> creates a landmark region for the grouping. Together, these techniques improve the overall understanding of the component for users with certain disabilities, specifically blind and low vision users. Please watch the <a href="headings.mp4">demo</a> to see this behavior in action.'
         
-      - name: "Multiple Open"
-        id: "multiple-open"
-        note: "Ideally, only one accordion section should be open at a time. However, there may be cases where allowing multiple sections to be open simultaneously is desirable, such as when a user wants to compare or search through the content."
+      #- name: "Multiple Open"
+      #  id: "multiple-open"
+      #  note: "Ideally, only one accordion section should be open at a time. However, there may be cases where allowing multiple sections to be open simultaneously is desirable, such as when a user wants to compare or search through the content."
 
       - name: "Toggle All"
         id: "toggle-all"
