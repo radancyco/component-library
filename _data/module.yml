@@ -208,19 +208,27 @@ components:
         id: "card-eyebrow"
         note: 'Examine this markup closely and you will notice that we are using an element called <code>hgroup</code> to encapsulate the eyebrow and heading. This should be done instead of using multiple headings to markup alternative titles. See <a href="https://www.tpgi.com/subheadings-subtitles-alternative-titles-and-taglines-in-html/">Subheadings, subtitles, alternative titles and taglines in HTML</a> for more details about this useful element and best practice.'
 
+
       - name: "Card (Faux CTA)"
         id: "card-faux-cta"
         note: By default, our headings in these examples serve as the primary hyperlink, but we're also including a "Faux CTA," a non-hyperlinked text CTA. Ideally, <a href="#learn-more">these should be avoided</a> in favor of visual cues like arrows to guide actions. If avoiding a faux CTA isn't possible, explore alternatives like the <a href="#card-alt-cta">Card (Alternative CTA)</a> approach.
+        group: Linking
 
       - name: "Card (Alternative CTA)"
         id: "card-alt-cta"
+        group: Linking
 
       - name: "Card (Metadata)"
         id: "card-metadata"
 
       - name: "Card (Multiple Links)"
         id: "card-multiple-links"
-        note: If multple links must be used, try your best to include visually hidden text to provide better context. If this cannot be done, context can be provided in how the interface is structured. In this example, the cards are an unordered list, with headings and nested lists of relevant links.
+        note: While it's customary to include visually hidden text in links for screen reader users, content structure can also provide necessary context when hidden text isn't an option. Please see the <a href="#card-multiple-links-exception.html">exception example</a>.
+
+      - name: "Card (Hidden Text Exception)"
+        id: "card-multiple-links-exception"
+        note: In this example, because the cards are an unordered list, with each "Read More" and "View Job" link being it's own nested list, enough structural context is being provided it to not require adding visually hidden text.
+        group: Linking
 
       - name: "Card (No Summary)"
         id: "card-no-summary"
