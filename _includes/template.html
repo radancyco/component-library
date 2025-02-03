@@ -425,7 +425,7 @@
 
 {% endif %}
 
-{%- if page.elements or page.aria or page.attributes or page.sass or page.class or page.cookies or page.parameters or page.notes %}
+{%- if page.elements or page.aria or page.attributes or page.sass or page.class or page.cookies or page.parameters %}
 
   <h2 id="properties">Properties</h2>
 
@@ -720,34 +720,77 @@
 
 {% endif %}
 
-{%- if page.notes %} 
-
-<button class="accordion__toggle" id="notes">Additional Notes</button>
-
-<div class="accordion__panel">
-
-  <ul class="notes" role="list">
-    
-    {% assign sortNotes = page.notes %}
-
-    {% for note in sortNotes %}
-    
-    <li class="notes__item">
-        
-      <span class="notes__label notes__label--{{ note.label | downcase }}">{{ note.label }}:</span>
-      <span class="notes__content">{{ note.content }}</span>
-  
-    </li>
-
-    {% endfor %}
-
-  </ul>
+{%- if page.elements or page.aria or page.attributes or page.sass or page.class or page.cookies or page.parameters %}
 
 </div>
 
 {%- endif %}
 
-{%- if page.roadmap %} 
+{%- if page.notes or page.changelog or page.roadmap %}
+
+  <h2 id="release-notes">Release Notes</h2>
+
+  <p>Keep up to date on major changes to this component.</p>
+
+  <div class="accordion" data-animation>
+
+{%- endif %}
+
+{%- if page.changelog %} 
+
+  <button class="accordion__toggle" id="changelog">Changelog</button>
+
+  <div class="accordion__panel">
+
+    <ul class="notes" role="list">
+
+      {% assign sortChangelog = page.changelog %}
+
+      {% for log in sortChangelog %}
+
+        <li class="notes__item">
+      
+          <span class="notes__label notes__label--{{ log.label | downcase }}">{{ log.label }}:</span>
+          <span class="notes__content">{{ log.content }}</span>
+    
+        </li>
+
+      {% endfor %}
+
+    </ul>
+
+  </div>
+
+{%- endif %}
+
+{%- if page.notes %} 
+
+  <button class="accordion__toggle" id="notes">Additional Notes</button>
+
+  <div class="accordion__panel">
+
+    <ul class="notes" role="list">
+    
+      {% assign sortNotes = page.notes %}
+
+      {% for note in sortNotes %}
+    
+      <li class="notes__item">
+        
+        <span class="notes__label notes__label--{{ note.label | downcase }}">{{ note.label }}:</span>
+        <span class="notes__content">{{ note.content }}</span>
+  
+      </li>
+
+      {% endfor %}
+
+    </ul>
+
+  </div>
+
+  {%- endif %}
+
+  {%- if page.roadmap %} 
 
   <button class="accordion__toggle" id="roadmap">Roadmap</button>
 
@@ -774,44 +817,9 @@
 
 {%- endif %}
 
-{%- if page.elements or page.aria or page.attributes or page.sass or page.class or page.cookies or page.parameters or page.notes %}
+{%- if page.notes or page.changelog or page.roadmap %}
 
 </div>
-
-{%- endif %}
-
-{%- if page.changelog %} 
-
-  <h2 id="changelog">Changelog</h2>
-
-  <p>Keep up to date on major changes to this component.</p>
-
-  <div class="accordion" data-disable-anchor>
-
-    <button class="accordion__toggle">Updates</button>
-
-    <div class="accordion__panel">
-
-      <ul class="notes" role="list">
-
-        {% assign sortChangelog = page.changelog %}
-
-        {% for log in sortChangelog %}
-
-          <li class="notes__item">
-        
-            <span class="notes__label notes__label--{{ log.label | downcase }}">{{ log.label }}:</span>
-            <span class="notes__content">{{ log.content }}</span>
-      
-          </li>
-
-        {% endfor %}
-
-      </ul>
-
-    </div>
-
-  </div>
 
 {%- endif %}
 
