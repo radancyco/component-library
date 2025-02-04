@@ -46,9 +46,9 @@ components:
         id: "headings"
         note: 'In this example, take note of the headings used to wrap the <code>button</code> elements, creating a more logical, interactive, and navigable structure for assistive technology users. Default list markup is also present to help convey the number of accordion items there are, and wrapping the accordion in a <code>section</code> element connected to the "My FAQ" heading via <code>aria-labelledby</code> creates a landmark region for the grouping. Together, these techniques improve the overall understanding of the component for users with certain disabilities, specifically blind and low vision users. Please watch the <a href="headings.mp4">demo</a> to see this behavior in action.'
         
-      #- name: "Multiple Open"
-      #  id: "multiple-open"
-      #  note: "Ideally, only one accordion section should be open at a time. However, there may be cases where allowing multiple sections to be open simultaneously is desirable, such as when a user wants to compare or search through the content."
+      - name: "Multiple Open"
+        id: "multiple-open"
+        note: "Ideally, only one accordion section should be open at a time. However, there may be cases where allowing multiple sections to be open simultaneously is desirable, such as when a user wants to compare or search through the content."
 
       - name: "Toggle All"
         id: "toggle-all"
@@ -65,37 +65,6 @@ components:
         
           - experimental
           - use-tablist
-
-  - id: "accordion-grid"
-    deprecated: true
-    desc: "Organize content into expandable and collapsible sections via a horizontal grid, allowing users to reveal or hide information as needed."
-    path: "accordion-grid"
-    title: "Accordion Grid"
-    version: "1.1" 
-    hidden: true
-    examples: 
-
-      - name: "Default Setup"
-        id: "default-setup"
-
-      - name: "Active Tab"
-        id: "active-tab"
-
-      - name: "Advanced Breakpoints"
-        id: "advanced-breakpoints"
-
-      - name: "Disable URL"
-        id: "disable-url"
-
-      - name: "Function Callback"
-        id: "function-callback"
-
-      - name: "Grid Exclusion"
-        id: "grid-exclusion"
-        note: The third and fourth button (<strong>.accordion-grid__button</strong>) and content (<strong>.accordion-grid__content</strong>) elements include <strong>data-accordion-grid-exclude</strong>. Only grids one, two, five, and six will be visible.</p>
-      
-      - name: "Remove Close Button"
-        id: "remove-close-button"
 
   - id: "animation-toggle"
     desc: "Allow users to pause or resume web animations, videos, or other dynamic content for improved control and accessibility."
@@ -196,10 +165,8 @@ components:
     examples: 
 
       - name: "Card (Images)"
-        id: "card-grid"
-
-      #- name: "Card (Alternative CTA)"
-      #  id: "card-alt-cta"
+        id: "default-setup"
+        guidance: a11y-card
 
       - name: "Card (Categories)"
         id: "card-category"
@@ -207,39 +174,17 @@ components:
       - name: "Card (Eyebrow)"
         id: "card-eyebrow"
         note: 'Examine this markup closely and you will notice that we are using an element called <code>hgroup</code> to encapsulate the eyebrow and heading. This should be done instead of using multiple headings to markup alternative titles. See <a href="https://www.tpgi.com/subheadings-subtitles-alternative-titles-and-taglines-in-html/">Subheadings, subtitles, alternative titles and taglines in HTML</a> for more details about this useful element and best practice.'
-
-
-      - name: "Card (Faux CTA)"
-        id: "card-faux-cta"
-        note: By default, our headings in these examples serve as the primary hyperlink, but we're also including a "Faux CTA," a non-hyperlinked text CTA. Ideally, <a href="#learn-more">these should be avoided</a> in favor of visual cues like arrows to guide actions. If avoiding a faux CTA isn't possible, explore alternatives like the <a href="#card-alt-cta">Card (Alternative CTA)</a> approach.
-        group: Linking
-
-      - name: "Card (Alternative CTA)"
-        id: "card-alt-cta"
-        group: Linking
-
+  
       - name: "Card (Metadata)"
         id: "card-metadata"
 
-      - name: "Card (Multiple Links)"
-        id: "card-multiple-links"
-        note: While it's customary to include visually hidden text in links for screen reader users, content structure can also provide necessary context when hidden text isn't an option. Please see the <a href="#card-multiple-links-exception.html">exception example</a>.
-
-      - name: "Card (Hidden Text Exception)"
-        id: "card-multiple-links-exception"
-        note: In this example, because the cards are an unordered list, with each "Read More" and "View Job" link being it's own nested list, enough structural context is being provided it to not require adding visually hidden text.
-        group: Linking
-
       - name: "Card (No Summary)"
         id: "card-no-summary"
-        warning: "Examine this markup closely and you will notice the absence of heading levels. This omission stems from the lack of a clear summary. Headings should exclusively introduce content; otherwise, they should not be used."
+        warning: "Examine this markup closely and you will notice the absence of heading levels. This in intentional. The omission stems from the lack of a clear summary. Headings should exclusively introduce content; otherwise, they should not be used at all."
       
       - name: "Card (Video)"
         id: "card-video"
-        note: 'When incorporating a video, ensure that the title explicitly includes "(Video)" to aid assistive technology users, signaling their engagement with video content. If this content is not visually desired, you may use various techniques to <a href="https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html">hide it</a>, but still make it accessible to assistive technology. Additionally, always provide captions for videos, and when needed, ensure transcripts are available.' 
-
-      - name: "Card (Kitchen Sink)"
-        id: "card-kitchen-sink"
+        note: 'When incorporating a video, ensure that the title explicitly includes "(Video)" to aid assistive technology users, signaling their engagement with video content. If this content is not visually desired, you may use various techniques to <a href="https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html">hide it</a>, but still make it accessible to assistive technology. Additionally, always provide captions for videos, and when needed, ensure transcripts are available. In the design of the module, we are also offsetting the play button, which often obstructs the selected images in undesirable ways.' 
 
       - name: "Card (No Images)"
         id: "card-no-image"
@@ -247,8 +192,51 @@ components:
       - name: "Horizontal Card (Image)"
         id: "card-horizontal-image"
 
-      - name: "Horizontal Card (No Images)"
-        id: "card-horizontal"
+      - name: "Card Link (Link Heading)"
+        id: "card-link-heading"
+        note: In this example, the heading serves as the primary link, with an arrow affordance to draw attention to it instead of using a text-based call to action like <a href="#learn-more">Learn More</a>. A CSS <a href="#pseudo-element-trick">pseudo-element trick</a> makes the entire card clickable, ensuring broad usability while maintaining a unique link in each card for better accessibility. 
+        warning: This strategy can be used by developers but is not recommended for CMS-authored content.
+        group: Linking Strategies
+        guidance:
+
+          - warning-learn-more
+          - reminder-pseudo-element
+
+      - name: "Card Link (Link CTA)"
+        id: "card-link-cta"
+        group: Linking Strategies
+        note: In this example, the heading does not need to be the primary link because each call to action (CTA) provides unique hypertext. 
+        best-practice: This strategy can be used by developers and CMS authors. While designers may not embrace this strategy due to the length of the CTA, this may be the most universal, straightforward, and accessible way to handle CTAs across a wide range of situations.
+
+      - name: "Card Link (Faux CTA)"
+        id: "card-faux-cta"
+        note: In this example, the heading serves as the primary link, but the arrow affordance has been replaced with a text-based call to action (Learn More). This is often called a "Faux CTA" because it is not clickable and it is intentionally hidden from assistive technology. Like an arrow affordance, it is meant purely as a visual call to action. 
+        warning: This strategy can be used by developers but is not recommended for CMS-authored content.
+        group: Linking Strategies
+
+      - name: "Card Link (Visually Hidden CTA)"
+        id: "card-visually-hidden"
+        note: In this example, the heading does not need to be the primary link because each call to action (CTA) provides unique hypertext. However, the distinct portions of the link are visually hidden to maintain a clean appearance while still providing contextual meaning for assistive technology users.
+        warning: This strategy can be used by developers but is not recommended for CMS-authored content.
+        group: Linking Strategies
+
+      - name: "Card Link (Link Heading & CTA)"
+        id: "card-duplicate-cta"
+        note: In this example, both the heading and the call to action point to the same URL, with the call to action effectively hidden from assistive technology and keyboard users via <code>aria-hidden="true"</code> and <code>tabindex="-1"</code>. While this strategy is uncommon, it is considered a more <a href="https://alistapart.com/article/material-honesty-on-the-web/">materially honest</a> technique compared to many commonly used methods of linking a card. If nothing else, it can serve as a practical solution for addressing adjacent duplicate links, which can be a problem for accessibility.
+        group: Linking Strategies
+        warning: This strategy can be used by developers but is not recommended for CMS-authored content.
+
+      - name: "Card Link (Link Block)"
+        id: "card-link-block"
+        note: In this example, a hyperlink is placed around the image, heading, and content, making the entire region clickable. 
+        warning: This method should be avoided unless the content output is known to not be excessive. Wrapping excessive amounts of content, including alternative text, within a hyperlink can overwhelm assistive technology users. This strategy, when deemed appropriate, can be used by developers but is not recommended for CMS-authored content.
+        group: Linking Strategies
+
+      - name: "Card Link (Structural Context)"
+        id: "card-structural-context"
+        note:  In this example, the card interface uses list markup with nested images, headings and hyperlinks, ensuring clarity without the need for visually hidden text. This applies to cards with single or multiple links. While including visually hidden text is best practice, content structure alone may provide sufficient context when hidden text is not possible or advisable. See WCAG <a href="https://www.w3.org/WAI/WCAG21/Techniques/html/H77">Technique H77</a> and <a href="https://www.w3.org/WAI/WCAG22/Techniques/html/H81">Technique H81</a> for more information.
+        group: Linking Strategies
+        best-practice: This strategy can be used by developers and CMS authors if visually hidden text cannot be included.
 
   - id: "carousel"
     desc: "Display a series of content items, such as images or text, in a rotating or sliding manner, allowing user to cycle through them."
@@ -257,10 +245,6 @@ components:
     version: "1.0"
     hidden: true
     examples:
-
-      - name: "Default Setup"
-        id: "default-setup"
-        group: "My Defaults"
 
       - name: "Default Setup"
         id: "default-setup"
@@ -484,43 +468,6 @@ components:
 
       - name: "Placeholder Option (Optgroup)" 
         id: "optgroup"
-
-  - id: "tabcordion"
-    deprecated: true
-    desc: "Combine the functionality of tabs and accordions, allowing user to toggle between sections while ensuring only one section is open at a time."
-    path: "tabcordion"
-    title: "TabCordion"
-    version: "1.8"
-    hidden: true
-    examples:
-
-      - name: "Default Setup"
-        id: "default-setup"
-
-      - name: "Active Tab"
-        id: "active-tab"
-
-      - name: "Advanced Media Query"
-        id: "advanced-media-query"
-        note: In this example, tabs will only be available when viewport width is between 50em (800px) and 75em (1200px).
-
-      - name: "Animation"
-        id: "animation"
-      
-      - name: "Disable URL"
-        id: "disable-url"
-        note: In this example, note how the URL never changes when each item is clicked on.
-
-      - name: "Function Callback"
-        id: "function-callback"
-        note: In this example, a function is run everytime an item is clicked on.
-
-      - name: "Tabs Only"
-        id: "tabs-only"
-        note: In this example, the component will only ever be a tabbed interface, regardless of the viewport.
-
-      - name: "Vertical Tabs"
-        id: "vertical-tabs"
 
   - id: "tablist"
     desc: "Organize content into separate sections, allowing user to switch between them by selecting different tabs."

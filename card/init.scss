@@ -78,6 +78,26 @@ text-wrap: balance;
       
   }
 
+  // Block (.card__block) 
+
+  &__block {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 1rem;
+
+    [data-horizontal] & {
+
+      @media (min-width: 60em) {
+
+        grid-auto-flow: column;
+        grid-template-rows: none;
+    
+      }
+
+    }
+
+  }
+
   // Media (.card__media)
   
   &__media {
@@ -174,7 +194,7 @@ text-wrap: balance;
       margin-inline-start: 0.3rem;
       transition: var(--card-transition);
 
-        [data-disable-click] & {
+        [data-remove-arrow] & {
 
           display: none;
 
@@ -183,7 +203,11 @@ text-wrap: balance;
       }
 
     }
-      
+  
+  }
+
+  &__click {
+
     // Pseudo-element Trick
     // Makes all content in card clickable. 
   
@@ -193,15 +217,8 @@ text-wrap: balance;
     inset: 0;
     position: absolute;
     z-index: 1;
-
-      [data-disable-click] & {
-
-        display: none;
-
-      }
-
     }
-  
+
   }
 
   // CTA (.card__cta)
