@@ -202,17 +202,11 @@ components:
           - warning-learn-more
           - reminder-pseudo-element
 
-      - name: "Card Link (Link CTA)"
-        id: "card-link-cta"
+      - name: "Card Link (Distinct CTA)"
+        id: "card-distinct"
         group: Linking Strategies
-        note: In this example, the heading does not need to be the primary link because each call to action (CTA) provides unique hypertext. 
+        note: In this example, the heading does not need to be the primary link because each call to action (CTA) provides distinct and unique hypertext. 
         best-practice: This strategy can be used by developers and CMS authors. While designers may not embrace this strategy due to the length of the CTA, this may be the most universal, straightforward, and accessible way to handle CTAs across a wide range of situations.
-
-      - name: "Card Link (Faux CTA)"
-        id: "card-faux-cta"
-        note: In this example, the heading serves as the primary link, but the arrow affordance has been replaced with a text-based call to action (Learn More). This is often called a "Faux CTA" because it is not clickable and it is intentionally hidden from assistive technology. Like an arrow affordance, it is meant purely as a visual call to action. 
-        warning: This strategy can be used by developers but is not recommended for CMS-authored content.
-        group: Linking Strategies
 
       - name: "Card Link (Visually Hidden CTA)"
         id: "card-visually-hidden"
@@ -220,23 +214,29 @@ components:
         warning: This strategy can be used by developers but is not recommended for CMS-authored content.
         group: Linking Strategies
 
+      - name: "Card Link (Faux CTA)"
+        id: "card-faux"
+        note: In this example, the heading serves as the primary link, but the arrow affordance has been replaced with a text-based call to action (Learn More). This is often called a "Faux CTA" because it is not clickable and it is intentionally hidden from assistive technology. Like an arrow affordance, it is meant purely as a visual call to action. 
+        warning: This strategy can be used by developers but is not recommended for CMS-authored content.
+        group: Linking Strategies
+
       - name: "Card Link (Link Heading & CTA)"
-        id: "card-duplicate-cta"
+        id: "card-duplicate"
         note: In this example, both the heading and the call to action point to the same URL, with the call to action effectively hidden from assistive technology and keyboard users via <code>aria-hidden="true"</code> and <code>tabindex="-1"</code>. While this strategy is uncommon, it is considered a more <a href="https://alistapart.com/article/material-honesty-on-the-web/">materially honest</a> technique compared to many commonly used methods of linking a card. If nothing else, it can serve as a practical solution for addressing adjacent duplicate links, which can be a problem for accessibility.
         group: Linking Strategies
         warning: This strategy can be used by developers but is not recommended for CMS-authored content.
 
       - name: "Card Link (Link Block)"
-        id: "card-link-block"
+        id: "card-block"
         note: In this example, a hyperlink is placed around the image, heading, and content, making the entire region clickable. 
-        warning: This method should be avoided unless the content output is known to not be excessive. Wrapping excessive amounts of content, including alternative text, within a hyperlink can overwhelm assistive technology users. This strategy, when deemed appropriate, can be used by developers but is not recommended for CMS-authored content.
+        warning: This method should be avoided unless the content output is known to not be excessive. Wrapping excessive amounts of content, including possible alternative text, within a hyperlink can overwhelm assistive technology users. This strategy, when deemed appropriate, can be used by developers but is not recommended for CMS-authored content.
         group: Linking Strategies
 
       - name: "Card Link (Structural Context)"
         id: "card-structural-context"
-        note:  In this example, the card interface uses list markup with nested images, headings and hyperlinks, ensuring clarity without the need for visually hidden text. This applies to cards with single or multiple links. While including visually hidden text is best practice, content structure alone may provide sufficient context when hidden text is not possible or advisable. See WCAG <a href="https://www.w3.org/WAI/WCAG21/Techniques/html/H77">Technique H77</a> and <a href="https://www.w3.org/WAI/WCAG22/Techniques/html/H81">Technique H81</a> for more information.
+        note:  In this example, the card interface uses list markup with nested images, headings and hyperlinks, ensuring clarity without the need for visually hidden text. This applies to cards with single or multiple links. While including visually hidden text is always recommended, content structure alone may provide sufficient context when hidden text is not possible or advisable. See WCAG <a href="https://www.w3.org/WAI/WCAG21/Techniques/html/H77">Technique H77</a> and <a href="https://www.w3.org/WAI/WCAG22/Techniques/html/H81">Technique H81</a> for more information.
         group: Linking Strategies
-        best-practice: This strategy can be used by developers and CMS authors if visually hidden text cannot be included.
+        best-practice: This strategy can be used by developers, with visually hidden text as recommended, and CMS authors if visually hidden text is not included.
 
   - id: "carousel"
     desc: "Display a series of content items, such as images or text, in a rotating or sliding manner, allowing user to cycle through them."
