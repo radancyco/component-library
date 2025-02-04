@@ -10,55 +10,77 @@ attributes:
 
     desc: Used to change the card content to horizontal withing a vertical grid. The default layout for content is a vertical, within a horizontal grid.
 
-  - name: data-disable-click
-    html: .card
-    note:
-
-      - Boolean
-      - Optional
-
-    desc: Used to disable click on entire card region by supressing the pseudo-element which makes this possible. By default, all card regions are clickable.
-
 classes:
 
   - name: .card
     html: 
       - ul
-      - div 
+      - div
+      - article
     note: Mandatory
-    desc: Used on the parent element that wraps your card content. Standalone cards should use a <code>div</code> element.
+    desc: Used on the parent element that wraps your card content.
   
   - name: .card__item
     html: 
       - li
       - div
     note: Mandatory
-    desc: Used on your card item. Must be a child of <code>.card</code>. If your card is a standalone, then use a <code>div</code>.
-      
-  - name: .card__media
-    html: div
-    note: Optional
-    desc: Used to define your media region. Must be a child of <code>.card__item</code>.
+    desc: Used on your card item. Must be a child of <code>.card</code>.
 
-  - name: .card__thumbnail
-    html: div
+  - name: .card__block
+    html: a
     note: Optional
-    desc: Used to define your thumbnail image. Must be a child of <code>.card__media</code>.
+    desc: Used to define the link used to wrap entire content regions. Should be used sparingly and when content output is minimal.
+
+  - name: .card__category
+    html: div 
+    note: Optional
+    desc: Used to define a card category list.  
+
+  - name: .card__click
+    html: a
+    note: Optional
+    desc: Used to determin whicj link in your card should contain the pseudo-element trick to expand the clickable region. Should only be used on one link per card.
 
   - name: .card__content
     html: div
     note: Optional
-    desc: Used to define your content region. Must be a child of <code>.card__item</code>.
+    desc: Used to define your content region.
 
-  - name: .card__group
-    html: hgroup
+  - name: .card__cta
+    html: div
     note: Optional
-    desc: Used to define multiple card titles, specifically when <code>.card__eyebrow</code> is used. Must be a child of <code>.card__content</code>.
+    desc: Used to add distinct characteristics to your card's faux CTA.
 
   - name: .card__eyebrow
     html: p
     note: Optional
-    desc: Used to define additional card title. This class may only be applied to a <code>p</code> element. Must be a child of <code>.card__group</code>.
+    desc: Used to define additional card title. This class may only be applied to a <code>p</code> element.
+
+  - name: .card__group
+    html: hgroup
+    note: Optional
+    desc: Used to define multiple card titles, specifically when <code>.card__eyebrow</code> is used.
+      
+  - name: .card__media
+    html: div
+    note: Optional
+    desc: Used to define your media region.
+
+  - name: .card__metadata
+    html: div 
+    note: Optional
+    desc: Used to define a card metadata list.
+
+  - name: .card__summary
+    html: div 
+    note: Optional
+    desc: Used to define a card summary.
+
+  - name: .card__thumbnail
+    html: div
+    note: Optional
+    desc: Used to define your thumbnail image.
 
   - name: .card__title
     html: 
@@ -76,22 +98,7 @@ classes:
       - a
       - button 
     note: Mandatory
-    desc: Used to define a card interaction trigger. Must be a child of <code>.card__title</code>. 
-
-  - name: .card__summary
-    html: div 
-    note: Optional
-    desc: Used to define a card summary. Must be a child of <code>.card__content</code>.  
-
-  - name: .card__category
-    html: div 
-    note: Optional
-    desc: Used to define a card category list. Must be a child of <code>.card__content</code>.  
-
-  - name: .card__metadata
-    html: div 
-    note: Optional
-    desc: Used to define a card metadata list. Must be a child of <code>.card__content</code>.
+    desc: Used to define a card interaction trigger.
 
 id: card
 localcss: "init.css"
