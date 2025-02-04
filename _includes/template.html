@@ -264,6 +264,16 @@
 
       {%- endif %}
 
+      {%- if component.guidance %}
+        
+        {% for msg in component.guidance %}
+
+          {% include guidance/{{ msg }}.html %}
+
+        {% endfor %}
+
+      {%- endif %}
+
       <nav aria-label="Component Tools" class="component-functions">
 
         <ul role="list">

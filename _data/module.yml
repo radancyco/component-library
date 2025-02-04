@@ -161,12 +161,15 @@ components:
     desc: "Group content such as images, text, and related links, offering a compact and organized way to display information."
     path: "card"
     title: "Card"
-    version: "1.0"
+    version: "1.3"
     examples: 
 
       - name: "Card (Images)"
         id: "default-setup"
-        guidance: a11y-card
+        guidance: 
+    
+          - best-practice-card
+          - reminder-pseudo-element
 
       - name: "Card (Categories)"
         id: "card-category"
@@ -197,10 +200,6 @@ components:
         note: In this example, the heading serves as the primary link, with an arrow affordance to draw attention to it instead of using a text-based call to action like <a href="#learn-more">Learn More</a>. A CSS <a href="#pseudo-element-trick">pseudo-element trick</a> makes the entire card clickable, ensuring broad usability while maintaining a unique link in each card for better accessibility. 
         warning: This strategy can be used by developers but is not recommended for CMS-authored content.
         group: Linking Strategies
-        guidance:
-
-          - warning-learn-more
-          - reminder-pseudo-element
 
       - name: "Card Link (Distinct CTA)"
         id: "card-distinct"
