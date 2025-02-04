@@ -9,7 +9,7 @@
 
 <ul>
     <li><strong>Use distinct and descriptive CTA text - </strong> Instead of generic phrases like "Learn More," opt for <a href="#card-distinct">distinct</a> and contextually relevant links (e.g., "Learn More about Accessibility"). This improves clarity and usability, especially for screen reader users.</li>
-    <li><strong>Consider linking only the card heading - </strong> This approach, combined with affordances such as arrows, provides a familiar interaction pattern while reducing the risk of incorrectly programmed hyperlinks.</li>
+    <li><strong>Consider linking only the card heading - </strong> <a href="#card-link-heading">This approach</a>, combined with affordances such as arrows, provides a familiar interaction pattern while reducing the risk of incorrectly programmed hyperlinks.</li>
     <li><strong>Utilize visually hidden text where appropriate - </strong> <a href="#card-visually-hidden">Hidden text</a> techniques can enhance accessibility, but they should not be used in CMS-authored content, due to the high risk of breaking accessibility.</li>
     <li><strong>Use a "Faux CTA" if necessary - </strong> If "Learn More" must be included for design purposes, it can be <a href="#card-faux">visually present</a> but not marked up as a hyperlink. It can even be hidden from assistive technology using ARIA, as it is often redundant. However, this technique should not be used in CMS-authored content.</li>
     <li><strong>Do not overload hyperlinks with excessive content - </strong> Wrapping too much content, including alternative text, within a link can overwhelm assistive technology users. If the entire card needs to be clickable, use the <a href="#pseudo-element-trick">pseudo-element trick</a> to maintain a single link structure.</li>
