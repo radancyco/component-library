@@ -182,6 +182,17 @@ text-wrap: balance;
   margin: 0;
   padding: 0;
   text-decoration: none;
+
+    [data-remove-arrow] & {
+
+      text-decoration: underline;
+
+      &:focus, &:hover {
+      text-decoration: none;
+      }
+
+
+    }
     
     // CTA
     // NOTE: HTML Entity being used, but you can use Font Awesome or inline SVG, too.
@@ -200,6 +211,10 @@ text-wrap: balance;
 
         }
 
+      }
+
+      &:visited {
+      color: #000;
       }
 
     }
