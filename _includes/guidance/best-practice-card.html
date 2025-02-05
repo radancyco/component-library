@@ -5,20 +5,20 @@
 
 {% include guidance/header.html %}
 
-<p>When designing card interfaces, it's essential to prioritize accessibility and usability. Below are key best practices and common pitfalls to avoid when structuring cards, especially for assistive technology users.</p>
+<p>When designing and developing card interfaces, it's essential to prioritize accessibility and usability. Below are key best practices and common pitfalls to avoid when structuring cards, especially for assistive technology users.</p>
 
 <ul>
     <li><strong>Use distinct and descriptive CTA text - </strong> Instead of generic phrases like "Learn More," opt for <a href="#card-distinct">distinct</a> and contextually relevant links (e.g., "Learn More about Accessibility"). This improves clarity and usability, especially for screen reader users.</li>
-    <li><strong>Consider linking only the card heading - </strong> <a href="#card-link-heading">This approach</a>, combined with affordances such as arrows, provides a familiar interaction pattern while reducing the risk of incorrectly programmed hyperlinks.</li>
+    <li><strong>Consider linking only the card heading - </strong> <a href="#card-link-heading">This approach</a>, combined with affordances such as arrows, provides a familiar interaction pattern while reducing the risk of incorrectly programmed "Learn More" hyperlinks.</li>
     <li><strong>Utilize visually hidden text where appropriate - </strong> <a href="#card-visually-hidden">Hidden text</a> techniques can enhance accessibility, but they should not be used in CMS-authored content, due to the high risk of breaking accessibility.</li>
     <li><strong>Use a "Faux CTA" if necessary - </strong> If "Learn More" must be included for design purposes, it can be <a href="#card-faux">visually present</a> but not marked up as a hyperlink. It can even be hidden from assistive technology using ARIA, as it is often redundant. However, this technique should not be used in CMS-authored content.</li>
     <li><strong>Do not overload hyperlinks with excessive content - </strong> Wrapping too much content, including alternative text, within a link can overwhelm assistive technology users. If the entire card needs to be clickable, use the <a href="#pseudo-element-trick">pseudo-element trick</a> to maintain a single link structure.</li>
-    <li><strong>Provide appropriate alt text for images - </strong> Only use alt text if the image requires a description. The card title should never be repeated as alt text.</li>
-    <li><strong>Use proper heading levels - </strong> Card headings should follow the surrounding content structure, typically these are <code>h3</code> or <code>h2</code>, and heading levels should never be skipped.</li>
-    <li><strong>Apply a class to card headings - </strong> This allows flexibility if the heading level needs to be changed later or removed entirely.</li>
+    <li><strong>Provide appropriate alt text for images - </strong> Only use alt text if the image requires a description. The card title should <strong>never</strong> be repeated as alt text.</li>
+    <li><strong>Use proper heading levels - </strong> Card headings should be logical and follow the surrounding content structure. Typically these are <code>h3</code> or <code>h2</code> headings. Heading levels must also never be skipped.</li>
+    <li><strong>Apply a class to card headings - </strong> This allows flexibility if the heading level needs to be changed later or replaced with a non-heading element.</li>
     <li><strong>Avoid headings in cards without summaries - </strong> If a card does <a href="#card-no-summary">not contain a summary</a>, a heading should not be used.</li>
-    <li><strong>Ensure proper focus states - </strong> The <code>:focus</code> pseudo-class does not work on non-interactive element for keyboard users. Instead, use <code>:focus-within</code> if you need to highlight parent element when a link within the card recesives focus.</li>
-    <li><strong>Avoid redundant or unnecessary links - </strong> If both the <a href="#card-duplicate">heading and CTA</a> link to the same URL, ensure they are correctly marked up to prevent confusion.</li>
+    <li><strong>Ensure proper focus states - </strong> The <code>:focus</code> pseudo-class does not work on non-interactive element for keyboard users. Instead, use <code>:focus-within</code> if you need to highlight parent element when a link within the card receives focus.</li>
+    <li><strong>Be mindful of duplicate links - </strong> If both the <a href="#card-duplicate">heading and CTA</a> link to the same URL, ensure they are correctly marked up to prevent confusion.</li>
     <li><strong>Provide semantic structure - </strong> <a href="#card-structural-context">Proper markup</a>, like a list of cards with nested headings and links, may not requre you to add visually hidden content (though it is never a bad idea to include it anyway).</li>
 <ul>
 
