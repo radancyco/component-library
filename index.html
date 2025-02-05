@@ -64,7 +64,7 @@ card: true
 
         <div class="card__content">
 
-          <h3 class="card__title"><a class="card__trigger" href="{% if component.path-full %}{{ component.path-full }}{% else %}{{ site.baseurl }}/{{ component.path }}/{{ component.hash }}{% endif %}">{{ component.title }}{% if component.version %} v{{ component.version }}{% endif %}</a></h3>
+          <h3 class="card__title"><a class="card__trigger card__click" href="{% if component.path-full %}{{ component.path-full }}{% else %}{{ site.baseurl }}/{{ component.path }}/{{ component.hash }}{% endif %}">{{ component.title }}{% if component.version %} v{{ component.version }}{% endif %}</a></h3>
 
             <div class="card__summary">
               
@@ -140,7 +140,7 @@ card: true
 
         <div class="card__content">
 
-          <h3 class="card__title"><a class="card__trigger" href="{% if feed.path-full %}{{ feed.path-full }}{% else %}{{ site.baseurl }}/{{ feed.path }}/{{ feed.hash }}{% endif %}">{{ feed.title }}{% if feed.version %} v{{ feed.version }}{% endif %}</a></h3>
+          <h3 class="card__title"><a class="card__trigger card__click" href="{% if feed.path-full %}{{ feed.path-full }}{% else %}{{ site.baseurl }}/{{ feed.path }}/{{ feed.hash }}{% endif %}">{{ feed.title }}{% if feed.version %} v{{ feed.version }}{% endif %}</a></h3>
 
           <div class="card__summary">
             
@@ -216,7 +216,7 @@ card: true
 
         <div class="card__content">
 
-            <h3 class="card__title"><a class="card__trigger" href="{% if layout.path-full %}{{ layout.path-full }}{% else %}{{ site.baseurl }}/{{ layout.path }}/{{ layout.hash }}{% endif %}">{{ layout.title }}</a></h3>
+            <h3 class="card__title"><a class="card__trigger card__click" href="{% if layout.path-full %}{{ layout.path-full }}{% else %}{{ site.baseurl }}/{{ layout.path }}/{{ layout.hash }}{% endif %}">{{ layout.title }}</a></h3>
 
             <div class="card__summary">
               
@@ -278,7 +278,7 @@ card: true
 
         <div class="card__content">
 
-          <h3 class="card__title"><a class="card__trigger" href="{% if resource.path-full %}{{ resource.path-full }}{% else %}{{ site.baseurl }}/{{ resource.path }}/{{ resource.hash }}{% endif %}">{{ resource.title }}{% if resource.version %} v{{ resource.version }}{% endif %}</a></h3>
+          <h3 class="card__title"><a class="card__trigger card__click" href="{% if resource.path-full %}{{ resource.path-full }}{% else %}{{ site.baseurl }}/{{ resource.path }}/{{ resource.hash }}{% endif %}">{{ resource.title }}{% if resource.version %} v{{ resource.version }}{% endif %}</a></h3>
 
             <div class="card__summary">
               
