@@ -22,6 +22,7 @@ display: grid;
 gap: 1rem;
 list-style: none;
 margin: 0;
+overflow-wrap: break-word;
 padding: 0;
 text-wrap: balance;
 
@@ -182,6 +183,10 @@ text-wrap: balance;
   margin: 0;
   padding: 0;
   text-decoration: none;
+
+    &:is(button) {
+    text-align: inherit;  
+    }
 
     [data-remove-arrow] & {
 
