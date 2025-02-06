@@ -160,13 +160,11 @@ text-wrap: balance;
   font-size: calc(22.4rem / 16);
   line-height: normal;
   margin: 0 0 1rem;
-  text-align: start;
 
     // If text is not a heading, then center it.
   
     &:not(h2):not(h3):not(h4):not(h5):not(h6) {
-    text-align: center;
-    margin-block-end: 0;
+    margin: auto;
     }
   
   }
@@ -178,11 +176,14 @@ text-wrap: balance;
   border: 0;
   color: inherit;
   cursor: pointer;
-  display: block;
+  display: grid;
   font: inherit;
+  gap: 0.3em;
+  grid-auto-flow: column;
   margin: 0;
   padding: 0;
   text-decoration: none;
+  width: fit-content;
 
     &:is(button) {
     text-align: inherit;  
@@ -205,8 +206,7 @@ text-wrap: balance;
   
       &::after {
       content: "\0279C";
-      display: inline-block;
-      margin-inline-start: 0.3rem;
+      display: block;
       transition: var(--card-transition);
 
         [data-remove-arrow] & {
