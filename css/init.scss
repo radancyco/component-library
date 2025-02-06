@@ -215,6 +215,25 @@ z-index: 1;
     display: block;
     }
     
-    }
+}
     
 }
+
+.tablist__tab {
+
+    .icon {
+    display: inline-block;
+    margin-inline-end: calc(15rem/16);
+    vertical-align: middle;
+    width: calc(15rem/16);
+    }
+  
+    &.active, &[aria-selected="true"] {
+  
+      svg {
+      fill: #fff;
+      }
+  
+    }
+  
+  }
