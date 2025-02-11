@@ -210,6 +210,7 @@ text-wrap: balance;
       &::after {
       content: "\2794";
       display: block;
+      line-height: normal;
       transition: var(--card-transition);
 
         [data-remove-arrow] & {
