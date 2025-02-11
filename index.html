@@ -38,61 +38,55 @@ card-local: true
 
         <div class="card__media"> 
 
-            <div class="card__thumbnail">
+          {% if component.thumbnail == false %}
 
-              {% if component.thumbnail == false %}
+              <img alt="" src="thumb.png">
 
-                  <img alt="" src="thumb.png">
+          {% else %}
 
-              {% else %}
+            {% if component.thumbnail != nil %}
 
-                {% if component.thumbnail != nil %}
+              <img alt="" src="{{ component.thumbnail }}">
 
-                  <img alt="" src="{{ component.thumbnail }}">
+            {% else %}
 
-                {% else %}
+              <img alt="" src="{{ site.url }}{{ site.baseurl }}/{{ component.path }}/thumb.png">
 
-                  <img alt="" src="{{ site.url }}{{ site.baseurl }}/{{ component.path }}/thumb.png">
+            {% endif %}
 
-                {% endif %}
-
-              {% endif %}
-
-            </div>
+          {% endif %}
 
         </div>
 
-        <div class="card__content">
+        <h3 class="card__title"><a class="card__trigger card__click" href="{% if component.path-full %}{{ component.path-full }}{% else %}{{ site.baseurl }}/{{ component.path }}/{{ component.hash }}{% endif %}">{{ component.title }}{% if component.version %} v{{ component.version }}{% endif %}</a></h3>
 
-          <h3 class="card__title"><a class="card__trigger card__click" href="{% if component.path-full %}{{ component.path-full }}{% else %}{{ site.baseurl }}/{{ component.path }}/{{ component.hash }}{% endif %}">{{ component.title }}{% if component.version %} v{{ component.version }}{% endif %}</a></h3>
-
-            <div class="card__summary">
+          <div class="card__summary">
               
-              <p>{{ component.desc }}</p>
+            <p>{{ component.desc }}</p>
 
-              {% assign example_count = component.examples | size %}
-    
-              {% if example_count > 0 %}
+          </div>
 
-              <div class="card__metadata">
+          {% assign example_count = component.examples | size %}
+
+          <ul class="card__metadata" role="list">
+
+            {% if example_count > 0 %}
+
+              <li>Examples: <b>{{ example_count }}</b></li>
+
+            {% else %}
+
+              <li>Examples: <b>1</b></li>
+
+            {% endif %}
+
+          </ul>
               
-                <ul role="list">
-                  <li>Examples: <b>{{ example_count }}</b></li>
-                </ul>
-  
-              </div>
-              
-              {% endif %}
+          {% if component.deprecated == true %}
 
-              {% if component.deprecated == true %}
+            <div class="warning"><strong>Warning:</strong> This component is deprecated.</div>
 
-              <p class="warning" style="margin-top: 0.5em;"><strong>Warning:</strong> This component is deprecated.</p>
-
-              {% endif %}
-
-            </div>
-
-        </div>
+          {% endif %}
 
       </li>
 
@@ -114,61 +108,57 @@ card-local: true
 
         <div class="card__media">
 
-          <div class="card__thumbnail">
+          {% if feed.thumbnail == false %}
 
-            {% if feed.thumbnail == false %}
+              <img alt="" src="thumb.png">
 
-                <img alt="" src="thumb.png">
+          {% else %}
+
+            {% if feed.thumbnail != nil %}
+
+              <img alt="" src="{{ feed.thumbnail }}">
 
             {% else %}
 
-              {% if feed.thumbnail != nil %}
-
-                <img alt="" src="{{ feed.thumbnail }}">
-
-              {% else %}
-
-                <img alt="" src="{{ site.url }}{{ site.baseurl }}/{{ feed.path }}/thumb.png">
-
-              {% endif %}
+              <img alt="" src="{{ site.url }}{{ site.baseurl }}/{{ feed.path }}/thumb.png">
 
             {% endif %}
 
-          </div>
+          {% endif %}
 
         </div>
 
-        <div class="card__content">
+        <h3 class="card__title"><a class="card__trigger card__click" href="{% if feed.path-full %}{{ feed.path-full }}{% else %}{{ site.baseurl }}/{{ feed.path }}/{{ feed.hash }}{% endif %}">{{ feed.title }}{% if feed.version %} v{{ feed.version }}{% endif %}</a></h3>
 
-          <h3 class="card__title"><a class="card__trigger card__click" href="{% if feed.path-full %}{{ feed.path-full }}{% else %}{{ site.baseurl }}/{{ feed.path }}/{{ feed.hash }}{% endif %}">{{ feed.title }}{% if feed.version %} v{{ feed.version }}{% endif %}</a></h3>
-
-          <div class="card__summary">
+        <div class="card__summary">
             
-            <p>{{ feed.desc }}</p>
+          <p>{{ feed.desc }}</p>
 
-            {% if feed.deprecated == true %}
+        </div>
 
-              <p class="alert">This feed is deprecated.</p>
-
-            {% endif %}
-
-            {% assign example_count = feed.examples | size %}
+        {% assign example_count = feed.examples | size %}
     
-            {% if example_count > 0 %}
+        {% assign example_count = component.examples | size %}
 
-            <div class="card__metadata">
-            
-              <ul role="list">
-                <li>Examples: <b>{{ example_count }}</b></li>
-              </ul>
+        <ul class="card__metadata" role="list">
 
-            </div>
-            
-            {% endif %}
+          {% if example_count > 0 %}
 
-          </div>
+            <li>Examples: <b>{{ example_count }}</b></li>
 
-        </div>
+          {% else %}
+
+            <li>Examples: <b>1</b></li>
+
+          {% endif %}
+
+        </ul>
+
+        {% if feed.deprecated == true %}
+
+        <div class="alert">This feed is deprecated.</div>
+
+        {% endif %}
 
       </li>
 
@@ -190,45 +180,37 @@ card-local: true
 
         <div class="card__media">
 
-          <div class="card__thumbnail">
+          {% if layout.thumbnail == false %}
 
-            {% if layout.thumbnail == false %}
+              <img alt="" src="thumb.png">
 
-                <img alt="" src="thumb.png">
+          {% else %}
+
+            {% if layout.thumbnail != nil %}
+
+              <img alt="" src="{{ layout.thumbnail }}">
 
             {% else %}
 
-              {% if layout.thumbnail != nil %}
-
-                <img alt="" src="{{ layout.thumbnail }}">
-
-              {% else %}
-
-                <img alt="" src="{{ site.url }}{{ site.baseurl }}/{{ layout.path }}/thumb.png">
-
-              {% endif %}
+              <img alt="" src="{{ site.url }}{{ site.baseurl }}/{{ layout.path }}/thumb.png">
 
             {% endif %}
 
-          </div>
+          {% endif %}
 
         </div>
 
-        <div class="card__content">
+        <h3 class="card__title"><a class="card__trigger card__click" href="{% if layout.path-full %}{{ layout.path-full }}{% else %}{{ site.baseurl }}/{{ layout.path }}/{{ layout.hash }}{% endif %}">{{ layout.title }}</a></h3>
 
-            <h3 class="card__title"><a class="card__trigger card__click" href="{% if layout.path-full %}{{ layout.path-full }}{% else %}{{ site.baseurl }}/{{ layout.path }}/{{ layout.hash }}{% endif %}">{{ layout.title }}</a></h3>
+        <div class="card__summary">
+          
+          <p>{{ layout.desc }}</p>
 
-            <div class="card__summary">
-              
-              <p>{{ layout.desc }}</p>
+          {% if layout.deprecated == true %}
 
-              {% if layout.deprecated == true %}
+          <div class="alert">This layout is deprecated.</div>
 
-              <p class="alert">This layout is deprecated.</p>
-
-              {% endif %}
-
-            </div>
+          {% endif %}
 
         </div>
 
@@ -252,61 +234,55 @@ card-local: true
 
         <div class="card__media"> 
 
-            <div class="card__thumbnail">
+          {% if resource.thumbnail == false %}
 
-              {% if resource.thumbnail == false %}
+              <img alt="" src="thumb.png">
 
-                  <img alt="" src="thumb.png">
+          {% else %}
 
-              {% else %}
+            {% if resource.thumbnail != nil %}
 
-                {% if resource.thumbnail != nil %}
+              <img alt="" src="{{ resource.thumbnail }}">
 
-                  <img alt="" src="{{ resource.thumbnail }}">
+            {% else %}
 
-                {% else %}
+              <img alt="" src="{{ site.url }}{{ site.baseurl }}/{{ resource.path }}/thumb.png">
 
-                  <img alt="" src="{{ site.url }}{{ site.baseurl }}/{{ resource.path }}/thumb.png">
+            {% endif %}
 
-                {% endif %}
-
-              {% endif %}
-
-            </div>
+          {% endif %}
 
         </div>
 
-        <div class="card__content">
+        <h3 class="card__title"><a class="card__trigger card__click" href="{% if resource.path-full %}{{ resource.path-full }}{% else %}{{ site.baseurl }}/{{ resource.path }}/{{ resource.hash }}{% endif %}">{{ resource.title }}{% if resource.version %} v{{ resource.version }}{% endif %}</a></h3>
 
-          <h3 class="card__title"><a class="card__trigger card__click" href="{% if resource.path-full %}{{ resource.path-full }}{% else %}{{ site.baseurl }}/{{ resource.path }}/{{ resource.hash }}{% endif %}">{{ resource.title }}{% if resource.version %} v{{ resource.version }}{% endif %}</a></h3>
-
-            <div class="card__summary">
+          <div class="card__summary">
               
-              <p>{{ resource.desc }}</p>
+            <p>{{ resource.desc }}</p>
 
-              {% assign example_count = resource.examples | size %}
+          </div>
+            
+          {% assign example_count = resource.examples | size %}
     
-              {% if example_count > 0 %}
+          <ul class="card__metadata" role="list">
 
-              <div class="card__metadata">
-              
-                <ul role="list">
-                  <li>Examples: <b>{{ example_count }}</b></li>
-                </ul>
+            {% if example_count > 0 %}
   
-              </div>
-              
-              {% endif %}
+              <li>Examples: <b>{{ example_count }}</b></li>
+  
+            {% else %}
+  
+              <li>Examples: <b>1</b></li>
+  
+            {% endif %}
+  
+          </ul>
 
-              {% if resource.deprecated == true %}
+          {% if resource.deprecated == true %}
 
-              <p class="warning" style="margin-top: 0.5em;"><strong>Warning:</strong> This resource is deprecated.</p>
+            <div class="warning"><strong>Warning:</strong> This resource is deprecated.</div>
 
-              {% endif %}
-
-            </div>
-
-        </div>
+          {% endif %}
 
       </li>
 

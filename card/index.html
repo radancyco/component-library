@@ -8,7 +8,7 @@ attributes:
       - Boolean
       - Optional
 
-    desc: Used to change the card content to horizontal withing a vertical grid. The default layout for content is a vertical, within a horizontal grid.
+    desc: Used to change the card layout to horizontal
 
   - name: data-remove-arrow
     html: .card
@@ -23,23 +23,24 @@ classes:
 
   - name: .card
     html: 
-      - ul
-      - div
       - article
+      - div
+      - ol
+      - ul
     note: Mandatory
     desc: Used on the parent element that wraps your card content.
   
   - name: .card__item
     html: 
-      - li
       - div
+      - li
     note: Mandatory
     desc: Used on your card item. Must be a child of <code>.card</code>.
 
   - name: .card__block
     html: a
     note: Optional
-    desc: Used to define the link used to wrap entire content regions. Should be used sparingly and when content output is minimal.
+    desc: Used to define the link used to wrap entire content regions. Should be used <em>sparingly</em> and when content output is <em>minimal</em>.
 
   - name: .card__category
     html: div 
@@ -47,24 +48,23 @@ classes:
     desc: Used to define a card category list.  
 
   - name: .card__click
-    html: a
+    html: 
+      - a
+      - button
     note: Optional
-    desc: Used to determin whicj link in your card should contain the pseudo-element trick to expand the clickable region. Should only be used on one link per card.
-
-  - name: .card__content
-    html: div
-    note: Optional
-    desc: Used to define your content region.
+    desc: Used to determine which link or button in your card should contain the pseudo-element trick to expand the clickable region. Should only be used on one link or button per card.
 
   - name: .card__cta
     html: div
     note: Optional
-    desc: Used to add distinct characteristics to your card's faux CTA.
+    desc: Used to add distinct styles to your card's faux CTA.
 
   - name: .card__eyebrow
-    html: p
+    html: 
+      - div
+      - p
     note: Optional
-    desc: Used to define additional card title. This class may only be applied to a <code>p</code> element.
+    desc: Used to define an additional card title.
 
   - name: .card__group
     html: hgroup
@@ -86,11 +86,6 @@ classes:
     note: Optional
     desc: Used to define a card summary.
 
-  - name: .card__thumbnail
-    html: div
-    note: Optional
-    desc: Used to define your thumbnail image.
-
   - name: .card__title
     html: 
       - h2
@@ -100,7 +95,7 @@ classes:
       - h6
       - div
     note: Optional
-    desc: Used to define primary card heading and may be applied to any logical heading or <code>div</code> if <code>.card__summary</code> is not present. Must be a child of <code>.card__content</code> or <code>.card__group</code>.
+    desc: Used to define primary card heading and may be applied to any logical heading or <code>div</code> if <code>.card__summary</code> is not present.
      
   - name: .card__trigger
     html: 
