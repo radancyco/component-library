@@ -208,7 +208,7 @@ text-wrap: balance;
     &:not(button) {
   
       &::after {
-      content: "🡆";
+      content: "\2794";
       display: block;
       transition: var(--card-transition);
 
