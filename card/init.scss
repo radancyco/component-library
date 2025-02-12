@@ -208,9 +208,10 @@ text-wrap: balance;
     &:not(button) {
   
       &::after {
+      align-self: center;
       content: "\2794";
       display: block;
-      line-height: normal;
+      line-height: 0;
       transition: var(--card-transition);
 
         [data-remove-arrow] & {
