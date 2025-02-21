@@ -40,6 +40,9 @@ gap: var(--accordion-gap);
 
   > ol, > ul, > dl, > ul > li, &__heading {
   all: unset;
+  } 
+
+  > ol, > ul, > dl, > ul > li{
   display: contents;
   } 
 
