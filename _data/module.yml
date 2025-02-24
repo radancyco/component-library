@@ -198,7 +198,7 @@ components:
       - name: "Card Link (Link Heading)"
         id: "card-link-heading"
         note: In this example, the heading serves as the primary link, with an arrow affordance to draw attention to it instead of using a text-based call to action like <a href="#learn-more">Learn More</a>. A CSS <a href="#pseudo-element-trick">pseudo-element trick</a> makes the entire card clickable, ensuring broad usability while maintaining a unique link in each card for better accessibility. 
-        warning: This strategy can be used by developers but it is not recommended for CMS-authored content.
+        best-practice: This strategy can be used by developers and CMS authors. 
         group: Linking Strategies
 
       - name: "Card Link (Distinct CTA)"
