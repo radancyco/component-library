@@ -1,0 +1,200 @@
+/*!
+
+  Radancy Component Library: Step Indicator
+  Contributor(s): 
+  Michael "Spell" Spellacy
+
+  Dependencies: Sass
+
+*/
+
+.steps {
+
+  // Component Variables
+
+  --steps-color-active: #CCC;
+  --steps-color-complete: #008000;
+  --steps-color-light: #FFF;
+  --steps-color-neutral: #767676;
+  --steps-color-primary: #6F00EF;
+
+  --scroll-color-track: #EEE;
+  --scroll-color-thumb: #6F00EF;
+  --scroll-color-active: #666;
+
+  ol {
+  display: grid;
+  grid-auto-flow: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  }
+
+  li {
+  display: grid;
+  scroll-snap-align: center;
+  min-width: calc(150rem / 16);
+  }
+
+  // Progress 
+
+  &__navigation {
+  overflow-x: auto;
+  padding-block-end: 1em;
+  scroll-snap-type: inline mandatory;
+
+  // Fallback Scrollbar
+
+  scrollbar-color: var(--scroll-color-thumb) var(--scroll-color-track);
+  scrollbar-width: thin;
+
+    // TODO: Add native scrollbar hover: https://nerdy.dev/notebook/custom-scrollbar.html 
+
+    @supports #{"\selector(::-webkit-scrollbar)"} {
+
+      scrollbar-color: initial;
+      scrollbar-width: auto;
+
+      &::-webkit-scrollbar {
+      height: calc(8rem / 16);
+      }
+
+      &::-webkit-scrollbar-track, &::-webkit-scrollbar-thumb {
+      border-radius: 100vw;
+      }
+
+      &::-webkit-scrollbar-track {
+      background-color: var(--scroll-color-track);
+      }
+
+      &::-webkit-scrollbar-thumb {
+      background-color: var(--scroll-color-thumb);
+      
+        &:hover {
+        background-color: var(--scroll-color-active);
+        }
+
+      }
+  
+    }
+
+  }
+
+  // Step (Button)
+
+  &__btn {
+  background-color: transparent;
+  border: 0;
+  display: grid;
+  font: inherit;
+  gap: 0.5em;
+  grid-template-columns: subgrid;
+  padding: 0;
+  place-items: center;
+  place-self: start;
+
+    &[disabled] {
+    color: var(--steps-color-neutral);
+    }
+
+    // Line
+
+    &::before {
+    background-color: var(--steps-color-neutral);
+    content: "";
+    display: block;
+    grid-area: 1 / 1;
+    height: 2px;
+    width: 100%;
+    }
+
+    &__complete {
+    display: none;
+    }
+
+    // Count
+
+    &__count {
+    align-items: center;
+    background-color: var(--steps-color-neutral);
+    border-radius: 100vw;
+    color: var(--steps-color-light);
+    display: grid;
+    font-weight: 700;
+    grid-row: 1;
+    height: calc(56rem / 16);
+    width: calc(56rem / 16);
+
+      [aria-pressed="true"] & {
+      background-color: var(--steps-color-primary);
+      }
+
+    }
+
+    // Label
+
+    &__label {
+    line-height: normal;
+    }
+
+    // Checkmark & Edit Icon
+
+    &__icon {
+    display: none;
+    grid-area: 1 / 1;
+    inset-inline-start: calc(28rem/16);
+    position: relative;
+    width: calc(25rem/16);
+
+      svg {
+      fill: #fff;
+      stroke-width: 20px;
+      }
+
+    }
+
+    // States 
+    // Note: May need more refinement.
+
+    &--finished &__count {
+    background-color: var(--steps-color-complete);
+    }
+      
+    &--finished &__complete, 
+    &--finished[aria-pressed="false"] &__icon--check, 
+    &--finished[aria-pressed="true"] &__icon--edit, 
+    &:not(&--finished) &__icon--edit, 
+    &:not(&--finished):not([aria-pressed="true"]) &__icon--edit {
+    display: block;
+    }
+
+    &--finished &__icon svg {
+    stroke: var(--steps-color-complete);
+    }
+
+    &:not(&--finished):not([aria-pressed="true"]) &__icon--edit svg {
+    stroke: var(--steps-color-neutral);
+    }
+      
+    &:not(&--finished) &__icon--edit svg {
+    stroke: var(--steps-color-primary);
+    }
+
+  }
+
+  // Sections
+
+  &__section {
+  background-color: var(--steps-color-active);
+  border-radius: 5px;
+  display: none;
+  margin-block-start: 1em;
+  padding: 1em;
+  
+    &.active {
+    display: block;
+    }
+
+  }
+
+}

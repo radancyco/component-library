@@ -468,6 +468,16 @@ components:
       - name: "Placeholder Option (Optgroup)" 
         id: "optgroup"
 
+  - id: "step-indicator"
+    desc: "Use the step indicator to show a user's progress in a multi-step process, commonly seen in forms or workflow screens."
+    path: "step-indicator"
+    title: "Step Indicator"
+    version: "1.0"
+    examples:
+
+      - name: "Default Setup"
+        id: "default-setup"
+
   - id: "tablist"
     desc: "Organize content into separate sections, allowing user to switch between them by selecting different tabs."
     path: "tablist"
@@ -561,18 +571,6 @@ resources:
 
 feeds: 
 
-  - id: "facebook"
-    desc: "Display a series of posts from a Facebook account, including images and captions."
-    path: "feeds/facebook"
-    title: "Facebook Feed"
-    version: "1.0"
-    hidden: true
-    examples:
-
-      - name: "Default Setup"
-        id: "default-setup"
-        codepenjs: "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
-
   - id: "instagram"
     desc: "Display a series of posts from an Instagram account, including images and captions." 
     path: "feeds/instagram"
@@ -587,17 +585,6 @@ feeds:
 
       #- name: "Horizontal Scroll (Mobile)"
       #  id: "horizontal-scroll"
-        
-  - id: "twitter"
-    desc: "Display a series of posts from a Twitter account, including images and captions."
-    path: "feeds/twitter"
-    title: "Twitter (X) Feed"
-    version: "1.0"
-    hidden: true
-    examples:
-
-    - name: "Default Setup"
-      id: "default-setup"
 
   - id: "youtube"
     desc: "Display a series of videos from a YouTube channel or playlist, including video thumbnails and titles."
