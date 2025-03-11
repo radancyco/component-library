@@ -37,6 +37,15 @@ attributes:
 
     desc: By default, scolling is present on smaller screens but not on larger ones. This is used as hook in the CSS to bypass the default behavior, allowing a scroll to be present across all viewport sizes. 
 
+  - name: data-aria-label-replace
+    html: .horizontal-scroll__card
+    note: 
+
+      - String
+      - Optional
+
+    desc: Can be used in specific templating scenarios where updating the default <code>aria-label</code> value is not possible. Additionally, use the <code>hidden</code> attribute to hide this list item.
+
 classes:
 
   - name: .horizontal-scroll
@@ -70,6 +79,11 @@ classes:
   
     note: Recommended
     desc: Used for each individual content heading. Ideally, you'll want each heading to contain your hyperlink, so that the purpose of each link can be better understood by assistive technologies. Recommended, but if custom HTML and CSS is desired you may create your own.
+
+changelog: 
+
+  - label: Behavior
+    content: "March 11, 2025: Added Conor's new functionality to pass a dynamic label to <code>aria-label</code> due to limitations within the CMS."
 
 notes: 
 

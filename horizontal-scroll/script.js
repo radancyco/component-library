@@ -4,6 +4,7 @@
 
   Contributor(s):
   Michael "Spell" Spellacy
+  Connor Baba
 
 */
 
@@ -22,7 +23,23 @@
 
   scrollers.forEach(function(scroll) {
 
-    var hasInteractiveElements = scroll.querySelectorAll("a, button");
+    //cms editability modification
+
+    var scrollerAriaElement = scroll.querySelector('[data-aria-label-replace');
+    var scrollerAriaLabel = scrollerAriaElement ? scrollerAriaElement.getAttribute('data-aria-label-replace') : "";
+
+    //checks if label exists, and then replaces it with cms value. When done, deletes junk element from DOM.
+
+    if(scrollerAriaLabel) {
+
+      scroll.setAttribute("aria-label", scrollerAriaLabel);
+      scrollerAriaElement.remove();
+
+    }
+
+    //end cms editability modification
+    
+     var hasInteractiveElements = scroll.querySelectorAll("a, button, video, [tabindex='0'], [data-href*='facebook/videos'], iframe[src*='vimeo.com'], iframe[src*='youtube.com']");
 
     // See if interactive elements exist. If they do, remove aria-label, role, and tabindex.
 

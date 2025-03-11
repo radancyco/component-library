@@ -38,7 +38,7 @@
       tileButton.setAttribute("aria-pressed", "false");
       tileButton.classList.add(tileTriggerName);
       tileButton.setAttribute("aria-label", tileTriggerLabel);
-      card.prepend(tileButton);
+      card.append(tileButton);
 
       tileButton.addEventListener("click", function() {
 
