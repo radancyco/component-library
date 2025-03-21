@@ -191,8 +191,12 @@
         <h2 id="{{ example.id }}">{{ example.name }} <a class="anchor" href="#{{ example.id }}">{{ iconAnchor }} <span class="sr-only">Anchor ({{ example.name }})</span></a></h2>
 
       {%- endif %}
+
+      <div class="component__view">
   
       {% include_relative html/{{ example.id }}.html %}
+
+      </div>
 
       {%- if example.warning %}
   
