@@ -26,30 +26,40 @@ classes:
     note: Mandatory
     desc: Used on your card item. Must be a child of <code>.tile</code>. If your card is a standalone, then use a <code>div</code>. 
   
-  - name: .tile__content
+  - name: .tile__panel
     html: div
     note: Mandatory
     desc: Used to wrap card content. Must be a child of <code>.tile__item</code>.
-       
-  - name: .tile__trigger
-    html: button 
-    note: Component
-    desc: The cards interaction trigger. Always a child of <code>.tile__item</code>. 
 
   - name: .tile__cta
     html: div 
     note: Mandatory
-    desc: The front of the card. Always a child of <code>.tile__content</code>. 
+    desc: The front of the card. Always a child of <code>.tile__panel</code>.
 
   - name: .tile__label
     html: div 
     note: Optional
-    desc: The card label that appears on front of the card. Always a child of <code>.tile__cta</code>. 
+    desc: The card label that appears on front of the card. Always a child of <code>.tile__cta</code>. Optional but strongly recommended, as its presence ensures each generated button includes an accessible description via <code>aria-describedby</code>.
 
-  - name: .tile__disclosure
+  - name: .tile__content
     html: div 
     note: Mandatory
-    desc: The back of the card. Always a child of <code>.tile__content</code>. 
+    desc: The back of the card. Always a child of <code>.tile__panel</code>. 
+
+  - name: .tile__title
+    html: h2, h3 
+    note: Optional
+    desc: The heading on the back of the card.
+
+  - name: .tile__summary
+    html: div
+    note: Optional
+    desc: The content container on the back of the card.
+
+  - name: .tile__trigger
+    html: button 
+    note: Component
+    desc: The cards interaction trigger. Always a child of <code>.tile__item</code>. Includes a default name of "Show Content." When <code>tile__label</code> is present, button will receive an additional description. Each tile may only contain one trigger. 
 
 id: tile
 localcss: "init.css"
