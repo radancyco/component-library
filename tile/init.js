@@ -1,7 +1,7 @@
 ---
 layout: null
 module: components
-id: tablist
+id: tile
 ---
 
 {% include script.html %}
