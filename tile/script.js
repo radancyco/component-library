@@ -41,8 +41,12 @@
       
       var cardCount = i + 1;
       var tileLabel = card.querySelector(tileLabelClass);
+
+      if(tileLabel) {
       
-      tileLabel.setAttribute("id", "tile-item-" + tileCount + "-" + cardCount);
+        tileLabel.setAttribute("id", "tile-item-" + tileCount + "-" + cardCount);
+
+      }
 
       // Create button
       // Note: Button must always be appended to card, never before.
@@ -51,7 +55,13 @@
       tileButton.setAttribute("aria-pressed", "false");
       tileButton.classList.add(tileTriggerName);
       tileButton.setAttribute("aria-label", tileTriggerLabel);
-      tileButton.setAttribute("aria-describedby", "tile-item-" + tileCount + "-" + cardCount);
+
+      if(tileLabel) {
+
+        tileButton.setAttribute("aria-describedby", "tile-item-" + tileCount + "-" + cardCount);
+
+      }
+      
       card.append(tileButton);
 
       tileButton.addEventListener("click", function() {
