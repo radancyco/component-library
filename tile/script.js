@@ -19,6 +19,7 @@
 
   var tileClass = ".tile";
   var tileItemClass = ".tile__item";
+  var tileLabelClass = ".tile__label";
   var tileTriggerName = "tile__trigger";
   var tileTriggerClass = "." + tileTriggerName;
   var tileTriggerLabel = "Show Content";
@@ -32,12 +33,23 @@
 
     var cards = tile.querySelectorAll(tileItemClass);
 
-    cards.forEach(function(card){
+    cards.forEach(function(card, index){
+      
+      // ID for each label
+      
+      var cardCount = index + 1;
+      var tileLabel = card.querySelector(tileLabelClass);
+      
+      tileLabel.setAttribute("id", "tile-item-" + cardCount);
+
+      // Create button
+      // Note: Button must always be appended to card, never before.
 
       var tileButton = document.createElement("button");
       tileButton.setAttribute("aria-pressed", "false");
       tileButton.classList.add(tileTriggerName);
       tileButton.setAttribute("aria-label", tileTriggerLabel);
+      tileButton.setAttribute("aria-describedby", "tile-item-" + cardCount);
       card.append(tileButton);
 
       tileButton.addEventListener("click", function() {
