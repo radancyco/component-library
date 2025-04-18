@@ -102,7 +102,7 @@
 
         setCookie("true");
 
-        var animationPaused = getCookie(atCookieName);
+        animationPaused = getCookie(atCookieName);
 
       }
 
@@ -278,41 +278,41 @@
 
         // TODO: Look into this further at https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisUtterance/SpeechSynthesisUtterance
 
-        btnAudioDescription.addEventListener("click", function() {
+        btnAudioDescription.addEventListener("click", function () {
 
           var thisVideo = wrapper.querySelector(atVideoClass);
           var thisDescription = wrapper.querySelector(atDescriptionTrackClass);
 
           thisDescription.classList.toggle("active");
 
-          if (this.getAttribute("aria-pressed") === "false") {
+          const isPressed = this.getAttribute("aria-pressed") === "true";
+          const track = thisVideo.textTracks ? thisVideo.textTracks[0] : null;
+
+          if (!isPressed) {
 
             this.setAttribute("aria-pressed", "true");
 
-            if (thisVideo.textTracks) {
-
-              var track = thisVideo.textTracks[0];
+            if (track) {
 
               track.mode = "hidden";
-              track.oncuechange = function() {
 
-                var currentCue = this.activeCues[0];
+              track.oncuechange = function () {
 
-                console.log(currentCue);
+                const currentCue = this.activeCues[0];
 
                 if (currentCue) {
 
                   thisDescription.innerText = "";
                   thisDescription.appendChild(currentCue.getCueAsHTML());
 
-                  var Message = thisDescription.textContent;
-                  var msg = new SpeechSynthesisUtterance(Message);
+                  const Message = thisDescription.textContent;
+                  const msg = new SpeechSynthesisUtterance(Message);
 
                   window.speechSynthesis.speak(msg);
 
                 }
 
-              }
+              };
 
             }
 
@@ -320,28 +320,15 @@
 
             this.setAttribute("aria-pressed", "false");
 
-            // HACK: Need to figure out a way to disable or stop cue. Currently looping through cue and sending nothing to div. Grr.
+            if (track) {
 
-            if (thisVideo.textTracks) {
-
-              var track = thisVideo.textTracks[0];
-
-              track.mode = "hidden";
-              track.oncuechange = function() {
-
-                var currentCue = this.activeCues[0];
-
-                console.log(currentCue);
-
-                if (currentCue) {
-    
-                  thisDescription.innerText = "";
-
-                }
-
-              }
+              // Clear the cue change listener entirely instead of keeping an empty one
+              
+              track.oncuechange = null;
 
             }
+
+            thisDescription.innerText = ""; // Optionally clear visible text
 
             window.speechSynthesis.cancel();
 

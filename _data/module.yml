@@ -70,7 +70,7 @@ components:
     desc: "Allow users to pause or resume web animations, videos, or other dynamic content for improved control and accessibility."
     path: "animation-toggle"
     title: "Animation Toggle"
-    version: "2.7"
+    version: "2.8"
     examples:
 
       - name: "Default Setup"
@@ -580,15 +580,11 @@ feeds:
     path: "feeds/instagram"
     title: "Instagram Feed"
     message: feed
-    # version: "1.3"
     version: "1.2"
     examples: 
 
       - name: "Default Setup"
         id: "default-setup"
-
-      #- name: "Horizontal Scroll (Mobile)"
-      #  id: "horizontal-scroll"
 
   - id: "youtube"
     desc: "Display a series of videos from a YouTube channel or playlist, including video thumbnails and titles."
