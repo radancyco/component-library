@@ -10,7 +10,7 @@
 
 */
 
-#tmp-instagram-feed {
+.radancy-instagram-feed, #tmp-instagram-feed {
 
 // Component Variables
 
@@ -20,50 +20,17 @@
 
 display: grid;
 gap: 1em;
-grid-auto-flow: column;
-overflow-x: auto;
-padding-block-end: 1em;
-scroll-snap-type: inline mandatory;
+
+  @media(min-width: 32.5em) {
     
-  @media(min-width: 62.5em) {
-    
-    overflow: visible;
-    grid-auto-flow: unset;
-    grid-template-columns: repeat(3, 1fr);
-    
+    grid-template-columns: repeat(2, 1fr);
+  
   }
 
-  // Fallback Scrollbar
-
-  scrollbar-color: var(--scroll-color-thumb) var(--scroll-color-track);
-  scrollbar-width: thin;
-
-  @supports #{"\selector(::-webkit-scrollbar)"} {
-
-    scrollbar-color: initial;
-    scrollbar-width: auto;
-
-    &::-webkit-scrollbar {
-    height: calc(8rem / 16);
-    }
-
-    &::-webkit-scrollbar-track, &::-webkit-scrollbar-thumb {
-    border-radius: 100vw;
-    }
-
-    &::-webkit-scrollbar-track {
-    background-color: var(--scroll-color-track);
-    }
-
-    &::-webkit-scrollbar-thumb {
-    background-color: var(--scroll-color-thumb);
+  @media(min-width: 62.5em) {
     
-      &:hover {
-      background-color: var(--scroll-color-active);
-      }
-
-    }
-
+    grid-template-columns: repeat(3, 1fr);
+    
   }
 
   // Future use. Please keep.
@@ -78,12 +45,8 @@ scroll-snap-type: inline mandatory;
   }
     
   a {
-  align-items: start;
   display: grid;
-  grid-template-rows: auto 1fr;
-  min-width: calc(260rem / 16);
-  scroll-snap-align: start;
-    
+
     &[target="_blank"] {
     
       &:after {
@@ -150,6 +113,59 @@ scroll-snap-type: inline mandatory;
   position: static; // Fixes an overflow bug when parent set to grid.
   white-space: nowrap;
   width: 1px;
+  }
+
+  &[data-scroll] {
+
+    @media(max-width: 62.5em) {
+
+      grid-auto-flow: column;
+      overflow-x: auto;
+      padding-block-end: 1em;
+      scroll-snap-type: inline mandatory;
+
+      // Fallback Scrollbar
+
+      scrollbar-color: var(--scroll-color-thumb) var(--scroll-color-track);
+      scrollbar-width: thin;
+
+      @supports #{"\selector(::-webkit-scrollbar)"} {
+
+        scrollbar-color: initial;
+        scrollbar-width: auto;
+
+        &::-webkit-scrollbar {
+        height: calc(8rem / 16);
+        }
+
+        &::-webkit-scrollbar-track, &::-webkit-scrollbar-thumb {
+        border-radius: 100vw;
+        }
+
+        &::-webkit-scrollbar-track {
+        background-color: var(--scroll-color-track);
+        }
+
+        &::-webkit-scrollbar-thumb {
+        background-color: var(--scroll-color-thumb);
+    
+          &:hover {
+          background-color: var(--scroll-color-active);
+          }
+
+        }
+
+      }
+
+      a {
+      align-items: start;
+      grid-template-rows: auto 1fr;
+      min-width: calc(260rem / 16);
+      scroll-snap-align: start;
+      }
+
+    }
+
   }
     
 }
