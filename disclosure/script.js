@@ -7,7 +7,7 @@
 
 */
 
-(function() {
+(() => {
 
   "use strict";
 
@@ -17,35 +17,37 @@
 
   // Commonly used Classes, Data Attributes, States, Strings, etc.
 
-  var disclosureButtonClass = ".disclosure--btn";
-  var disclosureButtons = document.querySelectorAll(disclosureButtonClass);
-  var disclosureArrowClassName = "disclosure--arrow";
-  var disclosureHeadingClass = ".disclosure--heading";
-  var disclosureDataDefaultOpen = "data-open";
-  var disclosureDataEnableAnchor = "data-enable-anchor";
-  var disclosureDataRemoveArrow = "data-remove-arrow";
+  const disclosureButtonClass = ".disclosure--btn";
+  const disclosureButtons = document.querySelectorAll(disclosureButtonClass);
+  const disclosureArrowClassName = "disclosure--arrow";
+  const disclosureHeadingClass = ".disclosure--heading";
+  const disclosureDataDefaultOpen = "data-open";
+  const disclosureDataEnableAnchor = "data-enable-anchor";
+  const disclosureDataRemoveArrow = "data-remove-arrow";
 
   // Add Listener and other needed attributes to disclosure button
 
-  disclosureButtons.forEach(function(button, e) {
+  disclosureButtons.forEach((button, index) => {
 
-    var count = e + 1;
+    const count = index + 1;
 
     button.setAttribute("aria-expanded", "false");
 
-    if(button.hasAttribute("id")){
+    let thisButtonID, thisContentID;
+
+    if (button.hasAttribute("id")) {
 
       // Check for custom ID on button.
 
-      var thisButtonID = button.getAttribute("id");
-      var thisContentID = thisButtonID + "-content";
+      thisButtonID = button.getAttribute("id");
+      thisContentID = `${thisButtonID}-content`;
 
     } else {
 
-      // else, add dynamic ID.
+      // Else, add dynamic ID.
 
-      var thisButtonID = "disclosure-btn-" + count;
-      var thisContentID = "disclosure-content-" + count;
+      thisButtonID = `disclosure-btn-${count}`;
+      thisContentID = `disclosure-content-${count}`;
 
     }
 
@@ -54,7 +56,7 @@
     button.setAttribute("id", thisButtonID);
     button.setAttribute("aria-controls", thisContentID);
 
-    if(button.closest(disclosureHeadingClass)) {
+    if (button.closest(disclosureHeadingClass)) {
 
       // If button contains heading...
 
@@ -68,25 +70,24 @@
 
     // If custom arrow not needed.
 
-    if(!button.hasAttribute(disclosureDataRemoveArrow)){
+    if (!button.hasAttribute(disclosureDataRemoveArrow)) {
 
-      var toggleState = document.createElement("span");
-
+      const toggleState = document.createElement("span");
       toggleState.setAttribute("aria-hidden", "true");
       toggleState.classList.add(disclosureArrowClassName);
       button.append(toggleState);
 
     }
 
-    button.addEventListener("click", function() {
+    button.addEventListener("click", () => {
 
-      var isExpanded = button.getAttribute("aria-expanded") === "true";
-
+      const isExpanded = button.getAttribute("aria-expanded") === "true";
+      
       button.setAttribute("aria-expanded", isExpanded ? "false" : "true");
 
-      if(button.hasAttribute(disclosureDataEnableAnchor)) {
+      if (button.hasAttribute(disclosureDataEnableAnchor)) {
 
-        history.pushState(null, null, "#" + button.id);
+        history.pushState(null, null, `#${button.id}`);
 
       }
 
@@ -94,7 +95,7 @@
 
     // Open desired disclosure.
 
-    if(button.hasAttribute(disclosureDataDefaultOpen)) {
+    if (button.hasAttribute(disclosureDataDefaultOpen)) {
 
       button.setAttribute("aria-expanded", "true");
 
@@ -104,13 +105,13 @@
 
   // Open selected disclosure via URL
 
-  var url = document.location.href;
-  var hash = url.split("#");
-  var disclosureID = document.getElementById(hash[1]);
+  const url = document.location.href;
+  const hash = url.split("#");
+  const disclosureID = document.getElementById(hash[1]);
 
   if(disclosureID) {
 
-    var disclosureTarget = document.querySelector(disclosureButtonClass + "#" + disclosureID.id);
+    const disclosureTarget = document.querySelector(disclosureButtonClass + "#" + disclosureID.id);
 
     if (disclosureTarget) {
 
