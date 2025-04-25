@@ -4,7 +4,7 @@ components:
     desc: "Organize content into expandable and collapsible sections, allowing users to reveal or hide information as needed."
     path: "accordion"
     title: "Accordion"
-    version: "2.7" 
+    version: "2.8" 
     examples: 
 
       - name: "Default Setup"
@@ -70,7 +70,7 @@ components:
     desc: "Allow users to pause or resume web animations, videos, or other dynamic content for improved control and accessibility."
     path: "animation-toggle"
     title: "Animation Toggle"
-    version: "2.8"
+    version: "2.9"
     examples:
 
       - name: "Default Setup"

@@ -3,21 +3,21 @@
 
 function scrollObserver() {
 
-    var sectionAnimation = document.querySelectorAll(".section-animation");
-    var sectionAnimationVideoClass = ".section-animation__video";
+    const sectionAnimation = document.querySelectorAll(".section-animation");
+    const sectionAnimationVideoClass = ".section-animation__video";
 
-    function sectionAnimationVideoScroll(sections, observer) {
+    const sectionAnimationVideoScroll = (sections, observer) => {
 
-        sections.forEach(function(section){
+        sections.forEach((section) => {
 
             if (section.isIntersecting) {
 
                 // Target element is now in view
 
-                var sectionTarget = section.target;
-                var selectVideo = sectionTarget.querySelector(sectionAnimationVideoClass);
+                const sectionTarget = section.target;
+                const selectVideo = sectionTarget.querySelector(sectionAnimationVideoClass);
 
-                var animationEnabled = document.body.classList.contains("animation-enabled");
+                const animationEnabled = document.body.classList.contains("animation-enabled");
 
                 if (animationEnabled) {
 
@@ -41,7 +41,7 @@ function scrollObserver() {
 
     // Create an Intersection Observer instance
 
-    var observer = new IntersectionObserver(sectionAnimationVideoScroll, { 
+    const observer = new IntersectionObserver(sectionAnimationVideoScroll, { 
 
         threshold: 1.0 
 
@@ -49,7 +49,7 @@ function scrollObserver() {
 
     // Start observing each target element
 
-    sectionAnimation.forEach(function(element){
+    sectionAnimation.forEach((element) => {
 
         observer.observe(element);
 

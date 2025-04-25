@@ -7,19 +7,19 @@
 
 */
 
-(function() {
+(() => {
 
   "use strict";
 
-  function loadLanguagePack(url, callback) {
+  const loadLanguagePack = (url, callback) => {
 
     // Install Language Pack.
 
-    var getComponentLanguagePack = document.getElementById("component-library-language-pack");
+    const getComponentLanguagePack = document.getElementById("component-library-language-pack");
 
     if (!getComponentLanguagePack) {
 
-      var componentLanguagePack = document.createElement("script");
+      const componentLanguagePack = document.createElement("script");
 
       componentLanguagePack.setAttribute("src", url);
       componentLanguagePack.setAttribute("id", "component-library-language-pack");
@@ -33,11 +33,11 @@
 
     }
 
-  }
+  };
 
-  function initAccordion() {
+  const initAccordion = () => {
 
-    loadLanguagePack("https://services.tmpwebeng.com/component-library/language-pack.js", function(){
+    loadLanguagePack("https://services.tmpwebeng.com/component-library/language-pack.js", () => {
 
       // Display which version is in use via console:
 
@@ -45,72 +45,72 @@
 
       // Classes, data attributes, states, and strings.
 
-      var accordionClass = ".accordion";
-      var accordionCloseClassName = "accordion__close";
-      var accordionCloseClass = "." + accordionCloseClassName;
-      var accordionToggleClassName = "accordion__toggle";
-      var accordionArrowClassName = "accordion__arrow";
-      var accordionToggleClass = "." + accordionToggleClassName;
-      var accordionToggleAllClass = ".accordion__toggle-all";
-      var accordionHeadingClassName = "accordion__heading";
-      var accordionPanelClass = ".accordion__panel";
-      var accordionDataActiveState = "data-active";
-      var accordionDataDefaultOpen = "data-open";
-      var accordionDataOverlay = "data-overlay";
-      var accordionDataCloseButton = "data-close";
-      var accordionDataDisableAnchor = "data-disable-anchor";
-      var accordionDataFixedHeight = "data-fixed-height";
-      var accordionDataMultiOpen = "data-multiple";
-      var accordionDataRemoveArrow = "data-remove-arrow";
-      var accordions = document.querySelectorAll(accordionClass);
-      var URLFragment = location.hash.slice(1);
+      const accordionClass = ".accordion";
+      const accordionCloseClassName = "accordion__close";
+      const accordionCloseClass = `.${accordionCloseClassName}`;
+      const accordionToggleClassName = "accordion__toggle";
+      const accordionArrowClassName = "accordion__arrow";
+      const accordionToggleClass = `.${accordionToggleClassName}`;
+      const accordionToggleAllClass = ".accordion__toggle-all";
+      const accordionHeadingClassName = "accordion__heading";
+      const accordionPanelClass = ".accordion__panel";
+      const accordionDataActiveState = "data-active";
+      const accordionDataDefaultOpen = "data-open";
+      const accordionDataOverlay = "data-overlay";
+      const accordionDataCloseButton = "data-close";
+      const accordionDataDisableAnchor = "data-disable-anchor";
+      const accordionDataFixedHeight = "data-fixed-height";
+      const accordionDataMultiOpen = "data-multiple";
+      const accordionDataRemoveArrow = "data-remove-arrow";
+      const accordions = document.querySelectorAll(accordionClass);
+      const URLFragment = location.hash.slice(1);
 
       // Language
 
-      var accordionCloseButtonLabel = window.accordionCloseButtonLabel;
+      const accordionCloseButtonLabel = window.accordionCloseButtonLabel;
 
       // Loop through and set up all accordions on the page.
 
-      accordions.forEach(function(accordion, index) {
+      accordions.forEach((accordion, index) => {
 
         // Set unique ID on all accordions.
 
-        accordion.setAttribute("id", "accordion-" + (index + 1));
+        accordion.setAttribute("id", `accordion-${index + 1}`);
 
         // Get all buttons within accordion.
 
-        var accordionToggles = accordion.querySelectorAll(accordionToggleClass);
+        const accordionToggles = accordion.querySelectorAll(accordionToggleClass);
 
         // Get all panels within accordion.
-        
-        var accordionPanels = accordion.querySelectorAll(accordionPanelClass);
+
+        const accordionPanels = accordion.querySelectorAll(accordionPanelClass);
 
         // Set variable for selected button target.
 
-        var expandedButton = null;
+        let expandedButton = null;
 
         // Get "Toggle All " button.
 
-        var btnToggleAll = accordion.querySelector(accordionToggleAllClass);
+        const btnToggleAll = accordion.querySelector(accordionToggleAllClass);
 
         // Loop through each toggle button.
 
-        accordionToggles.forEach(function(btn) {
+        accordionToggles.forEach(btn => {
 
           // Get button ID. Remember: ID's should always be unique.
 
-          var buttonID = btn.getAttribute("id");
+          const buttonID = btn.getAttribute("id");
 
           // Set up each button.
 
-          btn.setAttribute("aria-controls", "accordion-" + buttonID);
+          btn.setAttribute("aria-controls", `accordion-${buttonID}`);
           btn.setAttribute("aria-expanded", "false");
 
           // Add Toggle Arrow
 
-          if(!accordion.hasAttribute(accordionDataRemoveArrow)) {
+          if (!accordion.hasAttribute(accordionDataRemoveArrow)) {
 
-            var toggleState = document.createElement("span");
+            const toggleState = document.createElement("span");
 
             toggleState.setAttribute("aria-hidden", "true");
             toggleState.classList.add(accordionArrowClassName);
@@ -120,13 +120,13 @@
 
           // Handle button click.
 
-          btn.addEventListener("click", function() {
+          btn.addEventListener("click", () => {
 
-            var isExpanded = btn.getAttribute("aria-expanded") === "true";
+            const isExpanded = btn.getAttribute("aria-expanded") === "true";
 
             if (!accordion.hasAttribute(accordionDataMultiOpen)) {
 
-              accordionToggles.forEach(function(button) {
+              accordionToggles.forEach(button => {
 
                 button.setAttribute("aria-expanded", "false");
 
@@ -137,15 +137,15 @@
             btn.setAttribute("aria-expanded", isExpanded ? "false" : "true");
 
             // Add "data-active" attribute on the parent accordion. Might be useful to achieve interesting UX.
-      
+
             accordion.setAttribute(accordionDataActiveState, "");
 
             // If "Toggle All" button is present, then always set it to false.
 
-            if(btnToggleAll) {
-            
-              btnToggleAll.setAttribute("aria-pressed", "false")
-            
+            if (btnToggleAll) {
+
+              btnToggleAll.setAttribute("aria-pressed", "false");
+
             }
 
             // Place focus on close button if present.
@@ -160,7 +160,7 @@
 
             if (!accordion.hasAttribute(accordionDataDisableAnchor)) {
 
-              history.pushState(null, null, "#" + buttonID);
+              history.pushState(null, null, `#${buttonID}`);
 
             }
 
@@ -175,28 +175,28 @@
             accordion.setAttribute(accordionDataActiveState, "");
 
             // Open targeted element.
-            
+
             expandedButton = btn;
 
           }
 
         });
 
-        if (expandedButton) { 
-          
+        if (expandedButton) {
+
           expandedButton.setAttribute("aria-expanded", "true");
 
         }
 
         // If "Toggle All" button is present...
 
-        if(btnToggleAll) {
+        if (btnToggleAll) {
 
           btnToggleAll.setAttribute("aria-pressed", "false");
 
-          if(!accordion.hasAttribute(accordionDataRemoveArrow)) {
+          if (!accordion.hasAttribute(accordionDataRemoveArrow)) {
 
-            var toggleAllState = document.createElement("span");
+            const toggleAllState = document.createElement("span");
 
             toggleAllState.setAttribute("aria-hidden", "true");
             toggleAllState.classList.add(accordionArrowClassName);
@@ -206,33 +206,17 @@
 
           // Toggle All Event
 
-          btnToggleAll.addEventListener("click", function() {
+          btnToggleAll.addEventListener("click", function () {
 
-            var isPressed = this.getAttribute("aria-pressed");
+            const isPressed = this.getAttribute("aria-pressed");
 
-            if(isPressed === "true") {
-
-              this.setAttribute("aria-pressed", "false");
-      
-            } else {
-      
-              this.setAttribute("aria-pressed", "true");
-      
-            }
+            this.setAttribute("aria-pressed", isPressed === "true" ? "false" : "true");
 
             // Get all accordion buttons and handle their state based on toggle button state.
 
-            accordionToggles.forEach(function(btn) {
+            accordionToggles.forEach(btn => {
 
-              if (isPressed === "true") {
-
-                btn.setAttribute("aria-expanded", "false");
-
-              } else {
-
-                btn.setAttribute("aria-expanded", "true");
-
-              }
+              btn.setAttribute("aria-expanded", isPressed === "true" ? "false" : "true");
 
             });
 
@@ -242,27 +226,27 @@
 
         // Loop through each panel.
 
-        accordionPanels.forEach(function(panel) {
+        accordionPanels.forEach(panel => {
 
           // Set up each disclosure.
 
-          var currentPanel = panel.previousElementSibling;
+          const currentPanel = panel.previousElementSibling;
 
-          var panelID;
+          let panelID;
 
-          if(currentPanel.classList.contains(accordionHeadingClassName)) {
+          if (currentPanel.classList.contains(accordionHeadingClassName)) {
 
             panelID = currentPanel.querySelector(accordionToggleClass).getAttribute("id");
 
-          } else { 
+          } else {
 
             panelID = currentPanel.getAttribute("id");
 
           }
 
-          panel.setAttribute("id", "accordion-" + panelID);
+          panel.setAttribute("id", `accordion-${panelID}`);
 
-           // To better support scrolling and repositioned focus, the panels should have a proper role and accName.
+          // To better support scrolling and repositioned focus, the panels should have a proper role and accName.
 
           if (accordion.hasAttribute(accordionDataFixedHeight) || accordion.hasAttribute(accordionDataOverlay)) {
 
@@ -271,7 +255,7 @@
 
           }
 
-           // To better support inner-scrolling, the panels must be focusable.
+          // To better support inner-scrolling, the panels must be focusable.
 
           if (accordion.hasAttribute(accordionDataFixedHeight)) {
 
@@ -283,14 +267,14 @@
 
           if (accordion.hasAttribute(accordionDataCloseButton)) {
 
-            var closeButton = document.createElement("button");
+            const closeButton = document.createElement("button");
 
             closeButton.setAttribute("aria-label", accordionCloseButtonLabel);
             closeButton.classList.add(accordionCloseClassName);
 
-            closeButton.addEventListener("click", function() {
+            closeButton.addEventListener("click", () => {
 
-              var thisButton = panel.previousElementSibling;
+              const thisButton = panel.previousElementSibling;
 
               // Remove "data-active" attribute.
 
@@ -313,17 +297,13 @@
 
       // Check for duplicate IDs and log a warning
 
-      var buttonIDs = Array.prototype.map.call(document.querySelectorAll(accordionToggleClass), function(btn) {
+      const buttonIDs = Array.from(document.querySelectorAll(accordionToggleClass)).map(btn => btn.id);
 
-        return btn.id;
-
-      });
-
-      buttonIDs.forEach(function(id, index) {
+      buttonIDs.forEach((id, index) => {
 
         if (buttonIDs.indexOf(id, index + 1) !== -1) {
 
-          console.warn("%c Warning: Duplicate Accordion ID found: #" + id + ". Accordions must have unique ID values.", "background: #ff0000; color: #fff");
+          console.warn(`%c Warning: Duplicate Accordion ID found: #${id}. Accordions must have unique ID values.`, "background: #ff0000; color: #fff");
 
         }
 
@@ -331,7 +311,7 @@
 
     });
 
-  }
+  };
 
   initAccordion();
 

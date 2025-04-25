@@ -9,19 +9,19 @@
 
 */
 
-(function() {
+(() => {
 
   "use strict";
 
-  function loadLanguagePack(url, callback) {
+  const loadLanguagePack = (url, callback) => {
 
     // Install Language Pack.
 
-    var getComponentLanguagePack = document.getElementById("component-library-language-pack");
+    const getComponentLanguagePack = document.getElementById("component-library-language-pack");
 
     if (!getComponentLanguagePack) {
 
-      var componentLanguagePack = document.createElement("script");
+      const componentLanguagePack = document.createElement("script");
 
       componentLanguagePack.setAttribute("src", url);
       componentLanguagePack.setAttribute("id", "component-library-language-pack");
@@ -35,11 +35,11 @@
 
     }
 
-  }
+  };
 
-  function initAnimationToggle() {
+  const initAnimationToggle = () => {
 
-    loadLanguagePack("https://services.tmpwebeng.com/component-library/language-pack.js", function(){
+    loadLanguagePack("https://services.tmpwebeng.com/component-library/language-pack.js", () => {
 
       // Display which component in use via console:
 
@@ -47,52 +47,52 @@
 
       // Animation variables
 
-      var animationBody = document.body;
-      var atAudioDescriptionClassName = "animation-toggle__audio";
-      var atClass = ".animation-toggle";
-      var atCallback = document.querySelectorAll(atClass + "[data-callback]");
-      var atCookieName = "AnimationPaused";
-      var atDescriptionTrackClass = ".animation-toggle__track";
-      var atEnabledClassName = "animation-enabled";
-      var atPauseButtonClassName = "animation-toggle__pause";
-      var atPauseButtonClass = "." + atPauseButtonClassName;
-      var atVideoClass = ".animation-toggle__video";
-      var atVideoControlsName = "animation-toggle__controls";
-      var dataAudioDescriptionButton = "data-audio-description-button";
-      var dataAutoplayDisable = "data-autoplay-disable";
-      var dataDecorative = "data-decorative";
-      var dataLoop = "data-loop";
-      var dataPauseButton = "data-pause-button";
-      var dataPoster = "data-poster";
-      var getAnimationWrappers = document.querySelectorAll(atClass);
-      var getBackgroundVideos = document.querySelectorAll(atVideoClass);
+      const animationBody = document.body;
+      const atAudioDescriptionClassName = "animation-toggle__audio";
+      const atClass = ".animation-toggle";
+      const atCallback = document.querySelectorAll(`${atClass}[data-callback]`);
+      const atCookieName = "AnimationPaused";
+      const atDescriptionTrackClass = ".animation-toggle__track";
+      const atEnabledClassName = "animation-enabled";
+      const atPauseButtonClassName = "animation-toggle__pause";
+      const atPauseButtonClass = `.${atPauseButtonClassName}`;
+      const atVideoClass = ".animation-toggle__video";
+      const atVideoControlsName = "animation-toggle__controls";
+      const dataAudioDescriptionButton = "data-audio-description-button";
+      const dataAutoplayDisable = "data-autoplay-disable";
+      const dataDecorative = "data-decorative";
+      const dataLoop = "data-loop";
+      const dataPauseButton = "data-pause-button";
+      const dataPoster = "data-poster";
+      const getAnimationWrappers = document.querySelectorAll(atClass);
+      const getBackgroundVideos = document.querySelectorAll(atVideoClass);
 
       // Language
 
-      var atAudioDescriptionLabel = window.atAudioDescriptionLabel;
-      var atPauseButtonLabel = window.atPauseButtonLabel;
-      var atVideoLabel = window.atVideoLabel;
+      const atAudioDescriptionLabel = window.atAudioDescriptionLabel;
+      const atPauseButtonLabel = window.atPauseButtonLabel;
+      const atVideoLabel = window.atVideoLabel;
 
       // Used to retrieve cookie and pause video(s) if present.
 
-      function getCookie(name) {
+      const getCookie = name => {
 
-        var match = document.cookie.match(RegExp("(?:^|;\\s*)" + name + "=([^;]*)"));
+        const match = document.cookie.match(RegExp(`(?:^|;\\s*)${name}=([^;]*)`));
         return match ? match[1] : null;
 
-      }
+      };
 
       // Assign cookie to variable on page load.
 
-      var animationPaused = getCookie(atCookieName);
+      let animationPaused = getCookie(atCookieName);
 
       // Used to set and remove cookie.
 
-      function setCookie(state) {
+      const setCookie = state => {
 
-        document.cookie = atCookieName + "=" + state + "; SameSite=None; Secure; path=/";
+        document.cookie = `${atCookieName}=${state}; SameSite=None; Secure; path=/`;
 
-      }
+      };
 
       // If animation disabled in OS settings and cookie is not present then force pause.
 
@@ -110,11 +110,11 @@
 
       // For each animation wrapper...
 
-      getAnimationWrappers.forEach(function(wrapper){
+      getAnimationWrappers.forEach(wrapper => {
 
         // Create control wrapper.
 
-        var btnControls = document.createElement("div");
+        const btnControls = document.createElement("div");
 
         btnControls.setAttribute("class", atVideoControlsName);
 
@@ -124,19 +124,11 @@
 
         // Create pause button
 
-        var btnPlayPause = document.createElement("button");
+        const btnPlayPause = document.createElement("button");
 
         // See if wrapper contains custom pause button value; use over default if true.
 
-        if(wrapper.hasAttribute(dataPauseButton)) {
-
-          btnPlayPause.setAttribute("aria-label", wrapper.getAttribute(dataPauseButton));
-
-        } else {
-
-          btnPlayPause.setAttribute("aria-label", atPauseButtonLabel);
-
-        }
+        btnPlayPause.setAttribute("aria-label", wrapper.hasAttribute(dataPauseButton) ? wrapper.getAttribute(dataPauseButton) : atPauseButtonLabel);
 
         // Add class to pause button.
 
@@ -146,21 +138,13 @@
 
         if(animationPaused === "false" || animationPaused === null) {
 
-          // Set aria-pressed to false.
-
           btnPlayPause.setAttribute("aria-pressed", "false");
-
-          // Remove animation enabled class from body.
 
           animationBody.classList.add(atEnabledClassName);
 
         } else {
 
-          // Set aria-pressed to true.
-
           btnPlayPause.setAttribute("aria-pressed", "true");
-
-          // Add animation enabled class to body.
 
           animationBody.classList.remove(atEnabledClassName);
 
@@ -174,22 +158,16 @@
 
         btnPlayPause.addEventListener("click", function() {
 
-          var getAtPauseButtonClass = document.querySelectorAll(atPauseButtonClass);
-          var animationPauseToggles = getAtPauseButtonClass;
+          const getAtPauseButtonClass = document.querySelectorAll(atPauseButtonClass);
+          const animationPauseToggles = getAtPauseButtonClass;
 
           if (this.getAttribute("aria-pressed") === "false") {
 
-            // Remove animation enabled class from body.
-
             animationBody.classList.remove(atEnabledClassName);
-
-            // Set cookie to true.
 
             setCookie("true");
 
-            // Get all pause buttons on page and set them to true.
-
-            animationPauseToggles.forEach(function(button){
+            animationPauseToggles.forEach(button => {
 
               button.setAttribute("aria-pressed", "true");
 
@@ -197,17 +175,11 @@
 
           } else {
 
-            // Add animation enabled class to body.
-
             animationBody.classList.add(atEnabledClassName);
-
-            // Set cookie to false.
 
             setCookie("false");
 
-            // Get all pause buttons on page and set them to false.
-
-            animationPauseToggles.forEach(function(button){
+            animationPauseToggles.forEach(button => {
 
               button.setAttribute("aria-pressed", "false");
 
@@ -215,13 +187,11 @@
 
           }
 
-          // Toggle Video Playback
-
-          getBackgroundVideos.forEach(function(video){
+          getBackgroundVideos.forEach(video => {
 
             if(!video.closest(atClass).querySelector(atPauseButtonClass).hasAttribute("disabled")) {
 
-              var isPaused = video.closest(atClass).querySelector(atPauseButtonClass).getAttribute("aria-pressed");
+              const isPaused = video.closest(atClass).querySelector(atPauseButtonClass).getAttribute("aria-pressed");
 
               if(isPaused === "false") {
 
@@ -239,8 +209,8 @@
 
           if(this.closest(atClass).hasAttribute("data-callback")) {
 
-            var thisButton = this;
-            var callBackFunction = this.closest(atClass).getAttribute("data-callback");
+            const thisButton = this;
+            const callBackFunction = this.closest(atClass).getAttribute("data-callback");
 
             customCallback(thisButton, callBackFunction);
 
@@ -250,38 +220,18 @@
 
         if (wrapper.querySelector("track") !== null) {
 
-          // Create audio description button. Please note this is an experimental feature.
+          const btnAudioDescription = document.createElement("button");
 
-          var btnAudioDescription = document.createElement("button");
-
-          btnAudioDescription.setAttribute("aria-label", atAudioDescriptionLabel);
+          btnAudioDescription.setAttribute("aria-label", wrapper.hasAttribute(dataAudioDescriptionButton) ? wrapper.getAttribute(dataAudioDescriptionButton) : atAudioDescriptionLabel);
           btnAudioDescription.setAttribute("aria-pressed", "false");
           btnAudioDescription.setAttribute("class", atAudioDescriptionClassName);
 
-          // See if wrapper contains custom audio description button value; use over default if true.
-
-          if(wrapper.hasAttribute(dataAudioDescriptionButton)) {
-
-            btnAudioDescription.setAttribute("aria-label", wrapper.getAttribute(dataAudioDescriptionButton));
-
-          } else {
-
-            btnAudioDescription.setAttribute("aria-label", atAudioDescriptionLabel);
-
-          }
-
-          // Append Audio Description Button.
-
           btnControls.append(btnAudioDescription);
-
-          // Audio Description Toggle Event
-
-          // TODO: Look into this further at https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisUtterance/SpeechSynthesisUtterance
 
           btnAudioDescription.addEventListener("click", function () {
 
-            var thisVideo = wrapper.querySelector(atVideoClass);
-            var thisDescription = wrapper.querySelector(atDescriptionTrackClass);
+            const thisVideo = wrapper.querySelector(atVideoClass);
+            const thisDescription = wrapper.querySelector(atDescriptionTrackClass);
 
             thisDescription.classList.toggle("active");
 
@@ -322,13 +272,11 @@
 
               if (track) {
 
-                // Clear the cue change listener entirely instead of keeping an empty one
-              
                 track.oncuechange = null;
 
               }
 
-              thisDescription.innerText = ""; // Optionally clear visible text
+              thisDescription.innerText = "";
 
               window.speechSynthesis.cancel();
 
@@ -340,60 +288,44 @@
 
       });
 
-      // Loop through each video...
-
-      getBackgroundVideos.forEach(function(video, e){
-
-        // Add initial attributes.
+      getBackgroundVideos.forEach((video, e) => {
 
         video.setAttribute("crossorigin", "anonymous")
         video.setAttribute("disableRemotePlayback", "");
         video.setAttribute("disablePictureInPicture", "");
-        video.id = "animation-toggle-video-" + (e + 1);
+        video.id = `animation-toggle-video-${e + 1}`;
         video.setAttribute("playsinline" , "");
         video.muted = true;
 
-        // Some browsers require videos to be loaded before they can play, especially iOS in low power mode, where videos may appear blank if not preloaded.
-
         video.load();
-
-        // If animation class on body exists...
 
         if (animationBody.classList.contains(atEnabledClassName)) {
 
-          // Play video.
-
           if(!video.hasAttribute(dataAutoplayDisable)) {
 
-            video.onloadeddata = function() {
+            video.onloadeddata = () => {
 
-              var playPromise = video.play();
-        
+              const playPromise = video.play();
+
               if (playPromise !== undefined) {
 
-                playPromise.then(function() {
-              
+                playPromise.then(() => {
+
                   // Automatic playback started!
-                  // Show playing UI.
-              
-                }).catch(function(error) {
-              
-                  // Auto-play was prevented
-                  // Show paused UI.
+
+                }).catch(error => {
 
                   console.error('Playback error:', error);
-            
+
                 });
-          
+
               }
 
             }
-        
+
           }
 
         } else {
-
-          // If video has poster...
 
           if(video.hasAttribute(dataPoster)) {
 
@@ -405,11 +337,9 @@
 
         if(video.hasAttribute(dataLoop)) {
 
-          var iterations = 1;
+          let iterations = 1;
 
-          video.addEventListener("ended", function () {
-
-            // Number of times to loop video.
+          video.addEventListener("ended", () => {
 
             if (iterations < video.getAttribute(dataLoop)) {       
 
@@ -419,9 +349,7 @@
 
             } else {
 
-              // See if toggle button exists. If so, disable it when loop completes.
-
-              var toggleButton = video.closest(atClass).querySelector(atPauseButtonClass);
+              const toggleButton = video.closest(atClass).querySelector(atPauseButtonClass);
 
               if(toggleButton) {
 
@@ -439,15 +367,11 @@
 
         }
 
-        // If aria-label does not exist on video element, add default. 
-
         if(!video.hasAttribute("aria-label")) {
 
           video.setAttribute("aria-label", atVideoLabel);
 
         }
-
-        // If video is decorative 
 
         if(video.hasAttribute(dataDecorative)) {
 
@@ -459,9 +383,7 @@
 
       });
 
-      // Callback Function
-
-      function customCallback(thisButton, customCallBackName) {
+      const customCallback = (thisButton, customCallBackName) => {
 
         if (customCallBackName !== null) {
 
@@ -469,14 +391,12 @@
 
         }
 
-      }
+      };
 
-      // Initiate Callback on page load.
+      atCallback.forEach(callback => {
 
-      atCallback.forEach(function(callback){
-
-        var thisButton = callback.querySelector(atPauseButtonClass);
-        var callBackFunction = callback.dataset.callback;
+        const thisButton = callback.querySelector(atPauseButtonClass);
+        const callBackFunction = callback.dataset.callback;
 
         customCallback(thisButton, callBackFunction);
 
@@ -484,7 +404,7 @@
 
     });
 
-  }
+  };
 
   initAnimationToggle();
 
