@@ -14,18 +14,18 @@
 // Component Variables
 
 --accordion-arrow-size: 0.8em; // Toggle Arrow Size
---accordion-arrow-border: calc(2rem / 16); // Toggle Arrow Border
---accordion-close-size: calc(30rem / 16); // Close Button Size
+--accordion-arrow-border: calc(2em / 16); // Toggle Arrow Border
+--accordion-close-size: calc(30em / 16); // Close Button Size
 --accordion-color-active: #a9a9a9; // Active State
 --accordion-color-default: #d3d3d3; // Default States
 --accordion-color-interactive: #666; // Interactive State 
 --accordion-color-selected: #6F00EF; // Selected States
 --accordion-column-large: 4; // Horizontal Layout (Large Vieport)
 --accordion-column-medium: 2; // Horizontal Layout (Medium Vieport)
---accordion-gap: calc(5rem / 16); // Accordion Gap
---accordion-panel-border: calc(2rem /16) transparent solid; // Sets border on pointer and panel. Not for use with default animation
+--accordion-gap: calc(5em / 16); // Accordion Gap
+--accordion-panel-border: calc(2em /16) transparent solid; // Sets border on pointer and panel. Not for use with default animation
 --accordion-panel-default: #d3d3d3; // Panel State (Default)
---accordion-pointer-size: calc(25rem / 16); // Content Pointer Size
+--accordion-pointer-size: calc(25em / 16); // Content Pointer Size
 --accordion-toggle-border-radius: 0; // Button Border Radius
 
 // Breakpoints (CSS variables are not allowed in media queries - boo!)
@@ -80,7 +80,7 @@ gap: var(--accordion-gap);
   display: block;
   inline-size: var(--accordion-arrow-size);
   justify-self: end;
-  margin-block: 0 calc(4rem / 16);
+  margin-block: 0 calc(4em / 16);
   transform: rotate(-45deg);
   
     [data-context] & {
@@ -117,7 +117,7 @@ gap: var(--accordion-gap);
     content: "";
     display: block;
     grid-area: 1 / 1;
-    inline-size: calc(2rem / 16);
+    inline-size: calc(2em / 16);
     }
 
     &::after {
