@@ -313,6 +313,20 @@
 
   };
 
-  initAccordion();
+  // Expose it for modules
+
+  window.utils = {
+
+    initAccordion
+
+  };
+
+  // Auto-run only if NOT inside a module
+
+  if (!document.currentScript?.type?.includes("module")) {
+
+    initAccordion();
+
+  }
 
 })();
