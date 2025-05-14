@@ -7,6 +7,7 @@
 
 */
 
+(() => {
 
   "use strict";
 
@@ -312,11 +313,6 @@
 
   };
 
-  // Auto-run only if NOT inside a module
+  initAccordion();
 
-  if (!document.currentScript?.type?.includes("module")) {
-
-    initAccordion();
-
-  }
-
+})();
