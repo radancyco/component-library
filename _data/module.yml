@@ -28,7 +28,7 @@ components:
 
       - name: "Fixed Height"
         id: "fixed-height"
-        message: scrollbars
+        guidance: a11y-scrollbars
 
       - name: "Default (Horizontal)"
         id: "horizontal"
@@ -154,7 +154,7 @@ components:
 
       - name: "Horizontal Scroll (Mobile)"
         id: "horizontal-scroll"
-        message: scrollbars
+        guidance: a11y-scrollbars
         note: "To test the scrollable area, resize the screen to a smaller width. When designing, ensure a partial item is visible at the edge to indicate scrollability and enhance usability."
   
   - id: "card" 
@@ -350,7 +350,7 @@ components:
 
   - id: "horizontal-scroll" 
     desc: "Enables horizontal scrolling of content within a limited width, serving as a sleek alternative to carousels."
-    message: scrollbars
+    guidance: a11y-scrollbars
     path: "horizontal-scroll"
     title: "Horizontal Scroller"
     version: "1.3"
@@ -504,12 +504,12 @@ components:
 
       - name: "Fixed Height"
         id: "fixed-height"
-        message: scrollbars
+        guidance: a11y-scrollbars
 
       - name: "Scrolling Tabs"
         id: "scrolling-tabs"
         note: "Tabs can be designed to scroll on mobile and display inline on desktop. To test the scrollable tabs, resize the screen to a smaller width. When designing, ensure a partial tab is visible at the edge to indicate scrollability and enhance usability."
-        message: scrollbars
+        guidance: a11y-scrollbars
 
       - name: "Stacked Tabs"
         id: "stacked-tabs"
@@ -580,11 +580,15 @@ feeds:
     path: "feeds/instagram"
     title: "Instagram Feed"
     message: feed
+    # version: "1.3"
     version: "1.2"
     examples: 
 
       - name: "Default Setup"
         id: "default-setup"
+
+      #- name: "Horizontal Scroll (Mobile)"
+      #  id: "horizontal-scroll"
 
   - id: "youtube"
     desc: "Display a series of videos from a YouTube channel or playlist, including video thumbnails and titles."
