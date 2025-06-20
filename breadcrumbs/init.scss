@@ -11,9 +11,9 @@
 
 .breadcrumb {
 
---breadcrumb-color-track: #EEE; // Track Color
---breadcrumb-color-thumb: #6F00EF; // Thumb Color
---breadcrumb-color-active: #666; // Active State
+--breadcrumb-color-track: #949595; // Track Color
+--breadcrumb-color-thumb: #5D00C7; // Thumb Color
+--breadcrumb-color-active: #3E0085; // Active State
 
 padding: 1em 0;
 
@@ -23,7 +23,7 @@ padding: 1em 0;
 
     // Fallback Scrollbar
 
-    scrollbar-color: var(--breadcrumb-color-track) var(--breadcrumb-color-thumb);
+    scrollbar-color: var(--breadcrumb-color-thumb) var(--breadcrumb-color-track);
     scrollbar-width: thin;
 
     @supports #{"\selector(::-webkit-scrollbar)"} {
@@ -32,7 +32,7 @@ padding: 1em 0;
       scrollbar-width: auto;
 
       &::-webkit-scrollbar {
-      height: calc(6rem / 16);
+      height: calc(8rem / 16);
       }
 
       &::-webkit-scrollbar-track, &::-webkit-scrollbar-thumb {
