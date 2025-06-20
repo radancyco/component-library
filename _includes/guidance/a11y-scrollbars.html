@@ -1,8 +1,11 @@
-{% assign class = "reminder" %}
+{% assign class = "a11y-info" %}
+{% assign id = "scrollbar-accessibility" %}
+{% assign landmark = "hdr-a11y-scrollbar-accessibility" %}
+{% assign guidance-title = "Scrollbar Accessibility" %}
 
-{% include message/header.html %}
+{% include guidance/header.html %}
 
-    <p><strong>Reminder:</strong> This component may include scrollbars, especially when resized. Scrollbar design and behavior can vary across operating systems and browsers, which is normal. If using <code>::-webkit-scrollbar</code>, note that some browsers may not support this and will default to non-prefixed properties, where look and behavior may differ. For accessibility, ensure the following:</p>
+    <p>Scrollbar design and behavior can vary across operating systems and browsers, which is normal. If using <code>::-webkit-scrollbar</code>, note that some browsers may not support this and will default to non-prefixed properties, where look and behavior may differ. For accessibility, ensure the following:</p>
 
     <ul>
         <li>The scrubber, track, and background must each have a 3:1 contrast ratio with one another. For example, the scrubber must have a 3:1 contrast with the track, and the track must have a 3:1 contrast with the background beneath it. In some cases, it may be advisable to have the scrubber meet a 4.5:1 ratio with the track, for more solid usability.</li>
@@ -20,4 +23,4 @@
     
     </figure>
 
-{% include message/footer.html %}
+{% include guidance/footer.html %}
