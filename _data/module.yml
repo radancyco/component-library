@@ -352,7 +352,7 @@ components:
     desc: "Enables horizontal scrolling of content within a limited width, serving as a sleek alternative to carousels."
     guidance: a11y-scrollbars
     path: "horizontal-scroll"
-    title: "Horizontal Scroller"
+    title: "Horizontal Free-Scroller"
     version: "1.3"
     examples:
 
