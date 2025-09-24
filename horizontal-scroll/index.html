@@ -46,6 +46,15 @@ attributes:
 
     desc: Can be used in specific templating scenarios where updating the default <code>aria-label</code> value is not possible. Additionally, use the <code>hidden</code> attribute to hide this list item.
 
+  - name: data-wheel-support
+    html: .horizontal-scroll 
+    note: 
+
+      - Boolean
+      - Optional
+
+    desc: Allows for scrolling support via mouse wheel. Please note that this is currently an experimental feature. When it becomes stable, it will be considered for inclusion as a default behavior.
+
 classes:
 
   - name: .horizontal-scroll
@@ -81,6 +90,9 @@ classes:
     desc: Used for each individual content heading. Ideally, you'll want each heading to contain your hyperlink, so that the purpose of each link can be better understood by assistive technologies. Recommended, but if custom HTML and CSS is desired you may create your own.
 
 changelog: 
+
+  - label: Behavior
+    content: "September 24, 2025: Added experimental support for mouse wheel scrolling. Version now 1.4."
 
   - label: Behavior
     content: "March 11, 2025: Added Connor's new functionality to pass a dynamic label to <code>aria-label</code> due to limitations within the CMS."

@@ -8,7 +8,7 @@
 
 */
 
-(function() {
+(() => {
 
   "use strict";
 
@@ -18,17 +18,17 @@
 
   // Classes, data attributes, states, and strings.
 
-  var scrollerClass = ".horizontal-scroll";
-  var scrollers = document.querySelectorAll(scrollerClass);
+  const scrollerClass = ".horizontal-scroll";
+  const scrollers = document.querySelectorAll(scrollerClass);
+  const dataWheelSupport = "data-wheel-support";
 
   scrollers.forEach(function(scroll) {
 
-    //cms editability modification
+    const scrollerAriaElement = scroll.querySelector('[data-aria-label-replace]');
+    const scrollerAriaLabel = scrollerAriaElement ? scrollerAriaElement.getAttribute("data-aria-label-replace") : "";
 
-    var scrollerAriaElement = scroll.querySelector('[data-aria-label-replace');
-    var scrollerAriaLabel = scrollerAriaElement ? scrollerAriaElement.getAttribute('data-aria-label-replace') : "";
-
-    //checks if label exists, and then replaces it with cms value. When done, deletes junk element from DOM.
+    // CMS Editability Modification
+    // Checks if label exists, and then replaces it with CMS value. When done, deletes junk element from DOM.
 
     if(scrollerAriaLabel) {
 
@@ -36,10 +36,8 @@
       scrollerAriaElement.remove();
 
     }
-
-    //end cms editability modification
     
-     var hasInteractiveElements = scroll.querySelectorAll("a, button, video, [tabindex='0'], [data-href*='facebook/videos'], iframe[src*='vimeo.com'], iframe[src*='youtube.com']");
+    var hasInteractiveElements = scroll.querySelectorAll("a, button, video, [tabindex='0'], [data-href*='facebook/videos'], iframe[src*='vimeo.com'], iframe[src*='youtube.com']");
 
     // See if interactive elements exist. If they do, remove aria-label, role, and tabindex.
 
@@ -48,6 +46,32 @@
         scroll.removeAttribute("aria-label");
         scroll.removeAttribute("role");
         scroll.removeAttribute("tabindex");
+
+    }
+
+    // Mousewheel Support
+
+    if(scroll.hasAttribute(dataWheelSupport)) {
+
+      scroll.addEventListener("wheel", (event) => {
+
+        if (document.activeElement === scroll || scroll.matches(":hover")) {
+
+          event.preventDefault();
+
+          const isRTL = document.dir === "rtl" || getComputedStyle(scroll).direction === "rtl";
+          const direction = isRTL ? -event.deltaY : event.deltaY;
+
+          scroll.scrollBy({
+
+            left: direction,
+            behavior: "smooth"
+
+          });
+
+        }
+
+      }, { passive: false });
 
     }
 
