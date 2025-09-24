@@ -22,10 +22,10 @@
   const scrollers = document.querySelectorAll(scrollerClass);
   const dataWheelSupport = "data-wheel-support";
 
-  scrollers.forEach(function(scroll) {
+  scrollers.forEach((scroll) => {
 
     const scrollerAriaElement = scroll.querySelector('[data-aria-label-replace]');
-    const scrollerAriaLabel = scrollerAriaElement ? scrollerAriaElement.getAttribute("data-aria-label-replace") : "";
+    const scrollerAriaLabel = scrollerAriaElement?.getAttribute("data-aria-label-replace") ?? "";
 
     // CMS Editability Modification
     // Checks if label exists, and then replaces it with CMS value. When done, deletes junk element from DOM.
@@ -43,9 +43,7 @@
 
     if (hasInteractiveElements.length) {
 
-        scroll.removeAttribute("aria-label");
-        scroll.removeAttribute("role");
-        scroll.removeAttribute("tabindex");
+      ["aria-label", "role", "tabindex"].forEach(attr => scroll.removeAttribute(attr));
 
     }
 
@@ -53,25 +51,30 @@
 
     if(scroll.hasAttribute(dataWheelSupport)) {
 
+      // RTL Support
+
+      const isRTL = document.dir === "rtl" || getComputedStyle(scroll).direction === "rtl";
+
       scroll.addEventListener("wheel", (event) => {
-
+  
         if (document.activeElement === scroll || scroll.matches(":hover")) {
-
+    
           event.preventDefault();
-
-          const isRTL = document.dir === "rtl" || getComputedStyle(scroll).direction === "rtl";
-          const direction = isRTL ? -event.deltaY : event.deltaY;
-
-          scroll.scrollBy({
-
-            left: direction,
-            behavior: "smooth"
-
+          
+          scroll.scrollBy({ 
+            
+            left: isRTL ? -event.deltaY : event.deltaY, 
+            behavior: "smooth" 
+          
           });
-
+  
         }
 
-      }, { passive: false });
+      }, { 
+        
+        passive: false 
+      
+      });
 
     }
 
