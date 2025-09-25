@@ -247,7 +247,17 @@ components:
 
       - name: "Default Setup"
         id: "default-setup"
-        group: "My Defaults"
+
+  - id: "dialog"
+    desc: "Do dialog things without Fancybox."
+    path: "dialog"
+    title: "Dialog"
+    version: "1.0"
+    hidden: true
+    examples:
+
+      - name: "Default"
+        id: "default"
 
   - id: "disclosure"
     desc: "Reaveal or hide additional content when triggered, helping to manage the display of supplementary information."

@@ -1,0 +1,129 @@
+/*!
+
+  Radancy Component Library: Horizontal Scroll
+
+  Contributor(s):
+  Michael "Spell" Spellacy
+
+  Dependencies: Sass
+
+*/
+
+.horizontal-scroll {
+
+// Component Variables
+
+--scroll-color-track: #949595; // Track Color
+--scroll-color-thumb: #5D00C7; // Thumb Color
+--scroll-color-active: #3E0085; // Active State
+
+display: grid;
+gap: 1em;
+grid-auto-flow: column;
+overflow-x: auto;
+padding-block-end: 1em;
+scroll-snap-type: inline mandatory;
+
+// Fallback Scrollbar
+
+scrollbar-color: var(--scroll-color-thumb) var(--scroll-color-track);
+scrollbar-width: thin;
+
+  // TODO: Add native scrollbar hover: https://nerdy.dev/notebook/custom-scrollbar.html 
+
+  @supports #{"\selector(::-webkit-scrollbar)"} {
+
+    scrollbar-color: initial;
+    scrollbar-width: auto;
+
+    &::-webkit-scrollbar {
+    height: calc(8rem / 16);
+    }
+
+    &::-webkit-scrollbar-track, &::-webkit-scrollbar-thumb {
+    border-radius: 100vw;
+    }
+
+    &::-webkit-scrollbar-track {
+    background-color: var(--scroll-color-track);
+    }
+
+    &::-webkit-scrollbar-thumb {
+    background-color: var(--scroll-color-thumb);
+    
+      &:hover {
+      background-color: var(--scroll-color-active);
+      }
+
+    }
+  
+  }
+
+  &:not([data-always-scroll]) { 
+
+    @media (min-width: 62.5em) {
+
+      grid-auto-flow: unset;
+      grid-template-columns: repeat(4, 1fr);
+      visibility: hidden; // Do not remove.
+
+      .horizontal-scroll__card {
+
+        min-width: auto;
+
+      }
+
+    }
+  
+  }
+
+  > ul, > ol {
+  display: contents;
+  list-style: none;
+  visibility: visible; // Do not remove.
+  }
+
+  // .horizontal-scroll__card
+
+  &__card {
+  background-color: #fff;
+  border-radius: calc(10rem / 16);
+  border: calc(1rem / 16) #666 solid;
+  min-width: calc(300rem / 16);
+  padding: 1em;
+  position: relative;
+  scroll-snap-align: center;
+  transition: 300ms;
+
+    &:has(a, button) {
+
+      &:hover, &:focus-within {
+      background-color: #eee;
+      border-color: #6F00EF;
+      }
+
+    }
+
+  }
+
+  // .horizontal-scroll__heading
+
+  &__heading {
+
+    a {
+    display: block;
+
+      // Make entire card clickable
+
+      &::before {
+      content: "";
+      display: block;
+      inset: 0;
+      position: absolute;
+      }
+
+    }
+
+  }
+
+}
