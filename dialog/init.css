@@ -1,11 +1,11 @@
 dialog {
 border: 0;
-height: 100%;
 width: 100%;
 background-color: transparent;
-padding: 4em;
+padding: 0;
 margin: 1em;
 pointer-events: none;
+align-self: center;
 
   &::backdrop {
   background-color: rgba(0, 0, 0, 0.8);
@@ -33,6 +33,17 @@ pointer-events: none;
   cursor: pointer;
   margin: 0;
   pointer-events: fill;
+  }
+
+}
+
+@media only screen and (min-width: 600px) {
+
+  dialog {
+
+padding: 4em;
+height: 100%;
+
   }
 
 }
