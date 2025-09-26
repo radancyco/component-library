@@ -252,7 +252,7 @@ components:
     desc: "Do dialog things without Fancybox."
     path: "dialog"
     title: "Dialog"
-    version: "1.0"
+    version: "0.5"
     hidden: true
     examples:
 
