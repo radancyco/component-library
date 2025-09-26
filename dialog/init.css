@@ -33,6 +33,7 @@ align-self: center;
   cursor: pointer;
   margin: 0;
   pointer-events: fill;
+  z-index: 1;
   }
 
 }
