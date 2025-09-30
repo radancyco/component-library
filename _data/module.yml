@@ -444,7 +444,7 @@ components:
       - name: "Offset Button (Bottom)"
         id: "offset-button-bottom"
         group: Anti-Pattern
-        warning: 'Positioning disclosure buttons on the bottom of content to be opened above them is considered an anti-pattern and <a href="#read-more">not recommended</a>. Use at your own risk.'
+        warning: 'Positioning disclosure buttons on the bottom of content to be opened above them is considered a ppor user experience and <a href="#disclosures">not recommended</a>. Use at your own risk.'
         guidance: anti-pattern-read-more
 
   - id: "rating"
