@@ -1,0 +1,96 @@
+.carousel {
+
+// Variables 
+
+--primary-color: #6F00EF;
+
+    &__container {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1em;
+    }
+
+    &__placeholder__prev {
+    justify-self: end;
+    }
+
+    &__placeholder__next {
+    justify-self: start;
+    }
+
+    &__slides {
+    display: grid;
+    grid-auto-columns: 100%;
+    grid-auto-flow: unset; 
+    grid-template-columns: 1fr 1fr;
+    margin: 0 0 2em;
+    overflow: hidden; 
+    padding: 0;
+
+        [aria-roledescription] & {
+
+          grid-auto-flow: column; 
+          grid-template-columns: unset;
+
+        }
+
+    }
+
+    &__slide {
+    background-color: #eee;
+    padding: 2em;
+    }
+
+    &__nav {
+
+        ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1em;
+        justify-content: center;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+            button {
+            background-color: #ccc;
+            block-size: 1rem;
+            border-radius: 100vw;
+            border: 1px #000 solid;
+            cursor: pointer;
+            inline-size: 1rem;
+            outline-offset: 4px;
+
+                &[aria-current="true"] {
+                background-color: var(--primary-color);
+                border-color: transparent;
+                }
+
+            }
+
+        }
+
+    }
+
+    &__prev, &__next {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    font-size: calc(32rem / 16); 
+    padding: 0;
+    }
+
+}
+
+// If you have a visually hidden class in your CSS already, you do not need to add this. 
+
+.visually-hidden:not(:focus):not(:active) {
+clip: rect(0 0 0 0); 
+clip-path: inset(50%);
+height: 1px;
+overflow: hidden;
+position: absolute;
+white-space: nowrap; 
+width: 1px;
+}
