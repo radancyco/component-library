@@ -34,7 +34,6 @@
 
     &__slides {
     display: grid;
-    grid-auto-columns: 100%;
     grid-auto-flow: unset; 
     grid-template-columns: 1fr 1fr;
     list-style: none;
