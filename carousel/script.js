@@ -250,13 +250,15 @@ function nextSlide() {
     previousButton.addEventListener('click', previousSlide);
     nextButton.addEventListener('click', nextSlide);
 
-    // -----------------------------
-// 🖐️ Pointer / Swipe Navigation
+
+// -----------------------------
+// 🖐️ Pointer / Swipe Navigation (touch only, no visible scrollbar)
 // -----------------------------
 let startX = 0;
 let isDragging = false;
 
 slidesContainer.addEventListener('pointerdown', (e) => {
+  if (e.pointerType !== 'touch') return; // only handle touch
   startX = e.clientX;
   isDragging = true;
   slidesContainer.setPointerCapture(e.pointerId);
@@ -264,26 +266,36 @@ slidesContainer.addEventListener('pointerdown', (e) => {
 
 slidesContainer.addEventListener('pointermove', (e) => {
   if (!isDragging) return;
-  // Optional: You could add a visual drag effect here
+  // Optional: add visual feedback if desired
 });
 
 slidesContainer.addEventListener('pointerup', (e) => {
   if (!isDragging) return;
   isDragging = false;
-  let endX = e.clientX;
-  let diff = endX - startX;
+  const endX = e.clientX;
+  const diff = endX - startX;
 
-  // 👉 Swipe Right → Previous
-  if (diff > 50) {
+  const SWIPE_THRESHOLD = 50; // minimum px to trigger
+
+  if (diff > SWIPE_THRESHOLD) {
     previousSlide();
-  }
-
-  // 👈 Swipe Left → Next
-  if (diff < -50) {
+  } else if (diff < -SWIPE_THRESHOLD) {
     nextSlide();
   }
 });
 
+// Optional: cancel drag if pointer leaves container
+slidesContainer.addEventListener('pointercancel', () => {
+  isDragging = false;
+});
+slidesContainer.addEventListener('pointerleave', () => {
+  isDragging = false;
+});
+
+
+
+
+    
 
     // -----------------------------
     // 7️⃣ Initial visibility
