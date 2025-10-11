@@ -252,19 +252,28 @@ function nextSlide() {
 
 
 // -----------------------------
-// 🖐️ Swipe Detection (mobile touch)
+// 🖐️ Swipe Detection (mobile touch) robust
 // -----------------------------
 let touchStartX = 0;
-let touchEndX = 0;
+let touchStartY = 0;
 const SWIPE_THRESHOLD = 50; // minimum px to trigger
 
 slidesContainer.addEventListener('touchstart', (e) => {
   if (e.touches.length !== 1) return; // ignore multi-touch
   touchStartX = e.touches[0].clientX;
-});
+  touchStartY = e.touches[0].clientY;
+}, { passive: true });
+
+slidesContainer.addEventListener('touchmove', (e) => {
+  if (e.touches.length !== 1) return;
+  const deltaX = Math.abs(e.touches[0].clientX - touchStartX);
+  const deltaY = Math.abs(e.touches[0].clientY - touchStartY);
+  // Only prevent vertical scroll if horizontal swipe is significant
+  if (deltaX > deltaY && deltaX > 10) e.preventDefault();
+}, { passive: false });
 
 slidesContainer.addEventListener('touchend', (e) => {
-  touchEndX = e.changedTouches[0].clientX;
+  const touchEndX = e.changedTouches[0].clientX;
   const diff = touchEndX - touchStartX;
 
   if (diff > SWIPE_THRESHOLD) {
@@ -273,6 +282,7 @@ slidesContainer.addEventListener('touchend', (e) => {
     nextSlide(); // swipe left
   }
 });
+
 
 
 
