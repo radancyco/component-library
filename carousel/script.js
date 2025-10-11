@@ -20,7 +20,7 @@
     previousButton.innerHTML = `<span class="fas fa-chevron-left" aria-hidden="true"></span>`; // InnerHTML is a secutiy risk, create node and insert.
 
     const nextButton = document.createElement('button');
-    
+
     nextButton.className = 'carousel__next';
     nextButton.setAttribute('aria-label', 'Next Slide');
     nextButton.innerHTML = `<span class="fas fa-chevron-right" aria-hidden="true"></span>`;
@@ -62,7 +62,7 @@
 
     nav.appendChild(ul);
 
-    const carouselPlaceholderNav = document.querySelector(".carousel__placeholder__nav")
+    const carouselPlaceholderNav = carousel.querySelector(".carousel__placeholder__nav")
 
     carouselPlaceholderNav.appendChild(nav);
 
@@ -231,40 +231,17 @@
     }
 
     function previousSlide() {
+  if (leftMostSlideIndex > 0) {
+    goToSlide(leftMostSlideIndex - 1);
+  }
+}
 
-      let newIndex;
+function nextSlide() {
+  if (leftMostSlideIndex < slides.length - 1) {
+    goToSlide(leftMostSlideIndex + 1);
+  }
+}
 
-      if (leftMostSlideIndex > 0) {
-
-        newIndex = leftMostSlideIndex - 1;
-
-      } else {
-
-        newIndex = slides.length - 1;
-
-      }
-
-      goToSlide(newIndex);
-
-    }
-
-    function nextSlide() {
-
-      let newIndex;
-
-      if (leftMostSlideIndex < slides.length - 1) {
-        
-        newIndex = leftMostSlideIndex + 1;
-
-      } else {
-
-        newIndex = 0;
-
-      }
-
-      goToSlide(newIndex);
-
-    }
 
     // -----------------------------
     // 6️⃣ Wire up button events
@@ -272,6 +249,41 @@
 
     previousButton.addEventListener('click', previousSlide);
     nextButton.addEventListener('click', nextSlide);
+
+    // -----------------------------
+// 🖐️ Pointer / Swipe Navigation
+// -----------------------------
+let startX = 0;
+let isDragging = false;
+
+slidesContainer.addEventListener('pointerdown', (e) => {
+  startX = e.clientX;
+  isDragging = true;
+  slidesContainer.setPointerCapture(e.pointerId);
+});
+
+slidesContainer.addEventListener('pointermove', (e) => {
+  if (!isDragging) return;
+  // Optional: You could add a visual drag effect here
+});
+
+slidesContainer.addEventListener('pointerup', (e) => {
+  if (!isDragging) return;
+  isDragging = false;
+  let endX = e.clientX;
+  let diff = endX - startX;
+
+  // 👉 Swipe Right → Previous
+  if (diff > 50) {
+    previousSlide();
+  }
+
+  // 👈 Swipe Left → Next
+  if (diff < -50) {
+    nextSlide();
+  }
+});
+
 
     // -----------------------------
     // 7️⃣ Initial visibility
