@@ -248,6 +248,9 @@ components:
       - name: "Default Setup"
         id: "default-setup"
 
+      - name: "Arrow Placement"
+        id: "arrow-placement"
+
   - id: "dialog"
     desc: "Do dialog things without Fancybox."
     path: "dialog"
