@@ -40,6 +40,7 @@
     margin: 0 0 1em;
     overflow: hidden; 
     padding: 0;
+    scroll-behavior: smooth;
 
         [aria-roledescription] & {
 
@@ -78,6 +79,7 @@
                 &[aria-current="true"] {
                 background-color: var(--primary-color);
                 border-color: transparent;
+                inline-size: 4em;
                 }
 
             }

@@ -1,6 +1,6 @@
 /*!
 
-Radancy Component Library: {{ include.title }}
+Radancy Component Library: Carousel
 
 Contributor(s):
 Michael "Spell" Spellacy
@@ -221,12 +221,11 @@ Michael "Spell" Spellacy
 
             nextIndex = Math.min(nextIndex, maxIndex);
 
-            slidesContainer.scrollTo({
+            slidesContainer.scrollTo(
     
-                left: (slidesContainer.offsetWidth / slidesVisible) * nextIndex,
-                behavior: 'smooth'
-
-            });
+              (slidesContainer.offsetWidth / slidesVisible) * nextIndex, 0
+            
+            );
 
             slideDots.forEach(dot => {
 
