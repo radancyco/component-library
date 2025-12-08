@@ -15,6 +15,8 @@
 
 --accordion-arrow-size: 0.8em; // Toggle Arrow Size
 --accordion-arrow-border: calc(2em / 16); // Toggle Arrow Border
+--accordion-color-base-1: #000; // Base Color 1
+--accordion-color-base-2: #fff; // Base Color 2
 --accordion-close-size: calc(30em / 16); // Close Button Size
 --accordion-color-active: #a9a9a9; // Active State
 --accordion-color-default: #d3d3d3; // Default States
@@ -50,14 +52,14 @@ gap: var(--accordion-gap);
 
   &[data-horizontal] {
 
-    @media (min-width: $accordion-medium) {
+    @media (width > $accordion-medium) {
 
       grid-auto-flow: dense;
       grid-template-columns: repeat(var(--accordion-column-medium), 1fr);
 
     }
 
-    @media (min-width: $accordion-large) {
+    @media (width > $accordion-large) {
 
       grid-template-columns: repeat(var(--accordion-column-large), 1fr); 
 
@@ -85,7 +87,7 @@ gap: var(--accordion-gap);
   
     [data-context] & {
   
-      @media (min-width: $accordion-medium) {
+      @media (width > $accordion-medium) {
   
         display: none;
   
@@ -112,7 +114,7 @@ gap: var(--accordion-gap);
   padding: 0;
 
     &:after, &::before {
-    background-color: #000;
+    background-color: var(--accordion-color-base-1);
     block-size: 100%;
     content: "";
     display: block;
@@ -172,7 +174,7 @@ gap: var(--accordion-gap);
 
     [data-context] & {
 
-      @media (min-width: $accordion-medium) {
+      @media (width > $accordion-medium) {
 
         pointer-events: none;
         visibility: hidden;
@@ -190,7 +192,7 @@ gap: var(--accordion-gap);
 
     [data-horizontal] & {
 
-      @media (min-width: $accordion-medium) {
+      @media (width > $accordion-medium) {
       
         padding: 1.5em;
 
@@ -254,7 +256,7 @@ gap: var(--accordion-gap);
 
     &[aria-expanded="true"], &[aria-pressed="true"] {
     background-color: var(--accordion-color-selected);
-    color: #fff;
+    color: var(--accordion-color-base-2);
 
       [data-animation][data-pointer] & { 
 
@@ -292,8 +294,8 @@ gap: var(--accordion-gap);
       // Accordion Toggle Arrow
 
       .accordion__arrow {
-      border-block-end-color: #fff;
-      border-inline-start-color: #fff;
+      border-block-end-color: var(--accordion-color-base-2);
+      border-inline-start-color: var(--accordion-color-base-2);
       transform: rotate(135deg);
       translate: 0 calc(8rem/16);
 
@@ -348,13 +350,13 @@ gap: var(--accordion-gap);
       border: var(--accordion-panel-border);
       margin-top: auto;
 
-      @media (min-width: $accordion-medium) {
+      @media (width > $accordion-medium) {
 
         grid-column: 1 / span var(--accordion-column-medium);
 
       }
 
-      @media (min-width: $accordion-large) {
+      @media (width > $accordion-large) {
 
         grid-column: 1 / span var(--accordion-column-large);
 
@@ -410,7 +412,7 @@ gap: var(--accordion-gap);
 
     [data-context] & {
 
-      @media (min-width: $accordion-medium) {
+      @media (width > $accordion-medium) {
 
         background-color: transparent;
         display: block;
