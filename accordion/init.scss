@@ -52,14 +52,14 @@ gap: var(--accordion-gap);
 
   &[data-horizontal] {
 
-    @media (width > $accordion-medium) {
+    @media (min-width: $accordion-medium) {
 
       grid-auto-flow: dense;
       grid-template-columns: repeat(var(--accordion-column-medium), 1fr);
 
     }
 
-    @media (width > $accordion-large) {
+    @media (min-width: $accordion-large) {
 
       grid-template-columns: repeat(var(--accordion-column-large), 1fr); 
 
@@ -87,7 +87,7 @@ gap: var(--accordion-gap);
   
     [data-context] & {
   
-      @media (width > $accordion-medium) {
+      @media (min-width: $accordion-medium) {
   
         display: none;
   
@@ -174,7 +174,7 @@ gap: var(--accordion-gap);
 
     [data-context] & {
 
-      @media (width > $accordion-medium) {
+      @media (min-width: $accordion-medium) {
 
         pointer-events: none;
         visibility: hidden;
@@ -192,7 +192,7 @@ gap: var(--accordion-gap);
 
     [data-horizontal] & {
 
-      @media (width > $accordion-medium) {
+      @media (min-width: $accordion-medium) {
       
         padding: 1.5em;
 
@@ -350,13 +350,13 @@ gap: var(--accordion-gap);
       border: var(--accordion-panel-border);
       margin-top: auto;
 
-      @media (width > $accordion-medium) {
+      @media (min-width: $accordion-medium) {
 
         grid-column: 1 / span var(--accordion-column-medium);
 
       }
 
-      @media (width > $accordion-large) {
+      @media (min-width: $accordion-large) {
 
         grid-column: 1 / span var(--accordion-column-large);
 
@@ -412,7 +412,7 @@ gap: var(--accordion-gap);
 
     [data-context] & {
 
-      @media (width > $accordion-medium) {
+      @media (min-width: $accordion-medium) {
 
         background-color: transparent;
         display: block;
