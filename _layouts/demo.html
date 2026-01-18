@@ -22,8 +22,8 @@
 
   {% if page.jquery == true %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>{% endif %}{% if page.libraryjs %}
-  <script src="{{ page.libraryjs}}"></script>{% endif %}
-  <script src="../init.js"></script>{% if page.customjs %}
+  <script src="{{ page.libraryjs}}"></script>{% endif %}{% if page.componentjs != false %}
+  <script src="../init.js"></script>{% endif %}{% if page.customjs %}
   <script src="{{ page.customjs}}"></script>{% endif %}
 
 </body>
