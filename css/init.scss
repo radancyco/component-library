@@ -189,8 +189,7 @@ padding: 0;
 
       
 }
-    
- 
+
 .btn-code-copy {
 background-color: transparent;
 border-radius: 2px;
@@ -217,15 +216,15 @@ z-index: 1;
     
     &.code-copied {
     
-    .icon-copy-url {
-    display: none;
-    }
+        .icon-copy-url {
+        display: none;
+        }
     
-    .icon-check {
-    display: block;
-    }
+        .icon-check {
+        display: block;
+        }
     
-}
+    }
     
 }
 
@@ -246,4 +245,4 @@ z-index: 1;
   
     }
   
-  }
+}
