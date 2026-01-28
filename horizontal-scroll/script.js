@@ -49,34 +49,28 @@
 
     // Mousewheel Support
 
-    if(scroll.hasAttribute(dataWheelSupport)) {
+    const isRTL = document.dir === "rtl" || getComputedStyle(scroll).direction === "rtl"; // RTL Support
 
-      // RTL Support
-
-      const isRTL = document.dir === "rtl" || getComputedStyle(scroll).direction === "rtl";
-
-      scroll.addEventListener("wheel", (event) => {
+    scroll.addEventListener("wheel", (event) => {
   
-        if (document.activeElement === scroll || scroll.matches(":hover")) {
+      if (document.activeElement === scroll || scroll.matches(":hover")) {
     
-          event.preventDefault();
+        event.preventDefault();
           
-          scroll.scrollBy({ 
+        scroll.scrollBy({ 
             
-            left: isRTL ? -event.deltaY : event.deltaY, 
-            behavior: "smooth" 
+          left: isRTL ? -event.deltaY : event.deltaY, 
+          behavior: "smooth" 
           
-          });
+        });
   
-        }
+      }
 
-      }, { 
+    }, { 
         
-        passive: false 
+      passive: false 
       
-      });
-
-    }
+    });
 
   });
 
