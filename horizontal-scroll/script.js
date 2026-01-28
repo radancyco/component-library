@@ -23,10 +23,10 @@
 
   scrollers.forEach((scroll) => {
 
+    // CMS Editability Modification
+
     const scrollerAriaElement = scroll.querySelector('[data-aria-label-replace]');
     const scrollerAriaLabel = scrollerAriaElement?.getAttribute("data-aria-label-replace") ?? "";
-
-    // CMS Editability Modification
   
     // Checks if label exists, and then replaces it with CMS value. When done, deletes junk element from DOM.
 
