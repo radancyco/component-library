@@ -52,31 +52,30 @@
     const isRTL = document.dir === "rtl" || getComputedStyle(scroll).direction === "rtl"; // RTL Support
 
     scroll.addEventListener("wheel", (event) => {
-
-      // Only intercept scroll if the element actually overflows horizontally
-
-      const canScroll = scroll.scrollWidth > scroll.clientWidth;
-
-      if (!canScroll) return; // do nothing, allow normal page scroll
-  
-      if (document.activeElement === scroll || scroll.matches(":hover")) {
     
-        event.preventDefault();
-          
-        scroll.scrollBy({ 
-            
-          left: isRTL ? -event.deltaY : event.deltaY, 
-          behavior: "smooth" 
-          
-        });
-  
-      }
+      const canScroll = scroll.scrollWidth > scroll.clientWidth;
+    
+      if (!canScroll) return; // nothing to scroll horizontally
 
+      const isAtStart = scroll.scrollLeft === 0;
+      const isAtEnd = scroll.scrollLeft + scroll.clientWidth >= scroll.scrollWidth;
+      const scrollDelta = isRTL ? -event.deltaY : event.deltaY;
+
+      // Only prevent default if there is actually room to scroll in that direction
+    
+      const shouldScroll = (scrollDelta < 0 && !isAtStart) || (scrollDelta > 0 && !isAtEnd);
+    
+      if (!shouldScroll) return; // allow normal vertical scroll
+
+      event.preventDefault();
+    
+      scroll.scrollBy({ left: scrollDelta, behavior: "smooth" });
+    
     }, { 
-        
-      passive: false 
       
-    });
+      passive: false 
+    
+    }); 
 
   });
 
