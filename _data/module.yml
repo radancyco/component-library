@@ -499,6 +499,7 @@ components:
     desc: "Organize content into separate sections, allowing user to switch between them by selecting different tabs."
     path: "tablist"
     message: use-accordion
+    guidance: a11y-tab-placement
     title: "TabList"
     version: "1.9"
     examples:
