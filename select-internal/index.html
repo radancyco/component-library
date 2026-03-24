@@ -21,6 +21,15 @@ attributes:
 
     desc: Used to suppress dynamic <code>aria-live</code> announcements. Here, you will be expected to wrap all of your <code>.select-internal__content</code> blocks with a single <code>&lt;div aria-live="polite"&gt;&lt;/div&gt;</code>. This technique should be used sparingly and only when each content area contains a minimal amount of content.
 
+  - name: data-custom-select
+    html: .select-internal
+    note: 
+
+      - Boolean
+      - Optional
+
+    desc: Used to allow custom styling of the select element and it's children. See <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Customizable_select">Customizable  Elements</a> for more details.
+
   - name: data-dynamic	
     html: .select-internal
     note: 
@@ -92,6 +101,12 @@ roadmap:
 
   - label: Feature
     content: Include support for the <code>optgroup</code> element in Dynamic Setup.
+
+changelog: 
+
+  - label: Feature
+    content: "March 24, 2026: Added support for Customizable Select Elements."
+
 
 id: select-internal
 localcss: "init.css"
