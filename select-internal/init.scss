@@ -12,11 +12,11 @@
 .select-internal {
   
   &__nav {
-  background-color: #EEE;
+  background-color: #eee;
   border-radius: .5em;
   display: grid;
   gap: .5em;
-  max-width: calc(420rem / 16);
+  max-inline-size: calc(420rem / 16);
   padding: 1em;
   }
   
@@ -26,18 +26,15 @@
   }
 
   &__select {
-  font-size: inherit;
-  padding: .5em;
-  }
-  
-  &__select {
   background-color: #FFF;
   border: 1px #ccc solid;
-  width: 100%;
+  font-size: inherit;
+  padding: .5em;
+  inline-size: 100%;
   }
 
   &__content {
-  margin-top: 2em;
+  margin-block-start: 2em;
     
     &:target {
     scroll-margin-top: calc(190em / 16);
