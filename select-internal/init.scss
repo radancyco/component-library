@@ -46,6 +46,8 @@
 
   &[data-custom-select] {
 
+    --select-primary-color: #6F00EF;
+
     .select-internal__select, ::picker(select) {
 
       appearance: base-select;
@@ -57,27 +59,64 @@
     border-radius: 5px;
 
       &:focus {
-      outline: 2px #6F00EF solid;
+      outline: 2px var(--select-primary-color) solid;
       outline-offset: 2px;
       }
 
+      &::picker-icon {
+      color: var(--select-primary-color);
+      transition: 0.4s rotate;
+      }
+
+      &:open::picker-icon {
+      rotate: 180deg;
+      }
+
+      legend {
+      color: var(--select-primary-color);
+      }
+
+      div {
+      display: grid;
+      gap: 1em;
+      grid-template-columns: 1fr 1fr;
+      padding: 1em;
+      }
+
+      optgroup {
+
+        option {
+        border-radius: 5px;
+        border: 1px var(--select-primary-color) solid;
+        }
+
+      }
+
       option {
+      
+        &::checkmark {
+        display: none;
+        }
 
         &:focus, &:hover {
-        background-color: #6F00EF;
-        color: #fff;
         outline: 0;
+        color: #fff;
+        background-color: var(--select-primary-color);
         }
 
       }
 
     }
 
+    // This is the select dropdown
+
     ::picker(select) {
-    margin: 1em 0 0 2em;
     border-radius: 5px;
-    scrollbar-color: #6F00EF transparent;
-    line-height: 2.5;
+    box-shadow: 0px 4px 16px rgb(0 0 0 / .8);
+    line-height: 2;
+    margin: 1em 0 0 2em;
+    scrollbar-color: var(--select-primary-color) transparent;
+    scrollbar-width: thin;
     }
 
   }
