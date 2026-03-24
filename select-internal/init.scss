@@ -41,6 +41,46 @@
     }
   
   }
+
+  // Custom Select 
+
+  &[data-custom-select] {
+
+    .select-internal__select, ::picker(select) {
+
+      appearance: base-select;
+      line-height: normal;
+
+    }
+
+    .select-internal__select {
+    border-radius: 5px;
+
+      &:focus {
+      outline: 2px #6F00EF solid;
+      outline-offset: 2px;
+      }
+
+      option {
+
+        &:focus, &:hover {
+        background-color: #6F00EF;
+        color: #fff;
+        outline: 0;
+        }
+
+      }
+
+    }
+
+    ::picker(select) {
+    margin: 1em 0 0 2em;
+    border-radius: 5px;
+    scrollbar-color: #6F00EF transparent;
+    line-height: 2.5;
+    }
+
+  }
   
 }
 
