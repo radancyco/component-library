@@ -72,6 +72,11 @@
       rotate: 180deg;
       }
 
+      > option {
+      background-color: #eee;
+      margin-block-end: 1em;
+      }
+
       legend {
       color: var(--select-primary-color);
       }
@@ -86,13 +91,14 @@
       optgroup {
 
         option {
-        border-radius: 5px;
         border: 1px var(--select-primary-color) solid;
         }
 
       }
 
       option {
+      border-radius: 5px;
+      padding: .5em;
       
         &::checkmark {
         display: none;
@@ -113,8 +119,9 @@
     ::picker(select) {
     border-radius: 5px;
     box-shadow: 0px 4px 16px rgb(0 0 0 / .8);
-    line-height: 2;
+    line-height: normal;
     margin: 1em 0 0 2em;
+    padding: 1em;
     scrollbar-color: var(--select-primary-color) transparent;
     scrollbar-width: thin;
     }
