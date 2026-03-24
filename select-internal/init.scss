@@ -72,11 +72,6 @@
       rotate: 180deg;
       }
 
-      > option {
-      background-color: #eee;
-      margin-block-end: 1em;
-      }
-
       legend {
       color: var(--select-primary-color);
       }
@@ -100,6 +95,11 @@
       border-radius: 5px;
       padding: .5em;
       text-wrap: wrap;
+
+        &[value=""] {
+        background-color: #eee;
+        margin-block-end: 1em;
+        }
       
         &::checkmark {
         display: none;
