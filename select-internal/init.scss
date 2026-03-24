@@ -93,12 +93,12 @@
 
       option {
       border-radius: 5px;
+      margin-block-end: 1em;
       padding: .5em;
       text-wrap: wrap;
 
         &[value=""] {
         background-color: #eee;
-        margin-block-end: 1em;
         }
       
         &::checkmark {
