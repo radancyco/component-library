@@ -485,7 +485,7 @@ components:
       - name: "Placeholder Option (Optgroup)" 
         id: "optgroup"
 
-      - name: "Placeholder Option (Optgroup) - Custom" 
+      - name: "Option (Optgroup) - Custom Select" 
         id: "optgroup-custom"
 
   - id: "step-indicator"
