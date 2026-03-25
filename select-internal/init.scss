@@ -73,15 +73,23 @@
       rotate: 180deg;
       }
 
+      optgroup {
+        
+        option {
+        margin-inline-start: 1em;
+        }
+
+      }
+
       legend {
       color: var(--select-primary-color);
-      margin-block-end: calc(8rem / 16);
+      margin-block-end: 1em;
       }
 
       option {
       border-radius: var(--select-border-radius);
       margin-block-end: calc(8rem / 16);
-      padding: calc(8rem / 16);
+      padding: calc(8rem / 16) calc(8rem / 16) calc(8rem / 16) 1em;
       
         &::checkmark {
         border-radius: var(--select-border-radius);
