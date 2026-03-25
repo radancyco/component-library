@@ -89,12 +89,10 @@
         }
       
         &::checkmark {
-        border-radius: 3px;
+        border-radius: 5px;
         border: 1px #fff solid;
         color: #fff;
-        margin-inline-start: auto;
-        order: 1;
-        padding: 3px 6px;
+        padding: 2px 6px;
         }
 
         &:focus, &:hover {
