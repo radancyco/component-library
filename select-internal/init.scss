@@ -65,7 +65,7 @@
 
       &::picker-icon {
       color: var(--select-primary-color);
-      transition: 0.4s rotate;
+      transition: .4s rotate;
       }
 
       &:open::picker-icon {
@@ -92,6 +92,8 @@
         border-radius: 5px;
         border: 1px #fff solid;
         color: #fff;
+        margin-inline-start: auto;
+        order: 1;
         padding: 2px 6px;
         }
 
