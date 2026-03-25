@@ -74,21 +74,8 @@
 
       legend {
       color: var(--select-primary-color);
-      }
-
-      div {
-      display: grid;
-      gap: 1em;
-      grid-template-columns: 1fr 1fr;
-      padding: 1em;
-      }
-
-      optgroup {
-
-        option {
-        border: 1px var(--select-primary-color) solid;
-        }
-
+      font-size: 1.1rem;
+      margin-block-end: .5em;
       }
 
       option {
@@ -102,7 +89,12 @@
         }
       
         &::checkmark {
-        display: none;
+        border-radius: 3px;
+        border: 1px #fff solid;
+        color: #fff;
+        margin-inline-start: auto;
+        order: 1;
+        padding: 3px 6px;
         }
 
         &:focus, &:hover {
