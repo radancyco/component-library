@@ -92,7 +92,7 @@
       padding: calc(8rem / 16) calc(8rem / 16) calc(8rem / 16) 1rem;
       
         &::checkmark {
-        border-radius: var(--select-border-radius);
+        border-radius: 100vw;
         border: calc(1rem / 16) #fff solid;
         color: #fff;
         margin-inline-start: auto;
