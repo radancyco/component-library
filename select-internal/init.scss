@@ -93,8 +93,9 @@
       
         &::checkmark {
         border-radius: 100vw;
-        border: calc(1rem / 16) #fff solid;
+        border: 2px #fff solid;
         color: #fff;
+        font-weight: bold;
         margin-inline-start: auto;
         order: 1;
         padding: calc(2rem / 16) calc(6rem / 16);
