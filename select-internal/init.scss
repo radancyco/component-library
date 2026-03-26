@@ -76,20 +76,20 @@
       optgroup {
         
         option {
-        margin-inline-start: 1em;
+        margin-inline-start: 1rem;
         }
 
       }
 
       legend {
       color: var(--select-primary-color);
-      margin-block-end: 1em;
+      margin-block: 1rem;
       }
 
       option {
       border-radius: var(--select-border-radius);
       margin-block-end: calc(8rem / 16);
-      padding: calc(8rem / 16) calc(8rem / 16) calc(8rem / 16) 1em;
+      padding: calc(8rem / 16) calc(8rem / 16) calc(8rem / 16) 1rem;
       
         &::checkmark {
         border-radius: var(--select-border-radius);
@@ -130,9 +130,8 @@
     border-radius: var(--select-border-radius);
     border: calc(1rem / 16) #666 solid;
     box-shadow: 0 calc(4rem / 16) calc(16rem / 16) rgb(0 0 0 / .8);
-    margin: 1em 1em 0 0;
-    padding: 1em;
-    resize: both;
+    margin: 1rem 1rem 0 0;
+    padding: 1rem;
     scrollbar-color: var(--select-primary-color) transparent;
     scrollbar-width: thin;
     }
