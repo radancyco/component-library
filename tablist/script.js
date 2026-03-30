@@ -136,9 +136,9 @@
 
         tab.addEventListener("keydown", (e) => {
 
-          // Check if the key pressed is an arrow key
+          // Check if the key pressed is an arrow key or Home/End
 
-          if (["ArrowUp", "ArrowRight", "ArrowDown", "ArrowLeft"].includes(e.key)) {
+          if (["ArrowUp", "ArrowRight", "ArrowDown", "ArrowLeft", "Home", "End"].includes(e.key)) {
 
             e.preventDefault(); // Prevent default scrolling behavior when arrows keys clicked.
 
@@ -156,10 +156,18 @@
 
               focusedIndex = (focusedIndex + 1) % tabLinks.length; // Move right
 
+            } else if (e.key === "Home") {
+
+              focusedIndex = 0; // Move to first tab
+
+            } else if (e.key === "End") {
+
+              focusedIndex = tabLinks.length - 1; // Move to last tab
+
             }
 
             // Focus and trigger event
-    
+
             tabLinks[focusedIndex].focus();
             tabLinks[focusedIndex].click();
 
