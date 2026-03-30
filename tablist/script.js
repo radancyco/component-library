@@ -183,8 +183,8 @@
 
         panel.setAttribute("aria-labelledby", `tab-${panelID}`);
         panel.setAttribute("role", "tabpanel");
-        panel.setAttribute("hidden", "");
         panel.setAttribute("tabindex", "0");
+        panel.setAttribute("hidden", "");
 
         if (panelID === URLFragment) {
 
