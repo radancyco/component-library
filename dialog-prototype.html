@@ -30,7 +30,7 @@ layout: none
 
                     </button>
 
-                    <dialog aria-labelledby="media-title-1" closedby="any" id="youtube-video-title">
+                    <dialog class="media" aria-labelledby="media-title-1" closedby="any" id="youtube-video-title">
 
                         <div class="media__header">
 
@@ -48,11 +48,11 @@ layout: none
 
                         <div class="media__container">
 
-                            <div class="media__transcript--wrapper">
+                            <div class="media__transcript">
 
                                 <h2 id="media__transcript--hdr-1" class="media__transcript--hdr">Transcript</h2>
 
-                                <div aria-labelledby="media__transcript--hdr-1" class="media__transcript" role="region" tabindex="0"></div>
+                                <div aria-labelledby="media__transcript--hdr-1" class="media__transcript--content" role="region" tabindex="0"></div>
 
                             </div>
 
@@ -110,7 +110,7 @@ layout: none
 
                     </button>
 
-                    <dialog aria-labelledby="media-title-2" closedby="any" id="html-video-title">
+                    <dialog class="media" aria-labelledby="media-title-2" closedby="any" id="html-video-title">
 
                         <div class="media__header">
 
@@ -128,11 +128,11 @@ layout: none
 
                         <div class="media__container">
 
-                            <div class="media__transcript--wrapper">
+                            <div class="media__transcript">
 
                                 <h2 id="media__transcript--hdr-2" class="media__transcript--hdr">Transcript</h2>
 
-                                <div aria-labelledby="media__transcript--hdr-2" class="media__transcript" role="region" tabindex="0"></div>
+                                <div aria-labelledby="media__transcript--hdr-2" class="media__transcript--content" role="region" tabindex="0"></div>
 
                             </div>
 
@@ -185,7 +185,7 @@ layout: none
 
                     </button>
 
-                    <dialog aria-labelledby="media-title-3" closedby="any" id="vimeo-video-title">
+                    <dialog class="media" aria-labelledby="media-title-3" closedby="any" id="vimeo-video-title">
 
                         <div class="media__header">
 
@@ -203,11 +203,11 @@ layout: none
 
                         <div class="media__container">
 
-                            <div class="media__transcript--wrapper">
+                            <div class="media__transcript">
 
                                 <h2 id="media__transcript--hdr-3" class="media__transcript--hdr">Transcript</h2>
 
-                                <div aria-labelledby="media__transcript--hdr-3" class="media__transcript" role="region" tabindex="0"></div>
+                                <div aria-labelledby="media__transcript--hdr-3" class="media__transcript--content" role="region" tabindex="0"></div>
 
                             </div>
 
@@ -269,7 +269,7 @@ layout: none
 
                     </button>
 
-                    <dialog aria-labelledby="media-title-4" closedby="any" id="other-video-title">
+                    <dialog class="media" aria-labelledby="media-title-4" closedby="any" id="other-video-title">
 
                         <div class="media__header">
 
@@ -287,11 +287,11 @@ layout: none
 
                         <div class="media__container">
 
-                            <div class="media__transcript--wrapper">
+                            <div class="media__transcript">
 
                                 <h2 id="media__transcript--hdr-4" class="media__transcript--hdr">Transcript</h2>
 
-                                <div aria-labelledby="media__transcript--hdr-4" class="media__transcript" role="region" tabindex="0"></div>
+                                <div aria-labelledby="media__transcript--hdr-4" class="media__transcript--content" role="region" tabindex="0"></div>
 
                             </div>
 
@@ -319,7 +319,7 @@ layout: none
 
 <script>
 
-document.querySelectorAll("dialog").forEach(dialog => {
+document.querySelectorAll(".media").forEach(dialog => {
 
   const btnTranscripts = dialog.querySelectorAll(".media__controls--transcript");
   const mediaContainer = dialog.querySelector(".media__container");
@@ -330,7 +330,7 @@ document.querySelectorAll("dialog").forEach(dialog => {
 
   });
 
-  const transcriptTarget = dialog.querySelector(".media__transcript");
+  const transcriptTarget = dialog.querySelector(".media__transcript--content");
   const transcriptSource = dialog.closest(".media-module")?.parentElement?.querySelector(".media__transcript--container");
 
   if (!transcriptSource) {
