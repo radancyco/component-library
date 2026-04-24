@@ -14,6 +14,15 @@ layout: none
 
 <body>
 
+{% assign mediaVideo_1_String = "Find The Right Program For You: Citi Career Conversations - Ep. 2" %}
+{% assign mediaVideo_1 = mediaVideo_1_String | downcase | replace: " - ", "-" | replace: " ", "-" | replace: "'", "" | replace: ":", "" | replace: ".", "" %}
+{% assign mediaVideo_2_String = "The Empire Strikes Back" %}
+{% assign mediaVideo_2 = mediaVideo_2_String | downcase | replace: " - ", "-" | replace: " ", "-" | replace: "'", "" | replace: ":", "" | replace: ".", "" %}
+{% assign mediaVideo_3_String = "Vimeo Video Title" %}
+{% assign mediaVideo_3 = mediaVideo_3_String | downcase | replace: " - ", "-" | replace: " ", "-" | replace: "'", "" | replace: ":", "" | replace: ".", "" %}
+{% assign mediaVideo_4_String = "Other Video Title" %}
+{% assign mediaVideo_4 = mediaVideo_4_String | downcase | replace: " - ", "-" | replace: " ", "-" | replace: "'", "" | replace: ":", "" | replace: ".", "" %}
+
 <main>
 
     <div class="section-41 section-41a" data-section-id="176578" data-layout-item-id="62564">
@@ -24,27 +33,29 @@ layout: none
 
                 <div class="media-module section-41__video">
 
-                    <button class="section-41__video--button media__trigger" command="show-modal" commandfor="youtube-video-title" data-custom-event="true" data-custom-category="Play Video" data-custom-label="YouTube Video Title">
+                    <div class="section-41-thumbnail">
+                    
+                        <img alt="" src="//tbcdn.talentbrew.com/company/287/v3/img/placeholders/placeholder_section41.webp" loading="lazy">
 
-                        <img alt="YouTube Video Title" src="//tbcdn.talentbrew.com/company/287/v3/img/placeholders/placeholder_section41.webp" loading="lazy">
+                    </div>
+                    
+                    <h2 class="section-41__headline"><button class="section-41__video--button media__trigger" command="show-modal" commandfor="{{ mediaVideo_1 }}" data-custom-event="true" data-custom-category="Play Video" data-custom-label="YouTube Video Title">{{ mediaVideo_1_String }}</button></h2>
 
-                    </button>
+                    <dialog class="media" aria-labelledby="{{ mediaVideo_1 }}-hdr" closedby="any" id="{{ mediaVideo_1 }}">
 
-                    <dialog class="media" aria-labelledby="media-title-1" closedby="any" id="youtube-video-title">
+                        <header class="media__header">
 
-                        <div class="media__header">
-
-                            <h1 id="media-title-1">YouTube Video Title</h1>
+                            <h1 id="{{ mediaVideo_1 }}-hdr">{{ mediaVideo_1_String }}</h1>
 
                             <div class="media__controls">
 
-                                <button aria-label="Close Video" class="media__controls--close" commandfor="youtube-video-title" command="close"><i class="fa-regular fa-xmark" aria-hidden="true"></i></button>
+                                <button aria-label="Close Video" class="media__controls--close" commandfor="{{ mediaVideo_1 }}" command="close"><i class="fa-regular fa-xmark" aria-hidden="true"></i></button>
 
                                 <button aria-label="Video Transcript" class="media__controls--transcript"><i class="fa-regular fa-file-lines" aria-hidden="true"></i></button>
 
                             </div>
 
-                        </div>
+                        </header>
 
                         <div class="media__container">
 
@@ -58,7 +69,7 @@ layout: none
 
                             <div class="media__asset">
 
-                                <iframe allow="autoplay; fullscreen" class="media__video" src="https://www.youtube.com/embed/vu50E9X6PEs?si=yOcJf9I1XqywFExS" title="YouTube Video Title"></iframe>
+                                <iframe allow="autoplay; fullscreen" class="media__video" src="https://www.youtube.com/embed/vu50E9X6PEs?si=yOcJf9I1XqywFExS" title="{{ mediaVideo_1_String }}"></iframe>
 
                             </div>
 
@@ -66,13 +77,11 @@ layout: none
 
                     </dialog>
 
-                    <h2 class="section-41__headline">YouTube Video Title</h2>
-
                 </div>
 
                 <p class="section-41__transcript-icon">Transcript</p>
 
-                <div class="media__transcript--container section-41__transcript">
+                <div class="media__transcript--container section-41__transcript" hidden>
 
                     <p><time>0:00</time> <strong>Lauren:</strong> Hi, I'm Lauren. Today, we're diving into Citi Early Insight programs offered in North America. Whether you're into finance, technology, or anything else, we have a program for you. At Citi, we have global programs for students from all majors and years. Let's get things started by talking about first and second-year programs.</p>
 
@@ -104,27 +113,29 @@ layout: none
 
                 <div class="media-module section-41__video">
 
-                    <button class="section-41__video--button media__trigger" command="show-modal" commandfor="html-video-title" data-custom-event="true" data-custom-category="Play Video" data-custom-label="HTML Video Title">
+                    <div class="section-41-thumbnail">
 
-                        <img alt="HTML Video Title" src="//tbcdn.talentbrew.com/company/287/v3/img/placeholders/placeholder_section41.webp" loading="lazy">
+                        <img alt="" src="//tbcdn.talentbrew.com/company/287/v3/img/placeholders/placeholder_section41.webp" loading="lazy">
 
-                    </button>
+                    </div>
+                    
+                    <h2 class="section-41__headline"><button class="section-41__video--button media__trigger" command="show-modal" commandfor="{{ mediaVideo_2 }}" data-custom-event="true" data-custom-category="Play Video" data-custom-label="{{ mediaVideo_2_String }}">{{ mediaVideo_2_String }}</button></h2>
 
-                    <dialog class="media" aria-labelledby="media-title-2" closedby="any" id="html-video-title">
+                    <dialog class="media" aria-labelledby="{{ mediaVideo_2 }}-hdr" closedby="any" id="{{ mediaVideo_2 }}">
 
-                        <div class="media__header">
+                        <header class="media__header">
 
-                            <h1 id="media-title-2">HTML Video Title</h1>
+                            <h1 id="{{ mediaVideo_2 }}-hdr">{{ mediaVideo_2_String }}</h1>
 
                             <div class="media__controls">
 
-                                <button aria-label="Close Video" class="media__controls--close" commandfor="html-video-title" command="close"><i class="fa-regular fa-xmark" aria-hidden="true"></i></button>
+                                <button aria-label="Close Video" class="media__controls--close" commandfor="{{ mediaVideo_2 }}" command="close"><i class="fa-regular fa-xmark" aria-hidden="true"></i></button>
 
                                 <button aria-label="Video Transcript" class="media__controls--transcript"><i class="fa-regular fa-file-lines" aria-hidden="true"></i></button>
 
                             </div>
 
-                        </div>
+                        </header>
 
                         <div class="media__container">
 
@@ -138,7 +149,7 @@ layout: none
 
                             <div class="media__asset">
 
-                                <video class="media__video" aria-label="HTML Video Title" controls crossorigin="anonymous" loading="lazy">
+                                <video class="media__video" aria-label="{{ mediaVideo_2_String }}" controls crossorigin="anonymous" loading="lazy">
                                     <source src="https://radancy.dev/media/2021-08-05-accessible-html5-video/example.mp4" type="video/mp4">
                                     <track default label="English" kind="captions" src="https://radancy.dev/media/2021-08-05-accessible-html5-video/example.vtt" srclang="en">
                                 </video>
@@ -149,13 +160,11 @@ layout: none
 
                     </dialog>
 
-                    <h2 class="section-41__headline">HTML Video Title</h2>
-
                 </div>
 
                 <p class="section-41__transcript-icon">Transcript</p>
 
-                <div class="media__transcript--container section-41__transcript">
+                <div class="media__transcript--container section-41__transcript" hidden>
 
                     <p><strong>Narrator (Harrison Ford):</strong> Luke Skywalker and Han Solo rescue the princess, destroy the Death Star, but their story didn't end there.</p>
 
@@ -179,27 +188,29 @@ layout: none
 
                 <div class="media-module section-41__video">
 
-                    <button class="section-41__video--button media__trigger" command="show-modal" commandfor="vimeo-video-title" data-custom-event="true" data-custom-category="Play Video" data-custom-label="Vimeo Video Title">
+                    <div class="section-41-thumbnail">
 
-                        <img alt="Vimeo Video Title" src="//tbcdn.talentbrew.com/company/287/v3/img/placeholders/placeholder_section41.webp" loading="lazy">
+                        <img alt="" src="//tbcdn.talentbrew.com/company/287/v3/img/placeholders/placeholder_section41.webp" loading="lazy">
 
-                    </button>
+                    </div>
+                    
+                    <h2 class="section-41__headline"><button class="section-41__video--button media__trigger" command="show-modal" commandfor="{{ mediaVideo_3 }}" data-custom-event="true" data-custom-category="Play Video" data-custom-label="{{ mediaVideo_3_String }}">{{ mediaVideo_3_String }}</button></h2>
 
-                    <dialog class="media" aria-labelledby="media-title-3" closedby="any" id="vimeo-video-title">
+                    <dialog class="media" aria-labelledby="{{ mediaVideo_3 }}-hdr" closedby="any" id="{{ mediaVideo_3 }}">
 
-                        <div class="media__header">
+                        <header class="media__header">
 
-                            <h1 id="media-title-3">Vimeo Video Title</h1>
+                            <h1 id="{{ mediaVideo_3 }}-hdr">{{ mediaVideo_3_String }}</h1>
 
                             <div class="media__controls">
 
-                                <button aria-label="Close Video" class="media__controls--close" commandfor="vimeo-video-title" command="close"><i class="fa-regular fa-xmark" aria-hidden="true"></i></button>
+                                <button aria-label="Close Video" class="media__controls--close" commandfor="{{ mediaVideo_3 }}" command="close"><i class="fa-regular fa-xmark" aria-hidden="true"></i></button>
 
                                 <button aria-label="Video Transcript" class="media__controls--transcript"><i class="fa-regular fa-file-lines" aria-hidden="true"></i></button>
 
                             </div>
 
-                        </div>
+                        </header>
 
                         <div class="media__container">
 
@@ -213,7 +224,7 @@ layout: none
 
                             <div class="media__asset">
 
-                                <iframe allow="autoplay; fullscreen" class="media__video" src="https://player.vimeo.com/video/744850364?portrait=0&amp;amp;color=FFFFFF&amp;amp;title=1&amp;amp;byline=1&amp;amp;autoplay=1&amp;amp;loop=0" title="Vimeo Video Title"></iframe>
+                                <iframe allow="autoplay; fullscreen" class="media__video" src="https://player.vimeo.com/video/744850364?portrait=0&amp;amp;color=FFFFFF&amp;amp;title=1&amp;amp;byline=1&amp;amp;autoplay=1&amp;amp;loop=0" title="{{ mediaVideo_3_String }}"></iframe>
              
                             </div>
 
@@ -221,15 +232,13 @@ layout: none
 
                     </dialog>
 
-                    <h2 class="section-41__headline">Vimeo Video Title</h2>
-
                 </div>
 
                 <p class="section-41__transcript-icon">Transcript</p>
 
-                <div class="media__transcript--container section-41__transcript">
+                <div class="media__transcript--container section-41__transcript" hidden>
 
-                     <p><time>0:00</time> up to be here of sales driving and mentoring different teams and resolving issues. You know, I started out as a relationship manager</p>
+                    <p><time>0:00</time> up to be here of sales driving and mentoring different teams and resolving issues. You know, I started out as a relationship manager</p>
 
                     <p><time>0:25</time> as well goal calling clients always on the go setting up appointments now is the head of retail banking. I look forward to making</p>
 
@@ -263,27 +272,29 @@ layout: none
 
                 <div class="media-module section-41__video">
 
-                    <button class="section-41__video--button media__trigger" command="show-modal" commandfor="other-video-title" data-custom-event="true" data-custom-category="Play Video" data-custom-label="Other Video Title">
+                    <div class="section-41-thumbnail">
 
-                        <img alt="Other Video Title" src="//tbcdn.talentbrew.com/company/287/v3/img/placeholders/placeholder_section41.webp" loading="lazy">
+                        <img alt="" src="//tbcdn.talentbrew.com/company/287/v3/img/placeholders/placeholder_section41.webp" loading="lazy">
 
-                    </button>
+                    </div>
+                    
+                    <h2 class="section-41__headline"><button class="section-41__video--button media__trigger" command="show-modal" commandfor="{{ mediaVideo_4 }}" data-custom-event="true" data-custom-category="Play Video" data-custom-label="{{ mediaVideo_4_String }}">{{ mediaVideo_4_String }}</button></h2>
 
-                    <dialog class="media" aria-labelledby="media-title-4" closedby="any" id="other-video-title">
+                    <dialog class="media" aria-labelledby="{{ mediaVideo_4 }}-hdr" closedby="any" id="{{ mediaVideo_4 }}">
 
-                        <div class="media__header">
+                        <header class="media__header">
 
-                            <h1 id="media-title-4">Other Video Title</h1>
+                            <h1 id="{{ mediaVideo_4 }}-hdr">{{ mediaVideo_4_String }}</h1>
 
                             <div class="media__controls">
 
-                                <button aria-label="Close Video" class="media__controls--close" commandfor="other-video-title" command="close"><i class="fa-regular fa-xmark" aria-hidden="true"></i></button>
+                                <button aria-label="Close Video" class="media__controls--close" commandfor="{{ mediaVideo_4 }}" command="close"><i class="fa-regular fa-xmark" aria-hidden="true"></i></button>
 
                                 <button aria-label="Video Transcript" class="media__controls--transcript"><i class="fa-regular fa-file-lines" aria-hidden="true"></i></button>
 
                             </div>
 
-                        </div>
+                        </header>
 
                         <div class="media__container">
 
@@ -297,15 +308,13 @@ layout: none
 
                             <div class="media__asset">
 
-                                <iframe allow="autoplay; fullscreen" class="media__video" src="https://www.youtube.com/embed/ScMzIvxBSi4" title="Other Video Title"></iframe>
+                                <iframe allow="autoplay; fullscreen" class="media__video" src="https://www.youtube.com/embed/ScMzIvxBSi4" title="{{ mediaVideo_4_String }}"></iframe>
 
                             </div>
 
                         </div>
 
                     </dialog>
-
-                    <h2 class="section-41__headline">Other Video Title</h2>
 
                 </div>
 
