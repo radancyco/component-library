@@ -1,0 +1,105 @@
+---
+---
+
+.section-41__transcript {
+display: none;
+}
+
+dialog {
+block-size: 80vh;
+border-radius: 6px;
+border: 0;
+box-shadow: 0px 4px 16px rgba(0, 0, 0, .8);
+grid-template-rows: auto 1fr;
+inline-size: 75vw;
+inset: 0;
+margin: auto;
+max-block-size: 90vh;
+min-inline-size: 20vh;
+overflow: hidden;
+padding: 1em;
+position: fixed;
+resize: both;
+  
+  &[open] {
+  display: grid;
+  }
+  
+   &::backdrop {
+   background-color: rgba(0, 0, 0, .5);
+   }
+  
+  .media__header {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
+  margin-block-end: 1em;
+    
+    h1 {
+    margin: 0;
+    }
+    
+  }
+  
+  .media__controls {
+    
+    button {
+    background-color: rebeccapurple;
+    border-radius: 5px;
+    border: 0;
+    color: #fff;
+    padding: 1em;
+    }
+    
+  }
+
+  .media__container {
+  display: grid;
+  gap: .5em;
+  min-block-size: 0;
+    
+    @media(min-width: 400px) {
+      
+      grid-template-columns: minmax(0, 0fr) minmax(0, 1fr);
+      
+    }
+ 
+    &.is-open {
+      
+      @media(min-width: 400px) {
+      
+        grid-template-columns: minmax(0, 0.3fr) minmax(0, 0.7fr); 
+         
+      }
+
+      .media__transcript {
+      visibility: visible;
+      }
+      
+    }
+
+  }
+
+  .media__transcript {
+  background-color: #eee;
+  border-radius: 10px;
+  padding: 1em;
+  overflow-y: auto;
+  scrollbar-color: rebeccapurple transparent;
+  scrollbar-gutter: stable;
+  visibility: hidden;
+  }
+  
+  .media__asset {
+  border-radius: 10px;
+  overflow: hidden;
+  }
+
+  .media__video {
+  background-color: #eee;
+  block-size: 100%;
+  border: 0;
+  inline-size: 100%;
+  }
+
+}
