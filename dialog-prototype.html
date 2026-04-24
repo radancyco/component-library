@@ -328,88 +328,94 @@ layout: none
 
 <script>
 
-document.querySelectorAll(".media").forEach(dialog => {
+(() => {
 
-  const btnTranscripts = dialog.querySelectorAll(".media__controls--transcript");
-  const mediaContainer = dialog.querySelector(".media__container");
+  "use strict";
 
-  dialog.querySelectorAll("iframe").forEach(iframe => {
+    document.querySelectorAll(".media").forEach(dialog => {
 
-    iframe.dataset.src = iframe.src;
-
-  });
-
-  const transcriptTarget = dialog.querySelector(".media__transcript--content");
-  const transcriptSource = dialog.closest(".media-module")?.parentElement?.querySelector(".media__transcript--container");
-
-  if (!transcriptSource) {
-
-    btnTranscripts.forEach(btn => btn.remove());
-
-  }
-
-  btnTranscripts.forEach(btn => btn.addEventListener("click", () => {
-
-    if (transcriptSource && transcriptTarget && !transcriptTarget.innerHTML.trim()) {
-
-      transcriptTarget.innerHTML = transcriptSource.innerHTML;
-
-    }
-
-    mediaContainer?.classList.toggle("is-open");
-
-  }));
-
-  dialog.addEventListener("cancel", (e) => {
-
-    e.preventDefault();
-
-    dialog.close();
-
-  });
-
-  dialog.addEventListener("toggle", (e) => {
+    const btnTranscripts = dialog.querySelectorAll(".media__controls--transcript");
+    const mediaContainer = dialog.querySelector(".media__container");
 
     dialog.querySelectorAll("iframe").forEach(iframe => {
 
-      if (e.newState === "open") {
-
-        const url = new URL(iframe.dataset.src);
-        url.searchParams.set("autoplay", "1");
-        iframe.src = url.toString();
-
-      } else {
-
-        iframe.src = "";
-
-      }
+        iframe.dataset.src = iframe.src;
 
     });
 
-    if (e.newState === "open") {
+    const transcriptTarget = dialog.querySelector(".media__transcript--content");
+    const transcriptSource = dialog.closest(".media-module")?.parentElement?.querySelector(".media__transcript--container");
 
-      dialog.querySelectorAll("video").forEach(video => video.play());
+    if (!transcriptSource) {
 
-    }
-
-    if (e.newState !== "open") {
-
-      dialog.querySelectorAll("video").forEach(video => {
-
-        video.pause();
-        video.currentTime = 0;
-
-      });
-
-      dialog.querySelector(".media__container")?.classList.remove("is-open");
-
-      dialog.removeAttribute("style");
+        btnTranscripts.forEach(btn => btn.remove());
 
     }
 
-  });
+    btnTranscripts.forEach(btn => btn.addEventListener("click", () => {
 
-});
+        if (transcriptSource && transcriptTarget && !transcriptTarget.innerHTML.trim()) {
+
+        transcriptTarget.innerHTML = transcriptSource.innerHTML;
+
+        }
+
+        mediaContainer?.classList.toggle("is-open");
+
+    }));
+
+    dialog.addEventListener("cancel", (e) => {
+
+        e.preventDefault();
+
+        dialog.close();
+
+    });
+
+    dialog.addEventListener("toggle", (e) => {
+
+        dialog.querySelectorAll("iframe").forEach(iframe => {
+
+        if (e.newState === "open") {
+
+            const url = new URL(iframe.dataset.src);
+            url.searchParams.set("autoplay", "1");
+            iframe.src = url.toString();
+
+        } else {
+
+            iframe.src = "";
+
+        }
+
+        });
+
+        if (e.newState === "open") {
+
+        dialog.querySelectorAll("video").forEach(video => video.play());
+
+        }
+
+        if (e.newState !== "open") {
+
+        dialog.querySelectorAll("video").forEach(video => {
+
+            video.pause();
+            video.currentTime = 0;
+
+        });
+
+        dialog.querySelector(".media__container")?.classList.remove("is-open");
+
+        dialog.removeAttribute("style");
+
+        }
+
+    });
+
+    });
+
+})();
 
 </script>
 
