@@ -20,6 +20,15 @@ overflow: hidden;
 padding: 1em;
 position: fixed;
 resize: both;
+
+  p:not(:last-child) {
+  margin-block-end: 1em;;
+  }
+
+  time {
+  color: rebeccapurple;
+  font-weight: bold;
+  }
   
   &[open] {
   display: grid;
