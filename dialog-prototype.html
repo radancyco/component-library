@@ -16,8 +16,6 @@ layout: none
 
 <main>
 
-    <h1>Video Example</h1>
-
     <div class="section-41 section-41a" data-section-id="176578" data-layout-item-id="62564">
 
         <div class="partial-wrapper">
@@ -40,9 +38,9 @@ layout: none
 
                             <div class="media__controls">
 
-                                <button class="media__controls--close" commandfor="youtube-video-title" command="close"><i class="fa-regular fa-xmark" aria-hidden="true"></i><span>Close</span></button>
+                                <button aria-label="Close Video" class="media__controls--close" commandfor="youtube-video-title" command="close"><i class="fa-regular fa-xmark" aria-hidden="true"></i></button>
 
-                                <button class="media__controls--transcript"><i class="fa-regular fa-file-lines" aria-hidden="true"></i><span>Transcript</span></button>
+                                <button aria-label="Video Transcript" class="media__controls--transcript"><i class="fa-regular fa-file-lines" aria-hidden="true"></i></button>
 
                             </div>
 
@@ -50,7 +48,13 @@ layout: none
 
                         <div class="media__container">
 
-                            <div aria-label="Transcript" class="media__transcript" role="region" tabindex="0"></div>
+                            <div class="media__transcript--wrapper">
+
+                                <h2 id="media__transcript--hdr-1" class="media__transcript--hdr">Transcript</h2>
+
+                                <div aria-labelledby="media__transcript--hdr-1" class="media__transcript" role="region" tabindex="0"></div>
+
+                            </div>
 
                             <div class="media__asset">
 
@@ -110,13 +114,13 @@ layout: none
 
                         <div class="media__header">
 
-                            <h1 id="media-title-1">HTML Video Title</h1>
+                            <h1 id="media-title-2">HTML Video Title</h1>
 
                             <div class="media__controls">
 
-                                <button class="media__controls--close" commandfor="html-video-title" command="close"><i class="fa-regular fa-xmark" aria-hidden="true"></i><span>Close</span></button>
+                                <button aria-label="Close Video" class="media__controls--close" commandfor="html-video-title" command="close"><i class="fa-regular fa-xmark" aria-hidden="true"></i></button>
 
-                                <button class="media__controls--transcript"><i class="fa-regular fa-file-lines" aria-hidden="true"></i><span>Transcript</span></button>
+                                <button aria-label="Video Transcript" class="media__controls--transcript"><i class="fa-regular fa-file-lines" aria-hidden="true"></i></button>
 
                             </div>
 
@@ -124,7 +128,13 @@ layout: none
 
                         <div class="media__container">
 
-                            <div aria-label="Transcript" class="media__transcript" role="region" tabindex="0"></div>
+                            <div class="media__transcript--wrapper">
+
+                                <h2 id="media__transcript--hdr-2" class="media__transcript--hdr">Transcript</h2>
+
+                                <div aria-labelledby="media__transcript--hdr-2" class="media__transcript" role="region" tabindex="0"></div>
+
+                            </div>
 
                             <div class="media__asset">
 
@@ -183,9 +193,9 @@ layout: none
 
                             <div class="media__controls">
 
-                                <button class="media__controls--close" commandfor="vimeo-video-title" command="close"><i class="fa-regular fa-xmark" aria-hidden="true"></i><span>Close</span></button>
+                                <button aria-label="Close Video" class="media__controls--close" commandfor="vimeo-video-title" command="close"><i class="fa-regular fa-xmark" aria-hidden="true"></i></button>
 
-                                <button class="media__controls--transcript"><i class="fa-regular fa-file-lines" aria-hidden="true"></i><span>Transcript</span></button>
+                                <button aria-label="Video Transcript" class="media__controls--transcript"><i class="fa-regular fa-file-lines" aria-hidden="true"></i></button>
 
                             </div>
 
@@ -193,12 +203,18 @@ layout: none
 
                         <div class="media__container">
 
-                            <div aria-label="Transcript" class="media__transcript" role="region" tabindex="0"></div>
+                            <div class="media__transcript--wrapper">
+
+                                <h2 id="media__transcript--hdr-3" class="media__transcript--hdr">Transcript</h2>
+
+                                <div aria-labelledby="media__transcript--hdr-3" class="media__transcript" role="region" tabindex="0"></div>
+
+                            </div>
 
                             <div class="media__asset">
 
-                                <iframe allow="autoplay; fullscreen" class="media__video" src="https://player.vimeo.com/video/100902001?portrait=0&amp;amp;color=FFFFFF&amp;amp;title=1&amp;amp;byline=1&amp;amp;autoplay=1&amp;amp;loop=0" title="Vimeo Video Title"></iframe>
-
+                                <iframe allow="autoplay; fullscreen" class="media__video" src="https://player.vimeo.com/video/744850364?portrait=0&amp;amp;color=FFFFFF&amp;amp;title=1&amp;amp;byline=1&amp;amp;autoplay=1&amp;amp;loop=0" title="Vimeo Video Title"></iframe>
+             
                             </div>
 
                         </div>
@@ -213,7 +229,31 @@ layout: none
 
                 <div class="media__transcript--container section-41__transcript">
 
-                    <p><strong>Vimeo Video Transcript:</strong> Transcript Text</p>
+                     <p><time>0:00</time> up to be here of sales driving and mentoring different teams and resolving issues. You know, I started out as a relationship manager</p>
+
+                    <p><time>0:25</time> as well goal calling clients always on the go setting up appointments now is the head of retail banking. I look forward to making</p>
+
+                    <p><time>0:34</time> even more of an impact. I actually came from a real estate background. Nothing to do with banking at all. And now I</p>
+
+                    <p><time>0:43</time> have one numerous Awards in my first year and progress to City goal. I started off as a management associate doing job rotations within</p>
+
+                    <p><time>0:55</time> City to find my preference and the end I chose to be in Sales Management with the right guidance and opportunities here a city. I am</p>
+
+                    <p><time>1:04</time> confident that newcomers will do extremely well. I'm the new black here with only six months in my cohort or</p>
+
+                    <p><time>1:13</time> past dsms on our first track and as me here, I was dragging with that particular paper. My batch needs took time out to give me to Shen and</p>
+
+                    <p><time>1:26</time> encouragements. And here I am now having cold calling sessions product trainings and setting up Apartments. It may be tough at the start. But there</p>
+
+                    <p><time>1:35</time> is a sense of camaraderie. I feel like I belong As part of the training City Partners rewards an infidelphia to customize an</p>
+
+                    <p><time>1:44</time> exclusive certificate program for relationship managers. Oh, and I'll never forget the gala dinner. We had at a palace during one of our incentive trip to</p>
+
+                    <p><time>1:58</time> Istanbul. I love cities Global clientele. I have a collection of intriguing insights from my meets. It's amazing. Asian world it's poised to be among</p>
+
+                    <p><time>2:08</time> the fastest in the world. There is no better time than now to be in the front seat of where this</p>
+
+                    <p><time>2:19</time> is happening in a bank which gives you Global exposure to clients with Global Experience.</p>
 
                 </div>
 
@@ -237,9 +277,9 @@ layout: none
 
                             <div class="media__controls">
 
-                                <button class="media__controls--close" commandfor="other-video-title" command="close"><i class="fa-regular fa-xmark" aria-hidden="true"></i><span>Close</span></button>
+                                <button aria-label="Close Video" class="media__controls--close" commandfor="other-video-title" command="close"><i class="fa-regular fa-xmark" aria-hidden="true"></i></button>
 
-                                <button class="media__controls--transcript"><i class="fa-regular fa-file-lines" aria-hidden="true"></i><span>Transcript</span></button>
+                                <button aria-label="Video Transcript" class="media__controls--transcript"><i class="fa-regular fa-file-lines" aria-hidden="true"></i></button>
 
                             </div>
 
@@ -247,7 +287,13 @@ layout: none
 
                         <div class="media__container">
 
-                            <div aria-label="Transcript" class="media__transcript" role="region" tabindex="0"></div>
+                            <div class="media__transcript--wrapper">
+
+                                <h2 id="media__transcript--hdr-4" class="media__transcript--hdr">Transcript</h2>
+
+                                <div aria-labelledby="media__transcript--hdr-4" class="media__transcript" role="region" tabindex="0"></div>
+
+                            </div>
 
                             <div class="media__asset">
 
@@ -347,6 +393,8 @@ document.querySelectorAll("dialog").forEach(dialog => {
       });
 
       dialog.querySelector(".media__container")?.classList.remove("is-open");
+
+      dialog.removeAttribute("style");
 
     }
 

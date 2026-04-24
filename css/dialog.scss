@@ -10,6 +10,7 @@ block-size: 80vh;
 border-radius: 6px;
 border: 0;
 box-shadow: 0px 4px 16px rgba(0, 0, 0, .8);
+container-type: inline-size;
 grid-template-rows: auto 1fr;
 inline-size: 75vw;
 inset: 0;
@@ -19,7 +20,12 @@ min-inline-size: 20vh;
 overflow: hidden;
 padding: 1em;
 position: fixed;
-resize: both;
+
+  @media(min-width: 600px) {
+
+      resize: both;
+      
+  }
 
   p:not(:last-child) {
   margin-block-end: 1em;;
@@ -43,14 +49,17 @@ resize: both;
   grid-auto-flow: column;
   justify-content: space-between;
   margin-block-end: 1em;
+  gap: 1rem;
     
     h1 {
     margin: 0;
+    place-self: center;
     }
     
   }
   
   .media__controls {
+  inline-size: max-content;
     
     button {
     background-color: rebeccapurple;
@@ -67,7 +76,7 @@ resize: both;
   gap: .5em;
   min-block-size: 0;
     
-    @media(min-width: 400px) {
+    @container (min-width: 600px) {
       
       grid-template-columns: minmax(0, 0fr) minmax(0, 1fr);
       
@@ -75,13 +84,13 @@ resize: both;
  
     &.is-open {
       
-      @media(min-width: 400px) {
+      @container (min-width: 600px) {
       
         grid-template-columns: minmax(0, 0.3fr) minmax(0, 0.7fr); 
          
       }
 
-      .media__transcript {
+      .media__transcript--wrapper {
       visibility: visible;
       }
       
@@ -89,14 +98,35 @@ resize: both;
 
   }
 
-  .media__transcript {
+  .media__transcript--wrapper {
   background-color: #eee;
   border-radius: 10px;
-  padding: 1em;
+  display: grid;
+  grid-template-rows: max-content;
+  overflow: hidden;
+  padding: 0 .5em;
+  visibility: hidden;
+  }
+
+  .media__transcript--hdr {
+  margin: 0;
+  padding: 1rem .5rem .5rem;
+  font-size: 1.4rem;
+  }
+
+  .media__transcript {
+  mask-image: linear-gradient(to bottom, transparent, #eee 1.5em, #eee calc(100% - 1.5em), transparent);
   overflow-y: auto;
+  overflow-x: hidden;
   scrollbar-color: rebeccapurple transparent;
   scrollbar-gutter: stable;
-  visibility: hidden;
+  padding: 1em .5em;
+  margin-bottom: 1em;
+
+    p {
+    line-height: 1.7;
+    }
+
   }
   
   .media__asset {
@@ -105,7 +135,7 @@ resize: both;
   }
 
   .media__video {
-  background-color: #eee;
+  background-color: #000;
   block-size: 100%;
   border: 0;
   inline-size: 100%;
