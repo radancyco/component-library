@@ -1,0 +1,180 @@
+@using Tmp.TalentBrew.Core
+@using Tmp.TalentBrew.Core.HtmlHelpers
+@using Tmp.TalentBrew.Core.Utilities
+@using Tmp.TalentBrew.Model
+@using System.Text.RegularExpressions;
+@model PublishedMediaModuleModel
+
+
+@functions {    
+
+    public string ToKebabCase(string value) {
+
+        // Replace all non-alphanumeric characters with a dash
+
+        value = Regex.Replace(value, @"[^0-9a-zA-Z\u4e00-\u9fa5]", "-");
+
+        // Replace all subsequent dashes with a single dash
+
+        value = Regex.Replace(value, @"[-]{2,}", "-");
+
+        // Remove any trailing dashes
+
+        value = Regex.Replace(value, @"-+$", string.Empty);
+
+        // Remove any dashes in position zero
+
+        if (value.StartsWith("-")) value = value.Substring(1);
+
+        // Lowercase and return
+
+        return value.ToLower();
+
+    }
+
+}
+
+@if (Model != null) {
+
+if (Model.MediaType == MediaType.ImageFile) {
+
+    <div class="media-module section-41__image">
+
+        <div>
+
+            <img alt="@Model.AltText" src="@Url.CdnUrl(Model.FileNamePath, "TBCDN")" loading="lazy">
+
+        </div>
+
+    </div>
+
+} else if(Model.MediaType == MediaType.Html5Video) {
+
+    @* HTML5 Video with Caption File *@
+
+    <div class="media-module section-41__video">
+
+        @{  
+
+            var videoID = @Model.VideoTitle;
+
+        }
+
+        <div class="section-41-thumbnail">
+    
+            <img alt="" src="@Url.CdnUrl(Model.FileNamePath, "TBCDN")" loading="lazy">
+
+        </div>
+
+        <h2 class="section-41__headline"><button class="section-41__video--button media__trigger" command="show-modal" commandfor="@ToKebabCase(videoID)" data-custom-event="true" data-custom-category="Play Video" data-custom-label="@Model.VideoTitle">@Model.VideoTitle</button></h2>
+
+        <dialog class="media" aria-labelledby="@ToKebabCase(videoID)-hdr" closedby="any" id="@ToKebabCase(videoID)">
+
+            <header class="media__header">
+
+                <h1 id="@ToKebabCase(videoID)-hdr">@Model.VideoTitle</h1>
+
+                <div class="media__controls">
+
+                    <button aria-label="Close Video" class="media__controls--close" commandfor="@ToKebabCase(videoID)" command="close"><i class="fa-regular fa-xmark" aria-hidden="true"></i></button>
+
+                    <button aria-label="Video Transcript" class="media__controls--transcript"><i class="fa-regular fa-file-lines" aria-hidden="true"></i></button>
+
+                </div>
+
+            </header>
+
+            <div class="media__container">
+
+                <div class="media__transcript">
+
+                    <h2 id="@ToKebabCase(videoID)--transcript" class="media__transcript--hdr">Transcript</h2>
+
+                    <div aria-labelledby="@ToKebabCase(videoID)--transcript" class="media__transcript--content" role="region" tabindex="0">
+
+                        @* THIS IS WHERE TRANSCRIPT NEEDS TO GO *@
+
+                    </div>
+
+                </div>
+
+                <div class="media__asset">
+
+                    <video class="media__video" aria-label="@Model.VideoTitle" controls crossorigin="anonymous" loading="lazy">
+                        <source src="@Model.VideoSrc" type="video/mp4">
+                        <track default label="English" kind="captions" src="@Model.VideoCaptionUrl" srclang="en">
+                    </video>
+
+                </div>
+
+            </div>
+
+        </dialog>
+
+    </div>
+
+} else {
+
+    @* All other video types *@
+
+    <div class="media-module section-41__video">
+
+        @{  
+
+            var videoID = @Model.AltText;
+
+        }
+
+        <div class="section-41-thumbnail">
+    
+            <img alt="@Model.AltText" src="@Url.CdnUrl(Model.FileNamePath, "TBCDN")" loading="lazy">
+
+        </div>
+
+        <h2 class="section-41__headline"><button class="section-41__video--button media__trigger" command="show-modal" commandfor="@ToKebabCase(videoID)" data-custom-event="true" data-custom-category="Play Video" data-custom-label="@Model.VideoTitle">@Model.AltText</button></h2>
+
+        <dialog class="media" aria-labelledby="@ToKebabCase(videoID)-hdr" closedby="any" id="@ToKebabCase(videoID)">
+
+            <header class="media__header">
+
+                <h1 id="@ToKebabCase(videoID)-hdr">@Model.AltText</h1>
+
+                <div class="media__controls">
+
+                    <button aria-label="Close Video" class="media__controls--close" commandfor="@ToKebabCase(videoID)" command="close"><i class="fa-regular fa-xmark" aria-hidden="true"></i></button>
+
+                    <button aria-label="Video Transcript" class="media__controls--transcript"><i class="fa-regular fa-file-lines" aria-hidden="true"></i></button>
+
+                </div>
+
+            </header>
+
+            <div class="media__container">
+
+                <div class="media__transcript">
+
+                    <h2 id="@ToKebabCase(videoID)--transcript" class="media__transcript--hdr">Transcript</h2>
+
+                    <div aria-labelledby="@ToKebabCase(videoID)--transcript" class="media__transcript--content" role="region" tabindex="0">
+
+                        @* THIS IS WHERE TRANSCRIPT NEEDS TO GO *@
+
+                    </div>
+
+                </div>
+
+                <div class="media__asset">
+
+                    <iframe allow="autoplay; fullscreen" class="media__video" src="@Model.VideoSrc" title="@Model.AltText (Video)"></iframe>
+
+                </div>
+
+            </div>
+
+        </dialog>
+
+    </div>
+
+    }
+
+}
