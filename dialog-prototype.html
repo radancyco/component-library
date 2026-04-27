@@ -411,7 +411,7 @@ layout: none
 
                 <p class="section-41__audio-description-icon">Audio Description</p>
     
-                <div class="section-41__audio-description media__audio-description" hidden>https://radancy.dev/component-library/dialog/audio-description.vtt</div>
+                <div class="media__audio-description" data-media-audio-desc="https://radancy.dev/component-library/dialog/audio-description.vtt" hidden></div>
 
             </div>
 
@@ -473,7 +473,7 @@ layout: none
             track.kind = "descriptions";
             track.label = "English";
             track.srclang = "en-US";
-            track.src = adSource.textContent.trim();
+            track.src = adSource.dataset.mediaAudioDesc;
 
             adVideo.appendChild(track);
 
@@ -511,7 +511,11 @@ layout: none
 
                             msg.onend = function() {
 
-                                adVideo.play();
+                                if (dialog.open) {
+
+                                    adVideo.play();
+
+                                }
 
                             };
 

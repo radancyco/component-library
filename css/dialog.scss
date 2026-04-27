@@ -88,7 +88,7 @@ position: fixed;
   gap: .5rem;
   grid-auto-flow: column;
 
-    .media__controls--close, .media__controls--transcript  {
+    .media__controls--audio-description, .media__controls--close, .media__controls--transcript  {
     padding: .7rem;
     color: #fff;
     border: 0;
@@ -171,7 +171,7 @@ position: fixed;
   margin-bottom: 1em;
   overflow-x: hidden;
   overflow-y: auto;
-  padding: 1em .5em;
+  padding: 1em 1rem 1rem .5rem;
   scrollbar-color: var(--primary-color) transparent;
   scrollbar-gutter: stable;
 
