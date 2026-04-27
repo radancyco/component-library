@@ -22,6 +22,8 @@ layout: none
 {% assign mediaVideo_3 = mediaVideo_3_String | downcase | replace: " - ", "-" | replace: " ", "-" | replace: "'", "" | replace: ":", "" | replace: ".", "" %}
 {% assign mediaVideo_4_String = "Other Video Title" %}
 {% assign mediaVideo_4 = mediaVideo_4_String | downcase | replace: " - ", "-" | replace: " ", "-" | replace: "'", "" | replace: ":", "" | replace: ".", "" %}
+{% assign mediaVideo_5_String = "Audio Description Example" %}
+{% assign mediaVideo_5 = mediaVideo_5_String | downcase | replace: " - ", "-" | replace: " ", "-" | replace: "'", "" | replace: ":", "" | replace: ".", "" %}
 
 <main>
 
@@ -51,6 +53,8 @@ layout: none
 
                                 <button aria-label="Close Video" class="media__controls--close" commandfor="{{ mediaVideo_1 }}" command="close"><i class="fa-regular fa-xmark" aria-hidden="true"></i></button>
 
+                                <button aria-label="Audio Description" class="media__controls--audio-description"><i class="fa-solid fa-audio-description" aria-hidden="true"></i></button>
+                                
                                 <button aria-label="Video Transcript" class="media__controls--transcript"><i class="fa-regular fa-file-lines" aria-hidden="true"></i></button>
 
                             </div>
@@ -79,7 +83,9 @@ layout: none
 
                 </div>
 
-                <p class="section-41__transcript-icon">Transcript</p>
+                <ul>
+                    <li class="section-41__transcript-icon">Transcript</li>
+                <ul>
 
                 <div class="media__transcript--container section-41__transcript" hidden>
 
@@ -131,6 +137,8 @@ layout: none
 
                                 <button aria-label="Close Video" class="media__controls--close" commandfor="{{ mediaVideo_2 }}" command="close"><i class="fa-regular fa-xmark" aria-hidden="true"></i></button>
 
+                                <button aria-label="Audio Description" class="media__controls--audio-description"><i class="fa-solid fa-audio-description" aria-hidden="true"></i></button>
+                                
                                 <button aria-label="Video Transcript" class="media__controls--transcript"><i class="fa-regular fa-file-lines" aria-hidden="true"></i></button>
 
                             </div>
@@ -162,7 +170,9 @@ layout: none
 
                 </div>
 
-                <p class="section-41__transcript-icon">Transcript</p>
+                <ul>
+                    <li class="section-41__transcript-icon">Transcript</li>
+                <ul>
 
                 <div class="media__transcript--container section-41__transcript" hidden>
 
@@ -206,6 +216,8 @@ layout: none
 
                                 <button aria-label="Close Video" class="media__controls--close" commandfor="{{ mediaVideo_3 }}" command="close"><i class="fa-regular fa-xmark" aria-hidden="true"></i></button>
 
+                                <button aria-label="Audio Description" class="media__controls--audio-description"><i class="fa-solid fa-audio-description" aria-hidden="true"></i></button>
+                                
                                 <button aria-label="Video Transcript" class="media__controls--transcript"><i class="fa-regular fa-file-lines" aria-hidden="true"></i></button>
 
                             </div>
@@ -234,7 +246,9 @@ layout: none
 
                 </div>
 
-                <p class="section-41__transcript-icon">Transcript</p>
+                <ul>
+                    <li class="section-41__transcript-icon">Transcript</li>
+                <ul>
 
                 <div class="media__transcript--container section-41__transcript" hidden>
 
@@ -290,6 +304,8 @@ layout: none
 
                                 <button aria-label="Close Video" class="media__controls--close" commandfor="{{ mediaVideo_4 }}" command="close"><i class="fa-regular fa-xmark" aria-hidden="true"></i></button>
 
+                                <button aria-label="Audio Description" class="media__controls--audio-description"><i class="fa-solid fa-audio-description" aria-hidden="true"></i></button>
+                                
                                 <button aria-label="Video Transcript" class="media__controls--transcript"><i class="fa-regular fa-file-lines" aria-hidden="true"></i></button>
 
                             </div>
@@ -317,6 +333,85 @@ layout: none
                     </dialog>
 
                 </div>
+
+            </div>
+
+            <div class="partial-5">
+
+                <div class="media-module section-41__video">
+
+                    <div class="section-41-thumbnail">
+
+                        <img alt="" src="//tbcdn.talentbrew.com/company/287/v3/img/placeholders/placeholder_section41.webp" loading="lazy">
+
+                    </div>
+                    
+                    <h2 class="section-41__headline"><button class="section-41__video--button media__trigger" command="show-modal" commandfor="{{ mediaVideo_5 }}" data-custom-event="true" data-custom-category="Play Video" data-custom-label="{{ mediaVideo_5_String }}">{{ mediaVideo_5_String }}</button></h2>
+
+                    <dialog class="media" aria-labelledby="{{ mediaVideo_5 }}-hdr" closedby="any" id="{{ mediaVideo_5 }}">
+
+                        <header class="media__header">
+
+                            <h1 id="{{ mediaVideo_5 }}-hdr">{{ mediaVideo_5_String }}</h1>
+
+                            <div class="media__controls">
+
+                                <button aria-label="Close Video" class="media__controls--close" commandfor="{{ mediaVideo_5 }}" command="close"><i class="fa-regular fa-xmark" aria-hidden="true"></i></button>
+
+                                <button aria-label="Audio Description" class="media__controls--audio-description"><i class="fa-solid fa-audio-description" aria-hidden="true"></i></button>
+                                
+                                <button aria-label="Video Transcript" class="media__controls--transcript"><i class="fa-regular fa-file-lines" aria-hidden="true"></i></button>
+
+                            </div>
+
+                        </header>
+
+                        <div class="media__container">
+
+                            <div class="media__transcript">
+
+                                <h2 id="media__transcript--hdr-5" class="media__transcript--hdr">Transcript</h2>
+
+                                <div aria-labelledby="media__transcript--hdr-5" class="media__transcript--content" role="region" tabindex="0"></div>
+
+                            </div>
+
+                            <div class="media__asset">
+
+                                 <video class="media__video" aria-label="{{ mediaVideo_5_String }}" controls crossorigin="anonymous" loading="lazy">
+                                    <source src="https://radancy.dev/component-library/dialog/audio-description.mp4" type="video/mp4">
+                                    <track default label="English" kind="captions" src="https://ableplayer.github.io/ableplayer/media/wwa_captions_en.vtt" srclang="en-US">
+                                </video>
+
+                            </div>
+
+                        </div>
+
+                    </dialog>
+
+                </div>
+
+                <p class="section-41__transcript-icon">Transcript</p>
+
+                <div class="media__transcript--container section-41__transcript" hidden>
+
+                    <p><em>[Audio description: A blue circle has pairs of arching curves inside. Underneath, DO-IT.]</em></p>
+
+                    <p><em>[ music ]</em></p>
+
+                    <p><em>[Audio description: Words appear in a white box: World Wide Access.]</em></p>
+
+                    <p><strong>Narrator:</strong> You want these people. They order your products, sign up for your services, enroll in your classes, read your opinions, and watch your videos. You'll never see them, but they know you — through your website. Or maybe not. Your website's visitors aren't a faceless mass of identical mouse-clickers but a vibrant community of individuals with varying tastes, styles, and abilities. This includes people with disabilities.</p>
+
+                    <p><em>[Audio description: Terrill Thompson, Technology Accessibility Specialist]</em></p>
+
+                    <p><strong>Terrill:</strong> It's important for web designers and developers to realize that what they see currently on their computer, at their resolution, with their browser and their operating system is not going to be necessarily the same thing that everybody else sees.</p>
+
+                </div>
+
+                <p class="section-41__audio-description-icon">Audio Description</p>
+    
+                <div class="section-41__audio-description media__audio-description" hidden>https://radancy.dev/component-library/dialog/audio-description.vtt</div>
 
             </div>
 
@@ -364,6 +459,87 @@ layout: none
 
     }));
 
+    const btnAudioDescription = dialog.querySelector(".media__controls--audio-description");
+
+    if (btnAudioDescription) {
+
+        const adVideo = dialog.querySelector("video");
+        const adSource = dialog.closest(".media-module")?.parentElement?.querySelector(".media__audio-description");
+
+        if (adVideo && adSource) {
+
+            const track = document.createElement("track");
+
+            track.kind = "descriptions";
+            track.label = "English";
+            track.srclang = "en-US";
+            track.src = adSource.textContent.trim();
+
+            adVideo.appendChild(track);
+
+        }
+
+        const descTrack = adVideo ? Array.from(adVideo.textTracks).find(t => t.kind === "descriptions") : null;
+
+        if (!descTrack) {
+
+            btnAudioDescription.remove();
+
+        } else {
+
+            btnAudioDescription.setAttribute("aria-pressed", "false");
+
+            btnAudioDescription.addEventListener("click", function() {
+
+                const isPressed = this.getAttribute("aria-pressed") === "true";
+
+                if (!isPressed) {
+
+                    this.setAttribute("aria-pressed", "true");
+
+                    descTrack.mode = "hidden";
+
+                    descTrack.oncuechange = function() {
+
+                        const currentCue = this.activeCues[0];
+
+                        if (currentCue && !adVideo.paused && !adVideo.seeking) {
+
+                            const msg = new SpeechSynthesisUtterance(currentCue.getCueAsHTML().textContent);
+
+                            adVideo.pause();
+
+                            msg.onend = function() {
+
+                                adVideo.play();
+
+                            };
+
+                            window.speechSynthesis.speak(msg);
+
+                        }
+
+                    };
+
+                } else {
+
+                    this.setAttribute("aria-pressed", "false");
+
+                    descTrack.oncuechange = null;
+                    descTrack.mode = "disabled";
+
+                    window.speechSynthesis.cancel();
+
+                    adVideo.play();
+
+                }
+
+            });
+
+        }
+
+    }
+
     dialog.addEventListener("cancel", (e) => {
 
         e.preventDefault();
@@ -376,38 +552,67 @@ layout: none
 
         dialog.querySelectorAll("iframe").forEach(iframe => {
 
-        if (e.newState === "open") {
+            if (e.newState === "open") {
 
-            const url = new URL(iframe.dataset.src);
-            url.searchParams.set("autoplay", "1");
-            iframe.src = url.toString();
+                const url = new URL(iframe.dataset.src);
+                url.searchParams.set("autoplay", "1");
+                iframe.src = url.toString();
 
-        } else {
+            } else {
 
-            iframe.src = "";
+                iframe.src = "";
 
-        }
+            }
 
         });
 
         if (e.newState === "open") {
 
-        dialog.querySelectorAll("video").forEach(video => video.play());
+            dialog.querySelectorAll("video").forEach(video => {
+
+                video.play();
+
+            });
 
         }
 
         if (e.newState !== "open") {
 
-        dialog.querySelectorAll("video").forEach(video => {
+            dialog.querySelectorAll("video").forEach(video => {
 
-            video.pause();
-            video.currentTime = 0;
+                video.pause();
+                video.currentTime = 0;
 
-        });
+            });
 
-        dialog.querySelector(".media__container")?.classList.remove("is-open");
+            dialog.querySelector(".media__container")?.classList.remove("is-open");
 
-        dialog.removeAttribute("style");
+            dialog.removeAttribute("style");
+
+            window.speechSynthesis.cancel();
+
+            dialog.querySelectorAll("video").forEach(video => {
+
+                Array.from(video.textTracks).forEach(track => {
+
+                    if (track.kind === "descriptions") {
+
+                        track.oncuechange = null;
+                        track.mode = "disabled";
+
+                    }
+
+                });
+
+            });
+
+            const adBtn = dialog.querySelector(".media__controls--audio-description");
+
+            if (adBtn) {
+
+                adBtn.setAttribute("aria-pressed", "false");
+
+            }
 
         }
 
