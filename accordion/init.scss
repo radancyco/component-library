@@ -70,6 +70,7 @@ gap: var(--accordion-gap);
   // Accordion Toggle Arrow
 
   &__arrow {
+  align-self: start;
   block-size: var(--accordion-arrow-size);
   border-width: var(--accordion-arrow-border);
   border-block-color: transparent var(--accordion-color-selected);
@@ -150,8 +151,7 @@ gap: var(--accordion-gap);
   display: grid;
   font-size: inherit;
   gap: 1em;
-  grid-auto-columns: max-content;
-  grid-auto-flow: column;
+  grid-template-columns: auto 1fr;
   inline-size: 100%;
   line-height: normal;
   padding: 1em;
@@ -331,7 +331,7 @@ gap: var(--accordion-gap);
   &__panel {
   background-color: var(--accordion-panel-default);
   display: none;
-  margin-top: calc(var(--accordion-gap) * -1);
+  margin-block-start: calc(var(--accordion-gap) * -1);
   overflow: hidden;
   padding: 1em;
   position: relative;
@@ -340,11 +340,11 @@ gap: var(--accordion-gap);
 
     [data-animation] & {
 
-      max-height: 0;
+      max-block-size: 0;
 
       @media (prefers-reduced-motion: no-preference) {
 
-        transition: display 0s, max-height 2s ease-in-out allow-discrete;
+        transition: display 0s, max-block-size 2s ease-in-out allow-discrete;
 
       }
 
@@ -355,7 +355,7 @@ gap: var(--accordion-gap);
     [data-horizontal] & {
 
       border: var(--accordion-panel-border);
-      margin-top: auto;
+      margin-block-start: auto;
 
       @media (min-width: $accordion-medium) {
 
@@ -375,7 +375,7 @@ gap: var(--accordion-gap);
 
     [data-fixed-height] & {
 
-      max-height: 18.75em;
+      max-block-size: 18.75em;
       overflow-y: auto;
       overscroll-behavior-y: contain;
       scrollbar-gutter: stable;
@@ -404,7 +404,7 @@ gap: var(--accordion-gap);
         background-color: var(--accordion-color-active);
         border: calc(6rem / 16) var(--accordion-color-default) solid;
         border-radius: 100vw;
-        min-height: calc(100rem / 16);
+        min-block-size: calc(100rem / 16);
         }
     
         &::-webkit-scrollbar-thumb:hover {
@@ -437,11 +437,11 @@ gap: var(--accordion-gap);
   
     [data-animation] & {
 
-      max-height: 5000px;
+      max-block-size: 5000px;
 
       @starting-style {
       
-        max-height: 1px;
+        max-block-size: 1px;
       
       }
   
