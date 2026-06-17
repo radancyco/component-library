@@ -20,43 +20,91 @@
   let stepsBtn = document.querySelectorAll(".steps__btn");
   let stepsSection = document.querySelectorAll(".steps__section");
 
-  stepsBtn.forEach(function(button) {
+  stepsBtn.forEach(function(button, index) {
 
-    button.addEventListener("click", function() {
+    let dataTarget = button.getAttribute("href").replace("#", "");
+    
+    button.setAttribute("data-target", dataTarget);
 
-      // Remove aria-aria-pressed, where found.
+    if (index == 0) {
 
-      stepsBtn.forEach(function(button) {
+      button.setAttribute("aria-current", "step");
 
-        button.setAttribute("aria-pressed", "false");
+    }
 
-      });
+    if (index !== 0) {
 
-      // Remove active state from all sections.
+      button.removeAttribute("href");
 
-      stepsSection.forEach(function(section) {
+    }
 
-        section.classList.remove("active");
+  });
 
-      });
+  stepsSection.forEach(function(section) {
 
-      // Get section and button targets
+    // section.classList.remove("active");
 
-      let stepsBtnTarget = document.querySelector(".steps__btn[aria-controls=" + button.getAttribute("aria-controls") + "]");
-      let stepsSectionTarget = document.querySelector("#" + button.getAttribute("aria-controls"));
+    var nextStep = document.createElement("button");
 
-      // Apply aria-pressed to selected step in navigation
+    nextStep.textContent = "Next";
 
-      stepsBtnTarget.setAttribute("aria-pressed", "true");
+    section.append(nextStep);
 
-      // Load selected section
+    nextStep.addEventListener("click", function() {
 
-      stepsSectionTarget.classList.add("active");
-      stepsSectionTarget.setAttribute("tabindex", "-1");
-      stepsSectionTarget.focus();
+
+
+
+
+// Remove aria-aria-pressed, where found.
+
+stepsBtn.forEach(function(button) {
+
+  button.removeAttribute("aria-current");
+
+});
+
+// Remove active state from all sections.
+
+stepsSection.forEach(function(section) {
+
+  section.classList.remove("active");
+
+});
+
+// Get section and button targets
+
+//let stepsBtnTarget = document.querySelector(".steps__btn[aria-controls=" + button.getAttribute("aria-controls") + "]");
+let stepsSectionTarget = document.querySelector("#" + button.getAttribute("data-target"));
+
+// Apply aria-pressed to selected step in navigation
+
+//stepsBtnTarget.setAttribute("aria-current", "step");
+
+// Load selected section
+
+stepsSectionTarget.classList.add("active");
+// stepsSectionTarget.setAttribute("tabindex", "-1");
+// stepsSectionTarget.focus();
+
+//});
+
+
+
+
+
+
+
+
+
+
+
+
 
     });
 
   });
+
+
 
 })();

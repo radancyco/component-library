@@ -15,12 +15,44 @@
   --steps-color-active: #CCC;
   --steps-color-complete: #008000;
   --steps-color-light: #FFF;
+  --steps-color-dark: #000;
   --steps-color-neutral: #767676;
   --steps-color-primary: #6F00EF;
 
   --scroll-color-track: #EEE;
-  --scroll-color-thumb: #6F00EF;
+  --scroll-color-thumb: var(--steps-color-primary);
   --scroll-color-active: #666;
+
+  $item-count: 5;
+
+  @keyframes animateCount {
+
+    0% {
+    opacity: 0;
+    }
+  
+    50% {
+    transform: scale(1.4);
+    }
+  
+    100% {
+    opacity: 1;
+    transform: scale(1);
+    }
+
+  }
+
+  @keyframes animateRule {
+
+    0% {
+    width: 0;
+    }
+
+    100% {
+    width: 100%;
+    }
+
+  }
 
   ol {
   display: grid;
@@ -31,7 +63,6 @@
   }
 
   li {
-  display: grid;
   scroll-snap-align: center;
   min-width: calc(150rem / 16);
   }
@@ -40,7 +71,7 @@
 
   &__navigation {
   overflow-x: auto;
-  padding-block-end: 1em;
+  padding: 2em 0 1em;
   scroll-snap-type: inline mandatory;
 
   // Fallback Scrollbar
@@ -85,47 +116,114 @@
   &__btn {
   background-color: transparent;
   border: 0;
+  color: var(--steps-color-dark);
   display: grid;
   font: inherit;
-  gap: 0.5em;
-  grid-template-columns: subgrid;
+  grid-template-rows: 1fr 1fr; 
   padding: 0;
-  place-items: center;
-  place-self: start;
+  text-align: center;
+  text-decoration: none;
 
-    &[disabled] {
+    &:not([href]) {
     color: var(--steps-color-neutral);
+    pointer-events: none;
     }
 
     // Line
 
     &::before {
+    align-self: center;
+    animation-duration: 800ms;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
     background-color: var(--steps-color-neutral);
     content: "";
     display: block;
     grid-area: 1 / 1;
     height: 2px;
-    width: 100%;
+
+      @media (prefers-reduced-motion: no-preference) {
+
+        animation-name: animateRule;
+        width: 0;
+
+      }
+
+      @for $i from 1 through $item-count {
+
+        li:nth-child(#{$i}) & {
+    
+          animation-delay: #{($i - 1) * 800ms};
+    
+        }
+  
+      }
+
     }
 
     &__complete {
     display: none;
     }
 
+    &__container {
+    animation-duration: 300ms;
+    animation-fill-mode: forwards;
+    display: grid;
+    grid-area: 1 / 1;
+    justify-self: center;
+    place-items: center;
+    transform-origin: center;
+    width: fit-content;
+
+      @media (prefers-reduced-motion: no-preference) {
+
+        animation-name: animateCount;
+        opacity: 0;
+
+      }
+
+      @for $i from 1 through $item-count {
+
+        li:nth-child(#{$i}) & {
+      
+          animation-delay: #{690ms * $i};
+      
+        }
+    
+      }
+
+    }
+
+    // Interactive State(s)
+
+    &:focus &__container, &:hover &__container {
+    transform-origin: center;
+    transform: scale(1.2);
+    transition: transform 300ms ease-in-out;
+    }
+
+    &:focus &__count, &:hover &__count, &:visited &__count {
+    background-color: var(--steps-color-primary);
+    }
+  
+    &:focus &__icon--edit svg, &:hover &__icon--edit svg, &:visited &__icon--edit svg {
+    stroke: var(--steps-color-primary);
+    }
+
     // Count
 
     &__count {
-    align-items: center;
     background-color: var(--steps-color-neutral);
     border-radius: 100vw;
     color: var(--steps-color-light);
     display: grid;
     font-weight: 700;
-    grid-row: 1;
+    grid-area: 1 / 1;
     height: calc(56rem / 16);
+    place-items: center;
     width: calc(56rem / 16);
 
-      [aria-pressed="true"] & {
+      [aria-current="step"] & {
       background-color: var(--steps-color-primary);
       }
 
@@ -134,6 +232,7 @@
     // Label
 
     &__label {
+    align-self: center;
     line-height: normal;
     }
 
@@ -143,11 +242,21 @@
     display: none;
     grid-area: 1 / 1;
     inset-inline-start: calc(28rem/16);
+    place-self: center;
     position: relative;
     width: calc(25rem/16);
 
+      @media (scripting: enabled) {
+
+        &--edit {
+        display: block;
+        }
+
+      }
+
       svg {
       fill: #fff;
+      stroke: var(--steps-color-neutral);
       stroke-width: 20px;
       }
 
@@ -165,7 +274,7 @@
     &--finished[aria-pressed="true"] &__icon--edit, 
     &:not(&--finished) &__icon--edit, 
     &:not(&--finished):not([aria-pressed="true"]) &__icon--edit {
-    display: block;
+   // display: block;
     }
 
     &--finished &__icon svg {
@@ -173,11 +282,11 @@
     }
 
     &:not(&--finished):not([aria-pressed="true"]) &__icon--edit svg {
-    stroke: var(--steps-color-neutral);
+    //stroke: var(--steps-color-neutral);
     }
       
     &:not(&--finished) &__icon--edit svg {
-    stroke: var(--steps-color-primary);
+    // stroke: var(--steps-color-primary);
     }
 
   }
@@ -187,12 +296,21 @@
   &__section {
   background-color: var(--steps-color-active);
   border-radius: 5px;
-  display: none;
   margin-block-start: 1em;
   padding: 1em;
-  
-    &.active {
-    display: block;
+
+    @media (scripting: enabled) {
+
+      &:not(.active) {
+
+        display: none;
+
+      }
+
+    }
+
+    &:target {
+    outline: 3px solid var(--steps-color-primary);
     }
 
   }

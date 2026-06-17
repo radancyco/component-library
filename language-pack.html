@@ -1,0 +1,38 @@
+---
+title: Language Pack Output
+---
+
+{% highlight html %} 
+
+
+{% assign csv = site.data.language-pack %}
+{% assign headers = csv[0] %}
+{% assign default_lang = "English_Default" %}
+
+var currentPageLanguage = document.documentElement.getAttribute("lang");
+
+{% for lang in headers %}
+  {% assign lang_code = lang[1] %}
+  {% if lang_code != "Component" and lang_code != "Variable" and lang_code != "English_Default" %}
+if(currentPageLanguage === "{{ lang_code }}") {
+  {% for row in csv offset:1 %}
+  {% assign varname = row.Variable %}
+  {% assign value = row[lang] | strip_newlines | strip %}
+  var {{ varname }} = "{{ value | json }}";
+  {% endfor %}
+}
+  {% endif %}
+{% endfor %}
+
+else {
+  // English (Default)
+  {% for row in csv offset:1 %}
+  {% assign varname = row.Variable %}
+  {% assign value = row[default_lang] | strip_newlines | strip %}
+  var {{ varname }} = "{{ value | escape }}";
+  {% endfor %}
+}
+
+
+
+{% endhighlight %}

@@ -1,4 +1,4 @@
-{% assign class = "a11y-info" %}
+{% assign class = "info info--a11y" %}
 {% assign id = "avoid-toggling-text" %}
 {% assign landmark = "hdr-a11y-avoid-toggling-text" %}
 {% assign guidance-title = "Avoid Toggling Text" %}
@@ -7,8 +7,12 @@
 
 	<p>Toggling text in a control to indicate a state change should be avoided. For example, click on the following button:</p>
 
-	<button aria-pressed="false" class="btn" onclick="toggleText(this)">Save Job</button>
+	<div>
+		
+		<button aria-pressed="false" class="btn" onclick="toggleText(this)">Save Job</button>
 
+	</div>
+	
 	<h3>Why is this an issue?</h3>
 
 	<ul>
@@ -25,7 +29,11 @@
 
 	<p>Here is an example of visual affordance:</p>
 
-	<button aria-pressed="false" class="btn" onclick="toggleText(this)">{{ iconCheck }}{{ iconFavorite }} Save Job <span aria-hidden="true" class="visually-hidden">(All)</span></button>
+	<div>
+
+		<button aria-pressed="false" class="btn" onclick="toggleText(this)">{{ iconCheck }}{{ iconFavorite }} Save Job <span aria-hidden="true" class="visually-hidden">(All)</span></button>
+
+	</div>
 
 	<script>
 

@@ -81,7 +81,6 @@ gap: var(--accordion-gap);
   direction: ltr;
   display: block;
   inline-size: var(--accordion-arrow-size);
-  justify-self: end;
   margin-block: 0 calc(4em / 16);
   transform: rotate(-45deg);
   
@@ -93,6 +92,12 @@ gap: var(--accordion-gap);
   
       }
   
+    }
+
+    [data-arrow-inline-end] & {
+
+      justify-self: end;
+
     }
   
   }
@@ -137,20 +142,22 @@ gap: var(--accordion-gap);
   &__toggle, &__toggle-all {
   align-items: center;
   background-color: var(--accordion-color-default);
-  border: 0;
   border-radius: var(--accordion-toggle-border-radius);
+  border: 0;
+  box-sizing: border-box;
   color: inherit;
   cursor: pointer;
   display: grid;
   font-size: inherit;
   gap: 1em;
+  grid-auto-columns: max-content;
   grid-auto-flow: column;
+  inline-size: 100%;
   line-height: normal;
   padding: 1em;
   position: relative;
   text-align: start;
   text-wrap: balance;
-  width: 100%;
 
     // Multi-purpose Span
 
@@ -301,7 +308,7 @@ gap: var(--accordion-gap);
 
         [data-pointer] & {
 
-          display: none;
+          visibility: hidden;
 
         }
 
@@ -314,9 +321,9 @@ gap: var(--accordion-gap);
   // Accordion Toggle All Button 
 
   &__toggle-all {
+  inline-size: fit-content;
   justify-self: end;
   margin-block: 0 1em;
-  width: fit-content;
   }
 
   // Accordion Panel
