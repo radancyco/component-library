@@ -6,6 +6,9 @@
   Michael "Spell" Spellacy
 
   Dependencies: None
+  Description: This file provides translations for components from the Radancy Component Library (RCL) used across our career sites. 
+  Warning: Removing or modifying it could have a significant impact on the accessibility and usability of our global sites, potentially affecting 
+  users in multiple languages and regions.
 
 */
 
