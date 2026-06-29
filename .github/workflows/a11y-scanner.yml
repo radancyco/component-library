@@ -1,4 +1,4 @@
-name: Accessibility Scanner
+name: Accessibility Scanner (Component Library)
 on: push
 
 jobs:
