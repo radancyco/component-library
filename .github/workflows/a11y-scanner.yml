@@ -1,4 +1,4 @@
-name: Accessibility Scanner (Component Library)
+name: Accessibility Scanner
 on: push
 
 jobs:
@@ -7,7 +7,29 @@ jobs:
     steps:
       - uses: github/accessibility-scanner@v3
         with:
-          urls: https://radancy.dev/component-library
+          urls: |
+            https://radancy.dev/component-library
+            https://radancy.dev/component-library/accordion/
+            https://radancy.dev/component-library/animation-toggle/
+            https://radancy.dev/component-library/breadcrumbs/
+            https://radancy.dev/component-library/card/
+            https://radancy.dev/component-library/css-animation/
+            https://radancy.dev/component-library/dialog/
+            https://radancy.dev/component-library/disclosure/
+            https://radancy.dev/component-library/feeds/
+            https://radancy.dev/component-library/feeds/instagram/
+            https://radancy.dev/component-library/feeds/youtube/
+            https://radancy.dev/component-library/hero-banner/
+            https://radancy.dev/component-library/horizontal-scroll/
+            https://radancy.dev/component-library/job-list/
+            https://radancy.dev/component-library/load-more/
+            https://radancy.dev/component-library/partial-disclosure/
+            https://radancy.dev/component-library/rating/
+            https://radancy.dev/component-library/select-external/
+            https://radancy.dev/component-library/select-internal/
+            https://radancy.dev/component-library/step-indicator/
+            https://radancy.dev/component-library/tablist/
+            https://radancy.dev/component-library/tile/
           repository: radancyco/component-library
           token: ${{ secrets.GH_TOKEN }}
           cache_key: a11y-scan-v1
