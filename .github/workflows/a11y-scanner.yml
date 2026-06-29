@@ -1,5 +1,5 @@
 name: Accessibility Scanner
-on: push
+on: [push, workflow_dispatch]
 
 jobs:
   scan_component_library:
