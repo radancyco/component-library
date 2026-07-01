@@ -61,6 +61,11 @@ classes:
     note: Component
     desc: The cards interaction trigger. Always a child of <code>.tile__item</code>. Includes a default name of "Show Content." When <code>tile__label</code> is present, button will receive an additional description. Each tile may only contain one trigger. 
 
+changelog: 
+
+  - label: Bug
+    content: "July 1, 2026: Prepended the tile button so it does not affect the focus order. Originally, the button was prepended, but a client requested that it be placed after the content. This change disrupted the tab order, so it has been reverted to its original position before the content."
+
 roadmap:
 
   - label: Bug

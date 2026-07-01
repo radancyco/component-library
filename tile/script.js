@@ -62,7 +62,7 @@
 
       }
       
-      card.append(tileButton);
+      card.prepend(tileButton);
 
       tileButton.addEventListener("click", function() {
 
