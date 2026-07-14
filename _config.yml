@@ -26,4 +26,5 @@ port: 4004
 repo: https://github.com/radancyco/component-library
 sass:
   style: :compressed
+segment: rcl
 theme-color: "#6E00EE"
