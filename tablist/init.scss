@@ -126,6 +126,7 @@ position: relative;
     }
 
     li {
+    display: grid;
     flex-grow: 1;
     scroll-snap-align: start;
 
