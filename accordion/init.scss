@@ -44,7 +44,7 @@ gap: var(--accordion-gap);
   all: unset;
   } 
 
-  > ol, > ul, > dl, > ul > li{
+  > ol, > ul, > dl, > ul > li {
   display: contents;
   } 
 
@@ -136,6 +136,12 @@ gap: var(--accordion-gap);
     transform: rotate(45deg);
     }
 
+  }
+
+  // Accordion Heading
+
+  &__heading {
+  display: grid;
   }
 
   // Accordion Toggle & Toggle All Button

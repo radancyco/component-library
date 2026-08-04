@@ -166,8 +166,11 @@ roadmap:
 
 changelog: 
 
+  - label: Behavior
+    content: "August 4, 2026: Added <code>display: grid;</code> to <code>.accordion__heading</code> to allow all buttons to grow when text wraps in other buttons. Also changed headings in viewport-context demo from h3 to h2. Bumped to 2.9.2."
+
   - label: Bug
-    content: "June 17, 2026: The property, <code>grid-auto-columns: max-content</code> was breaking the layout. This is likely a longstanding issue that went unnoticed because the button text is typically shorter. When longer text is present, it causes the content to overflow the viewport. Changing the layout to <code>grid-template-columns: auto 1fr</code> appears to resolve the issue and provides more consistent behavior. Version increased to 2.9.1."
+    content: "June 17, 2026: The property, <code>grid-auto-columns: max-content</code> was breaking the layout. This is likely a longstanding issue that went unnoticed because the button text is typically shorter. When longer text is present, it causes the content to overflow the viewport. Changing the layout to <code>grid-template-columns: auto 1fr</code> appears to resolve the issue and provides more consistent behavior. Bumped to 2.9.1."
 
   - label: Maintenance
     content: "December 12, 2025: Removed conditional syntax and restoted <code>min-width</code> due to the admin tool not being able to process it. Boo! Thanks, Paul!"
