@@ -105,11 +105,15 @@ padding: 1em;
 
   &[data-animation] {
   
-    @media (prefers-reduced-motion: no-preference) {
-  
-      transition: display 0s, max-height 3s allow-discrete;
-  
-    }
+    max-block-size: 0;
+    opacity: 0;
+    padding-block: 0;
+
+      @media (prefers-reduced-motion: no-preference) {
+
+        transition: display 500ms allow-discrete, max-block-size 500ms ease-in-out, opacity 500ms ease-in-out;
+
+      }
   
   }
 
@@ -184,11 +188,13 @@ display: block;
 
   &[data-animation] {
   
-    max-height: 5000px;
+    max-block-size: 1500px;
+    opacity: 1;
 
     @starting-style {
     
-      max-height: 0;
+      max-block-size: 0;
+      opacity: 0;
     
     }
 

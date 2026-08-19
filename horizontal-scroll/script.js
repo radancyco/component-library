@@ -50,32 +50,33 @@
     // Mousewheel Support
 
     const isRTL = document.dir === "rtl" || getComputedStyle(scroll).direction === "rtl"; // RTL Support
+    const scrollSpeed = 1; // Multiplier applied to wheel input. Lower to slow scrolling down, raise to speed it up.
 
     scroll.addEventListener("wheel", (event) => {
-    
+
       const canScroll = scroll.scrollWidth > scroll.clientWidth;
-    
+
       if (!canScroll) return; // nothing to scroll horizontally
 
       const isAtStart = scroll.scrollLeft === 0;
       const isAtEnd = scroll.scrollLeft + scroll.clientWidth >= scroll.scrollWidth;
-      const scrollDelta = isRTL ? -event.deltaY : event.deltaY;
+      const scrollDelta = (isRTL ? -event.deltaY : event.deltaY) * scrollSpeed;
 
       // Only prevent default if there is actually room to scroll in that direction
-    
+
       const shouldScroll = (scrollDelta < 0 && !isAtStart) || (scrollDelta > 0 && !isAtEnd);
-    
+
       if (!shouldScroll) return; // allow normal vertical scroll
 
       event.preventDefault();
-    
-      scroll.scrollBy({ left: scrollDelta, behavior: "smooth" });
-    
-    }, { 
-      
-      passive: false 
-    
-    }); 
+
+      scroll.scrollBy({ left: scrollDelta, behavior: "auto" });
+
+    }, {
+
+      passive: false
+
+    });
 
   });
 

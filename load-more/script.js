@@ -5,131 +5,159 @@
   Contributor(s):
   Michael "Spell" Spellacy
 
-  Dependencies: jQuery
-
 */
 
-(function() {
+(() => {
 
-  // Display which component in use via console:
+  "use strict";
 
-  console.log("%c{{ include.title }}%cv{{ include.version }}", "background: #2d2d2d; color: #fff; padding: 6px 10px; border-radius: 16px 0 0 16px; font-weight: 600;" , "background: #6e00ee; color: #fff; padding: 6px 10px; border-radius: 0 16px 16px 0; font-weight: 600;");
+  const initLoadMore = () => {
 
-  var $loadMore = $(".load-more");
-  var $loadMoreItem = $(".load-more__item");
-  var $loadMoreMsg = $(".load-more__msg");
-  var loadMoreBtnTxt = "Load More";
-  var loadMoreBtnFin = "All Done!";
-  var loadMoreNewItemTxt =  " new items have been loaded.";
-  var loadMoreNewItemSingleTxt =  " new item has been loaded.";
-  var loadMoreComplete = "All content has been loaded.";
-  var loadMoreDelay = 500;
-  var loadMoreDefault = 3;
+    // Display which version is in use via console:
 
-  // Hide all items after nth item
+    console.log("%c{{ include.title }}%cv{{ include.version }}", "background: #2d2d2d; color: #fff; padding: 6px 10px; border-radius: 16px 0 0 16px; font-weight: 600;" , "background: #6e00ee; color: #fff; padding: 6px 10px; border-radius: 0 16px 16px 0; font-weight: 600;");
 
-  $loadMore.each(function(e) {
+    // Classes, data attributes, states, and strings.
 
-    if ($(this).data("load-more-show")) {
+    const loadMoreClass = ".load-more";
+    const loadMoreItemClass = ".load-more__item";
+    const loadMoreMsgClass = ".load-more__msg";
+    const loadMoreBtnName = "load-more__btn";
+    const loadMoreBtnTxt = "Load More";
+    const loadMoreBtnFin = "All Done!";
+    const loadMoreNewItemTxt = " new items have been loaded.";
+    const loadMoreNewItemSingleTxt = " new item has been loaded.";
+    const loadMoreComplete = "All content has been loaded.";
+    const loadMoreDelay = 500;
+    const loadMoreDefault = 3;
+    const focusableSelectors = "a, audio, button, input, select, video";
+    const loadMoreContainers = document.querySelectorAll(loadMoreClass);
 
-      var loadMoreShow = $(this).data("load-more-show");
+    loadMoreContainers.forEach((container) => {
 
-    } else {
+      const loadMoreShow = container.dataset.loadMoreShow ? parseInt(container.dataset.loadMoreShow) : loadMoreDefault;
 
-      var loadMoreShow = loadMoreDefault;
+      // Hide all items after nth item.
 
-    }
+      const items = container.querySelectorAll(loadMoreItemClass);
 
-    $(this).find($loadMoreItem).slice(loadMoreShow).prop("hidden", "true");
+      items.forEach((item, i) => {
 
-  });
+        if (i >= loadMoreShow) {
 
-  // Add Button
+          item.setAttribute("hidden", "");
 
-  $loadMore.append("<button class='load-more__btn'>" + loadMoreBtnTxt + "</button>");
+        }
 
-  // Apply button class to variable
+      });
 
-  var $loadMoreBtn = $(".load-more__btn");
+      // Add button.
 
-  // Button Action: Message
+      const loadMoreBtn = document.createElement("button");
 
-  $($loadMoreBtn).on("itemsDisplayed", function(e, totalCount){
+      loadMoreBtn.classList.add(loadMoreBtnName);
+      loadMoreBtn.textContent = loadMoreBtnTxt;
 
-    var $loadMoreItemsHidden = $(this).parent().find(".load-more__item[hidden]");
+      container.append(loadMoreBtn);
 
-    if(!$loadMoreItemsHidden.length) {
+      // Button action: update message when items are displayed.
 
-      // Change button text when done
+      loadMoreBtn.addEventListener("itemsDisplayed", (e) => {
 
-      $(this).prop("disabled", "true").text(loadMoreBtnFin);
+        const totalCount = e.detail.totalCount;
+        const hiddenItems = container.querySelectorAll(`${loadMoreItemClass}[hidden]`);
+        const msg = container.querySelector(loadMoreMsgClass);
 
-      if (totalCount === 1) {
+        if (!hiddenItems.length) {
 
-        $(this).parent().find($loadMoreMsg).html(totalCount + loadMoreNewItemSingleTxt + " " + loadMoreComplete);
+          loadMoreBtn.disabled = true;
+          loadMoreBtn.textContent = loadMoreBtnFin;
 
-      } else {
+          if (msg) {
 
-        $(this).parent().find($loadMoreMsg).html(totalCount + loadMoreNewItemTxt + " " + loadMoreComplete);
+            if (totalCount === 1) {
 
-      }
+              msg.innerHTML = totalCount + loadMoreNewItemSingleTxt + " " + loadMoreComplete;
 
-    }
+            } else {
 
-  });
+              msg.innerHTML = totalCount + loadMoreNewItemTxt + " " + loadMoreComplete;
 
-  $loadMoreBtn.on("click", function() {
+            }
 
-    // Get Hidden Item(s)
+          }
 
-    var $loadMoreItemsHidden = $(this).parent().find(".load-more__item[hidden]");
+        }
 
-    // Remove hidden attr on every group of nth item(s)
+      });
 
-    if ($(this).parent().data("load-more-show")) {
+      // Button click: reveal next batch of items.
 
-      var itemsToLoad =  $(this).parent().data("load-more-show");
+      loadMoreBtn.addEventListener("click", () => {
 
-    } else {
+        const hiddenItems = container.querySelectorAll(`${loadMoreItemClass}[hidden]`);
+        const itemsToLoad = container.dataset.loadMoreShow ? parseInt(container.dataset.loadMoreShow) : loadMoreDefault;
+        const itemsToReveal = Array.from(hiddenItems).slice(0, itemsToLoad);
+        const msg = container.querySelector(loadMoreMsgClass);
 
-      var itemsToLoad = loadMoreDefault;
+        itemsToReveal.forEach((item) => {
 
-    }
+          item.removeAttribute("hidden");
 
-    var itemsToRemove = $loadMoreItemsHidden.slice(0, itemsToLoad);
+        });
 
-    itemsToRemove.slice(0, itemsToLoad).removeAttr("hidden");
+        const totalItems = itemsToReveal.length;
 
-    var totalItems = itemsToRemove.length;
+        if (msg) {
 
-    var loadMoreTxt = totalItems + loadMoreNewItemTxt;
+          msg.innerHTML = totalItems + loadMoreNewItemTxt;
 
-    $(this).parent().find($loadMoreMsg).html(loadMoreTxt);
+        }
 
-    // In not knowing what kind of content may exist in item, we are applying temporary focus to item itself.
-    // Question: Is it better to apply focus here or keep focus on the 'Load More' button itself, allowing
-    // keyboard user to navigate through newly revealed items?
-    // Also, is it better to put focus on item or first focusable element within item?
-    // TODO: More research will be required.
+        // Focus first focusable element within newly revealed items.
 
-    //  $loadMoreItemsHidden.first().attr("tabindex", "-1").focus();
+        let firstFocusable = null;
 
-    var $focusElms = "a, audio, button, input, select, video";
+        for (const item of itemsToReveal) {
 
-    $loadMoreItemsHidden.find($focusElms).first().focus();
+          firstFocusable = item.querySelector(focusableSelectors);
 
-    $(this).trigger("itemsDisplayed", [totalItems]);
+          if (firstFocusable) break;
 
-    // Remove message
-    // Note: Message needs to be removed so we can add it again
-    // when loading next selection of items.
+        }
 
-    setTimeout(function(){
+        if (firstFocusable) {
 
-      $loadMoreMsg.empty();
+          firstFocusable.focus();
 
-    }, loadMoreDelay);
+        }
 
-  });
+        // Dispatch custom event.
+
+        loadMoreBtn.dispatchEvent(new CustomEvent("itemsDisplayed", {
+
+          detail: { totalCount: totalItems }
+  
+        }));
+
+        // Remove message after delay.
+
+        setTimeout(() => {
+
+          document.querySelectorAll(loadMoreMsgClass).forEach((msgEl) => {
+
+            msgEl.innerHTML = "";
+
+          });
+
+        }, loadMoreDelay);
+
+      });
+
+    });
+
+  };
+
+  initLoadMore();
 
 })();
