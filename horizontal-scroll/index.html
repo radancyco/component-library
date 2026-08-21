@@ -46,6 +46,15 @@ attributes:
 
     desc: Can be used in specific templating scenarios where updating the default <code>aria-label</code> value is not possible. Additionally, use the <code>hidden</code> attribute to hide this list item.
 
+  - name: data-wheel-support
+    html: .horizontal-scroll 
+    note: 
+
+      - Boolean
+      - Optional
+
+    desc: Allows for scrolling support via mouse wheel. Please note that this is currently an experimental feature. When it becomes stable, it will be considered for inclusion as a default behavior.
+
 classes:
 
   - name: .horizontal-scroll
@@ -83,10 +92,16 @@ classes:
 changelog: 
 
   - label: Behavior
-    content: "January 28, 2026: Integrated mouse wheel support. Version now 1.5."
+    content: "August 21, 2026: Added fix to slide card into full view so that focus is not parially seen. Bumped to 1.5.2."
+
+  - label: Bug
+    content: "August 20, 2026: Default mouse wheel behavior was removed due to reports of instability. Still experimental only. Bumped to 1.5.1."
 
   - label: Behavior
-    content: "September 24, 2025: Added experimental support for mouse wheel scrolling. Version now 1.4."
+    content: "January 28, 2026: Integrated mouse wheel support. Bumped to 1.5."
+
+  - label: Behavior
+    content: "September 24, 2025: Added experimental support for mouse wheel scrolling. Bumbed to 1.4."
 
   - label: Behavior
     content: "March 11, 2025: Added Connor's new functionality to pass a dynamic label to <code>aria-label</code> due to limitations within the CMS."

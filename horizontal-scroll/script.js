@@ -19,15 +19,16 @@
   // Classes, data attributes, states, and strings.
 
   const scrollerClass = ".horizontal-scroll";
+  const scrollerItemClass = ".horizontal-scroll__card";
   const scrollers = document.querySelectorAll(scrollerClass);
+  const dataWheelSupport = "data-wheel-support";
 
   scrollers.forEach((scroll) => {
 
-    // CMS Editability Modification
-
     const scrollerAriaElement = scroll.querySelector('[data-aria-label-replace]');
     const scrollerAriaLabel = scrollerAriaElement?.getAttribute("data-aria-label-replace") ?? "";
-  
+
+    // CMS Editability Modification
     // Checks if label exists, and then replaces it with CMS value. When done, deletes junk element from DOM.
 
     if(scrollerAriaLabel) {
@@ -49,32 +50,46 @@
 
     // Mousewheel Support
 
-    const isRTL = document.dir === "rtl" || getComputedStyle(scroll).direction === "rtl"; // RTL Support
-    const scrollSpeed = 1; // Multiplier applied to wheel input. Lower to slow scrolling down, raise to speed it up.
+    if(scroll.hasAttribute(dataWheelSupport)) {
 
-    scroll.addEventListener("wheel", (event) => {
+      // RTL Support
 
-      const canScroll = scroll.scrollWidth > scroll.clientWidth;
+      const isRTL = document.dir === "rtl" || getComputedStyle(scroll).direction === "rtl";
 
-      if (!canScroll) return; // nothing to scroll horizontally
+      scroll.addEventListener("wheel", (event) => {
+  
+        if (document.activeElement === scroll || scroll.matches(":hover")) {
+    
+          event.preventDefault();
+          
+          scroll.scrollBy({ 
+            
+            left: isRTL ? -event.deltaY : event.deltaY, 
+            behavior: "smooth" 
+          
+          });
+  
+        }
 
-      const isAtStart = scroll.scrollLeft === 0;
-      const isAtEnd = scroll.scrollLeft + scroll.clientWidth >= scroll.scrollWidth;
-      const scrollDelta = (isRTL ? -event.deltaY : event.deltaY) * scrollSpeed;
+      }, { 
+        
+        passive: false 
+      
+      });
 
-      // Only prevent default if there is actually room to scroll in that direction
+    }
 
-      const shouldScroll = (scrollDelta < 0 && !isAtStart) || (scrollDelta > 0 && !isAtEnd);
+    // Focus Support: Bring partially-visible cards fully into view when focused.
 
-      if (!shouldScroll) return; // allow normal vertical scroll
+    scroll.addEventListener("focusin", (event) => {
 
-      event.preventDefault();
+      const card = event.target.closest(scrollerItemClass);
 
-      scroll.scrollBy({ left: scrollDelta, behavior: "auto" });
+      if (card) {
 
-    }, {
+        card.scrollIntoView({ inline: "nearest", block: "nearest" });
 
-      passive: false
+      }
 
     });
 
