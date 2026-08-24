@@ -19,7 +19,7 @@
     const tabListListClass = ".tablist__list";
     const tabListClassName = "tablist__tab";
     const tabListTabClass = `.${tabListClassName}`;
-    const tabListDataDisableAnchor = "data-disable-anchor";
+    const tabListDataEnableAnchor = "data-enable-anchor";
     const tabListDataVertical = "data-vertical";
     const tabListPanelClass = ".tablist__panel";
     const tabLists = document.querySelectorAll(tabListClass);
@@ -120,7 +120,7 @@
           tab.setAttribute("aria-selected", "true");
           tab.removeAttribute("tabindex");
 
-          if (!tab.closest(tabListClass).hasAttribute(tabListDataDisableAnchor)) {
+          if (tab.closest(tabListClass).hasAttribute(tabListDataEnableAnchor)) {
 
             history.pushState(null, null, `#${tabID}`);
     

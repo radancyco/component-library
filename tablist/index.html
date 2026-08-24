@@ -10,14 +10,14 @@ attributes:
 
     desc: Used to enable content to be animated when opened. Please note that the default animation leverages <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style">@starting-style</a> at-rule.
 
-  - name: data-disable-anchor
+  - name: data-enable-anchor
     html: .tablist
     note:
   
       - Boolean
       - Optional
 
-    desc: Used to disable the anchor that appears in the address bar when a tab is clicked on. Do note that including an anchor can be useful for tracking and sharing specific content, so we should only remove when we have a good reason.
+    desc: Used to enable anchor functionality. When enabled, selecting a tab appends its configured anchor to the URL. Anchors can be useful for tracking interactions and creating links that navigate directly to specific content.
 
   - name: data-fixed-height
     html: .tablist
@@ -84,8 +84,11 @@ classes:
 
 changelog: 
 
+  - label: Behavior
+    content: "August 24, 2026: Changed the default behavior so that anchors are no longer generated automatically. This is intentional because developers often leave default configuration values unchanged, which could result in unnecessary anchors being added to the URL. The disable-anchor flag has also been replaced with enable-anchor, making anchor functionality explicitly opt-in. Bumped to 2.0.2."
+
   - label: Bug
-    content: "July 30, 2026: Added <code>display: grid</code> to <code>.tablist__list li</code> to allow child link to stretch horizontally. Bumped version to 2.0.1."
+    content: "July 30, 2026: Added <code>display: grid</code> to <code>.tablist__list li</code> to allow child link to stretch horizontally. Bumped to 2.0.1."
 
   - label: Feature
     content: "March 30, 2026: Added support for <kbd>Home</kbd> and <kbd>End</kbd>. When either key is pressed within the component, focus will move to the first or last tab, respectively."

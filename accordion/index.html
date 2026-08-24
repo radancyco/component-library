@@ -33,14 +33,14 @@ attributes:
 
     desc: Used to allow the accordion to become non-interactive on larger viewport sizes, while maintaining interactivity on mobile. Often used in mobile footers.
 
-  - name: data-disable-anchor
+  - name: data-enable-anchor
     html: .accordion
     note:
 
       - Boolean
       - Optional
 
-    desc: Used to disable the anchor that appears in the address bar when a button is pressed. Do note that including an anchor can be useful for tracking and sharing specific content, so we should only remove when we have a good reason.
+    desc: Used to enable anchor functionality. When enabled, selecting a disclosure appends its configured anchor to the URL. Anchors can be useful for tracking interactions and creating links that navigate directly to specific content.
 
   - name: data-fixed-height
     html: .accordion
@@ -165,6 +165,9 @@ roadmap:
     content: Consider the possibility of allowing for nested accordions (Medium).
 
 changelog: 
+
+  - label: Behavior
+    content: "August 24, 2026: Changed the default behavior so that anchors are no longer generated automatically. This is intentional because developers often leave default configuration values unchanged, which could result in unnecessary anchors being added to the URL. The disable-anchor flag has also been replaced with enable-anchor, making anchor functionality explicitly opt-in. Bumped to 2.9.4."
 
   - label: Behavior
     content: "August 19, 2026: Made CSS improvements to the animation examples. Bumped to 2.9.3."

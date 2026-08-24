@@ -58,7 +58,7 @@
       const accordionDataDefaultOpen = "data-open";
       const accordionDataOverlay = "data-overlay";
       const accordionDataCloseButton = "data-close";
-      const accordionDataDisableAnchor = "data-disable-anchor";
+      const accordionDataEnableAnchor = "data-enable-anchor";
       const accordionDataFixedHeight = "data-fixed-height";
       const accordionDataMultiOpen = "data-multiple";
       const accordionDataRemoveArrow = "data-remove-arrow";
@@ -158,7 +158,7 @@
 
             // Add URL Fragment to URL if not disabled.
 
-            if (!accordion.hasAttribute(accordionDataDisableAnchor)) {
+            if (accordion.hasAttribute(accordionDataEnableAnchor)) {
 
               history.pushState(null, null, `#${buttonID}`);
 
