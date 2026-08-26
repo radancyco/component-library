@@ -33,6 +33,11 @@ $ba-bp-md: 48em; // tile copy sizing steps up
 $ba-bp-desktop: 64em; // primary grid breakpoint: mobile -> desktop layout
 $ba-bp-short: 42.5em; // max-height query for short viewports
 
+body {
+margin: 0;
+padding: 0;
+}
+
 :root {
 --color-text: #1c2640;
 --color-yellow: #ffe433;
@@ -337,15 +342,6 @@ background-color: #1c2640;
     cursor: grabbing;
     }
 
-
-    // Keyboard-driven pans get a short, deliberate transition; drag/momentum
-    // panning stays purely JS-timed (frame-by-frame transform writes), so
-    // this only ever applies to the keyboard path.
-
-    .business-areas--keyboard-moving & {
-    transition: transform 80ms ease-out;
-    }
-
     &__inner {
     display: grid;
     grid-template-columns: repeat(3, max-content);
@@ -404,7 +400,7 @@ background-color: #1c2640;
     grid-row: 4;
     }
 
-    &:has(dialog) {
+    &[aria-controls] {
     cursor: pointer;
 
       .business-areas__item__preview__cta {
@@ -457,8 +453,8 @@ background-color: #1c2640;
     }
 
     &--active:focus-within .business-areas__item__preview__cta,
-    &:has(dialog):focus .business-areas__item__preview__cta,
-    &:has(dialog):focus-visible .business-areas__item__preview__cta {
+    &[aria-controls]:focus .business-areas__item__preview__cta,
+    &[aria-controls]:focus-visible .business-areas__item__preview__cta {
     display: inline-flex;
     opacity: 1 !important;
     transition: none !important;

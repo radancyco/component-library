@@ -7,7 +7,6 @@
 (() => {
     "use strict";
 
-    const selector = ".business-areas";
     const baseClass = "business-areas";
     const readyDelayMs = 250;
     const dragThresholdPx = 10;
@@ -22,15 +21,50 @@
     const landingCol = 1;
     const landingRow = 1;
 
+    // ---- DOM contract: every class, id, and attribute this component reads
+    // or writes, in one place. baseClass-derived rather than per-instance
+    // (this.base) — there's exactly one instantiation site in this file
+    // (new BusinessAreas(baseClass)), so this is fixed in practice already.
+
+    // BEM class names (bare — for classList operations)
+    const CLASS_ITEM = `${baseClass}__item`;
+    const CLASS_ITEM_ACTIVE = `${baseClass}__item--active`;
+    const CLASS_NAV_ITEM_MUTED = `${baseClass}__nav__item--muted`;
+    const CLASS_MOUSE_DOWN = `${baseClass}--mouse-down`;
+
+    // Selectors (for querySelector/querySelectorAll/closest/matches)
+    const SEL_ROOT = `.${baseClass}`;
+    const SEL_OVERFLOW = `.${baseClass}__overflow`;
+    const SEL_OVERFLOW_INNER = `.${baseClass}__overflow__inner`;
+    const SEL_ITEM = `.${CLASS_ITEM}`;
+    const SEL_ITEM_ACTIVE = `.${CLASS_ITEM_ACTIVE}`;
+    const SEL_NAV_ITEM = `.${baseClass}__nav__item`;
+    const SEL_ITEM_PREVIEW_TITLE = `.${baseClass}__item__preview__title`;
+    const SEL_ITEM_PREVIEW_CTA = `.${baseClass}__item__preview__cta`;
+    const SEL_ITEM_TILE = `.${baseClass}__item__tile`;
+    const SEL_OPEN_DIALOG = "dialog[open]";
+
+    // Fixed element/aria-target ids — straight from the markup's own ids,
+    // not derived from baseClass.
+    const ID_GRID_STATUS = "business-areas-grid-status";
+    const ID_GRID_INSTRUCTIONS = "business-areas-grid-instructions";
+    const SEL_GRID_STATUS = `#${ID_GRID_STATUS}`;
+
+    // data-* attributes this component reads
+    const ATTR_KEY = "data-business-area-key";
+    const ATTR_GRID_COL = "data-grid-col";
+    const ATTR_GRID_ROW = "data-grid-row";
+
     // Single source of truth for the four directional nav buttons — used for
     // mouse-click movement, arrow-key movement, and edge-muting, instead of
-    // three separate north/south/west/east branch chains.
+    // three separate north/south/west/east branch chains. className is
+    // precomputed once here rather than re-templated at every call site.
     const NAV_DIRECTIONS = [
         { suffix: "north", dx: 0, dy: 1, key: "ArrowUp", isMuted: (col, row, cols, rows) => row <= 0 },
         { suffix: "south", dx: 0, dy: -1, key: "ArrowDown", isMuted: (col, row, cols, rows) => row >= rows - 1 },
         { suffix: "west", dx: 1, dy: 0, key: "ArrowLeft", isMuted: (col, row, cols, rows) => col <= 0 },
         { suffix: "east", dx: -1, dy: 0, key: "ArrowRight", isMuted: (col, row, cols, rows) => col >= cols - 1 }
-    ];
+    ].map((direction) => ({ ...direction, className: `${baseClass}__nav--${direction.suffix}` }));
 
     let gridInstance;
 
@@ -77,12 +111,12 @@
 
     const prefersReducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    const getNavMovementFromButton = (btn, base) => {
+    const getNavMovementFromButton = (btn) => {
         if (!btn || !btn.classList) {
             return null;
         }
 
-        const direction = NAV_DIRECTIONS.find((d) => btn.classList.contains(`${base}__nav--${d.suffix}`));
+        const direction = NAV_DIRECTIONS.find((d) => btn.classList.contains(d.className));
         return direction ? { x: direction.dx, y: direction.dy } : null;
     };
 
@@ -118,15 +152,37 @@
 
     const isTouchEvent = (type) => type && type.indexOf("touch") === 0;
 
+    // Any element a developer might drop into a cell/dialog that needs its
+    // own click, drag, or focus to work — not just <button>. Content areas
+    // are open, so this can't be a fixed list of what's used today.
+    const interactiveSelector = [
+        "button",
+        "a[href]",
+        "input",
+        "select",
+        "textarea",
+        "details",
+        "summary",
+        "audio",
+        "video",
+        "iframe",
+        "[contenteditable]:not([contenteditable=\"false\"])",
+        // tabindex="-1" also marks the grid cells themselves (a
+        // programmatic focus target for arrow-key nav, not something a
+        // press should be exempted from panning for) — only a real tab
+        // stop (0 or positive) signals a custom interactive widget.
+        "[tabindex]:not([tabindex=\"-1\"])"
+    ].join(", ");
+
     const parseGridAttr = (el, name, fallback) => {
         const parsed = parseInt(el && el.getAttribute(name), 10);
         return isFinite(parsed) ? parsed : fallback;
     };
 
-    const getKey = (cell) => cell && cell.getAttribute("data-business-area-key");
+    const getKey = (cell) => cell && cell.getAttribute(ATTR_KEY);
 
     const getLabel = (cell) => {
-        const heading = cell && cell.querySelector(".business-areas__item__preview__title");
+        const heading = cell && cell.querySelector(SEL_ITEM_PREVIEW_TITLE);
         return heading ? heading.textContent.replace(/\s+/g, " ").trim() : "";
     };
 
@@ -173,6 +229,9 @@
             this.dragSpeed = touchDragSpeed;
             this._boundAnimate = () => this.animate();
             this._boundOnResize = () => this.onResize();
+            this._boundStartDrag = (e) => this.startDrag(e);
+            this._boundDrag = (e) => this.drag(e);
+            this._boundEndDrag = () => this.endDrag();
             this.setDragStates();
             this.addEvents();
         }
@@ -200,6 +259,21 @@
         }
 
         startDrag(e) {
+            // Skip drag-initiation for presses starting on any interactive
+            // element (buttons, links, form fields, custom tabindex widgets,
+            // etc. — this content area is open for developers to put
+            // anything in). preventDefault() here has two different ways of
+            // breaking those on us: on touchstart it suppresses the
+            // browser's synthesized click for that touch (silently killing
+            // button/link activation on mobile), and on mousedown it blocks
+            // the browser's default focus-shift (silently breaking tap/click
+            // -to-focus on text inputs, selects, textareas — mobile AND
+            // desktop). None of that is needed for pan-dragging anyway; let
+            // interactive elements handle their own activation and focus.
+            if (e.target.closest(interactiveSelector)) {
+                return;
+            }
+
             e.preventDefault();
             this.main.getOffset();
             this.dragging = true;
@@ -223,7 +297,7 @@
             if (!this.checkIfThreshold(this.mouseChange, dragThresholdPx)) {
                 this.hasDragged = true;
                 this.snapped = false;
-                this.main.parent.classList.add(`${this.main.base}--mouse-down`);
+                this.main.parent.classList.add(CLASS_MOUSE_DOWN);
                 this.main.removeActive();
             }
         }
@@ -287,9 +361,9 @@
 
             this.dragChange.x = pan.x;
             this.dragChange.y = pan.y;
-            this._pendingSettleCallback = (options && options.onSettle) || null;
+            this._pendingSettleCallback = options?.onSettle || null;
 
-            if ((options && options.instant) || prefersReducedMotion()) {
+            if (options?.instant || prefersReducedMotion()) {
                 this.applySnapNow(pan);
             } else {
                 this.navSnapSpeed = this.getNavSnapSpeed(fromPan, pan);
@@ -297,7 +371,7 @@
                 this.snapped = false;
             }
 
-            this.main.parent.classList.remove(`${this.main.base}--mouse-down`);
+            this.main.parent.classList.remove(CLASS_MOUSE_DOWN);
         }
 
         checkIfThreshold(obj, threshold) {
@@ -372,12 +446,12 @@
                 return;
             }
 
-            overflow.addEventListener("mousedown", (e) => this.startDrag(e));
-            overflow.addEventListener("mousemove", (e) => this.drag(e));
-            document.addEventListener("mouseup", () => this.endDrag());
-            overflow.addEventListener("touchstart", (e) => this.startDrag(e), false);
-            overflow.addEventListener("touchmove", (e) => this.drag(e), false);
-            document.addEventListener("touchend", () => this.endDrag());
+            overflow.addEventListener("mousedown", this._boundStartDrag);
+            overflow.addEventListener("mousemove", this._boundDrag);
+            document.addEventListener("mouseup", this._boundEndDrag);
+            overflow.addEventListener("touchstart", this._boundStartDrag, false);
+            overflow.addEventListener("touchmove", this._boundDrag, false);
+            document.addEventListener("touchend", this._boundEndDrag);
 
             this._rafId = window.requestAnimationFrame(this._boundAnimate);
         }
@@ -386,6 +460,16 @@
             if (this._rafId) {
                 cancelAnimationFrame(this._rafId);
             }
+
+            const overflow = this.main.overflow;
+            if (overflow) {
+                overflow.removeEventListener("mousedown", this._boundStartDrag);
+                overflow.removeEventListener("mousemove", this._boundDrag);
+                overflow.removeEventListener("touchstart", this._boundStartDrag);
+                overflow.removeEventListener("touchmove", this._boundDrag);
+            }
+            document.removeEventListener("mouseup", this._boundEndDrag);
+            document.removeEventListener("touchend", this._boundEndDrag);
         }
     }
 
@@ -394,17 +478,17 @@
     class BusinessAreas {
         constructor(dom) {
             this.base = dom;
-            this.parent = document.querySelector(`.${this.base}`);
+            this.parent = document.querySelector(SEL_ROOT);
             if (!this.parent) {
                 return;
             }
 
-            this.overflow = this.parent.querySelector(`.${this.base}__overflow`);
-            this.baseTileParent = this.parent.querySelector(`.${this.base}__overflow__inner`);
-            this.baseTiles = this.parent.querySelectorAll(`.${this.base}__item`);
-            this.navigationButtons = this.parent.querySelectorAll(`.${this.base}__nav__item`);
-            this.status = this.parent.querySelector("#business-areas-grid-status");
-            this.mouse = { x: 0, y: 0, zeroX: 0, zeroY: 0, normalX: 0, normalY: 0 };
+            this.overflow = this.parent.querySelector(SEL_OVERFLOW);
+            this.baseTileParent = this.parent.querySelector(SEL_OVERFLOW_INNER);
+            this.baseTiles = this.parent.querySelectorAll(SEL_ITEM);
+            this.navigationButtons = this.parent.querySelectorAll(SEL_NAV_ITEM);
+            this.status = this.parent.querySelector(SEL_GRID_STATUS);
+            this.mouse = { x: 0, y: 0 };
             this.toResize = [];
             this.ready = true;
             this._readyTimeoutId = null;
@@ -417,10 +501,7 @@
 
             // Accessibility state — first-class from construction, not bolted on.
             this.activeKey = null;
-            this.dropdownSelect = null;
-            this.dropdownGo = null;
             this.keyboardManagedUntil = 0;
-            this.keyboardMoveTimer = null;
             this.lastAnnouncement = "";
             this._runtimeObserver = null;
             this._resizeObserver = null;
@@ -460,10 +541,6 @@
             const pointer = getPointer(e);
             this.mouse.x = pointer.clientX;
             this.mouse.y = pointer.clientY - this.gridOffset;
-            this.mouse.zeroX = this.mouse.x - this.width / 2;
-            this.mouse.zeroY = this.mouse.y - this.height / 2;
-            this.mouse.normalX = this.mouse.zeroX / (this.width / 2);
-            this.mouse.normalY = this.mouse.zeroY / (this.height / 2);
         }
 
         getPageSizes() {
@@ -582,8 +659,8 @@
                 }
 
                 return {
-                    x: parseGridAttr(tile, "data-grid-col", i % this.columns),
-                    y: parseGridAttr(tile, "data-grid-row", Math.floor(i / this.columns))
+                    x: parseGridAttr(tile, ATTR_GRID_COL, i % this.columns),
+                    y: parseGridAttr(tile, ATTR_GRID_ROW, Math.floor(i / this.columns))
                 };
             });
         }
@@ -621,10 +698,10 @@
 
         updateNavEdges(col, row) {
             this.navigationButtons.forEach((btn) => {
-                const direction = NAV_DIRECTIONS.find((d) => btn.classList.contains(`${this.base}__nav--${d.suffix}`));
+                const direction = NAV_DIRECTIONS.find((d) => btn.classList.contains(d.className));
                 const muted = direction ? direction.isMuted(col, row, this.columns, this.rows) : false;
 
-                btn.classList.toggle(`${this.base}__nav__item--muted`, muted);
+                btn.classList.toggle(CLASS_NAV_ITEM_MUTED, muted);
                 if (muted) {
                     btn.setAttribute("aria-disabled", "true");
                 } else {
@@ -638,17 +715,17 @@
 
             this.tiles.forEach((tile, i) => {
                 const active = this.tileGrid[i].x === cell.x && this.tileGrid[i].y === cell.y;
-                tile.classList.toggle(`${this.base}__item--active`, active);
+                tile.classList.toggle(CLASS_ITEM_ACTIVE, active);
             });
             this.updateNavEdges(cell.x, cell.y);
         }
 
         removeActive() {
-            this.tiles.forEach((tile) => tile.classList.remove(`${this.base}__item--active`));
+            this.tiles.forEach((tile) => tile.classList.remove(CLASS_ITEM_ACTIVE));
         }
 
         getItemFromTarget(target) {
-            return closestByClass(target, `${this.base}__item`);
+            return closestByClass(target, CLASS_ITEM);
         }
 
         snapToPointer(pointer) {
@@ -723,12 +800,18 @@
             return next;
         }
 
-        navClick(btn, options) {
-            if (btn.classList.contains(`${this.base}__nav__item--muted`) || btn.getAttribute("aria-disabled") === "true") {
-                return;
+        // Shared by navClick and navigateByKeyboard: null if the button is
+        // muted (at a grid edge) or doesn't map to a direction.
+        getEnabledMovement(btn) {
+            if (btn.classList.contains(CLASS_NAV_ITEM_MUTED) || btn.getAttribute("aria-disabled") === "true") {
+                return null;
             }
 
-            const movement = getNavMovementFromButton(btn, this.base);
+            return getNavMovementFromButton(btn);
+        }
+
+        navClick(btn, options) {
+            const movement = this.getEnabledMovement(btn);
             if (!movement) {
                 return;
             }
@@ -751,11 +834,7 @@
         // behind on whatever was previously focused, out of sync with what's
         // now on screen.
         navigateByKeyboard(btn) {
-            if (btn.classList.contains(`${this.base}__nav__item--muted`) || btn.getAttribute("aria-disabled") === "true") {
-                return;
-            }
-
-            const movement = getNavMovementFromButton(btn, this.base);
+            const movement = this.getEnabledMovement(btn);
             if (!movement) {
                 return;
             }
@@ -793,17 +872,20 @@
                 this.baseTileParent.addEventListener("touchend", this._boundTileClick);
             }
 
+            this._navButtonClickHandlers = [];
             this.navigationButtons.forEach((btn) => {
-                btn.addEventListener("click", () => {
-                    // Announce once the pan has actually settled, not on a
-                    // fixed delay — the coast-to-stop animation's duration
-                    // varies with distance, and a guessed delay either fires
-                    // too early (no active cell yet, announce silently drops)
-                    // or leaves a visible lag.
+                // Announce once the pan has actually settled, not on a
+                // fixed delay — the coast-to-stop animation's duration
+                // varies with distance, and a guessed delay either fires
+                // too early (no active cell yet, announce silently drops)
+                // or leaves a visible lag.
+                const handler = () => {
                     this.navClick(btn, {
                         onSettle: () => this.syncStateFromVisual({ announce: true, recenter: false })
                     });
-                });
+                };
+                this._navButtonClickHandlers.push({ btn, handler });
+                btn.addEventListener("click", handler);
             });
         }
 
@@ -824,6 +906,14 @@
             window.removeEventListener("mousemove", this._boundOnMouseMove);
             if (window.visualViewport) {
                 window.visualViewport.removeEventListener("resize", this._boundOnResizeDebounced);
+            }
+            if (this.baseTileParent) {
+                this.baseTileParent.removeEventListener("mouseup", this._boundTileClick);
+                this.baseTileParent.removeEventListener("touchend", this._boundTileClick);
+            }
+            if (this._navButtonClickHandlers) {
+                this._navButtonClickHandlers.forEach(({ btn, handler }) => btn.removeEventListener("click", handler));
+                this._navButtonClickHandlers = [];
             }
             this.parent.removeEventListener("focusin", this._boundGridFocusin, true);
             this.parent.removeEventListener("keydown", this._boundGridKeydown, true);
@@ -848,7 +938,7 @@
         }
 
         getActiveVisualTile() {
-            return this.parent.querySelector(`.${this.base}__item--active`);
+            return this.parent.querySelector(SEL_ITEM_ACTIVE);
         }
 
         getActiveVisualKey() {
@@ -856,7 +946,11 @@
         }
 
         resolveActiveCell() {
-            return this.getActiveVisualTile() || this.getCellByKey(this.getActiveKey()) || this.getCellByKey("intro");
+            // No further fallback needed here: getCellByKey() already falls
+            // back to the first tile whenever any tiles exist, so a second
+            // fallback lookup could only ever matter if there were none —
+            // in which case it would return null too.
+            return this.getActiveVisualTile() || this.getCellByKey(this.getActiveKey());
         }
 
         getActiveKey() {
@@ -879,8 +973,8 @@
         // observer and this and the observer's callback loop forever.
         normaliseCollectionSemantics() {
             if (this.overflow) {
-                if (this.overflow.getAttribute("aria-describedby") !== "business-areas-grid-instructions") {
-                    this.overflow.setAttribute("aria-describedby", "business-areas-grid-instructions");
+                if (this.overflow.getAttribute("aria-describedby") !== ID_GRID_INSTRUCTIONS) {
+                    this.overflow.setAttribute("aria-describedby", ID_GRID_INSTRUCTIONS);
                 }
                 this.overflow.removeAttribute("aria-activedescendant");
                 this.overflow.removeAttribute("aria-colcount");
@@ -889,14 +983,14 @@
         }
 
         getTriggerForCell(cell) {
-            return cell && cell.querySelector(`.${this.base}__item__preview__cta`);
+            return cell && cell.querySelector(SEL_ITEM_PREVIEW_CTA);
         }
 
         // True while any of this component's native <dialog> elements is open.
         // showModal() already makes the rest of the page inert, so this is only
         // needed to stop our own grid-state sync from running concurrently.
         hasOpenDialog() {
-            return !!this.parent.querySelector("dialog[open]");
+            return !!this.parent.querySelector(SEL_OPEN_DIALOG);
         }
 
         // Enter/Space on the active grid cell (not the button itself) and the
@@ -929,14 +1023,6 @@
             return true;
         }
 
-        markKeyboardMovement() {
-            this.parent.classList.add(`${this.base}--keyboard-moving`);
-            window.clearTimeout(this.keyboardMoveTimer);
-            this.keyboardMoveTimer = window.setTimeout(() => {
-                this.parent.classList.remove(`${this.base}--keyboard-moving`);
-            }, 260);
-        }
-
         repairActiveState(key, recenter) {
             if (this.hasOpenDialog()) {
                 return;
@@ -959,7 +1045,7 @@
 
         scheduleActiveStateRepair(key, recenter) {
             [60, 180, 420].forEach((delay) => {
-                window.setTimeout(() => {
+                setTimeout(() => {
                     if (key && this.getActiveKey() !== key) {
                         return;
                     }
@@ -970,7 +1056,7 @@
         }
 
         centerMeasuredCell(cell) {
-            const tile = cell && cell.querySelector(`.${this.base}__item__tile`);
+            const tile = cell && cell.querySelector(SEL_ITEM_TILE);
 
             if (!this.overflow || !tile) {
                 return false;
@@ -983,7 +1069,11 @@
                 return false;
             }
 
-            this.markKeyboardMovement();
+            // No markKeyboardMovement() here — this is the same "keyboard
+            // focus landed" case as centerVisualCell's main path (this is
+            // only its fallback, for when the grid position can't be
+            // determined), and that path snaps instantly for the same
+            // reason: see the comment on its drag.snap() call.
             const current = getTranslate(this.overflow);
             const offsetY = this.getVerticalOffsetPx();
             const next = {
@@ -1021,7 +1111,7 @@
                 this.drag.dragPos &&
                 Math.abs(this.drag.dragPos.x - target.x) < 0.5 &&
                 Math.abs(this.drag.dragPos.y - target.y) < 0.5 &&
-                cell.classList.contains(`${this.base}__item--active`)
+                cell.classList.contains(CLASS_ITEM_ACTIVE)
             ) {
                 return true;
             }
@@ -1030,16 +1120,82 @@
             this.drag.hasDragged = false;
             this.drag.acceleration = { x: 0, y: 0 };
             this.ready = true;
-            this.parent.classList.remove(`${this.base}--mouse-down`);
+            this.parent.classList.remove(CLASS_MOUSE_DOWN);
 
-            this.markKeyboardMovement();
-            this.drag.snap(target);
+            this.drag.snap(target, {
+                // instant: keyboard focus (Tab or arrow keys) lands on the
+                // new cell immediately, with no animation of its own — a
+                // coasting pan here just means the highlighted/focused cell
+                // and the visible content disagree for a beat while the
+                // grid catches up. Arrow-key nav (navMovement) already
+                // snaps for the same reason; this brings Tab-driven moves
+                // in line with it. Coasting is kept for the nav buttons
+                // (navClick) and drag, where there's a mouse pointer's
+                // continuous motion to stay visually connected to.
+                instant: true,
+                // The browser's own native scroll-into-view (fired on Tab
+                // focus, unsuppressable) runs immediately, before this pan
+                // has settled, targeting the focused button's stale
+                // pre-pan position. Two things go wrong from that:
+                //
+                // 1. Because .business-areas has overflow: hidden, it still
+                //    counts as a "scrolling box" per spec — so the native
+                //    attempt can set .business-areas's OWN internal
+                //    scrollTop trying to reveal that stale position, even
+                //    though nothing here ever means for it to scroll
+                //    internally (all movement is meant to happen only via
+                //    the pan transform). That stray scrollTop then throws
+                //    off every getBoundingClientRect() read afterwards —
+                //    including this component's own — until something
+                //    resets it. resyncViewport() forces it back to 0.
+                // 2. Separately, the native attempt may also scroll the
+                //    outer page itself, which resyncViewport() corrects by
+                //    scrolling this.parent (.business-areas, not just the
+                //    individual cell — the nav overlay's up/down/left/right
+                //    arrows are a sibling sized slightly larger than the
+                //    active card, so scrolling just the cell can still
+                //    leave an arrow clipped) into view with "nearest",
+                //    which only moves the page if it truly isn't visible.
+                //
+                // behavior is deliberately "auto" (instant), not "smooth"
+                // — this already fires after the pan's own transition has
+                // settled, so a second, separately-timed glide here would
+                // just read as the page double-animating.
+                //
+                // Called twice: once here, and once more after a double
+                // rAF, since the native attempt isn't guaranteed to have
+                // resolved by the time this first call runs — when it
+                // lands after us instead, it can clobber this correction.
+                // Two rAFs is the standard way to wait until the browser
+                // has fully drained whatever it queued on its own, so the
+                // second call is reliably the last word regardless of
+                // that race.
+                onSettle: () => {
+                    this.resyncViewport();
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            this.resyncViewport();
+                        });
+                    });
+                }
+            });
 
             return true;
         }
 
-        setActiveKey(key, options) {
-            const nextCell = (options && options.cell) || this.getCellByKey(key);
+        // See the call sites in centerVisualCell for why this runs twice.
+        resyncViewport() {
+            this.parent.scrollTop = 0;
+            this.parent.scrollLeft = 0;
+            this.parent.scrollIntoView({
+                block: "nearest",
+                inline: "nearest",
+                behavior: "auto"
+            });
+        }
+
+        setActiveKey(key, options = {}) {
+            const nextCell = options.cell || this.getCellByKey(key);
 
             if (!nextCell) {
                 return false;
@@ -1047,7 +1203,7 @@
 
             this.activeKey = getKey(nextCell) || "intro";
 
-            if (!options || options.visual !== false) {
+            if (options.visual !== false) {
                 this.centerVisualCell(nextCell);
             }
 
@@ -1058,7 +1214,7 @@
             // write here re-triggers it on every call, including calls that
             // don't actually change which cell is active — a self-sustaining
             // loop that never settles.
-            this.tiles.forEach((cell) => cell.classList.toggle(`${this.base}__item--active`, cell === nextCell));
+            this.tiles.forEach((cell) => cell.classList.toggle(CLASS_ITEM_ACTIVE, cell === nextCell));
             this.syncGridState(options);
 
             return true;
@@ -1076,7 +1232,7 @@
                 return false;
             }
 
-            const mergedOptions = Object.assign({ visual: true }, options);
+            const mergedOptions = { visual: true, ...options };
 
             if (options.recenter === false) {
                 mergedOptions.visual = false;
@@ -1090,12 +1246,12 @@
             return this.setActiveKey(visualKey, mergedOptions);
         }
 
-        syncGridState(options) {
+        syncGridState(options = {}) {
             const activeCell = this.resolveActiveCell();
             const activeKey = getKey(activeCell) || this.getActiveKey();
             const activeLabel = getLabel(activeCell);
 
-            if (this.hasOpenDialog() && (!options || !options.force)) {
+            if (this.hasOpenDialog() && !options.force) {
                 return;
             }
 
@@ -1104,7 +1260,7 @@
             this.tiles.forEach((cell) => {
                 const active = cell === activeCell;
 
-                cell.classList.toggle(`${this.base}__item--active`, active);
+                cell.classList.toggle(CLASS_ITEM_ACTIVE, active);
                 cell.removeAttribute("aria-selected");
                 if (active) {
                     // setAttribute() mutates even when the value is unchanged
@@ -1129,7 +1285,7 @@
                 button.setAttribute("tabindex", "-1");
             });
 
-            if (activeLabel && options && options.announce === true) {
+            if (activeLabel && options.announce === true) {
                 if (activeKey === "intro") {
                     this.announce("Business areas introduction active. Tab to the next business area or use the arrow keys to move spatially.");
                 } else {
@@ -1148,13 +1304,13 @@
             }
 
             return Array.from(this.navigationButtons)
-                .find((button) => button.classList.contains(`${this.base}__nav--${direction.suffix}`)) || null;
+                .find((button) => button.classList.contains(direction.className)) || null;
         }
 
         isGridInteractionTarget(target) {
             return this.overflow && target && (
                 target === this.overflow ||
-                (target.closest && target.closest(`.${this.base}__item`))
+                target.closest?.(SEL_ITEM)
             );
         }
 
@@ -1163,7 +1319,7 @@
                 return;
             }
 
-            const cell = event.target.closest && event.target.closest(`.${this.base}__item`);
+            const cell = event.target.closest?.(SEL_ITEM);
             if (!this.isBaseCell(cell)) {
                 return;
             }
@@ -1225,8 +1381,8 @@
 
             let syncTimeout;
             const observer = new MutationObserver(() => {
-                window.clearTimeout(syncTimeout);
-                syncTimeout = window.setTimeout(() => {
+                clearTimeout(syncTimeout);
+                syncTimeout = setTimeout(() => {
                     if (Date.now() < this.keyboardManagedUntil) {
                         this.syncGridState({ announce: false });
                         return;
@@ -1260,7 +1416,6 @@
             this.parent.addEventListener("focusin", this._boundGridFocusin, true);
             this.parent.addEventListener("keydown", this._boundGridKeydown, true);
 
-            // this.bindBusinessAreaDropdown(); // temporarily disabled — see comment above bindBusinessAreaDropdown()
             this.observeRuntimeChanges();
 
             this.activeKey = "intro";
@@ -1272,7 +1427,7 @@
     // ---- bootstrap ------------------------------------------------------
 
     function init() {
-        if (!document.querySelector(selector)) {
+        if (!document.querySelector(SEL_ROOT)) {
             return null;
         }
         if (gridInstance) {
