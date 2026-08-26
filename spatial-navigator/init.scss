@@ -1,0 +1,1001 @@
+/*!
+
+  Radancy Component Library: Spatial Navigator
+
+  Contributor(s):
+  Michael "Spell" Spellacy
+
+  Dependencies: Sass
+
+*/
+
+// ============================================================================
+// Global theme dependencies this component relies on but does not own.
+// Pulled from 63509-Primary-CMS-Theme.css (:root custom properties + the
+// .btn/.visually-hidden/spacing utility classes actually referenced by
+// the business-areas markup). Trimmed of unrelated selectors that share
+// these same classes elsewhere in the site (e.g. .btn is also used by
+// filter/pagination/job-alert controls not present here).
+//
+// NOT included: .bg--lime, .text--dark-blue, .text--dark-teal,
+// .text--grey-text, .text-center, .title-shorthand. These classes are
+// present in the markup but verified (via fetch against every stylesheet
+// loaded on the source page, and live getComputedStyle checks) to have NO
+// matching CSS rule anywhere in production — they're inert on the live
+// site today, not an extraction gap.
+// ============================================================================
+
+// Breakpoints (CSS variables are not allowed in media queries - boo!)
+
+$ba-bp-xs: 34.375em; // .btn goes full-width below this
+$ba-bp-sm: 37.5em; // intro tile title spacing
+$ba-bp-md: 48em; // tile copy sizing steps up
+$ba-bp-desktop: 64em; // primary grid breakpoint: mobile -> desktop layout
+$ba-bp-short: 42.5em; // max-height query for short viewports
+
+:root {
+--color-text: #1c2640;
+--color-yellow: #ffe433;
+--color-teal: #00c3b3;
+--color-pink: #ff8791;
+--tile-copy-mobile: .875rem;
+--tile-copy-desktop: 1rem;
+--tile-title-copy-mobile: 1.5rem;
+--tile-title-copy-desktop: 2.75rem;
+}
+
+.visually-hidden {
+inline-size: 1px;
+block-size: 1px;
+position: absolute;
+overflow: hidden;
+padding: 0;
+clip: rect(1px, 1px, 1px, 1px);
+white-space: nowrap;
+}
+
+.d-none {
+display: none !important;
+}
+
+.px-2 {
+padding-inline: 20px !important;
+}
+
+.mb-1 {
+margin-block-end: 10px !important;
+}
+
+.btn {
+position: relative;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+transition: .3s ease;
+font-size: 1rem;
+font-family: 'barlowsemibold', Helvetica, Arial, sans-serif;
+padding-inline: 2.8125rem;
+height: 2.875rem;
+background: #6e00ee;
+color: #fff;
+border-radius: 6px;
+border: 0;
+cursor: pointer;
+min-height: 3rem;
+width: 100%;
+margin-bottom: 1rem;
+
+  @media screen and (min-width: $ba-bp-xs) {
+  margin-bottom: 0;
+  width: auto;
+  }
+
+  &:hover {
+  text-decoration: none;
+  }
+
+  &--primary {
+  background: #ffe433;
+  color: #000;
+  border: 2px solid #1c2640;
+
+    &:hover, &:focus {
+    background: #d6ba00;
+    }
+
+  }
+
+  &[disabled] {
+  pointer-events: none;
+  cursor: not-allowed;
+  }
+
+}
+
+// ============================================================================
+// Spatial Navigator
+// ============================================================================
+
+.business-areas {
+
+// Component Variables
+
+--ba-cols: 3; // Grid Columns
+--ba-rows: 4; // Grid Rows
+--ba-gap-x: 2.5rem; // Column Gap
+--ba-gap-y: 2.5rem; // Row Gap
+--ba-card-width: 68vw; // Tile Width
+--ba-card-height: 54vh; // Tile Height
+--ba-vertical-offset: 2.5rem; // Nav Overlay Vertical Offset
+--ba-arrow-size: 2.1875rem; // Nav Arrow Button Size
+--ba-arrow-gap: .625rem; // Nav Arrow Button Gap
+--tile-preview-width: var(--ba-card-width); // Nav Overlay Sizing Reference
+--tile-preview-height: var(--ba-card-height); // Nav Overlay Sizing Reference
+
+height: 100vh;
+min-height: 100vh;
+box-sizing: border-box;
+position: relative;
+width: 100%;
+overflow: hidden;
+background-color: #1c2640;
+
+  @media screen and (min-width: $ba-bp-desktop) {
+
+  // --tile-preview-* mirrors &__item's own width/max-width and
+  // height/max-height pairing below, so the nav overlay tracks the tile's
+  // true rendered size without JS having to measure it and write it back.
+
+  --ba-gap-x: 5.625rem;
+  --ba-gap-y: 5.625rem;
+  --ba-card-width: 76vw;
+  --ba-card-height: 58vh;
+  --ba-vertical-offset: 0px;
+  --ba-arrow-size: 3.4375rem;
+  --ba-arrow-gap: 1.25rem;
+  --ba-arrow-icon-width: 1.375rem;
+  --ba-arrow-icon-height: 1.0625rem;
+  --tile-preview-width: min(var(--ba-card-width), 68.0625rem);
+  --tile-preview-height: min(var(--ba-card-height), 39.6875rem);
+
+  }
+
+  button {
+  display: block;
+  cursor: pointer;
+  color: inherit;
+  font-family: inherit;
+  }
+
+  // Directional Nav Overlay
+
+  &__nav {
+  position: absolute;
+  height: calc(var(--tile-preview-height) + var(--ba-arrow-size) * 2 + var(--ba-arrow-gap) * 2);
+  width: calc(var(--tile-preview-width) + var(--ba-arrow-size) * 2 + var(--ba-arrow-gap) * 2);
+  inset: 0;
+  margin: auto;
+  transform: translateY(var(--ba-vertical-offset, 0px)) scale(1);
+  transform-origin: center center;
+  pointer-events: none;
+  z-index: 2;
+  overflow: visible;
+  transition: 500ms all;
+
+    // Hidden mid-drag; the grid itself is the interaction surface then.
+
+    .business-areas--mouse-down & {
+    transform: translateY(var(--ba-vertical-offset, 0px)) scale(0);
+    opacity: 0;
+    visibility: hidden;
+    }
+
+    &__item {
+    flex-shrink: 0;
+    position: absolute;
+    padding: 0;
+    height: var(--ba-arrow-size);
+    width: var(--ba-arrow-size);
+    min-width: var(--ba-arrow-size);
+    min-height: var(--ba-arrow-size);
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid 1px #1c2640;
+    border-radius: 50%;
+    background-color: #ffe433;
+    box-sizing: border-box;
+    pointer-events: auto;
+    cursor: pointer;
+    overflow: visible;
+    transition: 300ms;
+
+      img {
+      margin-inline: auto;
+      position: static;
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 40%;
+      max-height: 46%;
+
+        @media screen and (min-width: $ba-bp-desktop) {
+        width: var(--ba-arrow-icon-width);
+        height: var(--ba-arrow-icon-height);
+        max-width: none;
+        max-height: none;
+        }
+
+      }
+
+      &.business-areas__nav--north {
+      left: 0;
+      right: 0;
+      top: 0;
+      margin-inline: auto;
+
+        img {
+        transform: rotate(270deg);
+
+          @media screen and (min-width: $ba-bp-desktop) {
+          width: var(--ba-arrow-icon-height);
+          height: var(--ba-arrow-icon-width);
+          }
+
+        }
+
+        &:active {
+        transform: translateY(-10px);
+        }
+
+      }
+
+      &.business-areas__nav--east {
+      top: 0;
+      bottom: 0;
+      left: auto;
+      right: 0;
+      margin-block: auto;
+
+        &:active {
+        transform: translateX(10px);
+        }
+
+      }
+
+      &.business-areas__nav--south {
+      left: 0;
+      right: 0;
+      margin-inline: auto;
+      bottom: -.75rem;
+
+        @media screen and (min-width: $ba-bp-desktop) {
+        bottom: 0;
+        }
+
+        img {
+        transform: rotate(90deg);
+
+          @media screen and (min-width: $ba-bp-desktop) {
+          width: var(--ba-arrow-icon-height);
+          height: var(--ba-arrow-icon-width);
+          }
+
+        }
+
+        &:active {
+        transform: translateY(10px);
+        }
+
+      }
+
+      &.business-areas__nav--west {
+      top: 0;
+      bottom: 0;
+      margin-block: auto;
+      left: 0;
+
+        img {
+        transform: rotate(180deg);
+        }
+
+        &:active {
+        transform: translateX(-10px);
+        }
+
+      }
+
+      &--muted {
+      opacity: .3;
+      pointer-events: none;
+      cursor: default;
+      }
+
+      &:focus-visible, &--direction-focus {
+      //outline: 3px solid #fff;
+     // outline-offset: 4px;
+      //box-shadow: 0 0 0 7px #1c2640;
+      }
+
+    }
+
+  }
+
+  // Grid Viewport
+
+  &__overflow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: grab;
+  touch-action: none;
+  will-change: transform;
+  transform-origin: 0 0;
+
+    &:active {
+    cursor: grabbing;
+    }
+
+
+    // Keyboard-driven pans get a short, deliberate transition; drag/momentum
+    // panning stays purely JS-timed (frame-by-frame transform writes), so
+    // this only ever applies to the keyboard path.
+
+    .business-areas--keyboard-moving & {
+    transition: transform 80ms ease-out;
+    }
+
+    &__inner {
+    display: grid;
+    grid-template-columns: repeat(3, max-content);
+    grid-template-rows: repeat(4, max-content);
+    column-gap: var(--ba-gap-x);
+    row-gap: var(--ba-gap-y);
+    position: relative;
+    }
+
+  }
+
+  // Grid Cell
+
+  &__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  box-sizing: border-box;
+  width: var(--ba-card-width);
+  height: var(--ba-card-height);
+  min-width: 0;
+  min-height: 0;
+
+    @media screen and (min-width: $ba-bp-desktop) {
+    max-width: 68.0625rem;
+    max-height: 39.6875rem;
+    }
+
+    &[data-grid-col="0"] {
+    grid-column: 1;
+    }
+
+    &[data-grid-col="1"] {
+    grid-column: 2;
+    }
+
+    &[data-grid-col="2"] {
+    grid-column: 3;
+    }
+
+    &[data-grid-row="0"] {
+    grid-row: 1;
+    }
+
+    &[data-grid-row="1"] {
+    grid-row: 2;
+    }
+
+    &[data-grid-row="2"] {
+    grid-row: 3;
+    }
+
+    &[data-grid-row="3"] {
+    grid-row: 4;
+    }
+
+    &:has(dialog) {
+    cursor: pointer;
+
+      .business-areas__item__preview__cta {
+      pointer-events: auto;
+      }
+
+    }
+
+    // Native command/commandfor makes any visible "See more" clickable
+    // regardless of grid state; this keeps a tile's dialog reachable only
+    // once it's active, matching the original gated-click behaviour
+    // without any JS.
+
+    &:not(&--active) .business-areas__item__preview__cta {
+    pointer-events: none;
+    }
+
+    &--active {
+    z-index: 2;
+
+      .business-areas__item__tile {
+      opacity: 1;
+      transform: none;
+      box-shadow: 0 .25rem .5rem rgba(0, 0, 0, .25);
+      }
+
+      .business-areas__item__tile:not(.business-areas__item__tile--main) .business-areas__item__preview {
+      justify-content: flex-end;
+
+        @media screen and (min-width: $ba-bp-desktop) {
+        justify-content: center;
+        }
+
+      }
+
+      .business-areas__item__preview__cta {
+      display: inline-flex;
+      opacity: 1 !important;
+      transition: none !important;
+      visibility: visible !important;
+      }
+
+    }
+
+    &[aria-current="true"] .business-areas__item__preview__cta {
+    display: inline-flex;
+    opacity: 1 !important;
+    transition: none !important;
+    visibility: visible !important;
+    }
+
+    &--active:focus-within .business-areas__item__preview__cta,
+    &:has(dialog):focus .business-areas__item__preview__cta,
+    &:has(dialog):focus-visible .business-areas__item__preview__cta {
+    display: inline-flex;
+    opacity: 1 !important;
+    transition: none !important;
+    visibility: visible !important;
+    }
+
+    // Tile (the visible card)
+
+    &__tile {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    min-width: 0;
+    min-height: 0;
+    border-radius: .625rem;
+    transform: none;
+    transition: opacity 700ms cubic-bezier(.22, 1, .36, 1);
+    overflow: hidden;
+    background-color: #fff;
+    opacity: .2;
+    box-shadow: 0 .25rem .5rem rgba(0, 0, 0, .25);
+
+      @media screen and (min-width: $ba-bp-desktop) {
+      border-radius: 1.25rem;
+      }
+
+      &--main {
+      background-color: #fff;
+      }
+
+      &:not(&--main) {
+
+        &.cat-operations, &.cat-compliance, &.cat-finance, &.cat-technology {
+        background-color: var(--color-yellow);
+        }
+
+        &.cat-market-analytics, &.cat-prod-design, &.cat-human-resources, &.cat-change-transformation {
+        background-color: var(--color-pink);
+        }
+
+        &.cat-data, &.cat-legal, &.cat-risk {
+        background-color: var(--color-teal);
+        }
+
+      }
+
+    }
+
+    // Preview (title / summary / CTA, plus the intro tile's pan animation)
+
+    &__preview {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .3125rem;
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    z-index: 1;
+    padding-inline: 1rem;
+
+      @media screen and (min-width: $ba-bp-desktop) {
+      padding-inline: 0;
+      }
+
+      // Non-intro tiles: photo mask + copy pinned to the tile edge
+
+      .business-areas__item__tile:not(.business-areas__item__tile--main) & {
+      align-items: center;
+      padding: 0 1.25rem 1.5rem;
+      height: 100%;
+      display: flex;
+      justify-content: flex-end;
+      gap: .5rem;
+
+        @media screen and (min-height: $ba-bp-desktop) {
+        gap: 1.5rem;
+        }
+
+        @media screen and (min-width: $ba-bp-desktop) {
+        align-items: flex-start;
+        justify-content: center;
+        padding: 0 0 0 3.75rem;
+        gap: 1.25rem;
+        }
+
+        &::before {
+        content: none;
+        display: none;
+        }
+
+        &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 34%;
+        background-size: cover;
+        background-position: center top;
+        background-repeat: no-repeat;
+        z-index: 0;
+        pointer-events: none;
+        border-radius: 0 0 50% 50% / 0 0 32% 32%;
+
+          @media screen and (min-height: $ba-bp-desktop) {
+          height: 54%;
+          }
+
+          @media screen and (min-width: $ba-bp-desktop) {
+          top: 50%;
+          right: -8%;
+          left: auto;
+          width: 46%;
+          height: 130%;
+          transform: translateY(-50%);
+          border-radius: 50%;
+          background-position: center;
+          }
+
+        }
+
+      }
+
+      // Intro tile: centered copy, no photo mask
+
+      .business-areas__item__tile--main & {
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      padding: 1.75rem 1.25rem 1.5rem;
+      gap: .75rem;
+
+        @media screen and (min-width: $ba-bp-desktop) {
+        padding: 3.5rem 5rem 3rem;
+        gap: 1.25rem;
+        }
+
+      }
+
+      &__title {
+      --tile-title-copy-mobile: 1.25rem;
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      font-size: var(--tile-title-copy-mobile);
+      line-height: 1;
+      text-align: center;
+      color: var(--color-text);
+      margin-block-start: 0;
+      max-width: 100%;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+
+        @media screen and (min-width: $ba-bp-sm) {
+        margin: 1rem 0;
+        }
+
+        @media screen and (min-width: $ba-bp-desktop) {
+        font-size: var(--tile-title-copy-desktop);
+        }
+
+        .business-areas__item__tile:not(.business-areas__item__tile--main) .business-areas__item__preview & {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        width: 100%;
+        max-width: 100%;
+        padding: 0 .5rem;
+        margin: 0;
+        font-size: 2.1875rem;
+        line-height: 1.05;
+        font-family: 'barlow_condensedsemibold', Helvetica, Arial, sans-serif;
+
+          @media screen and (max-height: $ba-bp-short) {
+          font-size: 1.5rem;
+          }
+
+          @media screen and (min-width: $ba-bp-desktop) {
+          text-align: left;
+          width: auto;
+          max-width: 53%;
+          padding: 0;
+          margin: 0;
+          font-size: 5.625rem;
+          line-height: .95;
+          }
+
+        }
+
+        .business-areas__item__tile--main .business-areas__item__preview & {
+        font-family: 'barlow_condensedsemibold', Helvetica, Arial, sans-serif;
+        font-size: 2.25rem;
+        line-height: 1.05;
+        text-align: center;
+        margin: 0;
+        width: 100%;
+
+          @media screen and (min-width: $ba-bp-desktop) {
+          font-size: 5rem;
+          line-height: 1;
+          }
+
+        }
+
+      }
+
+      &__content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      flex-shrink: 0;
+      width: auto;
+      visibility: visible;
+      opacity: 1;
+      transform: none;
+      padding: 0 1.5rem;
+      font-size: .75rem;
+      line-height: 1.1;
+      color: #000;
+      max-width: 100%;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+
+        @media screen and (min-width: $ba-bp-md) {
+        font-size: var(--tile-copy-mobile);
+        }
+
+        @media screen and (min-width: $ba-bp-desktop) {
+        line-height: 1.2;
+        font-size: 1.1rem;
+        }
+
+        .business-areas__item__tile:not(.business-areas__item__tile--main) .business-areas__item__preview & {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        width: 100%;
+        max-width: 100%;
+        padding: 0 .625rem;
+        margin: 0;
+        font-size: 1rem;
+        line-height: 1.25;
+        color: #000;
+        font-family: 'barlowregular', Helvetica, Arial, sans-serif;
+
+          @media screen and (max-height: $ba-bp-short) {
+          font-size: .875rem;
+          }
+
+          @media screen and (min-width: $ba-bp-desktop) {
+          text-align: left;
+          width: auto;
+          max-width: 42%;
+          padding: 0;
+          font-size: 1.125rem;
+          line-height: 1.3;
+          }
+
+        }
+
+        .business-areas__item__tile--main .business-areas__item__preview & {
+        font-family: 'barlowregular', Helvetica, Arial, sans-serif;
+        font-size: .875rem;
+        line-height: 1.3;
+        text-align: center;
+        padding: 0 .5rem;
+        margin: 0;
+        width: 100%;
+        color: var(--color-text);
+
+          @media screen and (min-width: $ba-bp-desktop) {
+          font-size: 1.125rem;
+          max-width: 40rem;
+          padding: 0;
+          }
+
+        }
+
+      }
+
+      &__cta {
+      position: relative;
+      z-index: 1;
+      padding: .3125rem .9375rem;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .51);
+      border: solid 2px var(--color-text);
+      background-color: var(--color-yellow);
+      font-size: .75rem;
+      font-weight: 600;
+      width: auto;
+      max-width: 100%;
+      line-height: 1;
+      visibility: visible;
+      opacity: 1;
+      font-family: 'barlow_condensedsemibold', Helvetica, Arial, sans-serif;
+
+        @media screen and (min-width: $ba-bp-md) {
+        font-size: var(--tile-copy-mobile);
+        }
+
+        @media screen and (min-width: $ba-bp-desktop) {
+        padding: .8125rem 2.625rem;
+        font-size: var(--tile-copy-desktop);
+        width: auto;
+        }
+
+        .business-areas__item__tile:not(.business-areas__item__tile--main) .business-areas__item__preview & {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        font-size: .875rem;
+        padding: .625rem 1rem;
+        text-align: center;
+
+          @media screen and (min-width: $ba-bp-desktop) {
+          width: auto;
+          margin: 0;
+          padding: .75rem 2.625rem;
+          font-size: 1rem;
+          }
+
+        }
+
+      }
+
+    }
+
+    // Intro Tile Pan Animation
+
+    &__pan-animation {
+    flex-shrink: 0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+
+      .business-areas__item__tile--main & {
+      width: 4rem;
+      height: 4rem;
+      background-color: var(--color-pink);
+      margin-top: .5rem;
+
+        @media screen and (min-width: $ba-bp-desktop) {
+        width: 5rem;
+        height: 5rem;
+        }
+
+      }
+
+      &__image {
+      width: 60%;
+      position: relative;
+      animation: rotate 3000ms cubic-bezier(.65, 0, .35, 1) 1 forwards;
+
+        @media screen and (min-width: $ba-bp-desktop) {
+        width: 100%;
+        }
+
+        img {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        animation: counter-rotate-1 3000ms cubic-bezier(.65, 0, .35, 1) 1 forwards;
+
+          @media screen and (min-width: $ba-bp-desktop) {
+          width: 5rem;
+          height: 3.125rem;
+          }
+
+          &:last-child {
+          position: relative;
+          animation: counter-rotate-2 3000ms cubic-bezier(.65, 0, .35, 1) 1 forwards;
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+  // Category Photo Masks
+  //
+  // Only :after renders here — :before is explicitly disabled (content:
+  // none) for every non-intro tile above, so a :before background-color
+  // per category would never be visible. Colour instead comes from the
+  // tile's own background-color (&__tile:not(&--main).cat-X above).
+
+  .cat-operations .business-areas__item__preview::after {
+  background-image: url("img/ops_compressed_compressed.jpg");
+  }
+
+  .cat-technology .business-areas__item__preview::after {
+  background-image: url("img/tech_compressed.jpg");
+  }
+
+  .cat-market-analytics .business-areas__item__preview::after {
+  background-image: url("img/m-a_compressed.jpg");
+  }
+
+  .cat-prod-design .business-areas__item__preview::after {
+  background-image: url("img/product-and-design_compressed.jpg");
+  }
+
+  .cat-human-resources .business-areas__item__preview::after {
+  background-image: url("img/hr_compressed.jpg");
+  }
+
+  .cat-change-transformation .business-areas__item__preview::after {
+  background-image: url("img/c-t_compressed.jpg");
+  }
+
+  .cat-data .business-areas__item__preview::after {
+  background-image: url("img/data_compressed.jpg");
+  }
+
+  .cat-legal .business-areas__item__preview::after {
+  background-image: url("img/legal_compressed.jpg");
+  }
+
+  .cat-compliance .business-areas__item__preview::after {
+  background-image: url("img/compliance_compressed.jpg");
+  }
+
+  .cat-finance .business-areas__item__preview::after {
+  background-image: url("img/finance_compressed.jpg");
+  }
+
+  .cat-risk .business-areas__item__preview::after {
+  background-image: url("img/risk_compressed.jpg");
+  }
+
+  // Details Dialog (native <dialog>; see index.html for command/commandfor)
+
+  &__modal {
+  background: #fff;
+  border: none;
+  border-radius: .5rem;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, .35);
+  margin: auto;
+  max-height: 90vh;
+  max-width: 72rem;
+  overflow: auto;
+  overflow-x: hidden;
+  padding: 2rem;
+  width: calc(100% - 2rem);
+
+    &::backdrop {
+    background: rgba(28, 38, 64, .78);
+    }
+
+    // Hardcoded (not var(--color-*)): once promoted to the top layer via
+    // showModal(), this dialog fails to resolve :root custom properties in
+    // this browser — confirmed via inline-style var() tests — even though
+    // the same properties resolve fine everywhere else on the page.
+    // Sidestepping rather than relying on cascade/inheritance behaviour
+    // that's inconsistent here.
+
+    &.operations-business-area, &.technology-business-area,
+    &.compliance-business-area, &.finance-business-area {
+    background-color: #ffe433;
+    }
+
+    &.market-analytics-business-area, &.prod-design-business-area,
+    &.human-resources-business-area, &.change-transformation-business-area {
+    background-color: #ff8791;
+    }
+
+    &.data-business-area, &.legal-business-area, &.risk-business-area {
+    background-color: #00c3b3;
+    }
+
+  }
+
+  &-dialog-close {
+  background: #ffe433;
+  border-radius: 50%;
+  color: transparent;
+  font: 0 / 0 a;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  height: 2.1875rem;
+  width: 2.1875rem;
+  min-height: 2.1875rem;
+
+    &::after {
+    background-image: url(img/icon-close.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    content: "";
+    display: block;
+    width: .875rem;
+    height: 1.25rem;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    }
+
+    &:hover, &:focus-visible {
+    background: #ffe433;
+
+      &::after {
+      filter: brightness(0);
+      }
+
+    }
+
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+.business-areas, .business-areas * {
+animation-duration: .001ms !important;
+animation-iteration-count: 1 !important;
+scroll-behavior: auto !important;
+transition-duration: .001ms !important;
+}
+
+}
