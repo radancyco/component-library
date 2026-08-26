@@ -9,164 +9,168 @@
 
 <body>
 
-    <section class="business-areas" aria-labelledby="business-areas-heading">
+    <main>
 
-        <h1 id="business-areas-heading" class="visually-hidden">Business areas</h1>
+        <section class="business-areas" aria-labelledby="business-areas-heading">
 
-        <p id="business-areas-nav-label" class="visually-hidden">Use each button to navigate withing the content grid.</p>
+            <h1 id="business-areas-heading" class="visually-hidden">Business areas</h1>
 
-        <p id="business-areas-grid-instructions" class="visually-hidden">Tab to a business area's See more button to open its details dialog. Use the arrow keys or the move buttons to reposition the grid. Press Escape or the close button to return.</p>
+            <p id="business-areas-nav-label" class="visually-hidden">Use each button to navigate withing the content grid.</p>
 
-        <div id="business-areas-grid-status" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true">Human Resources active. Press Enter or Space to open details, or Tab to its See more button.</div>
+            <p id="business-areas-grid-instructions" class="visually-hidden">Tab to a business area's See more button to open its details dialog. Use the arrow keys or the move buttons to reposition the grid. Press Escape or the close button to return.</p>
 
-        <nav class="business-areas__nav" aria-labelledby="business-areas-nav-label">
+            <div id="business-areas-grid-status" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true">Human Resources active. Press Enter or Space to open details, or Tab to its See more button.</div>
 
-            <button class="business-areas__nav__item business-areas__nav--north" aria-controls="business-areas-grid" aria-label="Move Up In Grid"><img src="img/chevron-right.svg" alt=""></button>
-            <button class="business-areas__nav__item business-areas__nav--east" aria-controls="business-areas-grid" aria-label="Move Right In Grid"><img src="img/chevron-right.svg" alt=""></button>
-            <button class="business-areas__nav__item business-areas__nav--south" aria-controls="business-areas-grid" aria-label="Move Down In Grid"><img src="img/chevron-right.svg" alt=""></button>
-            <button class="business-areas__nav__item business-areas__nav--west" aria-controls="business-areas-grid" aria-label="Move Left in Grid"><img src="img/chevron-right.svg" alt=""></button>
+            <nav class="business-areas__nav" aria-labelledby="business-areas-nav-label">
 
-        </nav>
+                <button class="business-areas__nav__item business-areas__nav--north" aria-controls="business-areas-grid" aria-label="Move Up In Grid"><img src="img/chevron-right.svg" alt=""></button>
+                <button class="business-areas__nav__item business-areas__nav--east" aria-controls="business-areas-grid" aria-label="Move Right In Grid"><img src="img/chevron-right.svg" alt=""></button>
+                <button class="business-areas__nav__item business-areas__nav--south" aria-controls="business-areas-grid" aria-label="Move Down In Grid"><img src="img/chevron-right.svg" alt=""></button>
+                <button class="business-areas__nav__item business-areas__nav--west" aria-controls="business-areas-grid" aria-label="Move Left in Grid"><img src="img/chevron-right.svg" alt=""></button>
 
-        <section class="business-areas__overflow" id="business-areas-grid" aria-describedby="business-areas-grid-instructions">
+            </nav>
 
-            <div class="business-areas__overflow__inner">
+            <section class="business-areas__overflow" id="business-areas-grid" aria-describedby="business-areas-grid-instructions">
 
-                <!-- Grid position for each cell below is derived from its order here
-                (row-major, left-to-right/top-to-bottom through a 3-column grid) —
-                see BusinessAreas.buildTileGrid() in init.js. If a cell ever needs a
-                position that doesn't match its place in the markup (e.g. content
-                reordered for reading order but not layout), add data-grid-col="n"
-                and data-grid-row="n" (both zero-based) to that cell; JS already
-                reads and prefers them over the DOM-order fallback when present. -->
+                <div class="business-areas__overflow__inner">
 
-                <section class="business-areas__item" aria-labelledby="business-area-title-change-transformation" data-business-area-key="change-transformation">
+                    <!-- Grid position for each cell below is derived from its order here
+                    (row-major, left-to-right/top-to-bottom through a 3-column grid) —
+                    see BusinessAreas.buildTileGrid() in init.js. If a cell ever needs a
+                    position that doesn't match its place in the markup (e.g. content
+                    reordered for reading order but not layout), add data-grid-col="n"
+                    and data-grid-row="n" (both zero-based) to that cell; JS already
+                    reads and prefers them over the DOM-order fallback when present. -->
 
-                    <div class="business-areas__item__tile cat-change-transformation">
+                    <section class="business-areas__item" aria-labelledby="business-area-title-change-transformation" data-business-area-key="change-transformation">
 
-                        <div class="business-areas__item__preview">
+                        <div class="business-areas__item__tile cat-change-transformation">
 
-                            <h3 id="business-area-title-change-transformation" class="business-areas__item__preview__title">Change & Transformation</h3>
+                            <div class="business-areas__item__preview">
 
-                            <p class="business-areas__item__preview__content mb-1">Leading the evolution of our business; driving and enabling organisational change. </p>
+                                <h2 id="business-area-title-change-transformation" class="business-areas__item__preview__title">Change & Transformation</h2>
 
-                            <button class="business-areas__item__preview__cta" command="show-modal" commandfor="change-transformation-business-area">See more <span class="visually-hidden">about Change & Transformation</span></button>
+                                <p class="business-areas__item__preview__content mb-1">Leading the evolution of our business; driving and enabling organisational change. </p>
 
-                        </div>
+                                <button class="business-areas__item__preview__cta" command="show-modal" commandfor="change-transformation-business-area">See more <span class="visually-hidden">about Change & Transformation</span></button>
 
-                    </div>
-
-                    <dialog class="business-areas__modal change-transformation-business-area" id="change-transformation-business-area" aria-labelledby="business-areas-title-change-transformation" closedby="any">
-
-                        <button class="business-areas-dialog-close" command="close" commandfor="change-transformation-business-area" aria-label="Close"></button>
-
-                        <h1 id="business-areas-title-change-transformation">Change & Transformation</h1>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-                    </dialog>
-
-                </section>
-
-                <section class="business-areas__item" aria-labelledby="business-area-title-compliance" data-business-area-key="compliance">
-
-                    <div class="business-areas__item__tile cat-compliance">
-
-                        <div class="business-areas__item__preview">
-
-                            <h3 id="business-area-title-compliance" class="business-areas__item__preview__title">Compliance</h3>
-
-                            <p class="business-areas__item__preview__content mb-1">Providing expert compliance advice and assurance.</p>
-
-                            <button class="business-areas__item__preview__cta" command="show-modal" commandfor="compliance-business-area">See more <span class="visually-hidden">about Compliance</span></button>
+                            </div>
 
                         </div>
 
-                    </div>
+                        <dialog class="business-areas__modal change-transformation-business-area" id="change-transformation-business-area" aria-labelledby="business-areas-title-change-transformation" closedby="any">
 
-                    <dialog class="business-areas__modal compliance-business-area" id="compliance-business-area" aria-labelledby="business-areas-title-compliance" closedby="any">
+                            <button class="business-areas-dialog-close" command="close" commandfor="change-transformation-business-area" aria-label="Close"></button>
 
-                        <button class="business-areas-dialog-close" command="close" commandfor="compliance-business-area" aria-label="Close"></button>
+                            <h1 id="business-areas-title-change-transformation">Change & Transformation</h1>
 
-                        <h1 id="business-areas-title-compliance">Compliance</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        </dialog>
 
-                    </dialog>
+                    </section>
 
-                </section>
+                    <section class="business-areas__item" aria-labelledby="business-area-title-compliance" data-business-area-key="compliance">
 
-                <section class="business-areas__item" aria-labelledby="business-area-title-data" data-business-area-key="data">
+                        <div class="business-areas__item__tile cat-compliance">
 
-                    <div class="business-areas__item__tile cat-data">
+                            <div class="business-areas__item__preview">
 
-                        <div class="business-areas__item__preview">
+                                <h2 id="business-area-title-compliance" class="business-areas__item__preview__title">Compliance</h2>
 
-                            <h3 id="business-area-title-data" class="business-areas__item__preview__title">Data</h3>
+                                <p class="business-areas__item__preview__content mb-1">Providing expert compliance advice and assurance.</p>
 
-                            <p class="business-areas__item__preview__content mb-1">Unlocking the power of information and turning raw data into our most valuable strategic asset.</p>
+                                <button class="business-areas__item__preview__cta" command="show-modal" commandfor="compliance-business-area">See more <span class="visually-hidden">about Compliance</span></button>
 
-                            <button class="business-areas__item__preview__cta" command="show-modal" commandfor="data-business-area">See more <span class="visually-hidden">about Data</span></button>
-
-                        </div>
-
-                    </div>
-
-                    <dialog class="business-areas__modal data-business-area" id="data-business-area" aria-labelledby="business-areas-title-data" closedby="any">
-
-                        <button class="business-areas-dialog-close" command="close" commandfor="data-business-area" aria-label="Close"></button>
-
-                        <h1 id="business-areas-title-data">Data</h1>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-                    </dialog>
-
-                </section>
-
-                <section class="business-areas__item" aria-labelledby="business-area-title-finance" data-business-area-key="finance">
-
-                    <div class="business-areas__item__tile cat-finance">
-
-                        <div class="business-areas__item__preview">
-
-                            <h3 id="business-area-title-finance" class="business-areas__item__preview__title">Finance</h3>
-
-                            <p class="business-areas__item__preview__content mb-1">Driving value through financial strategies to challenge the way banking is done. </p>
-
-                            <button class="business-areas__item__preview__cta" command="show-modal" commandfor="finance-business-area">See more <span class="visually-hidden">about Finance</span></button>
+                            </div>
 
                         </div>
 
-                    </div>
+                        <dialog class="business-areas__modal compliance-business-area" id="compliance-business-area" aria-labelledby="business-areas-title-compliance" closedby="any">
 
-                    <dialog class="business-areas__modal finance-business-area" id="finance-business-area" aria-labelledby="business-areas-title-finance" closedby="any">
+                            <button class="business-areas-dialog-close" command="close" commandfor="compliance-business-area" aria-label="Close"></button>
 
-                        <button class="business-areas-dialog-close" command="close" commandfor="finance-business-area" aria-label="Close"></button>
+                            <h1 id="business-areas-title-compliance">Compliance</h1>
 
-                        <h1 id="business-areas-title-finance">Finance</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        </dialog>
 
-                    </dialog>
+                    </section>
 
-                </section>
+                    <section class="business-areas__item" aria-labelledby="business-area-title-data" data-business-area-key="data">
 
-                <section class="business-areas__item" aria-labelledby="business-area-title-intro" data-business-area-key="intro">
+                        <div class="business-areas__item__tile cat-data">
 
-                    <div class="business-areas__item__tile business-areas__item__tile--main">
+                            <div class="business-areas__item__preview">
 
-                        <div class="business-areas__item__preview">
+                                <h2 id="business-area-title-data" class="business-areas__item__preview__title">Data</h2>
 
-                            <h2 id="business-area-title-intro" class="business-areas__item__preview__title">Our Business Areas</h2>
+                                <p class="business-areas__item__preview__content mb-1">Unlocking the power of information and turning raw data into our most valuable strategic asset.</p>
 
-                            <p class="business-areas__item__preview__content px-2">Our success at Capital One is built on collaboration. We believe in working together seamlessly, across all departments, to change banking for good.</p>
+                                <button class="business-areas__item__preview__cta" command="show-modal" commandfor="data-business-area">See more <span class="visually-hidden">about Data</span></button>
 
-                            <div class="business-areas__item__pan-animation">
+                            </div>
 
-                                <div class="business-areas__item__pan-animation__image">
+                        </div>
 
-                                    <img src="img/icon-animation.svg" alt="">
+                        <dialog class="business-areas__modal data-business-area" id="data-business-area" aria-labelledby="business-areas-title-data" closedby="any">
+
+                            <button class="business-areas-dialog-close" command="close" commandfor="data-business-area" aria-label="Close"></button>
+
+                            <h1 id="business-areas-title-data">Data</h1>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                        </dialog>
+
+                    </section>
+
+                    <section class="business-areas__item" aria-labelledby="business-area-title-finance" data-business-area-key="finance">
+
+                        <div class="business-areas__item__tile cat-finance">
+
+                            <div class="business-areas__item__preview">
+
+                                <h2 id="business-area-title-finance" class="business-areas__item__preview__title">Finance</h2>
+
+                                <p class="business-areas__item__preview__content mb-1">Driving value through financial strategies to challenge the way banking is done. </p>
+
+                                <button class="business-areas__item__preview__cta" command="show-modal" commandfor="finance-business-area">See more <span class="visually-hidden">about Finance</span></button>
+
+                            </div>
+
+                        </div>
+
+                        <dialog class="business-areas__modal finance-business-area" id="finance-business-area" aria-labelledby="business-areas-title-finance" closedby="any">
+
+                            <button class="business-areas-dialog-close" command="close" commandfor="finance-business-area" aria-label="Close"></button>
+
+                            <h1 id="business-areas-title-finance">Finance</h1>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                        </dialog>
+
+                    </section>
+
+                    <section class="business-areas__item" aria-labelledby="business-area-title-intro" data-business-area-key="intro">
+
+                        <div class="business-areas__item__tile business-areas__item__tile--main">
+
+                            <div class="business-areas__item__preview">
+
+                                <h2 id="business-area-title-intro" class="business-areas__item__preview__title">Our Business Areas</h2>
+
+                                <p class="business-areas__item__preview__content px-2">Our success at Capital One is built on collaboration. We believe in working together seamlessly, across all departments, to change banking for good.</p>
+
+                                <div class="business-areas__item__pan-animation">
+
+                                    <div class="business-areas__item__pan-animation__image">
+
+                                        <img src="img/icon-animation.svg" alt="">
+
+                                    </div>
 
                                 </div>
 
@@ -174,211 +178,211 @@
 
                         </div>
 
-                    </div>
+                    </section>
 
-                </section>
+                    <section class="business-areas__item" aria-labelledby="business-area-title-human-resources" data-business-area-key="human-resources">
 
-                <section class="business-areas__item" aria-labelledby="business-area-title-human-resources" data-business-area-key="human-resources">
+                        <div class="business-areas__item__tile cat-human-resources">
 
-                    <div class="business-areas__item__tile cat-human-resources">
+                            <div class="business-areas__item__preview">
 
-                        <div class="business-areas__item__preview">
+                                <h2 id="business-area-title-human-resources" class="business-areas__item__preview__title">Human Resources</h2>
 
-                            <h3 id="business-area-title-human-resources" class="business-areas__item__preview__title">Human Resources</h3>
+                                <p class="business-areas__item__preview__content mb-1">Curating an environment where talent can thrive, grow, and belong. </p>
 
-                            <p class="business-areas__item__preview__content mb-1">Curating an environment where talent can thrive, grow, and belong. </p>
+                                <button class="business-areas__item__preview__cta" command="show-modal" commandfor="human-resources-business-area">See more <span class="visually-hidden">about Human Resources</span></button>
 
-                            <button class="business-areas__item__preview__cta" command="show-modal" commandfor="human-resources-business-area">See more <span class="visually-hidden">about Human Resources</span></button>
-
-                        </div>
-
-                    </div>
-
-                    <dialog class="business-areas__modal human-resources-business-area" id="human-resources-business-area" aria-labelledby="business-areas-title-human-resources" closedby="any">
-
-                        <button class="business-areas-dialog-close" command="close" commandfor="human-resources-business-area" aria-label="Close"></button>
-
-                        <h1 id="business-areas-title-human-resources">Human Resources</h1>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-                    </dialog>
-
-                </section>
-
-                <section class="business-areas__item" aria-labelledby="business-area-title-legal" data-business-area-key="legal">
-
-                    <div class="business-areas__item__tile cat-legal">
-
-                        <div class="business-areas__item__preview">
-
-                            <h3 id="business-area-title-legal" class="business-areas__item__preview__title">Legal</h3>
-
-                            <p class="business-areas__item__preview__content mb-1">Mitigating legal risk and safeguarding our reputation by navigating the regulatory landscape with precision. </p>
-
-                            <button class="business-areas__item__preview__cta" command="show-modal" commandfor="legal-business-area">See more <span class="visually-hidden">about Legal</span></button>
+                            </div>
 
                         </div>
 
-                    </div>
+                        <dialog class="business-areas__modal human-resources-business-area" id="human-resources-business-area" aria-labelledby="business-areas-title-human-resources" closedby="any">
 
-                    <dialog class="business-areas__modal legal-business-area" id="legal-business-area" aria-labelledby="business-areas-title-legal" closedby="any">
+                            <button class="business-areas-dialog-close" command="close" commandfor="human-resources-business-area" aria-label="Close"></button>
 
-                        <button class="business-areas-dialog-close" command="close" commandfor="legal-business-area" aria-label="Close"></button>
+                            <h1 id="business-areas-title-human-resources">Human Resources</h1>
 
-                        <h1 id="business-areas-title-legal">Legal</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        </dialog>
 
-                    </dialog>
+                    </section>
 
-                </section>
+                    <section class="business-areas__item" aria-labelledby="business-area-title-legal" data-business-area-key="legal">
 
-                <section class="business-areas__item" aria-labelledby="business-area-title-market-analytics" data-business-area-key="market-analytics">
+                        <div class="business-areas__item__tile cat-legal">
 
-                    <div class="business-areas__item__tile cat-market-analytics">
+                            <div class="business-areas__item__preview">
 
-                        <div class="business-areas__item__preview">
+                                <h2 id="business-area-title-legal" class="business-areas__item__preview__title">Legal</h2>
 
-                            <h3 id="business-area-title-market-analytics" class="business-areas__item__preview__title">Marketing & Analysis</h3>
+                                <p class="business-areas__item__preview__content mb-1">Mitigating legal risk and safeguarding our reputation by navigating the regulatory landscape with precision. </p>
 
-                            <p class="business-areas__item__preview__content mb-1">Bridging creativity with data-driven insights to tell our story and accelerate growth. </p>
+                                <button class="business-areas__item__preview__cta" command="show-modal" commandfor="legal-business-area">See more <span class="visually-hidden">about Legal</span></button>
 
-                            <button class="business-areas__item__preview__cta" command="show-modal" commandfor="market-analytics-business-area">See more <span class="visually-hidden">about Marketing & Analysis</span></button>
-
-                        </div>
-
-                    </div>
-
-                    <dialog class="business-areas__modal market-analytics-business-area" id="market-analytics-business-area" aria-labelledby="business-areas-title-market-analytics" closedby="any">
-
-                        <button class="business-areas-dialog-close" command="close" commandfor="market-analytics-business-area" aria-label="Close"></button>
-
-                        <h1 id="business-areas-title-market-analytics">Marketing & Analysis</h1>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-                    </dialog>
-
-                </section>
-
-                <section class="business-areas__item" aria-labelledby="business-area-title-operations" data-business-area-key="operations">
-
-                    <div class="business-areas__item__tile cat-operations">
-
-                        <div class="business-areas__item__preview">
-
-                            <h3 id="business-area-title-operations" class="business-areas__item__preview__title">Operations</h3>
-
-                            <p class="business-areas__item__preview__content mb-1">Operations is the pulse of Capital One; supporting customers and delivering world-class service at scale.</p>
-
-                            <button class="business-areas__item__preview__cta" command="show-modal" commandfor="operations-business-area">See more <span class="visually-hidden">about Operations</span></button>
+                            </div>
 
                         </div>
 
-                    </div>
+                        <dialog class="business-areas__modal legal-business-area" id="legal-business-area" aria-labelledby="business-areas-title-legal" closedby="any">
 
-                    <dialog class="business-areas__modal operations-business-area" id="operations-business-area" aria-labelledby="business-areas-title-operations" closedby="any">
+                            <button class="business-areas-dialog-close" command="close" commandfor="legal-business-area" aria-label="Close"></button>
 
-                        <button class="business-areas-dialog-close" command="close" commandfor="operations-business-area" aria-label="Close"></button>
+                            <h1 id="business-areas-title-legal">Legal</h1>
 
-                        <h1 id="business-areas-title-operations">Operations</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        </dialog>
 
-                    </dialog>
+                    </section>
 
-                </section>
+                    <section class="business-areas__item" aria-labelledby="business-area-title-market-analytics" data-business-area-key="market-analytics">
 
-                <section class="business-areas__item" aria-labelledby="business-area-title-prod-design" data-business-area-key="prod-design">
+                        <div class="business-areas__item__tile cat-market-analytics">
 
-                    <div class="business-areas__item__tile cat-prod-design">
+                            <div class="business-areas__item__preview">
 
-                        <div class="business-areas__item__preview">
+                                <h2 id="business-area-title-market-analytics" class="business-areas__item__preview__title">Marketing & Analysis</h2>
 
-                            <h3 id="business-area-title-prod-design" class="business-areas__item__preview__title">Product & Design</h3>
+                                <p class="business-areas__item__preview__content mb-1">Bridging creativity with data-driven insights to tell our story and accelerate growth. </p>
 
-                            <p class="business-areas__item__preview__content mb-1">Bridging creativity with data-driven insights to tell our story and accelerate growth. </p>
+                                <button class="business-areas__item__preview__cta" command="show-modal" commandfor="market-analytics-business-area">See more <span class="visually-hidden">about Marketing & Analysis</span></button>
 
-                            <button class="business-areas__item__preview__cta" command="show-modal" commandfor="prod-design-business-area">See more <span class="visually-hidden">about Product & Design</span></button>
-
-                        </div>
-
-                    </div>
-
-                    <dialog class="business-areas__modal prod-design-business-area" id="prod-design-business-area" aria-labelledby="business-areas-title-prod-design" closedby="any">
-
-                        <button class="business-areas-dialog-close" command="close" commandfor="prod-design-business-area" aria-label="Close"></button>
-
-                        <h1 id="business-areas-title-prod-design">Product & Design</h1>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-                    </dialog>
-
-                </section>
-
-                <section class="business-areas__item" aria-labelledby="business-area-title-technology" data-business-area-key="technology">
-
-                    <div class="business-areas__item__tile cat-technology">
-
-                        <div class="business-areas__item__preview">
-
-                            <h3 id="business-area-title-technology" class="business-areas__item__preview__title">Technology</h3>
-
-                            <p class="business-areas__item__preview__content mb-1">To architect and maintain the robust digital infrastructure that powers our innovation. </p>
-
-                            <button class="business-areas__item__preview__cta" command="show-modal" commandfor="technology-business-area">See more <span class="visually-hidden">about Technology</span></button>
+                            </div>
 
                         </div>
 
-                    </div>
+                        <dialog class="business-areas__modal market-analytics-business-area" id="market-analytics-business-area" aria-labelledby="business-areas-title-market-analytics" closedby="any">
 
-                    <dialog class="business-areas__modal technology-business-area" id="technology-business-area" aria-labelledby="business-areas-title-technology" closedby="any">
+                            <button class="business-areas-dialog-close" command="close" commandfor="market-analytics-business-area" aria-label="Close"></button>
 
-                        <button class="business-areas-dialog-close" command="close" commandfor="technology-business-area" aria-label="Close"></button>
+                            <h1 id="business-areas-title-market-analytics">Marketing & Analysis</h1>
 
-                        <h1 id="business-areas-title-technology">Technology</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        </dialog>
 
-                    </dialog>
+                    </section>
 
-                </section>
+                    <section class="business-areas__item" aria-labelledby="business-area-title-operations" data-business-area-key="operations">
 
-                <section class="business-areas__item" aria-labelledby="business-area-title-risk" data-business-area-key="risk">
+                        <div class="business-areas__item__tile cat-operations">
 
-                    <div class="business-areas__item__tile cat-risk">
+                            <div class="business-areas__item__preview">
 
-                        <div class="business-areas__item__preview">
+                                <h2 id="business-area-title-operations" class="business-areas__item__preview__title">Operations</h2>
 
-                            <h3 id="business-area-title-risk" class="business-areas__item__preview__title">Risk</h3>
+                                <p class="business-areas__item__preview__content mb-1">Operations is the pulse of Capital One; supporting customers and delivering world-class service at scale.</p>
 
-                            <p class="business-areas__item__preview__content mb-1">Bringing insights to the table so we can grow our business in the right ways. </p>
+                                <button class="business-areas__item__preview__cta" command="show-modal" commandfor="operations-business-area">See more <span class="visually-hidden">about Operations</span></button>
 
-                            <button class="business-areas__item__preview__cta" command="show-modal" commandfor="risk-business-area">See more <span class="visually-hidden">about Risk</span></button>
+                            </div>
 
                         </div>
 
-                    </div>
+                        <dialog class="business-areas__modal operations-business-area" id="operations-business-area" aria-labelledby="business-areas-title-operations" closedby="any">
 
-                    <dialog class="business-areas__modal risk-business-area" id="risk-business-area" aria-labelledby="business-areas-title-risk" closedby="any">
+                            <button class="business-areas-dialog-close" command="close" commandfor="operations-business-area" aria-label="Close"></button>
 
-                        <button class="business-areas-dialog-close" command="close" commandfor="risk-business-area" aria-label="Close"></button>
+                            <h1 id="business-areas-title-operations">Operations</h1>
 
-                        <h1 id="business-areas-title-risk">Risk</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        </dialog>
 
-                    </dialog>
+                    </section>
 
-                </section>
+                    <section class="business-areas__item" aria-labelledby="business-area-title-prod-design" data-business-area-key="prod-design">
 
-            </div>
+                        <div class="business-areas__item__tile cat-prod-design">
+
+                            <div class="business-areas__item__preview">
+
+                                <h2 id="business-area-title-prod-design" class="business-areas__item__preview__title">Product & Design</h2>
+
+                                <p class="business-areas__item__preview__content mb-1">Bridging creativity with data-driven insights to tell our story and accelerate growth. </p>
+
+                                <button class="business-areas__item__preview__cta" command="show-modal" commandfor="prod-design-business-area">See more <span class="visually-hidden">about Product & Design</span></button>
+
+                            </div>
+
+                        </div>
+
+                        <dialog class="business-areas__modal prod-design-business-area" id="prod-design-business-area" aria-labelledby="business-areas-title-prod-design" closedby="any">
+
+                            <button class="business-areas-dialog-close" command="close" commandfor="prod-design-business-area" aria-label="Close"></button>
+
+                            <h1 id="business-areas-title-prod-design">Product & Design</h1>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                        </dialog>
+
+                    </section>
+
+                    <section class="business-areas__item" aria-labelledby="business-area-title-technology" data-business-area-key="technology">
+
+                        <div class="business-areas__item__tile cat-technology">
+
+                            <div class="business-areas__item__preview">
+
+                                <h2 id="business-area-title-technology" class="business-areas__item__preview__title">Technology</h2>
+
+                                <p class="business-areas__item__preview__content mb-1">To architect and maintain the robust digital infrastructure that powers our innovation. </p>
+
+                                <button class="business-areas__item__preview__cta" command="show-modal" commandfor="technology-business-area">See more <span class="visually-hidden">about Technology</span></button>
+
+                            </div>
+
+                        </div>
+
+                        <dialog class="business-areas__modal technology-business-area" id="technology-business-area" aria-labelledby="business-areas-title-technology" closedby="any">
+
+                            <button class="business-areas-dialog-close" command="close" commandfor="technology-business-area" aria-label="Close"></button>
+
+                            <h1 id="business-areas-title-technology">Technology</h1>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                        </dialog>
+
+                    </section>
+
+                    <section class="business-areas__item" aria-labelledby="business-area-title-risk" data-business-area-key="risk">
+
+                        <div class="business-areas__item__tile cat-risk">
+
+                            <div class="business-areas__item__preview">
+
+                                <h2 id="business-area-title-risk" class="business-areas__item__preview__title">Risk</h2>
+
+                                <p class="business-areas__item__preview__content mb-1">Bringing insights to the table so we can grow our business in the right ways. </p>
+
+                                <button class="business-areas__item__preview__cta" command="show-modal" commandfor="risk-business-area">See more <span class="visually-hidden">about Risk</span></button>
+
+                            </div>
+
+                        </div>
+
+                        <dialog class="business-areas__modal risk-business-area" id="risk-business-area" aria-labelledby="business-areas-title-risk" closedby="any">
+
+                            <button class="business-areas-dialog-close" command="close" commandfor="risk-business-area" aria-label="Close"></button>
+
+                            <h1 id="business-areas-title-risk">Risk</h1>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                        </dialog>
+
+                    </section>
+
+                </div>
+
+            </section>
 
         </section>
 
-    </section>
+    </main>
 
     <script src="init.js"></script>
 
