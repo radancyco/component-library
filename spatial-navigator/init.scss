@@ -31,6 +31,14 @@ $ba-bp-md: 48em; // tile copy sizing steps up
 $ba-bp-desktop: 64em; // primary grid breakpoint: mobile -> desktop layout
 $ba-bp-short: 42.5em; // max-height query for short viewports
 
+// Nav arrow icon, inlined as an SVG data URI instead of a hosted file — used
+// as a mask (not a background-image) so background-color can still supply
+// the colour; fill-rule matters here (it affects the actual masked shape,
+// not just colour) but the path's own fill doesn't, since mask-image only
+// reads its alpha. Same base shape for all four directions — see the
+// per-direction rotate() transforms below.
+$ba-nav-arrow-icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='13' viewBox='0 0 8 13'%3E%3Cpath fill-rule='evenodd' d='M7.988 6.204a.969.969 0 0 0-.229-.635l-.084-.087L2.076.35a.966.966 0 0 0-1.39 1.337l.084.087 4.835 4.432L.77 10.639a.966.966 0 0 0 1.212 1.5l.094-.076 5.599-5.132a.963.963 0 0 0 .307-.602l.006-.125z'/%3E%3C/svg%3E";
+
 body {
 margin: 0;
 padding: 0;
@@ -67,8 +75,9 @@ white-space: nowrap;
 
 --ba-cols: 3; // Grid Columns
 --ba-rows: 4; // Grid Rows
---ba-gap-x: 2.5rem; // Column Gap
---ba-gap-y: 2.5rem; // Row Gap
+--ba-gap-x: 2.5rem; // Column Gap  - why do i need this? look into.
+--ba-gap-y: 2.5rem; // Row Gap - why do i need this? look into.
+--ba-gap: 2.5rem;
 --ba-card-width: 68vw; // Tile Width
 --ba-card-height: 54vh; // Tile Height
 --ba-vertical-offset: 2.5rem; // Nav Overlay Vertical Offset
@@ -134,28 +143,24 @@ background-color: #1c2640;
     background-color: #ffe433;
     block-size: var(--ba-arrow-size);
     border-radius: 100vw;
-    border: solid 1px #1c2640;
+    border: 0;
     cursor: pointer;
     inline-size: var(--ba-arrow-size);
+    padding: 0;
     place-self: center;
     pointer-events: auto;
     transition: 300ms;
 
-      img {
-      margin-inline: auto;
-      position: static;
+      &::after {
+      background: transparent url($ba-nav-arrow-icon) no-repeat center / .5rem;
+      block-size: var(--ba-arrow-size);
+      content: "";
       display: block;
-      inline-size: auto;
-      block-size: auto;
-      max-inline-size: 40%;
-      max-block-size: 46%;
+      inline-size: var(--ba-arrow-size);
 
         @media (min-width: $ba-bp-desktop) {
 
-          inline-size: var(--ba-arrow-icon-width);
-          block-size: var(--ba-arrow-icon-height);
-          max-inline-size: none;
-          max-block-size: none;
+          background-size: 1rem;
 
         }
 
@@ -163,16 +168,9 @@ background-color: #1c2640;
 
       &.business-areas__nav--north {
       grid-column: 2;
-      grid-row: 1;
 
-        img {
+        &::after {
         transform: rotate(270deg);
-
-          @media (min-width: $ba-bp-desktop) {
-          width: var(--ba-arrow-icon-height);
-          height: var(--ba-arrow-icon-width);
-          }
-
         }
 
         &:active {
@@ -195,28 +193,8 @@ background-color: #1c2640;
       grid-column: 2;
       grid-row: 3;
 
-        // place-self:center splits a negative margin symmetrically (half
-        // the offset gets absorbed as "extra centering space" on the
-        // opposite side), so a plain margin-block-end here would only move
-        // the button half as far as the old bottom:-.75rem did. Anchoring
-        // to the row's end edge first makes the negative margin apply in
-        // full, matching the original offset exactly.
-
-        align-self: end;
-        margin-block-end: -.75rem;
-
-        @media (min-width: $ba-bp-desktop) {
-        margin-block-end: 0;
-        }
-
-        img {
+        &::after {
         transform: rotate(90deg);
-
-          @media (min-width: $ba-bp-desktop) {
-          width: var(--ba-arrow-icon-height);
-          height: var(--ba-arrow-icon-width);
-          }
-
         }
 
         &:active {
@@ -226,10 +204,9 @@ background-color: #1c2640;
       }
 
       &.business-areas__nav--west {
-      grid-column: 1;
       grid-row: 2;
 
-        img {
+        &::after {
         transform: rotate(180deg);
         }
 
@@ -239,7 +216,7 @@ background-color: #1c2640;
 
       }
 
-      &--muted {
+      &--disabled {
       opacity: .3;
       pointer-events: none;
       cursor: default;
@@ -252,13 +229,13 @@ background-color: #1c2640;
   // Grid Viewport
 
   &__overflow {
-  position: absolute;
+  cursor: grab;
   inset-block-start: 0;
   inset-inline-start: 0;
-  cursor: grab;
+  position: absolute;
   touch-action: none;
-  will-change: transform;
   transform-origin: 0 0;
+  will-change: transform;
 
     &:active {
     cursor: grabbing;
@@ -268,8 +245,7 @@ background-color: #1c2640;
     display: grid;
     grid-template-columns: repeat(3, max-content);
     grid-template-rows: repeat(4, max-content);
-    column-gap: var(--ba-gap-x);
-    row-gap: var(--ba-gap-y);
+    gap: var(--ba-gap);
     position: relative;
     }
 
@@ -278,20 +254,16 @@ background-color: #1c2640;
   // Grid Cell
 
   &__item {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-  box-sizing: border-box;
-  inline-size: var(--ba-card-width);
   block-size: var(--ba-card-height);
-  min-inline-size: 0;
-  min-block-size: 0;
+  display: grid;
+  inline-size: var(--ba-card-width);
+  position: relative;
 
     @media (min-width: $ba-bp-desktop) {
-    max-inline-size: 68.0625rem;
-    max-block-size: 39.6875rem;
+
+      block-size: 39.6875rem;
+      inline-size: 68.0625rem;
+    
     }
 
     &[data-grid-col="0"] {

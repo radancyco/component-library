@@ -36,7 +36,7 @@
   const businessAreasItemActiveClassName = `${baseClass}__item--active`;
   const businessAreasNavClassName = `${baseClass}__nav`;
   const businessAreasNavItemClassName = `${baseClass}__nav__item`;
-  const businessAreasNavItemMutedClassName = `${baseClass}__nav__item--muted`;
+  const businessAreasNavItemMutedClassName = `${baseClass}__nav__item--disabled`;
   const businessAreasMouseDownClassName = `${baseClass}--mouse-down`;
 
   const businessAreasClass = `.${baseClass}`;
@@ -72,9 +72,9 @@
   const navDirections = [
 
     { suffix: "north", dx: 0, dy: 1, key: "ArrowUp", label: "Move Up In Grid", isMuted: (col, row, cols, rows) => row <= 0 },
+    { suffix: "east", dx: -1, dy: 0, key: "ArrowRight", label: "Move Right In Grid", isMuted: (col, row, cols, rows) => col >= cols - 1 },
     { suffix: "south", dx: 0, dy: -1, key: "ArrowDown", label: "Move Down In Grid", isMuted: (col, row, cols, rows) => row >= rows - 1 },
-    { suffix: "west", dx: 1, dy: 0, key: "ArrowLeft", label: "Move Left in Grid", isMuted: (col, row, cols, rows) => col <= 0 },
-    { suffix: "east", dx: -1, dy: 0, key: "ArrowRight", label: "Move Right In Grid", isMuted: (col, row, cols, rows) => col >= cols - 1 }
+    { suffix: "west", dx: 1, dy: 0, key: "ArrowLeft", label: "Move Left in Grid", isMuted: (col, row, cols, rows) => col <= 0 }
 
   ].map((direction) => ({ ...direction, className: `${baseClass}__nav--${direction.suffix}` }));
   
@@ -810,15 +810,20 @@
       const buttons = navDirections.map((direction) => {
 
         const button = document.createElement("button");
-        const icon = document.createElement("img");
 
         button.classList.add(businessAreasNavItemClassName, direction.className);
         button.setAttribute("aria-label", direction.label);
 
-        icon.setAttribute("src", "img/chevron-right.svg");
-        icon.setAttribute("alt", "");
+        // Not in the Tab sequence: this fixed overlay doesn't move with
+        // the pan, so it sits structurally apart from wherever focus
+        // actually is in the grid — arrow keys already do the exact same
+        // four-direction pan once focus is on any cell or CTA, so this
+        // avoids redundant, awkwardly-placed tab stops without losing any
+        // keyboard-equivalent functionality. Set once here at creation,
+        // not per-sync — it never changes for the lifetime of the button.
 
-        button.appendChild(icon);
+        button.setAttribute("tabindex", "-1");
+
         nav.appendChild(button);
 
         return button;
@@ -1218,7 +1223,7 @@
 
     getEnabledMovement(btn) {
 
-      if (btn.classList.contains(businessAreasNavItemMutedClassName) || btn.getAttribute("aria-disabled") === "true") {
+      if (btn.getAttribute("aria-disabled") === "true") {
 
         return null;
 
@@ -1774,19 +1779,6 @@
           cell.removeAttribute("aria-current");
 
         }
-
-      });
-
-      this.navigationButtons.forEach((button) => {
-
-        // Not in the Tab sequence: this fixed overlay doesn't move with
-        // the pan, so it sits structurally apart from wherever focus
-        // actually is in the grid — arrow keys already do the exact same
-        // four-direction pan once focus is on any cell or CTA, so this
-        // avoids redundant, awkwardly-placed tab stops without losing any
-        // keyboard-equivalent functionality.
-
-        button.setAttribute("tabindex", "-1");
 
       });
 
