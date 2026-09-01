@@ -13,7 +13,7 @@
 
   // Timing, thresholds, and grid dimensions.
 
-  const baseClass = "business-areas";
+  const baseClass = "spatial-navigation";
   const readyDelayMs = 250;
   const dragThresholdPx = 10;
   const snapAccelThreshold = 100;
@@ -35,8 +35,8 @@
   const businessAreasItemClassName = `${baseClass}__item`;
   const businessAreasItemActiveClassName = `${baseClass}__item--active`;
   const businessAreasNavClassName = `${baseClass}__nav`;
-  const businessAreasNavItemClassName = `${baseClass}__nav__item`;
-  const businessAreasNavItemMutedClassName = `${baseClass}__nav__item--disabled`;
+  const businessAreasNavItemClassName = `${baseClass}__nav__button`;
+  const businessAreasNavItemMutedClassName = `${baseClass}__nav__button--disabled`;
   const businessAreasMouseDownClassName = `${baseClass}--mouse-down`;
 
   const businessAreasClass = `.${baseClass}`;
@@ -53,14 +53,13 @@
   // Fixed element/aria-target ids — straight from the markup's own ids, not
   // derived from baseClass.
 
-  const businessAreasNavLabelId = "business-areas-nav-label";
-  const businessAreasGridStatusId = "business-areas-grid-status";
-  const businessAreasGridInstructionsId = "business-areas-grid-instructions";
+  const businessAreasNavLabelId = "spatial-navigation-nav-label";
+  const businessAreasGridStatusId = "spatial-navigation-grid-status";
   const businessAreasGridStatusSelector = `#${businessAreasGridStatusId}`;
 
   // data-* attributes this component reads.
 
-  const businessAreasDataKey = "data-business-area-key";
+  const businessAreasDataKey = "data-spatial-navigation-key";
   const businessAreasDataGridCol = "data-grid-col";
   const businessAreasDataGridRow = "data-grid-row";
 
@@ -76,7 +75,7 @@
     { suffix: "south", dx: 0, dy: -1, key: "ArrowDown", label: "Move Down In Grid", isMuted: (col, row, cols, rows) => row >= rows - 1 },
     { suffix: "west", dx: 1, dy: 0, key: "ArrowLeft", label: "Move Left in Grid", isMuted: (col, row, cols, rows) => col <= 0 }
 
-  ].map((direction) => ({ ...direction, className: `${baseClass}__nav--${direction.suffix}` }));
+  ].map((direction) => ({ ...direction, className: `${businessAreasNavItemClassName}--${direction.suffix}` }));
   
   let gridInstance;
 
@@ -490,8 +489,8 @@
       // scroll-into-view on Tab focus (unsuppressable), or a test/automation
       // tool's own "scroll element into view before interacting with it"
       // step before a click, or an AT's own navigation commands. Because
-      // .business-areas has overflow: hidden, it still counts as a
-      // "scrolling box" per spec — so that attempt can set .business-areas's
+      // .spatial-navigation has overflow: hidden, it still counts as a
+      // "scrolling box" per spec — so that attempt can set .spatial-navigation's
       // OWN internal scrollTop trying to reveal a stale pre-pan position,
       // even though nothing here ever means for it to scroll internally
       // (all movement is meant to happen only via the pan transform). That
@@ -795,7 +794,7 @@
     }
 
     // Builds the directional nav overlay entirely in script — no static
-    // markup, no innerHTML — and prepends it to .business-areas ahead of
+    // markup, no innerHTML — and prepends it to .spatial-navigation ahead of
     // everything else already there. navDirections is the single source of
     // truth for which four buttons get built and what each one is labelled.
 
@@ -1469,22 +1468,6 @@
 
     }
 
-    // setAttribute() mutates even when the value is unchanged, and this
-    // attribute is watched by the grid's MutationObserver (it's here to
-    // catch drift from something external touching the grid) — write only
-    // when the value has actually drifted, or every call re-triggers the
-    // observer and this and the observer's callback loop forever.
-
-    ensureGridDescribedBy() {
-
-      if (this.overflow && this.overflow.getAttribute("aria-describedby") !== businessAreasGridInstructionsId) {
-
-        this.overflow.setAttribute("aria-describedby", businessAreasGridInstructionsId);
-
-      }
-
-    }
-
     // True while any of this component's native <dialog> elements is open.
     // showModal() already makes the rest of the page inert, so this is
     // only needed to stop our own grid-state sync from running
@@ -1752,8 +1735,6 @@
         return;
 
       }
-
-      this.ensureGridDescribedBy();
 
       this.tiles.forEach((cell) => {
 

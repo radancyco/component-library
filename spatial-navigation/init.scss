@@ -13,7 +13,7 @@
 // Global theme dependencies this component relies on but does not own.
 // Pulled from 63509-Primary-CMS-Theme.css (:root custom properties + the
 // .visually-hidden/spacing utility classes actually referenced by
-// the business-areas markup).
+// the spatial-navigation markup).
 //
 // NOT included: .bg--lime, .text--dark-blue, .text--dark-teal,
 // .text--grey-text, .text-center, .title-shorthand. These classes are
@@ -69,7 +69,7 @@ white-space: nowrap;
 // Spatial Navigator
 // ============================================================================
 
-.business-areas {
+.spatial-navigation {
 
 // Component Variables
 
@@ -104,7 +104,7 @@ background-color: #1c2640;
   --ba-gap-y: 5.625rem;
   --ba-card-width: 76vw;
   --ba-card-height: 58vh;
-  --ba-vertical-offset: 0px;
+  --ba-vertical-offset: 0;
   --ba-arrow-size: 3.4375rem;
   --ba-arrow-gap: 1.25rem;
   --ba-arrow-icon-width: 1.375rem;
@@ -127,19 +127,19 @@ background-color: #1c2640;
   place-self: center;
   pointer-events: none;
   transform-origin: center;
-  transform: translateY(var(--ba-vertical-offset, 0px)) scale(1);
+  transform: translateY(var(--ba-vertical-offset, 0)) scale(1);
   transition: 500ms all;
   z-index: 2;
 
     // Hidden mid-drag; the grid itself is the interaction surface then.
 
-    .business-areas--mouse-down & {
+    .spatial-navigation--mouse-down & {
     opacity: 0;
-    transform: translateY(var(--ba-vertical-offset, 0px)) scale(0);
+    transform: translateY(var(--ba-vertical-offset, 0)) scale(0);
     visibility: hidden;
     }
 
-    &__item {
+    &__button {
     background-color: #ffe433;
     block-size: var(--ba-arrow-size);
     border-radius: 100vw;
@@ -166,7 +166,7 @@ background-color: #1c2640;
 
       }
 
-      &.business-areas__nav--north {
+      &--north {
       grid-column: 2;
 
         &::after {
@@ -179,7 +179,7 @@ background-color: #1c2640;
 
       }
 
-      &.business-areas__nav--east {
+      &--east {
       grid-column: 3;
       grid-row: 2;
 
@@ -189,7 +189,7 @@ background-color: #1c2640;
 
       }
 
-      &.business-areas__nav--south {
+      &--south {
       grid-column: 2;
       grid-row: 3;
 
@@ -203,7 +203,7 @@ background-color: #1c2640;
 
       }
 
-      &.business-areas__nav--west {
+      &--west {
       grid-row: 2;
 
         &::after {
@@ -217,9 +217,9 @@ background-color: #1c2640;
       }
 
       &--disabled {
+      cursor: default;
       opacity: .3;
       pointer-events: none;
-      cursor: default;
       }
 
     }
@@ -299,20 +299,20 @@ background-color: #1c2640;
     // once it's active, matching the original gated-click behaviour
     // without any JS.
 
-    &:not(&--active) .business-areas__item__preview__cta {
+    &:not(&--active) .spatial-navigation__item__preview__cta {
     pointer-events: none;
     }
 
     &--active {
     z-index: 2;
 
-      .business-areas__item__tile {
+      .spatial-navigation__item__tile {
       opacity: 1;
       transform: none;
       box-shadow: 0 .25rem .5rem rgba(0, 0, 0, .25);
       }
 
-      .business-areas__item__tile:not(.business-areas__item__tile--main) .business-areas__item__preview {
+      .spatial-navigation__item__tile:not(.spatial-navigation__item__tile--main) .spatial-navigation__item__preview {
       justify-content: flex-end;
 
         @media (min-width: $ba-bp-desktop) {
@@ -330,7 +330,7 @@ background-color: #1c2640;
     // "this is the current business area" state, so it's the correct single
     // source of truth for this reveal.
 
-    &[aria-current="true"] .business-areas__item__preview__cta {
+    &[aria-current="true"] .spatial-navigation__item__preview__cta {
     display: inline-flex;
     opacity: 1 !important;
     transition: none !important;
@@ -407,7 +407,7 @@ background-color: #1c2640;
 
       // Non-intro tiles: photo mask + copy pinned to the tile edge
 
-      .business-areas__item__tile:not(.business-areas__item__tile--main) & {
+      .spatial-navigation__item__tile:not(.spatial-navigation__item__tile--main) & {
       align-items: center;
       padding-block: 0 1.5rem;
       padding-inline: 1.25rem;
@@ -471,7 +471,7 @@ background-color: #1c2640;
 
       // Intro tile: centered copy, no photo mask
 
-      .business-areas__item__tile--main & {
+      .spatial-navigation__item__tile--main & {
       block-size: 100%;
       justify-content: center;
       align-items: center;
@@ -510,7 +510,7 @@ background-color: #1c2640;
         font-size: var(--tile-title-copy-desktop);
         }
 
-        .business-areas__item__tile:not(.business-areas__item__tile--main) .business-areas__item__preview & {
+        .spatial-navigation__item__tile:not(.spatial-navigation__item__tile--main) .spatial-navigation__item__preview & {
         position: relative;
         z-index: 1;
         text-align: center;
@@ -537,7 +537,7 @@ background-color: #1c2640;
 
         }
 
-        .business-areas__item__tile--main .business-areas__item__preview & {
+        .spatial-navigation__item__tile--main .spatial-navigation__item__preview & {
         font-family: 'barlow_condensedsemibold', Helvetica, Arial, sans-serif;
         font-size: 2.25rem;
         line-height: 1.05;
@@ -580,7 +580,7 @@ background-color: #1c2640;
         font-size: 1.1rem;
         }
 
-        .business-areas__item__tile:not(.business-areas__item__tile--main) .business-areas__item__preview & {
+        .spatial-navigation__item__tile:not(.spatial-navigation__item__tile--main) .spatial-navigation__item__preview & {
         position: relative;
         z-index: 1;
         text-align: center;
@@ -608,7 +608,7 @@ background-color: #1c2640;
 
         }
 
-        .business-areas__item__tile--main .business-areas__item__preview & {
+        .spatial-navigation__item__tile--main .spatial-navigation__item__preview & {
         font-family: 'barlowregular', Helvetica, Arial, sans-serif;
         font-size: .875rem;
         line-height: 1.3;
@@ -657,7 +657,7 @@ background-color: #1c2640;
         font-size: var(--tile-copy-desktop);
         }
 
-        .business-areas__item__tile:not(.business-areas__item__tile--main) .business-areas__item__preview & {
+        .spatial-navigation__item__tile:not(.spatial-navigation__item__tile--main) .spatial-navigation__item__preview & {
         position: relative;
         z-index: 1;
         inline-size: 100%;
@@ -690,7 +690,7 @@ background-color: #1c2640;
     align-items: center;
     opacity: 1;
 
-      .business-areas__item__tile--main & {
+      .spatial-navigation__item__tile--main & {
       inline-size: 4rem;
       block-size: 4rem;
       background-color: var(--color-pink);
@@ -744,47 +744,47 @@ background-color: #1c2640;
   // per category would never be visible. Colour instead comes from the
   // tile's own background-color (&__tile:not(&--main).cat-X above).
 
-  .cat-operations .business-areas__item__preview::after {
+  .cat-operations .spatial-navigation__item__preview::after {
   background-image: url("img/ops_compressed_compressed.jpg");
   }
 
-  .cat-technology .business-areas__item__preview::after {
+  .cat-technology .spatial-navigation__item__preview::after {
   background-image: url("img/tech_compressed.jpg");
   }
 
-  .cat-market-analytics .business-areas__item__preview::after {
+  .cat-market-analytics .spatial-navigation__item__preview::after {
   background-image: url("img/m-a_compressed.jpg");
   }
 
-  .cat-prod-design .business-areas__item__preview::after {
+  .cat-prod-design .spatial-navigation__item__preview::after {
   background-image: url("img/product-and-design_compressed.jpg");
   }
 
-  .cat-human-resources .business-areas__item__preview::after {
+  .cat-human-resources .spatial-navigation__item__preview::after {
   background-image: url("img/hr_compressed.jpg");
   }
 
-  .cat-change-transformation .business-areas__item__preview::after {
+  .cat-change-transformation .spatial-navigation__item__preview::after {
   background-image: url("img/c-t_compressed.jpg");
   }
 
-  .cat-data .business-areas__item__preview::after {
+  .cat-data .spatial-navigation__item__preview::after {
   background-image: url("img/data_compressed.jpg");
   }
 
-  .cat-legal .business-areas__item__preview::after {
+  .cat-legal .spatial-navigation__item__preview::after {
   background-image: url("img/legal_compressed.jpg");
   }
 
-  .cat-compliance .business-areas__item__preview::after {
+  .cat-compliance .spatial-navigation__item__preview::after {
   background-image: url("img/compliance_compressed.jpg");
   }
 
-  .cat-finance .business-areas__item__preview::after {
+  .cat-finance .spatial-navigation__item__preview::after {
   background-image: url("img/finance_compressed.jpg");
   }
 
-  .cat-risk .business-areas__item__preview::after {
+  .cat-risk .spatial-navigation__item__preview::after {
   background-image: url("img/risk_compressed.jpg");
   }
 
@@ -814,17 +814,17 @@ background-color: #1c2640;
     // Sidestepping rather than relying on cascade/inheritance behaviour
     // that's inconsistent here.
 
-    &.operations-business-area, &.technology-business-area,
-    &.compliance-business-area, &.finance-business-area {
+    &.operations-spatial-navigation, &.technology-spatial-navigation,
+    &.compliance-spatial-navigation, &.finance-spatial-navigation {
     background-color: #ffe433;
     }
 
-    &.market-analytics-business-area, &.prod-design-business-area,
-    &.human-resources-business-area, &.change-transformation-business-area {
+    &.market-analytics-spatial-navigation, &.prod-design-spatial-navigation,
+    &.human-resources-spatial-navigation, &.change-transformation-spatial-navigation {
     background-color: #ff8791;
     }
 
-    &.data-business-area, &.legal-business-area, &.risk-business-area {
+    &.data-spatial-navigation, &.legal-spatial-navigation, &.risk-spatial-navigation {
     background-color: #00c3b3;
     }
 
@@ -874,7 +874,7 @@ background-color: #1c2640;
 
 @media (prefers-reduced-motion: reduce) {
 
-.business-areas, .business-areas * {
+.spatial-navigation, .spatial-navigation * {
 animation-duration: .001ms !important;
 animation-iteration-count: 1 !important;
 scroll-behavior: auto !important;
