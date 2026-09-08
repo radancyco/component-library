@@ -24,6 +24,12 @@
     const tabListPanelClass = ".tablist__panel";
     const tabLists = document.querySelectorAll(tabListClass);
     const URLFragment = location.hash.slice(1);
+    const interactiveSelector = "a[href], button, input, select, textarea, audio[controls], video[controls], iframe, embed, object, [contenteditable], [tabindex]:not([tabindex='-1'])";
+
+    // A tabpanel only needs tabindex="0" when it has no focusable content of its own;
+    // otherwise it's a redundant tab stop ahead of the real focusable elements (ARIA APG).
+
+    const panelNeedsTabindex = (panel) => !panel.querySelector(interactiveSelector);
 
     // Display which version is in use via console:
 
@@ -113,7 +119,12 @@
           // Show selected panel
 
           panelTarget.removeAttribute("hidden");
-          panelTarget.setAttribute("tabindex", "0");
+
+          if (panelNeedsTabindex(panelTarget)) {
+
+            panelTarget.setAttribute("tabindex", "0");
+
+          }
 
           // Highlight selected tab
 
@@ -183,7 +194,13 @@
 
         panel.setAttribute("aria-labelledby", `tab-${panelID}`);
         panel.setAttribute("role", "tabpanel");
-        panel.setAttribute("tabindex", "0");
+
+        if (panelNeedsTabindex(panel)) {
+
+          panel.setAttribute("tabindex", "0");
+
+        }
+
         panel.setAttribute("hidden", "");
 
         if (panelID === URLFragment) {
@@ -200,7 +217,12 @@
         tabs[0].removeAttribute("tabindex");
     
         panels[0].removeAttribute("hidden");
-        panels[0].setAttribute("tabindex", "0");
+
+        if (panelNeedsTabindex(panels[0])) {
+
+          panels[0].setAttribute("tabindex", "0");
+
+        }
 
       }
 
