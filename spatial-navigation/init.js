@@ -4,6 +4,8 @@
 
   Contributor(s):
   Michael "Spell" Spellacy
+  Carla Goncalves
+  
 
 */
 
@@ -45,7 +47,7 @@
   const businessAreasItemClass = `.${businessAreasItemClassName}`;
   const businessAreasItemActiveClass = `.${businessAreasItemActiveClassName}`;
   const businessAreasNavItemClass = `.${businessAreasNavItemClassName}`;
-  const businessAreasItemPreviewTitleClass = `.${baseClass}__item__preview__title`;
+  const businessAreasItemContentTitleClass = `.${baseClass}__item__content__title`;
   const businessAreasItemPreviewCtaClass = `.${baseClass}__item__preview__cta`;
   const businessAreasItemTileClass = `.${baseClass}__item__tile`;
   const openDialogSelector = "dialog[open]";
@@ -57,11 +59,34 @@
   const businessAreasGridStatusId = "spatial-navigation-grid-status";
   const businessAreasGridStatusSelector = `#${businessAreasGridStatusId}`;
 
+  // Prefix for the per-item title id each cell's own accessible-name
+  // reference is built from — see buildTileGrid()'s assignItemLabel().
+
+  const businessAreasLabelIdPrefix = "spatial-navigation-label-";
+
+  // Prefix for a cell's dynamically-assigned id (see assignItemKey()) —
+  // this id doubles as the component's own "key" for that cell (getKey()
+  // just reads cell.id), so there's one identifier per cell instead of an
+  // id plus a separate data-spatial-navigation-key. Every cell gets one of
+  // these unless it carries businessAreasDataIntro, which always wins and
+  // always resolves to businessAreasIntroKey instead, regardless of that
+  // cell's position in the DOM.
+
+  const businessAreasKeyPrefix = "spatial-navigation-item-";
+
+  // The one cell with its own dedicated announcement copy — hardcoded by
+  // this exact value in initAccessibility(), getActiveKey(), and
+  // syncGridState(), and deliberately decoupled from DOM position (see
+  // assignItemKey()) so the intro cell keeps working correctly even if the
+  // markup is reordered.
+
+  const businessAreasIntroKey = "spatial-navigation-item-intro";
+
   // data-* attributes this component reads.
 
-  const businessAreasDataKey = "data-spatial-navigation-key";
   const businessAreasDataGridCol = "data-grid-col";
   const businessAreasDataGridRow = "data-grid-row";
+  const businessAreasDataIntro = "data-intro";
 
   // Single source of truth for the four directional nav buttons — used for
   // mouse-click movement, arrow-key movement, and edge-muting, instead of
@@ -234,11 +259,11 @@
 
   };
 
-  const getKey = (cell) => cell && cell.getAttribute(businessAreasDataKey);
+  const getKey = (cell) => cell && cell.id;
 
   const getLabel = (cell) => {
 
-    const heading = cell && cell.querySelector(businessAreasItemPreviewTitleClass);
+    const heading = cell && cell.querySelector(businessAreasItemContentTitleClass);
 
     return heading ? heading.textContent.replace(/\s+/g, " ").trim() : "";
 
@@ -977,6 +1002,72 @@
 
     }
 
+    // Gives a cell its own accessible name via a dynamically-assigned title
+    // id, rather than requiring hand-authored id/aria-labelledby/role pairs
+    // in the markup for every cell — a new cell just needs its own
+    // .spatial-navigation__item__content__title, nothing more. index is
+    // 0-based (from tiles.map); the id itself is 1-based, matching DOM
+    // order. Every write here is guarded against rewriting an
+    // already-correct value: role is in observeRuntimeChanges()'s
+    // attributeFilter, and setAttribute()/id mutate (and so re-trigger that
+    // observer) even when the value doesn't change — same reasoning as the
+    // aria-current guard in syncGridState().
+
+    assignItemLabel(tile, index) {
+
+      const title = tile.querySelector(businessAreasItemContentTitleClass);
+
+      if (!title) {
+
+        return;
+
+      }
+
+      const labelId = `${businessAreasLabelIdPrefix}${index + 1}`;
+
+      if (title.id !== labelId) {
+
+        title.id = labelId;
+
+      }
+
+      if (tile.getAttribute("aria-labelledby") !== labelId) {
+
+        tile.setAttribute("aria-labelledby", labelId);
+
+      }
+
+      if (tile.getAttribute("role") !== "region") {
+
+        tile.setAttribute("role", "region");
+
+      }
+
+    }
+
+    // Gives a cell its own id rather than requiring one hand-authored per
+    // cell in the markup — this id is also the component's own "key" for
+    // that cell (see getKey()), so there's a single identifier per cell
+    // instead of an id plus a separate data attribute. A cell carrying
+    // businessAreasDataIntro (data-intro) always resolves to
+    // businessAreasIntroKey, deliberately decoupled from DOM position so
+    // the intro cell keeps working correctly even if the markup is
+    // reordered. Every other cell gets spatial-navigation-item-1,
+    // spatial-navigation-item-2, etc., 1-based to match
+    // assignItemLabel()'s numbering (index is 0-based, from tiles.map).
+
+    assignItemKey(tile, index) {
+
+      const key = tile.hasAttribute(businessAreasDataIntro) ? businessAreasIntroKey : `${businessAreasKeyPrefix}${index + 1}`;
+
+      if (tile.id !== key) {
+
+        tile.id = key;
+
+      }
+
+    }
+
     buildTileGrid() {
 
       this.tiles = Array.from(this.baseTiles);
@@ -998,6 +1089,9 @@
           tile.setAttribute("tabindex", "-1");
 
         }
+
+        this.assignItemLabel(tile, i);
+        this.assignItemKey(tile, i);
 
         return {
 
@@ -1450,7 +1544,7 @@
 
     getActiveKey() {
 
-      return this.activeKey || this.getActiveVisualKey() || "intro";
+      return this.activeKey || this.getActiveVisualKey() || businessAreasIntroKey;
 
     }
 
@@ -1495,7 +1589,7 @@
 
       }
 
-      this.activeKey = getKey(cell) || "intro";
+      this.activeKey = getKey(cell) || businessAreasIntroKey;
 
       if (recenter) {
 
@@ -1664,7 +1758,7 @@
 
       }
 
-      this.activeKey = getKey(nextCell) || "intro";
+      this.activeKey = getKey(nextCell) || businessAreasIntroKey;
 
       if (options.visual !== false) {
 
@@ -1765,7 +1859,7 @@
 
       if (activeLabel && options.announce === true) {
 
-        if (activeKey === "intro") {
+        if (activeKey === businessAreasIntroKey) {
 
           this.announce("Business areas introduction active. Tab to the next business area or use the arrow keys to move spatially.");
 
@@ -1934,10 +2028,10 @@
 
       this.observeRuntimeChanges();
 
-      this.activeKey = "intro";
+      this.activeKey = businessAreasIntroKey;
 
-      this.setActiveKey("intro", { announce: false });
-      this.scheduleActiveStateRepair("intro", false);
+      this.setActiveKey(businessAreasIntroKey, { announce: false });
+      this.scheduleActiveStateRepair(businessAreasIntroKey, false);
 
     }
 

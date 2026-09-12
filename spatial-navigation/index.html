@@ -10,10 +10,6 @@ localjs: init.js
 
     <div id="spatial-navigation-grid-status" hidden aria-live="polite">Human Resources active. Press Enter or Space to open details, or Tab to its See more button.</div>
 
-    <!-- The directional nav overlay (.spatial-navigation__nav and its four
-    buttons) is no longer static markup — init.js builds and prepends it
-    via BusinessAreas.buildNavOverlay(). -->
-
     <div class="spatial-navigation__overflow">
 
         <div class="spatial-navigation__overflow__inner">
@@ -26,191 +22,27 @@ localjs: init.js
             and data-grid-row="n" (both zero-based) to that cell; JS already
             reads and prefers them over the DOM-order fallback when present. -->
 
-            <div class="spatial-navigation__item" aria-labelledby="spatial-navigation-title-change-transformation" data-spatial-navigation-key="change-transformation" role="region">
+            <div class="spatial-navigation__item">
 
-                <div class="spatial-navigation__item__tile cat-change-transformation">
+                <div class="spatial-navigation__item__tile">
 
-                    <div class="spatial-navigation__item__preview">
+                    <div class="spatial-navigation__item__content">
 
-                        <h2 id="spatial-navigation-title-change-transformation" class="spatial-navigation__item__preview__title">Change & Transformation</h2>
+                        <h2 class="spatial-navigation__item__content__title">Change & Transformation</h2>
 
-                        <p class="spatial-navigation__item__preview__content">Leading the evolution of our business; driving and enabling organisational change. </p>
+                        <p>Leading the evolution of our business; driving and enabling organisational change. </p>
 
-                        <button class="spatial-navigation__item__preview__cta"  aria-haspopup="dialog" command="show-modal" commandfor="change-transformation-spatial-navigation">See more <span class="visually-hidden">about Change & Transformation</span></button>
+                        <button class="spatial-navigation__item__content__cta"  aria-haspopup="dialog" command="show-modal" commandfor="change-transformation-spatial-navigation">See more about Change & Transformation</button>
 
-                        <!-- Temporary mobile-touch test content — every interactive element
-                        type a developer might drop into this dialog, for manually checking
-                        whether the startDrag() button-only guard needs to be broadened.
-                        Remove once testing is complete. -->
+                        <dialog class="spatial-navigation__modal" id="change-transformation-spatial-navigation" aria-labelledby="spatial-navigation-title-change-transformation-modal" closedby="any">
 
-                        <!-- a href="#">Test link</a>
+                            <button class="spatial-navigation-dialog-close" command="close" commandfor="change-transformation-spatial-navigation" aria-label="Close"></button>
 
-                        <button type="button">Test plain button (no command)</button>
+                            <h1 id="spatial-navigation-title-change-transformation-modal">Change & Transformation</h1>
 
-                        <div>
-                            <label for="test-text-input">Test text input</label>
-                            <input type="text" id="test-text-input" name="test-text-input">
-                        </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 
-                        <div>
-                            <label for="test-checkbox">Test checkbox</label>
-                            <input type="checkbox" id="test-checkbox" name="test-checkbox">
-                        </div>
-
-                        <div>
-                            <label for="test-radio-1">Test radio 1</label>
-                            <input type="radio" id="test-radio-1" name="test-radio-group">
-                            <label for="test-radio-2">Test radio 2</label>
-                            <input type="radio" id="test-radio-2" name="test-radio-group">
-                        </div>
-
-                        <div>
-                            <label for="test-range">Test range slider</label>
-                            <input type="range" id="test-range" name="test-range" min="0" max="100">
-                        </div>
-
-                        <div>
-                            <label for="test-select">Test select</label>
-                            <select id="test-select" name="test-select">
-                                <option value="one">Option one</option>
-                                <option value="two">Option two</option>
-                                <option value="three">Option three</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label for="test-textarea">Test textarea</label>
-                            <textarea id="test-textarea" name="test-textarea"></textarea>
-                        </div>
-
-                        <div tabindex="0" onclick="alert('tabindex div clicked')">Test div with tabindex="0" and inline onclick alert()</div>
-
-                        <details>
-                            <summary>Test details/summary disclosure</summary>
-                            <p>Expanded content revealed by the native disclosure widget.</p>
-                        </details>
-
-                        <audio controls></audio -->
-
-                    </div>
-
-                </div>
-
-                <dialog class="spatial-navigation__modal change-transformation-spatial-navigation" id="change-transformation-spatial-navigation" aria-labelledby="spatial-navigation-title-change-transformation-modal" closedby="any">
-
-                    <button class="spatial-navigation-dialog-close" command="close" commandfor="change-transformation-spatial-navigation" aria-label="Close"></button>
-
-                    <h1 id="spatial-navigation-title-change-transformation-modal">Change & Transformation</h1>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-                </dialog>
-
-            </div>
-
-            <div class="spatial-navigation__item" aria-labelledby="spatial-navigation-title-compliance" data-spatial-navigation-key="compliance" role="region">
-
-                <div class="spatial-navigation__item__tile cat-compliance">
-
-                    <div class="spatial-navigation__item__preview">
-
-                        <h2 id="spatial-navigation-title-compliance" class="spatial-navigation__item__preview__title">Compliance</h2>
-
-                        <p class="spatial-navigation__item__preview__content">Providing expert compliance advice and assurance.</p>
-
-                        <button class="spatial-navigation__item__preview__cta"  aria-haspopup="dialog" command="show-modal" commandfor="compliance-spatial-navigation">See more <span class="visually-hidden">about Compliance</span></button>
-
-                    </div>
-
-                </div>
-
-                <dialog class="spatial-navigation__modal compliance-spatial-navigation" id="compliance-spatial-navigation" aria-labelledby="spatial-navigation-title-compliance-modal" closedby="any">
-
-                    <button class="spatial-navigation-dialog-close" command="close" commandfor="compliance-spatial-navigation" aria-label="Close"></button>
-
-                    <h1 id="spatial-navigation-title-compliance-modal">Compliance</h1>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-                </dialog>
-
-            </div>
-
-            <div class="spatial-navigation__item" aria-labelledby="spatial-navigation-title-data" data-spatial-navigation-key="data" role="region">
-
-                <div class="spatial-navigation__item__tile cat-data">
-
-                    <div class="spatial-navigation__item__preview">
-
-                        <h2 id="spatial-navigation-title-data" class="spatial-navigation__item__preview__title">Data</h2>
-
-                        <p class="spatial-navigation__item__preview__content">Unlocking the power of information and turning raw data into our most valuable strategic asset.</p>
-
-                        <button class="spatial-navigation__item__preview__cta"  aria-haspopup="dialog" command="show-modal" commandfor="data-spatial-navigation">See more <span class="visually-hidden">about Data</span></button>
-
-                    </div>
-
-                </div>
-
-                <dialog class="spatial-navigation__modal data-spatial-navigation" id="data-spatial-navigation" aria-labelledby="spatial-navigation-title-data-modal" closedby="any">
-
-                    <button class="spatial-navigation-dialog-close" command="close" commandfor="data-spatial-navigation" aria-label="Close"></button>
-
-                    <h1 id="spatial-navigation-title-data-modal">Data</h1>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-                </dialog>
-
-            </div>
-
-            <div class="spatial-navigation__item" aria-labelledby="spatial-navigation-title-finance" data-spatial-navigation-key="finance" role="region">
-
-                <div class="spatial-navigation__item__tile cat-finance">
-
-                    <div class="spatial-navigation__item__preview">
-
-                        <h2 id="spatial-navigation-title-finance" class="spatial-navigation__item__preview__title">Finance</h2>
-
-                        <p class="spatial-navigation__item__preview__content">Driving value through financial strategies to challenge the way banking is done. </p>
-
-                        <button class="spatial-navigation__item__preview__cta"  aria-haspopup="dialog" command="show-modal" commandfor="finance-spatial-navigation">See more <span class="visually-hidden">about Finance</span></button>
-
-                    </div>
-
-                </div>
-
-                <dialog class="spatial-navigation__modal finance-spatial-navigation" id="finance-spatial-navigation" aria-labelledby="spatial-navigation-title-finance-modal" closedby="any">
-
-                    <button class="spatial-navigation-dialog-close" command="close" commandfor="finance-spatial-navigation" aria-label="Close"></button>
-
-                    <h1 id="spatial-navigation-title-finance-modal">Finance</h1>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-                </dialog>
-
-            </div>
-
-            <div class="spatial-navigation__item" aria-labelledby="spatial-navigation-title-intro" data-spatial-navigation-key="intro" role="region">
-
-                <div class="spatial-navigation__item__tile spatial-navigation__item__tile--main">
-
-                    <div class="spatial-navigation__item__preview">
-
-                        <h2 id="spatial-navigation-title-intro" class="spatial-navigation__item__preview__title">Our Business Areas</h2>
-
-                        <p class="spatial-navigation__item__preview__content">Our success at Capital One is built on collaboration. We believe in working together seamlessly, across all departments, to change banking for good.</p>
-
-                        <div class="spatial-navigation__item__pan-animation">
-
-                            <div class="spatial-navigation__item__pan-animation__image">
-
-                                <img src="img/icon-animation.svg" alt="">
-
-                            </div>
-
-                        </div>
+                        </dialog>
 
                     </div>
 
@@ -218,199 +50,299 @@ localjs: init.js
 
             </div>
 
-            <div class="spatial-navigation__item" aria-labelledby="spatial-navigation-title-human-resources" data-spatial-navigation-key="human-resources" role="region">
+            <div class="spatial-navigation__item">
 
-                <div class="spatial-navigation__item__tile cat-human-resources">
+                <div class="spatial-navigation__item__tile">
 
-                    <div class="spatial-navigation__item__preview">
+                    <div class="spatial-navigation__item__content">
 
-                        <h2 id="spatial-navigation-title-human-resources" class="spatial-navigation__item__preview__title">Human Resources</h2>
+                        <h2 class="spatial-navigation__item__content__title">Compliance</h2>
 
-                        <p class="spatial-navigation__item__preview__content">Curating an environment where talent can thrive, grow, and belong. </p>
+                        <p>Providing expert compliance advice and assurance.</p>
 
-                        <button class="spatial-navigation__item__preview__cta"  aria-haspopup="dialog" command="show-modal" commandfor="human-resources-spatial-navigation">See more <span class="visually-hidden">about Human Resources</span></button>
+                        <button class="spatial-navigation__item__content__cta"  aria-haspopup="dialog" command="show-modal" commandfor="compliance-spatial-navigation">See more about Compliance</button>
+
+                        <dialog class="spatial-navigation__modal" id="compliance-spatial-navigation" aria-labelledby="spatial-navigation-title-compliance-modal" closedby="any">
+
+                            <button class="spatial-navigation-dialog-close" command="close" commandfor="compliance-spatial-navigation" aria-label="Close"></button>
+
+                            <h1 id="spatial-navigation-title-compliance-modal">Compliance</h1>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                        </dialog>
 
                     </div>
 
                 </div>
-
-                <dialog class="spatial-navigation__modal human-resources-spatial-navigation" id="human-resources-spatial-navigation" aria-labelledby="spatial-navigation-title-human-resources-modal" closedby="any">
-
-                    <button class="spatial-navigation-dialog-close" command="close" commandfor="human-resources-spatial-navigation" aria-label="Close"></button>
-
-                    <h1 id="spatial-navigation-title-human-resources-modal">Human Resources</h1>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-                </dialog>
 
             </div>
 
-            <div class="spatial-navigation__item" aria-labelledby="spatial-navigation-title-legal" data-spatial-navigation-key="legal" role="region">
+            <div class="spatial-navigation__item">
 
-                <div class="spatial-navigation__item__tile cat-legal">
+                <div class="spatial-navigation__item__tile">
 
-                    <div class="spatial-navigation__item__preview">
+                    <div class="spatial-navigation__item__content">
 
-                        <h2 id="spatial-navigation-title-legal" class="spatial-navigation__item__preview__title">Legal</h2>
+                        <h2 class="spatial-navigation__item__content__title">Data</h2>
 
-                        <p class="spatial-navigation__item__preview__content">Mitigating legal risk and safeguarding our reputation by navigating the regulatory landscape with precision. </p>
+                        <p>Unlocking the power of information and turning raw data into our most valuable strategic asset.</p>
 
-                        <button class="spatial-navigation__item__preview__cta"  aria-haspopup="dialog" command="show-modal" commandfor="legal-spatial-navigation">See more <span class="visually-hidden">about Legal</span></button>
+                        <button class="spatial-navigation__item__content__cta"  aria-haspopup="dialog" command="show-modal" commandfor="data-spatial-navigation">See more about Data</button>
+
+                        <dialog class="spatial-navigation__modal" id="data-spatial-navigation" aria-labelledby="spatial-navigation-title-data-modal" closedby="any">
+
+                            <button class="spatial-navigation-dialog-close" command="close" commandfor="data-spatial-navigation" aria-label="Close"></button>
+
+                            <h1 id="spatial-navigation-title-data-modal">Data</h1>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                        </dialog>
 
                     </div>
 
                 </div>
-
-                <dialog class="spatial-navigation__modal legal-spatial-navigation" id="legal-spatial-navigation" aria-labelledby="spatial-navigation-title-legal-modal" closedby="any">
-
-                    <button class="spatial-navigation-dialog-close" command="close" commandfor="legal-spatial-navigation" aria-label="Close"></button>
-
-                    <h1 id="spatial-navigation-title-legal-modal">Legal</h1>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-                </dialog>
 
             </div>
 
-            <div class="spatial-navigation__item" aria-labelledby="spatial-navigation-title-market-analytics" data-spatial-navigation-key="market-analytics" role="region">
+            <div class="spatial-navigation__item">
 
-                <div class="spatial-navigation__item__tile cat-market-analytics">
+                <div class="spatial-navigation__item__tile">
 
-                    <div class="spatial-navigation__item__preview">
+                    <div class="spatial-navigation__item__content">
 
-                        <h2 id="spatial-navigation-title-market-analytics" class="spatial-navigation__item__preview__title">Marketing & Analysis</h2>
+                        <h2 class="spatial-navigation__item__content__title">Finance</h2>
 
-                        <p class="spatial-navigation__item__preview__content">Bridging creativity with data-driven insights to tell our story and accelerate growth. </p>
+                        <p>Driving value through financial strategies to challenge the way banking is done. </p>
 
-                        <button class="spatial-navigation__item__preview__cta"  aria-haspopup="dialog" command="show-modal" commandfor="market-analytics-spatial-navigation">See more <span class="visually-hidden">about Marketing & Analysis</span></button>
+                        <button class="spatial-navigation__item__content__cta"  aria-haspopup="dialog" command="show-modal" commandfor="finance-spatial-navigation">See more about Finance</button>
+
+                        <dialog class="spatial-navigation__modal" id="finance-spatial-navigation" aria-labelledby="spatial-navigation-title-finance-modal" closedby="any">
+
+                            <button class="spatial-navigation-dialog-close" command="close" commandfor="finance-spatial-navigation" aria-label="Close"></button>
+
+                            <h1 id="spatial-navigation-title-finance-modal">Finance</h1>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                        </dialog>
 
                     </div>
 
                 </div>
-
-                <dialog class="spatial-navigation__modal market-analytics-spatial-navigation" id="market-analytics-spatial-navigation" aria-labelledby="spatial-navigation-title-market-analytics-modal" closedby="any">
-
-                    <button class="spatial-navigation-dialog-close" command="close" commandfor="market-analytics-spatial-navigation" aria-label="Close"></button>
-
-                    <h1 id="spatial-navigation-title-market-analytics-modal">Marketing & Analysis</h1>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-                </dialog>
 
             </div>
 
-            <div class="spatial-navigation__item" aria-labelledby="spatial-navigation-title-operations" data-spatial-navigation-key="operations" role="region">
+            <div class="spatial-navigation__item" data-intro>
 
-                <div class="spatial-navigation__item__tile cat-operations">
+                <div class="spatial-navigation__item__tile">
 
-                    <div class="spatial-navigation__item__preview">
+                    <div class="spatial-navigation__item__content">
 
-                        <h2 id="spatial-navigation-title-operations" class="spatial-navigation__item__preview__title">Operations</h2>
+                        <h2 class="spatial-navigation__item__content__title">Our Business Areas</h2>
 
-                        <p class="spatial-navigation__item__preview__content">Operations is the pulse of Capital One; supporting customers and delivering world-class service at scale.</p>
-
-                        <button class="spatial-navigation__item__preview__cta"  aria-haspopup="dialog" command="show-modal" commandfor="operations-spatial-navigation">See more <span class="visually-hidden">about Operations</span></button>
+                        <p>Our success at Capital One is built on collaboration. We believe in working together seamlessly, across all departments, to change banking for good.</p>
 
                     </div>
 
                 </div>
-
-                <dialog class="spatial-navigation__modal operations-spatial-navigation" id="operations-spatial-navigation" aria-labelledby="spatial-navigation-title-operations-modal" closedby="any">
-
-                    <button class="spatial-navigation-dialog-close" command="close" commandfor="operations-spatial-navigation" aria-label="Close"></button>
-
-                    <h1 id="spatial-navigation-title-operations-modal">Operations</h1>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-                </dialog>
 
             </div>
 
-            <div class="spatial-navigation__item" aria-labelledby="spatial-navigation-title-prod-design" data-spatial-navigation-key="prod-design" role="region">
+            <div class="spatial-navigation__item">
 
-                <div class="spatial-navigation__item__tile cat-prod-design">
+                <div class="spatial-navigation__item__tile">
 
-                    <div class="spatial-navigation__item__preview">
+                    <div class="spatial-navigation__item__content">
 
-                        <h2 id="spatial-navigation-title-prod-design" class="spatial-navigation__item__preview__title">Product & Design</h2>
+                        <h2 class="spatial-navigation__item__content__title">Human Resources</h2>
 
-                        <p class="spatial-navigation__item__preview__content">Bridging creativity with data-driven insights to tell our story and accelerate growth. </p>
+                        <p>Curating an environment where talent can thrive, grow, and belong. </p>
 
-                        <button class="spatial-navigation__item__preview__cta"  aria-haspopup="dialog" command="show-modal" commandfor="prod-design-spatial-navigation">See more <span class="visually-hidden">about Product & Design</span></button>
+                        <button class="spatial-navigation__item__content__cta"  aria-haspopup="dialog" command="show-modal" commandfor="human-resources-spatial-navigation">See more about Human Resources</button>
+
+                        <dialog class="spatial-navigation__modal" id="human-resources-spatial-navigation" aria-labelledby="spatial-navigation-title-human-resources-modal" closedby="any">
+
+                            <button class="spatial-navigation-dialog-close" command="close" commandfor="human-resources-spatial-navigation" aria-label="Close"></button>
+
+                            <h1 id="spatial-navigation-title-human-resources-modal">Human Resources</h1>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                        </dialog>
 
                     </div>
 
                 </div>
-
-                <dialog class="spatial-navigation__modal prod-design-spatial-navigation" id="prod-design-spatial-navigation" aria-labelledby="spatial-navigation-title-prod-design-modal" closedby="any">
-
-                    <button class="spatial-navigation-dialog-close" command="close" commandfor="prod-design-spatial-navigation" aria-label="Close"></button>
-
-                    <h1 id="spatial-navigation-title-prod-design-modal">Product & Design</h1>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-                </dialog>
 
             </div>
 
-            <div class="spatial-navigation__item" aria-labelledby="spatial-navigation-title-technology" data-spatial-navigation-key="technology" role="region">
+            <div class="spatial-navigation__item">
 
-                <div class="spatial-navigation__item__tile cat-technology">
+                <div class="spatial-navigation__item__tile">
 
-                    <div class="spatial-navigation__item__preview">
+                    <div class="spatial-navigation__item__content">
 
-                        <h2 id="spatial-navigation-title-technology" class="spatial-navigation__item__preview__title">Technology</h2>
+                        <h2 class="spatial-navigation__item__content__title">Legal</h2>
 
-                        <p class="spatial-navigation__item__preview__content">To architect and maintain the robust digital infrastructure that powers our innovation. </p>
+                        <p>Mitigating legal risk and safeguarding our reputation by navigating the regulatory landscape with precision. </p>
 
-                        <button class="spatial-navigation__item__preview__cta"  aria-haspopup="dialog" command="show-modal" commandfor="technology-spatial-navigation">See more <span class="visually-hidden">about Technology</span></button>
+                        <button class="spatial-navigation__item__content__cta"  aria-haspopup="dialog" command="show-modal" commandfor="legal-spatial-navigation">See more about Legal</button>
+
+                        <dialog class="spatial-navigation__modal" id="legal-spatial-navigation" aria-labelledby="spatial-navigation-title-legal-modal" closedby="any">
+
+                            <button class="spatial-navigation-dialog-close" command="close" commandfor="legal-spatial-navigation" aria-label="Close"></button>
+
+                            <h1 id="spatial-navigation-title-legal-modal">Legal</h1>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                        </dialog>
 
                     </div>
 
                 </div>
-
-                <dialog class="spatial-navigation__modal technology-spatial-navigation" id="technology-spatial-navigation" aria-labelledby="spatial-navigation-title-technology-modal" closedby="any">
-
-                    <button class="spatial-navigation-dialog-close" command="close" commandfor="technology-spatial-navigation" aria-label="Close"></button>
-
-                    <h1 id="spatial-navigation-title-technology-modal">Technology</h1>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-                </dialog>
 
             </div>
 
-            <div class="spatial-navigation__item" aria-labelledby="spatial-navigation-title-risk" data-spatial-navigation-key="risk" role="region">
+            <div class="spatial-navigation__item">
 
-                <div class="spatial-navigation__item__tile cat-risk">
+                <div class="spatial-navigation__item__tile">
 
-                    <div class="spatial-navigation__item__preview">
+                    <div class="spatial-navigation__item__content">
 
-                        <h2 id="spatial-navigation-title-risk" class="spatial-navigation__item__preview__title">Risk</h2>
+                        <h2 class="spatial-navigation__item__content__title">Marketing & Analysis</h2>
 
-                        <p class="spatial-navigation__item__preview__content">Bringing insights to the table so we can grow our business in the right ways. </p>
+                        <p>Bridging creativity with data-driven insights to tell our story and accelerate growth. </p>
 
-                        <button class="spatial-navigation__item__preview__cta"  aria-haspopup="dialog" command="show-modal" commandfor="risk-spatial-navigation">See more <span class="visually-hidden">about Risk</span></button>
+                        <button class="spatial-navigation__item__content__cta"  aria-haspopup="dialog" command="show-modal" commandfor="market-analytics-spatial-navigation">See more about Marketing & Analysis</button>
+
+                        <dialog class="spatial-navigation__modal" id="market-analytics-spatial-navigation" aria-labelledby="spatial-navigation-title-market-analytics-modal" closedby="any">
+
+                            <button class="spatial-navigation-dialog-close" command="close" commandfor="market-analytics-spatial-navigation" aria-label="Close"></button>
+
+                            <h1 id="spatial-navigation-title-market-analytics-modal">Marketing & Analysis</h1>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                        </dialog>
 
                     </div>
 
                 </div>
 
-                <dialog class="spatial-navigation__modal risk-spatial-navigation" id="risk-spatial-navigation" aria-labelledby="spatial-navigation-title-risk-modal" closedby="any">
+            </div>
 
-                    <button class="spatial-navigation-dialog-close" command="close" commandfor="risk-spatial-navigation" aria-label="Close"></button>
+            <div class="spatial-navigation__item">
 
-                    <h1 id="spatial-navigation-title-risk-modal">Risk</h1>
+                <div class="spatial-navigation__item__tile">
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <div class="spatial-navigation__item__content">
 
-                </dialog>
+                        <h2 class="spatial-navigation__item__content__title">Operations</h2>
+
+                        <p>Operations is the pulse of Capital One; supporting customers and delivering world-class service at scale.</p>
+
+                        <button class="spatial-navigation__item__content__cta"  aria-haspopup="dialog" command="show-modal" commandfor="operations-spatial-navigation">See more about Operations</button>
+
+                        <dialog class="spatial-navigation__modal" id="operations-spatial-navigation" aria-labelledby="spatial-navigation-title-operations-modal" closedby="any">
+
+                            <button class="spatial-navigation-dialog-close" command="close" commandfor="operations-spatial-navigation" aria-label="Close"></button>
+
+                            <h1 id="spatial-navigation-title-operations-modal">Operations</h1>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                        </dialog>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="spatial-navigation__item">
+
+                <div class="spatial-navigation__item__tile">
+
+                    <div class="spatial-navigation__item__content">
+
+                        <h2 class="spatial-navigation__item__content__title">Product & Design</h2>
+
+                        <p>Bridging creativity with data-driven insights to tell our story and accelerate growth. </p>
+
+                        <button class="spatial-navigation__item__content__cta"  aria-haspopup="dialog" command="show-modal" commandfor="prod-design-spatial-navigation">See more about Product & Design</button>
+
+                        <dialog class="spatial-navigation__modal" id="prod-design-spatial-navigation" aria-labelledby="spatial-navigation-title-prod-design-modal" closedby="any">
+
+                            <button class="spatial-navigation-dialog-close" command="close" commandfor="prod-design-spatial-navigation" aria-label="Close"></button>
+
+                            <h1 id="spatial-navigation-title-prod-design-modal">Product & Design</h1>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                        </dialog>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="spatial-navigation__item">
+
+                <div class="spatial-navigation__item__tile">
+
+                    <div class="spatial-navigation__item__content">
+
+                        <h2 class="spatial-navigation__item__content__title">Technology</h2>
+
+                        <p>To architect and maintain the robust digital infrastructure that powers our innovation. </p>
+
+                        <button class="spatial-navigation__item__content__cta"  aria-haspopup="dialog" command="show-modal" commandfor="technology-spatial-navigation">See more about Technology</button>
+
+                        <dialog class="spatial-navigation__modal" id="technology-spatial-navigation" aria-labelledby="spatial-navigation-title-technology-modal" closedby="any">
+
+                            <button class="spatial-navigation-dialog-close" command="close" commandfor="technology-spatial-navigation" aria-label="Close"></button>
+
+                            <h1 id="spatial-navigation-title-technology-modal">Technology</h1>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                        </dialog>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="spatial-navigation__item">
+
+                <div class="spatial-navigation__item__tile">
+
+                    <div class="spatial-navigation__item__content">
+
+                        <h2 class="spatial-navigation__item__content__title">Risk</h2>
+
+                        <p>Bringing insights to the table so we can grow our business in the right ways. </p>
+
+                        <button class="spatial-navigation__item__content__cta"  aria-haspopup="dialog" command="show-modal" commandfor="risk-spatial-navigation">See more about Risk</button>
+
+                        <dialog class="spatial-navigation__modal" id="risk-spatial-navigation" aria-labelledby="spatial-navigation-title-risk-modal" closedby="any">
+
+                            <button class="spatial-navigation-dialog-close" command="close" commandfor="risk-spatial-navigation" aria-label="Close"></button>
+
+                            <h1 id="spatial-navigation-title-risk-modal">Risk</h1>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                        </dialog>
+
+                    </div>
+
+                </div>
 
             </div>
 
