@@ -356,9 +356,9 @@ position: relative;
   background-color: #fff;
   border-radius: 0.6rem;
   border: 0;
-  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, .35);
+  box-shadow: 0 0 0.625rem 0 rgba(0, 0, 0, 0.75);
   display: none;
-  max-inline-size: 72rem;
+  inline-size: 90vw;
   opacity: 0;
   padding: 2rem;
   text-align: start;
@@ -382,7 +382,7 @@ position: relative;
     }
 
     &::backdrop {
-    backdrop-filter: blur(3px) brightness(0.5);
+    backdrop-filter: blur(3px) brightness(0.6);
     }
 
     // Note: Since an dialog is its own context, an h1 element will not be an isse. 
