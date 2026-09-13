@@ -113,6 +113,12 @@ background-color: #1c2640;
   transition: 500ms all;
   z-index: 2;
 
+    @media (prefers-reduced-motion: reduce) {
+
+      transition-duration: .001ms;
+
+    }
+
     // Hidden mid-drag; the grid itself is the interaction surface then.
 
     .spatial-navigation--mouse-down & {
@@ -122,7 +128,7 @@ background-color: #1c2640;
     }
 
     &__button {
-    background-color: #ffe433;
+    background-color: #CBC3E3;
     block-size: var(--ba-arrow-size);
     border-radius: 100vw;
     border: 0;
@@ -133,8 +139,14 @@ background-color: #1c2640;
     pointer-events: auto;
     transition: 300ms;
 
+      @media (prefers-reduced-motion: reduce) {
+
+        transition-duration: .001ms;
+
+      }
+
       &::after {
-      background: transparent url($ba-nav-arrow-icon) no-repeat center / .5rem;
+      background: url($ba-nav-arrow-icon) no-repeat center / .5rem;
       block-size: var(--ba-arrow-size);
       content: "";
       display: block;
@@ -142,7 +154,7 @@ background-color: #1c2640;
 
         @media (min-width: $ba-bp-desktop) {
 
-          background-size: 16px;
+          background-size: 1rem;
 
         }
 
@@ -232,7 +244,6 @@ background-color: #1c2640;
     grid-template-columns: repeat(3, max-content);
     grid-template-rows: repeat(4, max-content);
     gap: var(--ba-gap);
-    position: relative;
     }
 
   }
@@ -290,25 +301,11 @@ background-color: #1c2640;
     }
 
     &--active {
-    z-index: 2;
 
       .spatial-navigation__item__tile {
       opacity: 1;
       }
 
-    }
-
-    // CTA reveal is aria-current-driven, not class-driven: unlike
-    // --active (cleared the instant a drag starts, see removeActive() in
-    // init.js — a live "nothing is active while repositioning" reset with
-    // no ARIA meaning), aria-current is the committed, screen-reader-facing
-    // "this is the current business area" state, so it's the correct single
-    // source of truth for this reveal.
-
-    &[aria-current="true"] .spatial-navigation__item__content__cta {
-    opacity: 1;
-    transition: none;
-    visibility: visible;
     }
 
     // Tile (the visible card)
@@ -322,6 +319,13 @@ background-color: #1c2640;
     place-items: center;
     text-align: center;
     transition: opacity 700ms cubic-bezier(.22, 1, .36, 1);
+
+      @media (prefers-reduced-motion: reduce) {
+
+        transition-duration: .001ms;
+
+      }
+
     }
 
     // Preview (title / summary / CTA, plus the intro tile's pan animation)
@@ -408,17 +412,6 @@ background-color: #1c2640;
 
     }
 
-  }
-
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-  .spatial-navigation, .spatial-navigation * {
-  animation-duration: .001ms !important;
-  animation-iteration-count: 1 !important;
-  scroll-behavior: auto !important;
-  transition-duration: .001ms !important;
   }
 
 }
