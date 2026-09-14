@@ -384,6 +384,21 @@
 
       }
 
+      // A modal dialog's own DOM ancestors (this element included, since
+      // every dialog lives inside a grid cell here) are explicitly NOT
+      // inert per spec — only elements that are neither the dialog, its
+      // descendants, nor its ancestors get blocked. So a pointerdown
+      // starting inside an open dialog still bubbles up to this listener
+      // unless guarded here explicitly — same reasoning as the
+      // hasOpenDialog() checks already in tileClick() and
+      // handleGridKeydown().
+
+      if (this.main.hasOpenDialog()) {
+
+        return;
+
+      }
+
       // Skip drag-initiation for presses starting on any interactive
       // element (buttons, links, form fields, custom tabindex widgets,
       // etc. — this content area is open for developers to put anything
