@@ -72,9 +72,10 @@ background-color: #1c2640;
 block-size: 100vh;
 box-sizing: border-box;
 display: grid;
+grid-template-columns: 1fr;
+grid-template-rows: 1fr;
 min-block-size: 100vh;
 overflow: hidden;
-position: relative;
 
   @media (min-width: $ba-bp-desktop) {
 
@@ -98,6 +99,7 @@ position: relative;
   block-size: calc(var(--tile-preview-height) + var(--ba-arrow-size) * 2 + var(--ba-arrow-gap) * 2);
   display: grid;
   gap: var(--ba-arrow-gap);
+  grid-area: 1 / 1 / -1 / -1;
   grid-template-columns: var(--ba-arrow-size) 1fr var(--ba-arrow-size);
   grid-template-rows: var(--ba-arrow-size) 1fr var(--ba-arrow-size);
   inline-size: calc(var(--tile-preview-width) + var(--ba-arrow-size) * 2 + var(--ba-arrow-gap) * 2);
@@ -224,9 +226,9 @@ position: relative;
 
   &__overflow {
   cursor: grab;
-  inset-block-start: 0;
-  inset-inline-start: 0;
-  position: absolute;
+  grid-area: 1 / 1 / -1 / -1;
+  min-block-size: 0;
+  min-inline-size: 0;
   touch-action: none;
   transform-origin: 0 0;
   will-change: transform;
@@ -366,6 +368,12 @@ position: relative;
   transition-duration: 600ms;
   transition: opacity display overlay translate;
   translate: 0 50px;
+
+    @media (min-width: $ba-bp-desktop) {
+
+      inline-size: 72rem;
+
+    }
 
     &[open] {
     display: block;
