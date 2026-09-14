@@ -55,7 +55,6 @@ $ba-dialog-close-icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
   --primary-color: purple;
 
 --color-text: #1c2640;
---color-yellow: #ffe433;
 
 // Component Variables
 
@@ -72,8 +71,6 @@ background-color: #1c2640;
 block-size: 100vh;
 box-sizing: border-box;
 display: grid;
-grid-template-columns: 1fr;
-grid-template-rows: 1fr;
 min-block-size: 100vh;
 overflow: hidden;
 
@@ -103,13 +100,12 @@ overflow: hidden;
   grid-template-columns: var(--ba-arrow-size) 1fr var(--ba-arrow-size);
   grid-template-rows: var(--ba-arrow-size) 1fr var(--ba-arrow-size);
   inline-size: calc(var(--tile-preview-width) + var(--ba-arrow-size) * 2 + var(--ba-arrow-gap) * 2);
-  overflow: visible;
   place-self: center;
   pointer-events: none;
   transform-origin: center;
   transform: translateY(var(--ba-vertical-offset, 0)) scale(1);
   transition: 500ms all;
-  z-index: 2;
+  z-index: 1;
 
     @media (prefers-reduced-motion: reduce) {
 
@@ -214,7 +210,7 @@ overflow: hidden;
 
       &--disabled {
       cursor: default;
-      opacity: .3;
+      opacity: 0.3;
       pointer-events: none;
       }
 
