@@ -608,11 +608,11 @@ document.querySelectorAll(".dialog").forEach(trigger => {
 
   const label = trigger.dataset.dialogLabel;
   const labelledby = trigger.dataset.dialogLabelledby;
-  const caption = trigger.dataset.dialogCaption;
-  const description = trigger.dataset.dialogDescription;
+  const caption = trigger.dataset.videoCaption;
+  const description = trigger.dataset.videoDescription;
   const heading = trigger.hasAttribute("data-dialog-heading");
-  const transcript = trigger.dataset.dialogTranscript;
-  const transcriptUrl = trigger.dataset.dialogTranscriptUrl;
+  const transcript = trigger.dataset.videoTranscriptId;
+  const transcriptUrl = trigger.dataset.videoTranscriptUrl;
   const disableAutoplay = trigger.hasAttribute("data-disable-autoplay");
 
   if (!label && !labelledby) {
@@ -623,7 +623,7 @@ document.querySelectorAll(".dialog").forEach(trigger => {
 
   trigger.addEventListener("click", () => {
 
-    openDialog(trigger.dataset.dialogType, trigger.dataset.dialogSrc, { label, labelledby, caption, description, heading, transcript, transcriptUrl, disableAutoplay });
+    openDialog(trigger.dataset.dialogType, trigger.dataset.videoSrc, { label, labelledby, caption, description, heading, transcript, transcriptUrl, disableAutoplay });
 
   });
 
