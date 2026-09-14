@@ -1,11 +1,33 @@
 
-<button data-fancybox-content="video" data-src="https://radancy.dev/media/2021-08-05-accessible-html5-video/example.mp4">Open MP4</button>
-<button data-fancybox-content="youtube" data-src="https://www.youtube.com/embed/zWfzfgmNH7Y">Open YouTube</button>
-<button data-fancybox-content="vimeo" data-src="https://player.vimeo.com/video/756155980">Open Vimeo</button>
-<button data-fancybox-content="element" data-src="#hiddenContent">Open Element</button>
-<button data-fancybox-content="youtube" data-src="https://www.youtube.com/embed/th_ro9CiASc">Open YouTube</button>
+<button data-dialog data-dialog-type="video" data-dialog-src="https://radancy.dev/media/2021-08-05-accessible-html5-video/example.mp4" data-dialog-label="Accessible HTML5 video example" data-dialog-caption="captions-en.vtt, English, en, default; captions-es.vtt, Espanol, es" data-dialog-description="audio-description.vtt, English, en-US" data-dialog-heading="Accessible HTML5 Video" data-dialog-transcript="empire-strikes-back-transcript">Open MP4</button>
+
+<div id="empire-strikes-back-transcript" hidden>
+
+  <p><strong>Narrator (Harrison Ford):</strong> Luke Skywalker and Han Solo rescue the princess, destroy the Death Star, but their story didn't end there.</p>
+
+  <p>Now, the creators of the biggest smash hit of all time, bring you the next episode in the "Star Wars" saga, "The Empire Strikes Back."</p>
+
+  <p>The continuing story of our band of heroes. Luke Skywalker, Princess Leia, Han Solo, C3PO, R2D2 and Chewbacca and introducing Lando Calrissian.</p>
+
+  <p>It's an epic of romance. Of heroes and villains. They cross trackless voids to unknown worlds.</p>
+
+  <p>A galactic odyssey against oppression.</p>
+
+  <p>A big new sprawling space adventure in the "Star Wars" saga, "<a href="https://www.imdb.com/title/tt0080684/">The Empire Strikes Back</a>."</p>
+
+  <p>Coming to your galaxy <strong>next summer</strong>.</p>
+
+</div>
+
+<button data-dialog data-dialog-type="video" data-dialog-src="https://radancy.dev/media/2021-08-05-accessible-html5-video/example.mp4" data-dialog-label="Accessible HTML5 video example with external transcript" data-dialog-heading="Accessible HTML5 Video" data-dialog-transcript-url="transcript.html#my-external-transcript">Open MP4 (External Transcript)</button>
+<button data-dialog data-dialog-type="youtube" data-dialog-src="https://www.youtube.com/embed/zWfzfgmNH7Y" data-dialog-label="YouTube video player" data-dialog-heading="YouTube Video">Open YouTube</button>
+<button data-dialog data-dialog-type="vimeo" data-dialog-src="https://player.vimeo.com/video/756155980" data-dialog-label="Vimeo video player">Open Vimeo</button>
+<button data-dialog data-dialog-type="element" data-dialog-src="hiddenContent" data-dialog-labelledby="hdr-content">Open Element</button>
+<button data-dialog data-dialog-type="youtube" data-dialog-src="https://www.youtube.com/embed/th_ro9CiASc" data-dialog-label="Second YouTube video player">Open YouTube</button>
 
 <div id="hiddenContent" hidden>
+
+  <h1 id="hdr-content">Header</h1>
 
   <p>This is some hidden HTML content.</p>
 

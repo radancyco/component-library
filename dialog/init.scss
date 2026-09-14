@@ -1,6 +1,6 @@
 /*!
 
-  Radancy Component Library: Horizontal Scroll
+  Radancy Component Library: Dialog
 
   Contributor(s):
   Michael "Spell" Spellacy
@@ -9,121 +9,175 @@
 
 */
 
-.horizontal-scroll {
+.media {
+border-radius: 6px;
+border: 0;
+box-shadow: 0px 4px 16px rgba(0, 0, 0, .8);
+container-type: inline-size;
+grid-template-rows: auto 1fr;
+inline-size: 75vw;
+inset: 0;
+margin: auto;
+max-block-size: 90dvh;
+min-inline-size: calc(380rem / 16);
+overflow: hidden;
+padding: 1em;
+position: fixed;
 
-// Component Variables
+  $media-breakpoint: 45em;
 
---scroll-color-track: #949595; // Track Color
---scroll-color-thumb: #5D00C7; // Thumb Color
---scroll-color-active: #3E0085; // Active State
+  @media (min-width: $media-breakpoint) {
 
-display: grid;
-gap: 1em;
-grid-auto-flow: column;
-overflow-x: auto;
-padding-block-end: 1em;
-scroll-snap-type: inline mandatory;
+    block-size: 80dvh;
+      
+  }
 
-// Fallback Scrollbar
+  p:not(:last-child) {
+  margin-block-end: 1em;
+  }
 
-scrollbar-color: var(--scroll-color-thumb) var(--scroll-color-track);
-scrollbar-width: thin;
-
-  // TODO: Add native scrollbar hover: https://nerdy.dev/notebook/custom-scrollbar.html 
-
-  @supports #{"\selector(::-webkit-scrollbar)"} {
-
-    scrollbar-color: initial;
-    scrollbar-width: auto;
-
-    &::-webkit-scrollbar {
-    height: calc(8rem / 16);
-    }
-
-    &::-webkit-scrollbar-track, &::-webkit-scrollbar-thumb {
-    border-radius: 100vw;
-    }
-
-    &::-webkit-scrollbar-track {
-    background-color: var(--scroll-color-track);
-    }
-
-    &::-webkit-scrollbar-thumb {
-    background-color: var(--scroll-color-thumb);
+  time {
+  color: var(--primary-color);
+  font-weight: bold;
+  }
+  
+  &[open] {
+  display: grid;
+  }
+  
+   &::backdrop {
+   background-color: rgba(0, 0, 0, .5);
+   }
+  
+  .media__header {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
+  margin-block-end: 1em;
+  gap: 1rem;
     
-      &:hover {
-      background-color: var(--scroll-color-active);
+    h1 {
+    font-size: 1.2rem;
+    margin: 0;
+    place-self: center;
+
+      @container (min-width: #{$media-breakpoint}) {
+
+        font-size: revert;
+
       }
 
     }
+    
+  }
   
+  .media__controls {
+  align-items: start;
+  display: grid;
+  gap: .5rem;
+  grid-auto-flow: column;
+
+    .media__controls--audio-description, .media__controls--close, .media__controls--transcript  {
+    padding: .7rem;
+    color: #fff;
+    border: 0;
+    border-radius: 5px;
+    background-color: purple;
+    }
+    
   }
 
-  &:not([data-always-scroll]) { 
+  .media__container {
+  display: grid;
+  gap: .5em;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: max-content;
+  min-block-size: 0;
+    
+    @container (min-width: #{$media-breakpoint}) {
 
-    @media (min-width: 62.5em) {
+      grid-template-columns: minmax(0, 0fr) minmax(0, 1fr);
+      grid-template-rows: auto;
 
-      grid-auto-flow: unset;
-      grid-template-columns: repeat(4, 1fr);
-      visibility: hidden; // Do not remove.
-
-      .horizontal-scroll__card {
-
-        min-width: auto;
-
+      .media__asset {
+      grid-column: 2;
       }
 
     }
+ 
+    &.is-open {
+      
+      @container (min-width: #{$media-breakpoint}) {
+      
+        grid-template-columns: minmax(0, 0.3fr) minmax(0, 0.7fr); 
+         
+      }
+
+      .media__transcript {
+      visibility: visible;
+      display: grid;
+      }
+      
+    }
+
+  }
+
+  .media__transcript {
+  background-color: var(--color-4);
+  block-size: calc(240rem / 16);
+  border-radius: 10px;
+  display: none;
+  grid-template-rows: max-content;
+  overflow: hidden;
+  padding: 0 .5em;
+  visibility: hidden;
+
+    @container (min-width: #{$media-breakpoint}) {
+
+      block-size: auto;
+      display: grid;
+
+    }
+
+  }
+
+  .media__transcript--hdr {
+  font-size: 1.1rem;
+  margin: 0;
+  padding: 1rem .5rem .5rem;
+
+    @container (min-width: #{$media-breakpoint}) {
+
+        font-size: 1.4rem;
+
+      }
+
+  }
+
+  .media__transcript--content {
+  margin-bottom: 1rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 1rem 1rem 1rem .5rem;
+  scrollbar-color: var(--color-1) transparent;
+  scrollbar-gutter: stable;
+
+    p {
+    line-height: 1.7;
+    }
+
+  }
   
+  .media__asset {
+  background-color: #000;
+  border-radius: 10px;
+  overflow: hidden;
   }
 
-  > ul, > ol {
-  display: contents;
-  list-style: none;
-  visibility: visible; // Do not remove.
-  }
-
-  // .horizontal-scroll__card
-
-  &__card {
-  background-color: #fff;
-  border-radius: calc(10rem / 16);
-  border: calc(1rem / 16) #666 solid;
-  min-width: calc(300rem / 16);
-  padding: 1em;
-  position: relative;
-  scroll-snap-align: center;
-  transition: 300ms;
-
-    &:has(a, button) {
-
-      &:hover, &:focus-within {
-      background-color: #eee;
-      border-color: #6F00EF;
-      }
-
-    }
-
-  }
-
-  // .horizontal-scroll__heading
-
-  &__heading {
-
-    a {
-    display: block;
-
-      // Make entire card clickable
-
-      &::before {
-      content: "";
-      display: block;
-      inset: 0;
-      position: absolute;
-      }
-
-    }
-
+  .media__video {
+  block-size: 100%;
+  border: 0;
+  inline-size: 100%;
   }
 
 }
