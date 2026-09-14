@@ -363,7 +363,7 @@ overflow: hidden;
   text-align: start;
   transition-behavior: allow-discrete;
   transition-duration: 600ms;
-  transition: opacity display overlay translate;
+  transition: opacity, display, overlay, translate;
   translate: 0 50px;
 
     @media (min-width: $ba-bp-desktop) {

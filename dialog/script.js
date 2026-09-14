@@ -82,7 +82,28 @@ const destroyDialog = (dialog) => {
   dialog.dialogRestoreCallbacks?.forEach(restore => restore());
 
   dialog.close();
-  dialog.remove();
+
+  // Wait for the CSS close transition to finish before removing the element,
+  // otherwise it's torn out of the DOM before the browser can animate it out.
+  // A timeout backs up transitionend, since discrete-property transitions
+  // (display/overlay) can fail to fire it under some interaction sequences.
+
+  let removed = false;
+
+  const finalizeRemoval = () => {
+
+    if (removed) return;
+
+    removed = true;
+    dialog.remove();
+
+  };
+
+  dialog.addEventListener("transitionend", finalizeRemoval, { once: true });
+
+  const transitionMs = parseFloat(getComputedStyle(dialog).transitionDuration) * 1000;
+
+  setTimeout(finalizeRemoval, (Number.isFinite(transitionMs) ? transitionMs : 0) + 100);
 
 };
 
@@ -154,6 +175,22 @@ const fetchTranscriptFragment = async (url) => {
 
 };
 
+// Give the transcript region a tabindex only when it has no focusable link of its own
+
+const applyTranscriptTabindex = (transcriptTarget) => {
+
+  if (transcriptTarget.querySelector("a")) {
+
+    transcriptTarget.removeAttribute("tabindex");
+
+  } else {
+
+    transcriptTarget.setAttribute("tabindex", "0");
+
+  }
+
+};
+
 // Load a transcript (from an in-page element or a fetched fragment) into a target node, once
 
 const loadTranscriptOnce = (transcriptTarget, { transcript, transcriptUrl }, restoreCallbacks) => {
@@ -172,6 +209,8 @@ const loadTranscriptOnce = (transcriptTarget, { transcript, transcriptUrl }, res
       console.error(`Dialog transcript element with id "${transcript}" not found.`);
 
     }
+
+    applyTranscriptTabindex(transcriptTarget);
 
     return;
 
@@ -196,10 +235,14 @@ const loadTranscriptOnce = (transcriptTarget, { transcript, transcriptUrl }, res
 
     }
 
+    applyTranscriptTabindex(transcriptTarget);
+
   }).catch(() => {
 
     placeholder.textContent = "Transcript failed to load.";
     console.error(`Dialog transcript URL "${transcriptUrl}" failed to load.`);
+
+    applyTranscriptTabindex(transcriptTarget);
 
   });
 
@@ -282,24 +325,35 @@ const attachAudioDescription = (video, controls) => {
 const buildMediaDialog = (media, { heading, label, hasDescription, transcript, transcriptUrl }) => {
 
   const restoreCallbacks = [];
-  const titleText = heading || label || "Video";
-  const baseId = heading ? slugify(heading) : `dialog-${++dialogInstanceId}`;
+  const titleText = label || "Video";
+  const baseId = label ? slugify(label) : `dialog-${++dialogInstanceId}`;
 
   const dialog = document.createElement("dialog");
 
   dialog.className = "media";
   dialog.id = baseId;
-  dialog.setAttribute("aria-labelledby", `${baseId}-hdr`);
   dialog.setAttribute("closedby", "any");
+
+  let h1;
+
+  if (heading) {
+
+    dialog.setAttribute("aria-labelledby", `${baseId}-hdr`);
+
+    h1 = document.createElement("h1");
+
+    h1.id = `${baseId}-hdr`;
+    h1.textContent = titleText;
+
+  } else {
+
+    dialog.setAttribute("aria-label", titleText);
+
+  }
 
   const header = document.createElement("header");
 
   header.className = "media__header";
-
-  const h1 = document.createElement("h1");
-
-  h1.id = `${baseId}-hdr`;
-  h1.textContent = titleText;
 
   const controls = document.createElement("div");
 
@@ -312,7 +366,7 @@ const buildMediaDialog = (media, { heading, label, hasDescription, transcript, t
   closeBtn.setAttribute("command", "close");
   closeBtn.setAttribute("commandfor", baseId);
 
-  closeBtn.addEventListener("click", () => destroyDialog(dialog));
+  // closeBtn.addEventListener("click", () => destroyDialog(dialog));
 
   const closeIcon = document.createElement("i");
 
@@ -350,7 +404,6 @@ const buildMediaDialog = (media, { heading, label, hasDescription, transcript, t
     transcriptContent.className = "media__transcript--content";
     transcriptContent.setAttribute("aria-labelledby", h2.id);
     transcriptContent.setAttribute("role", "region");
-    transcriptContent.setAttribute("tabindex", "0");
 
     transcriptPanel.append(h2, transcriptContent);
     container.append(transcriptPanel);
@@ -391,7 +444,9 @@ const buildMediaDialog = (media, { heading, label, hasDescription, transcript, t
 
   }
 
-  header.append(h1, controls);
+  if (h1) header.append(h1);
+
+  header.append(controls);
 
   media.classList.add("media__video");
 
@@ -566,19 +621,21 @@ const openDialog = (type, src, { label, labelledby, caption, description, headin
 
 // Attach to triggers
 
-document.querySelectorAll("[data-dialog]").forEach(trigger => {
+document.querySelectorAll(".dialog").forEach(trigger => {
+
+  trigger.setAttribute("aria-haspopup", "dialog");
 
   const label = trigger.dataset.dialogLabel;
   const labelledby = trigger.dataset.dialogLabelledby;
   const caption = trigger.dataset.dialogCaption;
   const description = trigger.dataset.dialogDescription;
-  const heading = trigger.dataset.dialogHeading;
+  const heading = trigger.hasAttribute("data-dialog-heading");
   const transcript = trigger.dataset.dialogTranscript;
   const transcriptUrl = trigger.dataset.dialogTranscriptUrl;
 
-  if (!label && !labelledby && !heading) {
+  if (!label && !labelledby) {
 
-    console.error("Dialog trigger is missing an accessible name. Add data-dialog-label, data-dialog-labelledby, or data-dialog-heading.", trigger);
+    console.error("Dialog trigger is missing an accessible name. Add data-dialog-label or data-dialog-labelledby.", trigger);
 
   }
 
