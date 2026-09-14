@@ -1,75 +1,137 @@
 WEBVTT
-kind: captions
-lang: en
 
-NOTE This VTT file includes a few extras:
-- Meta data at the top (lines 2 and 3)
-- The current comment block, identified with NOTE and surrounded by spaces
-- cue settings at the end of the first timestamp
-- A cue span at the start of the second cue payload
-- (in this case, a "voice span" <v> identifying the speaker)
-- A WebVTT cue settings list after the timestamp at 39.132
-- Currently AblePlayer does not support these extra features
-- but the parser needs to be able to filter them out
--
-- Added on April 1, 2015 for testing purposes (these are both valid):
-- A cue block with no content
-- Multiple line breaks between some cue blocks
--
-- More info in the WebVTT spec (still evolving):
-- http://dev.w3.org/html5/webvtt
+1
+00:00:00.685 --> 00:00:01.770
+(música animada)
 
-00:00:00.429 --> 00:00:09.165
-[ music ]
+2
+00:00:01.770 --> 00:00:03.570
+<v Narrator>Luke Skywalker y Han Solo</v>
 
-00:00:09.165 --> 00:00:10.792
-<v Narrator> You <i>want</i> these people.
+3
+00:00:03.570 --> 00:00:06.030
+rescatan a la princesa, destruyen la Estrella de la Muerte,
 
-00:00:10.792 --> 00:00:13.759
-They <b>order</b> your products,
-<b>sign up</b> for your services,
+4
+00:00:06.030 --> 00:00:08.707
+pero su historia no terminó ahí.
 
-00:00:13.759 --> 00:00:16.627
-<b>enroll</b> in your classes,
-<b>read</b> your opinions,
+5
+00:00:08.707 --> 00:00:12.048
+(música animada)
 
-00:00:16.627 --> 00:00:18.561
-and <b>watch</b> your videos.
+6
+00:00:12.048 --> 00:00:14.631
+(fuerte estruendo)
 
-00:00:18.561 --> 00:00:24.165
-You'll never see them, but they know you-
-through your website.
+7
+00:00:17.770 --> 00:00:20.220
+Ahora, los creadores del mayor éxito de taquilla de todos los tiempos,
 
-00:00:24.165 --> 00:00:25.891
-Or maybe not.
+8
+00:00:20.220 --> 00:00:23.057
+les traen el siguiente episodio de la saga "Star Wars",
 
-00:00:25.891 --> 00:00:30.396
-<c.quotable>Your website's visitors aren't a
-faceless mass of identical mouse-clickers</c>
+9
+00:00:23.057 --> 00:00:25.877
+"El Imperio Contraataca."
 
-00:00:30.396 --> 00:00:32.363
-but a vibrant
-community of individuals
+10
+00:00:26.764 --> 00:00:27.989
+(gruñidos de Chewy)
 
-00:00:32.363 --> 00:00:35.297
-with varying tastes,
-styles, and abilities.
+11
+00:00:27.989 --> 00:00:30.198
+(disparos de armas)
 
-00:00:35.297 --> 00:00:36.900
-This includes people with disabilities.
+12
+00:00:30.198 --> 00:00:33.448
+(fuerte explosión de una bomba)
 
-00:00:39.132 --> 00:00:41.000 position:10%,start align:start size:35%
-<v Terrill> It's important for
-web designers and developers
+13
+00:00:35.978 --> 00:00:38.700
+La historia continúa de nuestro grupo de héroes.
 
-00:00:41.000 --> 00:00:45.500
-to realize that what they see
-currently on their computer,
+14
+00:00:38.700 --> 00:00:40.933
+Luke Skywalker, la Princesa Leia,
 
-00:00:45.500 --> 00:00:49.264
-at their resolution, with their browser
-and their operating system
+15
+00:00:42.658 --> 00:00:44.360
+Han Solo, C3PO,
 
-00:00:49.264 --> 00:00:52.000
-is not going to be necessarily
-the same thing that everybody else sees.
+16
+00:00:44.360 --> 00:00:46.780
+R2D2 y Chewbacca
+
+17
+00:00:47.690 --> 00:00:50.333
+y presentando a Lando Calrissian.
+
+18
+00:00:51.280 --> 00:00:53.512
+Es una épica de romance.
+
+19
+00:00:53.512 --> 00:00:56.095
+(música animada)
+
+20
+00:01:02.040 --> 00:01:04.147
+De héroes y villanos.
+
+21
+00:01:04.147 --> 00:01:06.897
+(gruñidos de Chewy)
+
+22
+00:01:09.616 --> 00:01:12.616
+(ruidos electrónicos)
+
+23
+00:01:13.910 --> 00:01:17.425
+Cruzan vacíos sin rastro hacia mundos desconocidos.
+
+24
+00:01:17.425 --> 00:01:20.401
+(música animada)
+
+25
+00:01:20.401 --> 00:01:23.234
+(fuerte chirrido)
+
+26
+00:01:25.659 --> 00:01:26.800
+(fuerte estruendo)
+
+27
+00:01:26.800 --> 00:01:29.970
+Una odisea galáctica contra la opresión.
+
+28
+00:01:29.970 --> 00:01:32.037
+(fuerte estrépito)
+
+29
+00:01:32.037 --> 00:01:34.620
+(música animada)
+
+30
+00:01:43.020 --> 00:01:47.317
+Una nueva y gran aventura espacial en la saga "Star Wars",
+
+31
+00:01:47.317 --> 00:01:49.549
+"El Imperio Contraataca."
+
+32
+00:01:49.549 --> 00:01:52.299
+(fuerte explosión)
+
+33
+00:01:54.940 --> 00:01:57.773
+Llegando a tu galaxia <b>el próximo verano</b>.
+
+34
+00:01:58.716 --> 00:02:02.049
+(respiración de Darth Vader)

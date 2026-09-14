@@ -343,6 +343,7 @@ const buildMediaDialog = (media, { heading, label, hasDescription, transcript, t
     h1 = document.createElement("h1");
 
     h1.id = `${baseId}-hdr`;
+    h1.className = "media__primary-heading";
     h1.textContent = titleText;
 
   } else {

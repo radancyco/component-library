@@ -66,8 +66,14 @@ translate: 0 50px;
   justify-content: space-between;
   margin-block-end: 1em;
   gap: 1rem;
+
+    &:not(:has(.media__primary-heading)) {
+
+      justify-content: end;
     
-    h1 {
+    }
+
+    .media__primary-heading {
     font-size: 1.2rem;
     margin: 0;
     place-self: center;
