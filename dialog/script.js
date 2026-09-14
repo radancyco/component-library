@@ -258,13 +258,6 @@ const attachAudioDescription = (video, controls) => {
   audioDescBtn.className = "media__controls--audio-description";
   audioDescBtn.setAttribute("aria-pressed", "false");
 
-  const audioDescIcon = document.createElement("i");
-
-  audioDescIcon.className = "fa-solid fa-audio-description";
-  audioDescIcon.setAttribute("aria-hidden", "true");
-
-  audioDescBtn.append(audioDescIcon);
-
   audioDescBtn.addEventListener("click", () => {
 
     const descTrack = Array.from(video.textTracks).find(t => t.kind === "descriptions");
@@ -369,12 +362,6 @@ const buildMediaDialog = (media, { heading, label, hasDescription, transcript, t
 
   // closeBtn.addEventListener("click", () => destroyDialog(dialog));
 
-  const closeIcon = document.createElement("i");
-
-  closeIcon.className = "fa-regular fa-xmark";
-  closeIcon.setAttribute("aria-hidden", "true");
-
-  closeBtn.append(closeIcon);
   controls.append(closeBtn);
 
   if (hasDescription && media.tagName === "VIDEO") {
@@ -415,13 +402,6 @@ const buildMediaDialog = (media, { heading, label, hasDescription, transcript, t
     transcriptBtn.className = "media__controls--transcript";
     transcriptBtn.setAttribute("aria-expanded", "false");
     transcriptBtn.setAttribute("aria-controls", transcriptContent.id);
-
-    const transcriptIcon = document.createElement("i");
-
-    transcriptIcon.className = "fa-regular fa-file-lines";
-    transcriptIcon.setAttribute("aria-hidden", "true");
-
-    transcriptBtn.append(transcriptIcon);
 
     let transcriptLoaded = false;
 
@@ -478,7 +458,7 @@ const buildMediaDialog = (media, { heading, label, hasDescription, transcript, t
 
 // Create and show dialog dynamically based on type
 
-const openDialog = (type, src, { label, labelledby, caption, description, heading, transcript, transcriptUrl } = {}) => {
+const openDialog = (type, src, { label, labelledby, caption, description, heading, transcript, transcriptUrl, disableAutoplay } = {}) => {
 
   let dialog;
 
@@ -541,7 +521,7 @@ const openDialog = (type, src, { label, labelledby, caption, description, headin
 
       const iframe = document.createElement("iframe");
 
-      iframe.src = `${src}?autoplay=1&autohide=1&fs=1&rel=0&hd=1&wmode=transparent&enablejsapi=1&html5=1`;
+      iframe.src = `${src}?autoplay=${disableAutoplay ? 0 : 1}&autohide=1&disablekb=1&cc_load_policy=1&fs=1&rel=0&hd=1&wmode=transparent&enablejsapi=1&html5=1`;
       iframe.allow = "autoplay; fullscreen";
 
       dialog = buildMediaDialog(iframe, { heading, label, transcript, transcriptUrl });
@@ -554,7 +534,7 @@ const openDialog = (type, src, { label, labelledby, caption, description, headin
 
       const iframe = document.createElement("iframe");
 
-      iframe.src = `${src}?autoplay=1`;
+      iframe.src = `${src}?autoplay=${disableAutoplay ? 0 : 1}`;
       iframe.allow = "autoplay; fullscreen";
       iframe.allowFullscreen = true;
 
@@ -616,7 +596,7 @@ const openDialog = (type, src, { label, labelledby, caption, description, headin
 
   dialog.showModal();
 
-  if (type === "video") dialog.querySelector("video")?.play();
+  if (type === "video" && !disableAutoplay) dialog.querySelector("video")?.play();
 
 };
 
@@ -633,6 +613,7 @@ document.querySelectorAll(".dialog").forEach(trigger => {
   const heading = trigger.hasAttribute("data-dialog-heading");
   const transcript = trigger.dataset.dialogTranscript;
   const transcriptUrl = trigger.dataset.dialogTranscriptUrl;
+  const disableAutoplay = trigger.hasAttribute("data-disable-autoplay");
 
   if (!label && !labelledby) {
 
@@ -642,7 +623,7 @@ document.querySelectorAll(".dialog").forEach(trigger => {
 
   trigger.addEventListener("click", () => {
 
-    openDialog(trigger.dataset.dialogType, trigger.dataset.dialogSrc, { label, labelledby, caption, description, heading, transcript, transcriptUrl });
+    openDialog(trigger.dataset.dialogType, trigger.dataset.dialogSrc, { label, labelledby, caption, description, heading, transcript, transcriptUrl, disableAutoplay });
 
   });
 
