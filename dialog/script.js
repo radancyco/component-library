@@ -623,7 +623,7 @@ document.querySelectorAll(".dialog").forEach(trigger => {
 
   trigger.addEventListener("click", () => {
 
-    openDialog(trigger.dataset.dialogType, trigger.dataset.videoSrc, { label, labelledby, caption, description, heading, transcript, transcriptUrl, disableAutoplay });
+    openDialog(trigger.dataset.dialogType, trigger.dataset.dialogSrc, { label, labelledby, caption, description, heading, transcript, transcriptUrl, disableAutoplay });
 
   });
 
