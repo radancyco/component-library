@@ -1,7 +1,7 @@
 ---
 layout: null
 module: components
-id: horizontal-scroll
+id: dialog
 ---
 
 {% include script.html %}
