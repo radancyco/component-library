@@ -17,6 +17,11 @@ color: #fff;
 cursor: pointer;
 padding: 1rem;
 margin-block-end: 0.5rem;
+
+  &:has(img) {
+  width: 200px;
+  }
+
 }
 
 // data-dialog-classic fallback backdrop. Native <dialog> gets ::backdrop
