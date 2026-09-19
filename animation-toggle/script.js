@@ -29,6 +29,15 @@
 
       document.head.appendChild(componentLanguagePack);
 
+    } else if (typeof atVideoLabel !== "undefined") {
+
+      // The shared script (created by this component or another one on the
+      // page) already finished loading and running — evidenced by one of its
+      // globals existing — so its "load" event already fired. Attaching a
+      // new listener here would wait forever; run the callback immediately.
+
+      callback();
+
     } else {
 
       getComponentLanguagePack.addEventListener("load", callback);
