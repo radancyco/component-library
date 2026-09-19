@@ -484,6 +484,7 @@
 
           dialog.setAttribute("role", "dialog");
           dialog.setAttribute("aria-modal", "true");
+          dialog.setAttribute("tabindex", "-1");
 
         } else {
 
