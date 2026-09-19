@@ -12,6 +12,7 @@
 
 */
 
+var componentLibraryLanguagePackLoaded = true;
 var currentPageLanguage = document.documentElement.getAttribute("lang");
 
 if(currentPageLanguage === "ar") {
