@@ -29,12 +29,6 @@
 
     } else if (typeof componentLibraryLanguagePackLoaded !== "undefined") {
 
-      // The shared script (created by this component or another one on the
-      // page) already finished loading and running — evidenced by its own
-      // dedicated "loaded" marker existing — so its "load" event already
-      // fired. Attaching a new listener here would wait forever; run the
-      // callback immediately instead.
-
       callback();
 
     } else {
@@ -63,6 +57,8 @@
       const dialogDataCaption = "data-caption";
       const dialogDataDescription = "data-audio-description";
       const dialogDataHeading = "data-enable-heading";
+      const dialogDataHasHeading = "data-has-heading";
+      const dialogDataHasContent = "data-has-content";
       const dialogDataTranscriptId = "data-transcript-id";
       const dialogDataTranscriptUrl = "data-transcript-url";
       const dialogDataDisableAutoplay = "data-disable-autoplay";
@@ -80,14 +76,35 @@
       const dialogControlsAudioDescriptionClassName = "dialog__controls--audio-description";
       const dialogControlsTranscriptClassName = "dialog__controls--transcript";
       const dialogContainerClassName = "dialog__container";
-      const dialogContainerOpenState = "is-open";
+      const dialogContainerOpenState = "transcript-open";
       const dialogTranscriptClassName = "dialog__transcript";
       const dialogTranscriptHeadingClassName = "dialog__transcript--hdr";
       const dialogTranscriptContentClassName = "dialog__transcript--content";
       const dialogAssetClassName = "dialog__asset";
       const dialogContentClassName = "dialog__content";
       const dialogVideoClassName = "dialog__video";
+
+      // Labels. Translation-ready — not yet wired to the language pack.
+
+      const dialogCloseVideoLabel = "Close Video";
+      const dialogCloseLabel = "Close";
+      const dialogAudioDescriptionLabel = "Audio Description";
+      const dialogTranscriptHeadingLabel = "Transcript";
+      const dialogTranscriptButtonLabel = "Video Transcript";
+      const dialogVideoLabel = "Video";
+      const dialogVideoSuffixLabel = "(Video)";
+      const dialogLoadingTranscriptLabel = "Loading transcript…";
+      const dialogTranscriptNotFoundLabel = "Transcript not found.";
+      const dialogTranscriptFailedLabel = "Transcript failed to load.";
+      const dialogContentNotFoundLabel = "Content not found.";
+      const dialogUnsupportedTypeLabel = "Unsupported content type.";
+      const dialogMissingNameHeadingLabel = "Accessible Name Missing";
+      const dialogMissingNameMessageLabel = "An accessible name must be provided. Add data-label with a descriptive value, or data-labelledby pointing to an id already present on the page.";
+      const dialogYoutubeFallbackLabel = "YouTube Video";
+      const dialogVimeoFallbackLabel = "Vimeo Video";
+
       const dialogTriggers = document.querySelectorAll(dialogTriggerClass);
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       // Terms/patterns used to infer a dialog's content type from data-dialog-src,
       // checked in order. Add new entries here as new source types need support —
@@ -97,6 +114,7 @@
 
         { type: "youtube", test: src => src.includes("youtube") },
         { type: "vimeo", test: src => src.includes("vimeo") },
+        { type: "cloudflare", test: src => src.includes("cloudflarestream") },
         { type: "video", test: src => /\.(mp4|webm)($|[?#])/i.test(src) },
         
       ];
@@ -298,7 +316,7 @@
 
       const fetchDynamicVideoTitle = async (type, src) => {
 
-        const fallback = type === "youtube" ? "YouTube Video" : "Vimeo Video";
+        const fallback = type === "youtube" ? dialogYoutubeFallbackLabel : dialogVimeoFallbackLabel;
 
         try {
 
@@ -381,7 +399,7 @@
 
         const placeholder = document.createElement("p");
 
-        placeholder.textContent = "Loading transcript…";
+        placeholder.textContent = dialogLoadingTranscriptLabel;
 
         transcriptTarget.append(placeholder);
 
@@ -393,7 +411,7 @@
 
           } else {
 
-            placeholder.textContent = "Transcript not found.";
+            placeholder.textContent = dialogTranscriptNotFoundLabel;
             console.error(`Dialog transcript URL "${transcriptUrl}" did not resolve to a matching element.`);
 
           }
@@ -402,7 +420,7 @@
 
         }).catch(() => {
 
-          placeholder.textContent = "Transcript failed to load.";
+          placeholder.textContent = dialogTranscriptFailedLabel;
           console.error(`Dialog transcript URL "${transcriptUrl}" failed to load.`);
 
           applyTranscriptTabindex(transcriptTarget);
@@ -417,7 +435,7 @@
 
         const audioDescBtn = document.createElement("button");
 
-        audioDescBtn.setAttribute("aria-label", "Audio Description");
+        audioDescBtn.setAttribute("aria-label", dialogAudioDescriptionLabel);
         audioDescBtn.className = dialogControlsAudioDescriptionClassName;
         audioDescBtn.setAttribute("aria-pressed", "false");
 
@@ -480,9 +498,15 @@
       // shared by video/youtube/vimeo (assetClassName dialogAssetClassName) and element/default
       // (assetClassName dialogContentClassName, no video-specific decoration on the content itself).
 
-      const buildMediaDialog = (assetContent, { heading, label, labelledby, hasDescription, transcript, transcriptUrl, classic, assetClassName = dialogAssetClassName, closeLabel = "Close Video", restoreCallbacks = [] }) => {
+      const buildMediaDialog = (assetContent, { heading, label, labelledby, hasDescription, transcript, transcriptUrl, classic, assetClassName = dialogAssetClassName, closeLabel = dialogCloseVideoLabel, bareCloseButton = false, restoreCallbacks = [] }) => {
 
-        const titleText = label || "Video";
+        // A bare close button only makes sense when there's nowhere else for a
+        // transcript toggle to live — fall back to the full header/controls
+        // wrapper if a transcript was also requested.
+
+        const useBareClose = bareCloseButton && !transcript && !transcriptUrl;
+
+        const titleText = label || dialogVideoLabel;
         const baseId = label ? slugify(label) : `dialog-${++dialogInstanceId}`;
 
         const dialog = document.createElement(classic ? "div" : "dialog");
@@ -494,7 +518,7 @@
 
           dialog.setAttribute("role", "dialog");
           dialog.setAttribute("aria-modal", "true");
-          dialog.setAttribute("tabindex", "-1");
+          // dialog.setAttribute("tabindex", "-1"); Since we never apply focus to dialog, we do not neeed this right now.
 
         } else {
 
@@ -511,6 +535,7 @@
         } else if (heading) {
 
           dialog.setAttribute("aria-labelledby", `${baseId}-hdr`);
+          dialog.setAttribute(dialogDataHasHeading, "");
 
           h1 = document.createElement("h1");
 
@@ -524,13 +549,13 @@
 
         }
 
-        const header = document.createElement("div");
+        const header = useBareClose ? null : document.createElement("div");
 
-        header.className = dialogHeaderClassName;
+        if (header) header.className = dialogHeaderClassName;
 
-        const controls = document.createElement("div");
+        const controls = useBareClose ? null : document.createElement("div");
 
-        controls.className = dialogControlsClassName;
+        if (controls) controls.className = dialogControlsClassName;
 
         const closeBtn = document.createElement("button");
 
@@ -550,7 +575,7 @@
 
         }
 
-        controls.append(closeBtn);
+        if (controls) controls.append(closeBtn);
 
         if (hasDescription && assetContent.tagName === "VIDEO") {
 
@@ -558,9 +583,13 @@
 
         }
 
-        const container = document.createElement("div");
+        // Bare-close dialogs never have a transcript panel to lay out alongside
+        // the asset (see useBareClose above), so the container's only job —
+        // splitting asset/transcript into a grid — doesn't apply; skip it.
 
-        container.className = dialogContainerClassName;
+        const container = useBareClose ? null : document.createElement("div");
+
+        if (container) container.className = dialogContainerClassName;
 
         if (transcript || transcriptUrl) {
 
@@ -572,7 +601,7 @@
 
           h2.id = `${baseId}--transcript`;
           h2.className = dialogTranscriptHeadingClassName;
-          h2.textContent = "Transcript";
+          h2.textContent = dialogTranscriptHeadingLabel;
 
           const transcriptContent = document.createElement("div");
 
@@ -586,7 +615,7 @@
 
           const transcriptBtn = document.createElement("button");
 
-          transcriptBtn.setAttribute("aria-label", "Video Transcript");
+          transcriptBtn.setAttribute("aria-label", dialogTranscriptButtonLabel);
           transcriptBtn.className = dialogControlsTranscriptClassName;
           transcriptBtn.setAttribute("aria-expanded", "false");
           transcriptBtn.setAttribute("aria-controls", transcriptContent.id);
@@ -613,9 +642,13 @@
 
         }
 
-        if (h1) header.append(h1);
+        if (header) {
 
-        header.append(controls);
+          if (h1) header.append(h1);
+
+          header.append(controls);
+
+        }
 
         if (assetClassName === dialogAssetClassName) {
 
@@ -627,7 +660,7 @@
 
           } else {
 
-            assetContent.title = `${titleText} (Video)`;
+            assetContent.title = `${titleText} ${dialogVideoSuffixLabel}`;
 
           }
 
@@ -638,9 +671,19 @@
         asset.className = assetClassName;
         asset.append(assetContent);
 
-        container.append(asset);
+        if (container) {
 
-        dialog.append(header, container);
+          container.append(asset);
+
+          dialog.append(header, container);
+
+        } else {
+
+          if (h1) dialog.append(h1);
+
+          dialog.append(closeBtn, asset);
+
+        }
 
         dialog.dialogRestoreCallbacks = restoreCallbacks;
 
@@ -667,9 +710,9 @@
 
           const contentNode = document.createElement("p");
 
-          contentNode.textContent = "An accessible name must be provided. Add data-label with a descriptive value, or data-labelledby pointing to an id already present on the page.";
+          contentNode.textContent = dialogMissingNameMessageLabel;
 
-          dialog = buildMediaDialog(contentNode, { label: "Accessible Name Missing", classic, assetClassName: dialogContentClassName, closeLabel: "Close" });
+          dialog = buildMediaDialog(contentNode, { label: dialogMissingNameHeadingLabel, classic, assetClassName: dialogContentClassName, closeLabel: dialogCloseLabel });
 
         } else switch (type) {
 
@@ -753,6 +796,26 @@
 
           }
 
+          case "cloudflare": {
+
+            const iframe = document.createElement("iframe");
+
+            // Unlike the YouTube/Vimeo embed URLs above, a Cloudflare Stream src
+            // often already carries its own query string (poster, title, etc.),
+            // so autoplay has to be joined with "&" rather than assuming "?".
+
+            const separator = src.includes("?") ? "&" : "?";
+
+            iframe.src = `${src}${separator}autoplay=${disableAutoplay ? "false" : "true"}`;
+            iframe.allow = "accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen";
+            iframe.allowFullscreen = true;
+
+            dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcript, transcriptUrl, classic });
+
+            break;
+
+          }
+
           case "element": {
 
             const el = document.getElementById(src);
@@ -768,11 +831,12 @@
             } else {
 
               contentNode = document.createElement("p");
-              contentNode.textContent = "Content not found.";
+              contentNode.textContent = dialogContentNotFoundLabel;
 
             }
 
-            dialog = buildMediaDialog(contentNode, { heading, label, labelledby, transcript, transcriptUrl, classic, assetClassName: dialogContentClassName, closeLabel: "Close", restoreCallbacks });
+            dialog = buildMediaDialog(contentNode, { heading, label, labelledby, transcript, transcriptUrl, classic, assetClassName: dialogContentClassName, closeLabel: dialogCloseLabel, bareCloseButton: true, restoreCallbacks });
+            dialog.setAttribute(dialogDataHasContent, "");
 
             break;
 
@@ -782,9 +846,9 @@
 
             const contentNode = document.createElement("p");
 
-            contentNode.textContent = "Unsupported content type.";
+            contentNode.textContent = dialogUnsupportedTypeLabel;
 
-            dialog = buildMediaDialog(contentNode, { heading, label, labelledby, classic, assetClassName: dialogContentClassName, closeLabel: "Close" });
+            dialog = buildMediaDialog(contentNode, { heading, label, labelledby, classic, assetClassName: dialogContentClassName, closeLabel: dialogCloseLabel });
 
           }
 
@@ -847,7 +911,7 @@
         const heading = trigger.hasAttribute(dialogDataHeading);
         const transcript = trigger.getAttribute(dialogDataTranscriptId);
         const transcriptUrl = trigger.getAttribute(dialogDataTranscriptUrl);
-        const disableAutoplay = trigger.hasAttribute(dialogDataDisableAutoplay);
+        const disableAutoplay = trigger.hasAttribute(dialogDataDisableAutoplay) || prefersReducedMotion;
         const dynamicLabel = trigger.hasAttribute(dialogDataDynamicLabel);
         const classic = trigger.hasAttribute(dialogDataClassic);
         const type = detectDialogType(trigger.getAttribute(dialogDataSrc));
@@ -865,7 +929,7 @@
 
             const img = trigger.querySelector(`img[${dialogDataDynamicAlt}]`);
 
-            if (img) img.alt = `${title} (Video)`;
+            if (img) img.alt = `${title} ${dialogVideoSuffixLabel}`;
 
           });
 

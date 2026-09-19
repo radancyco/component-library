@@ -29,12 +29,6 @@
 
     } else if (typeof componentLibraryLanguagePackLoaded !== "undefined") {
 
-      // The shared script (created by this component or another one on the
-      // page) already finished loading and running — evidenced by its own
-      // dedicated "loaded" marker existing — so its "load" event already
-      // fired. Attaching a new listener here would wait forever; run the
-      // callback immediately instead.
-
       callback();
 
     } else {
