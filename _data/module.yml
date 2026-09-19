@@ -252,15 +252,53 @@ components:
         id: "arrow-placement"
 
   - id: "dialog"
-    desc: "Do dialog things without Fancybox."
+    desc: "Displays video or other content in a modal dialog, opened when a user selects a button."
     path: "dialog"
     title: "Dialog"
     version: "1.0.0"
-    hidden: true
     examples:
 
       - name: "Default"
         id: "default"
+
+      - name: "Content"
+        id: "content-id"
+
+      - name: "Classic Dialog"
+        id: "classic-dialog"
+
+      - name: "Enable Heading"
+        id: "enable-heading"
+
+      - name: "Play Button"
+        id: "play-button"
+
+      - name: "Third-Party Videos"
+        id: "third-party"
+
+      - name: "Audio Description"
+        id: "audio-description"
+        group: "Accessibility"
+
+      - name: "Captions"
+        id: "captions"
+        group: "Accessibility"
+
+      - name: "Labelled By ID"
+        id: "labelledby"
+        group: "Accessibility"
+
+      - name: "Transcript (ID)"
+        id: "transcript-id"
+        group: "Accessibility"
+
+      - name: "Transcript (URL)"
+        id: "transcript-url"
+        group: "Accessibility"
+
+      - name: "Dynamic Label"
+        id: "dynamic-label"
+        group: "Experimental"
 
   - id: "disclosure"
     desc: "Reaveal or hide additional content when triggered, helping to manage the display of supplementary information."
