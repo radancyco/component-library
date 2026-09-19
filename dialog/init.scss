@@ -83,7 +83,7 @@ grid-template-rows: auto 1fr;
 inline-size: 90vw;
 opacity: 0;
 overflow: hidden;
-padding: 1em;
+padding: 0;
 text-align: start;
 transition-behavior: allow-discrete;
 transition-duration: 300ms;
@@ -101,6 +101,7 @@ z-index: 1001;
   &:has(h1) {
   background-color: #fff;
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.8);
+  padding: 1rem;
   }
 
   &[open], &[data-open] {
