@@ -40,11 +40,13 @@ padding: 1rem;
   place-self: center;
 
     &::after {
-    block-size: 40px;
+    background-color: red;
+    block-size: 60px;
+    border-radius: 100vw;
+    border: 2px #fff solid;
     content: "";
     display: block;
-    inline-size: 40px;
-    border: 1px red solid;
+    inline-size: 60px;
     }
 
   }
