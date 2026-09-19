@@ -613,6 +613,15 @@
           transcriptPanel.append(h2, transcriptContent);
           container.append(transcriptPanel);
 
+          // Move/fetch the transcript into place now, while the dialog is
+          // still hidden, rather than waiting for the first time the panel
+          // is toggled open. Moving the (real, existing) transcript element
+          // at that exact moment was producing a brief visible flash/shift
+          // in the video — doing it up front means nothing new happens in
+          // the DOM at the moment the user actually sees the toggle happen.
+
+          loadTranscriptOnce(transcriptContent, { transcript, transcriptUrl }, restoreCallbacks);
+
           const transcriptBtn = document.createElement("button");
 
           transcriptBtn.setAttribute("aria-label", dialogTranscriptButtonLabel);
@@ -620,17 +629,7 @@
           transcriptBtn.setAttribute("aria-expanded", "false");
           transcriptBtn.setAttribute("aria-controls", transcriptContent.id);
 
-          let transcriptLoaded = false;
-
           transcriptBtn.addEventListener("click", () => {
-
-            if (!transcriptLoaded) {
-
-              transcriptLoaded = true;
-
-              loadTranscriptOnce(transcriptContent, { transcript, transcriptUrl }, restoreCallbacks);
-
-            }
 
             const isOpen = container.classList.toggle(dialogContainerOpenState);
 
