@@ -64,7 +64,7 @@
       const dialogDataDisableAutoplay = "data-disable-autoplay";
       const dialogDataDynamicLabel = "data-dynamic-label";
       const dialogDataDynamicAlt = "data-dynamic-alt";
-      const dialogDataClassic = "data-dialog-classic";
+      const dialogDataAriaDialog = "data-aria-dialog";
       const dialogDataSrc = "data-src";
       const dialogDataOpenState = "data-open";
       const dialogBackdropClassName = "dialog-backdrop";
@@ -237,7 +237,7 @@
 
       };
 
-      // data-dialog-classic fallback: everything <dialog>/showModal() gives us for
+      // data-aria-dialog fallback: everything <dialog>/showModal() gives us for
       // free (fixed/backdrop positioning aside, handled in CSS) that a plain
       // role="dialog" div needs done by hand — a backdrop element, background
       // inertness (this also traps focus inside, since inert elements can't be
@@ -926,7 +926,7 @@
         const transcriptUrl = trigger.getAttribute(dialogDataTranscriptUrl);
         const disableAutoplay = trigger.hasAttribute(dialogDataDisableAutoplay) || prefersReducedMotion;
         const dynamicLabel = trigger.hasAttribute(dialogDataDynamicLabel);
-        const classic = trigger.hasAttribute(dialogDataClassic);
+        const classic = trigger.hasAttribute(dialogDataAriaDialog);
         const type = detectDialogType(trigger.getAttribute(dialogDataSrc));
 
         // EXPERIMENTAL (data-dynamic-label): kick off the oEmbed title lookup on page

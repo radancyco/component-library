@@ -261,11 +261,11 @@ components:
       - name: "Default"
         id: "default"
 
+      - name: "ARIA Dialog"
+        id: "aria-dialog"
+
       - name: "Content"
         id: "content-id"
-
-      - name: "Classic Dialog"
-        id: "classic-dialog"
 
       - name: "Enable Heading"
         id: "enable-heading"

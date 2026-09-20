@@ -12,7 +12,14 @@
 :root {
 
   --backdrop-filter: blur(3px) brightness(0.2);
-  --dialog-play-button-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23fff' stroke-width='2' d='M3,22 L21,12 L3,2 L3,22 Z M5,19 L17.6,12 L5,5 L5,19 Z M7,16 L14.2,12 L7,8 L7,16 Z M9,13 L10.8,12 L9,11 L9,13 Z'/%3E%3C/svg%3E");
+
+  // A right-pointing triangle's centroid sits left of its bounding-box
+  // center (two vertices on the flat left edge, only one on the tip), so
+  // bbox-centering it in the viewBox reads as off-center to the eye. Shifted
+  // +3 here so the triangle's centroid — not its bounding box — lands on
+  // the viewBox's true center.
+
+  --dialog-play-button-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23fff' stroke-width='2' d='M6,22 L24,12 L6,2 L6,22 Z M8,19 L20.6,12 L8,5 L8,19 Z M10,16 L17.2,12 L10,8 L10,16 Z M12,13 L13.8,12 L12,11 L12,13 Z'/%3E%3C/svg%3E");
   --primary-color: #6F00EF;
 
 }
@@ -88,11 +95,16 @@ opacity: 0;
 padding: 0;
 text-align: start;
 transition-behavior: allow-discrete;
-transition-duration: 300ms;
 transition-property: display, opacity, overlay, translate;
 translate: 0 50px;
 
-// Use for data-dialog-classic (harmless on native dialog)
+@media (prefers-reduced-motion: no-preference) {
+
+  transition-duration: 400ms;
+
+}
+
+// Use for data-aria-dialog (harmless on native dialog)
 
 block-size: fit-content;
 inset: 0;
@@ -111,6 +123,10 @@ z-index: 1001;
   border-radius: .6rem;
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.8);
   padding: 1rem;
+  }
+
+  &[data-resize] {
+  resize: both;
   }
 
   &[open], &[data-open] {
