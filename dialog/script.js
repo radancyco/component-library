@@ -97,7 +97,6 @@
       const dialogTranscriptNotFoundLabel = "Transcript not found.";
       const dialogTranscriptFailedLabel = "Transcript failed to load.";
       const dialogContentNotFoundLabel = "Content not found.";
-      const dialogUnsupportedTypeLabel = "Unsupported content type.";
       const dialogMissingNameHeadingLabel = "Accessible Name Missing";
       const dialogMissingNameMessageLabel = "An accessible name must be provided. Add data-label with a descriptive value, or data-labelledby pointing to an id already present on the page.";
       const dialogYoutubeFallbackLabel = "YouTube Video";
@@ -129,7 +128,29 @@
 
       };
 
+      // Timestamp of the last dialog close — see the trigger click handler
+      // below for why this exists. Works around a Chrome/Firefox bug, not
+      // anything specific to our markup: https://issues.chromium.org/issues/425579196
+      // Chrome has a fix slated for v154; Firefox's bug has no fix date yet
+      // (https://github.com/mdn/browser-compat-data/issues/30474). Once both
+      // ship the fix this guard just goes dormant — safe to leave in place.
+
+      let dialogLastClosedAt = 0;
+
       const destroyDialog = (dialog) => {
+
+        // Escape and light-dismiss (closedby="any") both fire "cancel" first;
+        // our handler for that prevents the default and calls this function
+        // directly, then its own dialog.close() below fires "close", which
+        // calls this function again. This guard makes the second call a
+        // no-op instead of re-running teardown (pausing video twice, running
+        // restore callbacks twice, etc.) — command="close" only ever fires
+        // "close" on its own, so it never hits this twice in the first place.
+
+        if (dialog.dialogDestroyed) return;
+
+        dialog.dialogDestroyed = true;
+        dialogLastClosedAt = Date.now();
 
         // Pause HTML5 video and reset.
 
@@ -518,7 +539,9 @@
 
           dialog.setAttribute("role", "dialog");
           dialog.setAttribute("aria-modal", "true");
-          // dialog.setAttribute("tabindex", "-1"); Since we never apply focus to dialog, we do not neeed this right now.
+
+          // No tabindex here — we never apply focus to the dialog element
+          // itself, only to content inside it (the close button, typically).
 
         } else {
 
@@ -571,7 +594,10 @@
           closeBtn.setAttribute("command", "close");
           closeBtn.setAttribute("commandfor", baseId);
 
-          // closeBtn.addEventListener("click", () => destroyDialog(dialog));
+          // Native command="close" drives this button, rather than a click
+          // listener calling destroyDialog directly, so it shares the exact
+          // same close path as Escape/light-dismiss — all three end up going
+          // through the dialog's own "close" event listener below.
 
         }
 
@@ -711,7 +737,8 @@
 
           contentNode.textContent = dialogMissingNameMessageLabel;
 
-          dialog = buildMediaDialog(contentNode, { label: dialogMissingNameHeadingLabel, classic, assetClassName: dialogContentClassName, closeLabel: dialogCloseLabel });
+          dialog = buildMediaDialog(contentNode, { label: dialogMissingNameHeadingLabel, classic, assetClassName: dialogContentClassName, closeLabel: dialogCloseLabel, bareCloseButton: true });
+          dialog.setAttribute(dialogDataHasContent, "");
 
         } else switch (type) {
 
@@ -841,16 +868,6 @@
 
           }
 
-          default: {
-
-            const contentNode = document.createElement("p");
-
-            contentNode.textContent = dialogUnsupportedTypeLabel;
-
-            dialog = buildMediaDialog(contentNode, { heading, label, labelledby, classic, assetClassName: dialogContentClassName, closeLabel: dialogCloseLabel });
-
-          }
-
         }
 
         if (classic) {
@@ -945,6 +962,20 @@
         // Handle trigger click.
 
         trigger.addEventListener("click", () => {
+
+          // On touch devices, tapping a trigger while its own dialog is open
+          // (e.g. to dismiss it) can both light-dismiss the dialog (native
+          // closedby="any") AND deliver a synthesized click to this same
+          // trigger, now newly revealed underneath that exact point —
+          // reopening the dialog the same gesture just closed. This is a
+          // known Chrome/Firefox bug (the dismissing tap's click leaks
+          // through to whatever's underneath, not just this trigger —
+          // https://issues.chromium.org/issues/425579196), so this only
+          // covers the most common case rather than the general one.
+          // Ignore a click landing immediately after a dialog closed; a
+          // deliberate second tap will always be well outside this window.
+
+          if (Date.now() - dialogLastClosedAt < 500) return;
 
           dynamicLabelReady.then(() => {
 

@@ -85,13 +85,13 @@ display: none;
 grid-template-rows: auto 1fr;
 inline-size: 90vw;
 opacity: 0;
-overflow: hidden;
 padding: 0;
 text-align: start;
 transition-behavior: allow-discrete;
 transition-duration: 300ms;
 transition-property: display, opacity, overlay, translate;
 translate: 0 50px;
+scrollbar-color: --var(--primary-color) transparent;
 
 // Use for data-dialog-classic (harmless on native dialog)
 
@@ -212,7 +212,7 @@ z-index: 1001;
   grid-template-columns: minmax(0, 1fr);
   grid-template-rows: max-content;
   min-block-size: 0;
-    
+
     @media (min-width: $dialog-breakpoint) {
 
       grid-template-columns: minmax(0, 0fr) minmax(0, 1fr);
@@ -291,14 +291,9 @@ z-index: 1001;
   }
 
   &__asset {
+  background-color: #000;
   display: grid;
-  overflow: hidden;
   place-items: center;
-
-    .transcript-open & { 
-    background-color: #000;
-    }
-
   }
 
   &__video {
