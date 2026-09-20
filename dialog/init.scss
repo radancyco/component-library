@@ -91,7 +91,6 @@ transition-behavior: allow-discrete;
 transition-duration: 300ms;
 transition-property: display, opacity, overlay, translate;
 translate: 0 50px;
-scrollbar-color: --var(--primary-color) transparent;
 
 // Use for data-dialog-classic (harmless on native dialog)
 
@@ -210,7 +209,7 @@ z-index: 1001;
   display: grid;
   gap: .5em;
   grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: max-content;
+  grid-template-rows: auto;
   min-block-size: 0;
 
     @media (min-width: $dialog-breakpoint) {
@@ -292,19 +291,19 @@ z-index: 1001;
 
   &__asset {
   background-color: #000;
-  display: grid;
-  place-items: center;
+  min-block-size: 0;
+  overflow: hidden;
   }
 
   &__video {
   aspect-ratio: 16 / 9;
   background-color: transparent;
-  block-size: auto;
+  block-size: 100%;
   border: 0;
   display: block;
   inline-size: var(--dialog-video-inline-size);
-  max-block-size: var(--dialog-max-block-size);
   max-inline-size: 100%;
+  object-fit: contain;
   }
 
 }
