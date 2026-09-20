@@ -99,8 +99,7 @@
       const dialogContentNotFoundLabel = "Content not found.";
       const dialogMissingNameHeadingLabel = "Accessible Name Missing";
       const dialogMissingNameMessageLabel = "An accessible name must be provided. Add data-label with a descriptive value, or data-labelledby pointing to an id already present on the page.";
-      const dialogYoutubeFallbackLabel = "YouTube Video";
-      const dialogVimeoFallbackLabel = "Vimeo Video";
+      const dialogVideoFallbackLabel = "Video Player";
 
       const dialogTriggers = document.querySelectorAll(dialogTriggerClass);
       const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -333,11 +332,9 @@
       // EXPERIMENTAL (data-dynamic-label): look up a YouTube/Vimeo video's real
       // title via its oEmbed endpoint, for use as the dialog/heading/alt text
       // when no data-dialog-label is authored. Falls back to a generic
-      // "YouTube Video"/"Vimeo Video" placeholder on any failure.
+      // "Video Player" placeholder on any failure.
 
       const fetchDynamicVideoTitle = async (type, src) => {
-
-        const fallback = type === "youtube" ? dialogYoutubeFallbackLabel : dialogVimeoFallbackLabel;
 
         try {
 
@@ -345,15 +342,15 @@
 
           const response = await fetch(oembedUrl);
 
-          if (!response.ok) return fallback;
+          if (!response.ok) return dialogVideoFallbackLabel;
 
           const data = await response.json();
 
-          return data.title || fallback;
+          return data.title || dialogVideoFallbackLabel;
 
         } catch {
 
-          return fallback;
+          return dialogVideoFallbackLabel;
 
         }
 
@@ -974,6 +971,7 @@
           // covers the most common case rather than the general one.
           // Ignore a click landing immediately after a dialog closed; a
           // deliberate second tap will always be well outside this window.
+          // Note-to-self: Remove when this is better supported by browsers
 
           if (Date.now() - dialogLastClosedAt < 500) return;
 
