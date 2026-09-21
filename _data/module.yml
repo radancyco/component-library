@@ -273,8 +273,8 @@ components:
       - name: "Play Button"
         id: "play-button"
 
-      - name: "Third-Party Videos"
-        id: "third-party"
+      - name: "Video"
+        id: "video"
 
       - name: "Audio Description"
         id: "audio-description"

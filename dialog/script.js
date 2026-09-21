@@ -69,7 +69,7 @@
       const dialogDataOpenState = "data-open";
       const dialogBackdropClassName = "dialog-backdrop";
       const dialogClassName = "dialog";
-      const dialogPrimaryHeadingClassName = "dialog__primary-heading";
+      const dialogHeadingClassName = "dialog__heading";
       const dialogHeaderClassName = "dialog__header";
       const dialogControlsClassName = "dialog__controls";
       const dialogControlsCloseClassName = "dialog__controls--close";
@@ -183,6 +183,14 @@
 
         });
 
+        // Restore whatever body scroll was before this dialog locked it —
+        // native dialogs don't lock scroll on their own (unlike focus and
+        // background inertness, which come free with top-layer semantics),
+        // so we set it ourselves for both paths; the restore is the same
+        // either way.
+
+        document.body.style.overflow = dialog.dialogPreviousBodyOverflow;
+
         if (dialog.dialogClassic) {
 
           // Classic (non-native) fallback teardown: undo everything openClassicDialog
@@ -191,8 +199,6 @@
           document.removeEventListener("keydown", dialog.dialogKeydownHandler);
 
           dialog.dialogInertedSiblings?.forEach(el => el.removeAttribute("inert"));
-
-          document.body.style.overflow = dialog.dialogPreviousBodyOverflow;
 
           dialog.dialogBackdrop?.remove();
 
@@ -560,7 +566,7 @@
           h1 = document.createElement("h1");
 
           h1.id = `${baseId}-hdr`;
-          h1.className = dialogPrimaryHeadingClassName;
+          h1.className = dialogHeadingClassName;
           h1.textContent = titleText;
 
         } else {
@@ -796,8 +802,29 @@
 
             const iframe = document.createElement("iframe");
 
-            iframe.src = `${src}?autoplay=${disableAutoplay ? 0 : 1}&autohide=1&disablekb=1&cc_load_policy=1&fs=1&rel=0&hd=1&wmode=transparent&enablejsapi=1&html5=1`;
+            // Some videos (Shorts among them, but not only Shorts) ignore the
+            // passive autoplay=1 URL param on youtube.com and show YouTube's
+            // "Watch on YouTube" click-through card instead of actually
+            // playing, even though the exact same video autoplays fine
+            // elsewhere. www.youtube-nocookie.com honors an explicit IFrame
+            // API play command where youtube.com doesn't — confirmed by
+            // testing both domains with identical timing, only the domain
+            // made the difference — so normalize to it regardless of which
+            // host was authored, and request playback as a command once the
+            // player's loaded rather than a passive load-time flag.
+
+            iframe.src = `https://www.youtube-nocookie.com${new URL(src).pathname}?autohide=1&disablekb=1&cc_load_policy=1&fs=1&rel=0&hd=1&wmode=transparent&enablejsapi=1&html5=1`;
             iframe.allow = "autoplay; fullscreen";
+
+            if (!disableAutoplay) {
+
+              iframe.addEventListener("load", () => {
+
+                iframe.contentWindow.postMessage(JSON.stringify({ event: "command", func: "playVideo", args: "" }), new URL(iframe.src).origin);
+
+              });
+
+            }
 
             dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcript, transcriptUrl, classic });
 
@@ -886,6 +913,13 @@
           dialog.addEventListener("close", () => destroyDialog(dialog));
 
           document.body.appendChild(dialog);
+
+          // showModal() traps focus and makes the background inert for free,
+          // but doesn't lock body scroll — do that ourselves, same as the
+          // classic fallback below.
+
+          dialog.dialogPreviousBodyOverflow = document.body.style.overflow;
+          document.body.style.overflow = "hidden";
 
           dialog.showModal();
 
