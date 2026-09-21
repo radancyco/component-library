@@ -51,7 +51,7 @@
 
       const dialogTriggerClass = ".dialog-trigger";
       const dialogDataPlayButton = "data-play-button";
-      const dialogPlayButtonClassName = "dialog__button";
+      const dialogTriggerPlayClassName = "dialog-trigger__play";
       const dialogDataLabel = "data-label";
       const dialogDataLabelledby = "data-labelledby";
       const dialogDataCaption = "data-caption";
@@ -941,7 +941,7 @@
 
           const playButton = document.createElement("span");
 
-          playButton.className = dialogPlayButtonClassName;
+          playButton.className = dialogTriggerPlayClassName;
           playButton.setAttribute("aria-hidden", "true");
 
           trigger.append(playButton);

@@ -34,11 +34,11 @@ outline-offset: 4px;
   padding: 0;
   }
 
-  img, span {
+  img, &__play {
   grid-area: 1 / -1;
   }
 
-  span {
+  &__play {
   background-color: tomato;
   background-image: var(--dialog-play-button-icon);
   background-position: center;
