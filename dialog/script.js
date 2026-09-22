@@ -113,7 +113,7 @@
         { type: "youtube", test: src => src.includes("youtube") },
         { type: "vimeo", test: src => src.includes("vimeo") },
         { type: "cloudflare", test: src => src.includes("cloudflarestream") },
-        { type: "video", test: src => /\.(mp4|webm)($|[?#])/i.test(src) },
+        { type: "video", test: src => /\.(mp4|webm|ogv)($|[?#])/i.test(src) },
         
       ];
 
@@ -753,9 +753,11 @@
             video.crossOrigin = "anonymous";
 
             const source = document.createElement("source");
+            const videoMimeTypes = { mp4: "video/mp4", webm: "video/webm", ogv: "video/ogg" };
+            const extension = src.match(/\.(mp4|webm|ogv)($|[?#])/i)?.[1].toLowerCase();
 
             source.src = src;
-            source.type = "video/mp4";
+            source.type = videoMimeTypes[extension] ?? "video/mp4";
 
             video.append(source);
 
