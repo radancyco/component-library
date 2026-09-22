@@ -263,15 +263,20 @@ components:
 
       - name: "ARIA Dialog"
         id: "aria-dialog"
+        note: "By default, the component loads only the <code>dialog</code> element. This fallback is provided in the event that the <code>dialog</code> element causes compatibility or rendering issues. For example, absolutely positioned elements that need to render within the dialog may otherwise be positioned behind it due to stacking context of the <code>dialog</code> element."
+        group: "Utilities"
 
       - name: "Content"
         id: "content-id"
+        group: "Content"
 
       - name: "Enable Heading"
         id: "enable-heading"
+        group: "Utilities"
 
       - name: "Play Button"
         id: "play-button"
+        group: "Utilities"
 
       - name: "Video"
         id: "video"

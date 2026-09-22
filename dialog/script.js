@@ -72,9 +72,10 @@
       const dialogHeadingClassName = "dialog__heading";
       const dialogHeaderClassName = "dialog__header";
       const dialogControlsClassName = "dialog__controls";
-      const dialogControlsCloseClassName = "dialog__controls--close";
-      const dialogControlsAudioDescriptionClassName = "dialog__controls--audio-description";
-      const dialogControlsTranscriptClassName = "dialog__controls--transcript";
+      const dialogControlsBtnClassName = "dialog__controls__btn";
+      const dialogControlsCloseClassName = "dialog__controls__btn--close";
+      const dialogControlsAudioDescriptionClassName = "dialog__controls__btn--audio-description";
+      const dialogControlsTranscriptClassName = "dialog__controls__btn--transcript";
       const dialogContainerClassName = "dialog__container";
       const dialogContainerOpenState = "transcript-open";
       const dialogTranscriptClassName = "dialog__transcript";
@@ -82,7 +83,7 @@
       const dialogTranscriptContentClassName = "dialog__transcript--content";
       const dialogAssetClassName = "dialog__asset";
       const dialogContentClassName = "dialog__content";
-      const dialogVideoClassName = "dialog__video";
+      const dialogMediaClassName = "dialog__media";
 
       // Labels. Translation-ready — not yet wired to the language pack.
 
@@ -460,7 +461,7 @@
         const audioDescBtn = document.createElement("button");
 
         audioDescBtn.setAttribute("aria-label", dialogAudioDescriptionLabel);
-        audioDescBtn.className = dialogControlsAudioDescriptionClassName;
+        audioDescBtn.className = `${dialogControlsBtnClassName} ${dialogControlsAudioDescriptionClassName}`;
         audioDescBtn.setAttribute("aria-pressed", "false");
 
         audioDescBtn.addEventListener("click", () => {
@@ -586,7 +587,7 @@
         const closeBtn = document.createElement("button");
 
         closeBtn.setAttribute("aria-label", closeLabel);
-        closeBtn.className = dialogControlsCloseClassName;
+        closeBtn.className = `${dialogControlsBtnClassName} ${dialogControlsCloseClassName}`;
 
         if (classic) {
 
@@ -654,7 +655,7 @@
           const transcriptBtn = document.createElement("button");
 
           transcriptBtn.setAttribute("aria-label", dialogTranscriptButtonLabel);
-          transcriptBtn.className = dialogControlsTranscriptClassName;
+          transcriptBtn.className = `${dialogControlsBtnClassName} ${dialogControlsTranscriptClassName}`;
           transcriptBtn.setAttribute("aria-expanded", "false");
           transcriptBtn.setAttribute("aria-controls", transcriptContent.id);
 
@@ -680,7 +681,7 @@
 
         if (assetClassName === dialogAssetClassName) {
 
-          assetContent.classList.add(dialogVideoClassName);
+          assetContent.classList.add(dialogMediaClassName);
 
           if (assetContent.tagName === "VIDEO") {
 

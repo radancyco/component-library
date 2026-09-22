@@ -20,7 +20,7 @@
 .dialog-trigger {
 display: inline-grid;
 background-color: var(--primary-color);
-border-radius: .5rem;
+border-radius: 0.5rem;
 border: 0;
 color: #fff;
 cursor: pointer;
@@ -46,7 +46,7 @@ outline-offset: 4px;
   background-size: calc(24rem / 16);
   block-size: calc(60rem / 16);
   border-radius: 100vw;
-  border: .2rem #fff solid;
+  border: 0.2rem #fff solid;
   content: "";
   display: block;
   inline-size: calc(60rem / 16);
@@ -71,8 +71,8 @@ z-index: 1000;
 --dialog-close-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 640'%3E%3Cpath fill='%23fff' d='M183.1 137.4C170.6 124.9 150.3 124.9 137.8 137.4C125.3 149.9 125.3 170.2 137.8 182.7L275.2 320L137.9 457.4C125.4 469.9 125.4 490.2 137.9 502.7C150.4 515.2 170.7 515.2 183.2 502.7L320.5 365.3L457.9 502.6C470.4 515.1 490.7 515.1 503.2 502.6C515.7 490.1 515.7 469.8 503.2 457.3L365.8 320L503.1 182.6C515.6 170.1 515.6 149.8 503.1 137.3C490.6 124.8 470.3 124.8 457.8 137.3L320.5 274.7L183.1 137.4z'/%3E%3C/svg%3E");
 --dialog-audio-description-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='m9.32 16.326h-2.28v-1.366h-3.044l-.872 1.366h-3.124l.189-.255 3.274-4.548 3.091-4.302 1.386-.006h1.38zm-2.181-6.08-.996 1.46-.995 1.464.989.019c.225 0 .434.005.605.005.033.001.072.002.111.002.106 0 .21-.004.313-.013l-.014.001c.012-.012.014-.566.006-1.483zm4.836 6.08h-1.874v-9.111h1.939c.185-.009.402-.014.621-.014.61 0 1.21.041 1.798.12l-.069-.008c1.122.267 2.027 1.024 2.49 2.028l.009.023c.338.618.537 1.354.537 2.137 0 .107-.004.213-.011.318l.001-.014c.004.072.007.157.007.243 0 .448-.069.879-.198 1.284l.008-.03c-.277 1.131-1.006 2.055-1.979 2.586l-.021.01c-.781.381-1.146.429-3.258.429zm.274-6.919v4.654l.866-.026c.994-.033 1.238-.119 1.634-.579.332-.395.534-.91.534-1.471 0-.087-.005-.173-.014-.258l.001.01c.011-.078.017-.168.017-.26 0-.308-.071-.599-.198-.858l.005.011c-.428-.921-.79-1.132-2.037-1.191l-.81-.032zm10.329 6.913c-.096 0-.141-.009-.155-.03s0-.042.01-.074c.506-1.32.803-2.846.814-4.44v-.005c-.017-1.6-.314-3.126-.844-4.537l.03.092c-.014-.035-.016-.055-.006-.07.023-.034.114-.041.357-.041.314 0 .405.024.455.124.239.654.445 1.435.581 2.239l.011.081c.107.635.168 1.366.168 2.111 0 1.419-.221 2.785-.63 4.068l.026-.095-.182.553-.416.02c-.103.002-.169.005-.219.005zm-4.232 0c-.055 0-.115 0-.195-.006l-.436-.02.234-.351c.582-.888.985-1.943 1.134-3.079l.004-.038c.028-.29.044-.626.044-.967 0-.676-.062-1.338-.182-1.98l.01.066c-.243-.984-.641-1.848-1.171-2.614l.017.026-.104-.143h.924l.176.274c.335.578.617 1.246.812 1.95l.014.061c.188.676.295 1.453.295 2.255 0 1.366-.313 2.659-.871 3.811l.023-.052c-.344.7-.4.807-.73.807zm2.024 0c-.02.002-.042.004-.065.004-.065 0-.128-.01-.187-.03l.004.001c0-.024.135-.309.195-.43.13-.26.262-.577.374-.904l.017-.056c.296-.922.466-1.983.466-3.084 0-1.497-.315-2.92-.883-4.207l.026.067c-.059-.121-.195-.405-.195-.43.056-.019.12-.03.186-.03.022 0 .043.001.064.003h-.003c.06 0 .124 0 .188.006l.436.019.247.615c.442 1.159.698 2.5.698 3.9 0 1.465-.28 2.864-.789 4.148l.027-.076-.18.453-.436.02c-.064 0-.127.005-.188.005z'/%3E%3C/svg%3E");
 --dialog-transcript-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 640'%3E%3Cpath fill='%23fff' d='M128 128C128 92.7 156.7 64 192 64L341.5 64C358.5 64 374.8 70.7 386.8 82.7L493.3 189.3C505.3 201.3 512 217.6 512 234.6L512 512C512 547.3 483.3 576 448 576L192 576C156.7 576 128 547.3 128 512L128 128zM336 122.5L336 216C336 229.3 346.7 240 360 240L453.5 240L336 122.5zM248 320C234.7 320 224 330.7 224 344C224 357.3 234.7 368 248 368L392 368C405.3 368 416 357.3 416 344C416 330.7 405.3 320 392 320L248 320zM248 416C234.7 416 224 426.7 224 440C224 453.3 234.7 464 248 464L392 464C405.3 464 416 453.3 416 440C416 426.7 405.3 416 392 416L248 416z'/%3E%3C/svg%3E");
---dialog-video-inline-size: 72rem;
---dialog-video-block-size: calc(var(--dialog-video-inline-size) * 9 / 16);
+--dialog-media-inline-size: 72rem;
+--dialog-media-block-size: calc(var(--dialog-media-inline-size) * 9 / 16);
 --dialog-max-block-size: 80vh;
 
 // Breakpoints (CSS variables are not allowed in media queries - boo!)
@@ -83,20 +83,14 @@ background-color: transparent;
 border: 0;
 display: none;
 grid-template-rows: auto 1fr;
-inline-size: 90vw;
+inline-size: 93vw;
 opacity: 0;
 padding: 0;
 scrollbar-color: var(--primary-color) transparent;
 text-align: start;
 transition-behavior: allow-discrete;
 transition-property: display, opacity, overlay, translate;
-translate: 0 50px;
-
-@media (prefers-reduced-motion: no-preference) {
-
-  transition-duration: 400ms;
-
-}
+translate: 0 calc(50rem / 16);
 
 // Use for data-aria-dialog (harmless on native dialog)
 
@@ -104,12 +98,18 @@ block-size: fit-content;
 inset: 0;
 margin: auto;
 max-block-size: var(--dialog-max-block-size);
+overflow-y: auto;
 position: fixed;
 z-index: 2147483646;
 
-  &:has(.dialog__video) {
+  @media (prefers-reduced-motion: no-preference) {
+
+    transition-duration: 400ms;
+
+  }
+
+  &:has(.dialog__media) {
   inline-size: fit-content;
-  max-inline-size: 90vw;
   }
 
   &[data-has-heading], &[data-has-content] {
@@ -119,7 +119,7 @@ z-index: 2147483646;
   padding: 1rem;
   }
 
-  &[data-resize] {
+  &[data-fullscreen] {
   resize: both;
   }
 
@@ -131,7 +131,7 @@ z-index: 2147483646;
     @starting-style {
 
       opacity: 0;
-      translate: 0 -50px;
+      translate: 0 calc(-50rem / 16);
 
     }
 
@@ -145,7 +145,7 @@ z-index: 2147483646;
   display: grid;
   grid-auto-flow: column;
   justify-content: space-between;
-  margin-block-end: 1em;
+  margin-block-end: 1rem;
   gap: 1rem;
 
     &:not(:has(.dialog__heading)) {
@@ -165,18 +165,18 @@ z-index: 2147483646;
   &__controls {
   align-items: start;
   display: grid;
-  gap: 0.5rem;
+  gap: calc(8rem / 16);
   grid-auto-flow: column;
 
-    &--audio-description, &--close, &--transcript {
+    &__btn {
     background-color: transparent;
     background-position: center;
     background-repeat: no-repeat;
     background-size: calc(24rem / 16);
-    border-radius: 5px;
+    border-radius: calc(5rem / 16);
     border: 0;
     cursor: pointer;
-    padding: 1rem;
+    padding: 1.1rem;
 
       [data-has-heading] &, [data-has-content] & {
 
@@ -193,18 +193,18 @@ z-index: 2147483646;
 
       }
 
-    }
+       &--close {
+      background-image: var(--dialog-close-icon);
+      }
 
-    &--close {
-    background-image: var(--dialog-close-icon);
-    }
+      &--audio-description {
+      background-image: var(--dialog-audio-description-icon);
+      }
 
-    &--audio-description {
-    background-image: var(--dialog-audio-description-icon);
-    }
+      &--transcript {
+      background-image: var(--dialog-transcript-icon);
+      }
 
-    &--transcript {
-    background-image: var(--dialog-transcript-icon);
     }
 
   }
@@ -286,7 +286,7 @@ z-index: 2147483646;
     @media (min-width: $dialog-breakpoint) {
 
       block-size: auto;
-      max-block-size: var(--dialog-video-block-size);
+      max-block-size: var(--dialog-media-block-size);
       min-block-size: 0;
 
     }
@@ -313,9 +313,8 @@ z-index: 2147483646;
     mask-image: linear-gradient(to left, black 0 1rem, transparent 1rem), linear-gradient(to bottom, transparent 0, black 2.5rem, black calc(100% - 2.5rem), transparent 100%);
     overflow-x: hidden;
     overflow-y: auto;
-    padding: 1rem 1rem 1rem .5rem;
+    padding: 1rem 1rem 1rem 0.5rem;
     scrollbar-color: #0f1632 transparent;
-    scrollbar-gutter: stable;
     }
 
   }
@@ -326,23 +325,29 @@ z-index: 2147483646;
   overflow: hidden;
   }
 
-  &__video {
+  &__media {
   aspect-ratio: 16 / 9;
   background-color: transparent;
   block-size: 100%;
   border: 0;
   display: block;
-  inline-size: var(--dialog-video-inline-size);
+  inline-size: var(--dialog-media-inline-size);
   max-inline-size: 100%;
   object-fit: contain;
   opacity: 1;
   transition-property: opacity;
 
+    [data-fullscreen] & {
+
+      inline-size: 100vw;
+
+    }
+
     // Address Poster FOUC on iframe videos, specifically YouTube. 
 
     @media (prefers-reduced-motion: no-preference) {
 
-      transition-delay: 600ms;
+      transition-delay: 650ms;
       transition-duration: 300ms;
 
     }
