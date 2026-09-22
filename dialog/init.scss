@@ -53,7 +53,6 @@ outline-offset: 4px;
   place-self: center;
   }
 
-
 }
 
 // Fallback backdrop. Native <dialog> gets ::backdrop
@@ -211,19 +210,26 @@ z-index: 2147483646;
 
   &__container {
   display: grid;
-  gap: .5em;
   grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: auto;
   min-block-size: 0;
 
-    @media (min-width: $dialog-breakpoint) {
+    @media (prefers-reduced-motion: no-preference) {
 
-      grid-template-columns: minmax(0, 0fr) minmax(0, 1fr);
-      grid-template-rows: auto;
+      transition-duration: 400ms;
 
-      .dialog__asset, .dialog__content {
+    }
 
-        grid-column: 2;
+    &:has(.dialog__transcript) {
+
+      @media (min-width: $dialog-breakpoint) {
+
+        grid-template-columns: minmax(0, 0fr) minmax(0, 1fr);
+
+        .dialog__asset, .dialog__content {
+
+          grid-column: 2;
+
+        }
 
       }
 
@@ -239,6 +245,14 @@ z-index: 2147483646;
 
       .dialog__transcript {
       display: grid;
+      opacity: 1;
+
+        @starting-style {
+
+          opacity: 0;
+
+        }
+
       }
 
     }
@@ -254,8 +268,18 @@ z-index: 2147483646;
   block-size: calc(240rem / 16);
   display: none;
   grid-template-rows: max-content minmax(0, 1fr);
+  margin-inline-end: 0.5rem;
+  opacity: 0;
   overflow: hidden;
   padding: 0 0.7em;
+  transition-behavior: allow-discrete;
+  transition-property: display, opacity;
+
+    @media (prefers-reduced-motion: no-preference) {
+
+      transition-duration: 400ms;
+
+    }
 
     @media (min-width: $dialog-breakpoint) {
 
