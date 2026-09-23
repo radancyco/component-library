@@ -117,8 +117,13 @@
         { type: "cloudflare", test: src => src.includes("cloudflarestream") },
         { type: "brightcove", test: src => src.includes("players.brightcove.net") },
         { type: "video", test: src => /\.(mp4|webm|ogv)($|[?#])/i.test(src) },
-        
+
       ];
+
+      // Shared by the "video" case below and the hover/focus/touch preload
+      // warmer, so both agree on what MIME type a given file extension gets.
+
+      const videoMimeTypes = { mp4: "video/mp4", webm: "video/webm", ogv: "video/ogg" };
 
       // Running counter used to give a dialog an id when no label is available to slugify.
 
@@ -771,7 +776,6 @@
             video.crossOrigin = "anonymous";
 
             const source = document.createElement("source");
-            const videoMimeTypes = { mp4: "video/mp4", webm: "video/webm", ogv: "video/ogg" };
             const extension = src.match(/\.(mp4|webm|ogv)($|[?#])/i)?.[1].toLowerCase();
 
             source.src = src;
@@ -1039,6 +1043,47 @@
         if (type === "video" && !caption) {
 
           console.warn(`Warning: Please ensure that your video ("${trigger.getAttribute(dialogDataSrc)}") has captions available. If there is no spoken dialogue in the video, captions are still required.`, trigger);
+
+        }
+
+        // Give the browser a network head start on self-hosted video files as
+        // soon as there's real signal the user is about to open the dialog,
+        // rather than paying for it unconditionally (link rel=preload in the
+        // page's own head) or not at all until the click itself. Only applies
+        // to "video" — the other types are third-party iframe pages, not a
+        // video file we can meaningfully preload this way. as="fetch" rather
+        // than the more semantically correct as="video": Chrome recognizes
+        // "video" as a valid destination but has never actually implemented
+        // preloading for it (silently a no-op, console warning and all) —
+        // https://issues.chromium.org/issues/40671675. "fetch" still lands
+        // the response in the same HTTP cache a subsequent <video> read from.
+
+        if (type === "video") {
+
+          let warmed = false;
+
+          const warmVideoPreload = () => {
+
+            if (warmed) return;
+
+            warmed = true;
+
+            const videoSrc = trigger.getAttribute(dialogDataSrc);
+            const extension = videoSrc.match(/\.(mp4|webm|ogv)($|[?#])/i)?.[1].toLowerCase();
+
+            const link = document.createElement("link");
+
+            link.rel = "preload";
+            link.as = "fetch";
+            link.href = videoSrc;
+            link.type = videoMimeTypes[extension] ?? "video/mp4";
+            link.crossOrigin = "anonymous"; // Must match the <video>'s crossOrigin below, or the cache entry won't be reused.
+
+            document.head.append(link);
+
+          };
+
+          ["pointerenter", "focus", "touchstart"].forEach(evt => trigger.addEventListener(evt, warmVideoPreload, { once: true, passive: true }));
 
         }
 
