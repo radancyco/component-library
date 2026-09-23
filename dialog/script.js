@@ -403,7 +403,9 @@
 
       };
 
-      // Fetch a same-domain page and pull in the element matching its #fragment id.
+      // Fetch a same-domain page and pull in the contents of the element matching
+      // its #fragment id — just its children, not the element itself, so its id
+      // (and any page styling that happens to target that id) doesn't come along.
 
       const fetchTranscriptFragment = async (url) => {
 
@@ -417,7 +419,7 @@
         const fragmentDoc = new DOMParser().parseFromString(html, "text/html");
         const el = fragmentDoc.getElementById(id);
 
-        return el ? document.importNode(el, true) : null;
+        return el ? Array.from(el.childNodes, node => document.importNode(node, true)) : null;
 
       };
 
@@ -438,8 +440,10 @@
       };
 
       // Load a transcript (from an in-page element or a fetched fragment) into a target node, once.
+      // In both cases only the source's contents are copied in, not the source element itself —
+      // its id (and any page styling that happens to target that id) stays behind with it.
 
-      const loadTranscriptOnce = (transcriptTarget, { transcript, transcriptUrl }, restoreCallbacks) => {
+      const loadTranscriptOnce = (transcriptTarget, { transcript, transcriptUrl }) => {
 
         if (transcript) {
 
@@ -447,8 +451,7 @@
 
           if (transcriptEl) {
 
-            restoreCallbacks.push(moveIntoDialog(transcriptEl));
-            transcriptTarget.append(transcriptEl);
+            transcriptTarget.append(...Array.from(transcriptEl.childNodes, node => node.cloneNode(true)));
 
           } else {
 
@@ -468,11 +471,11 @@
 
         transcriptTarget.append(placeholder);
 
-        fetchTranscriptFragment(transcriptUrl).then(fragment => {
+        fetchTranscriptFragment(transcriptUrl).then(nodes => {
 
-          if (fragment) {
+          if (nodes) {
 
-            placeholder.replaceWith(fragment);
+            placeholder.replaceWith(...nodes);
 
           } else {
 
@@ -678,14 +681,12 @@
           transcriptPanel.append(h2, transcriptContent);
           container.append(transcriptPanel);
 
-          // Move/fetch the transcript into place now, while the dialog is
-          // still hidden, rather than waiting for the first time the panel
-          // is toggled open. Moving the (real, existing) transcript element
-          // at that exact moment was producing a brief visible flash/shift
-          // in the video — doing it up front means nothing new happens in
+          // Load the transcript into place now, while the dialog is still
+          // hidden, rather than waiting for the first time the panel is
+          // toggled open — doing it up front means nothing new happens in
           // the DOM at the moment the user actually sees the toggle happen.
 
-          loadTranscriptOnce(transcriptContent, { transcript, transcriptUrl }, restoreCallbacks);
+          loadTranscriptOnce(transcriptContent, { transcript, transcriptUrl });
 
           const transcriptBtn = document.createElement("button");
 
