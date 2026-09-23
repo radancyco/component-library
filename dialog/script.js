@@ -66,6 +66,7 @@
       const dialogDataDynamicLabel = "data-dynamic-label";
       const dialogDataDynamicAlt = "data-dynamic-alt";
       const dialogDataAriaDialog = "data-aria-dialog";
+      const dialogDataFullscreen = "data-fullscreen";
       const dialogDataSrc = "data-src";
       const dialogDataOpenState = "data-open";
       const dialogBackdropClassName = "dialog-backdrop";
@@ -742,7 +743,7 @@
 
       // Create and show dialog dynamically based on type.
 
-      const openDialog = (type, src, { label, labelledby, dynamicLabel, caption, description, heading, transcript, transcriptUrl, disableAutoplay, classic } = {}) => {
+      const openDialog = (type, src, { label, labelledby, dynamicLabel, caption, description, heading, transcript, transcriptUrl, disableAutoplay, classic, fullscreen } = {}) => {
 
         const triggerElement = document.activeElement;
 
@@ -942,6 +943,8 @@
 
         }
 
+        if (fullscreen) dialog.setAttribute(dialogDataFullscreen, "");
+
         if (classic) {
 
           const focusTarget = dialog.querySelector(`.${dialogControlsCloseClassName}`);
@@ -1009,6 +1012,7 @@
         const disableAutoplay = trigger.hasAttribute(dialogDataDisableAutoplay) || prefersReducedMotion;
         const dynamicLabel = trigger.hasAttribute(dialogDataDynamicLabel);
         const classic = trigger.hasAttribute(dialogDataAriaDialog);
+        const fullscreen = trigger.hasAttribute(dialogDataFullscreen);
         const type = detectDialogType(trigger.getAttribute(dialogDataSrc));
 
         // EXPERIMENTAL (data-dynamic-label): kick off the oEmbed title lookup on page
@@ -1108,7 +1112,7 @@
 
           dynamicLabelReady.then(() => {
 
-            openDialog(type, trigger.getAttribute(dialogDataSrc), { label, labelledby, dynamicLabel, caption, description, heading, transcript, transcriptUrl, disableAutoplay, classic });
+            openDialog(type, trigger.getAttribute(dialogDataSrc), { label, labelledby, dynamicLabel, caption, description, heading, transcript, transcriptUrl, disableAutoplay, classic, fullscreen });
 
           });
 

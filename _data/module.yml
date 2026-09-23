@@ -317,6 +317,10 @@ components:
         note: "By default, dialogs do not render a heading. Set the <code>data-enable-heading</code> attribute to enable one, using the required value provided via the <code>data-label</code> attribute. Note that an <code>h1</code> element is used for this heading; this is acceptable within the context of a dialog, since all other page content is rendered inert while it is open."
         group: "Utilities"
 
+      - name: "Fullscreen"
+        id: "fullscreen"
+        group: "Utilities"
+
       - name: "Play Button"
         id: "play-button"
         best-practice: "It is considered good practice to always add a border to your play button, as this helps prevent it from becoming lost against a light background. Pairing a darker border with a light button background color (or vice versa) ensures a greater chance that the button remains visible over both lighter and darker background imagery."

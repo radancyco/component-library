@@ -121,7 +121,7 @@ z-index: 2147483646;
   }
 
   &[data-fullscreen] {
-  resize: both;
+  resize: horizontal;
   }
 
   &[open], &[data-open] {
