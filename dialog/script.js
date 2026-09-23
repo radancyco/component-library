@@ -62,6 +62,7 @@
       const dialogDataTranscriptId = "data-transcript-id";
       const dialogDataTranscriptUrl = "data-transcript-url";
       const dialogDataDisableAutoplay = "data-disable-autoplay";
+      const dialogDataYoutubeShorts = "data-youtube-shorts";
       const dialogDataDynamicLabel = "data-dynamic-label";
       const dialogDataDynamicAlt = "data-dynamic-alt";
       const dialogDataAriaDialog = "data-aria-dialog";
@@ -99,7 +100,7 @@
       const dialogTranscriptFailedLabel = "Transcript failed to load.";
       const dialogContentNotFoundLabel = "Content not found.";
       const dialogMissingNameHeadingLabel = "Accessible Name Missing";
-      const dialogMissingNameMessageLabel = "An accessible name must be provided. Add data-label with a descriptive value, or data-labelledby pointing to an id already present on the page.";
+      const dialogMissingNameMessageLabel = "An accessible name must be provided. Add data-label with a descriptive value, data-labelledby pointing to an id already present on the page, or data-dynamic-label to fetch one automatically.";
       const dialogVideoFallbackLabel = "Video Player";
 
       const dialogTriggers = document.querySelectorAll(dialogTriggerClass);
@@ -363,6 +364,35 @@
 
       };
 
+      // YouTube's oEmbed response has no explicit "is this a Short" field,
+      // but Shorts are inherently vertical/square, so its width/height come
+      // back portrait — as long as it's asked about via a /shorts/ URL
+      // specifically. Querying the exact same Short via /watch?v= instead
+      // silently returns the wrong (landscape) dimensions — confirmed by
+      // testing both formats directly. /shorts/ is safe to use
+      // unconditionally though: a genuinely non-Short video still reports
+      // its real (landscape) size correctly either way. Sets
+      // data-youtube-shorts on the dialog so CSS can hook off it; silently
+      // does nothing on failure, since this is a styling enhancement, not
+      // something the dialog depends on to function.
+
+      const flagYoutubeShorts = async (dialog, src) => {
+
+        try {
+
+          const oembedUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(`https://www.youtube.com/shorts/${new URL(src).pathname.split("/").pop()}`)}&format=json`;
+          const response = await fetch(oembedUrl);
+
+          if (!response.ok) return;
+
+          const data = await response.json();
+
+          if (data.height > data.width) dialog.setAttribute(dialogDataYoutubeShorts, "");
+
+        } catch {}
+
+      };
+
       // Fetch a same-domain page and pull in the element matching its #fragment id.
 
       const fetchTranscriptFragment = async (url) => {
@@ -523,13 +553,7 @@
       // shared by video/youtube/vimeo (assetClassName dialogAssetClassName) and element/default
       // (assetClassName dialogContentClassName, no video-specific decoration on the content itself).
 
-      const buildMediaDialog = (assetContent, { heading, label, labelledby, hasDescription, transcript, transcriptUrl, classic, assetClassName = dialogAssetClassName, closeLabel = dialogCloseVideoLabel, bareCloseButton = false, restoreCallbacks = [] }) => {
-
-        // A bare close button only makes sense when there's nowhere else for a
-        // transcript toggle to live — fall back to the full header/controls
-        // wrapper if a transcript was also requested.
-
-        const useBareClose = bareCloseButton && !transcript && !transcriptUrl;
+      const buildMediaDialog = (assetContent, { heading, label, labelledby, hasDescription, transcript, transcriptUrl, classic, assetClassName = dialogAssetClassName, closeLabel = dialogCloseVideoLabel, restoreCallbacks = [] }) => {
 
         const titleText = label || dialogVideoLabel;
         const baseId = label ? slugify(label) : `dialog-${++dialogInstanceId}`;
@@ -555,20 +579,25 @@
 
         let h1;
 
+        if (heading) {
+
+          dialog.setAttribute(dialogDataHasHeading, "");
+
+          h1 = document.createElement("h1");
+
+          h1.id = `hdr-${baseId}`;
+          h1.className = dialogHeadingClassName;
+          h1.textContent = titleText;
+
+        }
+
         if (labelledby) {
 
           dialog.setAttribute("aria-labelledby", labelledby);
 
         } else if (heading) {
 
-          dialog.setAttribute("aria-labelledby", `${baseId}-hdr`);
-          dialog.setAttribute(dialogDataHasHeading, "");
-
-          h1 = document.createElement("h1");
-
-          h1.id = `${baseId}-hdr`;
-          h1.className = dialogHeadingClassName;
-          h1.textContent = titleText;
+          dialog.setAttribute("aria-labelledby", `hdr-${baseId}`);
 
         } else {
 
@@ -576,13 +605,13 @@
 
         }
 
-        const header = useBareClose ? null : document.createElement("div");
+        const header = document.createElement("div");
 
-        if (header) header.className = dialogHeaderClassName;
+        header.className = dialogHeaderClassName;
 
-        const controls = useBareClose ? null : document.createElement("div");
+        const controls = document.createElement("div");
 
-        if (controls) controls.className = dialogControlsClassName;
+        controls.className = dialogControlsClassName;
 
         const closeBtn = document.createElement("button");
 
@@ -605,7 +634,7 @@
 
         }
 
-        if (controls) controls.append(closeBtn);
+        controls.append(closeBtn);
 
         if (hasDescription && assetContent.tagName === "VIDEO") {
 
@@ -613,13 +642,9 @@
 
         }
 
-        // Bare-close dialogs never have a transcript panel to lay out alongside
-        // the asset (see useBareClose above), so the container's only job —
-        // splitting asset/transcript into a grid — doesn't apply; skip it.
+        const container = document.createElement("div");
 
-        const container = useBareClose ? null : document.createElement("div");
-
-        if (container) container.className = dialogContainerClassName;
+        container.className = dialogContainerClassName;
 
         if (transcript || transcriptUrl) {
 
@@ -671,13 +696,9 @@
 
         }
 
-        if (header) {
+        if (h1) header.append(h1);
 
-          if (h1) header.append(h1);
-
-          header.append(controls);
-
-        }
+        header.append(controls);
 
         if (assetClassName === dialogAssetClassName) {
 
@@ -685,7 +706,7 @@
 
           if (assetContent.tagName === "VIDEO") {
 
-            assetContent.setAttribute("aria-label", titleText);
+            assetContent.setAttribute("aria-label", `${titleText} ${dialogVideoSuffixLabel}`);
 
           } else {
 
@@ -700,19 +721,9 @@
         asset.className = assetClassName;
         asset.append(assetContent);
 
-        if (container) {
+        container.append(asset);
 
-          container.append(asset);
-
-          dialog.append(header, container);
-
-        } else {
-
-          if (h1) dialog.append(h1);
-
-          dialog.append(closeBtn, asset);
-
-        }
+        dialog.append(header, container);
 
         dialog.dialogRestoreCallbacks = restoreCallbacks;
 
@@ -722,26 +733,28 @@
 
       // Create and show dialog dynamically based on type.
 
-      const openDialog = (type, src, { label, labelledby, caption, description, heading, transcript, transcriptUrl, disableAutoplay, classic } = {}) => {
+      const openDialog = (type, src, { label, labelledby, dynamicLabel, caption, description, heading, transcript, transcriptUrl, disableAutoplay, classic } = {}) => {
 
         const triggerElement = document.activeElement;
 
         let dialog;
 
-        if (!label && !labelledby) {
+        if (!label && !labelledby && !dynamicLabel) {
 
           // Failsafe: never open a dialog with no accessible name. By the time
           // this runs, an in-progress data-dynamic-label lookup has already
-          // resolved label to a real title or its placeholder, so this only
-          // fires when neither data-label nor data-labelledby was authored
-          // (and dynamic label lookup wasn't in play) — a developer mistake,
-          // not something an end user can hit legitimately.
+          // resolved label to a real title or its placeholder, but dynamicLabel
+          // is still checked directly in case that lookup wasn't supported for
+          // this dialog type and never got the chance to set label. This only
+          // fires when none of data-label, data-labelledby, or data-dynamic-label
+          // were authored — a developer mistake, not something an end user can
+          // hit legitimately.
 
           const contentNode = document.createElement("p");
 
           contentNode.textContent = dialogMissingNameMessageLabel;
 
-          dialog = buildMediaDialog(contentNode, { label: dialogMissingNameHeadingLabel, classic, assetClassName: dialogContentClassName, closeLabel: dialogCloseLabel, bareCloseButton: true });
+          dialog = buildMediaDialog(contentNode, { label: dialogMissingNameHeadingLabel, classic, assetClassName: dialogContentClassName, closeLabel: dialogCloseLabel });
           dialog.setAttribute(dialogDataHasContent, "");
 
         } else switch (type) {
@@ -831,6 +844,8 @@
 
             dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcript, transcriptUrl, classic });
 
+            flagYoutubeShorts(dialog, src);
+
             break;
 
           }
@@ -888,7 +903,7 @@
 
             }
 
-            dialog = buildMediaDialog(contentNode, { heading, label, labelledby, transcript, transcriptUrl, classic, assetClassName: dialogContentClassName, closeLabel: dialogCloseLabel, bareCloseButton: true, restoreCallbacks });
+            dialog = buildMediaDialog(contentNode, { heading, label, labelledby, transcript, transcriptUrl, classic, assetClassName: dialogContentClassName, closeLabel: dialogCloseLabel, restoreCallbacks });
             dialog.setAttribute(dialogDataHasContent, "");
 
             break;
@@ -989,7 +1004,15 @@
 
         if (!dynamicLabel && !label && !labelledby) {
 
-          console.error("Dialog trigger is missing an accessible name. Add data-dialog-label or data-dialog-labelledby.", trigger);
+          console.error("Dialog trigger is missing an accessible name. Add data-label, data-labelledby, or data-dynamic-label.", trigger);
+
+        }
+
+        // Warn if a "video" type trigger has no captions configured.
+
+        if (type === "video" && !caption) {
+
+          console.warn(`Warning: Please ensure that your video ("${trigger.getAttribute(dialogDataSrc)}") has captions available. If there is no spoken dialogue in the video, captions are still required.`, trigger);
 
         }
 
@@ -1014,7 +1037,7 @@
 
           dynamicLabelReady.then(() => {
 
-            openDialog(type, trigger.getAttribute(dialogDataSrc), { label, labelledby, caption, description, heading, transcript, transcriptUrl, disableAutoplay, classic });
+            openDialog(type, trigger.getAttribute(dialogDataSrc), { label, labelledby, dynamicLabel, caption, description, heading, transcript, transcriptUrl, disableAutoplay, classic });
 
           });
 
