@@ -304,7 +304,7 @@ components:
       - name: "Dynamic Label"
         id: "dynamic-label"
         note: "Set the <code>data-dynamic-label</code> attribute to fetch the dialog's accessible name automatically from the video provider, rather than authoring one by hand. This is especially useful when content is sourced dynamically and its title isn't known ahead of time, or in situations where a manually authored label has a high risk of being forgotten. Pairing it with a <code>data-dynamic-alt</code> attribute on an inner <code>img</code> is optional, but recommended: once the label resolves, its value is also applied to that image's <code>alt</code> text."
-        warning: "This attribute is optional when <code>data-label</code> or <code>data-labelledby</code> is present; if neither is set, <code>data-dynamic-label</code> becomes mandatory, since a dialog must always be given an accessible name through one of these three attributes."
+        warning: "This attribute is optional when <code>data-label</code> or <code>data-labelledby</code> is present; if neither is set, <code>data-dynamic-label</code> becomes mandatory, since a dialog must always be given an accessible name through one of these three attributes. Please also note that dynamic labeling is only supported for YouTube and Vimeo."
         group: "Experimental"
 
       - name: "ARIA Dialog"
@@ -322,6 +322,10 @@ components:
         best-practice: "It is considered good practice to always add a border to your play button, as this helps prevent it from becoming lost against a light background. Pairing a darker border with a light button background color (or vice versa) ensures a greater chance that the button remains visible over both lighter and darker background imagery."
         note: "Play buttons are often implemented redundantly, adding extra text for assistive technology users that could already be conveyed through a well-written <code>alt</code> value on the image the button wraps. Setting the <code>data-play-button</code> attribute handles this automatically, adding a visual play-button indicator without requiring redundant markup or text, treating is a visual cue only."
         group: "Utilities"
+
+      - name: "Brightcove"
+        id: "video-brightcove"
+        group: "Video"
 
       - name: "Cloudflare"
         id: "video-cloudflare"

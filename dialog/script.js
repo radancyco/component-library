@@ -115,6 +115,7 @@
         { type: "youtube", test: src => src.includes("youtube") },
         { type: "vimeo", test: src => src.includes("vimeo") },
         { type: "cloudflare", test: src => src.includes("cloudflarestream") },
+        { type: "brightcove", test: src => src.includes("players.brightcove.net") },
         { type: "video", test: src => /\.(mp4|webm|ogv)($|[?#])/i.test(src) },
         
       ];
@@ -879,6 +880,28 @@
 
             iframe.src = `${src}${separator}autoplay=${disableAutoplay ? "false" : "true"}`;
             iframe.allow = "accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen";
+            iframe.allowFullscreen = true;
+
+            dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcript, transcriptUrl, classic });
+
+            break;
+
+          }
+
+          case "brightcove": {
+
+            const iframe = document.createElement("iframe");
+
+            // Same reasoning as Cloudflare above: a Brightcove Player src is a
+            // complete, standalone embed URL, so autoplay is joined with "&"
+            // when a query string is already present. "any" attempts autoplay
+            // with sound and falls back to muted only if the browser blocks
+            // it — the closest match to how autoplay behaves elsewhere here.
+
+            const separator = src.includes("?") ? "&" : "?";
+
+            iframe.src = disableAutoplay ? src : `${src}${separator}autoplay=any`;
+            iframe.allow = "encrypted-media; autoplay; fullscreen";
             iframe.allowFullscreen = true;
 
             dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcript, transcriptUrl, classic });
