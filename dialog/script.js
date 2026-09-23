@@ -177,14 +177,6 @@
 
         window.speechSynthesis?.cancel();
 
-        // Stop YouTube/Vimeo iframes by resetting src.
-
-        dialog.querySelectorAll("iframe").forEach(iframe => {
-
-          iframe.src = "";
-
-        });
-
         // Restore whatever body scroll was before this dialog locked it —
         // native dialogs don't lock scroll on their own (unlike focus and
         // background inertness, which come free with top-layer semantics),
@@ -226,6 +218,17 @@
           if (removed) return;
 
           removed = true;
+
+          // Stop YouTube/Vimeo iframes by resetting src — held off until now
+          // (rather than done eagerly at the top of this function) so the
+          // loaded frame stays intact and fades out with the rest of the
+          // dialog instead of blanking to black the instant dismissal starts.
+
+          dialog.querySelectorAll("iframe").forEach(iframe => {
+
+            iframe.src = "";
+
+          });
 
           // Return any moved-in source elements to where they came from, only now
           // that the dialog is actually leaving the DOM — doing this any earlier
