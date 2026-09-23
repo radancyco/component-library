@@ -274,7 +274,7 @@ components:
       - name: "Captions"
         id: "captions"
         a11y: "Please note that all videos <strong>must</strong> include captions. Even when a video has no spoken dialogue, captions are still required to describe other meaningful audio, such as music or sound effects. Captions benefit far more than the Deaf and hard-of-hearing community: most caption users aren't d/Hoh, and captions also help second-language learners, people with attention or auditory-processing differences, and anyone viewing in a sound-off environment. For more, see this <a href='https://meryl.net/captioned-videos-complete-guide/'>guide to captioned videos</a>."
-        note: "Set the <code>data-caption</code> attribute to a <code>src, label, srclang, default</code> value referencing a valid VTT file. The optional <code>default</code> flag marks that track as the one shown automatically. Multiple language tracks are supported: separate each <code>src, label, srclang, default</code> group with a semicolon to add more than one caption track to the video."
+        note: "Set the <code>data-caption</code> attribute to a <code>src, label, srclang, default</code> value referencing a valid VTT file. The optional <code>default</code> flag marks that track as the one shown automatically. Multiple language tracks are supported: separate each <code>src, label, srclang, default</code> group with a semicolon to add more than one caption track to the video. Third-party captions are the responsibility of their original authors to supply. To promote a more inclusive experience, third-party caption visibility defaults to on and can't be overridden."
         group: "Accessibility"
 
       - name: "Label"
