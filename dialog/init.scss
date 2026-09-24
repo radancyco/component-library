@@ -109,6 +109,18 @@ z-index: 2147483646;
 
   }
 
+  &[data-has-content] {
+  min-block-size: 75vh;
+
+    @media (min-width: $dialog-breakpoint) {
+
+      inline-size: 50vw;
+      min-block-size: auto;
+
+    }
+  
+  }
+
   &:has(.dialog__media) {
   inline-size: fit-content;
   }

@@ -100,6 +100,8 @@
       const dialogTranscriptNotFoundLabel = "Transcript not found.";
       const dialogTranscriptFailedLabel = "Transcript failed to load.";
       const dialogContentNotFoundLabel = "Content not found.";
+      const dialogLoadingContentLabel = "Loading content…";
+      const dialogContentFailedLabel = "Content failed to load.";
       const dialogMissingNameHeadingLabel = "Accessible Name Missing";
       const dialogMissingNameMessageLabel = "An accessible name must be provided. Add data-label with a descriptive value, data-labelledby pointing to an id already present on the page, or data-dynamic-label to fetch one automatically.";
       const dialogVideoFallbackLabel = "Video Player";
@@ -110,7 +112,9 @@
 
       // Terms/patterns used to infer a dialog's content type from data-dialog-src,
       // checked in order. Add new entries here as new source types need support —
-      // anything that matches none of these is treated as an "element" id.
+      // "fetch" catches anything left carrying a #fragment (a URL pointing at a
+      // page + the id of an element within it); anything matching none of these
+      // is treated as an "element" id already present on the current page.
 
       const dialogTypeDetectors = [
 
@@ -119,6 +123,7 @@
         { type: "cloudflare", test: src => src.includes("cloudflarestream") },
         { type: "brightcove", test: src => src.includes("players.brightcove.net") },
         { type: "video", test: src => /\.(mp4|webm|ogv)($|[?#])/i.test(src) },
+        { type: "fetch", test: src => src.includes("#") },
 
       ];
 
@@ -411,8 +416,9 @@
       // Fetch a same-domain page and pull in the contents of the element matching
       // its #fragment id — just its children, not the element itself, so its id
       // (and any page styling that happens to target that id) doesn't come along.
+      // Shared by data-transcript-fetch and a data-src URL carrying its own #fragment.
 
-      const fetchTranscriptFragment = async (url) => {
+      const fetchRemoteFragment = async (url) => {
 
         const [path, id] = url.split("#");
 
@@ -476,7 +482,7 @@
 
         transcriptTarget.append(placeholder);
 
-        fetchTranscriptFragment(transcriptFetch).then(nodes => {
+        fetchRemoteFragment(transcriptFetch).then(nodes => {
 
           if (nodes) {
 
@@ -757,7 +763,15 @@
 
         let dialog;
 
-        if (!label && !hasResolvableLabelledby(labelledby) && !dynamicLabel) {
+        // A "fetch" type's data-labelledby can legitimately reference an id that
+        // only exists in the content being fetched — not yet on this page — so it
+        // can't be resolved here without delaying the dialog's own open on the
+        // network request. Trust it as-is for this type; aria-labelledby resolves
+        // lazily, so it'll pick up the real element once the fetch inserts it.
+
+        const labelledbyOk = hasResolvableLabelledby(labelledby) || (type === "fetch" && Boolean(labelledby));
+
+        if (!label && !labelledbyOk && !dynamicLabel) {
 
           // Failsafe: never open a dialog with no accessible name. By the time
           // this runs, an in-progress data-dynamic-label lookup has already
@@ -936,6 +950,38 @@
 
           }
 
+          case "fetch": {
+
+            const placeholder = document.createElement("p");
+
+            placeholder.textContent = dialogLoadingContentLabel;
+
+            fetchRemoteFragment(src).then(nodes => {
+
+              if (nodes) {
+
+                placeholder.replaceWith(...nodes);
+
+              } else {
+
+                placeholder.textContent = dialogContentNotFoundLabel;
+                console.error(`Dialog content URL "${src}" did not resolve to a matching element.`);
+
+              }
+
+            }).catch(() => {
+
+              placeholder.textContent = dialogContentFailedLabel;
+              console.error(`Dialog content URL "${src}" failed to load.`);
+
+            });
+
+            dialog = buildMediaDialog(placeholder, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic, hasContent: true, closeLabel: dialogCloseLabel });
+
+            break;
+
+          }
+
           case "element": {
 
             const el = document.getElementById(src);
@@ -1059,8 +1105,9 @@
         }
 
         // Warn if the trigger has no accessible name and none is coming asynchronously.
+        // A "fetch" type's data-labelledby is trusted here too — see openDialog.
 
-        if (!dynamicLabel && !label && !hasResolvableLabelledby(labelledby)) {
+        if (!dynamicLabel && !label && !hasResolvableLabelledby(labelledby) && !(type === "fetch" && labelledby)) {
 
           console.error("Dialog trigger is missing an accessible name. Add data-label, data-labelledby (pointing to an id that exists on the page), or data-dynamic-label.", trigger);
 

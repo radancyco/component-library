@@ -263,14 +263,17 @@ components:
 
       - name: "Fetch"
         id: "content-fetch"
+        note: "Set the <code>data-src</code> attribute to a URL followed by a <code>#fragment</code> id to fetch a same-domain page and pull in the contents of the element matching that id. Only the element's children are copied in — its own id, and any styling on the source page that targets it, doesn't come along."
         group: "Content"
 
       - name: "Fragment"
         id: "content-fragment"
+        note: "Set the <code>data-src</code> attribute to the id of hidden content already present elsewhere on the page to use as the dialog's content. Only the element's children are moved into the dialog."
         group: "Content"
 
       - name: "Iframe"
         id: "content-iframe"
+        note: "Set the <code>data-iframe-src</code> attribute to load a URL directly inside an <code>iframe</code> within the dialog, rather than fetching and extracting its content. Takes priority over <code>data-src</code> when both are present on the same trigger."
         group: "Content"
 
       - name: "Audio Description"
