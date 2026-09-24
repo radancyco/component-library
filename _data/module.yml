@@ -277,6 +277,12 @@ components:
         note: "Set the <code>data-caption</code> attribute to a <code>src, label, srclang, default</code> value referencing a valid VTT file. The optional <code>default</code> flag marks that track as the one shown automatically. Multiple language tracks are supported: separate each <code>src, label, srclang, default</code> group with a semicolon to add more than one caption track to the video. Third-party captions are the responsibility of their original authors to supply. To promote a more inclusive experience, third-party caption visibility defaults to on and can't be overridden."
         group: "Accessibility"
 
+      - name: "Disable Autoplay"
+        id: "disable-autoplay"
+        a11y: "Autoplaying video can be disorienting or distressing for users with vestibular disorders or motion sensitivity, and disruptive for anyone with attention-related conditions who is easily pulled away from the surrounding page. This attribute is already applied automatically to honor a user's OS-level settings, regardless of whether autoplay is explicitly disabled; but you can use this setting explicitly when you want autoplay disabled for every visitor, not just those with that OS-level preference set."
+        note: "Set the <code>data-disable-autoplay</code> attribute (present, no value needed) to prevent the video from autoplaying when the dialog opens. The video can still be started manually using its own play control."
+        group: "Accessibility"
+
       - name: "Label"
         id: "label"
         note: "Set the <code>data-label</code> attribute to a descriptive string to use as the dialog's accessible name. When <code>data-enable-heading</code> is also present, this same value is also used as the visible heading text."

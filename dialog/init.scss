@@ -154,6 +154,15 @@ z-index: 2147483646;
       justify-content: end;
     
     }
+
+    [data-has-content] & { 
+
+      position: sticky;
+      inset-block-start: 0;
+      block-size: 0;
+      margin-block-end: 0;
+
+    }
   
   }
 
@@ -186,15 +195,7 @@ z-index: 2147483646;
 
       }
 
-      [data-has-content] & { 
-
-        inset-block-start: 1rem;
-        inset-inline-end: 1rem;
-        position: absolute;
-
-      }
-
-       &--close {
+      &--close {
       background-image: var(--dialog-close-icon);
       }
 
@@ -266,7 +267,7 @@ z-index: 2147483646;
   }
 
   &__transcript {
-  background-color: #f0f5f7;
+  background-color: #DCE8EA;
   block-size: calc(260rem / 16);
   display: none;
   grid-template-rows: max-content minmax(0, 1fr);
@@ -318,6 +319,11 @@ z-index: 2147483646;
     overflow-y: auto;
     padding: 1rem 1rem 1rem 0.5rem;
     scrollbar-color: #0f1632 transparent;
+
+      &:focus-visible {
+      mask-image: none;
+      }
+
     }
 
   }

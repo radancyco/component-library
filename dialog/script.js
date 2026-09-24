@@ -297,21 +297,18 @@
 
       };
 
-      // Move a hidden source element into the dialog; returns a function that restores it in place.
+      // Move a hidden source element's children (not the element itself, so its id — and any
+      // page styling that happens to target that id — stays behind with it) into the dialog.
+      // Returns a document fragment to insert, plus a function that restores the children in place.
 
-      const moveIntoDialog = (el) => {
+      const moveContentIntoDialog = (el) => {
 
-        const anchor = document.createComment("");
+        const children = Array.from(el.childNodes);
+        const fragment = document.createDocumentFragment();
 
-        el.before(anchor);
-        el.hidden = false;
+        fragment.append(...children);
 
-        return () => {
-
-          el.hidden = true;
-          anchor.replaceWith(el);
-
-        };
+        return { fragment, restore: () => el.append(...children) };
 
       };
 
@@ -925,8 +922,10 @@
 
             if (el) {
 
-              restoreCallbacks.push(moveIntoDialog(el));
-              contentNode = el;
+              const { fragment, restore } = moveContentIntoDialog(el);
+
+              restoreCallbacks.push(restore);
+              contentNode = fragment;
 
             } else {
 
