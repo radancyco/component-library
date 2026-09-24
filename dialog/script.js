@@ -59,8 +59,8 @@
       const dialogDataHeading = "data-enable-heading";
       const dialogDataHasHeading = "data-has-heading";
       const dialogDataHasContent = "data-has-content";
-      const dialogDataTranscriptId = "data-transcript-id";
-      const dialogDataTranscriptUrl = "data-transcript-url";
+      const dialogDataTranscriptFragment = "data-transcript-fragment";
+      const dialogDataTranscriptFetch = "data-transcript-fetch";
       const dialogDataDisableAutoplay = "data-disable-autoplay";
       const dialogDataYoutubeShorts = "data-youtube-shorts";
       const dialogDataDynamicLabel = "data-dynamic-label";
@@ -68,6 +68,7 @@
       const dialogDataAriaDialog = "data-aria-dialog";
       const dialogDataFullscreen = "data-fullscreen";
       const dialogDataSrc = "data-src";
+      const dialogDataIframeSrc = "data-iframe-src";
       const dialogDataOpenState = "data-open";
       const dialogBackdropClassName = "dialog-backdrop";
       const dialogClassName = "dialog";
@@ -84,7 +85,6 @@
       const dialogTranscriptHeadingClassName = "dialog__transcript--hdr";
       const dialogTranscriptContentClassName = "dialog__transcript--content";
       const dialogAssetClassName = "dialog__asset";
-      const dialogContentClassName = "dialog__content";
       const dialogMediaClassName = "dialog__media";
 
       // Labels. Translation-ready — not yet wired to the language pack.
@@ -103,6 +103,7 @@
       const dialogMissingNameHeadingLabel = "Accessible Name Missing";
       const dialogMissingNameMessageLabel = "An accessible name must be provided. Add data-label with a descriptive value, data-labelledby pointing to an id already present on the page, or data-dynamic-label to fetch one automatically.";
       const dialogVideoFallbackLabel = "Video Player";
+      const dialogIframeFallbackLabel = "Embedded Content";
 
       const dialogTriggers = document.querySelectorAll(dialogTriggerClass);
       const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -135,6 +136,13 @@
         return dialogTypeDetectors.find(({ test }) => test(src))?.type ?? "element";
 
       };
+
+      // A data-labelledby value only counts as an accessible name when it
+      // actually resolves to an id present on the page — a dangling reference
+      // provides no real accessible name, so it's treated the same as if
+      // data-labelledby had never been authored at all.
+
+      const hasResolvableLabelledby = (labelledby) => Boolean(labelledby && document.getElementById(labelledby));
 
       // Timestamp of the last dialog close — see the trigger click handler
       // below for why this exists. Works around a Chrome/Firefox bug, not
@@ -440,11 +448,11 @@
       // In both cases only the source's contents are copied in, not the source element itself —
       // its id (and any page styling that happens to target that id) stays behind with it.
 
-      const loadTranscriptOnce = (transcriptTarget, { transcript, transcriptUrl }) => {
+      const loadTranscriptOnce = (transcriptTarget, { transcriptFragment, transcriptFetch }) => {
 
-        if (transcript) {
+        if (transcriptFragment) {
 
-          const transcriptEl = document.getElementById(transcript);
+          const transcriptEl = document.getElementById(transcriptFragment);
 
           if (transcriptEl) {
 
@@ -452,7 +460,7 @@
 
           } else {
 
-            console.error(`Dialog transcript element with id "${transcript}" not found.`);
+            console.error(`Dialog transcript element with id "${transcriptFragment}" not found.`);
 
           }
 
@@ -468,7 +476,7 @@
 
         transcriptTarget.append(placeholder);
 
-        fetchTranscriptFragment(transcriptUrl).then(nodes => {
+        fetchTranscriptFragment(transcriptFetch).then(nodes => {
 
           if (nodes) {
 
@@ -477,7 +485,7 @@
           } else {
 
             placeholder.textContent = dialogTranscriptNotFoundLabel;
-            console.error(`Dialog transcript URL "${transcriptUrl}" did not resolve to a matching element.`);
+            console.error(`Dialog transcript URL "${transcriptFetch}" did not resolve to a matching element.`);
 
           }
 
@@ -486,7 +494,7 @@
         }).catch(() => {
 
           placeholder.textContent = dialogTranscriptFailedLabel;
-          console.error(`Dialog transcript URL "${transcriptUrl}" failed to load.`);
+          console.error(`Dialog transcript URL "${transcriptFetch}" failed to load.`);
 
           applyTranscriptTabindex(transcriptTarget);
 
@@ -560,10 +568,10 @@
       };
 
       // Build the full "media" dialog structure (header + controls, transcript panel, asset) —
-      // shared by video/youtube/vimeo (assetClassName dialogAssetClassName) and element/default
-      // (assetClassName dialogContentClassName, no video-specific decoration on the content itself).
+      // shared by video/youtube/vimeo (hasContent false) and element/iframe/default
+      // (hasContent true, no video-specific decoration applied to the content itself).
 
-      const buildMediaDialog = (assetContent, { heading, label, labelledby, hasDescription, transcript, transcriptUrl, classic, assetClassName = dialogAssetClassName, closeLabel = dialogCloseVideoLabel, restoreCallbacks = [] }) => {
+      const buildMediaDialog = (assetContent, { heading, label, labelledby, hasDescription, transcriptFragment, transcriptFetch, classic, hasContent = false, closeLabel = dialogCloseVideoLabel, restoreCallbacks = [] }) => {
 
         const titleText = label || dialogVideoLabel;
         const baseId = label ? slugify(label) : `dialog-${++dialogInstanceId}`;
@@ -656,7 +664,7 @@
 
         container.className = dialogContainerClassName;
 
-        if (transcript || transcriptUrl) {
+        if (transcriptFragment || transcriptFetch) {
 
           const transcriptPanel = document.createElement("div");
 
@@ -683,7 +691,7 @@
           // toggled open — doing it up front means nothing new happens in
           // the DOM at the moment the user actually sees the toggle happen.
 
-          loadTranscriptOnce(transcriptContent, { transcript, transcriptUrl });
+          loadTranscriptOnce(transcriptContent, { transcriptFragment, transcriptFetch });
 
           const transcriptBtn = document.createElement("button");
 
@@ -708,7 +716,7 @@
 
         header.append(controls);
 
-        if (assetClassName === dialogAssetClassName) {
+        if (!hasContent) {
 
           assetContent.classList.add(dialogMediaClassName);
 
@@ -726,12 +734,14 @@
 
         const asset = document.createElement("div");
 
-        asset.className = assetClassName;
+        asset.className = dialogAssetClassName;
         asset.append(assetContent);
 
         container.append(asset);
 
         dialog.append(header, container);
+
+        if (hasContent) dialog.setAttribute(dialogDataHasContent, "");
 
         dialog.dialogRestoreCallbacks = restoreCallbacks;
 
@@ -741,13 +751,13 @@
 
       // Create and show dialog dynamically based on type.
 
-      const openDialog = (type, src, { label, labelledby, dynamicLabel, caption, description, heading, transcript, transcriptUrl, disableAutoplay, classic, fullscreen } = {}) => {
+      const openDialog = (type, src, { label, labelledby, dynamicLabel, caption, description, heading, transcriptFragment, transcriptFetch, disableAutoplay, classic, fullscreen } = {}) => {
 
         const triggerElement = document.activeElement;
 
         let dialog;
 
-        if (!label && !labelledby && !dynamicLabel) {
+        if (!label && !hasResolvableLabelledby(labelledby) && !dynamicLabel) {
 
           // Failsafe: never open a dialog with no accessible name. By the time
           // this runs, an in-progress data-dynamic-label lookup has already
@@ -762,8 +772,7 @@
 
           contentNode.textContent = dialogMissingNameMessageLabel;
 
-          dialog = buildMediaDialog(contentNode, { label: dialogMissingNameHeadingLabel, classic, assetClassName: dialogContentClassName, closeLabel: dialogCloseLabel });
-          dialog.setAttribute(dialogDataHasContent, "");
+          dialog = buildMediaDialog(contentNode, { label: dialogMissingNameHeadingLabel, classic, hasContent: true, closeLabel: dialogCloseLabel });
 
         } else switch (type) {
 
@@ -815,7 +824,7 @@
 
             }
 
-            dialog = buildMediaDialog(video, { heading, label, labelledby, hasDescription: Boolean(description), transcript, transcriptUrl, classic });
+            dialog = buildMediaDialog(video, { heading, label, labelledby, hasDescription: Boolean(description), transcriptFragment, transcriptFetch, classic });
 
             break;
 
@@ -849,7 +858,7 @@
 
             }
 
-            dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcript, transcriptUrl, classic });
+            dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic });
 
             flagYoutubeShorts(dialog, src);
 
@@ -865,7 +874,7 @@
             iframe.allow = "autoplay; fullscreen";
             iframe.allowFullscreen = true;
 
-            dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcript, transcriptUrl, classic });
+            dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic });
 
             break;
 
@@ -885,7 +894,7 @@
             iframe.allow = "accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen";
             iframe.allowFullscreen = true;
 
-            dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcript, transcriptUrl, classic });
+            dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic });
 
             break;
 
@@ -907,7 +916,21 @@
             iframe.allow = "encrypted-media; autoplay; fullscreen";
             iframe.allowFullscreen = true;
 
-            dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcript, transcriptUrl, classic });
+            dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic });
+
+            break;
+
+          }
+
+          case "iframe": {
+
+            const iframe = document.createElement("iframe");
+
+            iframe.src = src;
+            iframe.title = label || dialogIframeFallbackLabel;
+            iframe.classList.add(dialogMediaClassName);
+
+            dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic, hasContent: true, closeLabel: dialogCloseLabel });
 
             break;
 
@@ -934,8 +957,7 @@
 
             }
 
-            dialog = buildMediaDialog(contentNode, { heading, label, labelledby, transcript, transcriptUrl, classic, assetClassName: dialogContentClassName, closeLabel: dialogCloseLabel, restoreCallbacks });
-            dialog.setAttribute(dialogDataHasContent, "");
+            dialog = buildMediaDialog(contentNode, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic, hasContent: true, closeLabel: dialogCloseLabel, restoreCallbacks });
 
             break;
 
@@ -1007,13 +1029,15 @@
         const caption = trigger.getAttribute(dialogDataCaption);
         const description = trigger.getAttribute(dialogDataDescription);
         const heading = trigger.hasAttribute(dialogDataHeading);
-        const transcript = trigger.getAttribute(dialogDataTranscriptId);
-        const transcriptUrl = trigger.getAttribute(dialogDataTranscriptUrl);
+        const transcriptFragment = trigger.getAttribute(dialogDataTranscriptFragment);
+        const transcriptFetch = trigger.getAttribute(dialogDataTranscriptFetch);
         const disableAutoplay = trigger.hasAttribute(dialogDataDisableAutoplay) || prefersReducedMotion;
         const dynamicLabel = trigger.hasAttribute(dialogDataDynamicLabel);
         const classic = trigger.hasAttribute(dialogDataAriaDialog);
         const fullscreen = trigger.hasAttribute(dialogDataFullscreen);
-        const type = detectDialogType(trigger.getAttribute(dialogDataSrc));
+        const iframeSrc = trigger.getAttribute(dialogDataIframeSrc);
+        const src = iframeSrc ?? trigger.getAttribute(dialogDataSrc);
+        const type = iframeSrc ? "iframe" : detectDialogType(src);
 
         // EXPERIMENTAL (data-dynamic-label): kick off the oEmbed title lookup on page
         // load; the trigger's click handler waits on this before opening the dialog.
@@ -1036,9 +1060,9 @@
 
         // Warn if the trigger has no accessible name and none is coming asynchronously.
 
-        if (!dynamicLabel && !label && !labelledby) {
+        if (!dynamicLabel && !label && !hasResolvableLabelledby(labelledby)) {
 
-          console.error("Dialog trigger is missing an accessible name. Add data-label, data-labelledby, or data-dynamic-label.", trigger);
+          console.error("Dialog trigger is missing an accessible name. Add data-label, data-labelledby (pointing to an id that exists on the page), or data-dynamic-label.", trigger);
 
         }
 
@@ -1112,7 +1136,7 @@
 
           dynamicLabelReady.then(() => {
 
-            openDialog(type, trigger.getAttribute(dialogDataSrc), { label, labelledby, dynamicLabel, caption, description, heading, transcript, transcriptUrl, disableAutoplay, classic, fullscreen });
+            openDialog(type, src, { label, labelledby, dynamicLabel, caption, description, heading, transcriptFragment, transcriptFetch, disableAutoplay, classic, fullscreen });
 
           });
 

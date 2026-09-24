@@ -261,8 +261,16 @@ components:
       - name: "Default"
         id: "default"
 
-      - name: "Content"
-        id: "content-id"
+      - name: "Fetch"
+        id: "content-fetch"
+        group: "Content"
+
+      - name: "Fragment"
+        id: "content-fragment"
+        group: "Content"
+
+      - name: "Iframe"
+        id: "content-iframe"
         group: "Content"
 
       - name: "Audio Description"
@@ -289,22 +297,22 @@ components:
         warning: "This attribute is optional when <code>data-labelledby</code> or <code>data-dynamic-label</code> is present; if neither is set, <code>data-label</code> becomes mandatory, since a dialog must always be given an accessible name through one of these three attributes."
         group: "Accessibility"
 
-      - name: "Labelled By ID"
+      - name: "Labelled by ID"
         id: "labelledby"
         note: "Set the <code>data-labelledby</code> attribute to a valid element <code>id</code> already present on the page to use as the dialog's accessible name, instead of an auto-generated one. This value is always used verbatim for <code>aria-labelledby</code>, taking priority over any auto-generated id. It's particularly useful in content dialog scenarios, such as the <a href='#content-id'>Content (ID)</a> example, where the dialog's own content already contains a heading that can double as its accessible name."
         warning: "This attribute is optional when <code>data-label</code> or <code>data-dynamic-label</code> is present; if neither is set, <code>data-labelledby</code> becomes mandatory, since a dialog must always be given an accessible name through one of these three attributes."
         group: "Accessibility"
 
-      - name: "Transcript (ID)"
-        id: "transcript-id"
+      - name: "Transcript by Fragment"
+        id: "transcript-fragment"
         a11y: "Are transcripts necessary? Yes! Providing an alternative way to share a video's information through a transcript is valuable even when captions are already present: captions aren't accessible to every assistive technology, such as refreshable Braille displays or some screen readers, and they can move too quickly or feel distracting for some users. Transcripts, by contrast, let people search and scan content more easily, and can include additional detail, semantic markup, and hyperlinks that wouldn't be possible or appropriate within captions. Beyond accessibility, search engines can also benefit from this extra text, helping them better understand and index your content."
-        note: "Set the <code>data-transcript-id</code> attribute to reference hidden content elsewhere on the page for use as the transcript. The value must match a valid element <code>id</code>; invalid or missing IDs are ignored."
+        note: "Set the <code>data-transcript-fragment</code> attribute to reference hidden content elsewhere on the page for use as the transcript. The value must match a valid element <code>id</code>; invalid or missing IDs are ignored."
         group: "Accessibility"
 
-      - name: "Transcript (URL)"
-        id: "transcript-url"
+      - name: "Transcript by Fetch"
+        id: "transcript-fetch"
         a11y: "Are transcripts necessary? Yes! Providing an alternative way to share a video's information through a transcript is valuable even when captions are already present: captions aren't accessible to every assistive technology, such as refreshable Braille displays or some screen readers, and they can move too quickly or feel distracting for some users. Transcripts, by contrast, let people search and scan content more easily, and can include additional detail, semantic markup, and hyperlinks that wouldn't be possible or appropriate within captions. Beyond accessibility, search engines can also benefit from this extra text, helping them better understand and index your content."
-        note: "Set the <code>data-transcript-url</code> attribute to reference an external resource, optionally including a page fragment (<code>#id</code>), for use as the transcript source. This is especially useful in CMS environments, letting authors update the transcript without a code change. Only a valid URL, with a valid fragment when present, will be accepted."
+        note: "Set the <code>data-transcript-fetch</code> attribute to reference an external resource, optionally including a page fragment (<code>#id</code>), for use as the transcript source. This is especially useful in CMS environments, letting authors update the transcript without a code change. Only a valid URL, with a valid fragment when present, will be accepted."
         group: "Accessibility"
 
       - name: "Dynamic Label"
