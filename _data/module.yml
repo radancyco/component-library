@@ -252,7 +252,7 @@ components:
         id: "arrow-placement"
 
   - id: "dialog"
-    desc: "Displays video or other content in a modal dialog, opened when a user presses a button."
+    desc: "Displays video or other content in a modal dialog. Can be used as a replacment for third-party modals, such as Fancybox."
     path: "dialog"
     title: "Dialog"
     version: "1.0.0"
