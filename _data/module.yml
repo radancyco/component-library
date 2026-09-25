@@ -261,17 +261,17 @@ components:
       - name: "Default"
         id: "default"
 
-      - name: "Fetch"
+      - name: "Insert via Fetch"
         id: "content-fetch"
         note: "Set the <code>data-src</code> attribute to a URL followed by a <code>#fragment</code> id to fetch a same-domain page and pull in the contents of the element matching that id. Only the element's children are copied in — its own id, and any styling on the source page that targets it, doesn't come along."
         group: "Content"
 
-      - name: "Fragment"
+      - name: "Insert via Fragment"
         id: "content-fragment"
         note: "Set the <code>data-src</code> attribute to the id of hidden content already present elsewhere on the page to use as the dialog's content. Only the element's children are moved into the dialog."
         group: "Content"
 
-      - name: "Iframe"
+      - name: "Insert via Iframe"
         id: "content-iframe"
         note: "Set the <code>data-iframe-src</code> attribute to load a URL directly inside an <code>iframe</code> within the dialog, rather than fetching and extracting its content. Takes priority over <code>data-src</code> when both are present on the same trigger."
         group: "Content"
@@ -306,13 +306,13 @@ components:
         warning: "This attribute is optional when <code>data-label</code> or <code>data-dynamic-label</code> is present; if neither is set, <code>data-labelledby</code> becomes mandatory, since a dialog must always be given an accessible name through one of these three attributes."
         group: "Accessibility"
 
-      - name: "Transcript by Fragment"
+      - name: "Transcript via Fragment"
         id: "transcript-fragment"
         a11y: "Are transcripts necessary? Yes! Providing an alternative way to share a video's information through a transcript is valuable even when captions are already present: captions aren't accessible to every assistive technology, such as refreshable Braille displays or some screen readers, and they can move too quickly or feel distracting for some users. Transcripts, by contrast, let people search and scan content more easily, and can include additional detail, semantic markup, and hyperlinks that wouldn't be possible or appropriate within captions. Beyond accessibility, search engines can also benefit from this extra text, helping them better understand and index your content."
         note: "Set the <code>data-transcript-fragment</code> attribute to reference hidden content elsewhere on the page for use as the transcript. The value must match a valid element <code>id</code>; invalid or missing IDs are ignored."
         group: "Accessibility"
 
-      - name: "Transcript by Fetch"
+      - name: "Transcript via Fetch"
         id: "transcript-fetch"
         a11y: "Are transcripts necessary? Yes! Providing an alternative way to share a video's information through a transcript is valuable even when captions are already present: captions aren't accessible to every assistive technology, such as refreshable Braille displays or some screen readers, and they can move too quickly or feel distracting for some users. Transcripts, by contrast, let people search and scan content more easily, and can include additional detail, semantic markup, and hyperlinks that wouldn't be possible or appropriate within captions. Beyond accessibility, search engines can also benefit from this extra text, helping them better understand and index your content."
         note: "Set the <code>data-transcript-fetch</code> attribute to reference an external resource, optionally including a page fragment (<code>#id</code>), for use as the transcript source. This is especially useful in CMS environments, letting authors update the transcript without a code change. Only a valid URL, with a valid fragment when present, will be accepted."
