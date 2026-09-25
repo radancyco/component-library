@@ -46,7 +46,7 @@ outline-offset: 4px;
   background-size: calc(24rem / 16);
   block-size: calc(60rem / 16);
   border-radius: 100vw;
-  border: 0.2rem #fff solid;
+  border: calc(2rem / 16) #fff solid;
   content: "";
   display: block;
   inline-size: calc(60rem / 16);
@@ -126,10 +126,12 @@ z-index: 2147483646;
   }
 
   &[data-has-heading], &[data-has-content] {
-  background-color: #fff;
-  border-radius: calc(6rem / 16);
-  box-shadow: 0 calc(4rem / 16) 1rem rgba(0, 0, 0, 0.8);
-  padding: 1rem;
+
+    background-color: #fff;
+    border-radius: calc(6rem / 16);
+    box-shadow: 0 calc(4rem / 16) 1rem rgba(0, 0, 0, 0.8);
+    padding: 1rem;
+
   }
 
   &[open], &[data-open] {
@@ -168,7 +170,7 @@ z-index: 2147483646;
       position: sticky;
       inset-block-start: 0;
       block-size: 0;
-      margin-block-end: 0;
+      margin-block-end: 2.5rem;
 
     }
   
