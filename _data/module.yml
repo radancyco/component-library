@@ -302,25 +302,25 @@ components:
 
       - name: "Labelled by ID"
         id: "labelledby"
-        note: "Set the <code>data-labelledby</code> attribute to a valid element <code>id</code> already present on the page to use as the dialog's accessible name, instead of an auto-generated one. This value is always used verbatim for <code>aria-labelledby</code>, taking priority over any auto-generated id. It's particularly useful in content dialog scenarios, such as the <a href='#content-id'>Content (ID)</a> example, where the dialog's own content already contains a heading that can double as its accessible name."
+        note: "Set the <code>data-labelledby</code> attribute to a valid element <code>id</code> already present on the page to use as the dialog's accessible name, instead of an auto-generated one. This value is always used verbatim for <code>aria-labelledby</code>, taking priority over any auto-generated id. It's particularly useful in content dialog scenarios, such as the <a href='#content-fragment'>Content Insertion via Fragment</a> example, where the dialog's own content already contains a heading that can double as its accessible name."
         warning: "This attribute is optional when <code>data-label</code> or <code>data-dynamic-label</code> is present; if neither is set, <code>data-labelledby</code> becomes mandatory, since a dialog must always be given an accessible name through one of these three attributes."
         group: "Accessibility"
 
       - name: "Transcript via Fragment"
         id: "transcript-fragment"
         a11y: "Are transcripts necessary? Yes! Providing an alternative way to share a video's information through a transcript is valuable even when captions are already present: captions aren't accessible to every assistive technology, such as refreshable Braille displays or some screen readers, and they can move too quickly or feel distracting for some users. Transcripts, by contrast, let people search and scan content more easily, and can include additional detail, semantic markup, and hyperlinks that wouldn't be possible or appropriate within captions. Beyond accessibility, search engines can also benefit from this extra text, helping them better understand and index your content."
-        note: "Set the <code>data-transcript-fragment</code> attribute to reference hidden content elsewhere on the page for use as the transcript. The value must match a valid element <code>id</code>; invalid or missing IDs are ignored."
+        note: "Set the <code>data-transcript-fragment</code> attribute to reference hidden content elsewhere on the page for use as the transcript. The value must match a valid element <code>id</code>; invalid or missing IDs, will prevent a transcript from loading."
         group: "Accessibility"
 
       - name: "Transcript via Fetch"
         id: "transcript-fetch"
         a11y: "Are transcripts necessary? Yes! Providing an alternative way to share a video's information through a transcript is valuable even when captions are already present: captions aren't accessible to every assistive technology, such as refreshable Braille displays or some screen readers, and they can move too quickly or feel distracting for some users. Transcripts, by contrast, let people search and scan content more easily, and can include additional detail, semantic markup, and hyperlinks that wouldn't be possible or appropriate within captions. Beyond accessibility, search engines can also benefit from this extra text, helping them better understand and index your content."
-        note: "Set the <code>data-transcript-fetch</code> attribute to reference an external resource, optionally including a page fragment (<code>#id</code>), for use as the transcript source. This is especially useful in CMS environments, letting authors update the transcript without a code change. Only a valid URL, with a valid fragment when present, will be accepted."
+        note: "Set the <code>data-transcript-fetch</code> attribute to reference an external resource and specific page fragment (<code>#id</code>), for use as the transcript source. This is especially useful in CMS environments, letting authors update the transcript without a code change. Only a valid URL, with a valid fragment when present, will be accepted."
         group: "Accessibility"
 
       - name: "Dynamic Label"
         id: "dynamic-label"
-        note: "Set the <code>data-dynamic-label</code> attribute to fetch the dialog's accessible name automatically from the video provider, rather than authoring one by hand. This is especially useful when content is sourced dynamically and its title isn't known ahead of time, or in situations where a manually authored label has a high risk of being forgotten. Pairing it with a <code>data-dynamic-alt</code> attribute on an inner <code>img</code> is optional, but recommended: once the label resolves, its value is also applied to that image's <code>alt</code> text."
+        note: "Set the <code>data-dynamic-label</code> attribute to fetch the dialog's accessible name automatically from the video provider, rather than authoring one by hand. This is especially useful when content is sourced dynamically and its title isn't known ahead of time, or in situations where a manually authored label has a high risk of being forgotten. Pairing it with a <code>data-dynamic-alt</code> attribute on an inner <code>img</code> is optional, but recommended: once the label resolves, its value is also applied to that image's <code>alt</code> text. Additional functional text, such as <em>(Video)</em>, is dynamically added to allow users to understand the nature of the button and the dialog."
         warning: "This attribute is optional when <code>data-label</code> or <code>data-labelledby</code> is present; if neither is set, <code>data-dynamic-label</code> becomes mandatory, since a dialog must always be given an accessible name through one of these three attributes. Please also note that dynamic labeling is only supported for YouTube and Vimeo."
         group: "Experimental"
 
@@ -331,7 +331,7 @@ components:
 
       - name: "Enable Heading"
         id: "enable-heading"
-        note: "By default, dialogs do not render a heading. Set the <code>data-enable-heading</code> attribute to enable one, using the required value provided via the <code>data-label</code> attribute. Note that an <code>h1</code> element is used for this heading; this is acceptable within the context of a dialog, since all other page content is rendered inert while it is open."
+        note: "By default, dialogs do not render a heading. Set the <code>data-enable-heading</code> attribute to enable one, using the required value provided via the <code>data-label</code> attribute. Note that an <code>h1</code> element is used for this heading; this is acceptable within the context of a dialog, since all other page content is rendered <code>inert</code> while it is open."
         group: "Utilities"
 
       - name: "Fullscreen"
@@ -346,32 +346,32 @@ components:
 
       - name: "Brightcove"
         id: "video-brightcove"
-        group: "Video"
+        group: "Video Support"
 
       - name: "Cloudflare"
         id: "video-cloudflare"
-        group: "Video"
+        group: "Video Support"
 
       - name: "MP4"
         id: "video-mp4"
-        group: "Video"
+        group: "Video Support"
 
       - name: "Vimeo"
         id: "video-vimeo"
-        group: "Video"
+        group: "Video Support"
 
       - name: "WebM"
         id: "video-webm"
-        group: "Video"
+        group: "Video Support"
 
       - name: "YouTube Shorts"
         id: "video-youtube-shorts"
         note: "The script automatically detects when a YouTube Shorts video is being played and adjusts its default size to render at the correct aspect ratio."
-        group: "Video"
+        group: "Video Support"
 
       - name: "YouTube"
         id: "video-youtube"
-        group: "Video"
+        group: "Video Support"
 
   - id: "disclosure"
     desc: "Reaveal or hide additional content when triggered, helping to manage the display of supplementary information."
