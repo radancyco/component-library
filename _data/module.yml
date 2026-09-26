@@ -252,26 +252,29 @@ components:
         id: "arrow-placement"
 
   - id: "dialog"
-    desc: "Displays video or other content in a modal dialog. Can be used as a replacment for third-party modals, such as Fancybox."
+    desc: "Displays video or other content in a modal dialog. Can be used as a replacment for third-party scripts, such as Fancybox."
     path: "dialog"
     title: "Dialog"
     version: "1.0.0"
     examples:
 
-      - name: "Default"
+      - name: "Default Setup"
         id: "default"
 
-      - name: "Insert via Fetch"
+      - name: "Kitchen Sink"
+        id: "kitchen-sink"
+
+      - name: "Insert (Fetch)"
         id: "content-fetch"
         note: "Set the <code>data-src</code> attribute to a URL followed by a <code>#fragment</code> id to fetch a same-domain page and pull in the contents of the element matching that id. Only the element's children are copied in — its own id, and any styling on the source page that targets it, doesn't come along."
         group: "Content"
 
-      - name: "Insert via Fragment"
+      - name: "Insert (Fragment)"
         id: "content-fragment"
         note: "Set the <code>data-src</code> attribute to the id of hidden content already present elsewhere on the page to use as the dialog's content. Only the element's children are moved into the dialog."
         group: "Content"
 
-      - name: "Insert via Iframe"
+      - name: "Insert (Iframe)"
         id: "content-iframe"
         note: "Set the <code>data-iframe-src</code> attribute to load a URL directly inside an <code>iframe</code> within the dialog, rather than fetching and extracting its content. Takes priority over <code>data-src</code> when both are present on the same trigger."
         group: "Content"
@@ -306,13 +309,13 @@ components:
         warning: "This attribute is optional when <code>data-label</code> or <code>data-dynamic-label</code> is present; if neither is set, <code>data-labelledby</code> becomes mandatory, since a dialog must always be given an accessible name through one of these three attributes."
         group: "Accessibility"
 
-      - name: "Transcript via Fragment"
+      - name: "Transcript (Fragment)"
         id: "transcript-fragment"
         a11y: "Are transcripts necessary? Yes! Providing an alternative way to share a video's information through a transcript is valuable even when captions are already present: captions aren't accessible to every assistive technology, such as refreshable Braille displays or some screen readers, and they can move too quickly or feel distracting for some users. Transcripts, by contrast, let people search and scan content more easily, and can include additional detail, semantic markup, and hyperlinks that wouldn't be possible or appropriate within captions. Beyond accessibility, search engines can also benefit from this extra text, helping them better understand and index your content."
         note: "Set the <code>data-transcript-fragment</code> attribute to reference hidden content elsewhere on the page for use as the transcript. The value must match a valid element <code>id</code>; invalid or missing IDs, will prevent a transcript from loading."
         group: "Accessibility"
 
-      - name: "Transcript via Fetch"
+      - name: "Transcript (Fetch)"
         id: "transcript-fetch"
         a11y: "Are transcripts necessary? Yes! Providing an alternative way to share a video's information through a transcript is valuable even when captions are already present: captions aren't accessible to every assistive technology, such as refreshable Braille displays or some screen readers, and they can move too quickly or feel distracting for some users. Transcripts, by contrast, let people search and scan content more easily, and can include additional detail, semantic markup, and hyperlinks that wouldn't be possible or appropriate within captions. Beyond accessibility, search engines can also benefit from this extra text, helping them better understand and index your content."
         note: "Set the <code>data-transcript-fetch</code> attribute to reference an external resource and specific page fragment (<code>#id</code>), for use as the transcript source. This is especially useful in CMS environments, letting authors update the transcript without a code change. Only a valid URL, with a valid fragment when present, will be accepted."
