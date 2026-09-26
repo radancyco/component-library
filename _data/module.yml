@@ -252,10 +252,10 @@ components:
         id: "arrow-placement"
 
   - id: "dialog"
-    desc: "Displays video or other content in a modal dialog. Can be used as a replacment for third-party scripts, such as Fancybox."
+    desc: "Displays video or other content in a modal dialog with a focus on accessibiliy and ease of implemtnation. Can be used as a replacment for third-party components, such as Fancybox."
     path: "dialog"
     title: "Dialog"
-    version: "1.0.0"
+    version: "1.0.5"
     examples:
 
       - name: "Default Setup"
