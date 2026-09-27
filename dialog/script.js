@@ -62,6 +62,7 @@
       const dialogDataTranscriptFragment = "data-transcript-fragment";
       const dialogDataTranscriptFetch = "data-transcript-fetch";
       const dialogDataDisableAutoplay = "data-disable-autoplay";
+      const dialogDataPoster = "data-poster";
       const dialogDataYoutubeShorts = "data-youtube-shorts";
       const dialogDataDynamicLabel = "data-dynamic-label";
       const dialogDataDynamicAlt = "data-dynamic-alt";
@@ -737,7 +738,7 @@
 
       // Create and show dialog dynamically based on type.
 
-      const openDialog = (type, src, { label, labelledby, dynamicLabel, caption, description, heading, transcriptFragment, transcriptFetch, disableAutoplay, classic, fullscreen } = {}) => {
+      const openDialog = (type, src, { label, labelledby, dynamicLabel, caption, description, heading, transcriptFragment, transcriptFetch, disableAutoplay, poster, classic, fullscreen } = {}) => {
 
         const triggerElement = document.activeElement;
 
@@ -773,6 +774,8 @@
 
             video.controls = true;
             video.crossOrigin = "anonymous";
+
+            if (poster) video.poster = poster;
 
             const source = document.createElement("source");
             const extension = src.match(/\.(mp4|webm|ogv)($|[?#])/i)?.[1].toLowerCase();
@@ -1051,6 +1054,7 @@
         const transcriptFragment = trigger.getAttribute(dialogDataTranscriptFragment);
         const transcriptFetch = trigger.getAttribute(dialogDataTranscriptFetch);
         const disableAutoplay = trigger.hasAttribute(dialogDataDisableAutoplay) || prefersReducedMotion;
+        const poster = trigger.getAttribute(dialogDataPoster);
         const dynamicLabel = trigger.hasAttribute(dialogDataDynamicLabel);
         const classic = trigger.hasAttribute(dialogDataAriaDialog);
         const fullscreen = trigger.hasAttribute(dialogDataFullscreen);
@@ -1149,7 +1153,7 @@
 
           dynamicLabelReady.then(() => {
 
-            openDialog(type, src, { label, labelledby, dynamicLabel, caption, description, heading, transcriptFragment, transcriptFetch, disableAutoplay, classic, fullscreen });
+            openDialog(type, src, { label, labelledby, dynamicLabel, caption, description, heading, transcriptFragment, transcriptFetch, disableAutoplay, poster, classic, fullscreen });
 
           });
 

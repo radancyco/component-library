@@ -252,7 +252,7 @@ components:
         id: "arrow-placement"
 
   - id: "dialog"
-    desc: "Displays video or other content in a modal dialog with a focus on accessibiliy and ease of implemtnation. Can be used as a replacment for third-party components, such as Fancybox."
+    desc: "An accessible, easy-to-implement modal for video and other content, replacing third-party components such as Fancybox."
     path: "dialog"
     title: "Dialog"
     version: "1.0.5"
@@ -345,6 +345,10 @@ components:
         id: "play-button"
         best-practice: "It is considered good practice to always add a border to your play button, as this helps prevent it from becoming lost against a light background. Pairing a darker border with a light button background color (or vice versa) ensures a greater chance that the button remains visible over both lighter and darker background imagery."
         note: "Play buttons are often implemented redundantly, adding extra text for assistive technology users that could already be conveyed through a well-written <code>alt</code> value on the image the button wraps. Setting the <code>data-play-button</code> attribute handles this automatically, adding a visual play-button indicator without requiring redundant markup or text, treating is a visual cue only."
+        group: "Utilities"
+
+      - name: "Poster"
+        id: "poster"
         group: "Utilities"
 
       - name: "Brightcove"
