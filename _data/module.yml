@@ -349,6 +349,7 @@ components:
 
       - name: "Poster"
         id: "poster"
+        note: "Set the <code>data-poster</code> attribute to an image URL to use as the video's poster frame, shown before playback starts. Only applies to self-hosted video (mp4/webm/ogv); other types don't render a native <code>video</code> element to apply it to."
         group: "Utilities"
 
       - name: "Brightcove"
