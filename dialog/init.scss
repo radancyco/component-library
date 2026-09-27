@@ -168,15 +168,19 @@ z-index: 2147483646;
     
     }
 
-    [data-has-content] & { 
+    [data-has-content] & {
 
       position: sticky;
       inset-block-start: 0;
       block-size: 0;
-      margin-block-end: 2.5rem;
+      margin-block-end: 0;
+
+        &:has(~ .dialog__container iframe) {
+        margin-inline-end: 2rem;
+        }
 
     }
-  
+
   }
 
   &__heading {
@@ -317,10 +321,6 @@ z-index: 2147483646;
 
     }
 
-    p:first-child {
-    margin-block-start: 0;
-    }
-
     &--hdr {
     font-size: 1rem;
     margin: 0;
@@ -356,6 +356,18 @@ z-index: 2147483646;
     background-color: #000;
     min-block-size: 0;
     overflow: hidden;
+    }
+
+  }
+
+  &__asset, &__transcript--content {
+
+    & *:first-child {
+    margin-block-start: 0;
+    }
+
+    & > * + * {
+    margin-block-start: var(--flow-space, 1em);
     }
 
   }

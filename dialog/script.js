@@ -63,6 +63,7 @@
       const dialogDataTranscriptFetch = "data-transcript-fetch";
       const dialogDataDisableAutoplay = "data-disable-autoplay";
       const dialogDataPoster = "data-poster";
+      const dialogDataClass = "data-class";
       const dialogDataYoutubeShorts = "data-youtube-shorts";
       const dialogDataDynamicLabel = "data-dynamic-label";
       const dialogDataDynamicAlt = "data-dynamic-alt";
@@ -560,7 +561,7 @@
       // element/iframe/fetch/fallback (hasContent true, no video decoration
       // on the content).
 
-      const buildMediaDialog = (assetContent, { heading, label, labelledby, hasDescription, transcriptFragment, transcriptFetch, classic, hasContent = false, closeLabel = dialogCloseLabel, restoreCallbacks = [] }) => {
+      const buildMediaDialog = (assetContent, { heading, label, labelledby, hasDescription, transcriptFragment, transcriptFetch, classic, hasContent = false, closeLabel = dialogCloseLabel, customClass, restoreCallbacks = [] }) => {
 
         const titleText = label || dialogVideoLabel;
         const baseId = label ? slugify(label) : `dialog-${++dialogInstanceId}`;
@@ -569,6 +570,8 @@
 
         dialog.className = dialogClassName;
         dialog.id = baseId;
+
+        if (customClass) dialog.classList.add(...customClass.split(/\s+/));
 
         if (classic) {
 
@@ -738,7 +741,7 @@
 
       // Create and show dialog dynamically based on type.
 
-      const openDialog = (type, src, { label, labelledby, dynamicLabel, caption, description, heading, transcriptFragment, transcriptFetch, disableAutoplay, poster, classic, fullscreen } = {}) => {
+      const openDialog = (type, src, { label, labelledby, dynamicLabel, caption, description, heading, transcriptFragment, transcriptFetch, disableAutoplay, poster, customClass, classic, fullscreen } = {}) => {
 
         const triggerElement = document.activeElement;
 
@@ -764,7 +767,7 @@
 
           contentNode.textContent = dialogMissingNameMessageLabel;
 
-          dialog = buildMediaDialog(contentNode, { label: dialogMissingNameHeadingLabel, classic, hasContent: true });
+          dialog = buildMediaDialog(contentNode, { label: dialogMissingNameHeadingLabel, classic, hasContent: true, customClass });
 
         } else switch (type) {
 
@@ -818,7 +821,7 @@
 
             }
 
-            dialog = buildMediaDialog(video, { heading, label, labelledby, hasDescription: Boolean(description), transcriptFragment, transcriptFetch, classic });
+            dialog = buildMediaDialog(video, { heading, label, labelledby, hasDescription: Boolean(description), transcriptFragment, transcriptFetch, classic, customClass });
 
             break;
 
@@ -849,7 +852,7 @@
 
             }
 
-            dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic });
+            dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic, customClass });
 
             flagYoutubeShorts(dialog, src);
 
@@ -865,7 +868,7 @@
             iframe.allow = "autoplay; fullscreen";
             iframe.allowFullscreen = true;
 
-            dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic });
+            dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic, customClass });
 
             break;
 
@@ -885,7 +888,7 @@
             iframe.allow = "accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen";
             iframe.allowFullscreen = true;
 
-            dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic });
+            dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic, customClass });
 
             break;
 
@@ -906,7 +909,7 @@
             iframe.allow = "encrypted-media; autoplay; fullscreen";
             iframe.allowFullscreen = true;
 
-            dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic });
+            dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic, customClass });
 
             break;
 
@@ -920,7 +923,7 @@
             iframe.title = label || dialogIframeFallbackLabel;
             iframe.classList.add(dialogMediaClassName);
 
-            dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic, hasContent: true });
+            dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic, hasContent: true, customClass });
 
             break;
 
@@ -952,7 +955,7 @@
 
             });
 
-            dialog = buildMediaDialog(placeholder, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic, hasContent: true });
+            dialog = buildMediaDialog(placeholder, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic, hasContent: true, customClass });
 
             break;
 
@@ -979,7 +982,7 @@
 
             }
 
-            dialog = buildMediaDialog(contentNode, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic, hasContent: true, restoreCallbacks });
+            dialog = buildMediaDialog(contentNode, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic, hasContent: true, customClass, restoreCallbacks });
 
             break;
 
@@ -1079,6 +1082,7 @@
         const transcriptFetch = trigger.getAttribute(dialogDataTranscriptFetch);
         const disableAutoplay = trigger.hasAttribute(dialogDataDisableAutoplay) || prefersReducedMotion;
         const poster = trigger.getAttribute(dialogDataPoster);
+        const customClass = trigger.getAttribute(dialogDataClass);
         const dynamicLabel = trigger.hasAttribute(dialogDataDynamicLabel);
         const classic = trigger.hasAttribute(dialogDataAriaDialog);
         const fullscreen = trigger.hasAttribute(dialogDataFullscreen);
@@ -1180,7 +1184,7 @@
 
           dynamicLabelReady.then(() => {
 
-            openDialog(type, src, { label, labelledby, dynamicLabel, caption, description, heading, transcriptFragment, transcriptFetch, disableAutoplay, poster, classic, fullscreen });
+            openDialog(type, src, { label, labelledby, dynamicLabel, caption, description, heading, transcriptFragment, transcriptFetch, disableAutoplay, poster, customClass, classic, fullscreen });
 
           });
 
