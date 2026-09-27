@@ -18,16 +18,19 @@
 }
 
 .dialog-trigger {
-display: inline-grid;
 background-color: var(--primary-color);
 border-radius: calc(6rem / 16);
 border: 0;
 color: #fff;
 cursor: pointer;
+display: inline-grid;
+font: inherit;
+line-height: normal;
 margin-block-end: 0.5rem;
+outline-offset: 4px;
 overflow: hidden;
 padding: 1rem;
-outline-offset: 4px;
+text-decoration: none;
 
   &:has(img) {
   max-inline-size: calc(300rem / 16);

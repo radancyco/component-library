@@ -1030,6 +1030,30 @@
 
         trigger.setAttribute("aria-haspopup", "dialog");
 
+        // href is only supported on <a> triggers (source comes from href
+        // there, not data-src); data-src is only supported on every other
+        // trigger element (typically <button>). <a> triggers also need
+        // role="button" plus manual Enter/Space handling below, since only
+        // native <button> gets that keyboard behavior for free.
+
+        const isAnchor = trigger.tagName === "A";
+
+        if (isAnchor) {
+
+          trigger.setAttribute("role", "button");
+
+          if (trigger.hasAttribute(dialogDataSrc)) {
+
+            console.error("data-src is not supported on <a> dialog triggers; use href instead.", trigger);
+
+          }
+
+        } else if (trigger.hasAttribute("href")) {
+
+          console.error("href is not supported on this dialog trigger; use data-src instead (href is only supported on <a> triggers).", trigger);
+
+        }
+
         // Add play-button indicator, if requested.
 
         if (trigger.hasAttribute(dialogDataPlayButton)) {
@@ -1059,7 +1083,7 @@
         const classic = trigger.hasAttribute(dialogDataAriaDialog);
         const fullscreen = trigger.hasAttribute(dialogDataFullscreen);
         const iframeSrc = trigger.getAttribute(dialogDataIframeSrc);
-        const src = iframeSrc ?? trigger.getAttribute(dialogDataSrc);
+        const src = iframeSrc ?? (isAnchor ? trigger.getAttribute("href") : trigger.getAttribute(dialogDataSrc));
         const type = iframeSrc ? "iframe" : detectDialogType(src);
 
         // EXPERIMENTAL (data-dynamic-label): kicks off the oEmbed lookup on
@@ -1069,7 +1093,7 @@
 
         if (dynamicLabel && (type === "youtube" || type === "vimeo")) {
 
-          dynamicLabelReady = fetchDynamicVideoTitle(type, trigger.getAttribute(dialogDataSrc)).then(title => {
+          dynamicLabelReady = fetchDynamicVideoTitle(type, src).then(title => {
 
             label = title;
 
@@ -1094,7 +1118,7 @@
 
         if (type === "video" && !caption) {
 
-          console.warn(`Warning: Please ensure that your video ("${trigger.getAttribute(dialogDataSrc)}") has captions available. If there is no spoken dialogue in the video, captions are still required.`, trigger);
+          console.warn(`Warning: Please ensure that your video ("${src}") has captions available. If there is no spoken dialogue in the video, captions are still required.`, trigger);
 
         }
 
@@ -1116,7 +1140,7 @@
 
             warmed = true;
 
-            const videoSrc = trigger.getAttribute(dialogDataSrc);
+            const videoSrc = src;
             const extension = videoSrc.match(/\.(mp4|webm|ogv)($|[?#])/i)?.[1].toLowerCase();
 
             const link = document.createElement("link");
@@ -1135,9 +1159,12 @@
 
         }
 
-        // Handle trigger click.
+        // Handle trigger click. Native Enter on an <a> already fires this as
+        // a real click — preventDefault stops it from following href.
 
-        trigger.addEventListener("click", () => {
+        trigger.addEventListener("click", (e) => {
+
+          if (isAnchor) e.preventDefault();
 
           // On touch devices, a dismissing tap can both light-dismiss the
           // dialog (closedby="any") AND deliver a synthesized click to this
@@ -1158,6 +1185,23 @@
           });
 
         });
+
+        // role="button" gets Enter for free (an <a> already fires a native
+        // click on Enter), but not Space — wire that up by hand, same as
+        // the ARIA APG button pattern requires for non-native buttons.
+
+        if (isAnchor) {
+
+          trigger.addEventListener("keydown", (e) => {
+
+            if (e.key !== " ") return;
+
+            e.preventDefault();
+            trigger.click();
+
+          });
+
+        }
 
       });
 
