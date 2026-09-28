@@ -393,7 +393,7 @@ components:
     message: disclosure-use
     path: "disclosure"
     title: "Disclosure"
-    version: "2.4.1"
+    version: "2.4.2"
     examples:
 
       - name: "Default Setup"

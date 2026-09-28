@@ -131,6 +131,12 @@ padding: 1em;
 
       + .disclosure--content {
       display: block;
+
+        &[data-animation] {
+        max-block-size: none;
+        opacity: 1;
+        }
+
       }
 
     }
