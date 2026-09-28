@@ -205,12 +205,25 @@ z-index: 2147483646;
     cursor: pointer;
     padding: 1.1rem;
 
+      &:hover, &:focus-visible, &[aria-pressed="true"], &[aria-expanded="true"] {
+
+        background-color: var(--primary-color);
+      
+      }
+
       [data-has-heading] &, [data-has-content] & {
 
         background-color: var(--primary-color);
         outline-offset: calc(3rem / 16);
 
+        &:hover, &:focus-visible, &[aria-pressed="true"], &[aria-expanded="true"] {
+
+          background-color: black;
+      
+        }
+
       }
+
 
       &--close {
       background-image: var(--dialog-close-icon);
