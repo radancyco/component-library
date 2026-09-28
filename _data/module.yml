@@ -256,6 +256,7 @@ components:
     path: "dialog"
     title: "Dialog"
     version: "1.0.5"
+    hidden: true
     examples:
 
       - name: "Default Setup"
