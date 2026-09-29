@@ -9,10 +9,6 @@
 
 */
 
-#rad-rcl-dialog-index {
-display: none;
-}
-
 :root {
 
   --backdrop-filter: blur(3px) brightness(0.2);
@@ -208,6 +204,7 @@ z-index: 2147483646;
     border: 0;
     cursor: pointer;
     padding: 1.1rem;
+    transition: background-color 300ms;
 
       &:hover, &:focus-visible, &[aria-pressed="true"], &[aria-expanded="true"] {
 
