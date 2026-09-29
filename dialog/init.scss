@@ -9,6 +9,10 @@
 
 */
 
+body {
+display: none;
+}
+
 :root {
 
   --backdrop-filter: blur(3px) brightness(0.2);
