@@ -1,4 +1,293 @@
 ---
+attributes:
+
+  - name: data-aria-dialog
+    html: .dialog-trigger
+    note:
+
+      - Boolean
+      - Optional
+
+    desc: Used to switch to the classic ARIA dialog fallback (<code>role="dialog"</code>) instead of the native <code>dialog</code> element.
+
+  - name: data-audio-description
+    html: .dialog-trigger
+    note:
+
+      - String
+      - Optional
+
+    desc: Used to add an audio-description track to self-hosted video. Accepts a <code>src, label, srclang</code> value. Can also be folded into <code>data-src</code>'s own query string (e.g. <code>video.mp4?ad=desc.vtt&label=English&srclang=en</code>) when a separate attribute isn't practical.
+
+  - name: data-caption
+    html: .dialog-trigger
+    note:
+
+      - String
+      - Optional
+
+    desc: Used to add caption track(s) to self-hosted video. Accepts a <code>src, label, srclang, default</code> value; separate multiple tracks with a semicolon. <code>label</code>, <code>srclang</code>, and <code>default</code> can alternatively be passed in as a query string on the track URL itself (e.g. <code>file.vtt?label=English&srclang=en&default</code>) instead of comma-separated.
+
+  - name: data-class
+    html: .dialog-trigger
+    note:
+
+      - String
+      - Optional
+
+    desc: Used to append one or more space-separated class names to the dialog element.
+
+  - name: data-description
+    html: .dialog-trigger
+    note:
+
+      - String
+      - Optional
+
+    desc: Used to set the dialog's accessible description via <code>aria-describedby</code>.
+
+  - name: data-disable-autoplay
+    html: .dialog-trigger
+    note:
+
+      - Boolean
+      - Optional
+
+    desc: Used to prevent video or embed autoplay when the dialog opens. Already honored automatically for <code>prefers-reduced-motion</code>.
+
+  - name: data-dynamic-alt
+    html: img
+    note:
+
+      - Boolean
+      - Optional
+
+    desc: <strong>This feature is experimental.</strong> Used on an image inside the trigger whose <code>alt</code> text is updated once <code>data-dynamic-label</code> resolves.
+
+  - name: data-dynamic-label
+    html: .dialog-trigger
+    note:
+
+      - Boolean
+      - Optional
+
+    desc: <strong>This feature is experimental.</strong> Used to fetch the dialog's accessible name from the video provider (YouTube/Vimeo only) via oEmbed.
+
+  - name: data-enable-heading
+    html: .dialog-trigger
+    note:
+
+      - Boolean
+      - Optional
+
+    desc: Used to add a visible <code>h1</code> heading, using the value of <code>data-label</code>.
+
+  - name: data-fullscreen
+    html: .dialog-trigger
+    note:
+
+      - Boolean
+      - Optional
+
+    desc: Used to expand the dialog's media to fill the viewport.
+
+  - name: data-has-content
+    html: .dialog
+    note: Component
+    desc: Applied automatically to content dialogs (fetch/element/iframe/fallback) for styling.
+
+  - name: data-has-heading
+    html: .dialog
+    note: Component
+    desc: Applied automatically when <code>data-enable-heading</code> renders a heading.
+
+  - name: data-has-iframe
+    html: .dialog
+    note: Component
+    desc: Applied automatically to iframe dialogs for styling.
+
+  - name: data-iframe-src
+    html: .dialog-trigger
+    note:
+
+      - String
+      - Optional
+
+    desc: Used to load a URL directly inside an <code>iframe</code>. Takes priority over <code>data-src</code>/<code>href</code> when both are present.
+
+  - name: data-label
+    html: .dialog-trigger
+    note:
+
+      - String
+      - Conditional
+
+    desc: Used to set the dialog's accessible name (and heading text, if <code>data-enable-heading</code> is present). Mandatory unless <code>data-labelledby</code> or <code>data-dynamic-label</code> is present.
+
+  - name: data-labelledby
+    html: .dialog-trigger
+    note:
+
+      - String
+      - Conditional
+
+    desc: Used to set the dialog's accessible name to an existing element <code>id</code>, instead of an auto-generated one. Mandatory unless <code>data-label</code> or <code>data-dynamic-label</code> is present.
+
+  - name: data-open
+    html: .dialog
+    note: Component
+    desc: Applied automatically while the classic (non-native) fallback dialog is open.
+
+  - name: data-play-button
+    html: .dialog-trigger
+    note:
+
+      - Boolean
+      - Optional
+
+    desc: Used to add a visual play-button indicator to the trigger.
+
+  - name: data-poster
+    html: .dialog-trigger
+    note:
+
+      - String
+      - Optional
+
+    desc: Used to set a poster image for self-hosted video. Only applies to mp4/webm/ogv.
+
+  - name: data-src
+    html: button
+    note:
+
+      - String
+      - Conditional
+
+    desc: Used to set the dialog's source, a video file, third-party embed URL, <code>url#fragment</code> to fetch, or an existing element <code>id</code>. Not supported on <code>a</code> triggers; use <code>href</code> instead.
+
+  - name: data-transcript-fetch
+    html: .dialog-trigger
+    note:
+
+      - String
+      - Optional
+
+    desc: Used to fetch a transcript from a same-domain <code>url#fragment</code>. For self-hosted video, can alternatively be folded into <code>data-src</code>'s own query string (e.g. <code>video.mp4?transcript=page.html&fragment=transcript-id</code>) when a separate attribute isn't practical.
+
+  - name: data-transcript-fragment
+    html: .dialog-trigger
+    note:
+
+      - String
+      - Optional
+
+    desc: Used to reference hidden content elsewhere on the page, by element <code>id</code>, for use as the transcript.
+
+  - name: data-youtube-shorts
+    html: .dialog
+    note: Component
+    desc: Applied automatically when a YouTube video is detected as a Short, for correct sizing.
+
+classes:
+
+  - name: .dialog
+    html: dialog
+    note: Mandatory
+    desc: Applied to the root dialog element.
+
+  - name: .dialog-backdrop
+    html: div
+    note: Component
+    desc: Used on the backdrop created for the classic (non-native) fallback dialog.
+
+  - name: .dialog-trigger
+    html:
+
+      - a
+      - button
+
+    note: Mandatory
+    desc: Required on every element that opens a dialog.
+
+  - name: .dialog-trigger__play
+    html: span
+    note: Component
+    desc: Added to the trigger when <code>data-play-button</code> is present.
+
+  - name: .dialog__asset
+    html: div
+    note: Component
+    desc: Wraps the dialog's video, iframe, or inserted content.
+
+  - name: .dialog__container
+    html: div
+    note: Component
+    desc: Wraps <code>.dialog__asset</code> and, when present, <code>.dialog__transcript</code>.
+
+  - name: .dialog__controls
+    html: div
+    note: Component
+    desc: Wraps the close button and any other control buttons (transcript, audio description).
+
+  - name: .dialog__controls__btn
+    html: button
+    note: Component
+    desc: Used on every control button within <code>.dialog__controls</code>.
+
+  - name: .dialog__controls__btn--audio-description
+    html: button
+    note: Component
+    desc: Toggles audio-description narration. Added only when <code>data-audio-description</code> is present on a video.
+
+  - name: .dialog__controls__btn--close
+    html: button
+    note: Component
+    desc: Closes the dialog.
+
+  - name: .dialog__controls__btn--transcript
+    html: button
+    note: Component
+    desc: Toggles the transcript panel. Added only when a transcript is configured.
+
+  - name: .dialog__header
+    html: div
+    note: Component
+    desc: Wraps the heading (if any) and <code>.dialog__controls</code>.
+
+  - name: .dialog__heading
+    html: h1
+    note: Component
+    desc: Added when <code>data-enable-heading</code> is present.
+
+  - name: .dialog__media
+    html:
+
+      - video
+      - iframe
+
+    note: Component
+    desc: Applied to self-hosted video, YouTube, Vimeo, Cloudflare, Brightcove, and iframe media, sized via <code>aspect-ratio</code>.
+
+  - name: .dialog__transcript
+    html: div
+    note: Component
+    desc: The transcript panel. Rendered only when a transcript is configured.
+
+  - name: .dialog__transcript-content
+    html: div
+    note: Component
+    desc: Holds the transcript's actual content, inside <code>.dialog__transcript</code>.
+
+  - name: .dialog__transcript-heading
+    html: h2
+    note: Component
+    desc: The transcript panel's heading, inside <code>.dialog__transcript</code>.
+
+  - name: .transcript-open
+    html: .dialog__container
+    note: Component
+    desc: Toggled on <code>.dialog__container</code> while the transcript panel is open.
+
 id: dialog
 localjs: "init.js"
 localcss: "init.css"
@@ -6,6 +295,8 @@ module: components
 tablist: true
 select-internal: true
 accordion: true
+diagram: true
+diagram-description: "Structural box diagram of the Dialog component. Classes (and one id) shown in nesting order."
 ---
 
-{% include init.html %} 
+{% include init.html %}
