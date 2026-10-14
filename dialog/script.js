@@ -59,6 +59,7 @@
       const dialogDataHeading = "data-enable-heading";
       const dialogDataHasHeading = "data-has-heading";
       const dialogDataHasContent = "data-has-content";
+      const dialogDataHasIframe = "data-has-iframe";
       const dialogDataTranscriptFragment = "data-transcript-fragment";
       const dialogDataTranscriptFetch = "data-transcript-fetch";
       const dialogDataDisableAutoplay = "data-disable-autoplay";
@@ -315,25 +316,59 @@
 
       };
 
-      // Parse a "src, label, srclang, default; src, label, srclang" caption string into track descriptors.
+      // Reads label/srclang/default off a track URL's own query string, for
+      // setups where only a single src value can be authored (no comma-
+      // separated metadata support) — e.g. "video.vtt?label=English&srclang=en&default".
+      // "default" is presence-only, matching every other boolean attribute in
+      // this component; the value (if any) after "=" is ignored. Returns the
+      // src with these three recognized keys stripped, so they don't leak
+      // into the actual VTT request — any other query params are left as-is.
+
+      const parseTrackUrlMetadata = (src) => {
+
+        const url = new URL(src);
+        const params = url.searchParams;
+
+        const label = params.get("label") ?? undefined;
+        const srclang = params.get("srclang") ?? undefined;
+        const isDefault = params.has("default");
+
+        params.delete("label");
+        params.delete("srclang");
+        params.delete("default");
+
+        return { src: url.toString(), label, srclang, isDefault };
+
+      };
+
+      // Parse a "src, label, srclang, default; src, label, srclang" caption string
+      // into track descriptors — or, per track, a bare src URL carrying
+      // label/srclang/default as its own query string params instead.
 
       const parseCaptions = (value) => {
 
         return value.split(";").map(track => track.trim()).filter(Boolean).map(track => {
 
-          const [trackSrc, trackLabel, srclang, defaultFlag] = track.split(",").map(field => field.trim());
+          let [trackSrc, trackLabel, srclang, defaultFlag] = track.split(",").map(field => field.trim());
+          let isDefault = defaultFlag?.toLowerCase() === "default";
 
-          return { src: trackSrc, label: trackLabel, srclang, default: defaultFlag?.toLowerCase() === "default" };
+          if (trackLabel === undefined) ({ src: trackSrc, label: trackLabel, srclang, isDefault } = parseTrackUrlMetadata(trackSrc));
+
+          return { src: trackSrc, label: trackLabel, srclang, default: isDefault };
 
         });
 
       };
 
-      // Parse a single "src, label, srclang" description string into a track descriptor.
+      // Parse a single "src, label, srclang" description string into a track
+      // descriptor — or a bare src URL carrying label/srclang as its own
+      // query string params instead.
 
       const parseDescription = (value) => {
 
-        const [trackSrc, trackLabel, srclang] = value.split(",").map(field => field.trim());
+        let [trackSrc, trackLabel, srclang] = value.split(",").map(field => field.trim());
+
+        if (trackLabel === undefined) ({ src: trackSrc, label: trackLabel, srclang } = parseTrackUrlMetadata(trackSrc));
 
         return { src: trackSrc, label: trackLabel, srclang };
 
@@ -561,7 +596,7 @@
       // element/iframe/fetch/fallback (hasContent true, no video decoration
       // on the content).
 
-      const buildMediaDialog = (assetContent, { heading, label, labelledby, hasDescription, transcriptFragment, transcriptFetch, classic, hasContent = false, closeLabel = dialogCloseLabel, customClass, restoreCallbacks = [] }) => {
+      const buildMediaDialog = (assetContent, { heading, label, labelledby, hasDescription, transcriptFragment, transcriptFetch, classic, hasContent = false, hasIframe = false, closeLabel = dialogCloseLabel, customClass, restoreCallbacks = [] }) => {
 
         const titleText = label || dialogVideoLabel;
         const baseId = label ? slugify(label) : `dialog-${++dialogInstanceId}`;
@@ -732,6 +767,7 @@
         dialog.append(header, container);
 
         if (hasContent) dialog.setAttribute(dialogDataHasContent, "");
+        if (hasIframe) dialog.setAttribute(dialogDataHasIframe, "");
 
         dialog.dialogRestoreCallbacks = restoreCallbacks;
 
@@ -839,7 +875,7 @@
             // identically — so normalize to it and request playback as a
             // command once the player's loaded.
 
-            iframe.src = `https://www.youtube-nocookie.com${new URL(src).pathname}?autohide=1&disablekb=1&cc_load_policy=1&fs=1&rel=0&hd=1&wmode=transparent&enablejsapi=1&html5=1`;
+            iframe.src = `https://www.youtube-nocookie.com${new URL(src).pathname}?autohide=1&cc_load_policy=1&fs=1&rel=0&hd=1&wmode=transparent&enablejsapi=1&html5=1`;
             iframe.allow = "autoplay; fullscreen";
 
             if (!disableAutoplay) {
@@ -863,8 +899,14 @@
           case "vimeo": {
 
             const iframe = document.createElement("iframe");
+            const vimeoSrc = new URL(src);
 
-            iframe.src = `${src}?autoplay=${disableAutoplay ? 0 : 1}`;
+            // An inline autoplay param (already authored into data-src) wins —
+            // only set ours when the author didn't already specify one.
+
+            if (!vimeoSrc.searchParams.has("autoplay")) vimeoSrc.searchParams.set("autoplay", disableAutoplay ? "0" : "1");
+
+            iframe.src = vimeoSrc.toString();
             iframe.allow = "autoplay; fullscreen";
             iframe.allowFullscreen = true;
 
@@ -923,7 +965,7 @@
             iframe.title = label || dialogIframeFallbackLabel;
             iframe.classList.add(dialogMediaClassName);
 
-            dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic, hasContent: true, customClass });
+            dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic, hasIframe: true, customClass });
 
             break;
 
@@ -1076,10 +1118,10 @@
 
         const labelledby = trigger.getAttribute(dialogDataLabelledby);
         const caption = trigger.getAttribute(dialogDataCaption);
-        const description = trigger.getAttribute(dialogDataDescription);
+        let description = trigger.getAttribute(dialogDataDescription);
         const heading = trigger.hasAttribute(dialogDataHeading);
         const transcriptFragment = trigger.getAttribute(dialogDataTranscriptFragment);
-        const transcriptFetch = trigger.getAttribute(dialogDataTranscriptFetch);
+        let transcriptFetch = trigger.getAttribute(dialogDataTranscriptFetch);
         const disableAutoplay = trigger.hasAttribute(dialogDataDisableAutoplay) || prefersReducedMotion;
         const poster = trigger.getAttribute(dialogDataPoster);
         const customClass = trigger.getAttribute(dialogDataClass);
@@ -1087,8 +1129,49 @@
         const classic = trigger.hasAttribute(dialogDataAriaDialog);
         const fullscreen = trigger.hasAttribute(dialogDataFullscreen);
         const iframeSrc = trigger.getAttribute(dialogDataIframeSrc);
-        const src = iframeSrc ?? (isAnchor ? trigger.getAttribute("href") : trigger.getAttribute(dialogDataSrc));
+        const rawSrc = iframeSrc ?? (isAnchor ? trigger.getAttribute("href") : trigger.getAttribute(dialogDataSrc));
+
+        // Defensive against CMS/template double-encoding query string
+        // ampersands as &amp; — a literal &amp; is never valid in an authored
+        // URL otherwise, so this is safe to correct unconditionally.
+
+        let src = rawSrc?.replace(/&amp;/g, "&") ?? rawSrc;
         const type = iframeSrc ? "iframe" : detectDialogType(src);
+
+        // Alternative to data-transcript-fetch/data-audio-description, for
+        // self-hosted video only: both can instead be folded into data-src's
+        // own query string (transcript, ad, label, srclang), with fragment
+        // standing in for a literal #fragment on transcript (avoids needing
+        // %23-encoding inside a query value). An explicit data-transcript-fetch/
+        // data-audio-description attribute always wins; this is only a
+        // fallback. Recognized keys are stripped from src afterward so they
+        // don't leak into the actual video file request.
+
+        if (type === "video") {
+
+          const videoSrcUrl = new URL(src);
+          const videoSrcParams = videoSrcUrl.searchParams;
+
+          if (!transcriptFetch && videoSrcParams.has("transcript")) {
+
+            const path = videoSrcParams.get("transcript");
+            const fragment = videoSrcParams.get("fragment");
+
+            transcriptFetch = fragment ? `${path}#${fragment}` : path;
+
+          }
+
+          if (!description && videoSrcParams.has("ad")) {
+
+            description = [videoSrcParams.get("ad"), videoSrcParams.get("label"), videoSrcParams.get("srclang")].filter(v => v != null).join(", ");
+
+          }
+
+          ["transcript", "fragment", "ad", "label", "srclang"].forEach(key => videoSrcParams.delete(key));
+
+          src = videoSrcUrl.toString();
+
+        }
 
         // EXPERIMENTAL (data-dynamic-label): kicks off the oEmbed lookup on
         // load; the click handler waits on this before opening the dialog.
