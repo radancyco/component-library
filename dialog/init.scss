@@ -11,13 +11,22 @@
 
 :root {
 
-  --backdrop-filter: blur(3px) brightness(0.2);
-  --dialog-play-button-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23fff' stroke-width='2' d='M6,22 L24,12 L6,2 L6,22 Z M8,19 L20.6,12 L8,5 L8,19 Z M10,16 L17.2,12 L10,8 L10,16 Z M12,13 L13.8,12 L12,11 L12,13 Z'/%3E%3C/svg%3E");
+  --backdrop-filter: blur(3px) brightness(0.2); // Used for both version of dialog (native and ARIA).
   --primary-color: #6F00EF;
 
 }
 
 .dialog-trigger {
+
+// Component Variables
+
+--dialog-play-button-background: #FF0033;
+--dialog-play-button-border: calc(2rem / 16) #fff solid;
+--dialog-play-button-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23fff' stroke-width='2' d='M6,22 L24,12 L6,2 L6,22 Z M8,19 L20.6,12 L8,5 L8,19 Z M10,16 L17.2,12 L10,8 L10,16 Z M12,13 L13.8,12 L12,11 L12,13 Z'/%3E%3C/svg%3E");
+--dialog-play-button-size: calc(60rem / 16);
+
+// Trigger button styles are for demonstration only and may be changed as needed.
+
 background-color: var(--primary-color);
 border-radius: calc(6rem / 16);
 border: 0;
@@ -33,7 +42,8 @@ padding: 1rem;
 text-decoration: none;
 
   &:has(img) {
-  max-inline-size: calc(300rem / 16);
+  block-size: 100%;
+  max-inline-size: calc(280rem / 16);
   padding: 0;
   }
 
@@ -42,34 +52,35 @@ text-decoration: none;
   }
 
   &__play {
-  background-color: #FF0033;
+  background-color: var(--dialog-play-button-background);
   background-image: var(--dialog-play-button-icon);
   background-position: center;
   background-repeat: no-repeat;
   background-size: calc(24rem / 16);
-  block-size: calc(60rem / 16);
+  block-size: var(--dialog-play-button-size);
   border-radius: 100vw;
-  border: calc(2rem / 16) #fff solid;
+  border: var(--dialog-play-button-border);
   content: "";
   display: block;
-  inline-size: calc(60rem / 16);
+  inline-size: var(--dialog-play-button-size);
   place-self: center;
   }
 
 }
 
-// Fallback backdrop. Native <dialog> gets ::backdrop
+// ARIA backdrop. Native dialog gets ::backdrop
 
 .dialog-backdrop {
 backdrop-filter: var(--backdrop-filter);
 inset: 0;
 position: fixed;
-z-index: 1000;
+z-index: 2147483645;
 }
 
 .dialog {
 
 // Component Variables
+// TODO: Look into using inline SVG instead of pseudo as this technique may not be able to handle low-contrast. 
 
 --dialog-animation-speed: 400ms;
 --dialog-background-color: white;
@@ -88,9 +99,7 @@ z-index: 1000;
 --dialog-transcript-background: #DCE8EA;
 --dialog-transcript-scrollbar-color: #0f1632 transparent;
 
-// TODO: Look into using inline SVG instead of pseudo as this technique may not be able to handle low-contrast. 
-
-// Breakpoints (CSS variables are not allowed in media queries - boo!)
+// Breakpoint (CSS variables are not allowed in media queries - boo!)
 
 $dialog-breakpoint: 45rem; // 720px;
 
@@ -124,19 +133,30 @@ z-index: 2147483646;
 
   }
 
-  &[data-has-content] {
+  &[data-has-content], &[data-has-iframe] {
   min-block-size: 75vh;
 
     @media (min-width: $dialog-breakpoint) {
 
       inline-size: 50vw;
+
+    }
+
+  }
+
+  // Note: Text content has its own intrinsic height to auto-size to on desktop, an iframe doesn't, so it keeps the enforced min-block-size at every width.
+
+  &[data-has-content] {
+
+    @media (min-width: $dialog-breakpoint) {
+
       min-block-size: auto;
 
     }
-  
+
   }
 
-  &:has(.dialog__media) {
+  &:has(.dialog__media):not([data-has-iframe]) {
   inline-size: fit-content;
   }
 
@@ -166,6 +186,8 @@ z-index: 2147483646;
   backdrop-filter: var(--backdrop-filter);
   }
 
+  // Dialog Header (dialog__header)
+
   &__header {
   align-items: center;
   display: grid;
@@ -179,16 +201,23 @@ z-index: 2147483646;
 
   }
 
+  // Dialog Heading (dialog__heading)
+  // Note that this is an H1 element, which is perfectly fine in the context of a dialog. 
+
   &__heading {
   font-size: clamp(1rem, 0.68rem + 1.6vw, 1.6rem);
   margin: 0;
   }
+
+  // Dialog Controls (dialog__controls)
   
   &__controls {
   display: grid;
   gap: 0.5rem;
   grid-auto-flow: column;
   justify-self: end;
+
+    // Dialog Buttons (dialog__controls__btn)
 
     &__btn {
     background-color: transparent;
@@ -202,7 +231,7 @@ z-index: 2147483646;
     display: grid;
     inline-size: var(--dialog-button-size);
     outline-offset: calc(-4rem / 16);
-    transition: background-color var(--dialog-animation-speed);
+    transition: background-color 300ms;
 
       &:focus-visible, &:hover, &[aria-pressed="true"], &[aria-expanded="true"] {
 
@@ -245,6 +274,8 @@ z-index: 2147483646;
 
   }
 
+  // Dialog Container (dialog__container)
+
   &__container {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -254,6 +285,12 @@ z-index: 2147483646;
 
       transition-duration: var(--dialog-animation-speed);
 
+    }
+
+    // Fix: Sticky button scrolls with content when bottom reached.
+
+    [data-has-content] & {
+    min-block-size: auto;
     }
 
     &:has(.dialog__transcript) {
@@ -296,15 +333,7 @@ z-index: 2147483646;
 
   }
 
-  &__controls, &__container {
-
-    [data-has-content] & {
-    grid-area: 1 / -1;
-    }
-  
-  }
-
-  // Transcript
+  // Dialog Transcript (dialog__transcript)
 
   &__transcript {
   background-color: var(--dialog-transcript-background);
@@ -344,31 +373,35 @@ z-index: 2147483646;
 
     }
 
-    &--hdr {
-    font-size: clamp(1rem, 0.68rem + 1.6vw, 1.4rem);
-    margin: 0;
-    padding: 1rem 0.5rem 0.5rem;
-    }
+  }
 
-    &--content {
-    margin-bottom: 1rem;
-    mask-image: unquote("linear-gradient(to left, black 0 1rem, transparent 1rem), linear-gradient(to bottom, transparent 0, black 2.5rem, black calc(100% - 2.5rem), transparent 100%)");
-    overflow-x: hidden;
-    overflow-y: auto;
-    padding: 1rem 1rem 1rem 0.5rem;
-    scrollbar-color: var(--dialog-transcript-scrollbar-color);
+  // Dialog Transcript Heading (dialog__transcript-heading)
 
-      // Fix: Mask is obscuring focus, so let';s remove when receiving.
+  &__transcript-heading {
+  font-size: clamp(1rem, 0.68rem + 1.6vw, 1.4rem);
+  margin: 0;
+  padding: 1rem 0.5rem 0.5rem;
+  }
 
-      &:focus-visible {
-      mask-image: none;
-      }
+  // Dialog Transcript Content (dialog__transcript-content)
 
+  &__transcript-content {
+  margin-bottom: 1rem;
+  mask-image: unquote("linear-gradient(to left, black 0 1rem, transparent 1rem), linear-gradient(to bottom, transparent 0, black 2.5rem, black calc(100% - 2.5rem), transparent 100%)");
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 1rem 1rem 1rem 0.5rem;
+  scrollbar-color: var(--dialog-transcript-scrollbar-color);
+
+    // Fix: Mask is obscuring focus, so let's remove it when focus received.
+
+    &:focus-visible {
+    mask-image: none;
     }
 
   }
 
-  // Media asset container
+  // Dialog Asset (dialog__asset)
 
   &__asset {
   background-color: #000;
@@ -390,27 +423,7 @@ z-index: 2147483646;
 
   }
 
-  // Shared; both wrappers amy contain content.
-
-  &__asset, &__transcript--content {
-
-    // Common element formatting. Remove if not needed.
-
-    & *:first-child {
-    margin-block-start: 0;
-    }
-
-    & > * + * {
-    margin-block-start: var(--flow-space, 1em);
-    }
-
-  }
-
-  &__transcript, &__asset, iframe {
-  border-radius: var(--dialog-border-radius);
-  }
-
-  // Media (Video, Iframe, etc.)
+  // Dialog Media (dialog__media, Video, Iframe, etc.)
 
   &__media {
   aspect-ratio: 16 / 9;
@@ -438,7 +451,16 @@ z-index: 2147483646;
 
     }
 
-    // Hack: Address Poster FOUC on iframe videos, specifically YouTube. Remove if not needed. 
+    // Note: A generic iframe (page, map, etc.) isn't inherently 16:9 like a video, so let's ovrride it.
+
+    [data-has-iframe] & {
+
+      aspect-ratio: auto;
+      inline-size: 100%;
+
+    }
+
+    // Hack: Address Poster FOUC on iframe videos, specifically YouTube. Remove if not needed.
 
     @media (prefers-reduced-motion: no-preference) {
 
@@ -453,6 +475,49 @@ z-index: 2147483646;
 
     }
 
+  }
+
+  // Shared: Dialog Controls (dialog__controls) & Dialog Container (dialog__container)
+
+  &__controls, &__container {
+
+    [data-has-content] & {
+    grid-area: 1 / -1;
+    }
+
+  }
+
+  // Shared: Dialog Asset (dialog__asset) & Dialog Transcript Content (dialog__transcript-content)
+
+  &__asset, &__transcript-content {
+
+    // Common element formatting. Remove if not needed.
+
+    & *:first-child {
+    margin-block-start: 0;
+    }
+
+    & > * + * {
+    margin-block-start: var(--flow-space, 1em);
+    }
+
+    h1, h2 {
+    max-inline-size: calc(320rem / 16);
+    
+      @media (min-width: $dialog-breakpoint) {
+
+        max-inline-size: none;
+
+      }
+
+    }
+
+  }
+
+  // Shared: Dialog Asset (dialog__asset) & Dialog Transcript (dialog__transcript) & Iframe
+
+  &__asset, &__transcript, iframe {
+  border-radius: var(--dialog-border-radius);
   }
 
 }

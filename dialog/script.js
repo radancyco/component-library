@@ -54,6 +54,7 @@
       const dialogTriggerPlayClassName = "dialog-trigger__play";
       const dialogDataLabel = "data-label";
       const dialogDataLabelledby = "data-labelledby";
+      const dialogDataAriaDescription = "data-description";
       const dialogDataCaption = "data-caption";
       const dialogDataDescription = "data-audio-description";
       const dialogDataHeading = "data-enable-heading";
@@ -85,13 +86,12 @@
       const dialogContainerClassName = "dialog__container";
       const dialogContainerOpenState = "transcript-open";
       const dialogTranscriptClassName = "dialog__transcript";
-      const dialogTranscriptHeadingClassName = "dialog__transcript--hdr";
-      const dialogTranscriptContentClassName = "dialog__transcript--content";
+      const dialogTranscriptHeadingClassName = "dialog__transcript-heading";
+      const dialogTranscriptContentClassName = "dialog__transcript-content";
       const dialogAssetClassName = "dialog__asset";
       const dialogMediaClassName = "dialog__media";
 
-      // Labels — values come from language-pack.js's labelDialog* page-globals
-      // (loaded before this runs; one "// Dialog" var block per locale).
+      // Labels come from language-pack.js's labelDialog* page-globals (loaded before this runs, one block per locale).
 
       const dialogCloseLabel = labelDialogClose;
       const dialogAudioDescriptionLabel = labelDialogAudioDescription;
@@ -112,9 +112,7 @@
       const dialogTriggers = document.querySelectorAll(dialogTriggerClass);
       const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-      // Infers a dialog's type from data-src, checked in order. "fetch" catches
-      // anything left carrying a #fragment (a URL + the id of an element within
-      // it); anything left over is an "element" id already on the page.
+      // Infers a dialog's type from data-src, in order. "fetch" matches anything with a #fragment; anything else is an "element" id already on the page.
 
       const dialogTypeDetectors = [
 
@@ -127,8 +125,7 @@
 
       ];
 
-      // Shared by the "video" case and the preload warmer below, so both
-      // agree on MIME type per file extension.
+      // Shared by the "video" case and the preload warmer below, so both agree on MIME type per file extension.
 
       const videoMimeTypes = { mp4: "video/mp4", webm: "video/webm", ogv: "video/ogg" };
 
@@ -142,26 +139,19 @@
 
       };
 
-      // data-labelledby only counts as an accessible name if it resolves to a
-      // real id on the page — a dangling reference is treated as if it were
-      // never authored at all.
+      // data-labelledby only counts as an accessible name if it resolves to a real id on the page; a dangling reference is treated as never authored.
 
       const hasResolvableLabelledby = (labelledby) => Boolean(labelledby && document.getElementById(labelledby));
 
-      // Timestamp of the last dialog close — see the click handler below for
-      // why. Works around a Chrome/Firefox bug, not our markup:
-      // https://issues.chromium.org/issues/425579196 (Chrome fix slated v154;
-      // Firefox: https://github.com/mdn/browser-compat-data/issues/30474, no
-      // fix date yet). Goes dormant once both ship — safe to leave in place.
+      // Timestamp of the last dialog close, used by the click handler below. Works around a Chrome/Firefox bug, not our markup: https://issues.chromium.org/issues/425579196
+      // and https://github.com/mdn/browser-compat-data/issues/30474. Safe to leave; dormant once both ship.
 
       let dialogLastClosedAt = 0;
 
       const destroyDialog = (dialog) => {
 
-        // Escape/light-dismiss fire "cancel" first, which calls this directly,
-        // then dialog.close() fires "close", calling this again — this guard
-        // makes the second call a no-op. command="close" only ever fires
-        // "close", so it never double-hits in the first place.
+        // Escape/light-dismiss fires "cancel" first (calling this directly), then dialog.close() fires "close" (calling this again); this guard makes the
+        // second call a no-op. command="close" only ever fires "close" once.
 
         if (dialog.dialogDestroyed) return;
 
@@ -192,16 +182,13 @@
 
         window.speechSynthesis?.cancel();
 
-        // Restore body scroll — native dialogs don't lock it themselves
-        // (unlike focus/inertness, free via top-layer), so we set/restore
-        // it ourselves for both paths.
+        // Restore body scroll. Native dialogs don't lock it themselves (unlike focus/inertness, free via top-layer), so we set/restore it ourselves.
 
         document.body.style.overflow = dialog.dialogPreviousBodyOverflow;
 
         if (dialog.dialogClassic) {
 
-          // Classic (non-native) fallback teardown: undo everything openClassicDialog
-          // set up, since there's no native close() to do it for us.
+          // Classic (non-native) teardown: undo everything openClassicDialog set up (no native close() to do it for us).
 
           document.removeEventListener("keydown", dialog.dialogKeydownHandler);
 
@@ -219,10 +206,8 @@
 
         }
 
-        // Wait for the close transition before removing the element, or it's
-        // torn out before the browser can animate it. A timeout backs up
-        // transitionend, since discrete transitions (display/overlay) can
-        // fail to fire it.
+        // Wait for the close transition before removing the element, or it's torn out before the browser can animate it. A timeout backs up transitionend,
+        // since discrete transitions (display/overlay) can fail to fire it.
 
         let removed = false;
 
@@ -232,9 +217,7 @@
 
           removed = true;
 
-          // Reset iframe src to stop YouTube/Vimeo — held off until now (not
-          // done eagerly above) so the frame fades out with the dialog
-          // instead of blanking to black immediately.
+          // Reset iframe src to stop YouTube/Vimeo. Held off until now so the frame fades out with the dialog instead of blanking to black.
 
           dialog.querySelectorAll("iframe").forEach(iframe => {
 
@@ -242,9 +225,7 @@
 
           });
 
-          // Restore moved-in source elements only now that the dialog is
-          // actually leaving the DOM — any earlier pulls content out during
-          // the still-visible close transition.
+          // Restore moved-in source elements only once the dialog leaves the DOM; doing it earlier would pull content out mid-transition.
 
           dialog.dialogRestoreCallbacks?.forEach(restore => restore());
 
@@ -260,10 +241,8 @@
 
       };
 
-      // data-aria-dialog fallback: everything showModal() gives free
-      // (positioning aside, handled in CSS) that a plain role="dialog" div
-      // needs by hand — backdrop, background inertness (also traps focus),
-      // scroll lock, Escape, and focus restored to the trigger.
+      // data-aria-dialog fallback: everything showModal() gives for free (positioning aside, handled in CSS), a plain role="dialog" div needs by
+      // hand: backdrop, inertness (traps focus), scroll lock, Escape, focus return.
 
       const openClassicDialog = (dialog, triggerElement, focusTarget) => {
 
@@ -301,9 +280,7 @@
 
       };
 
-      // Moves a hidden source element's children (not the element itself, so
-      // its id and any page styling stay behind) into the dialog. Returns a
-      // fragment to insert, plus a function that restores the children in place.
+      // Moves a hidden source element's children (not the element itself, so its id/styling stay behind) into the dialog. Returns a fragment plus a restore function.
 
       const moveContentIntoDialog = (el) => {
 
@@ -316,13 +293,8 @@
 
       };
 
-      // Reads label/srclang/default off a track URL's own query string, for
-      // setups where only a single src value can be authored (no comma-
-      // separated metadata support) — e.g. "video.vtt?label=English&srclang=en&default".
-      // "default" is presence-only, matching every other boolean attribute in
-      // this component; the value (if any) after "=" is ignored. Returns the
-      // src with these three recognized keys stripped, so they don't leak
-      // into the actual VTT request — any other query params are left as-is.
+      // Reads label/srclang/default off a track URL's own query string, for setups where only a single src can be authored, e.g. "video.vtt?label=English&srclang=en&default".
+      // "default" is presence-only, like every other boolean attribute here. Returns the src with these three keys stripped so they don't leak into the VTT request.
 
       const parseTrackUrlMetadata = (src) => {
 
@@ -341,9 +313,7 @@
 
       };
 
-      // Parse a "src, label, srclang, default; src, label, srclang" caption string
-      // into track descriptors — or, per track, a bare src URL carrying
-      // label/srclang/default as its own query string params instead.
+      // Parses a "src, label, srclang, default; ..." caption string into track descriptors, or a bare src URL carrying that metadata as query params.
 
       const parseCaptions = (value) => {
 
@@ -360,9 +330,7 @@
 
       };
 
-      // Parse a single "src, label, srclang" description string into a track
-      // descriptor — or a bare src URL carrying label/srclang as its own
-      // query string params instead.
+      // Parses a single "src, label, srclang" description string into a track descriptor, or a bare src URL carrying that metadata as query params.
 
       const parseDescription = (value) => {
 
@@ -382,9 +350,7 @@
 
       };
 
-      // EXPERIMENTAL (data-dynamic-label): looks up a YouTube/Vimeo video's
-      // real title via oEmbed, for the dialog/heading/alt text when no
-      // data-label is authored. Falls back to "Video Player" on failure.
+      // EXPERIMENTAL (data-dynamic-label): looks up a YouTube/Vimeo title via oEmbed for the dialog/heading/alt text when no data-label is authored; falls back to "Video Player".
 
       const fetchDynamicVideoTitle = async (type, src) => {
 
@@ -408,12 +374,8 @@
 
       };
 
-      // oEmbed has no "is this a Short" field, but a /shorts/ URL query
-      // reports true (portrait) dimensions for one — /watch?v= silently
-      // reports the wrong (landscape) size for the same video, confirmed by
-      // testing both. /shorts/ is safe to use unconditionally (non-Shorts
-      // still report correctly). Sets data-youtube-shorts for CSS; fails
-      // silently since this is cosmetic.
+      // oEmbed has no "is this a Short" field, but a /shorts/ URL reports true (portrait) dimensions, while /watch?v= reports the wrong (landscape) size
+      // for the same video. /shorts/ is safe to use unconditionally (non-Shorts still report correctly). Sets data-youtube-shorts for CSS; fails silently.
 
       const flagYoutubeShorts = async (dialog, src) => {
 
@@ -432,9 +394,7 @@
 
       };
 
-      // Fetches a same-domain page and returns the children of the element
-      // matching its #fragment id (not the element itself, so its id/styling
-      // stay behind). Shared by data-transcript-fetch and a data-src #fragment.
+      // Fetches a same-domain page and returns the children of the element matching its #fragment id. Shared by data-transcript-fetch and a data-src #fragment.
 
       const fetchRemoteFragment = async (url) => {
 
@@ -468,9 +428,7 @@
 
       };
 
-      // Loads a transcript (in-page element or fetched fragment) into a
-      // target node once — only the source's contents are copied in, not
-      // the source element itself.
+      // Loads a transcript (in-page element or fetched fragment) into a target node once; only the source's contents are copied, not the element itself.
 
       const loadTranscriptOnce = (transcriptTarget, { transcriptFragment, transcriptFetch }) => {
 
@@ -591,12 +549,9 @@
 
       };
 
-      // Builds the full dialog structure (header/controls, transcript panel,
-      // asset) — shared by video/youtube/vimeo (hasContent false) and
-      // element/iframe/fetch/fallback (hasContent true, no video decoration
-      // on the content).
+      // Builds the full dialog structure (header/controls, transcript panel, asset), shared by video/youtube/vimeo (hasContent false) and element/iframe/fetch/fallback (hasContent true).
 
-      const buildMediaDialog = (assetContent, { heading, label, labelledby, hasDescription, transcriptFragment, transcriptFetch, classic, hasContent = false, hasIframe = false, closeLabel = dialogCloseLabel, customClass, restoreCallbacks = [] }) => {
+      const buildMediaDialog = (assetContent, { heading, label, labelledby, ariaDescription, hasDescription, transcriptFragment, transcriptFetch, classic, hasContent = false, hasIframe = false, closeLabel = dialogCloseLabel, customClass, restoreCallbacks = [] }) => {
 
         const titleText = label || dialogVideoLabel;
         const baseId = label ? slugify(label) : `dialog-${++dialogInstanceId}`;
@@ -613,8 +568,7 @@
           dialog.setAttribute("role", "dialog");
           dialog.setAttribute("aria-modal", "true");
 
-          // No tabindex here — we never apply focus to the dialog element
-          // itself, only to content inside it (the close button, typically).
+          // No tabindex here: we never focus the dialog itself, only content inside it (the close button, typically).
 
         } else {
 
@@ -672,9 +626,7 @@
           closeBtn.setAttribute("command", "close");
           closeBtn.setAttribute("commandfor", baseId);
 
-          // command="close" drives this rather than a click listener calling
-          // destroyDialog directly, so it shares the same close path as
-          // Escape/light-dismiss — all three go through the "close" listener below.
+          // command="close" drives this (not a click listener), so it shares the same close path as Escape/light-dismiss, via the "close" listener below.
 
         }
 
@@ -712,9 +664,7 @@
           transcriptPanel.append(h2, transcriptContent);
           container.append(transcriptPanel);
 
-          // Loads the transcript now, while the dialog is still hidden,
-          // rather than on first toggle — so nothing new happens in the DOM
-          // when the user actually opens the panel.
+          // Loads the transcript now, while hidden, rather than on first toggle, so nothing new happens in the DOM when the user opens the panel.
 
           loadTranscriptOnce(transcriptContent, { transcriptFragment, transcriptFetch });
 
@@ -766,6 +716,22 @@
 
         dialog.append(header, container);
 
+        // Only one dialog is ever open at a time, so a fixed id is fine here. Set via textContent (never innerHTML) since this is author-supplied text.
+
+        if (ariaDescription) {
+
+          const descriptionEl = document.createElement("div");
+
+          descriptionEl.id = "dialog-description";
+          descriptionEl.hidden = true;
+          descriptionEl.textContent = ariaDescription;
+
+          dialog.append(descriptionEl);
+
+          dialog.setAttribute("aria-describedby", descriptionEl.id);
+
+        }
+
         if (hasContent) dialog.setAttribute(dialogDataHasContent, "");
         if (hasIframe) dialog.setAttribute(dialogDataHasIframe, "");
 
@@ -777,33 +743,26 @@
 
       // Create and show dialog dynamically based on type.
 
-      const openDialog = (type, src, { label, labelledby, dynamicLabel, caption, description, heading, transcriptFragment, transcriptFetch, disableAutoplay, poster, customClass, classic, fullscreen } = {}) => {
+      const openDialog = (type, src, { label, labelledby, ariaDescription, dynamicLabel, caption, description, heading, transcriptFragment, transcriptFetch, disableAutoplay, poster, customClass, classic, fullscreen } = {}) => {
 
         const triggerElement = document.activeElement;
 
         let dialog;
 
-        // A "fetch" type's data-labelledby may reference an id only present
-        // in the content being fetched, not yet on this page — trust it
-        // as-is rather than delay the dialog's open on the network request;
-        // aria-labelledby resolves lazily once the fetch inserts the real element.
+        // A "fetch" type's data-labelledby may reference an id not yet on the page; trust it as-is, aria-labelledby resolves once the fetch inserts the element.
 
         const labelledbyOk = hasResolvableLabelledby(labelledby) || (type === "fetch" && Boolean(labelledby));
 
         if (!label && !labelledbyOk && !dynamicLabel) {
 
-          // Failsafe: never open a dialog with no accessible name. By now, an
-          // in-progress data-dynamic-label lookup has already resolved label
-          // — but dynamicLabel is still checked in case that lookup wasn't
-          // supported for this type. Only fires when none of data-label,
-          // data-labelledby, or data-dynamic-label were authored — a
-          // developer mistake, not something an end user can hit.
+          // Failsafe: never open a dialog with no accessible name. An in-progress data-dynamic-label lookup may have resolved label already; dynamicLabel
+          // is still checked for types that lookup doesn't support. Only fires when none of data-label/labelledby/dynamic-label were authored: a dev mistake.
 
           const contentNode = document.createElement("p");
 
           contentNode.textContent = dialogMissingNameMessageLabel;
 
-          dialog = buildMediaDialog(contentNode, { label: dialogMissingNameHeadingLabel, classic, hasContent: true, customClass });
+          dialog = buildMediaDialog(contentNode, { label: dialogMissingNameHeadingLabel, ariaDescription, classic, hasContent: true, customClass });
 
         } else switch (type) {
 
@@ -857,7 +816,7 @@
 
             }
 
-            dialog = buildMediaDialog(video, { heading, label, labelledby, hasDescription: Boolean(description), transcriptFragment, transcriptFetch, classic, customClass });
+            dialog = buildMediaDialog(video, { heading, label, labelledby, ariaDescription, hasDescription: Boolean(description), transcriptFragment, transcriptFetch, classic, customClass });
 
             break;
 
@@ -867,13 +826,9 @@
 
             const iframe = document.createElement("iframe");
 
-            // Some videos (Shorts among others) ignore youtube.com's passive
-            // autoplay=1 param and show a "Watch on YouTube" card instead of
-            // playing, even though the same video autoplays fine elsewhere.
-            // youtube-nocookie.com honors an explicit IFrame API play command
-            // where youtube.com doesn't — confirmed by testing both domains
-            // identically — so normalize to it and request playback as a
-            // command once the player's loaded.
+            // Some videos (Shorts among others) ignore youtube.com's passive autoplay=1 and show a "Watch on YouTube" card instead of playing, even though the
+            // same video autoplays fine elsewhere. youtube-nocookie.com honors an explicit IFrame API play command where youtube.com doesn't, so normalize
+            // to it and request playback once the player's loaded.
 
             iframe.src = `https://www.youtube-nocookie.com${new URL(src).pathname}?autohide=1&cc_load_policy=1&fs=1&rel=0&hd=1&wmode=transparent&enablejsapi=1&html5=1`;
             iframe.allow = "autoplay; fullscreen";
@@ -888,7 +843,7 @@
 
             }
 
-            dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic, customClass });
+            dialog = buildMediaDialog(iframe, { heading, label, labelledby, ariaDescription, transcriptFragment, transcriptFetch, classic, customClass });
 
             flagYoutubeShorts(dialog, src);
 
@@ -901,8 +856,7 @@
             const iframe = document.createElement("iframe");
             const vimeoSrc = new URL(src);
 
-            // An inline autoplay param (already authored into data-src) wins —
-            // only set ours when the author didn't already specify one.
+            // An inline autoplay param (already in data-src) wins; only set ours if the author didn't specify one.
 
             if (!vimeoSrc.searchParams.has("autoplay")) vimeoSrc.searchParams.set("autoplay", disableAutoplay ? "0" : "1");
 
@@ -910,7 +864,7 @@
             iframe.allow = "autoplay; fullscreen";
             iframe.allowFullscreen = true;
 
-            dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic, customClass });
+            dialog = buildMediaDialog(iframe, { heading, label, labelledby, ariaDescription, transcriptFragment, transcriptFetch, classic, customClass });
 
             break;
 
@@ -920,9 +874,7 @@
 
             const iframe = document.createElement("iframe");
 
-            // Unlike the YouTube/Vimeo embed URLs above, a Cloudflare Stream src
-            // often already carries its own query string (poster, title, etc.),
-            // so autoplay has to be joined with "&" rather than assuming "?".
+            // Unlike YouTube/Vimeo above, a Cloudflare Stream src often already has a query string, so autoplay must be joined with "&" rather than "?".
 
             const separator = src.includes("?") ? "&" : "?";
 
@@ -930,7 +882,7 @@
             iframe.allow = "accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen";
             iframe.allowFullscreen = true;
 
-            dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic, customClass });
+            dialog = buildMediaDialog(iframe, { heading, label, labelledby, ariaDescription, transcriptFragment, transcriptFetch, classic, customClass });
 
             break;
 
@@ -940,10 +892,7 @@
 
             const iframe = document.createElement("iframe");
 
-            // Same reasoning as Cloudflare: join autoplay with "&" if a query
-            // string is present. "any" attempts autoplay with sound, falling
-            // back to muted only if blocked — the closest match to autoplay
-            // elsewhere here.
+            // Same reasoning as Cloudflare. "any" attempts autoplay with sound, falling back to muted only if blocked; the closest match available here.
 
             const separator = src.includes("?") ? "&" : "?";
 
@@ -951,7 +900,7 @@
             iframe.allow = "encrypted-media; autoplay; fullscreen";
             iframe.allowFullscreen = true;
 
-            dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic, customClass });
+            dialog = buildMediaDialog(iframe, { heading, label, labelledby, ariaDescription, transcriptFragment, transcriptFetch, classic, customClass });
 
             break;
 
@@ -965,7 +914,7 @@
             iframe.title = label || dialogIframeFallbackLabel;
             iframe.classList.add(dialogMediaClassName);
 
-            dialog = buildMediaDialog(iframe, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic, hasIframe: true, customClass });
+            dialog = buildMediaDialog(iframe, { heading, label, labelledby, ariaDescription, transcriptFragment, transcriptFetch, classic, hasIframe: true, customClass });
 
             break;
 
@@ -997,7 +946,7 @@
 
             });
 
-            dialog = buildMediaDialog(placeholder, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic, hasContent: true, customClass });
+            dialog = buildMediaDialog(placeholder, { heading, label, labelledby, ariaDescription, transcriptFragment, transcriptFetch, classic, hasContent: true, customClass });
 
             break;
 
@@ -1024,7 +973,7 @@
 
             }
 
-            dialog = buildMediaDialog(contentNode, { heading, label, labelledby, transcriptFragment, transcriptFetch, classic, hasContent: true, customClass, restoreCallbacks });
+            dialog = buildMediaDialog(contentNode, { heading, label, labelledby, ariaDescription, transcriptFragment, transcriptFetch, classic, hasContent: true, customClass, restoreCallbacks });
 
             break;
 
@@ -1054,9 +1003,7 @@
 
           document.body.appendChild(dialog);
 
-          // showModal() traps focus and makes the background inert for free,
-          // but doesn't lock body scroll — do that ourselves, same as the
-          // classic fallback below.
+          // showModal() traps focus and makes the background inert for free, but doesn't lock body scroll; do that ourselves, same as the classic fallback.
 
           dialog.dialogPreviousBodyOverflow = document.body.style.overflow;
           document.body.style.overflow = "hidden";
@@ -1075,11 +1022,8 @@
 
         trigger.setAttribute("aria-haspopup", "dialog");
 
-        // href is only supported on <a> triggers (source comes from href
-        // there, not data-src); data-src is only supported on every other
-        // trigger element (typically <button>). <a> triggers also need
-        // role="button" plus manual Enter/Space handling below, since only
-        // native <button> gets that keyboard behavior for free.
+        // href only works on <a> triggers (data-src works on every other trigger, typically <button>). <a> triggers also need role="button" plus manual
+        // Enter/Space handling, since only native <button> gets that for free.
 
         const isAnchor = trigger.tagName === "A";
 
@@ -1117,6 +1061,7 @@
         let label = trigger.getAttribute(dialogDataLabel);
 
         const labelledby = trigger.getAttribute(dialogDataLabelledby);
+        const ariaDescription = trigger.getAttribute(dialogDataAriaDescription);
         const caption = trigger.getAttribute(dialogDataCaption);
         let description = trigger.getAttribute(dialogDataDescription);
         const heading = trigger.hasAttribute(dialogDataHeading);
@@ -1131,21 +1076,14 @@
         const iframeSrc = trigger.getAttribute(dialogDataIframeSrc);
         const rawSrc = iframeSrc ?? (isAnchor ? trigger.getAttribute("href") : trigger.getAttribute(dialogDataSrc));
 
-        // Defensive against CMS/template double-encoding query string
-        // ampersands as &amp; — a literal &amp; is never valid in an authored
-        // URL otherwise, so this is safe to correct unconditionally.
+        // Defensive against CMS/template double-encoding query ampersands as &amp;. A literal &amp; is never valid otherwise, so this is safe to correct.
 
         let src = rawSrc?.replace(/&amp;/g, "&") ?? rawSrc;
         const type = iframeSrc ? "iframe" : detectDialogType(src);
 
-        // Alternative to data-transcript-fetch/data-audio-description, for
-        // self-hosted video only: both can instead be folded into data-src's
-        // own query string (transcript, ad, label, srclang), with fragment
-        // standing in for a literal #fragment on transcript (avoids needing
-        // %23-encoding inside a query value). An explicit data-transcript-fetch/
-        // data-audio-description attribute always wins; this is only a
-        // fallback. Recognized keys are stripped from src afterward so they
-        // don't leak into the actual video file request.
+        // Alternative to data-transcript-fetch/data-audio-description, for self-hosted video: both can be folded into data-src's own query string (transcript, ad,
+        // label, srclang), with fragment standing in for a literal #fragment (avoids %23-encoding). An explicit attribute always wins; this is only a fallback,
+        // and recognized keys are stripped from src before the actual video request.
 
         if (type === "video") {
 
@@ -1173,8 +1111,7 @@
 
         }
 
-        // EXPERIMENTAL (data-dynamic-label): kicks off the oEmbed lookup on
-        // load; the click handler waits on this before opening the dialog.
+        // EXPERIMENTAL (data-dynamic-label): kicks off the oEmbed lookup on load; the click handler waits on this before opening the dialog.
 
         let dynamicLabelReady = Promise.resolve();
 
@@ -1192,8 +1129,7 @@
 
         }
 
-        // Warn if the trigger has no accessible name and none is coming asynchronously.
-        // A "fetch" type's data-labelledby is trusted here too — see openDialog.
+        // Warn if no accessible name is set and none is coming async; a "fetch" type's data-labelledby is trusted here too (see openDialog).
 
         if (!dynamicLabel && !label && !hasResolvableLabelledby(labelledby) && !(type === "fetch" && labelledby)) {
 
@@ -1209,13 +1145,9 @@
 
         }
 
-        // Warms the network for self-hosted video files on real intent
-        // signal, rather than an unconditional rel=preload or waiting for
-        // the click. Only "video" — other types are third-party iframe
-        // pages. Uses as="fetch" not as="video": Chrome accepts "video" but
-        // never actually preloads it (silent no-op) —
-        // https://issues.chromium.org/issues/40671675. "fetch" still lands
-        // in the same cache a <video> read reuses.
+        // Warms the network for self-hosted video on real intent signal, rather than an unconditional rel=preload or waiting for the click. Only "video"; other
+        // types are third-party iframe pages. A plain fetch (not <link rel=preload>) warms the same cache entry without the Preload API ever tracking it,
+        // so it never trips Chrome's "preloaded but not used" warning, even once the video is genuinely opened and played right after.
 
         if (type === "video") {
 
@@ -1227,18 +1159,9 @@
 
             warmed = true;
 
-            const videoSrc = src;
-            const extension = videoSrc.match(/\.(mp4|webm|ogv)($|[?#])/i)?.[1].toLowerCase();
+            // mode/credentials must match the <video>'s crossOrigin="anonymous" below, or the cache entry won't be reused.
 
-            const link = document.createElement("link");
-
-            link.rel = "preload";
-            link.as = "fetch";
-            link.href = videoSrc;
-            link.type = videoMimeTypes[extension] ?? "video/mp4";
-            link.crossOrigin = "anonymous"; // Must match the <video>'s crossOrigin below, or the cache entry won't be reused.
-
-            document.head.append(link);
+            fetch(src, { mode: "cors", credentials: "omit" }).catch(() => {});
 
           };
 
@@ -1246,36 +1169,27 @@
 
         }
 
-        // Handle trigger click. Native Enter on an <a> already fires this as
-        // a real click — preventDefault stops it from following href.
+        // Handle trigger click. Native Enter on <a> already fires a real click; preventDefault stops it from following href.
 
         trigger.addEventListener("click", (e) => {
 
           if (isAnchor) e.preventDefault();
 
-          // On touch devices, a dismissing tap can both light-dismiss the
-          // dialog (closedby="any") AND deliver a synthesized click to this
-          // same trigger underneath it, reopening the dialog the same
-          // gesture just closed — a known Chrome/Firefox bug (leaks through
-          // to whatever's underneath, not just this trigger):
-          // https://issues.chromium.org/issues/425579196. Ignoring a click
-          // right after close covers the common case; a real second tap is
-          // always well outside this window.
-          // Note-to-self: remove once browsers fix this.
+          // On touch devices, a dismissing tap can both light-dismiss the dialog (closedby="any") and deliver a synthesized click to the same trigger,
+          // reopening it. A known Chrome/Firefox bug (leaks through to whatever's underneath): https://issues.chromium.org/issues/425579196. Ignoring a
+          // click right after close covers it; a real second tap is always well outside this window. Remove once browsers fix this.
 
           if (Date.now() - dialogLastClosedAt < 500) return;
 
           dynamicLabelReady.then(() => {
 
-            openDialog(type, src, { label, labelledby, dynamicLabel, caption, description, heading, transcriptFragment, transcriptFetch, disableAutoplay, poster, customClass, classic, fullscreen });
+            openDialog(type, src, { label, labelledby, ariaDescription, dynamicLabel, caption, description, heading, transcriptFragment, transcriptFetch, disableAutoplay, poster, customClass, classic, fullscreen });
 
           });
 
         });
 
-        // role="button" gets Enter for free (an <a> already fires a native
-        // click on Enter), but not Space — wire that up by hand, same as
-        // the ARIA APG button pattern requires for non-native buttons.
+        // role="button" gets Enter for free (an <a> already fires a native click on Enter), but not Space; wire that up per the ARIA APG button pattern.
 
         if (isAnchor) {
 

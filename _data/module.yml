@@ -298,6 +298,11 @@ components:
         note: "Set the <code>data-disable-autoplay</code> attribute (present, no value needed) to prevent the video from autoplaying when the dialog opens. The video can still be started manually using its own play control."
         group: "Accessibility"
 
+      - name: "Description"
+        id: "description"
+        note: "Set the <code>data-description</code> attribute to a plain text string to use as the dialog's accessible description. The text is inserted into a hidden element referenced by <code>aria-describedby</code>, which is created when the dialog opens and removed when it closes."
+        group: "Accessibility"
+
       - name: "Label"
         id: "label"
         note: "Set the <code>data-label</code> attribute to a descriptive string to use as the dialog's accessible name. When <code>data-enable-heading</code> is also present, this same value is also used as the visible heading text."
