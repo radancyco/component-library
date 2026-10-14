@@ -255,8 +255,7 @@ components:
     desc: "An accessible, easy-to-implement modal for video and other content, replacing third-party components such as Fancybox."
     path: "dialog"
     title: "Dialog"
-    version: "1.0.5"
-    hidden: true
+    version: "1.1.1"
     examples:
 
       - name: "Default Setup"
@@ -283,13 +282,13 @@ components:
       - name: "Audio Description"
         id: "audio-description"
         a11y: "Audio descriptions aren't always necessary; they're only needed when a video conveys meaningful visual information that isn't already covered by the existing dialogue or sound, such as on-screen text, actions, or scene changes. When a video's visuals are already fully conveyed through what's said, an audio description track is unlikely to add value. When it is warranted, an audio description is delivered as a separate narration track describing that visual content during natural pauses in the audio."
-        note: "Set the <code>data-audio-description</code> attribute to a <code>src, label, srclang</code> value referencing a valid, third-party or self-produced VTT file to add an audio description track to the video."
+        note: "Set the <code>data-audio-description</code> attribute to a <code>src, label, srclang</code> value referencing a valid, third-party or self-produced VTT file to add an audio description track to the video. For self-hosted video only, the whole attribute can instead be folded into <code>data-src</code>'s own query string (e.g. <code>video.mp4?ad=path/to/desc.vtt&label=English&srclang=en</code>); this is a fallback for when a separate attribute isn't practical, not the default approach."
         group: "Accessibility"
 
       - name: "Captions"
         id: "captions"
         a11y: "Please note that all videos <strong>must</strong> include captions. Even when a video has no spoken dialogue, captions are still required to describe other meaningful audio, such as music or sound effects. Captions benefit far more than the Deaf and hard-of-hearing community: most caption users aren't d/Hoh, and captions also help second-language learners, people with attention or auditory-processing differences, and anyone viewing in a sound-off environment. For more, see this <a href='https://meryl.net/captioned-videos-complete-guide/'>guide to captioned videos</a>."
-        note: "Set the <code>data-caption</code> attribute to a <code>src, label, srclang, default</code> value referencing a valid VTT file. The optional <code>default</code> flag marks that track as the one shown automatically. Multiple language tracks are supported: separate each <code>src, label, srclang, default</code> group with a semicolon to add more than one caption track to the video. Third-party captions are the responsibility of their original authors to supply. To promote a more inclusive experience, third-party caption visibility defaults to on and can't be overridden."
+        note: "Set the <code>data-caption</code> attribute to a <code>src, label, srclang, default</code> value referencing a valid VTT file. The optional <code>default</code> flag marks that track as the one shown automatically. Multiple language tracks are supported: separate each <code>src, label, srclang, default</code> group with a semicolon to add more than one caption track to the video. Third-party captions are the responsibility of their original authors to supply. To promote a more inclusive experience, third-party caption visibility defaults to on and can't be overridden. <code>label</code>/<code>srclang</code>/<code>default</code> can alternatively be given as query parameters on the VTT file's own URL (e.g. <code>file.vtt?label=English&srclang=en&default</code>) instead of comma-separated; this is a fallback for when a separate attribute isn't practical, not the default approach."
         group: "Accessibility"
 
       - name: "Disable Autoplay"
@@ -324,7 +323,7 @@ components:
       - name: "Transcript (Fetch)"
         id: "transcript-fetch"
         a11y: "Are transcripts necessary? Yes! Providing an alternative way to share a video's information through a transcript is valuable even when captions are already present: captions aren't accessible to every assistive technology, such as refreshable Braille displays or some screen readers, and they can move too quickly or feel distracting for some users. Transcripts, by contrast, let people search and scan content more easily, and can include additional detail, semantic markup, and hyperlinks that wouldn't be possible or appropriate within captions. Beyond accessibility, search engines can also benefit from this extra text, helping them better understand and index your content.For more, see this <a href='https://meryl.net/captioned-videos-complete-guide/'>guide to captioned videos</a>."
-        note: "Set the <code>data-transcript-fetch</code> attribute to reference an external resource and specific page fragment (<code>#id</code>), for use as the transcript source. This is especially useful in CMS environments, letting authors update the transcript without a code change. Only a valid URL, with a valid fragment when present, will be accepted."
+        note: "Set the <code>data-transcript-fetch</code> attribute to reference an external resource and specific page fragment (<code>#id</code>), for use as the transcript source. This is especially useful in CMS environments, letting authors update the transcript without a code change. Only a valid URL, with a valid fragment when present, will be accepted. For self-hosted video only, this can instead be folded into <code>data-src</code>'s own query string (e.g. <code>video.mp4?transcript=page.html&fragment=transcript-id</code>); this is a fallback for when a separate attribute isn't practical, not the default approach."
         group: "Accessibility"
 
       - name: "Dynamic Label"
