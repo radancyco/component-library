@@ -205,7 +205,7 @@ z-index: 2147483646;
   // Note that this is an H1 element, which is perfectly fine in the context of a dialog. 
 
   &__heading {
-  font-size: clamp(1rem, 0.68rem + 1.6vw, 1.6rem);
+  font-size: clamp(1rem, calc(0.68rem + 1.6vw), 1.6rem);
   margin: 0;
   }
 
@@ -378,7 +378,7 @@ z-index: 2147483646;
   // Dialog Transcript Heading (dialog__transcript-heading)
 
   &__transcript-heading {
-  font-size: clamp(1rem, 0.68rem + 1.6vw, 1.4rem);
+  font-size: clamp(1rem, calc(0.68rem + 1.6vw), 1.4rem);
   margin: 0;
   padding: 1rem 0.5rem 0.5rem;
   }
