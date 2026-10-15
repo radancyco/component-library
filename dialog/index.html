@@ -26,7 +26,7 @@ attributes:
       - String
       - Optional
 
-    desc: Used to add caption track(s) to self-hosted video. Accepts a <code>src, label, srclang, default</code> value; separate multiple tracks with a semicolon. <code>label</code>, <code>srclang</code>, and <code>default</code> can alternatively be passed in as a query string on the track URL itself (e.g. <code>file.vtt?label=English&srclang=en&default</code>) instead of comma-separated.
+    desc: Used to add caption track(s) to self-hosted video. Accepts a <code>src, label, srclang, default</code> value; separate multiple tracks with a semicolon. <code>label</code>, <code>srclang</code>, and <code>default</code> can alternatively be passed in as a query string on the track URL itself (e.g. <code>english.vtt?label=English&srclang=en&default; french.vtt?label=French&srclang=fr</code>) instead of comma-separated.
 
   - name: data-class
     html: .dialog-trigger
@@ -35,7 +35,7 @@ attributes:
       - String
       - Optional
 
-    desc: Used to append one or more space-separated class names to the dialog element.
+    desc: Used to append one or more space-separated class names to the dialog element, alongside its default <code>dialog</code> class.
 
   - name: data-description
     html: .dialog-trigger
@@ -71,7 +71,7 @@ attributes:
       - Boolean
       - Optional
 
-    desc: <strong>This feature is experimental.</strong> Used to fetch the dialog's accessible name from the video provider (YouTube/Vimeo only) via oEmbed.
+    desc: <strong>This feature is experimental.</strong> Used to fetch the dialog's accessible name from the video provider (YouTube, Vimeo only) via embed.
 
   - name: data-enable-heading
     html: .dialog-trigger
@@ -89,12 +89,12 @@ attributes:
       - Boolean
       - Optional
 
-    desc: Used to expand the dialog's media to fill the viewport.
+    desc: Used to expand the dialog's media to fill the viewport width.
 
   - name: data-has-content
     html: .dialog
     note: Component
-    desc: Applied automatically to content dialogs (fetch/element/iframe/fallback) for styling.
+    desc: Applied automatically to content dialogs (fetch, element, iframe, fallback) for styling.
 
   - name: data-has-heading
     html: .dialog
@@ -113,7 +113,7 @@ attributes:
       - String
       - Optional
 
-    desc: Used to load a URL directly inside an <code>iframe</code>. Takes priority over <code>data-src</code>/<code>href</code> when both are present.
+    desc: Used to load a URL directly inside an <code>iframe</code>. Takes priority over <code>data-src</code>, <code>href</code> when both are present.
 
   - name: data-label
     html: .dialog-trigger
@@ -131,12 +131,12 @@ attributes:
       - String
       - Conditional
 
-    desc: Used to set the dialog's accessible name to an existing element <code>id</code>, instead of an auto-generated one. Mandatory unless <code>data-label</code> or <code>data-dynamic-label</code> is present.
+    desc: Used to set the dialog's accessible name to an existing (or fetched) element <code>id</code>, instead of an auto-generated one; accepts a space-separated list to combine multiple labels. Mandatory unless <code>data-label</code> or <code>data-dynamic-label</code> is present.
 
   - name: data-open
     html: .dialog
     note: Component
-    desc: Applied automatically while the classic (non-native) fallback dialog is open.
+    desc: Applied automatically while the classic (non-native) fallback dialog is open. Equivalent to dialog's <code>open</code> attribute. 
 
   - name: data-play-button
     html: .dialog-trigger
@@ -154,7 +154,7 @@ attributes:
       - String
       - Optional
 
-    desc: Used to set a poster image for self-hosted video. Only applies to mp4/webm/ogv.
+    desc: Used to set a poster image for self-hosted video. Only applies to mp4, webm, ogv.
 
   - name: data-src
     html: button
