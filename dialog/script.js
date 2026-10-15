@@ -758,11 +758,22 @@
           // Failsafe: never open a dialog with no accessible name. An in-progress data-dynamic-label lookup may have resolved label already; dynamicLabel
           // is still checked for types that lookup doesn't support. Only fires when none of data-label/labelledby/dynamic-label were authored: a dev mistake.
 
-          const contentNode = document.createElement("p");
+          const headingId = `hdr-${slugify(dialogMissingNameHeadingLabel)}`;
 
-          contentNode.textContent = dialogMissingNameMessageLabel;
+          const heading = document.createElement("h1");
 
-          dialog = buildMediaDialog(contentNode, { label: dialogMissingNameHeadingLabel, ariaDescription, classic, hasContent: true, customClass });
+          heading.id = headingId;
+          heading.textContent = dialogMissingNameHeadingLabel;
+
+          const message = document.createElement("p");
+
+          message.textContent = dialogMissingNameMessageLabel;
+
+          const contentNode = document.createDocumentFragment();
+
+          contentNode.append(heading, message);
+
+          dialog = buildMediaDialog(contentNode, { label: dialogMissingNameHeadingLabel, labelledby: headingId, ariaDescription, classic, hasContent: true, customClass });
 
         } else switch (type) {
 
