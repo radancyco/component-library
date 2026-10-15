@@ -1081,7 +1081,7 @@
         let src = rawSrc?.replace(/&amp;/g, "&") ?? rawSrc;
         const type = iframeSrc ? "iframe" : detectDialogType(src);
 
-        // Alternative to data-transcript-fetch/data-audio-description, for self-hosted video: both can be folded into data-src's own query string (transcript, ad,
+        // Alternative to data-transcript-fetch/data-audio-description, for self-hosted video: both can be folded into data-src's own query string (transcript, src,
         // label, srclang), with fragment standing in for a literal #fragment (avoids %23-encoding). An explicit attribute always wins; this is only a fallback,
         // and recognized keys are stripped from src before the actual video request.
 
@@ -1099,13 +1099,13 @@
 
           }
 
-          if (!description && videoSrcParams.has("ad")) {
+          if (!description && videoSrcParams.has("src")) {
 
-            description = [videoSrcParams.get("ad"), videoSrcParams.get("label"), videoSrcParams.get("srclang")].filter(v => v != null).join(", ");
+            description = [videoSrcParams.get("src"), videoSrcParams.get("label"), videoSrcParams.get("srclang")].filter(v => v != null).join(", ");
 
           }
 
-          ["transcript", "fragment", "ad", "label", "srclang"].forEach(key => videoSrcParams.delete(key));
+          ["transcript", "fragment", "src", "label", "srclang"].forEach(key => videoSrcParams.delete(key));
 
           src = videoSrcUrl.toString();
 
