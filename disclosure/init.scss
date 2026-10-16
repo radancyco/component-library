@@ -87,7 +87,6 @@ border-block-start-width: 0;
 border-inline-color: var(--disclosure-color-selected) transparent;
 border-inline-end-width: 0;
 border-style: solid;
-content: "";
 direction: ltr;
 display: block;
 inline-size: var(--disclosure-arrow-size);
@@ -105,13 +104,14 @@ padding: 1em;
 
   &[data-animation] {
   
-    max-block-size: 0;
+    block-size: 0;
+    interpolate-size: allow-keywords; // Allows animating to/from "auto". Unsupported browsers simply skip the height animation.
     opacity: 0;
     padding-block: 0;
 
       @media (prefers-reduced-motion: no-preference) {
 
-        transition: display 500ms allow-discrete, max-block-size 500ms ease-in-out, opacity 500ms ease-in-out;
+        transition: display 500ms allow-discrete, block-size 500ms ease-in-out, opacity 500ms ease-in-out;
 
       }
   
@@ -133,7 +133,7 @@ padding: 1em;
       display: block;
 
         &[data-animation] {
-        max-block-size: none;
+        block-size: auto;
         opacity: 1;
         }
 
@@ -194,12 +194,12 @@ display: block;
 
   &[data-animation] {
   
-    max-block-size: 1500px;
+    block-size: auto;
     opacity: 1;
 
     @starting-style {
-    
-      max-block-size: 0;
+
+      block-size: 0;
       opacity: 0;
     
     }

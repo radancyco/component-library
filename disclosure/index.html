@@ -21,7 +21,7 @@ attributes:
       - Boolean
       - Optional
 
-    desc: Used to allow the disclosure to become non-interactive on larger viewport sizes, while maintaining interactivity on mobile. The older attribute, <code>data-disclosure-viewport</code> has been depracted and should no longer be used.
+    desc: Used to allow the disclosure to become non-interactive on larger viewport sizes, while maintaining interactivity on mobile. The older attribute, <code>data-disclosure-viewport</code> has been deprecated and should no longer be used.
 
   - name: data-enable-anchor
     html: .disclosure--btn
@@ -42,17 +42,13 @@ attributes:
     desc: Specifies that content should be open on page load. If not specified, no content will be opened.
 
   - name: data-persistent
-    html: 
-
-      - .disclosure--btn
-      - .disclosure--heading
-
+    html: .disclosure--btn
     note:
 
       - Boolean
       - Optional
 
-    desc: Specifies that the content should remain persistent and always open in larger viewports. Attribute must be included on both the button and content. Must not be used with <code>.disclosure--heading</code>.
+    desc: Specifies that the content should remain persistent and always open in larger viewports. Must not be used with <code>.disclosure--heading</code>, as hiding the heading removes it from the page outline. For headings, use <code>data-context</code> instead.
 
   - name: data-remove-arrow
     html: .disclosure--btn
@@ -92,7 +88,16 @@ classes:
     note: Optional
     desc: Include this class on any heading you might have that wraps your button. A heading should always wrap a button and not the other way around. 
 
-changelog: 
+changelog:
+
+  - label: Bug
+    content: "October 16, 2026: Fixed URL fragment handling so IDs starting with a digit or containing special characters no longer throw, and in-page links now open their disclosure. A missing <code>.disclosure--content</code> now logs a warning instead of breaking every disclosure after it. Bumped to 2.4.3."
+
+  - label: Behavior
+    content: "October 16, 2026: The <code>data-animation</code> height animation now uses <code>interpolate-size</code>, so tall content is no longer clipped at 1500px. Browsers without support skip the height animation but still fade in."
+
+  - label: Note
+    content: "October 16, 2026: Corrected <code>data-persistent</code> documentation. It belongs on <code>.disclosure--btn</code> only, not on the content, and headings should use <code>data-context</code> instead."
 
   - label: Bug
     content: "September 28, 2026: Fixed a bug introduced in 2.4.1 with addition of new animation styles, which caused content to be hidden when <code>data-persistent</code> was used. Bumped to 2.4.2."

@@ -20,6 +20,7 @@
   const disclosureButtonClass = ".disclosure--btn";
   const disclosureButtons = document.querySelectorAll(disclosureButtonClass);
   const disclosureArrowClassName = "disclosure--arrow";
+  const disclosureContentClass = ".disclosure--content";
   const disclosureHeadingClass = ".disclosure--heading";
   const disclosureDataDefaultOpen = "data-open";
   const disclosureDataEnableAnchor = "data-enable-anchor";
@@ -30,6 +31,18 @@
   disclosureButtons.forEach((button, index) => {
 
     const count = index + 1;
+
+    // Content must directly follow the button, or the heading wrapping it. If missing, skip this disclosure.
+
+    const content = (button.closest(disclosureHeadingClass) || button).nextElementSibling;
+
+    if (!content || !content.matches(disclosureContentClass)) {
+
+      console.warn(`Disclosure: No ${disclosureContentClass} found directly after button.`, button);
+
+      return;
+
+    }
 
     button.setAttribute("aria-expanded", "false");
 
@@ -55,18 +68,7 @@
 
     button.setAttribute("id", thisButtonID);
     button.setAttribute("aria-controls", thisContentID);
-
-    if (button.closest(disclosureHeadingClass)) {
-
-      // If button contains heading...
-
-      button.closest(disclosureHeadingClass).nextElementSibling.setAttribute("id", thisContentID);
-
-    } else {
-
-      button.nextElementSibling.setAttribute("id", thisContentID);
-
-    }
+    content.setAttribute("id", thisContentID);
 
     // If custom arrow not needed.
 
@@ -103,23 +105,23 @@
 
   });
 
-  // Open selected disclosure via URL
+  // Open selected disclosure via URL fragment, on load and whenever the fragment changes (e.g., in-page links).
 
-  const url = document.location.href;
-  const hash = url.split("#");
-  const disclosureID = document.getElementById(hash[1]);
+  const openFromURLFragment = () => {
 
-  if(disclosureID) {
+    const disclosureTarget = document.getElementById(location.hash.slice(1));
 
-    const disclosureTarget = document.querySelector(disclosureButtonClass + "#" + disclosureID.id);
-
-    if (disclosureTarget) {
+    if (disclosureTarget && disclosureTarget.matches(disclosureButtonClass)) {
 
       disclosureTarget.setAttribute("aria-expanded", "true");
       disclosureTarget.focus();
 
     }
 
-  }
+  };
+
+  openFromURLFragment();
+
+  window.addEventListener("hashchange", openFromURLFragment);
 
 })();
