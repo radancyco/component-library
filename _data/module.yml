@@ -24,7 +24,7 @@ components:
 
       - name: "Enable Anchor"
         id: "enable-anchor"
-        note: "In this demo, selecting a disclosure adds an anchor to the URL. Each disclosure can be configured with a unique anchor. Anchors make it easier to link directly to specific content, share specific sections of the page, and track user interactions."
+        note: "In this example, selecting a disclosure adds an anchor to the URL. Each disclosure can be configured with a unique anchor. Anchors make it easier to link directly to specific content, share specific sections of the page, and track user interactions."
 
       - name: "Fixed Height"
         id: "fixed-height"
@@ -404,7 +404,7 @@ components:
     message: disclosure-use
     path: "disclosure"
     title: "Disclosure"
-    version: "2.4.3"
+    version: "2.5.0"
     examples:
 
       - name: "Default Setup"
@@ -419,10 +419,14 @@ components:
 
       - name: "Enable Anchor"
         id: "enable-anchor"
-        note: "In this demo, selecting a disclosure appends its configured anchor to the URL. Anchors can be useful for tracking interactions and creating links that navigate directly to specific content."
+        note: "In this example, selecting a disclosure appends its configured anchor to the URL. Anchors can be useful for tracking interactions and creating links that navigate directly to specific content."
 
       - name: "Interactive Heading"
         id: "heading"
+
+      - name: "Light Dismiss"
+        id: "light-dismiss"
+        note: "In this example, the disclosure closes when you press <code>Escape</code>, click outside of it, or tab away from it. This is not typical for a simple disclosure, so use it sparingly, such as when the disclosure acts more like a dropdown."
 
       - name: "Persistent State"
         id: "persistent"

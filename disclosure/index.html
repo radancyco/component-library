@@ -32,6 +32,15 @@ attributes:
 
     desc: Used to enable anchor functionality. When enabled, selecting a disclosure appends its configured anchor to the URL. Anchors can be useful for tracking interactions and creating links that navigate directly to specific content.
 
+  - name: data-light-dismiss
+    html: .disclosure--btn
+    note:
+
+      - Boolean
+      - Optional
+
+    desc: Closes the disclosure when the user presses <kbd>Escape</kbd>, or clicks or moves focus to something that is not part of a disclosure. Moving between disclosures leaves them open, so they do not behave like an accordion. If focus is inside the content when <kbd>Escape</kbd> is pressed, focus returns to the button. Nested disclosures close one at a time, innermost first. Not intended for use with <code>data-open</code>, as an open disclosure would close on the first click anywhere on the page.
+
   - name: data-open
     html: .disclosure--btn
     note:
@@ -89,6 +98,9 @@ classes:
     desc: Include this class on any heading you might have that wraps your button. A heading should always wrap a button and not the other way around. 
 
 changelog:
+
+  - label: Feature
+    content: "October 16, 2026: Added <code>data-light-dismiss</code>, a new attribute for <code>.disclosure--btn</code>, allowing a disclosure to close on <kbd>Escape</kbd>, outside click, or when focus leaves it. Bumped to 2.5.0."
 
   - label: Bug
     content: "October 16, 2026: Fixed URL fragment handling so IDs starting with a digit or containing special characters no longer throw, and in-page links now open their disclosure. A missing <code>.disclosure--content</code> now logs a warning instead of breaking every disclosure after it. Bumped to 2.4.3."
