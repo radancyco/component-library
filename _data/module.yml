@@ -255,7 +255,7 @@ components:
     desc: "An accessible, easy-to-implement modal for video and other content, replacing third-party components such as Fancybox."
     path: "dialog"
     title: "Dialog"
-    version: "1.2.3"
+    version: "1.2.4"
     examples:
 
       - name: "Default Setup"
@@ -358,6 +358,11 @@ components:
       - name: "Fullscreen"
         id: "fullscreen"
         note: "Add the <code>data-fullscreen</code> attribute (no value required) to expand the dialog's media to fill the viewport width."
+        group: "Utilities"
+
+      - name: "Initial Focus"
+        id: "initial-focus"
+        note: "Set the <code>data-initial-focus</code> attribute to any CSS selector to move focus to that element when the dialog opens, instead of the default close button. The selector is resolved against the dialog's own contents; an absent, invalid, or non-matching selector falls back to the default close-button focus."
         group: "Utilities"
 
       - name: "Play Button (Trigger)"

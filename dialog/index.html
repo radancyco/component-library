@@ -115,6 +115,15 @@ attributes:
 
     desc: Used to load a URL directly inside an <code>iframe</code>. Takes priority over <code>data-src</code>, <code>href</code> when both are present.
 
+  - name: data-initial-focus
+    html: .dialog-trigger
+    note:
+
+      - String
+      - Optional
+
+    desc: Used to move focus to a given CSS selector when the dialog opens, instead of the default close button. Falls back to the close button when absent, invalid, or not matching anything in the dialog.
+
   - name: data-label
     html: .dialog-trigger
     note:
@@ -287,6 +296,11 @@ classes:
     html: .dialog__container
     note: Component
     desc: Toggled on <code>.dialog__container</code> while the transcript panel is open.
+
+changelog:
+
+  - label: Feature
+    content: "October 26, 2026: Added the <code>data-initial-focus</code> attribute, accepting any CSS selector to move focus to that element when the dialog opens, instead of the default close button. Falls back to the close button when absent, invalid, or not matching anything in the dialog. Bumped to 1.2.4. Good idea! Thank you, Carla!"
 
 id: dialog
 localjs: "init.js"

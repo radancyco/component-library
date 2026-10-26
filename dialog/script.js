@@ -71,6 +71,7 @@
       const dialogDataDynamicAlt = "data-dynamic-alt";
       const dialogDataAriaDialog = "data-aria-dialog";
       const dialogDataFullscreen = "data-fullscreen";
+      const dialogDataInitialFocus = "data-initial-focus";
       const dialogDataSrc = "data-src";
       const dialogDataIframeSrc = "data-iframe-src";
       const dialogDataOpenState = "data-open";
@@ -743,7 +744,7 @@
 
       // Create and show dialog dynamically based on type.
 
-      const openDialog = (type, src, { label, labelledby, ariaDescription, dynamicLabel, caption, description, heading, transcriptFragment, transcriptFetch, disableAutoplay, poster, customClass, classic, fullscreen } = {}) => {
+      const openDialog = (type, src, { label, labelledby, ariaDescription, dynamicLabel, caption, description, heading, transcriptFragment, transcriptFetch, disableAutoplay, poster, customClass, classic, fullscreen, initialFocus } = {}) => {
 
         const triggerElement = document.activeElement;
 
@@ -994,9 +995,30 @@
 
         if (fullscreen) dialog.setAttribute(dialogDataFullscreen, "");
 
+        // data-initial-focus overrides the default close-button focus with any CSS selector, resolved against the dialog's own contents. Falls back to the
+        // default (close button for classic, native showModal() default otherwise) when absent, invalid, or not matching anything inside the dialog.
+
+        let initialFocusTarget = null;
+
+        if (initialFocus) {
+
+          try {
+
+            initialFocusTarget = dialog.querySelector(initialFocus);
+
+            if (!initialFocusTarget) console.error(`Dialog data-initial-focus selector "${initialFocus}" did not match any element in the dialog.`);
+
+          } catch {
+
+            console.error(`Dialog data-initial-focus selector "${initialFocus}" is not a valid CSS selector.`);
+
+          }
+
+        }
+
         if (classic) {
 
-          const focusTarget = dialog.querySelector(`.${dialogControlsCloseClassName}`);
+          const focusTarget = initialFocusTarget || dialog.querySelector(`.${dialogControlsCloseClassName}`);
 
           openClassicDialog(dialog, triggerElement, focusTarget);
 
@@ -1020,6 +1042,8 @@
           document.body.style.overflow = "hidden";
 
           dialog.showModal();
+
+          initialFocusTarget?.focus();
 
         }
 
@@ -1084,6 +1108,7 @@
         const dynamicLabel = trigger.hasAttribute(dialogDataDynamicLabel);
         const classic = trigger.hasAttribute(dialogDataAriaDialog);
         const fullscreen = trigger.hasAttribute(dialogDataFullscreen);
+        const initialFocus = trigger.getAttribute(dialogDataInitialFocus);
         const iframeSrc = trigger.getAttribute(dialogDataIframeSrc);
         const rawSrc = iframeSrc ?? (isAnchor ? trigger.getAttribute("href") : trigger.getAttribute(dialogDataSrc));
 
@@ -1194,7 +1219,7 @@
 
           dynamicLabelReady.then(() => {
 
-            openDialog(type, src, { label, labelledby, ariaDescription, dynamicLabel, caption, description, heading, transcriptFragment, transcriptFetch, disableAutoplay, poster, customClass, classic, fullscreen });
+            openDialog(type, src, { label, labelledby, ariaDescription, dynamicLabel, caption, description, heading, transcriptFragment, transcriptFetch, disableAutoplay, poster, customClass, classic, fullscreen, initialFocus });
 
           });
 
