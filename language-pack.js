@@ -351,7 +351,7 @@ if(currentPageLanguage === "ar") {
 
     var atAudioDescriptionLabel = "Description audio";
     var atVideoLabel = "Animation de fond";
-    var atPauseButtonLabel = "Animation de pause";    
+    var atPauseButtonLabel = "Mettre en pause l’animation";    
     
     // Accordion 
 
