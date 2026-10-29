@@ -43,10 +43,10 @@
 
   const initAnimationToggle = () => {
 
-    // Career sites load shared libraries through a same-origin proxy. Everywhere else (docs, CodePen) loads from the CDN.
+    // Pages with <html data-relative-path> load shared libraries through a same-origin proxy. Everywhere else (docs, CodePen) loads from the CDN.
 
     const languagePackPath = "/shared-libraries/rcl-language-pack/rolling/init.min.js";
-    const languagePackUrl = document.querySelector("meta[name='career-site-full-domain']") ? languagePackPath : `https://clientfiles.tmpwebeng.com${languagePackPath}`;
+    const languagePackUrl = document.documentElement.hasAttribute("data-relative-path") ? languagePackPath : `https://clientfiles.tmpwebeng.com${languagePackPath}`;
 
     loadLanguagePack(languagePackUrl, () => {
 
