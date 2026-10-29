@@ -41,7 +41,12 @@
 
   const initDialog = () => {
 
-    loadLanguagePack("https://services.tmpwebeng.com/component-library/language-pack.js", () => {
+    // Career sites load shared libraries through a same-origin proxy. Everywhere else (docs, CodePen) loads from the CDN.
+
+    const languagePackPath = "/shared-libraries/rcl-language-pack/rolling/init.min.js";
+    const languagePackUrl = document.querySelector("meta[name='career-site-full-domain']") ? languagePackPath : `https://clientfiles.tmpwebeng.com${languagePackPath}`;
+
+    loadLanguagePack(languagePackUrl, () => {
 
       // Display which version is in use via console:
 
