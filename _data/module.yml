@@ -307,6 +307,11 @@ components:
         note: "Set the <code>data-description</code> attribute to a plain text string to use as the dialog's accessible description. The text is inserted into a hidden element referenced by <code>aria-describedby</code>."
         group: "Accessibility"
 
+      - name: "Initial Focus"
+        id: "initial-focus"
+        note: "Set the <code>data-initial-focus</code> attribute to any CSS selector to move focus to that element when the dialog opens, instead of the default close button. The selector is resolved against the dialog's own contents; an absent, invalid, or non-matching selector falls back to the default close-button focus. To test, use your keyboard to navigate."
+        group: "Accessibility"
+
       - name: "Label"
         id: "label"
         note: "Set the <code>data-label</code> attribute to a descriptive string to define the dialog's accessible name. If <code>data-enable-heading</code> is present, this value will serve as the visible heading and accessible name."
@@ -358,11 +363,6 @@ components:
       - name: "Fullscreen"
         id: "fullscreen"
         note: "Add the <code>data-fullscreen</code> attribute (no value required) to expand the dialog's media to fill the viewport width."
-        group: "Utilities"
-
-      - name: "Initial Focus"
-        id: "initial-focus"
-        note: "Set the <code>data-initial-focus</code> attribute to any CSS selector to move focus to that element when the dialog opens, instead of the default close button. The selector is resolved against the dialog's own contents; an absent, invalid, or non-matching selector falls back to the default close-button focus."
         group: "Utilities"
 
       - name: "Play Button (Trigger)"
