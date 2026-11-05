@@ -299,6 +299,9 @@ classes:
 
 changelog:
 
+  - label: Bug
+    content: "November 5, 2026: Fixed a bug where some minifiers could rename the <code>dialogCloseLabel</code> declaration but miss its reference inside <code>buildMediaDialog</code>'s destructured default (<code>closeLabel = dialogCloseLabel</code>), throwing <code>dialogCloseLabel is not defined</code> and preventing the dialog from opening. The fallback is now applied inside the function body instead, where minifiers reliably rename references. Bumped to 1.2.5."
+
   - label: Feature
     content: "October 26, 2026: Added the <code>data-initial-focus</code> attribute, accepting any CSS selector to move focus to that element when the dialog opens, instead of the default close button. Falls back to the close button when absent, invalid, or not matching anything in the dialog. Bumped to 1.2.4. Good idea! Thank you, Carla!"
 

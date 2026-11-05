@@ -557,7 +557,10 @@
 
       // Builds the full dialog structure (header/controls, transcript panel, asset), shared by video/youtube/vimeo (hasContent false) and element/iframe/fetch/fallback (hasContent true).
 
-      const buildMediaDialog = (assetContent, { heading, label, labelledby, ariaDescription, hasDescription, transcriptFragment, transcriptFetch, classic, hasContent = false, hasIframe = false, closeLabel = dialogCloseLabel, customClass, restoreCallbacks = [] }) => {
+      // closeLabel has no default here: some minifiers mishandle a destructured default that refers to an outer-scope variable, renaming the declaration but
+      // missing the reference. The fallback to dialogCloseLabel is applied in the function body instead, where minifiers reliably rename references.
+
+      const buildMediaDialog = (assetContent, { heading, label, labelledby, ariaDescription, hasDescription, transcriptFragment, transcriptFetch, classic, hasContent = false, hasIframe = false, closeLabel, customClass, restoreCallbacks = [] }) => {
 
         const titleText = label || dialogVideoLabel;
         const baseId = label ? slugify(label) : `dialog-${++dialogInstanceId}`;
@@ -620,7 +623,7 @@
 
         const closeBtn = document.createElement("button");
 
-        closeBtn.setAttribute("aria-label", closeLabel);
+        closeBtn.setAttribute("aria-label", closeLabel || dialogCloseLabel);
         closeBtn.className = `${dialogControlsBtnClassName} ${dialogControlsCloseClassName}`;
 
         if (classic) {
