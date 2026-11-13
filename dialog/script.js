@@ -418,19 +418,12 @@
 
       };
 
-      // Give the transcript region a tabindex only when it has no focusable link of its own.
+      // Make the transcript region a tab stop only when it has no focusable link of its own; otherwise keep it script-focusable, since the transcript button
+      // moves focus here when the panel opens.
 
       const applyTranscriptTabindex = (transcriptTarget) => {
 
-        if (transcriptTarget.querySelector("a")) {
-
-          transcriptTarget.removeAttribute("tabindex");
-
-        } else {
-
-          transcriptTarget.setAttribute("tabindex", "0");
-
-        }
+        transcriptTarget.setAttribute("tabindex", transcriptTarget.querySelector("a") ? "-1" : "0");
 
       };
 
@@ -463,6 +456,8 @@
         placeholder.textContent = dialogLoadingContentLabel;
 
         transcriptTarget.append(placeholder);
+
+        applyTranscriptTabindex(transcriptTarget);
 
         fetchRemoteFragment(transcriptFetch).then(nodes => {
 
@@ -639,7 +634,9 @@
 
         }
 
-        controls.append(closeBtn);
+        // Close sits last in the controls, so mark it explicitly rather than relying on showModal() focusing the first focusable element.
+
+        closeBtn.autofocus = true;
 
         if (hasDescription && assetContent.tagName === "VIDEO") {
 
@@ -690,11 +687,17 @@
 
             transcriptBtn.setAttribute("aria-expanded", String(isOpen));
 
+            // The panel follows the media (and any third-party player controls) in tab order, so move focus straight to it on open.
+
+            if (isOpen) transcriptContent.focus();
+
           });
 
           controls.append(transcriptBtn);
 
         }
+
+        controls.append(closeBtn);
 
         if (h1) header.append(h1);
 
@@ -721,7 +724,7 @@
         asset.className = dialogAssetClassName;
         asset.append(assetContent);
 
-        container.append(asset);
+        container.prepend(asset);
 
         dialog.append(header, container);
 
