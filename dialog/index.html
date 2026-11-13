@@ -299,6 +299,9 @@ classes:
 
 changelog:
 
+  - label: Maintenance
+    content: "November 13, 2026: Removed the <code>autohide</code>, <code>hd</code>, <code>wmode</code>, and <code>html5</code> query string parameters from the YouTube embed URL. All four are legacy/no-op in the modern YouTube IFrame Player and no longer affect playback or controls. Bumped to 1.2.6."
+
   - label: Bug
     content: "November 5, 2026: Fixed a bug where some minifiers could rename the <code>dialogCloseLabel</code> declaration but miss its reference inside <code>buildMediaDialog</code>'s destructured default (<code>closeLabel = dialogCloseLabel</code>), throwing <code>dialogCloseLabel is not defined</code> and preventing the dialog from opening. The fallback is now applied inside the function body instead, where minifiers reliably rename references. Bumped to 1.2.5."
 

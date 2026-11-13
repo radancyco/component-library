@@ -850,7 +850,7 @@
             // same video autoplays fine elsewhere. youtube-nocookie.com honors an explicit IFrame API play command where youtube.com doesn't, so normalize
             // to it and request playback once the player's loaded.
 
-            iframe.src = `https://www.youtube-nocookie.com${new URL(src).pathname}?autohide=1&cc_load_policy=1&fs=1&rel=0&hd=1&wmode=transparent&enablejsapi=1&html5=1`;
+            iframe.src = `https://www.youtube-nocookie.com${new URL(src).pathname}?cc_load_policy=1&fs=1&rel=0&enablejsapi=1`;
             iframe.allow = "autoplay; fullscreen";
 
             if (!disableAutoplay) {
