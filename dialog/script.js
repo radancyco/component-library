@@ -638,12 +638,6 @@
 
         closeBtn.autofocus = true;
 
-        if (hasDescription && assetContent.tagName === "VIDEO") {
-
-          attachAudioDescription(assetContent, controls);
-
-        }
-
         const container = document.createElement("div");
 
         container.className = dialogContainerClassName;
@@ -694,6 +688,12 @@
           });
 
           controls.append(transcriptBtn);
+
+        }
+
+        if (hasDescription && assetContent.tagName === "VIDEO") {
+
+          attachAudioDescription(assetContent, controls);
 
         }
 
