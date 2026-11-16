@@ -255,7 +255,7 @@ components:
     desc: "An accessible, easy-to-implement modal for video and other content, replacing third-party components such as Fancybox."
     path: "dialog"
     title: "Dialog"
-    version: "1.2.8"
+    version: "1.2.9"
     examples:
 
       - name: "Default Setup"
@@ -283,8 +283,14 @@ components:
         note: "Set the <code>data-iframe-src</code> attribute to load a URL directly into an <code>iframe</code> within the dialog. Takes precedence over <code>data-src</code>."
         group: "Content"
 
-      - name: "Audio Description"
-        id: "audio-description"
+      - name: "Audio Description (Video)"
+        id: "audio-description-video"
+        a11y: "Audio descriptions are only necessary when meaningful visual information, such as on-screen text, actions, or scene changes, isn't conveyed through existing dialogue or sound. A separately produced, audio-described version of the video is the most widely supported way to provide them, and the only way for third-party players such as YouTube."
+        note: "Set the <code>data-audio-description</code> attribute to the URL of a separately produced, audio-described version of the video (a video file, YouTube, Vimeo, Cloudflare, or Brightcove). An audio description button is added to the dialog, which swaps the original video for the described one, and back again. The two versions don't need to be the same type. Position and play state carry over when switching away from a self-hosted video; third-party players start from the beginning. The described video can alternatively be included in the <code>data-src</code> query string as <code>desc</code> (e.g., <code>https://youtube.com/embed/abc123?desc=https://youtube.com/embed/xyz789</code>), as the second example shows. Use this approach only when a separate attribute isn't practical; a <code>desc</code> URL with a query string of its own must be URL-encoded."
+        group: "Accessibility"
+
+      - name: "Audio Description (VTT)"
+        id: "audio-description-vtt"
         a11y: "Audio descriptions are only necessary when meaningful visual information, such as on-screen text, actions, or scene changes, isn't conveyed through existing dialogue or sound. When needed, they provide a separate narration track that describes this content during natural pauses in the audio."
         note: "Set the <code>data-audio-description</code> attribute to a <code>src, label, srclang</code> value referencing a valid third-party or self-produced VTT file to add an audio description track. For self-hosted video, these parameters can alternatively be included in the <code>data-src</code> query string (e.g., <code>video.mp4?src=file.vtt&label=English&srclang=en</code>). Use this approach only when a separate attribute isn't practical."
         group: "Accessibility"

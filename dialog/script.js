@@ -131,6 +131,10 @@
 
       ];
 
+      // Types that render a video player (native or iframe), as opposed to content. Also the types data-audio-description accepts as an alternate, described video.
+
+      const dialogMediaTypes = ["youtube", "vimeo", "cloudflare", "brightcove", "video"];
+
       // Shared by the "video" case and the preload warmer below, so both agree on MIME type per file extension.
 
       const videoMimeTypes = { mp4: "video/mp4", webm: "video/webm", ogv: "video/ogg" };
@@ -348,6 +352,23 @@
 
       };
 
+      // data-audio-description doubles as a pointer to a separately produced, audio-described video: anything that isn't a .vtt track and resolves to a
+      // media type is swapped in for the original, rather than speech-synthesized. Returns that video's type and src, or null for the .vtt mode.
+
+      const getDescriptionMedia = (description) => {
+
+        if (!description) return null;
+
+        const descriptionSrc = description.split(",")[0].trim().replace(/&amp;/g, "&");
+
+        if (/\.vtt($|[?#])/i.test(descriptionSrc)) return null;
+
+        const descriptionType = detectDialogType(descriptionSrc);
+
+        return dialogMediaTypes.includes(descriptionType) ? { type: descriptionType, src: descriptionSrc } : null;
+
+      };
+
       // Turn heading text into a URL-safe slug for use as an id.
 
       const slugify = (value) => {
@@ -485,15 +506,170 @@
 
       };
 
-      // Wires the audio-description toggle: speech-synthesizes cues, pausing/resuming the video.
+      // Builds a video player for any media type: a native <video> for "video", an iframe for the rest. autoplay only applies to a native video swapped in
+      // after open (openDialog plays the first one itself); startAt resumes from a known position, where the player supports it.
 
-      const attachAudioDescription = (video, controls) => {
+      const createMediaElement = (type, src, { caption, description, poster, disableAutoplay, autoplay, startAt = 0 } = {}) => {
+
+        const startSeconds = Math.floor(startAt);
+
+        if (type === "video") {
+
+          const video = document.createElement("video");
+
+          video.controls = true;
+          video.crossOrigin = "anonymous";
+
+          if (poster) video.poster = poster;
+
+          const source = document.createElement("source");
+          const extension = src.match(/\.(mp4|webm|ogv)($|[?#])/i)?.[1].toLowerCase();
+
+          source.src = src;
+          source.type = videoMimeTypes[extension] ?? "video/mp4";
+
+          video.append(source);
+
+          if (caption) {
+
+            parseCaptions(caption).forEach(({ src: trackSrc, label: trackLabel, srclang, default: isDefault }) => {
+
+              const track = document.createElement("track");
+
+              track.kind = "captions";
+              track.src = trackSrc;
+              track.label = trackLabel;
+              track.srclang = srclang;
+              track.default = isDefault;
+
+              video.append(track);
+
+            });
+
+          }
+
+          if (description) {
+
+            const { src: trackSrc, label: trackLabel, srclang } = parseDescription(description);
+
+            const track = document.createElement("track");
+
+            track.kind = "descriptions";
+            track.src = trackSrc;
+            track.label = trackLabel;
+            track.srclang = srclang;
+
+            video.append(track);
+
+          }
+
+          if (startAt) video.addEventListener("loadedmetadata", () => { video.currentTime = startAt; }, { once: true });
+
+          // An explicit play() rather than the autoplay attribute: it runs inside the click that asked for it, and doesn't wait on the browser buffering
+          // "enough" data first.
+
+          if (autoplay) video.play().catch(() => {});
+
+          return video;
+
+        }
+
+        const iframe = document.createElement("iframe");
+
+        switch (type) {
+
+          case "youtube": {
+
+            // Some videos (Shorts among others) ignore youtube.com's passive autoplay=1 and show a "Watch on YouTube" card instead of playing, even though the
+            // same video autoplays fine elsewhere. youtube-nocookie.com honors an explicit IFrame API play command where youtube.com doesn't, so normalize
+            // to it and request playback once the player's loaded.
+
+            iframe.src = `https://www.youtube-nocookie.com${new URL(src).pathname}?cc_load_policy=1&fs=1&rel=0&enablejsapi=1${startSeconds ? `&start=${startSeconds}` : ""}`;
+            iframe.allow = "autoplay; fullscreen";
+
+            if (!disableAutoplay) {
+
+              iframe.addEventListener("load", () => {
+
+                iframe.contentWindow.postMessage(JSON.stringify({ event: "command", func: "playVideo", args: "" }), new URL(iframe.src).origin);
+
+              });
+
+            }
+
+            break;
+
+          }
+
+          case "vimeo": {
+
+            const vimeoSrc = new URL(src);
+
+            // An inline autoplay param (already in data-src) wins; only set ours if the author didn't specify one.
+
+            if (!vimeoSrc.searchParams.has("autoplay")) vimeoSrc.searchParams.set("autoplay", disableAutoplay ? "0" : "1");
+
+            if (startSeconds) vimeoSrc.hash = `t=${startSeconds}s`;
+
+            iframe.src = vimeoSrc.toString();
+            iframe.allow = "autoplay; fullscreen";
+            iframe.allowFullscreen = true;
+
+            break;
+
+          }
+
+          case "cloudflare": {
+
+            // Unlike YouTube/Vimeo above, a Cloudflare Stream src often already has a query string, so autoplay must be joined with "&" rather than "?".
+
+            const separator = src.includes("?") ? "&" : "?";
+
+            iframe.src = `${src}${separator}autoplay=${disableAutoplay ? "false" : "true"}`;
+            iframe.allow = "accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen";
+            iframe.allowFullscreen = true;
+
+            break;
+
+          }
+
+          case "brightcove": {
+
+            // Same reasoning as Cloudflare. "any" attempts autoplay with sound, falling back to muted only if blocked; the closest match available here.
+
+            const separator = src.includes("?") ? "&" : "?";
+
+            iframe.src = disableAutoplay ? src : `${src}${separator}autoplay=any`;
+            iframe.allow = "encrypted-media; autoplay; fullscreen";
+            iframe.allowFullscreen = true;
+
+            break;
+
+          }
+
+        }
+
+        return iframe;
+
+      };
+
+      const createAudioDescriptionButton = () => {
 
         const audioDescBtn = document.createElement("button");
 
         audioDescBtn.setAttribute("aria-label", dialogAudioDescriptionLabel);
         audioDescBtn.className = `${dialogControlsBtnClassName} ${dialogControlsAudioDescriptionClassName}`;
         audioDescBtn.setAttribute("aria-pressed", "false");
+
+        return audioDescBtn;
+
+      };
+
+      // Wires the audio-description toggle: speech-synthesizes cues, pausing/resuming the video.
+
+      const attachAudioDescription = (video, controls) => {
+
+        const audioDescBtn = createAudioDescriptionButton();
 
         audioDescBtn.addEventListener("click", () => {
 
@@ -555,10 +731,30 @@
       // closeLabel has no default here: some minifiers mishandle a destructured default that refers to an outer-scope variable, renaming the declaration but
       // missing the reference. The fallback to dialogCloseLabel is applied in the function body instead, where minifiers reliably rename references.
 
-      const buildMediaDialog = (assetContent, { heading, label, labelledby, ariaDescription, hasDescription, transcriptFragment, transcriptFetch, classic, hasContent = false, hasIframe = false, closeLabel, customClass, restoreCallbacks = [] }) => {
+      const buildMediaDialog = (assetContent, { heading, label, labelledby, ariaDescription, hasDescription, createVersion, transcriptFragment, transcriptFetch, classic, hasContent = false, hasIframe = false, closeLabel, customClass, restoreCallbacks = [] }) => {
 
         const titleText = label || dialogVideoLabel;
         const baseId = label ? slugify(label) : `dialog-${++dialogInstanceId}`;
+
+        // Class and accessible name for a video player; the described version's name says so, to tell the two apart.
+
+        const applyMediaAttributes = (media, described = false) => {
+
+          const mediaName = `${titleText}${described ? `, ${dialogAudioDescriptionLabel}` : ""} ${dialogVideoSuffixLabel}`;
+
+          media.classList.add(dialogMediaClassName);
+
+          if (media.tagName === "VIDEO") {
+
+            media.setAttribute("aria-label", mediaName);
+
+          } else {
+
+            media.title = mediaName;
+
+          }
+
+        };
 
         const dialog = document.createElement(classic ? "div" : "dialog");
 
@@ -695,6 +891,45 @@
 
           attachAudioDescription(assetContent, controls);
 
+        } else if (createVersion) {
+
+          // Alternate-video mode: the same toggle swaps the player for a separately produced, audio-described video, and back again.
+
+          const audioDescBtn = createAudioDescriptionButton();
+
+          audioDescBtn.addEventListener("click", () => {
+
+            const described = audioDescBtn.getAttribute("aria-pressed") !== "true";
+            const current = asset.firstElementChild;
+            const isVideo = current.tagName === "VIDEO";
+
+            // A native video's position and play state carry over. An iframe player's can't be read, so the next version starts over and follows the
+            // dialog's own autoplay setting.
+
+            const next = createVersion(described, isVideo ? { startAt: current.currentTime, autoplay: !current.paused } : {});
+
+            applyMediaAttributes(next, described);
+
+            // Replaces the element rather than its src: the two versions can be different players, and an iframe src change adds a history entry.
+
+            current.replaceWith(next);
+
+            // A detached video keeps downloading until it's garbage collected; emptying it releases the connection for the version replacing it.
+
+            if (isVideo) {
+
+              current.pause();
+              current.replaceChildren();
+              current.load();
+
+            }
+
+            audioDescBtn.setAttribute("aria-pressed", String(described));
+
+          });
+
+          controls.append(audioDescBtn);
+
         }
 
         controls.append(closeBtn);
@@ -703,21 +938,7 @@
 
         header.append(controls);
 
-        if (!hasContent) {
-
-          assetContent.classList.add(dialogMediaClassName);
-
-          if (assetContent.tagName === "VIDEO") {
-
-            assetContent.setAttribute("aria-label", `${titleText} ${dialogVideoSuffixLabel}`);
-
-          } else {
-
-            assetContent.title = `${titleText} ${dialogVideoSuffixLabel}`;
-
-          }
-
-        }
+        if (!hasContent) applyMediaAttributes(assetContent);
 
         const asset = document.createElement("div");
 
@@ -789,141 +1010,34 @@
 
         } else switch (type) {
 
-          case "video": {
-
-            const video = document.createElement("video");
-
-            video.controls = true;
-            video.crossOrigin = "anonymous";
-
-            if (poster) video.poster = poster;
-
-            const source = document.createElement("source");
-            const extension = src.match(/\.(mp4|webm|ogv)($|[?#])/i)?.[1].toLowerCase();
-
-            source.src = src;
-            source.type = videoMimeTypes[extension] ?? "video/mp4";
-
-            video.append(source);
-
-            if (caption) {
-
-              parseCaptions(caption).forEach(({ src: trackSrc, label: trackLabel, srclang, default: isDefault }) => {
-
-                const track = document.createElement("track");
-
-                track.kind = "captions";
-                track.src = trackSrc;
-                track.label = trackLabel;
-                track.srclang = srclang;
-                track.default = isDefault;
-
-                video.append(track);
-
-              });
-
-            }
-
-            if (description) {
-
-              const { src: trackSrc, label: trackLabel, srclang } = parseDescription(description);
-
-              const track = document.createElement("track");
-
-              track.kind = "descriptions";
-              track.src = trackSrc;
-              track.label = trackLabel;
-              track.srclang = srclang;
-
-              video.append(track);
-
-            }
-
-            dialog = buildMediaDialog(video, { heading, label, labelledby, ariaDescription, hasDescription: Boolean(description), transcriptFragment, transcriptFetch, classic, customClass });
-
-            break;
-
-          }
-
-          case "youtube": {
-
-            const iframe = document.createElement("iframe");
-
-            // Some videos (Shorts among others) ignore youtube.com's passive autoplay=1 and show a "Watch on YouTube" card instead of playing, even though the
-            // same video autoplays fine elsewhere. youtube-nocookie.com honors an explicit IFrame API play command where youtube.com doesn't, so normalize
-            // to it and request playback once the player's loaded.
-
-            iframe.src = `https://www.youtube-nocookie.com${new URL(src).pathname}?cc_load_policy=1&fs=1&rel=0&enablejsapi=1`;
-            iframe.allow = "autoplay; fullscreen";
-
-            if (!disableAutoplay) {
-
-              iframe.addEventListener("load", () => {
-
-                iframe.contentWindow.postMessage(JSON.stringify({ event: "command", func: "playVideo", args: "" }), new URL(iframe.src).origin);
-
-              });
-
-            }
-
-            dialog = buildMediaDialog(iframe, { heading, label, labelledby, ariaDescription, transcriptFragment, transcriptFetch, classic, customClass });
-
-            flagYoutubeShorts(dialog, src);
-
-            break;
-
-          }
-
-          case "vimeo": {
-
-            const iframe = document.createElement("iframe");
-            const vimeoSrc = new URL(src);
-
-            // An inline autoplay param (already in data-src) wins; only set ours if the author didn't specify one.
-
-            if (!vimeoSrc.searchParams.has("autoplay")) vimeoSrc.searchParams.set("autoplay", disableAutoplay ? "0" : "1");
-
-            iframe.src = vimeoSrc.toString();
-            iframe.allow = "autoplay; fullscreen";
-            iframe.allowFullscreen = true;
-
-            dialog = buildMediaDialog(iframe, { heading, label, labelledby, ariaDescription, transcriptFragment, transcriptFetch, classic, customClass });
-
-            break;
-
-          }
-
-          case "cloudflare": {
-
-            const iframe = document.createElement("iframe");
-
-            // Unlike YouTube/Vimeo above, a Cloudflare Stream src often already has a query string, so autoplay must be joined with "&" rather than "?".
-
-            const separator = src.includes("?") ? "&" : "?";
-
-            iframe.src = `${src}${separator}autoplay=${disableAutoplay ? "false" : "true"}`;
-            iframe.allow = "accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen";
-            iframe.allowFullscreen = true;
-
-            dialog = buildMediaDialog(iframe, { heading, label, labelledby, ariaDescription, transcriptFragment, transcriptFetch, classic, customClass });
-
-            break;
-
-          }
-
+          case "video":
+          case "youtube":
+          case "vimeo":
+          case "cloudflare":
           case "brightcove": {
 
-            const iframe = document.createElement("iframe");
+            const descriptionMedia = getDescriptionMedia(description);
 
-            // Same reasoning as Cloudflare. "any" attempts autoplay with sound, falling back to muted only if blocked; the closest match available here.
+            const media = createMediaElement(type, src, { caption, description: descriptionMedia ? null : description, poster, disableAutoplay });
 
-            const separator = src.includes("?") ? "&" : "?";
+            // Builds either version of the player for the audio-description toggle. Captions are reapplied to a described native video, so they only line
+            // up if both cuts share the same timing.
 
-            iframe.src = disableAutoplay ? src : `${src}${separator}autoplay=any`;
-            iframe.allow = "encrypted-media; autoplay; fullscreen";
-            iframe.allowFullscreen = true;
+            const createVersion = descriptionMedia && ((described, { startAt, autoplay = !disableAutoplay } = {}) => {
 
-            dialog = buildMediaDialog(iframe, { heading, label, labelledby, ariaDescription, transcriptFragment, transcriptFetch, classic, customClass });
+              const version = described ? descriptionMedia : { type, src };
+
+              dialog.removeAttribute(dialogDataYoutubeShorts);
+
+              if (version.type === "youtube") flagYoutubeShorts(dialog, version.src);
+
+              return createMediaElement(version.type, version.src, { caption, poster, disableAutoplay: !autoplay, autoplay, startAt });
+
+            });
+
+            dialog = buildMediaDialog(media, { heading, label, labelledby, ariaDescription, hasDescription: Boolean(description) && !descriptionMedia, createVersion, transcriptFragment, transcriptFetch, classic, customClass });
+
+            if (type === "youtube") flagYoutubeShorts(dialog, src);
 
             break;
 
@@ -1126,6 +1240,31 @@
         // Defensive against CMS/template double-encoding query ampersands as &amp;. A literal &amp; is never valid otherwise, so this is safe to correct.
 
         let src = rawSrc?.replace(/&amp;/g, "&") ?? rawSrc;
+        // Alternative to data-audio-description's described-video form, for any video type: a desc param on data-src's own query string. An explicit
+        // attribute always wins, and desc is stripped from src either way so it never reaches the player. Stripped before the type is detected, or a
+        // described video's URL (e.g. one containing "youtube") would be mistaken for the main video's type.
+
+        if (!iframeSrc && src && /[?&]desc=/.test(src)) {
+
+          try {
+
+            const mediaSrcUrl = new URL(src);
+            const descriptionParam = mediaSrcUrl.searchParams.get("desc");
+
+            mediaSrcUrl.searchParams.delete("desc");
+
+            if (dialogMediaTypes.includes(detectDialogType(mediaSrcUrl.toString()))) {
+
+              src = mediaSrcUrl.toString();
+
+              if (!description) description = descriptionParam;
+
+            }
+
+          } catch {}
+
+        }
+
         const type = iframeSrc ? "iframe" : detectDialogType(src);
 
         // Alternative to data-transcript-fetch/data-audio-description, for self-hosted video: both can be folded into data-src's own query string (transcript, src,

@@ -17,7 +17,7 @@ attributes:
       - String
       - Optional
 
-    desc: Used to add an audio-description track to self-hosted video. Accepts a <code>src, label, srclang</code> value. Can also be folded into <code>data-src</code>'s own query string (e.g. <code>video.mp4?src=desc.vtt&label=English&srclang=en</code>) when a separate attribute isn't practical.
+    desc: Used to add audio description to a video, toggled by a button in the dialog. Works in one of two ways, depending on the value. A <code>.vtt</code> track (self-hosted video only) is read aloud by speech synthesis and accepts a <code>src, label, srclang</code> value. A video URL (a video file, YouTube, Vimeo, Cloudflare, or Brightcove) is treated as a separately produced, audio-described version and swapped in for the original; it works with any video type, and the two versions don't need to match. Either form can also be folded into <code>data-src</code>'s own query string when a separate attribute isn't practical. Pass a track as <code>src</code>, <code>label</code>, and <code>srclang</code> on self-hosted video (e.g. <code>video.mp4?src=desc.vtt&label=English&srclang=en</code>), or a described video as <code>desc</code> on any video type (e.g. <code>https://youtube.com/embed/abc123?desc=https://youtube.com/embed/xyz789</code>). A <code>desc</code> URL that has a query string of its own must be URL-encoded.
 
   - name: data-caption
     html: .dialog-trigger
@@ -298,6 +298,9 @@ classes:
     desc: Toggled on <code>.dialog__container</code> while the transcript panel is open.
 
 changelog:
+
+  - label: Feature
+    content: "November 16, 2026: Extended <code>data-audio-description</code> to accept the URL of a separately produced, audio-described video (a video file, YouTube, Vimeo, Cloudflare, or Brightcove), in addition to a <code>.vtt</code> track. The audio description button swaps the original video for the described one, and back again; it now works with any video type, and the two versions don't need to match. The described video can alternatively be passed as a <code>desc</code> parameter on <code>data-src</code>'s own query string. The Audio Description example is now Audio Description (VTT), alongside a new Audio Description (Video) example. Bumped to 1.2.9."
 
   - label: Feature
     content: "November 14, 2026: Swapped the transcript and audio description buttons in <code>.dialog__controls</code>. The order is now transcript, audio description, close. Bumped to 1.2.8."
