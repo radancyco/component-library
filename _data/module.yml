@@ -735,6 +735,13 @@ layouts:
     title: "FlexSpan Grid System (FGS)"
     version: "1.0.0"
 
+  - id: "navigation"
+    desc: "A lightweight, attribute-driven helper for building toggle-based navigation menus."
+    path-full: "https://fuzzy-barnacle-l4mly2e.pages.github.io/"
+    thumbnail: "thumb-navigation.png"
+    title: "Universal Navigation"
+    version: "1.0.0"
+
 resources: 
 
   - id: "css-animation" 
