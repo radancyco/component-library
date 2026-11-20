@@ -925,11 +925,11 @@ if(currentPageLanguage === "ar") {
 
     // Accordion 
 
-    var accordionCloseButtonLabel = "Cerca";
+    var accordionCloseButtonLabel = "Cerrar";
 
     // Dialog
 
-    var labelDialogClose = "Cerca";
+    var labelDialogClose = "Cerrar";
     var labelDialogAudioDescription = "Descripción de audio";
     var labelDialogTranscriptHeading = "Transcripción";
     var labelDialogTranscriptButton = "Transcripción del video";
